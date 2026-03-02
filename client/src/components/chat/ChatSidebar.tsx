@@ -26,9 +26,9 @@ interface ChatSidebarProps {
   onNew: () => void;
   onDelete: (id: string) => void;
   onRename: (id: string, newTitle: string) => void;
-  projects: Project[];
-  selectedProjectId: string | null;
-  onProjectChange: (projectId: string | null) => void;
+  projects?: Project[];
+  selectedProjectId?: string | null;
+  onProjectChange?: (projectId: string | null) => void;
 }
 
 function groupByDate(conversations: Conversation[]) {
@@ -68,8 +68,8 @@ export function ChatSidebar({
   onDelete,
   onRename,
   projects = [],
-  selectedProjectId,
-  onProjectChange,
+  selectedProjectId = null,
+  onProjectChange = () => {},
 }: ChatSidebarProps) {
   const [search, setSearch] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
