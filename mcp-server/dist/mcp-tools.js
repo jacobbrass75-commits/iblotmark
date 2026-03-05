@@ -131,6 +131,51 @@ function parseRequiredString(input, key) {
     }
     return value.trim();
 }
+function parseOptionalString(input, key) {
+    const value = input[key];
+    if (typeof value !== "string") {
+        return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+}
+function buildQueryString(params) {
+    const search = new URLSearchParams();
+    for (const [key, value] of Object.entries(params)) {
+        if (typeof value === "undefined" || value === null) {
+            continue;
+        }
+        search.set(key, String(value));
+    }
+    const query = search.toString();
+    return query.length > 0 ? `?${query}` : "";
+}
+async function resolveSourceIds(client, token, input) {
+    const projectDocumentId = parseOptionalString(input, "project_document_id");
+    const documentId = parseOptionalString(input, "document_id");
+    if (projectDocumentId) {
+        const projectDocument = await client.requestJson("GET", `/api/project-documents/${encodeURIComponent(projectDocumentId)}`, token);
+        const resolvedDocumentId = typeof projectDocument?.documentId === "string"
+            ? projectDocument.documentId.trim()
+            : "";
+        if (resolvedDocumentId.length === 0) {
+            throw new Error("Project document did not include a backing document ID.");
+        }
+        return {
+            projectDocumentId,
+            documentId: resolvedDocumentId,
+            projectDocument,
+        };
+    }
+    if (documentId) {
+        return {
+            projectDocumentId: undefined,
+            documentId,
+            projectDocument: null,
+        };
+    }
+    throw new Error("project_document_id or document_id is required");
+}
 function describeBackendError(error) {
     if (error instanceof BackendHttpError) {
         if (error.status === 401) {
@@ -202,6 +247,109 @@ export function registerScholarMarkTools(server, options) {
         const projectId = encodeURIComponent(parseRequiredString(input, "project_id"));
         const sources = await client.requestJson("GET", `/api/projects/${projectId}/documents`, token);
         return asTextResult(sources);
+    }));
+    registerTool(server, "get_source_summary", "Load a source summary, key concepts, and related project-document metadata", {
+        type: "object",
+        properties: {
+            project_document_id: { type: "string", description: "Project document ID from get_project_sources" },
+            document_id: { type: "string", description: "Underlying document ID if you already have it" },
+        },
+        additionalProperties: false,
+    }, async (input, context) => withToken(context, async (token) => {
+        const { projectDocumentId, documentId, projectDocument } = await resolveSourceIds(client, token, input);
+        const summary = await client.requestJson("GET", `/api/documents/${encodeURIComponent(documentId)}/summary`, token);
+        return asTextResult({
+            projectDocumentId: projectDocumentId ?? null,
+            documentId,
+            projectDocument,
+            summary,
+        });
+    }));
+    registerTool(server, "get_source_annotations", "Load quote-bank annotations for a project source or a plain document", {
+        type: "object",
+        properties: {
+            project_document_id: { type: "string", description: "Project document ID from get_project_sources" },
+            document_id: { type: "string", description: "Underlying document ID if you want legacy document annotations" },
+        },
+        additionalProperties: false,
+    }, async (input, context) => withToken(context, async (token) => {
+        const { projectDocumentId, documentId } = await resolveSourceIds(client, token, input);
+        if (projectDocumentId) {
+            const annotations = await client.requestJson("GET", `/api/project-documents/${encodeURIComponent(projectDocumentId)}/annotations`, token);
+            return asTextResult({
+                scope: "project_document",
+                projectDocumentId,
+                documentId,
+                annotations,
+            });
+        }
+        const annotations = await client.requestJson("GET", `/api/documents/${encodeURIComponent(documentId)}/annotations`, token);
+        return asTextResult({
+            scope: "document",
+            documentId,
+            annotations,
+        });
+    }));
+    registerTool(server, "get_source_chunks", "Search a source for relevant chunks/quotes and return the best matching passages", {
+        type: "object",
+        properties: {
+            project_document_id: { type: "string", description: "Project document ID from get_project_sources" },
+            document_id: { type: "string", description: "Underlying document ID if you want non-project document search" },
+            query: { type: "string", description: "What you want to find in the source" },
+        },
+        required: ["query"],
+        additionalProperties: false,
+    }, async (input, context) => withToken(context, async (token) => {
+        const query = parseRequiredString(input, "query");
+        const { projectDocumentId, documentId } = await resolveSourceIds(client, token, input);
+        if (projectDocumentId) {
+            const results = await client.requestJson("POST", `/api/project-documents/${encodeURIComponent(projectDocumentId)}/search`, token, { query });
+            return asTextResult({
+                scope: "project_document",
+                projectDocumentId,
+                documentId,
+                query,
+                results,
+            });
+        }
+        const results = await client.requestJson("POST", `/api/documents/${encodeURIComponent(documentId)}/search`, token, { query });
+        return asTextResult({
+            scope: "document",
+            documentId,
+            query,
+            results,
+        });
+    }));
+    registerTool(server, "get_web_clips", "Load saved web clips, optionally filtered to a project, URL, category, or text query", {
+        type: "object",
+        properties: {
+            project_id: { type: "string", description: "Optional project ID to limit clips to one project" },
+            source_url: { type: "string", description: "Optional exact source URL filter" },
+            category: { type: "string", description: "Optional clip category filter" },
+            search: { type: "string", description: "Optional text search across clip content and notes" },
+            limit: { type: "integer", description: "Optional result limit (default 25, max 200)" },
+            sort: { type: "string", description: "Optional sort: newest, oldest, or site" },
+        },
+        additionalProperties: false,
+    }, async (input, context) => withToken(context, async (token) => {
+        const projectId = parseOptionalString(input, "project_id");
+        const sourceUrl = parseOptionalString(input, "source_url");
+        const category = parseOptionalString(input, "category");
+        const search = parseOptionalString(input, "search");
+        const sort = parseOptionalString(input, "sort");
+        const limit = typeof input.limit === "number" && Number.isFinite(input.limit)
+            ? Math.max(1, Math.min(200, Math.floor(input.limit)))
+            : 25;
+        const query = buildQueryString({
+            projectId,
+            sourceUrl,
+            category,
+            search,
+            sort,
+            limit,
+        });
+        const clips = await client.requestJson("GET", `/api/web-clips${query}`, token);
+        return asTextResult(clips);
     }));
     registerTool(server, "start_conversation", "Start a new ScholarMark conversation for a project", {
         type: "object",

@@ -23,3 +23,17 @@ npm start
 - `server.mjs` is the active entrypoint.
 - The service expects nginx to proxy `/mcp` with `Accept: application/json, text/event-stream` for Claude's initialize probe.
 - OAuth discovery and token aliases on `mcp.scholarmark.ai` are proxied back to the main app service.
+
+## Tools
+
+- `get_projects`
+- `get_project_sources`
+- `get_source_summary`
+- `get_source_annotations`
+- `get_source_chunks`
+- `get_web_clips`
+- `start_conversation`
+- `get_conversations`
+- `send_message`
+- `compile_paper`
+- `verify_paper`
