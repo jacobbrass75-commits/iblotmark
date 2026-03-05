@@ -35,6 +35,12 @@ interface ApiKeyRow {
   user_id: string;
 }
 
+interface McpTokenRow {
+  id: string;
+  user_id: string;
+  expires_at: number | null;
+}
+
 type ApiKeyAuthResult =
   | { status: "none" }
   | { status: "invalid" }
@@ -50,6 +56,20 @@ const selectApiKeyByHash = sqlite.prepare(
 
 const touchApiKeyLastUsed = sqlite.prepare(
   `UPDATE api_keys
+   SET last_used_at = ?
+   WHERE id = ?`
+);
+
+const selectMcpTokenByHash = sqlite.prepare(
+  `SELECT id, user_id, expires_at
+   FROM mcp_tokens
+   WHERE key_hash = ?
+     AND revoked_at IS NULL
+   LIMIT 1`
+);
+
+const touchMcpTokenLastUsed = sqlite.prepare(
+  `UPDATE mcp_tokens
    SET last_used_at = ?
    WHERE id = ?`
 );
@@ -73,38 +93,86 @@ function extractBearerToken(req: Request): string | null {
   return token;
 }
 
+function shouldBypassClerk(req: Request): boolean {
+  const token = extractBearerToken(req);
+  if (!token) {
+    return false;
+  }
+
+  return token.startsWith("sk_sm_") || token.startsWith("mcp_sm_");
+}
+
 async function resolveApiKeyUser(req: Request): Promise<ApiKeyAuthResult> {
   const token = extractBearerToken(req);
-  if (!token || !token.startsWith("sk_sm_")) {
+  if (!token) {
     return { status: "none" };
   }
 
   const keyHash = hashApiKey(token);
-  const keyRow = selectApiKeyByHash.get(keyHash) as ApiKeyRow | undefined;
-  if (!keyRow) {
-    return { status: "invalid" };
+  const now = getUnixSeconds();
+
+  if (token.startsWith("sk_sm_")) {
+    const keyRow = selectApiKeyByHash.get(keyHash) as ApiKeyRow | undefined;
+    if (!keyRow) {
+      return { status: "invalid" };
+    }
+
+    const dbUser = await getUserById(keyRow.user_id);
+    if (!dbUser) {
+      return { status: "invalid" };
+    }
+
+    touchApiKeyLastUsed.run(now, keyRow.id);
+
+    return {
+      status: "success",
+      user: {
+        userId: dbUser.id,
+        email: dbUser.email,
+        tier: dbUser.tier,
+      },
+    };
   }
 
-  const dbUser = await getUserById(keyRow.user_id);
-  if (!dbUser) {
-    return { status: "invalid" };
+  if (token.startsWith("mcp_sm_")) {
+    const tokenRow = selectMcpTokenByHash.get(keyHash) as McpTokenRow | undefined;
+    if (!tokenRow) {
+      return { status: "invalid" };
+    }
+    if (tokenRow.expires_at !== null && tokenRow.expires_at <= now) {
+      return { status: "invalid" };
+    }
+
+    const dbUser = await getUserById(tokenRow.user_id);
+    if (!dbUser) {
+      return { status: "invalid" };
+    }
+
+    touchMcpTokenLastUsed.run(now, tokenRow.id);
+
+    return {
+      status: "success",
+      user: {
+        userId: dbUser.id,
+        email: dbUser.email,
+        tier: dbUser.tier,
+      },
+    };
   }
 
-  touchApiKeyLastUsed.run(getUnixSeconds(), keyRow.id);
-
-  return {
-    status: "success",
-    user: {
-      userId: dbUser.id,
-      email: dbUser.email,
-      tier: dbUser.tier,
-    },
-  };
+  return { status: "none" };
 }
 
 // ── Install Clerk middleware globally ────────────────────────────────
 export function configureClerk(app: Express): void {
-  app.use(clerkMiddleware());
+  const clerk = clerkMiddleware();
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    if (shouldBypassClerk(req)) {
+      next();
+      return;
+    }
+    clerk(req, res, next);
+  });
 }
 
 // ── Resolve Clerk user → local DB user, set req.user ────────────────
