@@ -18,6 +18,7 @@ import Chat from "@/pages/Chat";
 import WritingPage from "@/pages/WritingPage";
 import WebClips from "@/pages/WebClips";
 import ExtensionAuth from "@/pages/ExtensionAuth";
+import AdminAnalytics from "@/pages/AdminAnalytics";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/chat/:conversationId">{() => <ProtectedRoute><Chat /></ProtectedRoute>}</Route>
       <Route path="/write">{() => <ProtectedRoute><WritingPage /></ProtectedRoute>}</Route>
       <Route path="/writing">{() => <ProtectedRoute><WritingPage /></ProtectedRoute>}</Route>
+      <Route path="/admin/analytics">{() => <ProtectedRoute><AdminAnalytics /></ProtectedRoute>}</Route>
       <Route component={NotFound} />
     </Switch>
   );

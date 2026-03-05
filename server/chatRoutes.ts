@@ -5,6 +5,7 @@ import { chatStorage } from "./chatStorage";
 import { db } from "./db";
 import { projectStorage } from "./projectStorage";
 import { storage } from "./storage";
+import { logContextSnapshot, logToolCall } from "./analyticsLogger";
 import { requireAuth, requireTier } from "./auth";
 import {
   formatSourceForPrompt,
@@ -1499,6 +1500,9 @@ export function registerChatRoutes(app: Express) {
       });
 
       const isFirstExchange = history.filter((message) => message.role === "user").length === 1;
+      const turnNumber = history
+        .filter((message) => message.role === "user")
+        .filter((message) => !isInternalContextMessage(message)).length;
       let hasAutoTitled = false;
       let totalInputTokens = 0;
       let totalOutputTokens = 0;
@@ -1552,19 +1556,57 @@ export function registerChatRoutes(app: Express) {
                 sourceTitle,
               });
 
-              const toolOutput = await executeWritingTool(
-                toolCall.name,
-                toolCall.input,
-                req.user!.userId,
-                conv.projectId,
-                sources
-              );
+              let toolOutput = "";
+              try {
+                toolOutput = await executeWritingTool(
+                  toolCall.name,
+                  toolCall.input,
+                  req.user!.userId,
+                  conv.projectId,
+                  sources
+                );
+              } catch (error) {
+                const errorMessage = error instanceof Error ? error.message : "Unknown tool execution error";
+                void logToolCall({
+                  conversationId: conv.id,
+                  userId: req.user!.userId,
+                  projectId: conv.projectId ?? null,
+                  toolName: toolCall.name,
+                  documentId: documentId || null,
+                  escalationRound: escalationCount + 1,
+                  turnNumber,
+                  resultSizeChars: errorMessage.length,
+                  success: false,
+                  timestamp: Date.now(),
+                  metadata: {
+                    toolCallId: toolCall.id,
+                    error: errorMessage,
+                  },
+                }).catch((err) => console.warn("[analytics] logToolCall error:", err));
+                throw error;
+              }
 
               toolResults.push({
                 type: "tool_result",
                 tool_use_id: toolCall.id,
                 content: toolOutput,
               });
+              void logToolCall({
+                conversationId: conv.id,
+                userId: req.user!.userId,
+                projectId: conv.projectId ?? null,
+                toolName: toolCall.name,
+                documentId: documentId || null,
+                escalationRound: escalationCount + 1,
+                turnNumber,
+                resultSizeChars: toolOutput.length,
+                success: true,
+                timestamp: Date.now(),
+                metadata: {
+                  toolCallId: toolCall.id,
+                  sourceTitle: sourceTitle ?? null,
+                },
+              }).catch((err) => console.warn("[analytics] logToolCall error:", err));
 
               sendEvent({
                 type: "context_loaded",
@@ -1583,6 +1625,18 @@ export function registerChatRoutes(app: Express) {
               { role: "user", content: toolResults }
             );
             usageEstimate = estimateContextUsage(systemPrompt, anthropicMessages, mode);
+            void logContextSnapshot({
+              conversationId: conv.id,
+              turnNumber,
+              escalationRound: escalationCount + 1,
+              estimatedTokens: usageEstimate.totalUsed,
+              warningLevel: usageEstimate.warningLevel,
+              trigger: turn.toolUseBlocks.map((block) => block.name).join(",") || null,
+              timestamp: Date.now(),
+              metadata: {
+                toolCount: turn.toolUseBlocks.length,
+              },
+            }).catch((err) => console.warn("[analytics] logContextSnapshot error:", err));
             sendContextWarningIfNeeded(usageEstimate);
             escalationCount += 1;
             continue;

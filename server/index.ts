@@ -5,24 +5,41 @@ import cors from "cors";
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { registerAuthRoutes } from "./authRoutes";
+import { registerOAuthRoutes } from "./oauthRoutes";
 import { configureClerk } from "./auth";
 import { serveStatic } from "./static";
+import { initAnalytics } from "./analyticsLogger";
 import { createServer } from "http";
 
 const app = express();
 const httpServer = createServer(app);
+app.set("trust proxy", true);
 
 const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
+const ALWAYS_ALLOWED_ORIGINS = new Set([
+  "https://claude.ai",
+  "https://claude.com",
+  "https://mcp.scholarmark.ai",
+  "https://app.scholarmark.ai",
+]);
+const ALLOWED_ORIGIN_SET = new Set(allowedOrigins.map((origin) => normalizeOrigin(origin)));
+
+function normalizeOrigin(origin: string): string {
+  return origin.trim().replace(/\/+$/, "");
+}
+
 function isAllowedOrigin(origin?: string): boolean {
   if (!origin) return true;
+  const normalizedOrigin = normalizeOrigin(origin);
   if (origin.startsWith("chrome-extension://")) return true;
   if (/^https?:\/\/(localhost|127\\.0\\.0\\.1)(:\\d+)?$/i.test(origin)) return true;
   if (/^https?:\/\/89\\.167\\.10\\.34(:\\d+)?$/i.test(origin)) return true;
-  if (allowedOrigins.includes(origin)) return true;
+  if (ALWAYS_ALLOWED_ORIGINS.has(normalizedOrigin)) return true;
+  if (ALLOWED_ORIGIN_SET.has(normalizedOrigin)) return true;
   return false;
 }
 
@@ -130,10 +147,13 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  registerOAuthRoutes(app);
+
   // Register auth routes before other routes
   registerAuthRoutes(app);
 
   await registerRoutes(httpServer, app);
+  initAnalytics();
 
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     if (res.headersSent) {

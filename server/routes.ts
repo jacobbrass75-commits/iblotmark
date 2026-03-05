@@ -31,6 +31,7 @@ import { registerWritingRoutes } from "./writingRoutes";
 import { registerHumanizerRoutes } from "./humanizerRoutes";
 import { registerExtensionRoutes } from "./extensionRoutes";
 import { registerWebClipRoutes } from "./webClipRoutes";
+import { registerAnalyticsRoutes } from "./analyticsRoutes";
 import type { AnnotationCategory, InsertAnnotation } from "@shared/schema";
 import {
   createZipFromImageUploads,
@@ -149,6 +150,24 @@ function isGarbledText(text: string): boolean {
   if (words.length > 10 && avgWordLen < 3) signals += 1;
 
   return signals >= 2;
+}
+
+// Detect parser output that contains mostly page footer markers such as
+// "-- 1 of 16 -- -- 2 of 16 --" with little to no real document content.
+function isLikelyPageMarkerOnlyText(text: string): boolean {
+  if (!text || text.length < 80) return false;
+
+  const pageMarkerMatches =
+    text.match(/(?:--\s*)?\d+\s+of\s+\d+(?:\s*--)?/gi) || [];
+  if (pageMarkerMatches.length < 3) return false;
+
+  const pageMarkerChars = pageMarkerMatches.reduce((total, marker) => total + marker.length, 0);
+  const markerRatio = pageMarkerChars / Math.max(1, text.length);
+
+  const words = text.match(/[a-zA-Z]{3,}/g) || [];
+  const uniqueWordCount = new Set(words.map((word) => word.toLowerCase())).size;
+
+  return markerRatio >= 0.4 && uniqueWordCount <= 8;
 }
 
 const upload = multer({
@@ -272,11 +291,47 @@ export async function registerRoutes(
         });
       }
 
+      const queueStandardPdfFallback = async (
+        reasonCode: "standard_parse_failed" | "standard_garbled_text" | "standard_empty_text",
+        reasonMessage: string
+      ) => {
+        console.warn(
+          `[upload] Standard PDF extraction fallback (${reasonCode}) for ${file.originalname}: ${reasonMessage}`
+        );
+
+        const doc = await storage.createDocument({
+          filename: file.originalname,
+          fullText: "",
+          userId: req.user!.userId,
+        } as any);
+        await saveDocumentSource(doc.id, file.originalname, file.buffer);
+        await storage.updateDocument(doc.id, { status: "processing" });
+        await enqueuePdfOcrJob({
+          documentId: doc.id,
+          sourceFilename: file.originalname,
+          // Vision batch is more robust than PaddleOCR for parser-failure fallbacks
+          // and avoids recurring quality drops on scanned/complex PDFs.
+          ocrMode: "vision_batch",
+          ocrModel,
+        });
+
+        const updatedDoc = await storage.getDocument(doc.id);
+        return res.status(202).json(updatedDoc);
+      };
+
       // For TXT files and standard PDF mode, use synchronous processing
       if (isTxt || (isPdf && ocrMode === "standard")) {
         let fullText: string;
 
         if (isPdf) {
+          if (file.buffer.length === 0) {
+            return res.status(400).json({
+              message:
+                "The uploaded PDF is empty (0 bytes). If it came from cloud storage, download it locally first and try again.",
+              code: "standard_empty_upload",
+            });
+          }
+
           // Use pdf-parse to extract text from PDF. Wrap in try/finally to ensure
           // the parser is always destroyed even if extraction fails.
           let parser: InstanceType<typeof PDFParse> | null = null;
@@ -285,29 +340,47 @@ export async function registerRoutes(
             const textResult = await parser.getText();
             fullText = textResult.text;
           } catch (pdfError) {
+            const parseErrorMessage = pdfError instanceof Error ? pdfError.message : String(pdfError);
             console.error("Standard PDF parse failed for", file.originalname, pdfError);
-            return res.status(400).json({
-              message: "Failed to extract text from this PDF. Try re-uploading with Advanced OCR or Vision OCR mode.",
-              code: "standard_parse_failed",
-            });
+            if (/size is zero bytes/i.test(parseErrorMessage)) {
+              return res.status(400).json({
+                message:
+                  "The uploaded PDF is empty (0 bytes). If it came from cloud storage, download it locally first and try again.",
+                code: "standard_empty_upload",
+              });
+            }
+            return await queueStandardPdfFallback("standard_parse_failed", parseErrorMessage);
           } finally {
             try { await parser?.destroy(); } catch { /* ignore cleanup errors */ }
           }
           // Clean up whitespace
           fullText = fullText!.replace(/\s+/g, " ").trim();
 
+          if (isLikelyPageMarkerOnlyText(fullText)) {
+            return await queueStandardPdfFallback(
+              "standard_empty_text",
+              "Standard extraction returned mostly page marker footer text"
+            );
+          }
+
           // Check if extracted text appears garbled (common with scanned PDFs or custom fonts)
           if (isGarbledText(fullText)) {
-            return res.status(400).json({
-              message: "This PDF appears to be scanned or uses custom fonts that cannot be read. Try re-uploading with Advanced OCR, Vision OCR, or Vision OCR Batch mode.",
-              code: "standard_garbled_text",
-            });
+            return await queueStandardPdfFallback(
+              "standard_garbled_text",
+              "Standard extraction produced garbled text"
+            );
           }
         } else {
           fullText = extractTextFromTxt(file.buffer.toString("utf-8"));
         }
 
         if (!fullText || fullText.length < 10) {
+          if (isPdf) {
+            return await queueStandardPdfFallback(
+              "standard_empty_text",
+              "Standard extraction produced no usable text"
+            );
+          }
           return res.status(400).json({
             message: "Could not extract any text from this file. If it is a scanned PDF, try Advanced OCR or Vision OCR mode.",
             code: "standard_empty_text",
@@ -873,6 +946,9 @@ export async function registerRoutes(
 
   // Register chat routes
   registerChatRoutes(app);
+
+  // Register analytics routes (admin-only)
+  registerAnalyticsRoutes(app);
 
   // Register writing pipeline routes
   registerWritingRoutes(app);
