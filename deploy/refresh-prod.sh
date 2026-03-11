@@ -17,14 +17,20 @@ npm install
 echo "[deploy] building app"
 npm run build
 
-echo "[deploy] reloading built web app"
-pm2 startOrReload deploy/pm2.ecosystem.cjs
+echo "[deploy] replacing web app with built production process"
+pm2 delete sourceannotator >/dev/null 2>&1 || true
+NODE_ENV=production PORT=5001 pm2 start dist/index.cjs --name sourceannotator --cwd "$APP_DIR" --interpreter /usr/bin/node
 
 if [[ -d "$MCP_DIR" ]]; then
   echo "[deploy] ensuring MCP deps"
   cd "$MCP_DIR"
   npm install
-  pm2 startOrReload deploy/pm2.ecosystem.cjs
+  pm2 delete scholarmark-mcp >/dev/null 2>&1 || true
+  MCP_SERVER_PORT=5002 \
+  SCHOLARMARK_BACKEND_URL=http://127.0.0.1:5001 \
+  MCP_AUTHORIZATION_SERVER=https://app.scholarmark.ai \
+  MCP_RESOURCE_URL=https://mcp.scholarmark.ai \
+  pm2 start server.mjs --name scholarmark-mcp --cwd "$MCP_DIR" --interpreter /usr/bin/node
 fi
 
 echo "[deploy] saving PM2 process list"
