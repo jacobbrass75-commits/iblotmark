@@ -129,7 +129,8 @@ async function handleStreamableMcpRequest(req, res) {
     attachAuthInfo(req);
 
     const isInitialize = bodyMethod === "initialize";
-    if (req.method === "POST" && !req.auth && !isInitialize) {
+    const isInitializedNotification = bodyMethod === "notifications/initialized";
+    if (req.method === "POST" && !req.auth && !isInitialize && !isInitializedNotification) {
       const resourceUrl = getResourceMetadataUrl(req);
       console.log("[AUTH] 401 for method:", bodyMethod);
       res.status(401)
@@ -140,6 +141,10 @@ async function handleStreamableMcpRequest(req, res) {
 
     if (isInitialize && !req.auth) {
       console.log("[AUTH] Allowing unauthenticated initialize (health probe)");
+    }
+
+    if (isInitializedNotification && !req.auth) {
+      console.log("[AUTH] Allowing unauthenticated notifications/initialized");
     }
 
     if (req.method === "DELETE") {

@@ -1,94 +1,82 @@
 import type { Express, Request, Response } from "express";
+import { z } from "zod";
 import { requireAuth, requireTier } from "./auth";
 import { projectStorage } from "./projectStorage";
-import type { AnnotationCategory } from "@shared/schema";
+import { db } from "./db";
+import { generateChicagoBibliography, generateChicagoFootnote } from "./citationGenerator";
+import { webClips, type CitationData } from "@shared/schema";
+
+const extensionSaveSchema = z
+  .object({
+    highlightedText: z.string().trim().min(1),
+    pageUrl: z.string().trim().url(),
+    pageTitle: z.string().trim().optional(),
+    context: z.string().trim().optional(),
+    projectId: z.string().trim().optional(),
+    timestamp: z.string().trim().optional(),
+  })
+  .strict();
+
+function normalizeUrl(input: string): string {
+  const url = new URL(input);
+  url.hash = "";
+  return url.toString();
+}
 
 export function registerExtensionRoutes(app: Express): void {
-  // POST /api/extension/save — Save a highlight from the Chrome extension
-  // Requires auth (JWT in Authorization header)
-  // Body: { highlightedText, pageUrl, pageTitle, context, projectId?, timestamp? }
-  // Creates an annotation in the specified project (or default project)
+  // POST /api/extension/save — Legacy extension endpoint kept for compatibility.
+  // Persists a real web clip so older extension builds still save usable data.
   app.post("/api/extension/save", requireAuth, requireTier("pro"), async (req: Request, res: Response) => {
     try {
-      const { highlightedText, pageUrl, pageTitle, context, projectId } = req.body;
-
-      // Validate
-      if (!highlightedText || typeof highlightedText !== "string") {
-        return res.status(400).json({ message: "No text provided" });
+      const parsed = extensionSaveSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Invalid extension payload",
+          details: parsed.error.flatten(),
+        });
       }
 
-      // Find the target project
-      let targetProjectId = projectId;
-
-      if (!targetProjectId) {
-        // Use the first available project as default
-        const allProjects = await projectStorage.getAllProjects();
-        if (allProjects.length > 0) {
-          targetProjectId = allProjects[0].id;
-        } else {
-          // Create a default "Web Highlights" project
-          const newProject = await projectStorage.createProject({
-            name: "Web Highlights",
-            description: "Highlights saved from the ScholarMark Chrome extension",
-          });
-          targetProjectId = newProject.id;
+      const targetProjectId = parsed.data.projectId || null;
+      if (targetProjectId) {
+        const projects = await projectStorage.getAllProjects(req.user!.userId);
+        const ownsProject = projects.some((project) => project.id === targetProjectId);
+        if (!ownsProject) {
+          return res.status(404).json({ message: "Project not found" });
         }
       }
 
-      // Build the annotation note with citation context
-      const citationNote = [
-        `Web highlight from: ${pageTitle || "Untitled Page"}`,
-        pageUrl ? `Source: ${pageUrl}` : "",
-        context ? `Context: ${context}` : "",
-      ]
-        .filter(Boolean)
-        .join("\n");
-
-      // Auto-generate citation data from the webpage
-      const citationData = {
-        sourceType: "website" as const,
-        authors: [] as Array<{ firstName: string; lastName: string }>,
-        title: pageTitle || "Untitled Page",
-        url: pageUrl || "",
+      const citationData: CitationData = {
+        sourceType: "website",
+        authors: [],
+        title: parsed.data.pageTitle || "Untitled Page",
+        url: parsed.data.pageUrl,
         accessDate: new Date().toISOString().split("T")[0],
       };
 
-      // Find a project document to attach the annotation to, or create a virtual one.
-      // For web highlights, we store the annotation details in the note field.
-      // Since web highlights don't correspond to uploaded documents, we use
-      // position 0 as a sentinel value.
-      const projectDocs = await projectStorage.getProjectDocumentsByProject(targetProjectId);
-
-      // Check if we have a "Web Highlights" document in this project
-      let webHighlightsDoc = projectDocs.find(
-        (pd) => (pd as any).roleInProject === "web-highlights"
-      );
-
-      if (!webHighlightsDoc) {
-        // For now, store directly as an annotation on the first available doc,
-        // or return the save data for the client to handle
-        // Since we may not have a document to attach to, return success with the data
-      }
-
-      // Return the saved data. The full annotation storage will be handled
-      // once the project document model supports web highlights.
-      res.json({
-        success: true,
-        annotation: {
-          highlightedText,
-          pageUrl,
-          pageTitle,
-          context,
+      const [created] = await db
+        .insert(webClips)
+        .values({
+          userId: req.user!.userId,
+          highlightedText: parsed.data.highlightedText,
+          note: parsed.data.context || null,
+          category: "web_clip",
+          sourceUrl: normalizeUrl(parsed.data.pageUrl),
+          pageTitle: parsed.data.pageTitle || "Untitled Page",
           citationData,
-          note: citationNote,
-          category: "key_quote" as AnnotationCategory,
+          footnote: generateChicagoFootnote(citationData),
+          bibliography: generateChicagoBibliography(citationData),
           projectId: targetProjectId,
-          savedAt: new Date().toISOString(),
-        },
+          surroundingContext: parsed.data.context || null,
+        })
+        .returning();
+
+      return res.status(201).json({
+        success: true,
+        clip: created,
       });
     } catch (error) {
       console.error("Extension save error:", error);
-      res.status(500).json({
+      return res.status(500).json({
         message: error instanceof Error ? error.message : "Failed to save highlight",
       });
     }

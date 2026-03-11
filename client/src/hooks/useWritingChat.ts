@@ -199,6 +199,10 @@ export function useWritingSendMessage(conversationId: string | null) {
                   accumulatedChat += String(data.text || "");
                   setStreamingText(accumulatedChat);
                   setStreamingChatText(accumulatedChat);
+                } else if (data.type === "replace_text") {
+                  accumulatedChat = String(data.text || "");
+                  setStreamingText(accumulatedChat);
+                  setStreamingChatText(accumulatedChat);
                 } else if (data.type === "document_start") {
                   accumulatedDocument = "";
                   setDocumentTitle(String(data.title || "Draft"));
@@ -376,6 +380,9 @@ export function useCompilePaper(conversationId: string | null) {
                 const data = JSON.parse(line.slice(6));
                 if (data.type === "text") {
                   accumulated += data.text;
+                  setCompiledContent(accumulated);
+                } else if (data.type === "replace_text") {
+                  accumulated = String(data.text || "");
                   setCompiledContent(accumulated);
                 } else if (data.type === "error") {
                   console.error("Compile error:", data.error);

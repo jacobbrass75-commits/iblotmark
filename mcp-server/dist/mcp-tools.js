@@ -150,6 +150,141 @@ function buildQueryString(params) {
     const query = search.toString();
     return query.length > 0 ? `?${query}` : "";
 }
+function buildTextFingerprint(text) {
+    return String(text || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "");
+}
+function buildIndexedText(text, mode) {
+    const normalizedChars = [];
+    const rawPositions = [];
+    for (let index = 0; index < text.length; index += 1) {
+        const char = text[index];
+        if (mode === "whitespace" && /\s/.test(char)) {
+            continue;
+        }
+        if (mode === "alphanumeric" && !/[a-z0-9]/i.test(char)) {
+            continue;
+        }
+        normalizedChars.push(char.toLowerCase());
+        rawPositions.push(index);
+    }
+    return {
+        normalized: normalizedChars.join(""),
+        rawPositions,
+    };
+}
+function findTextRange(fullText, quote) {
+    if (!fullText || !quote) {
+        return null;
+    }
+    const directIndex = fullText.indexOf(quote);
+    if (directIndex >= 0) {
+        return {
+            startPosition: directIndex,
+            endPosition: directIndex + quote.length,
+            matchType: "exact",
+        };
+    }
+    const foldedText = fullText.toLowerCase();
+    const foldedQuote = quote.toLowerCase();
+    const insensitiveIndex = foldedText.indexOf(foldedQuote);
+    if (insensitiveIndex >= 0) {
+        return {
+            startPosition: insensitiveIndex,
+            endPosition: insensitiveIndex + quote.length,
+            matchType: "case_insensitive",
+        };
+    }
+    for (const mode of ["whitespace", "alphanumeric"]) {
+        const indexedFullText = buildIndexedText(fullText, mode);
+        const indexedQuote = buildIndexedText(quote, mode);
+        if (!indexedQuote.normalized) {
+            continue;
+        }
+        const normalizedIndex = indexedFullText.normalized.indexOf(indexedQuote.normalized);
+        if (normalizedIndex < 0) {
+            continue;
+        }
+        const startPosition = indexedFullText.rawPositions[normalizedIndex];
+        const endPosition = indexedFullText.rawPositions[normalizedIndex + indexedQuote.normalized.length - 1] + 1;
+        return {
+            startPosition,
+            endPosition,
+            matchType: mode === "whitespace" ? "whitespace_insensitive" : "alphanumeric",
+        };
+    }
+    return null;
+}
+function textsLooselyEqual(left, right) {
+    if (left === right) {
+        return true;
+    }
+    if (left.toLowerCase() === right.toLowerCase()) {
+        return true;
+    }
+    return buildTextFingerprint(left) === buildTextFingerprint(right);
+}
+function getNumericPosition(record, key) {
+    const value = record?.[key];
+    return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+function rangesOverlap(leftStart, leftEnd, rightStart, rightEnd) {
+    return leftStart < rightEnd && rightStart < leftEnd;
+}
+function findBestAnnotationMatch(annotations, quote, textMatch) {
+    const annotationRows = Array.isArray(annotations) ? annotations : [];
+    let bestAnnotation = null;
+    let bestScore = -Infinity;
+    for (const annotation of annotationRows) {
+        const highlightedText = typeof annotation?.highlightedText === "string"
+            ? annotation.highlightedText
+            : "";
+        const startPosition = getNumericPosition(annotation, "startPosition");
+        const endPosition = getNumericPosition(annotation, "endPosition");
+        let score = 0;
+        if (highlightedText === quote) {
+            score += 120;
+        }
+        else if (textsLooselyEqual(highlightedText, quote)) {
+            score += 90;
+        }
+        if (textMatch && startPosition !== null && endPosition !== null) {
+            if (startPosition === textMatch.startPosition && endPosition === textMatch.endPosition) {
+                score += 60;
+            }
+            else if (rangesOverlap(startPosition, endPosition, textMatch.startPosition, textMatch.endPosition)) {
+                score += 35;
+            }
+            else {
+                score -= Math.min(25, Math.abs(startPosition - textMatch.startPosition));
+            }
+        }
+        if (!textMatch && startPosition !== null && endPosition !== null) {
+            score -= Math.abs((endPosition - startPosition) - quote.length);
+        }
+        if (score > bestScore) {
+            bestScore = score;
+            bestAnnotation = annotation;
+        }
+    }
+    return bestScore >= 40 ? bestAnnotation : null;
+}
+function buildProjectAnnotationJumpPath(options) {
+    const params = new URLSearchParams();
+    if (options.annotationId) {
+        params.set("annotationId", options.annotationId);
+    }
+    if (typeof options.startPosition === "number" && Number.isFinite(options.startPosition)) {
+        params.set("start", String(options.startPosition));
+    }
+    if (options.anchorFingerprint) {
+        params.set("anchor", options.anchorFingerprint);
+    }
+    const query = params.toString();
+    const basePath = `/projects/${options.projectId}/documents/${options.projectDocumentId}`;
+    return query.length > 0 ? `${basePath}?${query}` : basePath;
+}
 async function resolveSourceIds(client, token, input) {
     const projectDocumentId = parseOptionalString(input, "project_document_id");
     const documentId = parseOptionalString(input, "document_id");
@@ -318,6 +453,82 @@ export function registerScholarMarkTools(server, options) {
             documentId,
             query,
             results,
+        });
+    }));
+    registerTool(server, "find_quote_in_source", "Find an exact or OCR-tolerant quote in a source and return positions, related annotation data, and a jump path when available", {
+        type: "object",
+        properties: {
+            project_document_id: { type: "string", description: "Project document ID from get_project_sources" },
+            document_id: { type: "string", description: "Underlying document ID if you want non-project document lookup" },
+            quote: { type: "string", description: "Exact quote text to locate inside the source" },
+        },
+        required: ["quote"],
+        additionalProperties: false,
+    }, async (input, context) => withToken(context, async (token) => {
+        const quote = parseRequiredString(input, "quote");
+        const { projectDocumentId, documentId, projectDocument } = await resolveSourceIds(client, token, input);
+        const document = await client.requestJson("GET", `/api/documents/${encodeURIComponent(documentId)}`, token);
+        const fullText = typeof document?.fullText === "string" ? document.fullText : "";
+        const annotations = projectDocumentId
+            ? await client.requestJson("GET", `/api/project-documents/${encodeURIComponent(projectDocumentId)}/annotations`, token)
+            : await client.requestJson("GET", `/api/documents/${encodeURIComponent(documentId)}/annotations`, token);
+        let textMatch = findTextRange(fullText, quote);
+        const annotationMatch = findBestAnnotationMatch(annotations, quote, textMatch);
+        if (!textMatch && annotationMatch) {
+            const annotationStart = getNumericPosition(annotationMatch, "startPosition");
+            const annotationEnd = getNumericPosition(annotationMatch, "endPosition");
+            if (annotationStart !== null && annotationEnd !== null) {
+                textMatch = {
+                    startPosition: annotationStart,
+                    endPosition: annotationEnd,
+                    matchType: "annotation",
+                };
+            }
+        }
+        const projectId = typeof projectDocument?.projectId === "string" ? projectDocument.projectId : null;
+        const anchorSourceText = typeof annotationMatch?.highlightedText === "string" && annotationMatch.highlightedText.trim().length > 0
+            ? annotationMatch.highlightedText
+            : quote;
+        const anchorFingerprint = buildTextFingerprint(anchorSourceText) || null;
+        const matchedText = textMatch && textMatch.endPosition > textMatch.startPosition && fullText.length > 0
+            ? fullText.slice(textMatch.startPosition, textMatch.endPosition)
+            : typeof annotationMatch?.highlightedText === "string"
+                ? annotationMatch.highlightedText
+                : null;
+        const jumpPath = projectDocumentId && projectId && textMatch
+            ? buildProjectAnnotationJumpPath({
+                projectId,
+                projectDocumentId,
+                annotationId: typeof annotationMatch?.id === "string" ? annotationMatch.id : null,
+                startPosition: textMatch.startPosition,
+                anchorFingerprint,
+            })
+            : null;
+        return asTextResult({
+            found: Boolean(textMatch || annotationMatch),
+            scope: projectDocumentId ? "project_document" : "document",
+            projectId,
+            projectDocumentId: projectDocumentId ?? null,
+            documentId,
+            quote,
+            match: textMatch
+                ? {
+                    ...textMatch,
+                    matchedText,
+                    anchorFingerprint,
+                }
+                : null,
+            annotation: annotationMatch
+                ? {
+                    id: typeof annotationMatch.id === "string" ? annotationMatch.id : null,
+                    category: typeof annotationMatch.category === "string" ? annotationMatch.category : null,
+                    note: typeof annotationMatch.note === "string" ? annotationMatch.note : null,
+                    highlightedText: typeof annotationMatch.highlightedText === "string" ? annotationMatch.highlightedText : null,
+                    startPosition: getNumericPosition(annotationMatch, "startPosition"),
+                    endPosition: getNumericPosition(annotationMatch, "endPosition"),
+                }
+                : null,
+            jumpPath,
         });
     }));
     registerTool(server, "get_web_clips", "Load saved web clips, optionally filtered to a project, URL, category, or text query", {

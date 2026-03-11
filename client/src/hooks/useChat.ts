@@ -73,15 +73,16 @@ export function useSendMessage(conversationId: string | null) {
   const [isStreaming, setIsStreaming] = useState(false);
 
   const send = useCallback(
-    async (content: string) => {
-      if (!conversationId) return;
+    async (content: string, conversationIdOverride?: string | null) => {
+      const targetConversationId = conversationIdOverride ?? conversationId;
+      if (!targetConversationId) return;
 
       setIsStreaming(true);
       setStreamingText("");
 
       try {
         const response = await fetch(
-          `/api/chat/conversations/${conversationId}/messages`,
+          `/api/chat/conversations/${targetConversationId}/messages`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json", ...getAuthHeaders() },
@@ -112,10 +113,13 @@ export function useSendMessage(conversationId: string | null) {
                 if (data.type === "text" || data.type === "chat_text") {
                   accumulated += data.text;
                   setStreamingText(accumulated);
+                } else if (data.type === "replace_text") {
+                  accumulated = String(data.text || "");
+                  setStreamingText(accumulated);
                 } else if (data.type === "done") {
                   // Stream complete, invalidate queries to refresh data
                   queryClient.invalidateQueries({
-                    queryKey: ["/api/chat/conversations", conversationId],
+                    queryKey: ["/api/chat/conversations", targetConversationId],
                   });
                   queryClient.invalidateQueries({
                     queryKey: ["/api/chat/conversations"],

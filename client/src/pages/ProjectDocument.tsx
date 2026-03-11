@@ -56,6 +56,7 @@ import { SearchPanel } from "@/components/SearchPanel";
 import { DocumentViewer } from "@/components/DocumentViewer";
 import { AnnotationSidebar } from "@/components/AnnotationSidebar";
 import { ManualAnnotationDialog } from "@/components/ManualAnnotationDialog";
+import { buildTextFingerprint } from "@shared/annotationLinks";
 import type {
   ProjectDocument,
   Document,
@@ -155,14 +156,16 @@ export default function ProjectDocumentPage() {
     return window.location.search || "";
   }, [location]);
 
-  const { deepLinkAnnotationId, deepLinkStartPosition } = useMemo(() => {
+  const { deepLinkAnnotationId, deepLinkStartPosition, deepLinkAnchor } = useMemo(() => {
     const params = new URLSearchParams(deepLinkQuery);
     const annotationId = params.get("annotationId");
     const startRaw = params.get("start");
+    const anchor = params.get("anchor");
     const parsedStart = startRaw ? Number(startRaw) : null;
     return {
       deepLinkAnnotationId: annotationId,
       deepLinkStartPosition: Number.isFinite(parsedStart) ? parsedStart : null,
+      deepLinkAnchor: anchor,
     };
   }, [deepLinkQuery]);
 
@@ -239,7 +242,7 @@ export default function ProjectDocumentPage() {
   useEffect(() => {
     if (hasAppliedDeepLink) return;
 
-    if (!deepLinkAnnotationId && deepLinkStartPosition === null) {
+    if (!deepLinkAnnotationId && deepLinkStartPosition === null && !deepLinkAnchor) {
       setHasAppliedDeepLink(true);
       return;
     }
@@ -258,7 +261,20 @@ export default function ProjectDocumentPage() {
       deepLinkStartPosition !== null
         ? annotations.find((a) => a.startPosition === deepLinkStartPosition)
         : undefined;
-    const target = targetById || targetByStart;
+    const anchorMatches = deepLinkAnchor
+      ? annotations.filter((annotation) => buildTextFingerprint(annotation.highlightedText) === deepLinkAnchor)
+      : [];
+    const targetByAnchor =
+      anchorMatches.length === 0
+        ? undefined
+        : deepLinkStartPosition === null
+          ? anchorMatches[0]
+          : [...anchorMatches].sort(
+              (left, right) =>
+                Math.abs(left.startPosition - deepLinkStartPosition) -
+                Math.abs(right.startPosition - deepLinkStartPosition)
+            )[0];
+    const target = targetById || targetByAnchor || targetByStart;
 
     if (target) {
       setSelectedAnnotationId(target.id);
@@ -268,6 +284,7 @@ export default function ProjectDocumentPage() {
     hasAppliedDeepLink,
     deepLinkAnnotationId,
     deepLinkStartPosition,
+    deepLinkAnchor,
     annotations,
     annotationsLoading,
   ]);

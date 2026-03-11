@@ -28,6 +28,8 @@ import {
   type Message,
   type Project,
 } from "@shared/schema";
+import { buildProjectAnnotationJumpPath, buildTextFingerprint } from "@shared/annotationLinks";
+import { applyJumpLinksToMarkdown, type QuoteJumpTarget } from "./quoteJumpLinks";
 
 const MAX_SOURCE_EXCERPT_CHARS = 2000;
 const MAX_SOURCE_FULLTEXT_CHARS = 30000;
@@ -343,6 +345,40 @@ function buildSourceStubBlock(sources: PromptSource[]): string {
     .join("\n\n");
 }
 
+function collectConversationQuoteTargets(sources: PromptSource[]): QuoteJumpTarget[] {
+  const targets: QuoteJumpTarget[] = [];
+
+  for (const source of sources) {
+    if (isTieredSource(source)) {
+      for (const annotation of source.annotations) {
+        targets.push({
+          quote: annotation.highlightedText,
+          jumpPath: buildProjectAnnotationJumpPath({
+            projectId: source.projectId,
+            projectDocumentId: source.id,
+            annotationId: annotation.id,
+            startPosition: annotation.startPosition,
+            anchorFingerprint: buildTextFingerprint(annotation.highlightedText),
+          }),
+        });
+      }
+      continue;
+    }
+
+    const explicitTargets = source.quoteTargets || [];
+    if (explicitTargets.length > 0) {
+      targets.push(...explicitTargets);
+      continue;
+    }
+
+    if (source.annotationJumpPath && source.excerpt) {
+      targets.push({ quote: source.excerpt, jumpPath: source.annotationJumpPath });
+    }
+  }
+
+  return targets;
+}
+
 function normalizeTitle(value: string): string {
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : "Draft";
@@ -371,6 +407,10 @@ function isCloseToolTag(tagText: string, type: ToolRequestType): boolean {
 function looksLikeKnownTagPrefix(value: string): boolean {
   const lower = value.toLowerCase();
   return STREAM_TAG_PREFIXES.some((prefix) => prefix.startsWith(lower));
+}
+
+function containsDocumentTag(value: string): boolean {
+  return /<document\s+title=/i.test(value);
 }
 
 function createDocumentStreamParser(
@@ -589,6 +629,7 @@ async function loadProjectSourcesTiered(
       annotations,
       excerpt,
       documentId: fullDoc.id,
+      projectId,
     });
   }
 
@@ -1052,6 +1093,15 @@ async function executeWritingTool(
           lines.push(`Note: ${annotation.note}`);
         }
         lines.push(`Position: chars ${annotation.startPosition}-${annotation.endPosition}`);
+        lines.push(
+          `Jump Link: ${buildProjectAnnotationJumpPath({
+            projectId: source.projectId,
+            projectDocumentId: source.id,
+            annotationId: annotation.id,
+            startPosition: annotation.startPosition,
+            anchorFingerprint: buildTextFingerprint(annotation.highlightedText),
+          })}`
+        );
         lines.push("");
       }
 
@@ -1642,12 +1692,22 @@ export function registerChatRoutes(app: Express) {
             continue;
           }
 
-          finalAssistantText = stripToolTagsForStorage(turn.fullText);
+          const cleanedTurnText = stripToolTagsForStorage(turn.fullText);
+          finalAssistantText = applyJumpLinksToMarkdown(
+            cleanedTurnText,
+            collectConversationQuoteTargets(sources)
+          );
+          if (!containsDocumentTag(finalAssistantText) && finalAssistantText !== cleanedTurnText) {
+            sendEvent({ type: "replace_text", text: finalAssistantText });
+          }
           break;
         }
 
         // Legacy XML path: keep prior behavior for rollback safety.
-        const cleanedAssistantText = stripToolTagsForStorage(turn.fullText);
+        const cleanedAssistantText = applyJumpLinksToMarkdown(
+          stripToolTagsForStorage(turn.fullText),
+          collectConversationQuoteTargets(sources)
+        );
         if (cleanedAssistantText.length > 0) {
           await chatStorage.createMessage({
             conversationId: conv.id,
@@ -1869,6 +1929,8 @@ ${transcript}${sourcesBlock}`;
 
       const anthropic = getAnthropicClient();
       let aborted = false;
+      let compiledText = "";
+      const compileQuoteTargets = collectConversationQuoteTargets(sources);
 
       req.on("close", () => {
         aborted = true;
@@ -1882,12 +1944,17 @@ ${transcript}${sourcesBlock}`;
 
       stream.on("text", (text) => {
         if (!aborted) {
+          compiledText += text;
           res.write(`data: ${JSON.stringify({ type: "text", text })}\n\n`);
         }
       });
 
       stream.on("message", () => {
         if (aborted) return;
+        const linkedText = applyJumpLinksToMarkdown(compiledText, compileQuoteTargets);
+        if (linkedText && linkedText !== compiledText) {
+          res.write(`data: ${JSON.stringify({ type: "replace_text", text: linkedText })}\n\n`);
+        }
         res.write(`data: ${JSON.stringify({ type: "done" })}\n\n`);
         res.end();
       });

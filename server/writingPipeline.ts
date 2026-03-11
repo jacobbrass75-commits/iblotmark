@@ -1,5 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { CitationData, ProjectAnnotation } from "@shared/schema";
+import { buildProjectAnnotationJumpPath, buildTextFingerprint } from "@shared/annotationLinks";
+import { applyJumpLinksToMarkdown, type QuoteJumpTarget } from "./quoteJumpLinks";
 
 // --- Interfaces ---
 
@@ -39,6 +41,12 @@ export interface WritingSource {
   note: string | null;
   citationData: CitationData | null;
   documentFilename: string;
+  projectId?: string;
+  projectDocumentId?: string;
+  annotationId?: string;
+  startPosition?: number;
+  annotationJumpPath?: string;
+  quoteTargets?: QuoteJumpTarget[];
 }
 
 export interface TieredSource {
@@ -57,6 +65,7 @@ export interface TieredSource {
   annotations: ProjectAnnotation[];
   excerpt: string;
   documentId: string;
+  projectId: string;
 }
 
 export interface WritingSSEEvent {
@@ -101,6 +110,19 @@ function getClient(): Anthropic {
   return new Anthropic({ apiKey });
 }
 
+function collectSourceQuoteTargets(sources: WritingSource[]): QuoteJumpTarget[] {
+  return sources.flatMap((source) => {
+    const explicitTargets = source.quoteTargets || [];
+    if (explicitTargets.length > 0) {
+      return explicitTargets;
+    }
+    if (source.annotationJumpPath && source.excerpt) {
+      return [{ quote: source.excerpt, jumpPath: source.annotationJumpPath }];
+    }
+    return [];
+  });
+}
+
 export function formatSourceForPrompt(source: WritingSource): string {
   const parts: string[] = [];
   parts.push(`[SOURCE ${source.id}]`);
@@ -110,6 +132,13 @@ export function formatSourceForPrompt(source: WritingSource): string {
   parts.push(`Author(s): ${source.author}`);
   parts.push(`Category: ${source.category}`);
   if (source.note) parts.push(`Note: ${source.note}`);
+  if (source.annotationJumpPath) parts.push(`Jump Link: ${source.annotationJumpPath}`);
+  if (source.quoteTargets?.length) {
+    parts.push("Quotable Passages:");
+    for (const target of source.quoteTargets.slice(0, 6)) {
+      parts.push(`- "${target.quote}" | Jump Link: ${target.jumpPath}`);
+    }
+  }
   if (source.citationData) {
     const cd = source.citationData;
     const authorStr =
@@ -182,6 +211,15 @@ export function formatSourceForPromptTiered(source: TieredSource): string {
       parts.push(`"${ann.highlightedText}"`);
       if (ann.note) parts.push(`Note: ${ann.note}`);
       parts.push(`Position: chars ${ann.startPosition}-${ann.endPosition}`);
+      parts.push(
+        `Jump Link: ${buildProjectAnnotationJumpPath({
+          projectId: source.projectId,
+          projectDocumentId: source.id,
+          annotationId: ann.id,
+          startPosition: ann.startPosition,
+          anchorFingerprint: buildTextFingerprint(ann.highlightedText),
+        })}`
+      );
       parts.push(`Document: ${source.documentId}`);
       parts.push("");
     }
@@ -414,7 +452,8 @@ Output the section text in markdown format. Start with the section heading as ##
   const textBlocks = response.content.filter(
     (block): block is Anthropic.TextBlock => block.type === "text"
   );
-  return textBlocks.map((b) => b.text).join("\n\n");
+  const drafted = textBlocks.map((b) => b.text).join("\n\n");
+  return applyJumpLinksToMarkdown(drafted, collectSourceQuoteTargets(relevantSources));
 }
 
 // --- Phase 3: STITCHER ---
@@ -424,6 +463,7 @@ async function stitch(
   plan: WritingPlan,
   sectionTexts: string[],
   request: WritingRequest,
+  sources: WritingSource[],
   model: string
 ): Promise<string> {
   const combinedSections = sectionTexts.join("\n\n---\n\n");
@@ -461,7 +501,8 @@ Output the complete paper in markdown format.`;
   const textBlocks = response.content.filter(
     (block): block is Anthropic.TextBlock => block.type === "text"
   );
-  return textBlocks.map((b) => b.text).join("\n\n");
+  const stitched = textBlocks.map((b) => b.text).join("\n\n");
+  return applyJumpLinksToMarkdown(stitched, collectSourceQuoteTargets(sources));
 }
 
 // --- Main pipeline (streaming via callback) ---
@@ -525,7 +566,7 @@ export async function runWritingPipeline(
       message: "Polishing and adding transitions...",
     });
 
-    const fullText = await stitch(client, plan, sectionTexts, request, model);
+    const fullText = await stitch(client, plan, sectionTexts, request, sources, model);
 
     onEvent({
       type: "complete",

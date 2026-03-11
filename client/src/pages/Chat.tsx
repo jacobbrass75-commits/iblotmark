@@ -103,36 +103,7 @@ export default function Chat() {
             selectedProjectId ? { projectId: selectedProjectId } : undefined
           );
           setLocation(`/chat/${conv.id}`);
-          // Wait a tick for state to update, then send via direct fetch
-          // We need to call send on the new conversation
-          setTimeout(async () => {
-            const response = await fetch(
-              `/api/chat/conversations/${conv.id}/messages`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ content }),
-                credentials: "include",
-              }
-            );
-            // Process the stream manually for this first message
-            if (response.ok && response.body) {
-              const reader = response.body.getReader();
-              const decoder = new TextDecoder();
-              while (true) {
-                const { done } = await reader.read();
-                if (done) break;
-              }
-            }
-            // Refresh data
-            const { queryClient } = await import("@/lib/queryClient");
-            queryClient.invalidateQueries({
-              queryKey: ["/api/chat/conversations", conv.id],
-            });
-            queryClient.invalidateQueries({
-              queryKey: ["/api/chat/conversations"],
-            });
-          }, 100);
+          await send(content, conv.id);
         } catch {
           toast({
             title: "Error",
