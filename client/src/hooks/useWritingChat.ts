@@ -146,14 +146,12 @@ export function useWritingSendMessage(conversationId: string | null) {
   const [streamingDocumentText, setStreamingDocumentText] = useState("");
   const [isDocumentStreaming, setIsDocumentStreaming] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
-  const [toolSteps, setToolSteps] = useState<ToolStep[]>([]);
-  const [isToolPhaseActive, setIsToolPhaseActive] = useState(false);
+  const [contextLoading, setContextLoading] = useState<{ level: number; documentId?: string } | null>(null);
   const [contextWarning, setContextWarning] = useState<{ id: number; message: string; available?: number } | null>(null);
 
   const send = useCallback(
-    async (content: string, conversationIdOverride?: string | null) => {
-      const targetConversationId = conversationIdOverride ?? conversationId;
-      if (!targetConversationId) return;
+    async (content: string) => {
+      if (!conversationId) return;
 
       setIsStreaming(true);
       setStreamingText("");
@@ -161,13 +159,12 @@ export function useWritingSendMessage(conversationId: string | null) {
       setDocumentTitle("");
       setStreamingDocumentText("");
       setIsDocumentStreaming(false);
-      setToolSteps([]);
-      setIsToolPhaseActive(false);
+      setContextLoading(null);
       setContextWarning(null);
 
       try {
         const response = await fetch(
-          `/api/chat/conversations/${targetConversationId}/messages`,
+          `/api/chat/conversations/${conversationId}/messages`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json", ...getAuthHeaders() },
@@ -199,10 +196,6 @@ export function useWritingSendMessage(conversationId: string | null) {
                   accumulatedChat += String(data.text || "");
                   setStreamingText(accumulatedChat);
                   setStreamingChatText(accumulatedChat);
-                } else if (data.type === "replace_text") {
-                  accumulatedChat = String(data.text || "");
-                  setStreamingText(accumulatedChat);
-                  setStreamingChatText(accumulatedChat);
                 } else if (data.type === "document_start") {
                   accumulatedDocument = "";
                   setDocumentTitle(String(data.title || "Draft"));
@@ -214,69 +207,12 @@ export function useWritingSendMessage(conversationId: string | null) {
                 } else if (data.type === "document_end") {
                   setIsDocumentStreaming(false);
                 } else if (data.type === "context_loading") {
-                  const toolCallId = typeof data.toolCallId === "string" && data.toolCallId.trim()
-                    ? data.toolCallId.trim()
-                    : `${String(data.toolName || "tool")}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-                  const toolName = typeof data.toolName === "string" ? data.toolName : "tool";
-                  const sourceTitle = typeof data.sourceTitle === "string" ? data.sourceTitle : undefined;
-                  const startedAt = Date.now();
-
-                  setIsToolPhaseActive(true);
-                  setToolSteps((prev) => {
-                    const existingIndex = prev.findIndex((step) => step.id === toolCallId);
-                    if (existingIndex >= 0) {
-                      const next = [...prev];
-                      next[existingIndex] = {
-                        ...next[existingIndex],
-                        toolName,
-                        sourceTitle: sourceTitle ?? next[existingIndex].sourceTitle,
-                        status: "loading",
-                      };
-                      return next;
-                    }
-
-                    return [
-                      ...prev,
-                      {
-                        id: toolCallId,
-                        toolName,
-                        sourceTitle,
-                        status: "loading",
-                        startedAt,
-                      },
-                    ];
+                  setContextLoading({
+                    level: Number(data.level) || 2,
+                    documentId: typeof data.documentId === "string" ? data.documentId : undefined,
                   });
                 } else if (data.type === "context_loaded") {
-                  const toolCallId = typeof data.toolCallId === "string" && data.toolCallId.trim()
-                    ? data.toolCallId.trim()
-                    : null;
-                  const toolName = typeof data.toolName === "string" ? data.toolName : null;
-
-                  setToolSteps((prev) => {
-                    let matched = false;
-                    const next: ToolStep[] = prev.map((step) => {
-                      const idMatch = toolCallId ? step.id === toolCallId : false;
-                      const fallbackMatch = !toolCallId && toolName
-                        ? step.status === "loading" && step.toolName === toolName
-                        : false;
-
-                      if (!matched && step.status === "loading" && (idMatch || fallbackMatch)) {
-                        matched = true;
-                        return { ...step, status: "done" as const };
-                      }
-
-                      return step;
-                    });
-
-                    return matched ? next : prev;
-                  });
-                } else if (data.type === "tool_round_complete") {
-                  setToolSteps((prev) =>
-                    prev.map((step): ToolStep =>
-                      step.status === "loading" ? { ...step, status: "done" as const } : step
-                    )
-                  );
-                  setIsToolPhaseActive(false);
+                  setContextLoading(null);
                 } else if (data.type === "context_warning") {
                   setContextWarning({
                     id: Date.now(),
@@ -284,21 +220,15 @@ export function useWritingSendMessage(conversationId: string | null) {
                     available: typeof data.available === "number" ? data.available : undefined,
                   });
                 } else if (data.type === "done") {
-                  setToolSteps((prev) =>
-                    prev.map((step): ToolStep =>
-                      step.status === "loading" ? { ...step, status: "done" as const } : step
-                    )
-                  );
-                  setIsToolPhaseActive(false);
+                  setContextLoading(null);
                   queryClient.invalidateQueries({
-                    queryKey: ["/api/chat/conversations", targetConversationId],
+                    queryKey: ["/api/chat/conversations", conversationId],
                   });
                   queryClient.invalidateQueries({
                     queryKey: ["/api/chat/conversations"],
                   });
                 } else if (data.type === "error") {
                   console.error("Stream error:", data.error);
-                  setIsToolPhaseActive(false);
                 }
               } catch {
                 // Ignore malformed SSE
@@ -313,7 +243,7 @@ export function useWritingSendMessage(conversationId: string | null) {
         setStreamingText("");
         setStreamingChatText("");
         setIsDocumentStreaming(false);
-        setIsToolPhaseActive(false);
+        setContextLoading(null);
       }
     },
     [conversationId]
@@ -327,8 +257,7 @@ export function useWritingSendMessage(conversationId: string | null) {
     streamingDocumentText,
     isDocumentStreaming,
     isStreaming,
-    toolSteps,
-    isToolPhaseActive,
+    contextLoading,
     contextWarning,
   };
 }
@@ -380,9 +309,6 @@ export function useCompilePaper(conversationId: string | null) {
                 const data = JSON.parse(line.slice(6));
                 if (data.type === "text") {
                   accumulated += data.text;
-                  setCompiledContent(accumulated);
-                } else if (data.type === "replace_text") {
-                  accumulated = String(data.text || "");
                   setCompiledContent(accumulated);
                 } else if (data.type === "error") {
                   console.error("Compile error:", data.error);

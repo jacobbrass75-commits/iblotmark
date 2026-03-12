@@ -29,35 +29,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-// Relay extension-auth messages from web app -> background service worker.
-window.addEventListener("message", (event) => {
-  if (event.source !== window) return;
-  if (event.data?.type !== "SM_EXTENSION_AUTH") return;
-
-  chrome.runtime.sendMessage(
-    {
-      type: "EXTENSION_AUTH",
-      apiKey: event.data.apiKey,
-      email: event.data.email,
-      userId: event.data.userId,
-      tier: event.data.tier,
-    },
-    (response) => {
-      const runtimeError = chrome.runtime.lastError;
-      const success = !runtimeError && Boolean(response?.success);
-
-      window.postMessage(
-        {
-          type: "SM_EXTENSION_AUTH_ACK",
-          success,
-          error: runtimeError?.message || response?.error || null,
-        },
-        "*"
-      );
-    }
-  );
-});
-
 // Keyboard shortcut: Ctrl+Shift+S
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && e.shiftKey && e.key === "S") {

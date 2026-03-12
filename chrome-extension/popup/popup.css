@@ -1,53 +1,55 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  width: 340px;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  width: 320px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 14px;
-  color: #2d2a26;
-  background: #fafaf8;
+  color: #2D2A26;
+  background: #FAFAF8;
 }
 
 .header {
   padding: 16px;
-  border-bottom: 1px solid #e8e4e0;
+  border-bottom: 1px solid #E8E4E0;
 }
 
 .header h1 {
   font-size: 18px;
   font-weight: 600;
-  color: #d4556b;
-}
-
-.section {
-  padding: 12px 16px;
+  color: #D4556B;
 }
 
 .subtitle {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-size: 12px;
+  color: #8A8580;
+  margin-top: 4px;
 }
 
-label {
+.user-info {
+  font-size: 12px;
+  color: #5B7FA5;
+  margin-top: 4px;
+}
+
+form {
+  padding: 16px;
+}
+
+input {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-
-select {
   width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #e8e4e0;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border: 1px solid #E8E4E0;
   border-radius: 6px;
   font-size: 14px;
-  background: #f5f3f0;
-  color: #2d2a26;
+  background: #F5F3F0;
+  color: #2D2A26;
   outline: none;
+}
+
+input:focus {
+  border-color: #D4556B;
 }
 
 button {
@@ -62,55 +64,51 @@ button {
   margin-bottom: 8px;
 }
 
-button.primary {
-  background: #d4556b;
-  color: #ffffff;
+button[type="submit"], button.primary {
+  background: #D4556B;
+  color: white;
 }
 
 button.secondary {
-  background: #5b7fa5;
-  color: #ffffff;
+  background: #5B7FA5;
+  color: white;
 }
 
 button.danger {
   background: transparent;
-  color: #c94454;
-  border: 1px solid #c94454;
+  color: #C94454;
+  border: 1px solid #C94454;
+}
+
+.section {
+  padding: 12px 16px;
+}
+
+select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #E8E4E0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #F5F3F0;
 }
 
 .hint {
   font-size: 12px;
-  color: #8a8580;
-  line-height: 1.35;
+  color: #8A8580;
   margin-bottom: 8px;
 }
 
-.error {
-  color: #c94454;
-  font-size: 12px;
-  margin-top: 8px;
-}
-
-.status-line {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: #2d2a26;
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: #22c55e;
-  flex: 0 0 auto;
-}
-
 kbd {
-  background: #e8e4e0;
+  background: #E8E4E0;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 12px;
   font-family: monospace;
+}
+
+.error {
+  color: #C94454;
+  font-size: 12px;
+  margin-top: 8px;
 }

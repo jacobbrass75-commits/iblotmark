@@ -5,13 +5,11 @@ import { chatStorage } from "./chatStorage";
 import { db } from "./db";
 import { projectStorage } from "./projectStorage";
 import { storage } from "./storage";
-import { logContextSnapshot, logToolCall } from "./analyticsLogger";
 import { requireAuth, requireTier } from "./auth";
+import { logContextSnapshot, logToolCall } from "./analyticsLogger";
 import {
   formatSourceForPrompt,
   formatSourceForPromptTiered,
-  formatSourceStubForPrompt,
-  formatWebClipStubForPrompt,
   type TieredSource,
   type WritingSource,
 } from "./writingPipeline";
@@ -28,8 +26,6 @@ import {
   type Message,
   type Project,
 } from "@shared/schema";
-import { buildProjectAnnotationJumpPath, buildTextFingerprint } from "@shared/annotationLinks";
-import { applyJumpLinksToMarkdown, type QuoteJumpTarget } from "./quoteJumpLinks";
 
 const MAX_SOURCE_EXCERPT_CHARS = 2000;
 const MAX_SOURCE_FULLTEXT_CHARS = 30000;
@@ -37,8 +33,7 @@ const MAX_SOURCE_TOTAL_FULLTEXT_CHARS = 150000;
 const CHAT_MAX_TOKENS = 8192;
 const COMPILE_MAX_TOKENS = 8192;
 const VERIFY_MAX_TOKENS = 8192;
-const MAX_CONTEXT_ESCALATIONS = 4;
-const USE_NATIVE_TOOL_USE = true;
+const MAX_CONTEXT_ESCALATIONS = 2;
 
 const MODELS = {
   precision: {
@@ -66,22 +61,6 @@ const BASE_SYSTEM_PROMPT =
   "You are ScholarMark AI, a helpful academic writing assistant. You help students with research, writing, citations, and understanding academic sources. Be concise, accurate, and helpful.";
 
 const TOOL_REQUEST_REGEX = /<(chunk_request|context_request)\b([^>]*)>([\s\S]*?)<\/\1>/gi;
-
-/** Strip tool-request XML blocks from text before persisting to chat history. */
-function stripToolTagsForStorage(text: string): string {
-  return text.replace(/<(chunk_request|context_request)\b[^>]*>[\s\S]*?<\/\1>/gi, "").trim();
-}
-
-/** Marker prefix used for internal context injection messages (not shown to users). */
-const INTERNAL_CONTEXT_PREFIX = "[CONTEXT RETRIEVAL" as const;
-const INTERNAL_DEEP_DIVE_PREFIX = "[DEEP DIVE FINDINGS" as const;
-
-/** Check if a message is an internally-injected context payload (not user-authored). */
-function isInternalContextMessage(msg: Pick<Message, "role" | "content">): boolean {
-  if (msg.role !== "user") return false;
-  const trimmed = msg.content.trimStart();
-  return trimmed.startsWith(INTERNAL_CONTEXT_PREFIX) || trimmed.startsWith(INTERNAL_DEEP_DIVE_PREFIX);
-}
 const STREAM_TAG_PREFIXES = [
   "<document",
   "</document",
@@ -96,7 +75,7 @@ type PromptSource = WritingSource | TieredSource;
 type WritingMode = "precision" | "extended";
 type ToolRequestType = "chunk_request" | "context_request";
 type ContextWarningLevel = "ok" | "caution" | "critical";
-type AnthropicHistoryMessage = Anthropic.MessageParam;
+type AnthropicHistoryMessage = { role: "user" | "assistant"; content: string };
 type WritingStreamEventType =
   | "chat_text"
   | "document_start"
@@ -126,80 +105,7 @@ interface StreamTurnResult {
   fullText: string;
   usage: { input_tokens?: number; output_tokens?: number };
   toolRequests: ToolRequest[];
-  toolUseBlocks: Anthropic.ToolUseBlock[];
-  stopReason: string | null;
-  assistantContentBlocks: Anthropic.ContentBlock[];
 }
-
-const WRITING_TOOLS: Anthropic.Tool[] = [
-  {
-    name: "get_source_summary",
-    description:
-      "Load the AI summary, main arguments, and key concepts for one source so you can decide whether to use it.",
-    input_schema: {
-      type: "object",
-      properties: {
-        document_id: {
-          type: "string",
-          description: "Document ID from the source stub.",
-        },
-      },
-      required: ["document_id"],
-    },
-  },
-  {
-    name: "get_source_annotations",
-    description:
-      "Load annotations for a source, including quote text, categories, notes, and positions.",
-    input_schema: {
-      type: "object",
-      properties: {
-        document_id: {
-          type: "string",
-          description: "Document ID from the source stub.",
-        },
-      },
-      required: ["document_id"],
-    },
-  },
-  {
-    name: "get_source_chunks",
-    description:
-      "Load surrounding chunks for more context around an annotation or focused query.",
-    input_schema: {
-      type: "object",
-      properties: {
-        document_id: {
-          type: "string",
-          description: "Document ID from the source stub.",
-        },
-        annotation_id: {
-          type: "string",
-          description: "Optional annotation ID to center the chunk retrieval.",
-        },
-        focus_query: {
-          type: "string",
-          description: "Optional query for selecting a relevant chunk region.",
-        },
-      },
-      required: ["document_id"],
-    },
-  },
-  {
-    name: "get_web_clips",
-    description:
-      "Load web clip evidence for this project (or selected standalone clips when not in a project).",
-    input_schema: {
-      type: "object",
-      properties: {
-        project_id: {
-          type: "string",
-          description: "Optional project ID. If omitted, the active conversation context is used.",
-        },
-      },
-    },
-  },
-];
 
 function getAnthropicClient(): Anthropic {
   return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -229,55 +135,6 @@ function estimateTokens(text: string): number {
   return Math.ceil(text.length / 4);
 }
 
-function toolResultContentToText(content: unknown): string {
-  if (typeof content === "string") {
-    return content;
-  }
-  if (!Array.isArray(content)) {
-    return "";
-  }
-
-  return content
-    .map((item) => {
-      if (!item || typeof item !== "object") return "";
-      const block = item as unknown as Record<string, unknown>;
-      if (block.type === "text" && typeof block.text === "string") {
-        return block.text;
-      }
-      return "";
-    })
-    .filter(Boolean)
-    .join("\n");
-}
-
-function messageContentToText(content: Anthropic.MessageParam["content"]): string {
-  if (typeof content === "string") {
-    return content;
-  }
-
-  return content
-    .map((block) => {
-      if (!block || typeof block !== "object") return "";
-      const typed = block as unknown as Record<string, unknown>;
-
-      if (typed.type === "text" && typeof typed.text === "string") {
-        return typed.text;
-      }
-      if (typed.type === "tool_use") {
-        const name = typeof typed.name === "string" ? typed.name : "tool";
-        const inputText = typed.input ? JSON.stringify(typed.input) : "";
-        return `[TOOL ${name}] ${inputText}`;
-      }
-      if (typed.type === "tool_result") {
-        return toolResultContentToText(typed.content);
-      }
-
-      return "";
-    })
-    .filter(Boolean)
-    .join("\n");
-}
-
 function estimateContextUsage(
   systemPrompt: string,
   messages: AnthropicHistoryMessage[],
@@ -285,10 +142,7 @@ function estimateContextUsage(
 ): ContextUsageEstimate {
   const limit = TOKEN_LIMITS[mode];
   const systemTokens = estimateTokens(systemPrompt);
-  const historyTokens = messages.reduce(
-    (sum, message) => sum + estimateTokens(messageContentToText(message.content)),
-    0
-  );
+  const historyTokens = messages.reduce((sum, message) => sum + estimateTokens(message.content), 0);
   const totalUsed = systemTokens + historyTokens + OUTPUT_TOKENS + RESERVED_TOKENS;
   const available = limit - totalUsed;
 
@@ -330,55 +184,6 @@ function buildSourceBlock(sources: PromptSource[]): string {
     .join("\n\n");
 }
 
-function buildSourceStubBlock(sources: PromptSource[]): string {
-  if (sources.length === 0) {
-    return "No explicit source materials are attached to this conversation.";
-  }
-
-  return sources
-    .map((source, i) => {
-      const sourceText = isTieredSource(source)
-        ? formatSourceStubForPrompt(source)
-        : formatWebClipStubForPrompt(source);
-      return `--- Source ${i + 1} ---\n${sourceText}`;
-    })
-    .join("\n\n");
-}
-
-function collectConversationQuoteTargets(sources: PromptSource[]): QuoteJumpTarget[] {
-  const targets: QuoteJumpTarget[] = [];
-
-  for (const source of sources) {
-    if (isTieredSource(source)) {
-      for (const annotation of source.annotations) {
-        targets.push({
-          quote: annotation.highlightedText,
-          jumpPath: buildProjectAnnotationJumpPath({
-            projectId: source.projectId,
-            projectDocumentId: source.id,
-            annotationId: annotation.id,
-            startPosition: annotation.startPosition,
-            anchorFingerprint: buildTextFingerprint(annotation.highlightedText),
-          }),
-        });
-      }
-      continue;
-    }
-
-    const explicitTargets = source.quoteTargets || [];
-    if (explicitTargets.length > 0) {
-      targets.push(...explicitTargets);
-      continue;
-    }
-
-    if (source.annotationJumpPath && source.excerpt) {
-      targets.push({ quote: source.excerpt, jumpPath: source.annotationJumpPath });
-    }
-  }
-
-  return targets;
-}
-
 function normalizeTitle(value: string): string {
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : "Draft";
@@ -407,10 +212,6 @@ function isCloseToolTag(tagText: string, type: ToolRequestType): boolean {
 function looksLikeKnownTagPrefix(value: string): boolean {
   const lower = value.toLowerCase();
   return STREAM_TAG_PREFIXES.some((prefix) => prefix.startsWith(lower));
-}
-
-function containsDocumentTag(value: string): boolean {
-  return /<document\s+title=/i.test(value);
 }
 
 function createDocumentStreamParser(
@@ -629,7 +430,6 @@ async function loadProjectSourcesTiered(
       annotations,
       excerpt,
       documentId: fullDoc.id,
-      projectId,
     });
   }
 
@@ -754,44 +554,6 @@ WRITING STYLE:
 - Start paragraphs with substance, not meta-commentary.
 - Write as a knowledgeable human expert, not as an AI summarizing.`
     : "";
-  const sourceMaterials = USE_NATIVE_TOOL_USE
-    ? buildSourceStubBlock(sources)
-    : buildSourceBlock(sources);
-  const contextToolsBlock = USE_NATIVE_TOOL_USE
-    ? `CONTEXT TOOLS:
-You have native tools to load source context on demand. The source list above is stub-only.
-
-Escalation strategy:
-1. Start with get_source_summary() for sources likely relevant to the user's request.
-2. For usable evidence, call get_source_annotations().
-3. For deeper quote context, call get_source_chunks().
-4. Use get_web_clips() when web evidence is needed.
-
-Use tools proactively and only load what is needed. After deciding what evidence you will use, stop calling tools and write the response.
-Do not ask the student to provide context you can retrieve with tools.`
-    : `CONTEXT TOOLS:
-You are seeing annotated highlights and summaries from each source. This is your primary working material.
-
-If you need surrounding context for a specific annotation, output exactly:
-<chunk_request annotation_id="ANNOTATION_ID" document_id="DOCUMENT_ID">
-Brief reason for requesting surrounding context
-</chunk_request>
-
-If you need a full-source deep dive, output exactly:
-<context_request document_id="DOCUMENT_ID">
-What you need from the full source and why
-</context_request>`;
-  const quotingRulesBlock = USE_NATIVE_TOOL_USE
-    ? `QUOTING RULES:
-- Quotes from get_source_annotations() are pre-verified from annotation data.
-- If you quote from get_source_chunks(), mention that it came from full-text chunk context.
-- Include annotation ID or character position when citing evidence.
-- Do not fabricate quotes.`
-    : `QUOTING RULES:
-- Quotes from annotation blocks are pre-verified.
-- If you quote from chunk retrieval or deep dive findings, mention that it came from full-text review.
-- Include annotation ID or character position when citing evidence.
-- Do not fabricate quotes.`;
 
   return `You are ScholarMark AI, an expert academic writing partner. You are collaborating with a student on a research paper.
 
@@ -800,7 +562,7 @@ ${buildProjectContextBlock(project)}
 You have access to ${sources.length} source document(s).
 
 SOURCE MATERIALS:
-${sourceMaterials}
+${buildSourceBlock(sources)}
 
 CONVERSATION FLOW:
 When a student brings a new writing task, follow this collaborative process:
@@ -833,9 +595,24 @@ WRITING RULES:
 
 Do not fabricate quotations, publication details, page numbers, or bibliography metadata. If source detail is uncertain, state uncertainty clearly and cite conservatively.${writingStyleBlock}
 
-${contextToolsBlock}
+CONTEXT TOOLS:
+You are seeing annotated highlights and summaries from each source. This is your primary working material.
 
-${quotingRulesBlock}
+If you need surrounding context for a specific annotation, output exactly:
+<chunk_request annotation_id="ANNOTATION_ID" document_id="DOCUMENT_ID">
+Brief reason for requesting surrounding context
+</chunk_request>
+
+If you need a full-source deep dive, output exactly:
+<context_request document_id="DOCUMENT_ID">
+What you need from the full source and why
+</context_request>
+
+QUOTING RULES:
+- Quotes from annotation blocks are pre-verified.
+- If you quote from chunk retrieval or deep dive findings, mention that it came from full-text review.
+- Include annotation ID or character position when citing evidence.
+- Do not fabricate quotes.
 
 OUTPUT FORMAT:
 When producing substantial written content (a full paragraph or more of paper content), wrap it in document tags:
@@ -912,321 +689,6 @@ async function loadSurroundingChunks(
     .join("\n\n");
 
   return `[SURROUNDING CONTEXT for chars ${rangeStart}-${rangeEnd}]\n${merged}`;
-}
-
-function getToolContextLevel(toolName: string): number {
-  switch (toolName) {
-    case "get_source_summary":
-    case "get_web_clips":
-      return 1;
-    case "get_source_annotations":
-    case "get_source_chunks":
-      return 2;
-    default:
-      return 2;
-  }
-}
-
-function normalizeToolInput(input: unknown): Record<string, unknown> {
-  if (!input || typeof input !== "object" || Array.isArray(input)) {
-    return {};
-  }
-  return input as Record<string, unknown>;
-}
-
-function getToolInputString(input: Record<string, unknown>, key: string): string | undefined {
-  const value = input[key];
-  if (typeof value !== "string") return undefined;
-  const trimmed = value.trim();
-  return trimmed.length > 0 ? trimmed : undefined;
-}
-
-function resolveTieredSource(documentOrSourceId: string, sources: PromptSource[]): TieredSource | null {
-  const target = documentOrSourceId.trim();
-  if (!target) return null;
-
-  for (const source of sources) {
-    if (!isTieredSource(source)) continue;
-    if (source.documentId === target || source.id === target) {
-      return source;
-    }
-  }
-
-  return null;
-}
-
-function resolveSourceTitle(documentOrSourceId: string, sources: PromptSource[]): string | null {
-  const target = documentOrSourceId.trim();
-  if (!target) return null;
-
-  const tiered = resolveTieredSource(target, sources);
-  if (tiered?.title) {
-    return tiered.title;
-  }
-
-  for (const source of sources) {
-    if (isTieredSource(source)) continue;
-    if (source.id !== target) continue;
-    return source.title || target;
-  }
-
-  return null;
-}
-
-function extractUrlFromStandaloneSource(source: WritingSource): string {
-  if (source.citationData?.url) {
-    return source.citationData.url;
-  }
-  const match = source.fullText.match(/^\s*URL:\s*(\S+)\s*$/im);
-  return match?.[1] || "URL unavailable";
-}
-
-function countCategoryValues(annotations: TieredSource["annotations"]): string {
-  const categoryCounts = new Map<string, number>();
-  for (const annotation of annotations) {
-    const key = annotation.category || "uncategorized";
-    categoryCounts.set(key, (categoryCounts.get(key) || 0) + 1);
-  }
-  if (categoryCounts.size === 0) return "None";
-  return Array.from(categoryCounts.entries())
-    .map(([category, count]) => `${category}: ${count}`)
-    .join(", ");
-}
-
-async function executeWritingTool(
-  toolName: string,
-  rawToolInput: unknown,
-  userId: string,
-  projectId: string | null | undefined,
-  sources: PromptSource[]
-): Promise<string> {
-  const toolInput = normalizeToolInput(rawToolInput);
-
-  switch (toolName) {
-    case "get_source_summary": {
-      const requestedId = getToolInputString(toolInput, "document_id");
-      if (!requestedId) {
-        return "Missing required field: document_id.";
-      }
-
-      const source = resolveTieredSource(requestedId, sources);
-      if (!source) {
-        return `Source "${requestedId}" is not available in this conversation.`;
-      }
-
-      const document = await storage.getDocument(source.documentId);
-      if (!document) {
-        return `Document "${source.documentId}" was not found.`;
-      }
-
-      const lines: string[] = [
-        `[SOURCE SUMMARY] ${source.title}`,
-        `Source ID: ${source.id}`,
-        `Document ID: ${source.documentId}`,
-      ];
-
-      if (document.summary) {
-        lines.push("", `Summary: ${document.summary}`);
-      }
-      if (document.mainArguments?.length) {
-        lines.push(
-          "",
-          "Main arguments:",
-          ...document.mainArguments.map((argument, index) => `${index + 1}. ${argument}`)
-        );
-      }
-      if (document.keyConcepts?.length) {
-        lines.push("", `Key concepts: ${document.keyConcepts.join(", ")}`);
-      }
-      if (source.roleInProject) {
-        lines.push("", `Role in project: ${source.roleInProject}`);
-      }
-      if (source.projectContext) {
-        lines.push("", `Project context note: ${source.projectContext}`);
-      }
-
-      if (lines.length <= 3) {
-        lines.push("", "No AI summary fields are available for this source yet.");
-      }
-
-      return lines.join("\n");
-    }
-
-    case "get_source_annotations": {
-      const requestedId = getToolInputString(toolInput, "document_id");
-      if (!requestedId) {
-        return "Missing required field: document_id.";
-      }
-
-      const source = resolveTieredSource(requestedId, sources);
-      if (!source) {
-        return `Source "${requestedId}" is not available in this conversation.`;
-      }
-
-      const annotations = await projectStorage.getProjectAnnotationsByDocument(source.id);
-      if (annotations.length === 0) {
-        return `No annotations found for source "${source.title}" (${source.id}).`;
-      }
-
-      const document = await storage.getDocument(source.documentId);
-      const lines: string[] = [
-        `[SOURCE ANNOTATIONS] ${source.title}`,
-        `Source ID: ${source.id}`,
-        `Document ID: ${source.documentId}`,
-        `Annotation count: ${annotations.length}`,
-        `Category distribution: ${countCategoryValues(annotations)}`,
-      ];
-
-      if (document?.summary) {
-        lines.push("", `Importance summary: ${document.summary}`);
-      }
-
-      lines.push("");
-      for (const annotation of annotations) {
-        const confidence =
-          typeof annotation.confidenceScore === "number"
-            ? ` | Confidence: ${annotation.confidenceScore.toFixed(2)}`
-            : "";
-        lines.push(`[ANNOTATION ${annotation.id}] Category: ${annotation.category}${confidence}`);
-        lines.push(`"${annotation.highlightedText}"`);
-        if (annotation.note) {
-          lines.push(`Note: ${annotation.note}`);
-        }
-        lines.push(`Position: chars ${annotation.startPosition}-${annotation.endPosition}`);
-        lines.push(
-          `Jump Link: ${buildProjectAnnotationJumpPath({
-            projectId: source.projectId,
-            projectDocumentId: source.id,
-            annotationId: annotation.id,
-            startPosition: annotation.startPosition,
-            anchorFingerprint: buildTextFingerprint(annotation.highlightedText),
-          })}`
-        );
-        lines.push("");
-      }
-
-      return lines.join("\n");
-    }
-
-    case "get_source_chunks": {
-      const requestedId = getToolInputString(toolInput, "document_id");
-      if (!requestedId) {
-        return "Missing required field: document_id.";
-      }
-
-      const source = resolveTieredSource(requestedId, sources);
-      if (!source) {
-        return `Source "${requestedId}" is not available in this conversation.`;
-      }
-
-      const annotationId = getToolInputString(toolInput, "annotation_id");
-      if (annotationId) {
-        const sourceAnnotation = source.annotations.find((annotation) => annotation.id === annotationId);
-        const annotation = sourceAnnotation || (await projectStorage.getProjectAnnotation(annotationId));
-        if (!annotation) {
-          return `Annotation "${annotationId}" was not found.`;
-        }
-        if (annotation.projectDocumentId !== source.id) {
-          return `Annotation "${annotationId}" does not belong to source "${source.id}".`;
-        }
-
-        return loadSurroundingChunks(
-          source.documentId,
-          annotation.startPosition,
-          annotation.endPosition
-        );
-      }
-
-      const focusQuery = getToolInputString(toolInput, "focus_query");
-      if (focusQuery) {
-        const chunks = await storage.getChunksForDocument(source.documentId);
-        if (chunks.length === 0) {
-          return "[SURROUNDING CONTEXT unavailable]\nNo chunked text is available for this document.";
-        }
-
-        const queryTerms = focusQuery
-          .toLowerCase()
-          .split(/\s+/)
-          .map((term) => term.trim())
-          .filter((term) => term.length >= 3);
-
-        let bestChunk = chunks[0];
-        let bestScore = -1;
-
-        for (const chunk of chunks) {
-          const text = chunk.text.toLowerCase();
-          let score = 0;
-          for (const term of queryTerms) {
-            if (text.includes(term)) {
-              score += 1;
-            }
-          }
-          if (score > bestScore) {
-            bestScore = score;
-            bestChunk = chunk;
-          }
-        }
-
-        const context = await loadSurroundingChunks(
-          source.documentId,
-          bestChunk.startPosition,
-          bestChunk.endPosition
-        );
-        return `[FOCUS QUERY] ${focusQuery}\n${context}`;
-      }
-
-      return loadSurroundingChunks(source.documentId, 0, 500);
-    }
-
-    case "get_web_clips": {
-      const requestedProjectId = getToolInputString(toolInput, "project_id") || projectId || undefined;
-
-      if (requestedProjectId) {
-        const clips = await db
-          .select()
-          .from(webClips)
-          .where(eq(webClips.projectId, requestedProjectId));
-
-        if (clips.length === 0) {
-          return `No web clips were found for project "${requestedProjectId}".`;
-        }
-
-        return clips
-          .map((clip) => {
-            const clipNote = clip.note || "No note";
-            const highlight = clip.highlightedText || "No highlighted text";
-            return [
-              `[CLIP ${clip.id}]`,
-              `Title: ${clip.pageTitle}`,
-              `URL: ${clip.sourceUrl}`,
-              `Highlight: "${highlight}"`,
-              `Note: ${clipNote}`,
-            ].join("\n");
-          })
-          .join("\n\n");
-      }
-
-      const standaloneClips = sources.filter((source): source is WritingSource => !isTieredSource(source));
-      if (standaloneClips.length === 0) {
-        return "No selected standalone web clips are available in this conversation.";
-      }
-
-      return standaloneClips
-        .map((clip) =>
-          [
-            `[CLIP ${clip.id}]`,
-            `Title: ${clip.title}`,
-            `URL: ${extractUrlFromStandaloneSource(clip)}`,
-            `Highlight: "${clip.excerpt}"`,
-            `Note: ${clip.note || "No note"}`,
-          ].join("\n")
-        )
-        .join("\n\n");
-    }
-
-    default:
-      return `Unknown tool "${toolName}".`;
-  }
 }
 
 function formatDeepDiveFindings(filename: string, findings: ResearchFinding[]): string {
@@ -1443,7 +905,7 @@ export function registerChatRoutes(app: Express) {
         if (usage.warningLevel === "critical") {
           sendEvent({
             type: "context_warning",
-            message: "Context window is nearly full. Further source retrieval may be limited. Consider starting a new conversation.",
+            message: "Context window is nearly full. Deep source analysis is disabled. Consider starting a new conversation.",
             available: usage.available,
           });
           return;
@@ -1459,7 +921,6 @@ export function registerChatRoutes(app: Express) {
       let usageEstimate = estimateContextUsage(systemPrompt, anthropicMessages, mode);
       sendContextWarningIfNeeded(usageEstimate);
       let deepDiveAllowed = usageEstimate.warningLevel !== "critical";
-      const toolUseEnabled = USE_NATIVE_TOOL_USE && isWritingConversation;
 
       const runTurn = async (messagesForTurn: AnthropicHistoryMessage[]): Promise<StreamTurnResult> => {
         return new Promise<StreamTurnResult>((resolve, reject) => {
@@ -1473,59 +934,40 @@ export function registerChatRoutes(app: Express) {
             }
             sendEvent(event as Record<string, unknown>);
           });
-          const toolParser = toolUseEnabled
-            ? null
-            : createToolRequestParser((request) => {
-              detectedRequests.push(request);
-            });
+          const toolParser = createToolRequestParser((request) => {
+            detectedRequests.push(request);
+          });
 
-          const streamParams: Anthropic.MessageStreamParams = {
+          const stream = anthropic.messages.stream({
             model: models.chat,
             max_tokens: CHAT_MAX_TOKENS,
             system: systemPrompt,
             messages: messagesForTurn,
-          };
-          if (toolUseEnabled) {
-            streamParams.tools = WRITING_TOOLS;
-          }
-
-          const stream = anthropic.messages.stream(streamParams);
+          });
 
           activeStream = stream;
 
           stream.on("text", (text) => {
             fullText += text;
             parser.pushText(text);
-            toolParser?.pushText(text);
+            toolParser.pushText(text);
           });
 
           stream.on("message", (message) => {
             parser.finish();
-            toolParser?.finish();
+            toolParser.finish();
             activeStream = null;
 
-            const assistantContentBlocks = message.content || [];
-            const fullTextFromContent = assistantContentBlocks
-              .filter((block): block is Anthropic.TextBlock => block.type === "text")
-              .map((block) => block.text)
-              .join("");
-            const toolUseBlocks = assistantContentBlocks.filter(
-              (block): block is Anthropic.ToolUseBlock => block.type === "tool_use"
-            );
-
             resolve({
-              fullText: fullTextFromContent || fullText,
+              fullText,
               usage: message.usage || {},
               toolRequests: detectedRequests,
-              toolUseBlocks,
-              stopReason: message.stop_reason || null,
-              assistantContentBlocks,
             });
           });
 
           stream.on("error", (error) => {
             parser.finish();
-            toolParser?.finish();
+            toolParser.finish();
             activeStream = null;
 
             if (closed) {
@@ -1533,9 +975,6 @@ export function registerChatRoutes(app: Express) {
                 fullText,
                 usage: {},
                 toolRequests: detectedRequests,
-                toolUseBlocks: [],
-                stopReason: null,
-                assistantContentBlocks: [],
               });
               return;
             }
@@ -1550,14 +989,10 @@ export function registerChatRoutes(app: Express) {
       });
 
       const isFirstExchange = history.filter((message) => message.role === "user").length === 1;
-      const turnNumber = history
-        .filter((message) => message.role === "user")
-        .filter((message) => !isInternalContextMessage(message)).length;
       let hasAutoTitled = false;
       let totalInputTokens = 0;
       let totalOutputTokens = 0;
       let escalationCount = 0;
-      let finalAssistantText = "";
 
       while (!closed) {
         const turn = await runTurn(anthropicMessages);
@@ -1566,156 +1001,12 @@ export function registerChatRoutes(app: Express) {
         totalInputTokens += inputTokens;
         totalOutputTokens += outputTokens;
 
-        if (toolUseEnabled) {
-          const hasToolCalls = turn.stopReason === "tool_use" && turn.toolUseBlocks.length > 0;
-          if (hasToolCalls) {
-            if (usageEstimate.warningLevel === "critical") {
-              sendEvent({
-                type: "context_warning",
-                message: "Context window nearly full. Writing with currently loaded context.",
-                available: usageEstimate.available,
-              });
-              break;
-            }
-
-            if (escalationCount >= MAX_CONTEXT_ESCALATIONS) {
-              sendEvent({
-                type: "context_warning",
-                message: `Tool escalation limit reached (${MAX_CONTEXT_ESCALATIONS}). Writing with currently loaded context.`,
-                available: usageEstimate.available,
-              });
-              break;
-            }
-
-            const toolResults: Anthropic.ToolResultBlockParam[] = [];
-
-            for (const toolCall of turn.toolUseBlocks) {
-              const parsedInput = normalizeToolInput(toolCall.input);
-              const level = getToolContextLevel(toolCall.name);
-              const documentId = getToolInputString(parsedInput, "document_id");
-              const sourceTitle = documentId
-                ? resolveSourceTitle(documentId, sources) || documentId
-                : undefined;
-
-              sendEvent({
-                type: "context_loading",
-                level,
-                toolCallId: toolCall.id,
-                toolName: toolCall.name,
-                documentId,
-                sourceTitle,
-              });
-
-              let toolOutput = "";
-              try {
-                toolOutput = await executeWritingTool(
-                  toolCall.name,
-                  toolCall.input,
-                  req.user!.userId,
-                  conv.projectId,
-                  sources
-                );
-              } catch (error) {
-                const errorMessage = error instanceof Error ? error.message : "Unknown tool execution error";
-                void logToolCall({
-                  conversationId: conv.id,
-                  userId: req.user!.userId,
-                  projectId: conv.projectId ?? null,
-                  toolName: toolCall.name,
-                  documentId: documentId || null,
-                  escalationRound: escalationCount + 1,
-                  turnNumber,
-                  resultSizeChars: errorMessage.length,
-                  success: false,
-                  timestamp: Date.now(),
-                  metadata: {
-                    toolCallId: toolCall.id,
-                    error: errorMessage,
-                  },
-                }).catch((err) => console.warn("[analytics] logToolCall error:", err));
-                throw error;
-              }
-
-              toolResults.push({
-                type: "tool_result",
-                tool_use_id: toolCall.id,
-                content: toolOutput,
-              });
-              void logToolCall({
-                conversationId: conv.id,
-                userId: req.user!.userId,
-                projectId: conv.projectId ?? null,
-                toolName: toolCall.name,
-                documentId: documentId || null,
-                escalationRound: escalationCount + 1,
-                turnNumber,
-                resultSizeChars: toolOutput.length,
-                success: true,
-                timestamp: Date.now(),
-                metadata: {
-                  toolCallId: toolCall.id,
-                  sourceTitle: sourceTitle ?? null,
-                },
-              }).catch((err) => console.warn("[analytics] logToolCall error:", err));
-
-              sendEvent({
-                type: "context_loaded",
-                level,
-                toolCallId: toolCall.id,
-                toolName: toolCall.name,
-                documentId,
-                sourceTitle,
-              });
-            }
-
-            sendEvent({ type: "tool_round_complete", round: escalationCount + 1 });
-
-            anthropicMessages.push(
-              { role: "assistant", content: turn.assistantContentBlocks },
-              { role: "user", content: toolResults }
-            );
-            usageEstimate = estimateContextUsage(systemPrompt, anthropicMessages, mode);
-            void logContextSnapshot({
-              conversationId: conv.id,
-              turnNumber,
-              escalationRound: escalationCount + 1,
-              estimatedTokens: usageEstimate.totalUsed,
-              warningLevel: usageEstimate.warningLevel,
-              trigger: turn.toolUseBlocks.map((block) => block.name).join(",") || null,
-              timestamp: Date.now(),
-              metadata: {
-                toolCount: turn.toolUseBlocks.length,
-              },
-            }).catch((err) => console.warn("[analytics] logContextSnapshot error:", err));
-            sendContextWarningIfNeeded(usageEstimate);
-            escalationCount += 1;
-            continue;
-          }
-
-          const cleanedTurnText = stripToolTagsForStorage(turn.fullText);
-          finalAssistantText = applyJumpLinksToMarkdown(
-            cleanedTurnText,
-            collectConversationQuoteTargets(sources)
-          );
-          if (!containsDocumentTag(finalAssistantText) && finalAssistantText !== cleanedTurnText) {
-            sendEvent({ type: "replace_text", text: finalAssistantText });
-          }
-          break;
-        }
-
-        // Legacy XML path: keep prior behavior for rollback safety.
-        const cleanedAssistantText = applyJumpLinksToMarkdown(
-          stripToolTagsForStorage(turn.fullText),
-          collectConversationQuoteTargets(sources)
-        );
-        if (cleanedAssistantText.length > 0) {
-          await chatStorage.createMessage({
-            conversationId: conv.id,
-            role: "assistant",
-            content: cleanedAssistantText,
-            tokensUsed: inputTokens + outputTokens,
-          });
-        }
+        await chatStorage.createMessage({
+          conversationId: conv.id,
+          role: "assistant",
+          content: turn.fullText,
+          tokensUsed: inputTokens + outputTokens,
+        });
 
         if (!hasAutoTitled && isFirstExchange && conv.title === "New Chat") {
           const autoTitle = content.length <= 50 ? content : `${content.slice(0, 47)}...`;
@@ -1755,6 +1046,18 @@ ${chunkContext}`;
           }
 
           sendEvent({ type: "context_loaded", level: 2, documentId: request.documentId });
+          void logToolCall({
+            conversationId: conv.id,
+            userId: req.user!.userId,
+            projectId: conv.projectId ?? null,
+            toolName: "chunk_request",
+            documentId: request.documentId || null,
+            escalationRound: escalationCount + 1,
+            turnNumber: history.filter((m) => m.role === "user").length,
+            resultSizeChars: contextMessage.length,
+            success: !contextMessage.includes("ERROR"),
+            timestamp: Date.now(),
+          }).catch((err) => console.warn("[analytics] logToolCall error:", err));
         } else if (request.type === "context_request") {
           if (!deepDiveAllowed) {
             sendEvent({
@@ -1803,41 +1106,46 @@ ${chunkContext}`;
             }`;
             sendEvent({ type: "context_loaded", level: 3, findingCount: 0 });
           }
+          void logToolCall({
+            conversationId: conv.id,
+            userId: req.user!.userId,
+            projectId: conv.projectId ?? null,
+            toolName: "context_request",
+            documentId: request.documentId || null,
+            escalationRound: escalationCount + 1,
+            turnNumber: history.filter((m) => m.role === "user").length,
+            resultSizeChars: contextMessage.length,
+            success: !contextMessage.includes("ERROR"),
+            timestamp: Date.now(),
+          }).catch((err) => console.warn("[analytics] logToolCall error:", err));
         }
 
         if (!contextMessage.trim()) {
           break;
         }
 
-        // Keep context injections in-memory only — don't persist them to chat
-        // history so they won't show up as user bubbles in the UI. The Anthropic
-        // message array carries them for multi-turn escalation within this request.
-        anthropicMessages.push(
-          { role: "assistant", content: turn.fullText },
-          { role: "user", content: contextMessage },
-        );
+        await chatStorage.createMessage({
+          conversationId: conv.id,
+          role: "user",
+          content: contextMessage,
+        });
+
+        history = await chatStorage.getMessagesForConversation(conv.id);
+        anthropicMessages = toAnthropicMessages(history);
         usageEstimate = estimateContextUsage(systemPrompt, anthropicMessages, mode);
+        void logContextSnapshot({
+          conversationId: conv.id,
+          turnNumber: history.filter((m) => m.role === "user").length,
+          escalationRound: escalationCount + 1,
+          estimatedTokens: usageEstimate.totalUsed,
+          warningLevel: usageEstimate.warningLevel,
+          trigger: request.type,
+          timestamp: Date.now(),
+          metadata: { documentId: request.documentId || null },
+        }).catch((err) => console.warn("[analytics] logContextSnapshot error:", err));
         sendContextWarningIfNeeded(usageEstimate);
         deepDiveAllowed = usageEstimate.warningLevel !== "critical";
         escalationCount += 1;
-      }
-
-      if (toolUseEnabled) {
-        const cleanedFinalText = finalAssistantText.trim();
-        if (cleanedFinalText.length > 0) {
-          await chatStorage.createMessage({
-            conversationId: conv.id,
-            role: "assistant",
-            content: cleanedFinalText,
-            tokensUsed: totalInputTokens + totalOutputTokens,
-          });
-        }
-
-        if (!hasAutoTitled && isFirstExchange && conv.title === "New Chat") {
-          const autoTitle = content.length <= 50 ? content : `${content.slice(0, 47)}...`;
-          await chatStorage.updateConversation(conv.id, { title: autoTitle });
-          hasAutoTitled = true;
-        }
       }
 
       if (!closed && !res.writableEnded) {
@@ -1884,7 +1192,6 @@ ${chunkContext}`;
 
       const transcript = history
         .filter((message) => message.role === "user" || message.role === "assistant")
-        .filter((message) => !isInternalContextMessage(message))
         .map((message) => `[${message.role.toUpperCase()}]: ${message.content}`)
         .join("\n\n---\n\n");
 
@@ -1929,8 +1236,6 @@ ${transcript}${sourcesBlock}`;
 
       const anthropic = getAnthropicClient();
       let aborted = false;
-      let compiledText = "";
-      const compileQuoteTargets = collectConversationQuoteTargets(sources);
 
       req.on("close", () => {
         aborted = true;
@@ -1944,17 +1249,12 @@ ${transcript}${sourcesBlock}`;
 
       stream.on("text", (text) => {
         if (!aborted) {
-          compiledText += text;
           res.write(`data: ${JSON.stringify({ type: "text", text })}\n\n`);
         }
       });
 
       stream.on("message", () => {
         if (aborted) return;
-        const linkedText = applyJumpLinksToMarkdown(compiledText, compileQuoteTargets);
-        if (linkedText && linkedText !== compiledText) {
-          res.write(`data: ${JSON.stringify({ type: "replace_text", text: linkedText })}\n\n`);
-        }
         res.write(`data: ${JSON.stringify({ type: "done" })}\n\n`);
         res.end();
       });

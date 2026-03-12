@@ -11,7 +11,6 @@ import {
   useUpdateConversation,
   useSendMessage,
 } from "@/hooks/useChat";
-import { useProjects } from "@/hooks/useProjects";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Chat() {
@@ -22,7 +21,6 @@ export default function Chat() {
   const [activeConversationId, setActiveConversationId] = useState<string | null>(
     params.conversationId || null
   );
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
 
   // Sync URL param changes
   useEffect(() => {
@@ -30,7 +28,6 @@ export default function Chat() {
   }, [params.conversationId]);
 
   const { data: conversations = [] } = useConversations();
-  const { data: projects = [] } = useProjects();
   const { data: conversationData } = useConversation(activeConversationId);
   const createConversation = useCreateConversation();
   const deleteConversation = useDeleteConversation();
@@ -41,9 +38,7 @@ export default function Chat() {
 
   const handleNewChat = useCallback(async () => {
     try {
-      const conv = await createConversation.mutateAsync(
-        selectedProjectId ? { projectId: selectedProjectId } : undefined
-      );
+      const conv = await createConversation.mutateAsync();
       setLocation(`/chat/${conv.id}`);
     } catch {
       toast({
@@ -52,7 +47,7 @@ export default function Chat() {
         variant: "destructive",
       });
     }
-  }, [createConversation, selectedProjectId, setLocation, toast]);
+  }, [createConversation, setLocation, toast]);
 
   const handleSelect = useCallback(
     (id: string) => {
@@ -99,11 +94,38 @@ export default function Chat() {
       // If no active conversation, create one first
       if (!activeConversationId) {
         try {
-          const conv = await createConversation.mutateAsync(
-            selectedProjectId ? { projectId: selectedProjectId } : undefined
-          );
+          const conv = await createConversation.mutateAsync();
           setLocation(`/chat/${conv.id}`);
-          await send(content, conv.id);
+          // Wait a tick for state to update, then send via direct fetch
+          // We need to call send on the new conversation
+          setTimeout(async () => {
+            const response = await fetch(
+              `/api/chat/conversations/${conv.id}/messages`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content }),
+                credentials: "include",
+              }
+            );
+            // Process the stream manually for this first message
+            if (response.ok && response.body) {
+              const reader = response.body.getReader();
+              const decoder = new TextDecoder();
+              while (true) {
+                const { done } = await reader.read();
+                if (done) break;
+              }
+            }
+            // Refresh data
+            const { queryClient } = await import("@/lib/queryClient");
+            queryClient.invalidateQueries({
+              queryKey: ["/api/chat/conversations", conv.id],
+            });
+            queryClient.invalidateQueries({
+              queryKey: ["/api/chat/conversations"],
+            });
+          }, 100);
         } catch {
           toast({
             title: "Error",
@@ -116,7 +138,7 @@ export default function Chat() {
 
       await send(content);
     },
-    [activeConversationId, send, createConversation, selectedProjectId, setLocation, toast]
+    [activeConversationId, send, createConversation, setLocation, toast]
   );
 
   return (
@@ -128,9 +150,6 @@ export default function Chat() {
         onNew={handleNewChat}
         onDelete={handleDelete}
         onRename={handleRename}
-        projects={projects}
-        selectedProjectId={selectedProjectId}
-        onProjectChange={setSelectedProjectId}
       />
       <div className="flex-1 flex flex-col min-w-0">
         <ChatMessages
@@ -138,8 +157,6 @@ export default function Chat() {
           streamingText={streamingText}
           isStreaming={isStreaming}
           onSuggestedPrompt={handleSend}
-        conversation={conversationData || null}
-        projects={projects}
         />
         <ChatInput onSend={handleSend} disabled={isStreaming} />
       </div>

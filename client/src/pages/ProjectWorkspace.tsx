@@ -1,4 +1,4 @@
-import { Suspense, lazy, useMemo, useRef, useState } from "react";
+import { useState, useMemo, useRef } from "react";
 import { Link, useRoute, useLocation } from "wouter";
 import { useProject, useFolders, useProjectDocuments, useCreateFolder, useDeleteFolder, useAddDocumentToProject, useRemoveDocumentFromProject } from "@/hooks/useProjects";
 import { useGlobalSearch, useGenerateCitation } from "@/hooks/useProjectSearch";
@@ -20,21 +20,10 @@ import { ArrowLeft, FolderPlus, FileText, Search, Plus, ChevronRight, ChevronDow
 import { BatchAnalysisModal } from "@/components/BatchAnalysisModal";
 import { BatchUploadModal } from "@/components/BatchUploadModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import WritingChat from "@/components/WritingChat";
 import { useToast } from "@/hooks/use-toast";
 import { copyTextToClipboard } from "@/lib/clipboard";
 import type { Folder as FolderType, GlobalSearchResult, Document } from "@shared/schema";
-
-const WritingChat = lazy(() => import("@/components/WritingChat"));
-
-function WritingChatFallback() {
-  return (
-    <div className="h-full min-h-[320px] flex items-center justify-center">
-      <div className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
-        Loading writing workspace
-      </div>
-    </div>
-  );
-}
 
 type DocumentLibraryItem = Pick<Document, "id" | "filename" | "uploadDate" | "summary" | "chunkCount" | "status" | "processingError">;
 
@@ -848,9 +837,7 @@ export default function ProjectWorkspace() {
 
         {workspaceTab === "write" ? (
           <div className="flex-1 min-h-0 eva-grid-bg">
-            <Suspense fallback={<WritingChatFallback />}>
-              <WritingChat initialProjectId={projectId} lockProject />
-            </Suspense>
+            <WritingChat initialProjectId={projectId} lockProject />
           </div>
         ) : (
           <div className="flex-1 overflow-auto p-6 pb-8 eva-grid-bg">

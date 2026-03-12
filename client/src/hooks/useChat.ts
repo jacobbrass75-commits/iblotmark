@@ -35,7 +35,7 @@ export function useConversation(id: string | null) {
 
 export function useCreateConversation() {
   return useMutation({
-    mutationFn: async (data: { title?: string; model?: string; projectId?: string } | void) => {
+    mutationFn: async (data: { title?: string; model?: string } | void) => {
       const res = await apiRequest("POST", "/api/chat/conversations", data || {});
       return res.json() as Promise<Conversation>;
     },
@@ -73,16 +73,15 @@ export function useSendMessage(conversationId: string | null) {
   const [isStreaming, setIsStreaming] = useState(false);
 
   const send = useCallback(
-    async (content: string, conversationIdOverride?: string | null) => {
-      const targetConversationId = conversationIdOverride ?? conversationId;
-      if (!targetConversationId) return;
+    async (content: string) => {
+      if (!conversationId) return;
 
       setIsStreaming(true);
       setStreamingText("");
 
       try {
         const response = await fetch(
-          `/api/chat/conversations/${targetConversationId}/messages`,
+          `/api/chat/conversations/${conversationId}/messages`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json", ...getAuthHeaders() },
@@ -113,13 +112,10 @@ export function useSendMessage(conversationId: string | null) {
                 if (data.type === "text" || data.type === "chat_text") {
                   accumulated += data.text;
                   setStreamingText(accumulated);
-                } else if (data.type === "replace_text") {
-                  accumulated = String(data.text || "");
-                  setStreamingText(accumulated);
                 } else if (data.type === "done") {
                   // Stream complete, invalidate queries to refresh data
                   queryClient.invalidateQueries({
-                    queryKey: ["/api/chat/conversations", targetConversationId],
+                    queryKey: ["/api/chat/conversations", conversationId],
                   });
                   queryClient.invalidateQueries({
                     queryKey: ["/api/chat/conversations"],

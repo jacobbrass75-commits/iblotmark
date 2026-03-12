@@ -1,283 +1,154 @@
-// Service worker:
-// 1) context menu saves
-// 2) account storage for extension API keys
-// 3) authenticated API calls using the active account
+// Service worker — handles:
+// 1. Context menu: "Save to ScholarMark" on text selection
+// 2. Token management: stores/retrieves JWT from chrome.storage.local
+// 3. API calls to ScholarMark backend
 
-const PROD_API_BASE = "https://scholarmark.ai";
-const DEV_API_BASE = "http://localhost:5001";
-const API_BASE_CACHE_MS = 60_000;
+const API_BASE = "http://localhost:5001"; // Changed to production URL later
 
-let cachedDefaultBase = null;
-let cachedDefaultBaseAt = 0;
-
-function normalizeBaseUrl(value) {
-  return String(value || "").trim().replace(/\/+$/, "");
-}
-
-async function getStoredApiBase() {
-  const { sm_api_url } = await chrome.storage.local.get("sm_api_url");
-  if (typeof sm_api_url !== "string") return null;
-  const normalized = normalizeBaseUrl(sm_api_url);
-  return normalized || null;
-}
-
-async function canReachApi(baseUrl) {
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 1500);
-    await fetch(`${baseUrl}/api/system/status`, {
-      method: "GET",
-      cache: "no-store",
-      signal: controller.signal,
-    });
-    clearTimeout(timeout);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function resolveApiBase() {
-  const configured = await getStoredApiBase();
-  if (configured) return configured;
-
-  const now = Date.now();
-  if (cachedDefaultBase && now - cachedDefaultBaseAt < API_BASE_CACHE_MS) {
-    return cachedDefaultBase;
-  }
-
-  const prodReachable = await canReachApi(PROD_API_BASE);
-  cachedDefaultBase = prodReachable ? PROD_API_BASE : DEV_API_BASE;
-  cachedDefaultBaseAt = now;
-  return cachedDefaultBase;
-}
-
-async function apiFetch(path, token, init = {}) {
-  const configuredBase = await getStoredApiBase();
-  const primaryBase = configuredBase || (await resolveApiBase());
-  const headers = {
-    ...(init.headers || {}),
-    Authorization: `Bearer ${token}`,
-  };
-
-  try {
-    return await fetch(`${primaryBase}${path}`, { ...init, headers });
-  } catch (error) {
-    if (configuredBase || primaryBase !== PROD_API_BASE) {
-      throw error;
-    }
-    // Dev fallback when no explicit API base is configured.
-    return await fetch(`${DEV_API_BASE}${path}`, { ...init, headers });
-  }
-}
-
-async function getAccountStore() {
-  const { sm_accounts, sm_active_account } = await chrome.storage.local.get([
-    "sm_accounts",
-    "sm_active_account",
-  ]);
-
-  const accounts =
-    sm_accounts && typeof sm_accounts === "object" && !Array.isArray(sm_accounts)
-      ? sm_accounts
-      : {};
-
-  return {
-    accounts,
-    activeAccountId: typeof sm_active_account === "string" ? sm_active_account : null,
-  };
-}
-
-async function saveAccountStore(accounts, activeAccountId) {
-  await chrome.storage.local.set({
-    sm_accounts: accounts,
-    sm_active_account: activeAccountId || null,
-  });
-}
-
-async function getActiveAccount() {
-  const { accounts, activeAccountId } = await getAccountStore();
-  if (activeAccountId && accounts[activeAccountId]) {
-    return { userId: activeAccountId, account: accounts[activeAccountId] };
-  }
-
-  const firstUserId = Object.keys(accounts)[0];
-  if (!firstUserId) return null;
-
-  await chrome.storage.local.set({ sm_active_account: firstUserId });
-  return { userId: firstUserId, account: accounts[firstUserId] };
-}
-
-async function getToken() {
-  const active = await getActiveAccount();
-  return active?.account?.apiKey || null;
-}
-
+// Create context menu on install
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "save-to-scholarmark",
     title: "Save to ScholarMark",
-    contexts: ["selection"],
+    contexts: ["selection"]
   });
 });
 
+// Handle context menu click
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (info.menuItemId !== "save-to-scholarmark" || !info.selectionText) return;
+  if (info.menuItemId === "save-to-scholarmark" && info.selectionText) {
+    const token = await getToken();
+    if (!token) {
+      // Open popup to prompt login
+      chrome.action.openPopup();
+      return;
+    }
 
-  const token = await getToken();
-  if (!token) {
-    chrome.action.openPopup();
-    return;
-  }
+    // Get page metadata
+    const pageUrl = tab.url;
+    const pageTitle = tab.title;
 
-  const pageUrl = tab?.url || "";
-  const pageTitle = tab?.title || "";
-
-  if (!tab?.id) {
-    await saveAnnotation(
-      {
+    // Send to content script to get more context
+    chrome.tabs.sendMessage(tab.id, {
+      type: "GET_SELECTION_CONTEXT",
+    }, async (response) => {
+      const annotation = {
         highlightedText: info.selectionText,
         pageUrl,
         pageTitle,
-        context: "",
+        context: response?.surroundingText || "",
         timestamp: new Date().toISOString(),
-      },
-      token
-    );
-    return;
+      };
+
+      await saveAnnotation(annotation, token);
+    });
   }
-
-  chrome.tabs.sendMessage(tab.id, { type: "GET_SELECTION_CONTEXT" }, async (response) => {
-    const context = chrome.runtime.lastError ? "" : response?.surroundingText || "";
-
-    await saveAnnotation(
-      {
-        highlightedText: info.selectionText,
-        pageUrl,
-        pageTitle,
-        context,
-        timestamp: new Date().toISOString(),
-      },
-      token
-    );
-  });
 });
+
+async function getToken() {
+  const result = await chrome.storage.local.get("sm_token");
+  return result.sm_token || null;
+}
 
 async function saveAnnotation(annotation, token) {
   try {
+    // Include selected project if one is set
     const { sm_project } = await chrome.storage.local.get("sm_project");
     if (sm_project) {
       annotation.projectId = sm_project;
     }
 
-    const response = await apiFetch("/api/extension/save", token, {
+    const response = await fetch(`${API_BASE}/api/extension/save`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify(annotation),
     });
 
     if (response.ok) {
+      // Notify user
       chrome.notifications?.create({
         type: "basic",
         iconUrl: "icons/icon48.png",
         title: "ScholarMark",
         message: "Highlight saved to your project!",
       });
-      return;
-    }
-
-    if (response.status === 401) {
+    } else if (response.status === 401) {
+      // Token expired
+      await chrome.storage.local.remove("sm_token");
       chrome.action.openPopup();
-      return;
     }
-
-    const errorText = await response.text();
-    console.error("Failed to save annotation:", errorText);
   } catch (error) {
     console.error("Failed to save annotation:", error);
   }
 }
 
-async function handleExtensionAuth(message) {
-  if (!message?.apiKey || !message?.userId) {
-    return { success: false, error: "Missing required account fields" };
+// Listen for messages from popup/content scripts
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "LOGIN") {
+    handleLogin(message.email, message.password).then(sendResponse);
+    return true; // async response
   }
-
-  const { accounts } = await getAccountStore();
-  accounts[message.userId] = {
-    apiKey: message.apiKey,
-    email: message.email || "",
-    tier: message.tier || "free",
-  };
-
-  await saveAccountStore(accounts, message.userId);
-  return {
-    success: true,
-    activeAccount: message.userId,
-    account: accounts[message.userId],
-  };
-}
-
-async function handleLogout(userId) {
-  const { accounts, activeAccountId } = await getAccountStore();
-  const targetUserId = userId || activeAccountId;
-  if (!targetUserId || !accounts[targetUserId]) {
-    return { success: true };
+  if (message.type === "LOGOUT") {
+    chrome.storage.local.remove("sm_token");
+    sendResponse({ success: true });
   }
-
-  delete accounts[targetUserId];
-  const nextActive =
-    activeAccountId === targetUserId ? Object.keys(accounts)[0] || null : activeAccountId;
-
-  await saveAccountStore(accounts, nextActive);
-  return { success: true, activeAccount: nextActive };
-}
-
-async function handleSwitchAccount(userId) {
-  const { accounts } = await getAccountStore();
-  if (!userId || !accounts[userId]) {
-    return { success: false, error: "Account not found" };
+  if (message.type === "GET_PROJECTS") {
+    getProjects().then(sendResponse);
+    return true;
   }
+  if (message.type === "SAVE_SELECTION") {
+    handleSaveSelection(message).then(sendResponse);
+    return true;
+  }
+});
 
-  await chrome.storage.local.set({ sm_active_account: userId });
-  return { success: true, activeAccount: userId };
+async function handleLogin(email, password) {
+  try {
+    const response = await fetch(`${API_BASE}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      await chrome.storage.local.set({ sm_token: data.token, sm_user: data.user });
+      return { success: true, user: data.user };
+    }
+    return { success: false, error: "Invalid credentials" };
+  } catch (error) {
+    return { success: false, error: "Connection failed" };
+  }
 }
 
 async function getProjects() {
-  const active = await getActiveAccount();
-  if (!active?.account?.apiKey) {
-    return { success: false, error: "Not connected" };
-  }
+  const token = await getToken();
+  if (!token) return { success: false, error: "Not logged in" };
 
   try {
-    const response = await apiFetch("/api/projects", active.account.apiKey, {
-      method: "GET",
+    const response = await fetch(`${API_BASE}/api/projects`, {
+      headers: { "Authorization": `Bearer ${token}` },
     });
 
     if (response.ok) {
       const projects = await response.json();
       return { success: true, projects };
     }
-
-    if (response.status === 401) {
-      return { success: false, error: "Authentication expired. Reconnect this account.", needsReconnect: true };
-    }
-
     return { success: false, error: "Failed to fetch projects" };
-  } catch {
+  } catch (error) {
     return { success: false, error: "Connection failed" };
   }
 }
 
 async function handleSaveSelection(message) {
-  const active = await getActiveAccount();
-  if (!active?.account?.apiKey) {
-    return { success: false, error: "Not connected" };
-  }
+  const token = await getToken();
+  if (!token) return { success: false, error: "Not logged in" };
 
   const { sm_project } = await chrome.storage.local.get("sm_project");
+
   const annotation = {
     highlightedText: message.text,
     pageUrl: message.url,
@@ -288,58 +159,23 @@ async function handleSaveSelection(message) {
   };
 
   try {
-    const response = await apiFetch("/api/extension/save", active.account.apiKey, {
+    const response = await fetch(`${API_BASE}/api/extension/save`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify(annotation),
     });
 
     if (response.ok) {
       return { success: true };
+    } else if (response.status === 401) {
+      await chrome.storage.local.remove("sm_token");
+      return { success: false, error: "Token expired" };
     }
-
-    if (response.status === 401) {
-      return { success: false, error: "Authentication expired. Reconnect this account.", needsReconnect: true };
-    }
-
     return { success: false, error: "Save failed" };
-  } catch {
+  } catch (error) {
     return { success: false, error: "Connection failed" };
   }
 }
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === "EXTENSION_AUTH") {
-    handleExtensionAuth(message).then(sendResponse);
-    return true;
-  }
-
-  if (message.type === "LOGOUT") {
-    handleLogout(message.userId).then(sendResponse);
-    return true;
-  }
-
-  if (message.type === "SWITCH_ACCOUNT") {
-    handleSwitchAccount(message.userId).then(sendResponse);
-    return true;
-  }
-
-  if (message.type === "GET_PROJECTS") {
-    getProjects().then(sendResponse);
-    return true;
-  }
-
-  if (message.type === "SAVE_SELECTION") {
-    handleSaveSelection(message).then(sendResponse);
-    return true;
-  }
-
-  if (message.type === "GET_API_BASE") {
-    resolveApiBase().then((apiBase) => sendResponse({ success: true, apiBase }));
-    return true;
-  }
-
-  return false;
-});

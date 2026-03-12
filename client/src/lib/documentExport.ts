@@ -3,12 +3,6 @@ import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { markdownToDocx } from "./markdownToDocx";
-export {
-  downloadBlob,
-  getDocTypeLabel,
-  stripMarkdown,
-  toSafeFilename,
-} from "./documentExportUtils";
 
 type MdNode = {
   type: string;
@@ -39,6 +33,39 @@ interface FootnoteContext {
 
 function parseMarkdownAst(markdownContent: string): MdNode {
   return unified().use(remarkParse).use(remarkGfm).parse(markdownContent) as unknown as MdNode;
+}
+
+export function stripMarkdown(markdown: string): string {
+  return markdown
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/[>*_~]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function toSafeFilename(value: string): string {
+  return (
+    value
+      .replace(/[\\/:*?"<>|]/g, "_")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 80) || "generated-paper"
+  );
+}
+
+export function downloadBlob(blob: Blob, filename: string): void {
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function flattenText(node?: MdNode): string {
@@ -296,3 +323,10 @@ export async function buildPdfBlob(title: string, markdownContent: string): Prom
   return new Blob([await pdf.save()], { type: "application/pdf" });
 }
 
+export function getDocTypeLabel(filename: string): string {
+  const name = filename.toLowerCase();
+  if (name.endsWith(".pdf")) return "PDF";
+  if (name.endsWith(".txt")) return "TXT";
+  if (/\.(png|jpg|jpeg|webp|gif|bmp|tif|tiff|heic|heif)$/i.test(name)) return "IMAGE";
+  return "DOC";
+}

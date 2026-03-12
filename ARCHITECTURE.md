@@ -1,6 +1,6 @@
 # ScholarMark Architecture Reference
 
-> Updated 2026-03-11. Covers the full codebase of `anotations-jan-26` (master branch) including MCP server, analytics, OAuth, and all production systems.
+> Updated 2026-02-27. Covers the full codebase of `anotations-jan-26` after Opus upgrade + humanizer integration.
 
 ---
 
@@ -22,11 +22,8 @@
 14. [Document Export (PDF / DOCX)](#14-document-export-pdf--docx)
 15. [Humanizer System](#15-humanizer-system)
 16. [Web Clips & Chrome Extension](#16-web-clips--chrome-extension)
-17. [MCP Server](#17-mcp-server)
-18. [Analytics System](#18-analytics-system)
-19. [Environment Variables](#19-environment-variables)
-20. [All API Endpoints](#20-all-api-endpoints)
-21. [Directory Structure](#21-directory-structure)
+17. [Environment Variables](#17-environment-variables)
+18. [All API Endpoints](#18-all-api-endpoints)
 
 ---
 
@@ -42,7 +39,7 @@
 | Backend | Express.js | 4.21 |
 | Database | SQLite via Drizzle ORM | drizzle-orm 0.39 |
 | AI | Anthropic SDK | 0.78 |
-| Auth | Clerk + JWT + bcrypt | @clerk/express, jsonwebtoken 9, bcrypt 6 |
+| Auth | JWT + bcrypt | jsonwebtoken 9, bcrypt 6 |
 | PDF gen | pdf-lib | 1.17 |
 | DOCX gen | docx (via markdownToDocx) | 9.6 |
 | Markdown parsing | unified + remark-parse + remark-gfm | 11 / 4 |
@@ -885,96 +882,7 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 
 ---
 
-## 17. MCP Server
-
-**Location:** `mcp-server/`
-**Port:** 5002 (configurable via `MCP_SERVER_PORT`)
-**Entrypoint:** `mcp-server/server.mjs`
-
-The MCP (Model Context Protocol) server enables Claude Desktop and claude.ai to interact with ScholarMark as a tool provider.
-
-### Architecture
-
-```
-Claude Desktop / claude.ai
-  |
-  v  (Streamable HTTP + SSE)
-nginx reverse proxy (mcp.scholarmark.ai)
-  |
-  v
-MCP Server (port 5002)
-  |
-  v  (HTTP requests)
-ScholarMark Backend (port 5001)
-```
-
-### Transport & Auth
-
-- **Transport:** Streamable HTTP (primary) + SSE
-- **Auth:** OAuth2 with Bearer tokens, stateful session management via `Mcp-Session-Id` headers
-- **Discovery:** `/.well-known/oauth-protected-resource` and `/.well-known/oauth-authorization-server`
-- **Deployment:** PM2 under nginx proxy with buffering disabled for SSE
-
-### Tools (11)
-
-| Tool | Description |
-|------|-------------|
-| `get_projects` | List user's research projects |
-| `get_project_sources` | List sources within a project |
-| `get_source_summary` | Get AI summary + key concepts for a source |
-| `get_source_annotations` | List annotations on a source |
-| `get_source_chunks` | Semantic search within a source |
-| `get_web_clips` | List web clips with filtering |
-| `start_conversation` | Create a new chat conversation |
-| `get_conversations` | List existing conversations |
-| `send_message` | Send a chat message (SSE stream) |
-| `compile_paper` | Compile conversation into a paper (SSE stream) |
-| `verify_paper` | Verify citations in a compiled paper (SSE stream) |
-
-### Key Files
-
-| File | Purpose |
-|------|---------|
-| `mcp-server/server.mjs` | Server entrypoint with session management |
-| `mcp-server/dist/mcp-tools.js` | Tool registration and definitions |
-| `mcp-server/dist/backend-client.js` | HTTP client proxying to ScholarMark backend |
-| `mcp-server/dist/sse-buffer.js` | SSE streaming response handler |
-| `mcp-server/dist/discovery.js` | OAuth discovery endpoints |
-| `mcp-server/deploy/nginx.scholarmark.conf` | nginx config for mcp.scholarmark.ai |
-| `mcp-server/deploy/pm2.ecosystem.cjs` | PM2 process management |
-
----
-
-## 18. Analytics System
-
-**Files:** `server/analyticsRoutes.ts`, `server/analyticsLogger.ts`, `client/src/pages/AdminAnalytics.tsx`
-
-### Backend
-
-- **Logger** (`analyticsLogger.ts`): Logs tool calls, context escalations, warnings, and token usage per conversation
-- **Routes** (`analyticsRoutes.ts`): Admin-only endpoints for retrieving analytics data
-
-### Frontend Components
-
-| Component | Purpose |
-|-----------|---------|
-| `AdminAnalytics.tsx` | Main analytics dashboard page |
-| `OverviewCards.tsx` | Summary statistics cards |
-| `TokenUsageChart.tsx` | Token usage visualization |
-| `ToolCallChart.tsx` | Tool call analysis |
-| `WarningBreakdownChart.tsx` | Warning categorization |
-| `ConversationTimeline.tsx` | Timeline view of conversations |
-| `ConversationTable.tsx` | Tabular conversation data |
-
-### Route
-
-| Route | Component | Auth |
-|-------|-----------|------|
-| `/admin/analytics` | AdminAnalytics | Yes (admin) |
-
----
-
-## 19. Environment Variables
+## 17. Environment Variables
 
 ### Required
 
@@ -995,16 +903,10 @@ ScholarMark Backend (port 5001)
 | `GEMINI_API_KEY` | - | Google Gemini key (humanizer primary provider) |
 | `GEMINI_HUMANIZER_MODEL` | `gemini-2.5-flash-lite` | Override humanizer Gemini model |
 | `HUMANIZER_ANTHROPIC_MODEL` | `claude-opus-4-6` | Override humanizer Anthropic fallback model |
-| `MCP_SERVER_PORT` | 5002 | MCP server port |
-| `SCHOLARMARK_BACKEND_URL` | `http://127.0.0.1:5001` | Backend URL for MCP server |
-| `MCP_AUTHORIZATION_SERVER` | - | OAuth authorization server base URL |
-| `MCP_RESOURCE_URL` | - | Public MCP resource URL |
-| `CLERK_SECRET_KEY` | - | Clerk backend auth key |
-| `CLERK_PUBLISHABLE_KEY` | - | Clerk frontend auth key |
 
 ---
 
-## 20. All API Endpoints
+## 18. All API Endpoints
 
 ### Auth (`server/authRoutes.ts`)
 
@@ -1110,26 +1012,6 @@ ScholarMark Backend (port 5001)
 |--------|------|-------------|
 | POST | `/api/extension/save` | Save highlight from Chrome extension |
 
-### OAuth (`server/oauthRoutes.ts`)
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/oauth/authorize` | OAuth authorization page |
-| POST | `/api/oauth/token` | Exchange auth code for access token |
-| POST | `/api/oauth/revoke` | Revoke token |
-| GET | `/.well-known/oauth-authorization-server` | OAuth discovery metadata |
-| GET | `/.well-known/oauth-protected-resource` | Protected resource metadata |
-
-### Analytics (`server/analyticsRoutes.ts`)
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/analytics/overview` | Dashboard statistics |
-| GET | `/api/analytics/conversations` | Conversation analytics |
-| GET | `/api/analytics/token-usage` | Token usage data |
-| GET | `/api/analytics/tool-calls` | Tool call analytics |
-| GET | `/api/analytics/warnings` | Warning breakdown |
-
 ---
 
 ## Model Usage Summary
@@ -1163,121 +1045,3 @@ ScholarMark Backend (port 5001)
 7. **V2 AI pipeline** -- Generator -> Hard Verifier -> Soft Verifier for annotation quality
 8. **Multi-provider AI** -- Anthropic (chat/writing/verify), OpenAI (annotation pipeline/OCR), Gemini (humanizer) with fallback chains
 9. **Chat component decomposition** -- WritingChat delegates to `chat/ChatInput`, `chat/ChatMessages`, `chat/ChatSidebar`, `chat/DocumentPanel`, `chat/DocumentStatusCard`
-10. **MCP integration** -- Separate MCP server process proxies tool calls to the main backend via HTTP
-
----
-
-## 21. Directory Structure
-
-```
-anotations-jan-26/
-├── .claude/                           # Claude Code configuration
-│   ├── agents/                        # Agent personas (20+)
-│   ├── commands/                      # Custom commands
-│   └── skills/                        # Custom skills
-├── .claude-docs/                      # Internal documentation
-│   ├── overview.md
-│   ├── server-api.md
-│   ├── server-internals.md
-│   ├── client-architecture.md
-│   ├── database-schema.md
-│   └── config-and-setup.md
-├── chrome-extension/                  # Chrome extension (Manifest V3)
-│   ├── manifest.json
-│   ├── background/background.js
-│   ├── content/content.js
-│   ├── popup/
-│   ├── options/
-│   └── icons/
-├── mcp-server/                        # MCP server for Claude integration
-│   ├── server.mjs                     # Entrypoint
-│   ├── package.json
-│   ├── dist/                          # Compiled tool modules
-│   │   ├── mcp-tools.js
-│   │   ├── backend-client.js
-│   │   ├── sse-buffer.js
-│   │   └── discovery.js
-│   └── deploy/                        # nginx + PM2 configs
-├── server/                            # Express backend (~35 TS files)
-│   ├── index.ts                       # Entry point + middleware
-│   ├── auth.ts                        # Clerk + JWT authentication
-│   ├── authRoutes.ts                  # Auth endpoints
-│   ├── authStorage.ts                 # User CRUD
-│   ├── oauthRoutes.ts                 # OAuth provider endpoints
-│   ├── oauthStorage.ts                # OAuth credential storage
-│   ├── routes.ts                      # Document API (500+ lines)
-│   ├── projectRoutes.ts               # Project API (600+ lines)
-│   ├── chatRoutes.ts                  # Chat/writing API (800+ lines)
-│   ├── writingRoutes.ts               # One-shot writing endpoint
-│   ├── writingPipeline.ts             # Writing pipeline logic
-│   ├── chatStorage.ts                 # Conversation CRUD
-│   ├── projectStorage.ts              # Project CRUD
-│   ├── storage.ts                     # Document CRUD
-│   ├── pipelineV2.ts                  # 3-phase annotation pipeline
-│   ├── openai.ts                      # OpenAI API integration
-│   ├── humanizer.ts                   # Humanizer (Gemini/Anthropic)
-│   ├── humanizerRoutes.ts             # Humanizer endpoint
-│   ├── researchAgent.ts              # Research agent
-│   ├── citationGenerator.ts           # Citation formatting
-│   ├── contextGenerator.ts            # Context generation
-│   ├── chunker.ts                     # Text segmentation
-│   ├── ocrProcessor.ts                # OCR pipeline
-│   ├── ocrQueue.ts                    # Background OCR queue
-│   ├── projectSearch.ts               # Semantic search
-│   ├── webClipRoutes.ts               # Web clip endpoints
-│   ├── extensionRoutes.ts             # Chrome extension endpoint
-│   ├── analyticsRoutes.ts             # Analytics endpoints
-│   ├── analyticsLogger.ts             # Analytics logging
-│   ├── quoteJumpLinks.ts              # Quote link generation
-│   ├── sourceFiles.ts                 # Source file storage
-│   ├── db.ts                          # Drizzle ORM setup
-│   ├── vite.ts                        # Dev server (Vite HMR)
-│   └── static.ts                      # Production static serving
-├── client/src/                        # React frontend
-│   ├── main.tsx                       # Entry point
-│   ├── App.tsx                        # Router (13 routes)
-│   ├── index.css                      # Global styles + themes
-│   ├── pages/                         # Page components (13)
-│   │   ├── Home.tsx, Projects.tsx, ProjectWorkspace.tsx
-│   │   ├── ProjectDocument.tsx, Chat.tsx, WritingPage.tsx
-│   │   ├── WebClips.tsx, Login.tsx, Register.tsx, Pricing.tsx
-│   │   ├── AdminAnalytics.tsx, ExtensionAuth.tsx, not-found.tsx
-│   ├── components/                    # UI components (~85 files)
-│   │   ├── chat/                      # Chat subcomponents (6)
-│   │   ├── analytics/                 # Analytics components (6)
-│   │   ├── ui/                        # Radix/shadcn components (48)
-│   │   └── (30+ custom components)
-│   ├── hooks/                         # React Query hooks (11)
-│   └── lib/                           # Utilities (12)
-├── shared/
-│   ├── schema.ts                      # Drizzle + Zod schemas (700+ lines)
-│   ├── annotationLinks.ts             # Annotation link helpers
-│   └── types/clerk-shims.d.ts         # Clerk type augmentations
-├── scripts/
-│   └── build.ts                       # Production build script
-├── deploy/
-│   ├── ecosystem.config.js            # PM2 production config
-│   └── refresh-prod.sh                # Refresh script
-├── prompts/humanizer.txt              # Humanizer system prompt
-├── ARCHITECTURE.md                    # This file
-├── CODEBASE_REFERENCE.md              # Detailed reference (77KB)
-├── CODEBASE_INVENTORY.md              # File inventory
-├── TASK-*.md                          # Task specs (auth, chat, citations, extension, theme, writing)
-├── package.json                       # Dependencies (142 packages)
-├── tsconfig.json, vite.config.ts, drizzle.config.ts, tailwind.config.ts
-└── components.json                    # shadcn configuration
-```
-
-### File Statistics
-
-| Category | Count |
-|----------|-------|
-| Server TS files | ~35 |
-| Client TSX/TS files | ~85 |
-| Shared TS files | 3 |
-| UI library components | 48 |
-| Custom components | 30+ |
-| React hooks | 11 |
-| API endpoints | 55+ |
-| Database tables | 11 |
-| Route files | 8 |

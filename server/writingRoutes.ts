@@ -9,7 +9,6 @@ import {
   type WritingSSEEvent,
 } from "./writingPipeline";
 import type { CitationData } from "@shared/schema";
-import { buildProjectAnnotationJumpPath, buildTextFingerprint } from "@shared/annotationLinks";
 
 const MAX_SOURCE_EXCERPT_CHARS = 700;
 const MAX_SOURCE_FULLTEXT_CHARS = 7000;
@@ -127,7 +126,6 @@ export function registerWritingRoutes(app: Express): void {
           if (!fullDoc) continue;
 
           const citationData = (projectDoc.citationData as CitationData | null) || null;
-          const annotations = await projectStorage.getProjectAnnotationsByDocument(projectDoc.id);
           const summaryExcerpt =
             clipText(projectDoc.document.summary, MAX_SOURCE_EXCERPT_CHARS) ||
             clipText(fullDoc.fullText, MAX_SOURCE_EXCERPT_CHARS);
@@ -146,20 +144,6 @@ export function registerWritingRoutes(app: Express): void {
             note: projectDoc.roleInProject || null,
             citationData,
             documentFilename: projectDoc.document.filename,
-            projectId: request.projectId,
-            projectDocumentId: projectDoc.id,
-            quoteTargets: annotations
-              .filter((annotation) => annotation.highlightedText?.trim())
-              .map((annotation) => ({
-                quote: annotation.highlightedText,
-                jumpPath: buildProjectAnnotationJumpPath({
-                  projectId: request.projectId!,
-                  projectDocumentId: projectDoc.id,
-                  annotationId: annotation.id,
-                  startPosition: annotation.startPosition,
-                  anchorFingerprint: buildTextFingerprint(annotation.highlightedText),
-                }),
-              })),
           });
         }
       }
@@ -190,17 +174,6 @@ export function registerWritingRoutes(app: Express): void {
               note: projectAnnotation.note,
               citationData,
               documentFilename: docFilename,
-              projectId: request.projectId,
-              projectDocumentId: projectAnnotation.projectDocumentId,
-              annotationId: projectAnnotation.id,
-              startPosition: projectAnnotation.startPosition,
-              annotationJumpPath: buildProjectAnnotationJumpPath({
-                projectId: request.projectId!,
-                projectDocumentId: projectAnnotation.projectDocumentId,
-                annotationId: projectAnnotation.id,
-                startPosition: projectAnnotation.startPosition,
-                anchorFingerprint: buildTextFingerprint(projectAnnotation.highlightedText),
-              }),
             });
             continue;
           }

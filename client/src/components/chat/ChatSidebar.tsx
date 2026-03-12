@@ -4,20 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { Conversation, Project } from "@shared/schema";
+import type { Conversation } from "@shared/schema";
 
 interface ChatSidebarProps {
   conversations: Conversation[];
@@ -26,9 +18,6 @@ interface ChatSidebarProps {
   onNew: () => void;
   onDelete: (id: string) => void;
   onRename: (id: string, newTitle: string) => void;
-  projects?: Project[];
-  selectedProjectId?: string | null;
-  onProjectChange?: (projectId: string | null) => void;
 }
 
 function groupByDate(conversations: Conversation[]) {
@@ -67,9 +56,6 @@ export function ChatSidebar({
   onNew,
   onDelete,
   onRename,
-  projects = [],
-  selectedProjectId = null,
-  onProjectChange = () => {},
 }: ChatSidebarProps) {
   const [search, setSearch] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -99,22 +85,6 @@ export function ChatSidebar({
   return (
     <div className="flex flex-col h-full w-[250px] border-r bg-muted/30">
       <div className="p-3 space-y-2">
-        <Select
-          value={selectedProjectId ?? "none"}
-          onValueChange={(val) => onProjectChange(val === "none" ? null : val)}
-        >
-          <SelectTrigger className="h-8 text-xs">
-            <SelectValue placeholder="No project" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="none">No project</SelectItem>
-            {projects.map((p) => (
-              <SelectItem key={p.id} value={p.id}>
-                {p.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
         <Button onClick={onNew} className="w-full justify-start gap-2" variant="outline">
           <Plus className="h-4 w-4" />
           New Chat
@@ -164,14 +134,6 @@ export function ChatSidebar({
                       }`}
                     >
                       <MessageSquare className="h-3.5 w-3.5 shrink-0 opacity-50" />
-                      {conv.projectId && (() => {
-                        const proj = projects.find((p) => p.id === conv.projectId);
-                        return proj ? (
-                          <Badge variant="outline" className="text-[10px] px-1 py-0 shrink-0 max-w-[70px] truncate">
-                            {proj.name}
-                          </Badge>
-                        ) : null;
-                      })()}
                       <span className="truncate">{conv.title}</span>
                     </button>
                   )}

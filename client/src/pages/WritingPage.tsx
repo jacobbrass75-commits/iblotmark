@@ -1,19 +1,7 @@
-import { Suspense, lazy } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, FolderOpen, MessageSquare, PenTool } from "lucide-react";
-
-const WritingChat = lazy(() => import("@/components/WritingChat"));
-
-function WritingChatFallback() {
-  return (
-    <div className="h-full min-h-[320px] flex items-center justify-center">
-      <div className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
-        Loading writing workspace
-      </div>
-    </div>
-  );
-}
+import WritingChat from "@/components/WritingChat";
 
 export default function WritingPage() {
   const initialProjectId =
@@ -53,9 +41,7 @@ export default function WritingPage() {
       </header>
 
       <main className="flex-1 container mx-auto px-4 py-6 pb-8 w-full eva-grid-bg" style={{ height: "calc(100vh - 56px)" }}>
-        <Suspense fallback={<WritingChatFallback />}>
-          <WritingChat initialProjectId={initialProjectId} />
-        </Suspense>
+        <WritingChat initialProjectId={initialProjectId} />
       </main>
     </div>
   );

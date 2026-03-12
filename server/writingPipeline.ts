@@ -1,7 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { CitationData, ProjectAnnotation } from "@shared/schema";
-import { buildProjectAnnotationJumpPath, buildTextFingerprint } from "@shared/annotationLinks";
-import { applyJumpLinksToMarkdown, type QuoteJumpTarget } from "./quoteJumpLinks";
 
 // --- Interfaces ---
 
@@ -41,12 +39,6 @@ export interface WritingSource {
   note: string | null;
   citationData: CitationData | null;
   documentFilename: string;
-  projectId?: string;
-  projectDocumentId?: string;
-  annotationId?: string;
-  startPosition?: number;
-  annotationJumpPath?: string;
-  quoteTargets?: QuoteJumpTarget[];
 }
 
 export interface TieredSource {
@@ -65,7 +57,6 @@ export interface TieredSource {
   annotations: ProjectAnnotation[];
   excerpt: string;
   documentId: string;
-  projectId: string;
 }
 
 export interface WritingSSEEvent {
@@ -110,19 +101,6 @@ function getClient(): Anthropic {
   return new Anthropic({ apiKey });
 }
 
-function collectSourceQuoteTargets(sources: WritingSource[]): QuoteJumpTarget[] {
-  return sources.flatMap((source) => {
-    const explicitTargets = source.quoteTargets || [];
-    if (explicitTargets.length > 0) {
-      return explicitTargets;
-    }
-    if (source.annotationJumpPath && source.excerpt) {
-      return [{ quote: source.excerpt, jumpPath: source.annotationJumpPath }];
-    }
-    return [];
-  });
-}
-
 export function formatSourceForPrompt(source: WritingSource): string {
   const parts: string[] = [];
   parts.push(`[SOURCE ${source.id}]`);
@@ -132,13 +110,6 @@ export function formatSourceForPrompt(source: WritingSource): string {
   parts.push(`Author(s): ${source.author}`);
   parts.push(`Category: ${source.category}`);
   if (source.note) parts.push(`Note: ${source.note}`);
-  if (source.annotationJumpPath) parts.push(`Jump Link: ${source.annotationJumpPath}`);
-  if (source.quoteTargets?.length) {
-    parts.push("Quotable Passages:");
-    for (const target of source.quoteTargets.slice(0, 6)) {
-      parts.push(`- "${target.quote}" | Jump Link: ${target.jumpPath}`);
-    }
-  }
   if (source.citationData) {
     const cd = source.citationData;
     const authorStr =
@@ -211,15 +182,6 @@ export function formatSourceForPromptTiered(source: TieredSource): string {
       parts.push(`"${ann.highlightedText}"`);
       if (ann.note) parts.push(`Note: ${ann.note}`);
       parts.push(`Position: chars ${ann.startPosition}-${ann.endPosition}`);
-      parts.push(
-        `Jump Link: ${buildProjectAnnotationJumpPath({
-          projectId: source.projectId,
-          projectDocumentId: source.id,
-          annotationId: ann.id,
-          startPosition: ann.startPosition,
-          anchorFingerprint: buildTextFingerprint(ann.highlightedText),
-        })}`
-      );
       parts.push(`Document: ${source.documentId}`);
       parts.push("");
     }
@@ -227,40 +189,6 @@ export function formatSourceForPromptTiered(source: TieredSource): string {
     parts.push(`Excerpt: "${source.excerpt}"`);
   }
 
-  return parts.join("\n");
-}
-
-export function formatSourceStubForPrompt(source: TieredSource): string {
-  const parts: string[] = [];
-  parts.push(`[SOURCE ${source.id}]`);
-  parts.push(`Document ID: ${source.documentId}`);
-  parts.push(`Title: ${source.title}`);
-  parts.push(`Author(s): ${source.author}`);
-  if (source.keyConcepts?.length) {
-    parts.push(`Topics: ${source.keyConcepts.slice(0, 5).join(", ")}`);
-  }
-  if (source.roleInProject) {
-    parts.push(`Role in Project: ${source.roleInProject}`);
-  }
-  parts.push(`Annotations available: ${source.annotations.length}`);
-  return parts.join("\n");
-}
-
-export function formatWebClipStubForPrompt(source: WritingSource): string {
-  const parts: string[] = [];
-  parts.push(`[SOURCE ${source.id}]`);
-  parts.push(`Clip ID: ${source.id}`);
-  parts.push(`Type: ${source.kind}`);
-  parts.push(`Title: ${source.title}`);
-  parts.push(`Author(s): ${source.author}`);
-  if (source.citationData?.url) {
-    parts.push(`URL: ${source.citationData.url}`);
-  }
-  const snippetLimit = 200;
-  const snippet = source.excerpt.length > snippetLimit
-    ? `${source.excerpt.slice(0, snippetLimit)}...`
-    : source.excerpt;
-  parts.push(`Snapshot: "${snippet}"`);
   return parts.join("\n");
 }
 
@@ -452,8 +380,7 @@ Output the section text in markdown format. Start with the section heading as ##
   const textBlocks = response.content.filter(
     (block): block is Anthropic.TextBlock => block.type === "text"
   );
-  const drafted = textBlocks.map((b) => b.text).join("\n\n");
-  return applyJumpLinksToMarkdown(drafted, collectSourceQuoteTargets(relevantSources));
+  return textBlocks.map((b) => b.text).join("\n\n");
 }
 
 // --- Phase 3: STITCHER ---
@@ -463,7 +390,6 @@ async function stitch(
   plan: WritingPlan,
   sectionTexts: string[],
   request: WritingRequest,
-  sources: WritingSource[],
   model: string
 ): Promise<string> {
   const combinedSections = sectionTexts.join("\n\n---\n\n");
@@ -501,8 +427,7 @@ Output the complete paper in markdown format.`;
   const textBlocks = response.content.filter(
     (block): block is Anthropic.TextBlock => block.type === "text"
   );
-  const stitched = textBlocks.map((b) => b.text).join("\n\n");
-  return applyJumpLinksToMarkdown(stitched, collectSourceQuoteTargets(sources));
+  return textBlocks.map((b) => b.text).join("\n\n");
 }
 
 // --- Main pipeline (streaming via callback) ---
@@ -566,7 +491,7 @@ export async function runWritingPipeline(
       message: "Polishing and adding transitions...",
     });
 
-    const fullText = await stitch(client, plan, sectionTexts, request, sources, model);
+    const fullText = await stitch(client, plan, sectionTexts, request, model);
 
     onEvent({
       type: "complete",

@@ -35,10 +35,6 @@ export async function setupVite(server: Server, app: Express) {
     const url = req.originalUrl;
 
     try {
-      // Malformed encoded paths from internet scanners can throw URIError in Vite.
-      // Return 400 instead of bubbling noisy stack traces into PM2 error logs.
-      decodeURIComponent(url);
-
       const clientTemplate = path.resolve(
         import.meta.dirname,
         "..",

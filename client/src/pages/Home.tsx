@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { Activity, BookOpen, FileText, FolderOpen, Link2, MessageSquare, PenTool, Plus, Search, Upload } from "lucide-react";
+import { BookOpen, FileText, FolderOpen, Link2, MessageSquare, PenTool, Plus, Search, Upload } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -188,12 +188,6 @@ export default function Home() {
               <Button variant="outline" size="sm" className="uppercase tracking-wider text-xs font-mono" data-testid="button-web-clips">
                 <Link2 className="h-4 w-4 mr-2" />
                 Web Clips
-              </Button>
-            </Link>
-            <Link href="/admin/analytics">
-              <Button variant="outline" size="sm" className="uppercase tracking-wider text-xs font-mono" data-testid="button-harness">
-                <Activity className="h-4 w-4 mr-2" />
-                Harness
               </Button>
             </Link>
             <ThemeToggle />

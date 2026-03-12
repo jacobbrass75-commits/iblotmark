@@ -6,48 +6,42 @@
 </head>
 <body>
   <div id="app">
-    <div class="header">
-      <h1>ScholarMark</h1>
+    <!-- Login View -->
+    <div id="login-view" style="display: none;">
+      <div class="header">
+        <h1>ScholarMark</h1>
+        <p class="subtitle">Sign in to save highlights</p>
+      </div>
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" id="login-btn">Sign In</button>
+        <p id="login-error" class="error"></p>
+      </form>
     </div>
 
-    <div id="disconnected-view" style="display: none;">
-      <div class="section">
-        <p class="subtitle">Connect your account</p>
-        <button id="connect-btn" class="primary">Connect Account</button>
-        <p class="hint">Sign in on the opened ScholarMark tab. Your extension will connect automatically.</p>
-      </div>
-    </div>
-
-    <div id="connected-view" style="display: none;">
-      <div class="section" id="account-switcher-wrap" style="display: none;">
-        <label for="account-select">Account</label>
-        <select id="account-select"></select>
+    <!-- Logged In View -->
+    <div id="main-view" style="display: none;">
+      <div class="header">
+        <h1>ScholarMark</h1>
+        <p class="user-info" id="user-info"></p>
       </div>
 
       <div class="section">
-        <p class="status-line">
-          <span class="status-dot"></span>
-          <span id="account-status"></span>
-        </p>
-      </div>
-
-      <div class="section">
-        <label for="project-select">Save to Project:</label>
+        <label>Save to Project:</label>
         <select id="project-select">
           <option value="">Select project...</option>
         </select>
-        <p id="projects-error" class="error" style="display: none;"></p>
       </div>
 
       <div class="section">
-        <p class="hint">Select text on any page, then right-click -> "Save to ScholarMark"</p>
+        <p class="hint">Select text on any page, then right-click &rarr; "Save to ScholarMark"</p>
         <p class="hint">Or use <kbd>Ctrl+Shift+S</kbd></p>
       </div>
 
       <div class="section">
         <button id="open-app" class="secondary">Open ScholarMark</button>
-        <button id="add-account" class="primary">Add Another Account</button>
-        <button id="disconnect-btn" class="danger">Disconnect</button>
+        <button id="logout-btn" class="danger">Sign Out</button>
       </div>
     </div>
   </div>
