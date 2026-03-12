@@ -97,3 +97,53 @@ export const chatStorage = {
     return created;
   },
 };
+
+export async function updateConversationClipboard(id: string, clipboard: string | null): Promise<void> {
+  await db
+    .update(conversations)
+    .set({
+      evidenceClipboard: clipboard,
+      updatedAt: new Date(),
+    })
+    .where(eq(conversations.id, id));
+}
+
+export async function getConversationClipboard(id: string): Promise<string | null> {
+  const [conversation] = await db
+    .select({ evidenceClipboard: conversations.evidenceClipboard })
+    .from(conversations)
+    .where(eq(conversations.id, id));
+
+  return conversation?.evidenceClipboard ?? null;
+}
+
+export async function updateConversationCompaction(
+  id: string,
+  data: { compactionSummary: string | null; compactedAtTurn: number },
+): Promise<void> {
+  await db
+    .update(conversations)
+    .set({
+      compactionSummary: data.compactionSummary,
+      compactedAtTurn: data.compactedAtTurn,
+      updatedAt: new Date(),
+    })
+    .where(eq(conversations.id, id));
+}
+
+export async function getConversationCompaction(
+  id: string,
+): Promise<{ compactionSummary: string | null; compactedAtTurn: number }> {
+  const [conversation] = await db
+    .select({
+      compactionSummary: conversations.compactionSummary,
+      compactedAtTurn: conversations.compactedAtTurn,
+    })
+    .from(conversations)
+    .where(eq(conversations.id, id));
+
+  return {
+    compactionSummary: conversation?.compactionSummary ?? null,
+    compactedAtTurn: conversation?.compactedAtTurn ?? 0,
+  };
+}

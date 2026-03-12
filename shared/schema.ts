@@ -358,6 +358,8 @@ export const projectDocuments = sqliteTable("project_documents", {
   citationData: text("citation_data", { mode: "json" }).$type<CitationData>(),
   lastViewedAt: integer("last_viewed_at", { mode: "timestamp" }),
   scrollPosition: integer("scroll_position"),
+  sourceRole: text("source_role").default("evidence"),
+  styleAnalysis: text("style_analysis"),
   addedAt: integer("added_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
 });
 
@@ -621,6 +623,9 @@ export const conversations = sqliteTable("conversations", {
   tone: text("tone").default("academic"),
   humanize: integer("humanize", { mode: "boolean" }).default(true),
   noEnDashes: integer("no_en_dashes", { mode: "boolean" }).default(false),
+  evidenceClipboard: text("evidence_clipboard"),
+  compactionSummary: text("compaction_summary"),
+  compactedAtTurn: integer("compacted_at_turn").default(0),
   createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
 });

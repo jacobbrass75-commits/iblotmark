@@ -1,18 +1,49 @@
 import type { Express, Request, Response } from "express";
 import Anthropic from "@anthropic-ai/sdk";
 import { and, eq, inArray } from "drizzle-orm";
-import { chatStorage } from "./chatStorage";
+import {
+  chatStorage,
+  updateConversationClipboard,
+  updateConversationCompaction,
+} from "./chatStorage";
 import { db } from "./db";
 import { projectStorage } from "./projectStorage";
 import { storage } from "./storage";
 import { requireAuth, requireTier } from "./auth";
 import { logContextSnapshot, logToolCall } from "./analyticsLogger";
 import {
+  gatherEvidence,
+  formatEvidenceBrief,
+  type SourceStub,
+  type EvidenceBrief,
+} from "./gatherer";
+import {
+  createEmptyClipboard,
+  deserializeClipboard,
+  serializeClipboard,
+  formatClipboardForPrompt,
+  extractUsedEvidence,
+  type EvidenceClipboard,
+} from "./evidenceClipboard";
+import {
+  compactConversation,
+  buildCompactedHistory,
+  getToolResponseLimit,
+  truncateToolResult,
+} from "./contextCompaction";
+import {
   formatSourceForPrompt,
   formatSourceForPromptTiered,
   type TieredSource,
   type WritingSource,
 } from "./writingPipeline";
+import {
+  analyzeWritingStyle,
+  buildStyleSection,
+  formatSourceStubByRole,
+  isSourceRole,
+  type SourceRole,
+} from "./sourceRoles";
 import { clipText, buildAuthorLabel } from "./writingRoutes";
 import {
   extractRecentWritingTopic,
@@ -20,6 +51,7 @@ import {
   type ResearchFinding,
 } from "./researchAgent";
 import {
+  projectDocuments,
   webClips,
   type CitationData,
   type Conversation,
@@ -107,6 +139,23 @@ interface StreamTurnResult {
   toolRequests: ToolRequest[];
 }
 
+type SourceToolName = "get_source_summary" | "get_source_chunks";
+
+interface SourceToolInput {
+  docId?: string;
+  query?: string;
+  maxItems?: number;
+}
+
+function parseStyleAnalysisValue(raw: string | null | undefined) {
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as Parameters<typeof buildStyleSection>[0][number]["styleAnalysis"];
+  } catch {
+    return null;
+  }
+}
+
 function getAnthropicClient(): Anthropic {
   return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 }
@@ -182,6 +231,163 @@ function buildSourceBlock(sources: PromptSource[]): string {
       return `--- Source ${i + 1} ---\n${sourceText}`;
     })
     .join("\n\n");
+}
+
+function buildSourceTools() {
+  return [
+    {
+      name: "get_source_summary",
+      description: "Get the compact summary and high-level arguments for a source document.",
+      input_schema: {
+        type: "object",
+        properties: {
+          docId: { type: "string", description: "The document id to summarize." },
+        },
+        required: ["docId"],
+      },
+    },
+    {
+      name: "get_source_chunks",
+      description: "Get specific annotated passages or chunk excerpts from an evidence source.",
+      input_schema: {
+        type: "object",
+        properties: {
+          docId: { type: "string", description: "The document id to inspect." },
+          query: { type: "string", description: "What evidence or theme to look for." },
+          maxItems: { type: "integer", description: "Maximum passages to return." },
+        },
+        required: ["docId"],
+      },
+    },
+  ];
+}
+
+function normalizeSourceToolInput(input: unknown): SourceToolInput {
+  if (!input || typeof input !== "object") {
+    return {};
+  }
+
+  const value = input as Record<string, unknown>;
+  return {
+    docId: typeof value.docId === "string" ? value.docId : undefined,
+    query: typeof value.query === "string" ? value.query : undefined,
+    maxItems: typeof value.maxItems === "number" ? value.maxItems : undefined,
+  };
+}
+
+function getQueryTerms(query?: string): string[] {
+  if (!query) return [];
+  return query
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .map((term) => term.trim())
+    .filter((term) => term.length > 2);
+}
+
+function scoreAnnotationMatch(
+  annotation: TieredSource["annotations"][number],
+  queryTerms: string[],
+): number {
+  if (queryTerms.length === 0) return 0;
+  const haystack = `${annotation.highlightedText} ${annotation.note || ""}`.toLowerCase();
+  return queryTerms.reduce((score, term) => score + (haystack.includes(term) ? 1 : 0), 0);
+}
+
+function formatSourceSummary(source: TieredSource): string {
+  const parts = [
+    formatSourceStubByRole({
+      id: source.id,
+      title: source.title,
+      sourceRole: source.sourceRole || "evidence",
+      styleAnalysis: parseStyleAnalysisValue(source.styleAnalysis),
+      summary: source.summary,
+      annotationCount: source.annotations.length,
+      chunkCount: source.chunkCount,
+    }),
+  ];
+
+  if (source.summary) {
+    parts.push(`Summary: ${source.summary}`);
+  }
+  if (source.mainArguments?.length) {
+    parts.push(`Main arguments: ${source.mainArguments.join("; ")}`);
+  }
+  if (source.keyConcepts?.length) {
+    parts.push(`Key concepts: ${source.keyConcepts.join(", ")}`);
+  }
+
+  return parts.join("\n");
+}
+
+function createSourceToolExecutor(sources: TieredSource[]) {
+  const sourceByDocId = new Map<string, TieredSource>();
+  for (const source of sources) {
+    sourceByDocId.set(source.documentId, source);
+    sourceByDocId.set(source.id, source);
+  }
+
+  const toolLimit = getToolResponseLimit(sources.length);
+
+  return async (name: string, input: unknown): Promise<string> => {
+    const { docId, query, maxItems } = normalizeSourceToolInput(input);
+    if (!docId) {
+      return "[TOOL ERROR] Missing docId.";
+    }
+
+    const source = sourceByDocId.get(docId);
+    if (!source) {
+      return `[TOOL ERROR] Source "${docId}" was not found.`;
+    }
+
+    if (name === "get_source_summary") {
+      return truncateToolResult(formatSourceSummary(source), toolLimit);
+    }
+
+    if (name === "get_source_chunks") {
+      const queryTerms = getQueryTerms(query);
+      const annotationLimit = Math.max(1, Math.min(maxItems || 4, 6));
+      const rankedAnnotations = [...source.annotations]
+        .map((annotation) => ({
+          annotation,
+          score: scoreAnnotationMatch(annotation, queryTerms),
+        }))
+        .sort((left, right) => right.score - left.score);
+
+      if (rankedAnnotations.length > 0) {
+        const annotationText = rankedAnnotations
+          .slice(0, annotationLimit)
+          .map(({ annotation }, index) => {
+            const lines = [
+              `[ANNOTATION ${index + 1}] chars ${annotation.startPosition}-${annotation.endPosition} | category: ${annotation.category}`,
+              `"${clipText(annotation.highlightedText, 1200) || annotation.highlightedText}"`,
+            ];
+            if (annotation.note) {
+              lines.push(`Note: ${annotation.note}`);
+            }
+            return lines.join("\n");
+          })
+          .join("\n\n");
+
+        return truncateToolResult(annotationText, toolLimit);
+      }
+
+      const chunks = await storage.getChunksForDocument(source.documentId);
+      const chunkText = chunks
+        .slice(0, annotationLimit)
+        .map(
+          (chunk, index) =>
+            `[CHUNK ${index + 1}] chars ${chunk.startPosition}-${chunk.endPosition}\n${clipText(chunk.text, 1200) || chunk.text}`,
+        )
+        .join("\n\n");
+
+      return truncateToolResult(
+        chunkText || "[NO EVIDENCE] No annotations or chunks were available for this source.",
+        toolLimit,
+      );
+    }
+
+    return `[TOOL ERROR] Unsupported tool "${name}".`;
+  };
 }
 
 function normalizeTitle(value: string): string {
@@ -409,6 +615,29 @@ async function loadProjectSourcesTiered(
 
     const annotations = await projectStorage.getProjectAnnotationsByDocument(projectDoc.id);
     const citationData = (projectDoc.citationData as CitationData | null) || null;
+    const sourceRole: SourceRole = isSourceRole(projectDoc.sourceRole) ? projectDoc.sourceRole : "evidence";
+    let styleAnalysis = projectDoc.styleAnalysis || null;
+
+    if (sourceRole === "style_reference" && !styleAnalysis) {
+      try {
+        const analysis = await analyzeWritingStyle(
+          getAnthropicClient(),
+          fullDoc.fullText,
+          citationData?.title || projectDoc.document.filename,
+        );
+        styleAnalysis = JSON.stringify(analysis);
+        await db
+          .update(projectDocuments)
+          .set({ styleAnalysis })
+          .where(eq(projectDocuments.id, projectDoc.id));
+      } catch (error) {
+        console.warn("[chatRoutes] style analysis failed", {
+          projectDocumentId: projectDoc.id,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      }
+    }
+
     const excerpt =
       clipText(fullDoc.summary, MAX_SOURCE_EXCERPT_CHARS) ||
       clipText(fullDoc.fullText, MAX_SOURCE_EXCERPT_CHARS) ||
@@ -427,6 +656,9 @@ async function loadProjectSourcesTiered(
       keyConcepts: fullDoc.keyConcepts || null,
       roleInProject: projectDoc.roleInProject || null,
       projectContext: projectDoc.projectContext || null,
+      sourceRole,
+      styleAnalysis,
+      chunkCount: fullDoc.chunkCount,
       annotations,
       excerpt,
       documentId: fullDoc.id,
@@ -540,6 +772,17 @@ function buildWritingSystemPrompt(
   humanize?: boolean,
   noEnDashes?: boolean
 ): string {
+  const styleSection = buildStyleSection(
+    sources
+      .filter(
+        (source): source is TieredSource =>
+          isTieredSource(source) && source.sourceRole === "style_reference",
+      )
+      .map((source) => ({
+        title: source.title,
+        styleAnalysis: parseStyleAnalysisValue(source.styleAnalysis),
+      })),
+  );
   const styleLabel = (citationStyle || "chicago").toUpperCase();
   const noEnDashesRule = noEnDashes
     ? "\n9. NEVER use em-dashes or en-dashes. Use commas, periods, or semicolons instead."
@@ -562,7 +805,7 @@ ${buildProjectContextBlock(project)}
 You have access to ${sources.length} source document(s).
 
 SOURCE MATERIALS:
-${buildSourceBlock(sources)}
+${buildSourceBlock(sources)}${styleSection}
 
 CONVERSATION FLOW:
 When a student brings a new writing task, follow this collaborative process:
@@ -592,6 +835,7 @@ WRITING RULES:
 4. Flag claims that go beyond source support.
 5. Build on prior conversation and maintain the student's argument thread.
 6. Use footnotes for citations: [^1], [^2], etc. with footnote definitions at the end.${noEnDashesRule}
+7. Documents marked as style references are voice guides only. Never cite or quote them.
 
 Do not fabricate quotations, publication details, page numbers, or bibliography metadata. If source detail is uncertain, state uncertainty clearly and cite conservatively.${writingStyleBlock}
 
@@ -880,6 +1124,12 @@ export function registerChatRoutes(app: Express) {
           conv.humanize ?? true,
           conv.noEnDashes || false
         );
+        if (mode === "precision") {
+          systemPrompt += `\n\nPRECISION MODE:
+A research gatherer has already collected the best evidence for this turn.
+Do NOT emit <chunk_request> or <context_request> tags.
+Use the gathered evidence, the accumulated clipboard, and the recent conversation context to answer directly.`;
+        }
       }
 
       res.setHeader("Content-Type", "text/event-stream");
@@ -888,6 +1138,83 @@ export function registerChatRoutes(app: Express) {
       res.setHeader("X-Accel-Buffering", "no");
 
       const anthropic = getAnthropicClient();
+      const tieredSources = sources.filter((source): source is TieredSource => isTieredSource(source));
+      const sourceTools = buildSourceTools();
+      const executeSourceTool = createSourceToolExecutor(tieredSources);
+      const clipboard: EvidenceClipboard = conv.evidenceClipboard
+        ? deserializeClipboard(conv.evidenceClipboard)
+        : createEmptyClipboard(project?.thesis || "");
+      if (!clipboard.thesis && project?.thesis) {
+        clipboard.thesis = project.thesis;
+      }
+
+      let effectiveCompactionSummary = conv.compactionSummary || null;
+      let effectiveCompactedAtTurn = conv.compactedAtTurn || 0;
+      if (mode === "precision") {
+        const compactionResult = await compactConversation(
+          anthropic,
+          history.map((message) => ({ role: message.role, content: message.content })),
+          effectiveCompactionSummary,
+          effectiveCompactedAtTurn,
+        );
+        if (compactionResult) {
+          effectiveCompactionSummary = compactionResult.summary;
+          effectiveCompactedAtTurn = compactionResult.compactedAtTurn;
+          await updateConversationCompaction(conv.id, {
+            compactionSummary: compactionResult.summary,
+            compactedAtTurn: compactionResult.compactedAtTurn,
+          });
+        }
+      }
+
+      let evidenceBrief: EvidenceBrief | null = null;
+      let evidenceBriefText = "[No new evidence gathered for this turn]";
+      let messagesForTurn = anthropicMessages;
+      if (mode === "precision") {
+        const sourceStubs: SourceStub[] = tieredSources.map((source) => ({
+          docId: source.documentId,
+          title: source.title || source.documentFilename,
+          role: source.sourceRole || "evidence",
+          summary: source.summary || undefined,
+          annotationCount: source.annotations.length,
+          chunkCount: source.chunkCount || 0,
+        }));
+
+        evidenceBrief = await gatherEvidence(
+          anthropic,
+          content,
+          sourceStubs,
+          clipboard,
+          project?.thesis || "",
+          sourceTools,
+          executeSourceTool,
+        );
+        evidenceBriefText = formatEvidenceBrief(evidenceBrief);
+
+        const compactedHistory = buildCompactedHistory(
+          history.slice(0, -1).map((message) => ({ role: message.role, content: message.content })),
+          formatClipboardForPrompt(clipboard),
+          effectiveCompactionSummary,
+          effectiveCompactedAtTurn,
+        ).map((message) => ({
+          role: message.role === "system" ? "assistant" : message.role,
+          content: message.content,
+        })) as AnthropicHistoryMessage[];
+
+        const latestUserMessage = anthropicMessages[anthropicMessages.length - 1];
+        messagesForTurn = latestUserMessage
+          ? [
+              ...compactedHistory,
+              { role: "user", content: `[EVIDENCE GATHERED THIS TURN]\n${evidenceBriefText}` },
+              {
+                role: "assistant",
+                content: "I have the evidence gathered for this turn and will use it selectively.",
+              },
+              latestUserMessage,
+            ]
+          : compactedHistory;
+      }
+
       let closed = false;
       let activeStream: { abort: () => void } | null = null;
       let sentWarningLevel: ContextWarningLevel = "ok";
@@ -918,7 +1245,7 @@ export function registerChatRoutes(app: Express) {
         });
       };
 
-      let usageEstimate = estimateContextUsage(systemPrompt, anthropicMessages, mode);
+      let usageEstimate = estimateContextUsage(systemPrompt, messagesForTurn, mode);
       sendContextWarningIfNeeded(usageEstimate);
       let deepDiveAllowed = usageEstimate.warningLevel !== "critical";
 
@@ -995,7 +1322,7 @@ export function registerChatRoutes(app: Express) {
       let escalationCount = 0;
 
       while (!closed) {
-        const turn = await runTurn(anthropicMessages);
+        const turn = await runTurn(messagesForTurn);
         const inputTokens = turn.usage.input_tokens || 0;
         const outputTokens = turn.usage.output_tokens || 0;
         totalInputTokens += inputTokens;
@@ -1012,6 +1339,18 @@ export function registerChatRoutes(app: Express) {
           const autoTitle = content.length <= 50 ? content : `${content.slice(0, 47)}...`;
           await chatStorage.updateConversation(conv.id, { title: autoTitle });
           hasAutoTitled = true;
+        }
+
+        if (mode === "precision") {
+          const updatedClipboard = await extractUsedEvidence(
+            anthropic,
+            turn.fullText,
+            evidenceBriefText,
+            clipboard,
+            history.filter((message) => message.role === "user").length,
+          );
+          await updateConversationClipboard(conv.id, serializeClipboard(updatedClipboard));
+          break;
         }
 
         const request = turn.toolRequests[turn.toolRequests.length - 1];
@@ -1132,7 +1471,8 @@ ${chunkContext}`;
 
         history = await chatStorage.getMessagesForConversation(conv.id);
         anthropicMessages = toAnthropicMessages(history);
-        usageEstimate = estimateContextUsage(systemPrompt, anthropicMessages, mode);
+        messagesForTurn = anthropicMessages;
+        usageEstimate = estimateContextUsage(systemPrompt, messagesForTurn, mode);
         void logContextSnapshot({
           conversationId: conv.id,
           turnNumber: history.filter((m) => m.role === "user").length,

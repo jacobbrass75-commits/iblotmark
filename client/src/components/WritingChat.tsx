@@ -11,6 +11,7 @@ import {
   useCreateWritingConversation,
   useDeleteWritingConversation,
   useUpdateWritingConversation,
+  useUpdateSourceRole,
   useUpdateSources,
   useWritingSendMessage,
   useCompilePaper,
@@ -30,6 +31,7 @@ import { ChatMessages } from "@/components/chat/ChatMessages";
 import { ChatInput } from "@/components/chat/ChatInput";
 import { ChatSidebar } from "@/components/chat/ChatSidebar";
 import { DocumentPanel } from "@/components/chat/DocumentPanel";
+import { SourceRoleSelector, type SourceRole } from "@/components/SourceRoleSelector";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -79,6 +81,13 @@ interface WritingChatProps {
 }
 
 const NO_PROJECT_VALUE = "__no_project__";
+const DEFAULT_SOURCE_ROLE: SourceRole = "evidence";
+
+function normalizeSourceRole(value: string | null | undefined): SourceRole {
+  return value === "style_reference" || value === "background" || value === "evidence"
+    ? value
+    : DEFAULT_SOURCE_ROLE;
+}
 
 const WRITING_PROMPTS = [
   {
@@ -136,6 +145,7 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
   const createConversation = useCreateWritingConversation();
   const deleteConversation = useDeleteWritingConversation();
   const updateConversation = useUpdateWritingConversation();
+  const updateSourceRole = useUpdateSourceRole();
   const updateSources = useUpdateSources();
 
   const messages = conversationData?.messages || [];
@@ -395,6 +405,24 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
       updateSources.mutate({ conversationId: activeConversationId, selectedSourceIds: next });
     }
   }, [sourceIds, localSelectedSourceIds, activeConversationId, updateSources]);
+
+  const handleSourceRoleChange = useCallback(async (sourceId: string, sourceRole: SourceRole) => {
+    if (!hasSelectedProject) return;
+
+    try {
+      await updateSourceRole.mutateAsync({
+        sourceId,
+        projectId: selectedProjectId,
+        sourceRole,
+      });
+    } catch {
+      toast({
+        title: "Error",
+        description: "Failed to update source role",
+        variant: "destructive",
+      });
+    }
+  }, [hasSelectedProject, selectedProjectId, toast, updateSourceRole]);
 
   const handleSettingChange = useCallback((key: string, value: any) => {
     if (key === "citationStyle") setCitationStyle(value);
@@ -787,9 +815,13 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
                       <div className="space-y-2">
                         {hasSelectedProject
                           ? projectSources.map((source) => (
-                            <label key={source.id} className="flex gap-2 rounded-md p-2 hover:bg-muted/40 cursor-pointer">
+                            <div key={source.id} className="flex items-start gap-2 rounded-md p-2 hover:bg-muted/40">
                               <Checkbox checked={localSelectedSourceIds.includes(source.id)} onCheckedChange={() => toggleSource(source.id)} className="mt-0.5" />
-                              <div className="min-w-0 flex-1">
+                              <button
+                                type="button"
+                                className="min-w-0 flex-1 text-left"
+                                onClick={() => toggleSource(source.id)}
+                              >
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs font-medium truncate">{source.document.filename}</span>
                                   <Badge variant="outline" className="text-[10px]">{getDocTypeLabel(source.document.filename)}</Badge>
@@ -797,8 +829,13 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
                                 <p className="text-[11px] text-muted-foreground line-clamp-2 mt-0.5">
                                   {source.document.summary || "No summary available."}
                                 </p>
-                              </div>
-                            </label>
+                              </button>
+                              <SourceRoleSelector
+                                sourceId={source.id}
+                                currentRole={normalizeSourceRole(source.sourceRole)}
+                                onRoleChange={(role) => handleSourceRoleChange(source.id, role)}
+                              />
+                            </div>
                           ))
                           : standaloneWebClips.map((clip) => (
                             <label key={clip.id} className="flex gap-2 rounded-md p-2 hover:bg-muted/40 cursor-pointer">

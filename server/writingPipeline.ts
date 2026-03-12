@@ -1,5 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { CitationData, ProjectAnnotation } from "@shared/schema";
+import {
+  formatSourceStubByRole,
+  type SourceRole,
+  type StyleAnalysis,
+} from "./sourceRoles";
 
 // --- Interfaces ---
 
@@ -54,6 +59,9 @@ export interface TieredSource {
   keyConcepts: string[] | null;
   roleInProject: string | null;
   projectContext: string | null;
+  sourceRole?: SourceRole | null;
+  styleAnalysis?: string | null;
+  chunkCount?: number | null;
   annotations: ProjectAnnotation[];
   excerpt: string;
   documentId: string;
@@ -136,6 +144,17 @@ export function formatSourceForPrompt(source: WritingSource): string {
 export function formatSourceForPromptTiered(source: TieredSource): string {
   const parts: string[] = [];
   parts.push(`[SOURCE ${source.id}]`);
+  parts.push(
+    formatSourceStubByRole({
+      id: source.id,
+      title: source.title,
+      sourceRole: source.sourceRole || "evidence",
+      styleAnalysis: parseStyleAnalysis(source.styleAnalysis),
+      summary: source.summary,
+      annotationCount: source.annotations.length,
+      chunkCount: source.chunkCount,
+    })
+  );
   parts.push(`Document: ${source.documentFilename}`);
   parts.push(`Title: ${source.title}`);
   parts.push(`Author(s): ${source.author}`);
@@ -190,6 +209,32 @@ export function formatSourceForPromptTiered(source: TieredSource): string {
   }
 
   return parts.join("\n");
+}
+
+function parseStyleAnalysis(raw: string | null | undefined): StyleAnalysis | null {
+  if (!raw) return null;
+
+  try {
+    const parsed = JSON.parse(raw) as Partial<StyleAnalysis>;
+    return {
+      avgSentenceLength: parsed.avgSentenceLength || "Mixed sentence lengths",
+      vocabularyLevel:
+        parsed.vocabularyLevel === "academic" ||
+        parsed.vocabularyLevel === "conversational" ||
+        parsed.vocabularyLevel === "mixed"
+          ? parsed.vocabularyLevel
+          : "mixed",
+      paragraphStructure: parsed.paragraphStructure || "Balanced analytical paragraphs",
+      toneMarkers: Array.isArray(parsed.toneMarkers)
+        ? parsed.toneMarkers.filter((item): item is string => typeof item === "string")
+        : [],
+      commonTransitions: Array.isArray(parsed.commonTransitions)
+        ? parsed.commonTransitions.filter((item): item is string => typeof item === "string")
+        : [],
+    };
+  } catch {
+    return null;
+  }
 }
 
 // --- Phase 1: PLANNER ---

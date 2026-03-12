@@ -1,10 +1,13 @@
 import type { Express, Request, Response } from "express";
+import { eq } from "drizzle-orm";
 import { requireAuth, requireTier } from "./auth";
 import { projectStorage } from "./projectStorage";
 import { globalSearch, searchProjectDocument } from "./projectSearch";
 import { generateChicagoFootnote, generateChicagoBibliography, generateFootnoteWithQuote, generateInlineCitation, generateFootnote, generateInTextCitation, generateBibliographyEntry } from "./citationGenerator";
 import { generateRetrievalContext, generateProjectContextSummary, generateFolderContextSummary, generateSearchableContent, embedText } from "./contextGenerator";
+import { db } from "./db";
 import { storage } from "./storage";
+import { isSourceRole } from "./sourceRoles";
 import {
   getEmbedding,
   cosineSimilarity,
@@ -26,6 +29,7 @@ import {
   batchAnalysisRequestSchema,
   batchAddDocumentsRequestSchema,
   citationStyles,
+  projectDocuments,
   type CitationData,
   type CitationStyle,
   type AnnotationCategory,
@@ -642,7 +646,25 @@ export function registerProjectRoutes(app: Express): void {
     try {
       const projectDoc = await verifyProjectDocumentOwnership(req, res, req.params.id);
       if (!projectDoc) return;
-      const updated = await projectStorage.updateProjectDocument(req.params.id, req.body);
+      const { sourceRole, ...otherFields } = req.body ?? {};
+
+      if (sourceRole !== undefined && sourceRole !== null && !isSourceRole(sourceRole)) {
+        return res.status(400).json({ error: "Invalid sourceRole" });
+      }
+
+      let updated = Object.keys(otherFields).length > 0
+        ? await projectStorage.updateProjectDocument(req.params.id, otherFields)
+        : await projectStorage.getProjectDocument(req.params.id);
+
+      if (sourceRole && isSourceRole(sourceRole)) {
+        const [sourceRoleUpdated] = await db
+          .update(projectDocuments)
+          .set({ sourceRole })
+          .where(eq(projectDocuments.id, req.params.id))
+          .returning();
+        updated = sourceRoleUpdated;
+      }
+
       if (!updated) {
         return res.status(404).json({ error: "Project document not found" });
       }
