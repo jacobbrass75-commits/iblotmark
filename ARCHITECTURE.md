@@ -1,6 +1,32 @@
-# ScholarMark Architecture Reference
+# ScholarMark Architecture Reference (Dev Branch)
 
-> Updated 2026-02-27. Covers the full codebase of `anotations-jan-26` after Opus upgrade + humanizer integration.
+> Updated 2026-03-11. Covers the `dev` branch of `anotations-jan-26` -- a streamlined version focused on core writing/research features with Clerk authentication and simplified architecture.
+
+---
+
+## Branch Differences from Master
+
+The dev branch **removes** several production systems to focus on core functionality:
+
+| Removed | Reason |
+|---------|--------|
+| MCP server (`mcp-server/`) | Separated into its own deployment |
+| Analytics system (`analyticsRoutes.ts`, `analyticsLogger.ts`, 6 analytics components) | Deferred to production |
+| OAuth routes (`oauthRoutes.ts`, `oauthStorage.ts`) | Replaced by Clerk auth |
+| Quote jump links (`quoteJumpLinks.ts`, `annotationLinks.ts`) | Simplified annotation UX |
+| Client-side PDF/DOCX export (`pdfExport.ts`, `docxExport.ts`, `markdownConfig.tsx`) | Simplified export |
+| Admin analytics page (`AdminAnalytics.tsx`) | Removed with analytics system |
+| Extension auth page (`ExtensionAuth.tsx`) | Simplified extension flow |
+| ToolStepsIndicator component | Simplified chat UI |
+| Deploy configs (`deploy/`, `mcp-server/deploy/`) | Production-specific |
+| Clerk type shims (`clerk-shims.d.ts`) | Clerk now native dependency |
+
+**Key additions on dev:**
+- Clerk authentication (replaces JWT-only)
+- 4-phase collaborative writing flow
+- Simplified database initialization (single `db.ts`)
+- Dynamic context escalation with research agent
+- Writing model selection (precision vs extended)
 
 ---
 
@@ -19,11 +45,11 @@
 11. [Writing System (One-Shot Pipeline)](#11-writing-system-one-shot-pipeline)
 12. [Source Injection & Formatting](#12-source-injection--formatting)
 13. [Citation System](#13-citation-system)
-14. [Document Export (PDF / DOCX)](#14-document-export-pdf--docx)
-15. [Humanizer System](#15-humanizer-system)
-16. [Web Clips & Chrome Extension](#16-web-clips--chrome-extension)
-17. [Environment Variables](#17-environment-variables)
-18. [All API Endpoints](#18-all-api-endpoints)
+14. [Humanizer System](#14-humanizer-system)
+15. [Web Clips & Chrome Extension](#15-web-clips--chrome-extension)
+16. [Environment Variables](#16-environment-variables)
+17. [All API Endpoints](#17-all-api-endpoints)
+18. [Directory Structure](#18-directory-structure)
 
 ---
 
@@ -38,16 +64,16 @@
 | Build | Vite | 7.3 |
 | Backend | Express.js | 4.21 |
 | Database | SQLite via Drizzle ORM | drizzle-orm 0.39 |
-| AI | Anthropic SDK | 0.78 |
-| Auth | JWT + bcrypt | jsonwebtoken 9, bcrypt 6 |
-| PDF gen | pdf-lib | 1.17 |
-| DOCX gen | docx (via markdownToDocx) | 9.6 |
-| Markdown parsing | unified + remark-parse + remark-gfm | 11 / 4 |
+| AI (chat/writing) | Anthropic SDK | 0.78 |
+| AI (annotations) | OpenAI SDK | 6.16 |
+| AI (humanizer) | Google Gemini REST API (primary) / Anthropic SDK (fallback) | - |
+| Auth | Clerk Express | @clerk/express 1.7 |
 | File uploads | Multer | 2.0 (50 MB limit) |
 | Image processing | Sharp | 0.34 |
 | PDF text extraction | pdf-parse | 2.4 |
 | Markdown rendering | react-markdown | 10.1 |
-| AI (humanizer) | Google Gemini REST API (primary) / Anthropic SDK (fallback) | - |
+| Validation | Zod | 3.25 |
+| Forms | react-hook-form | 7.55 |
 
 **Database file:** `data/sourceannotator.db`
 **Default port:** `5001`
@@ -60,8 +86,9 @@ Defined in `client/src/App.tsx`. All content routes are wrapped in `<ProtectedRo
 
 | Route | Component | Auth | Purpose |
 |-------|-----------|------|---------|
-| `/login` | Login | No | Sign in |
-| `/register` | Register | No | Create account |
+| `/sign-in` | Login | No | Sign in (Clerk) |
+| `/sign-up` | Register | No | Create account (Clerk) |
+| `/pricing` | Pricing | No | Pricing page |
 | `/` | Home | Yes | Dashboard |
 | `/projects` | Projects | Yes | Project list |
 | `/web-clips` | WebClips | Yes | Web clip collection |
@@ -71,6 +98,8 @@ Defined in `client/src/App.tsx`. All content routes are wrapped in `<ProtectedRo
 | `/chat/:conversationId` | Chat | Yes | Specific conversation |
 | `/write` | WritingPage | Yes | Chat-based writing (alias) |
 | `/writing` | WritingPage | Yes | Chat-based writing |
+
+**Removed from master:** `/admin/analytics`, `/extension-auth`
 
 ---
 
@@ -83,13 +112,14 @@ Startup order:
 2. Create Express app + HTTP server
 3. CORS (allows chrome-extension, localhost, 89.167.10.34, `ALLOWED_ORIGINS`)
 4. `express.json()` with raw body capture
-5. Passport auth setup
-6. Auth routes registered first
-7. All other routes via `registerRoutes()`
-8. Vite dev server (dev) or static file serving (prod)
-9. Listen on port 5001
+5. `express.urlencoded()` for form data
+6. Clerk middleware (`configureClerk(app)`)
+7. Auth routes registered
+8. All other routes via `registerRoutes()`
+9. Static file serving (production) or Vite dev server
+10. Listen on port 5001
 
-**Request logging:** All `/api` endpoints logged with duration, status code, and truncated response body.
+**Key difference from master:** Uses Clerk middleware instead of Passport/JWT setup. No analytics logging middleware.
 
 ---
 
@@ -100,10 +130,10 @@ Startup order:
 ### users
 | Column | Type | Notes |
 |--------|------|-------|
-| id | TEXT PK | UUID |
+| id | TEXT PK | UUID (maps to Clerk userId) |
 | email | TEXT UNIQUE | |
 | username | TEXT UNIQUE | |
-| password | TEXT | bcrypt hash (12 rounds) |
+| password | TEXT | bcrypt hash (legacy, Clerk handles auth) |
 | firstName, lastName | TEXT | Optional |
 | tier | TEXT | "free" / "pro" / "max" |
 | tokensUsed | INT | AI token counter |
@@ -193,6 +223,8 @@ Startup order:
 | projectContext | TEXT | Role/context within project |
 | roleInProject | TEXT | e.g. "primary source" |
 | citationData | JSON | Structured citation metadata |
+| retrievalContext | TEXT | Context for writing pipeline |
+| retrievalEmbedding | JSON | number[] for retrieval |
 | lastViewedAt | INT | |
 | scrollPosition | INT | |
 | addedAt | INT | |
@@ -265,18 +297,28 @@ Startup order:
 | tags | JSON | string[] |
 | createdAt | INT | |
 
+**Note:** The dev branch initializes additional tables (like `web_clips` and OCR queue) via raw SQL in `db.ts` rather than through Drizzle migrations.
+
 ---
 
 ## 5. Authentication System
 
-**Files:** `server/auth.ts`, `server/authRoutes.ts`, `server/authStorage.ts`, `client/src/lib/auth.ts`
+**Files:** `server/auth.ts`, `server/authRoutes.ts`, `server/authStorage.ts`
 
-- **Method:** Stateless JWT (7-day expiry)
-- **Password:** bcrypt with 12 salt rounds
-- **Client storage:** `localStorage` key `scholarmark_token`
-- **Header format:** `Authorization: Bearer <token>`
-- **Middleware:** `requireAuth` (rejects 401) and `optionalAuth` (attaches user if present)
-- **Tiers:** free (50K tokens, 50MB storage), pro, max
+- **Method:** Clerk Express sessions (replaces JWT-only on master)
+- **Middleware:** `clerkMiddleware()` installed globally
+- **User resolution:** Clerk session -> local DB user via `getOrCreateUser()`
+- **Middleware functions:**
+  - `requireAuth` -- resolves Clerk user, rejects 401 if not authenticated
+  - `optionalAuth` -- attaches user if present, continues if not
+  - `requireTier(tier)` -- checks user tier meets minimum level
+- **Tier hierarchy:** free (0) < pro (1) < max (2)
+- **Tier limits:**
+  - free: 50K tokens, 50 MB storage
+  - pro: 500K tokens, 500 MB storage
+  - max: 2M tokens, 5 GB storage
+
+**Key difference from master:** No JWT token generation, no Passport, no bcrypt login flow. Clerk handles all auth externally.
 
 ---
 
@@ -285,7 +327,7 @@ Startup order:
 **File:** `server/routes.ts`
 
 ### Supported formats
-- **PDF:** Standard text extraction via pdf-parse, or OCR modes (advanced, vision, vision_batch)
+- **PDF:** Standard text extraction via pdf-parse, or OCR modes (advanced, vision)
 - **TXT:** Direct text extraction
 - **Images:** PNG, JPG, JPEG, WEBP, GIF, BMP, TIF, TIFF, HEIC, HEIF -- always OCR'd
 
@@ -378,17 +420,37 @@ Thoroughness levels: quick, standard, thorough, exhaustive (controls how many ch
 
 **Route:** `/chat`
 
-A simple conversational chatbot with no project context.
+A conversational chatbot with optional source context.
 
 | Aspect | Detail |
 |--------|--------|
-| Model | `claude-opus-4-6` |
+| Model (precision) | `claude-opus-4-6` (200K context) |
+| Model (extended) | `claude-sonnet-4-5-20250929` (200K context) |
 | Max tokens | 8192 |
 | System prompt | Generic ScholarMark AI assistant (or source-aware if web clips selected) |
-| Streaming | SSE with `{type: "text"/"done"/"error"}` events |
+| Streaming | SSE with `{type: "chat_text"/"document_start"/"done"/"error"}` events |
 | Auto-title | Generated from first user message |
 
-The standalone chat page (`/chat`) uses the base system prompt. The writing page (`/writing`) in "No Project" mode can attach web clips as sources.
+### Dynamic Context Escalation
+
+The dev branch introduces context escalation -- when the AI requests more context via XML tool tags:
+
+```
+<chunk_request doc_id="...">query text</chunk_request>
+<context_request doc_id="...">topic</context_request>
+```
+
+The server intercepts these, fetches additional chunks from the document, and re-sends with expanded context. Max 2 escalation rounds per message.
+
+### Research Agent
+
+**File:** `server/researchAgent.ts`
+
+A Claude Sonnet 4.5-based agent that autonomously finds relevant quotes in documents:
+- Triggered when context escalation isn't sufficient
+- Chunks large documents (220K char max per call)
+- Returns verified findings with relevance scores
+- Uses `extractRecentWritingTopic()` to determine search focus
 
 ---
 
@@ -398,7 +460,14 @@ The standalone chat page (`/chat`) uses the base system prompt. The writing page
 
 **Route:** `/writing` (standalone) or Project Workspace -> Write tab
 
-This is the primary writing workflow -- an iterative chat where the AI has access to project sources and can write paper sections on request. All writing features use **Opus 4.6**.
+### 4-Phase Collaborative Writing Flow
+
+The dev branch implements a structured writing flow:
+
+1. **Chat Phase** -- User discusses research with AI, explores sources
+2. **Draft Phase** -- AI produces structured paper sections on request
+3. **Compile Phase** -- Server assembles conversation into polished paper
+4. **Verify Phase** -- AI cross-references citations against source materials
 
 ### Layout (3-column)
 
@@ -428,24 +497,13 @@ This is the primary writing workflow -- an iterative chat where the AI has acces
 - No project context injection -- uses base system prompt unless web clips selected
 - Conversations have `projectId = null`
 - Fetched via `GET /api/chat/conversations?standalone=true`
-- Frontend uses `useStandaloneConversations()` hook
 
-### Chat Message Flow
+### Writing Model Selection
 
-1. User sends message
-2. Server loads conversation history
-3. Server calls `loadConversationContext(conv, userId)`:
-   - If `conv.projectId` exists: loads project metadata + project documents
-   - If no project: loads selected web clips as sources via `loadStandaloneWebClipSources()`
-4. `buildWritingSystemPrompt()` creates source-aware prompt with project context
-5. Opus 4.6 responds with source-aware content
-
-| Aspect | Detail |
-|--------|--------|
-| Model | `claude-opus-4-6` (constant `CHAT_MODEL`) |
-| Max tokens | 8192 (constant `CHAT_MAX_TOKENS`) |
-| System prompt | Source-aware with project context (see [Section 12](#12-source-injection--formatting)) |
-| Streaming | SSE |
+| Mode | Chat Model | Compile Model | Verify Model |
+|------|-----------|---------------|--------------|
+| Precision | `claude-opus-4-6` | `claude-opus-4-6` | `claude-opus-4-6` |
+| Extended | `claude-sonnet-4-5-20250929` | `claude-sonnet-4-5-20250929` | `claude-sonnet-4-5-20250929` |
 
 ### Compile Flow
 
@@ -453,8 +511,7 @@ User clicks "Compile Paper" -> server reads full conversation -> assembles into 
 
 | Aspect | Detail |
 |--------|--------|
-| Model | `claude-opus-4-6` (constant `COMPILE_MODEL`) |
-| Max tokens | 8192 (constant `COMPILE_MAX_TOKENS`) |
+| Max tokens | 8192 |
 | Endpoint | `POST /api/chat/conversations/:id/compile` |
 
 **Compile prompt instructs Claude to:**
@@ -468,8 +525,6 @@ User clicks "Compile Paper" -> server reads full conversation -> assembles into 
 8. Do not fabricate source details
 9. Output clean markdown with ## section headings
 
-**Project context and source materials** are appended to the compile prompt for bibliography generation.
-
 **After compilation:** Paper auto-saved to project as a document (if project mode).
 
 ### Verify Flow
@@ -478,22 +533,10 @@ User clicks "Verify" -> server sends compiled paper + full source materials for 
 
 | Aspect | Detail |
 |--------|--------|
-| Model | `claude-opus-4-6` (constant `VERIFY_MODEL`) |
-| Max tokens | 8192 (constant `VERIFY_MAX_TOKENS`) |
+| Max tokens | 8192 |
 | Endpoint | `POST /api/chat/conversations/:id/verify` |
 
-**Verify prompt performs strict source verification:**
-1. Cross-reference every direct quote against the provided source text
-2. Check whether paraphrases accurately reflect source content
-3. Verify page numbers / section references
-4. Flag any citation that doesn't correspond to provided sources
-5. Check citation and bibliography formatting consistency
-6. Identify unsupported or over-claimed assertions
-7. Review logical flow, argument coherence, tone consistency, grammar
-
-**Output format:** Executive summary, numbered findings (highest severity first) with location/issue/fix, optional strengths section.
-
-**Full source materials** are now injected into verify (not just title/author/excerpt), enabling real quote verification.
+**Verify prompt performs strict source verification.**
 
 ### Settings (stored per conversation)
 
@@ -501,16 +544,9 @@ User clicks "Verify" -> server sends compiled paper + full source materials for 
 |---------|---------|--------|
 | Tone | academic, casual, ap_style | Controls writing register and formality |
 | Citation style | chicago, mla, apa | Determines citation format in-text and bibliography |
-| Humanize prose | true/false (default true) | Enables "Humanize" button; stored as `humanize` on conversation |
+| Humanize prose | true/false (default true) | Enables "Humanize" button |
 | No en-dashes | true/false | Adds instruction: "NEVER use em-dashes or en-dashes" |
-
-### Source Selection
-
-- **Project mode:** All project documents auto-selected on first conversation creation
-- **Standalone mode:** Web clips shown as selectable sources
-- User can deselect/reselect individual sources via checkboxes
-- Selection saved to conversation's `selectedSourceIds` field
-- Only selected sources are injected into AI context
+| Writing model | precision, extended | Selects Opus vs Sonnet model |
 
 ### Source Context Limits
 
@@ -519,17 +555,8 @@ User clicks "Verify" -> server sends compiled paper + full source materials for 
 | `MAX_SOURCE_EXCERPT_CHARS` | 2,000 | Max chars for source excerpt/summary |
 | `MAX_SOURCE_FULLTEXT_CHARS` | 30,000 | Max chars per individual source |
 | `MAX_SOURCE_TOTAL_FULLTEXT_CHARS` | 150,000 | Total budget across all sources |
-
-When multiple sources are loaded, the per-source fulltext limit is dynamically computed as `min(30000, max(2000, 150000 / sourceCount))` to distribute the budget evenly.
-
-### Props
-
-```typescript
-interface WritingChatProps {
-  initialProjectId?: string;  // Pre-select project
-  lockProject?: boolean;      // Hide project selector (used in ProjectWorkspace)
-}
-```
+| `MAX_CONTEXT_ESCALATIONS` | 2 | Max context escalation rounds per message |
+| `RESERVED_TOKENS` | 10,000 | Reserved for system overhead |
 
 ---
 
@@ -539,7 +566,7 @@ interface WritingChatProps {
 
 **Endpoint:** `POST /api/write`
 
-Accessible via "Quick Generate" dialog in WritingChat. Generates a complete paper in one pass through 3 phases.
+Generates a complete paper in one pass through 3 phases.
 
 ### Phase 1: Planner
 
@@ -554,8 +581,6 @@ Accessible via "Quick Generate" dialog in WritingChat. Generates a complete pape
 - medium: ~2500 words (5 pages)
 - long: ~4000 words (8 pages)
 
-The planner creates a structured outline with thesis, section titles, descriptions, source assignments, and target word counts per section.
-
 ### Phase 2: Writer (per section)
 
 | Aspect | Detail |
@@ -563,9 +588,6 @@ The planner creates a structured outline with thesis, section titles, descriptio
 | Model | Haiku (default) or Sonnet (deepWrite) |
 | Max tokens | 2x target words (or 8192+ with deepWrite) |
 | Thinking | 4096 budget tokens (deepWrite only) |
-| Output | Markdown section with heading |
-
-Each section is written independently with the full outline for context. Sources assigned to each section are injected.
 
 ### Phase 3: Stitcher
 
@@ -574,16 +596,6 @@ Each section is written independently with the full outline for context. Sources
 | Model | Haiku (default) or Sonnet (deepWrite) |
 | Max tokens | 8192 |
 | Output | Complete markdown paper |
-
-Combines all sections, adds transitions, introduction, conclusion, and bibliography.
-
-### Deep Write Mode
-
-When `deepWrite: true`:
-- Uses `claude-sonnet-4-5-20241022` instead of Haiku
-- Enables extended thinking (4096 budget tokens)
-- Increases max output tokens to 8192+
-- Produces higher quality but costs more
 
 ### SSE Event Types
 
@@ -605,10 +617,10 @@ When `deepWrite: true`:
 ```
 User selects project + sources (or web clips in standalone mode)
   |
-loadConversationContext(conv, userId)                  [chatRoutes.ts:183-210]
+loadConversationContext(conv, userId)
   |
   +-- If conv.projectId exists:
-  |     loadProjectSources(projectId, selectedSourceIds) [chatRoutes.ts:70-116]
+  |     loadProjectSources(projectId, selectedSourceIds)
   |       | Fetches project_documents + full document text
   |       | Filters to selectedSourceIds
   |       | Distributes fulltext budget (150K total / N sources)
@@ -616,108 +628,24 @@ loadConversationContext(conv, userId)                  [chatRoutes.ts:183-210]
   |       | Fetches project thesis, scope, contextSummary
   |
   +-- If no projectId:
-        loadStandaloneWebClipSources(userId, selectedSourceIds) [chatRoutes.ts:118-181]
+        loadStandaloneWebClipSources(userId, selectedSourceIds)
           | Fetches web clips by ID from web_clips table
           | Formats as WritingSource with kind: "web_clip"
   |
-formatSourceForPrompt(source)                          [writingPipeline.ts:86-116]
+formatSourceForPrompt(source)
   | Formats each source as structured text block
   |
-buildWritingSystemPrompt(sources, project, citationStyle, tone, noEnDashes) [chatRoutes.ts:212-247]
+buildWritingSystemPrompt(sources, project, citationStyle, tone, noEnDashes)
   | Embeds project context + all formatted sources into system prompt
   |
 anthropic.messages.stream({ system: prompt, ... })
 ```
 
-### Source format template (project documents)
-
-```
-[SOURCE projectdoc-{id}]
-Type: project_document
-Document: {filename}
-Title: {title}
-Author(s): {author}
-Category: project_source
-Citation Author(s): {firstName lastName, ...}
-Citation Title: {title: subtitle}
-Date: {publicationDate}
-Publisher: {publisher}
-In: {containerTitle}
-Pages: {pageStart}-{pageEnd}
-URL: {url}
-Excerpt: "{summary or first 2000 chars}"
-Content Snippet:
-{up to 30000 chars of fullText, budget-distributed}
-```
-
-### Source format template (web clips, standalone mode)
-
-```
-[SOURCE webclip-{id}]
-Type: web_clip
-Page: {pageTitle}
-URL: {sourceUrl}
-Author: {authorName}
-Published: {publishDate}
-
-Highlighted text:
-{highlightedText}
-
-Surrounding context:
-{surroundingContext}
-
-User note:
-{note}
-```
-
 ### Size limits
-- Excerpt: max 2,000 characters (was 700)
-- Per-source fulltext: max 30,000 characters (was 7,000)
+- Excerpt: max 2,000 characters
+- Per-source fulltext: max 30,000 characters
 - Total fulltext budget: 150,000 characters across all sources
 - Per-source limit dynamically computed: `min(30000, max(2000, 150000 / N))`
-
-### System prompt (with sources and project context)
-
-```
-You are ScholarMark AI, an expert academic writing partner. You are collaborating
-with a student on a research paper.
-
-PROJECT CONTEXT:
-Project: {project.name}
-Thesis: {project.thesis}
-Scope: {project.scope}
-Summary: {project.contextSummary}
-
-You have access to {N} source document(s).
-
-SOURCE MATERIALS:
-{all formatted sources}
-
-When the student asks you to write, draft, expand, or refine content:
-1. Write in {tone} register with {STYLE} citations.
-2. Ground every claim in the provided sources and cite specific page numbers
-   or section references when available.
-3. When quoting a source, use exact source text.
-4. Distinguish direct quotations from paraphrases.
-5. Explicitly flag claims that go beyond what the provided sources support.
-6. Maintain the student's argumentative thread across the full conversation
-   and build on what has already been drafted.
-7. When asked to write a section, produce complete, publication-ready prose
-   (not an outline).
-[8. NEVER use em-dashes or en-dashes. -- only if noEnDashes is true]
-
-Do not fabricate quotations, publication details, page numbers, or bibliography
-metadata. If source detail is uncertain, state uncertainty clearly and cite
-conservatively.
-```
-
-### System prompt (no sources, no project)
-
-```
-You are ScholarMark AI, a helpful academic writing assistant. You help students
-with research, writing, citations, and understanding academic sources. Be concise,
-accurate, and helpful.
-```
 
 ---
 
@@ -733,7 +661,7 @@ accurate, and helpful.
   authors: Array<{ firstName: string, lastName: string, suffix?: string }>
   title: string
   subtitle?: string
-  containerTitle?: string    // Journal or book name
+  containerTitle?: string
   publisher?: string
   publicationPlace?: string
   publicationDate?: string
@@ -754,59 +682,11 @@ accurate, and helpful.
 - **MLA** -- in-text parenthetical + works cited
 - **APA** -- in-text parenthetical + references
 
-### Where citations appear
-
-1. **Project documents** -- `citationData` JSON field on `project_documents`
-2. **Web clips** -- auto-generated `footnote` and `bibliography` fields
-3. **AI writing** -- prompted to use citation style in system prompt
-4. **Compile** -- bibliography assembled from conversation context + sources
-5. **Verify** -- checks citation format accuracy
-
 ---
 
-## 14. Document Export (PDF / DOCX)
-
-**Files:** `client/src/lib/documentExport.ts`, `client/src/lib/markdownToDocx.ts`
-
-All export happens **client-side** -- no server round-trip needed. Both exporters parse the markdown AST for rich formatting.
-
-### PDF (pdf-lib)
-
-- Font: Times Roman (body 11pt), Times Roman Bold (heading 15pt)
-- Page: Letter (612x792), margins 48px (~0.67")
-- Line height: 15px
-- Auto word-wrap based on font metrics
-- Auto page breaks
-- Color: dark gray `rgb(0.08, 0.08, 0.08)`
-
-### DOCX (docx library via markdownToDocx)
-
-- **File:** `client/src/lib/markdownToDocx.ts`
-- Parses markdown AST via unified/remark-parse/remark-gfm
-- Rich formatting: bold, italic, superscript footnote references, headings, lists, hyperlinks
-- Footnotes rendered as Word footnotes
-- Page: 8.5"x11" with 1" margins
-- Font: configurable (default Times New Roman body, heading styles)
-
-### Utilities
-
-| Function | Purpose |
-|----------|---------|
-| `stripMarkdown(md)` | Remove all markdown syntax -> plain text |
-| `toSafeFilename(s)` | Escape illegal filename chars, max 80 chars |
-| `downloadBlob(blob, name)` | Trigger browser download |
-| `buildDocxBlob(title, content)` | Generate DOCX blob (via markdownToDocx) |
-| `buildPdfBlob(title, content)` | Generate PDF blob (via pdf-lib with markdown AST) |
-| `getDocTypeLabel(filename)` | Return "PDF" / "TXT" / "IMAGE" / "DOC" |
-| `copyTextToClipboard(text)` | Copy to clipboard (`lib/clipboard.ts`) with fallback for older browsers |
-
----
-
-## 15. Humanizer System
+## 14. Humanizer System
 
 **Files:** `server/humanizer.ts`, `server/humanizerRoutes.ts`, `client/src/hooks/useHumanizer.ts`, `prompts/humanizer.txt`
-
-Rewrites AI-generated text to sound more human/natural. Ported from the [ai-humanizer](https://github.com/dixon2004/ai-humanizer) project (MIT).
 
 ### Architecture
 
@@ -814,25 +694,21 @@ Rewrites AI-generated text to sound more human/natural. Ported from the [ai-huma
 WritingChat "Humanize" button
   |
   v
-useHumanizeText() mutation  →  POST /api/humanize (requireAuth)
+useHumanizeText() mutation  ->  POST /api/humanize (requireAuth)
                                     |
                                     v
                                humanizeText()
                                     |
-                          ┌─────────┴─────────┐
-                          v                   v
-                   Gemini (primary)    Anthropic (fallback)
+                          +----------+---------+
+                          v                    v
+                   Gemini (primary)     Anthropic (fallback)
                    gemini-2.5-flash-lite    claude-opus-4-6
 ```
 
 ### Provider strategy
-1. If `GEMINI_API_KEY` is set, try Google Gemini first (cheaper for this task)
-2. If Gemini fails or key is absent, fall back to Anthropic (requires `ANTHROPIC_API_KEY`)
+1. If `GEMINI_API_KEY` is set, try Google Gemini first (cheaper)
+2. If Gemini fails or key is absent, fall back to Anthropic
 3. If neither key is configured, returns 503
-
-### Prompt template
-
-Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded template if file is missing. Rules enforce: simple language, active voice, no colons/semicolons/dashes, varied sentence length, occasional grammar quirks, output-only (no explanations).
 
 ### API
 
@@ -841,31 +717,11 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 | POST | `/api/humanize` | Yes | Humanize text |
 
 **Request body:** `{ text: string, model?: string, temperature?: number }`
-**Response:** `{ humanizedText: string, provider: "gemini" | "anthropic", model: string, tokensUsed?: number }`
-
-**Validation:**
-- `text` required, max 50,000 characters
-- `temperature` must be finite number (clamped 0-1, default 0.7)
-- Token usage auto-incremented on user's `tokensUsed` counter
-
-### Frontend integration
-
-- **Toggle:** "Humanize prose" checkbox in conversation settings (stored as `humanize` column on `conversations`)
-- **Button:** "Humanize Compiled Paper" in WritingChat right panel (appears after compile)
-- **Revert:** "Revert to Original" button restores pre-humanized compiled content
-- **State:** `humanizedCompiledContent` tracked in WritingChat; `effectiveCompiledContent` switches between original and humanized for display/export
-
-### Configuration
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `GEMINI_API_KEY` | - | Google Gemini API key (primary provider) |
-| `GEMINI_HUMANIZER_MODEL` | `gemini-2.5-flash-lite` | Override Gemini model |
-| `HUMANIZER_ANTHROPIC_MODEL` | `claude-opus-4-6` | Override Anthropic fallback model |
+**Validation:** `text` max 50,000 characters, `temperature` clamped 0-1
 
 ---
 
-## 16. Web Clips & Chrome Extension
+## 15. Web Clips & Chrome Extension
 
 **Files:** `server/webClipRoutes.ts`, `server/extensionRoutes.ts`
 
@@ -873,23 +729,23 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 - Store webpage highlights with URL, title, author, date
 - Support categories and tags
 - Optional project/document association
-- Can be promoted to full project annotations
 
 ### Chrome Extension
 - `POST /api/extension/save` -- saves highlight from browser
 - Auto-generates citation data from webpage metadata
-- Auto-assigns to first project (or creates "Web Highlights" project)
+- Simplified flow (no separate ExtensionAuth page)
 
 ---
 
-## 17. Environment Variables
+## 16. Environment Variables
 
 ### Required
 
 | Variable | Purpose |
 |----------|---------|
 | `ANTHROPIC_API_KEY` | Claude API key |
-| `JWT_SECRET` | JWT signing key (has dev fallback) |
+| `CLERK_SECRET_KEY` | Clerk backend auth key |
+| `CLERK_PUBLISHABLE_KEY` | Clerk frontend auth key |
 
 ### Optional
 
@@ -898,23 +754,24 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 | `PORT` | 5001 | Server port |
 | `NODE_ENV` | - | development / production |
 | `ALLOWED_ORIGINS` | "" | CORS whitelist (comma-separated) |
+| `OPENAI_API_KEY` | - | OpenAI key (annotations, embeddings, OCR) |
 | `VISION_OCR_MODEL` | "gpt-4o" | OCR model |
 | `MAX_COMBINED_UPLOAD_FILES` | 25 | Max batch upload files |
-| `GEMINI_API_KEY` | - | Google Gemini key (humanizer primary provider) |
-| `GEMINI_HUMANIZER_MODEL` | `gemini-2.5-flash-lite` | Override humanizer Gemini model |
-| `HUMANIZER_ANTHROPIC_MODEL` | `claude-opus-4-6` | Override humanizer Anthropic fallback model |
+| `GEMINI_API_KEY` | - | Google Gemini key (humanizer primary) |
+| `GEMINI_HUMANIZER_MODEL` | `gemini-2.5-flash-lite` | Override humanizer model |
+| `HUMANIZER_ANTHROPIC_MODEL` | `claude-opus-4-6` | Override humanizer fallback |
 
 ---
 
-## 18. All API Endpoints
+## 17. All API Endpoints
 
 ### Auth (`server/authRoutes.ts`)
 
 | Method | Path | Description |
 |--------|------|-------------|
-| POST | `/api/auth/register` | Create account |
-| POST | `/api/auth/login` | Sign in -> JWT |
-| POST | `/api/auth/logout` | Sign out (client-side) |
+| POST | `/api/auth/register` | Create account (legacy, Clerk primary) |
+| POST | `/api/auth/login` | Sign in (legacy) |
+| POST | `/api/auth/logout` | Sign out |
 | GET | `/api/auth/me` | Current user profile |
 | PUT | `/api/auth/me` | Update profile |
 | GET | `/api/auth/usage` | Token/storage usage |
@@ -929,8 +786,6 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 | GET | `/api/documents/meta` | Lightweight metadata |
 | GET | `/api/documents/:id` | Full document |
 | GET | `/api/documents/:id/status` | Processing status |
-| GET | `/api/documents/:id/source-meta` | Source file metadata |
-| GET | `/api/documents/:id/source` | Stream original file |
 | POST | `/api/documents/:id/set-intent` | Trigger AI analysis |
 | GET | `/api/documents/:id/annotations` | List annotations |
 | POST | `/api/documents/:id/annotate` | Create manual annotation |
@@ -938,7 +793,6 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 | DELETE | `/api/annotations/:id` | Delete annotation |
 | POST | `/api/documents/:id/search` | Semantic search |
 | GET | `/api/documents/:id/summary` | Get AI summary |
-| GET | `/api/system/status` | System diagnostics |
 
 ### Projects (`server/projectRoutes.ts`)
 
@@ -973,7 +827,7 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/api/chat/conversations` | List conversations (optional `?projectId=`) |
+| GET | `/api/chat/conversations` | List conversations |
 | POST | `/api/chat/conversations` | Create conversation |
 | GET | `/api/chat/conversations/:id` | Get conversation + messages |
 | PUT | `/api/chat/conversations/:id` | Update settings/title |
@@ -993,18 +847,17 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 
 | Method | Path | Description |
 |--------|------|-------------|
-| POST | `/api/humanize` | Humanize text (Gemini primary, Anthropic fallback) |
+| POST | `/api/humanize` | Humanize text |
 
 ### Web Clips (`server/webClipRoutes.ts`)
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/api/web-clips` | List clips (with pagination/filtering) |
+| GET | `/api/web-clips` | List clips |
 | POST | `/api/web-clips` | Create clip |
 | GET | `/api/web-clips/:id` | Get single clip |
 | PUT | `/api/web-clips/:id` | Update clip |
 | DELETE | `/api/web-clips/:id` | Delete clip |
-| POST | `/api/web-clips/:id/promote` | Promote to project annotation |
 
 ### Extension (`server/extensionRoutes.ts`)
 
@@ -1018,30 +871,143 @@ Loaded from `prompts/humanizer.txt` at startup (cached). Falls back to hardcoded
 
 | Feature | Model | Max Tokens | Notes |
 |---------|-------|-----------|-------|
-| Chat (standalone) | `claude-opus-4-6` | 8192 | Web clips as sources |
-| Chat (project) | `claude-opus-4-6` | 8192 | Project docs in system prompt + project context |
-| Compile paper | `claude-opus-4-6` | 8192 | Reads full conversation + sources + project context |
-| Verify paper | `claude-opus-4-6` | 8192 | Full source materials + compiled paper |
-| Planning (default) | `claude-haiku-4-5-20251001` | 4096 | Generates outline (one-shot pipeline) |
-| Planning (deep) | `claude-sonnet-4-5-20241022` | 4096 | With extended thinking (one-shot pipeline) |
-| Section writing (default) | `claude-haiku-4-5-20251001` | 2x target words | Per section (one-shot pipeline) |
-| Section writing (deep) | `claude-sonnet-4-5-20241022` | 8192+ | Extended thinking (one-shot pipeline) |
-| Stitching (default) | `claude-haiku-4-5-20251001` | 8192 | Assembles final paper (one-shot pipeline) |
-| Stitching (deep) | `claude-sonnet-4-5-20241022` | 8192 | Better assembly (one-shot pipeline) |
+| Chat (precision) | `claude-opus-4-6` | 8192 | 200K context window |
+| Chat (extended) | `claude-sonnet-4-5-20250929` | 8192 | 200K context window |
+| Compile paper | Model per writing mode | 8192 | Full conversation + sources |
+| Verify paper | Model per writing mode | 8192 | Full source materials + paper |
+| Research agent | `claude-sonnet-4-5-20250929` | - | Autonomous finding extraction |
+| Planning (default) | `claude-haiku-4-5-20251001` | 4096 | One-shot pipeline |
+| Planning (deep) | `claude-sonnet-4-5-20241022` | 4096 | Extended thinking |
+| Section writing | Haiku or Sonnet | 2x target words | Per section |
+| Stitching | Haiku or Sonnet | 8192 | Final assembly |
 | Auto-title | `claude-haiku-4-5-20251001` | 30 | Short title from first message |
-| Humanizer (primary) | `gemini-2.5-flash-lite` | - | Via Google Gemini REST API |
-| Humanizer (fallback) | `claude-opus-4-6` | 4096 | Via Anthropic SDK when Gemini unavailable |
+| Humanizer (primary) | `gemini-2.5-flash-lite` | - | Google Gemini REST API |
+| Humanizer (fallback) | `claude-opus-4-6` | 4096 | Anthropic SDK |
+| Annotations | `gpt-4o-mini` | - | OpenAI (pipeline V2) |
+| Embeddings | `text-embedding-3-small` | - | OpenAI |
+| Vision OCR | `gpt-4o` | - | OpenAI |
 
 ---
 
 ## Key Architectural Patterns
 
 1. **SSE Streaming** -- All AI responses streamed via Server-Sent Events with JSON payloads
-2. **Source Clipping** -- Excerpts max 2000 chars, full text max 30000 chars per source (150K total budget distributed dynamically)
+2. **Source Clipping** -- Excerpts max 2000 chars, full text max 30000 chars per source (150K total budget)
 3. **Two annotation layers** -- Document-global + project-scoped
-4. **Per-conversation settings** -- Citation style, tone, humanize, source selection persist per chat
-5. **Client-side export** -- PDF/DOCX generated in browser (pdf-lib for PDF, docx library with markdown AST for DOCX), no server needed
-6. **React Query invalidation** -- Mutations automatically refresh related queries (`staleTime: Infinity` — relies on explicit invalidation)
+4. **Per-conversation settings** -- Citation style, tone, humanize, model, source selection persist per chat
+5. **Clerk authentication** -- Session-based auth with tier-gated features
+6. **React Query invalidation** -- Mutations refresh related queries (`staleTime: Infinity`)
 7. **V2 AI pipeline** -- Generator -> Hard Verifier -> Soft Verifier for annotation quality
-8. **Multi-provider AI** -- Anthropic (chat/writing/verify), OpenAI (annotation pipeline/OCR), Gemini (humanizer) with fallback chains
-9. **Chat component decomposition** -- WritingChat delegates to `chat/ChatInput`, `chat/ChatMessages`, `chat/ChatSidebar`, `chat/DocumentPanel`, `chat/DocumentStatusCard`
+8. **Multi-provider AI** -- Anthropic (chat/writing), OpenAI (annotations/OCR), Gemini (humanizer)
+9. **Context escalation** -- AI can request additional document context via XML tool tags (max 2 rounds)
+10. **Research agent** -- Autonomous source discovery and quote extraction
+
+---
+
+## 18. Directory Structure
+
+```
+anotations-jan-26/ (dev branch)
+├── .claude/                           # Claude Code configuration
+│   ├── agents/                        # Agent personas
+│   ├── commands/                      # Custom commands
+│   ├── skills/                        # Custom skills
+│   └── code-review-standards.md
+├── .claude-docs/                      # Internal documentation
+│   ├── overview.md
+│   ├── server-api.md
+│   ├── server-internals.md
+│   ├── client-architecture.md
+│   ├── database-schema.md
+│   └── config-and-setup.md
+├── chrome-extension/                  # Chrome extension (Manifest V3)
+│   ├── manifest.json
+│   ├── background/background.js
+│   ├── content/content.js
+│   ├── popup/
+│   ├── options/
+│   └── icons/
+├── server/                            # Express backend (~29 TS files)
+│   ├── index.ts                       # Entry point + middleware
+│   ├── auth.ts                        # Clerk authentication
+│   ├── authRoutes.ts                  # Auth endpoints
+│   ├── authStorage.ts                 # User CRUD
+│   ├── routes.ts                      # Document API
+│   ├── projectRoutes.ts               # Project API (49KB)
+│   ├── chatRoutes.ts                  # Chat/writing API (46KB)
+│   ├── writingRoutes.ts               # One-shot writing endpoint
+│   ├── writingPipeline.ts             # Writing pipeline (15KB)
+│   ├── chatStorage.ts                 # Conversation CRUD
+│   ├── projectStorage.ts              # Project CRUD
+│   ├── storage.ts                     # Document CRUD
+│   ├── pipelineV2.ts                  # 3-phase annotation pipeline (32KB)
+│   ├── openai.ts                      # OpenAI integration (27KB)
+│   ├── humanizer.ts                   # Humanizer (Gemini/Anthropic)
+│   ├── humanizerRoutes.ts             # Humanizer endpoint
+│   ├── researchAgent.ts               # Research agent (10KB)
+│   ├── citationGenerator.ts           # Citation formatting (28KB)
+│   ├── contextGenerator.ts            # Context generation
+│   ├── chunker.ts                     # Text segmentation
+│   ├── ocrProcessor.ts                # OCR pipeline (42KB)
+│   ├── ocrQueue.ts                    # Background OCR queue (11KB)
+│   ├── projectSearch.ts               # Semantic search
+│   ├── webClipRoutes.ts               # Web clip endpoints
+│   ├── extensionRoutes.ts             # Chrome extension endpoint
+│   ├── sourceFiles.ts                 # Source file storage
+│   ├── db.ts                          # Drizzle ORM + table init
+│   ├── vite.ts                        # Dev server
+│   └── static.ts                      # Production static serving
+├── client/src/                        # React frontend
+│   ├── main.tsx                       # Entry point
+│   ├── App.tsx                        # Router (12 routes)
+│   ├── index.css                      # Global styles + themes
+│   ├── pages/                         # Page components (11)
+│   │   ├── Home.tsx, Projects.tsx, ProjectWorkspace.tsx
+│   │   ├── ProjectDocument.tsx, Chat.tsx, WritingPage.tsx
+│   │   ├── WebClips.tsx, Login.tsx, Register.tsx
+│   │   ├── Pricing.tsx, not-found.tsx
+│   ├── components/                    # UI components (~70 files)
+│   │   ├── chat/                      # Chat subcomponents (5)
+│   │   │   ├── ChatMessages.tsx, ChatInput.tsx
+│   │   │   ├── ChatSidebar.tsx, DocumentPanel.tsx
+│   │   │   └── DocumentStatusCard.tsx
+│   │   ├── ui/                        # Radix/shadcn components (60+)
+│   │   └── (25+ custom components)
+│   ├── hooks/                         # React Query hooks (10)
+│   │   ├── useChat.ts, useWritingChat.ts, useWriting.ts
+│   │   ├── useDocument.ts, useProjects.ts, useProjectSearch.ts
+│   │   ├── useWebClips.ts, useHumanizer.ts
+│   │   ├── use-toast.ts, use-mobile.tsx
+│   └── lib/                           # Utilities
+│       ├── queryClient.ts, auth.ts, utils.ts
+│       ├── clipboard.ts, documentExport.ts
+├── shared/
+│   └── schema.ts                      # Drizzle + Zod schemas (664 lines)
+├── scripts/
+│   ├── build.ts                       # Production build script
+│   ├── migrate.cjs                    # Migration CLI
+│   └── sql/                           # SQL scripts
+├── prompts/humanizer.txt              # Humanizer system prompt
+├── ARCHITECTURE.md                    # This file
+├── CODEBASE_INVENTORY.md              # File inventory
+├── CODEBASE_REFERENCE.md              # Detailed reference (68KB)
+├── TASK-*.md                          # Task specs (6 files)
+├── package.json                       # Dependencies
+├── tsconfig.json, vite.config.ts, drizzle.config.ts
+├── tailwind.config.ts, postcss.config.js
+└── components.json                    # shadcn configuration
+```
+
+### File Statistics
+
+| Category | Count |
+|----------|-------|
+| Server TS files | ~29 |
+| Client TSX/TS files | ~70 |
+| Shared TS files | 1 |
+| UI library components | 60+ |
+| Custom components | 25+ |
+| React hooks | 10 |
+| API endpoints | 45+ |
+| Database tables | 11 |
+| Route files | 6 |
