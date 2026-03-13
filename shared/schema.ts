@@ -760,3 +760,14 @@ export const ocrJobs = sqliteTable("ocr_jobs", {
   finishedAt: integer("finished_at"),
 });
 
+// OCR page-level results (runtime-managed, registered here so db:push doesn't drop it)
+export const ocrPageResults = sqliteTable("ocr_page_results", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  jobId: text("job_id").notNull(),
+  documentId: text("document_id").notNull(),
+  pageNumber: integer("page_number").notNull(),
+  text: text("text").notNull(),
+  createdAt: integer("created_at").notNull().default(0),
+  updatedAt: integer("updated_at").notNull().default(0),
+});
+
