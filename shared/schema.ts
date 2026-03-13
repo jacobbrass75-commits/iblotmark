@@ -744,3 +744,19 @@ export const analyticsContextSnapshots = sqliteTable("analytics_context_snapshot
   timestamp: integer("timestamp").notNull(),
 });
 
+// OCR jobs queue (runtime-managed, registered here so db:push doesn't drop it)
+export const ocrJobs = sqliteTable("ocr_jobs", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  documentId: text("document_id").notNull(),
+  jobType: text("job_type").notNull(),
+  status: text("status").notNull().default("queued"),
+  payload: text("payload").notNull(),
+  attemptCount: integer("attempt_count").notNull().default(0),
+  maxAttempts: integer("max_attempts").notNull().default(3),
+  lastError: text("last_error"),
+  createdAt: integer("created_at").notNull().default(0),
+  updatedAt: integer("updated_at").notNull().default(0),
+  startedAt: integer("started_at"),
+  finishedAt: integer("finished_at"),
+});
+
