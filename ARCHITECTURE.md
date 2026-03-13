@@ -1,6 +1,6 @@
 # ScholarMark Architecture Reference
 
-> Updated 2026-03-11. Covers the full codebase after context optimization + Clerk auth + writing model selection.
+> Updated 2026-03-13. Covers the full codebase after context optimization + Clerk auth + writing model selection + production deployment stabilization.
 
 ---
 
@@ -28,6 +28,9 @@
 20. [MCP Server](#20-mcp-server)
 21. [Environment Variables](#21-environment-variables)
 22. [All API Endpoints](#22-all-api-endpoints)
+23. [Production Deployment & Infrastructure](#23-production-deployment--infrastructure)
+24. [Database Schema Management](#24-database-schema-management)
+25. [Directory Structure](#25-directory-structure)
 
 ---
 
@@ -313,6 +316,37 @@ Startup order:
 | trigger | TEXT | Nullable |
 | metadata | TEXT | JSON |
 | timestamp | INT | |
+
+### ocr_jobs
+| Column | Type | Notes |
+|--------|------|-------|
+| id | TEXT PK | UUID |
+| document_id | TEXT FK | -> documents(id) CASCADE |
+| job_type | TEXT | "pdf" / "image" / "image_bundle" |
+| status | TEXT | "queued" / "running" / "completed" / "failed" (default "queued") |
+| payload | TEXT | JSON job configuration |
+| attempt_count | INT | Default 0 |
+| max_attempts | INT | Default 3 |
+| last_error | TEXT | Nullable |
+| created_at | INT | |
+| updated_at | INT | |
+| started_at | INT | Nullable |
+| finished_at | INT | Nullable |
+
+**Indexes:** `idx_ocr_jobs_status_created(status, created_at)`, unique partial `idx_ocr_jobs_document_active(document_id) WHERE status IN ('queued', 'running')`
+
+### ocr_page_results
+| Column | Type | Notes |
+|--------|------|-------|
+| id | TEXT PK | UUID |
+| job_id | TEXT FK | -> ocr_jobs(id) CASCADE |
+| document_id | TEXT FK | -> documents(id) CASCADE |
+| page_number | INT | |
+| text | TEXT | Extracted page text |
+| created_at | INT | |
+| updated_at | INT | |
+
+**Constraints:** `UNIQUE(job_id, page_number)` -- required by `ocrQueue.ts` for `ON CONFLICT` upserts.
 
 ---
 
@@ -1264,3 +1298,272 @@ A standalone Model Context Protocol server that exposes ScholarMark capabilities
 14. **Multi-provider AI** -- Anthropic (chat/writing/verify), OpenAI (annotation pipeline/OCR), Gemini (humanizer) with fallback chains
 15. **Chat component decomposition** -- WritingChat delegates to `chat/ChatInput`, `chat/ChatMessages`, `chat/ChatSidebar`, `chat/DocumentPanel`, `chat/DocumentStatusCard`
 16. **MCP proxy architecture** -- Separate MCP server on port 5002 proxies to main backend via `ScholarMarkBackendClient`
+17. **Dual schema management** -- Drizzle ORM as source of truth (`db:push`) with runtime bootstrap (`db.ts`) for safe `CREATE TABLE IF NOT EXISTS` and `ensureColumn()` migrations
+
+---
+
+## 23. Production Deployment & Infrastructure
+
+### Server
+
+| Aspect | Detail |
+|--------|--------|
+| Host | Hetzner VPS at `89.167.10.34` |
+| OS | Linux (Ubuntu) |
+| Node | v20.20.0 |
+| App directory | `/opt/app` |
+| Database | `/opt/app/data/sourceannotator.db` |
+| Uploads | `/opt/app/data/uploads/` (~2.8 GB, 222+ files) |
+| Process manager | PM2 |
+| Reverse proxy | Nginx |
+| Domains | `scholarmark.ai`, `app.scholarmark.ai` (main app), `mcp.scholarmark.ai` (MCP server) |
+
+### PM2 Processes
+
+| Name | Port | Script | Purpose |
+|------|------|--------|---------|
+| `sourceannotator` | 5001 | `dist/index.cjs` (prod) or `npm run dev` (dev) | Main Express app |
+| `scholarmark-mcp` | 5002 | `mcp-server/server.mjs` | MCP protocol server |
+| `youtube-curator` | - | Separate project | Unrelated, also on this box |
+
+### Nginx Configuration
+
+**Config file:** `/etc/nginx/sites-enabled/scholarmark.ai`
+
+Three server blocks:
+
+1. **`www.scholarmark.ai`** (port 80) -- 301 redirect to `https://scholarmark.ai`
+2. **`scholarmark.ai` / `app.scholarmark.ai`** (port 80) -- Proxies to `http://127.0.0.1:5001`
+   - `client_max_body_size 50m;` -- matches Express multer limit for file uploads
+   - WebSocket upgrade headers for SSE streaming
+   - Cloudflare/SSL termination happens upstream
+3. **`mcp.scholarmark.ai`** (port 80) -- Proxies to `http://127.0.0.1:5002`
+   - Route-specific proxying: `/mcp`, `/sse`, `/authorize`, `/token`, `/register`, `/revoke`
+   - `/.well-known/oauth-authorization-server` proxied to main app
+   - SSE-specific config: `proxy_buffering off`, `proxy_cache off`, 300s timeouts
+   - All MCP routes proxy to port 5002 except OAuth discovery which goes to 5001
+
+**Key lesson (March 2026):** Nginx defaults `client_max_body_size` to 1MB. Without the explicit `50m` directive, uploads over 1MB return an HTML `413 Request Entity Too Large` error page, which the frontend cannot parse as JSON (produces "unexpected token HTML" errors). Always set this when proxying upload endpoints.
+
+### Deployment Flow
+
+**Script:** `deploy/refresh-prod.sh`
+
+```
+1. git fetch origin && git reset --hard origin/master
+2. npm install
+3. npx tsx scripts/bootstrap-db.ts    (runs server/db.ts CREATE TABLE IF NOT EXISTS)
+4. npm run build                       (Vite + esbuild -> dist/)
+5. pm2 delete + pm2 start             (sourceannotator on port 5001)
+6. MCP server: npm install + pm2 restart (scholarmark-mcp on port 5002)
+7. pm2 save
+```
+
+**PM2 ecosystem config:** `deploy/ecosystem.config.js`
+- Max memory restart: 750MB
+- Exponential backoff restart delay (100ms base)
+- Kill timeout: 10s
+- Listen timeout: 10s
+
+### Backup Strategy
+
+- Database backed up to `/opt/backups/` before schema migrations
+- Naming convention: `opt-app-untracked-{YYYYMMDD-HHMMSS}.tar.gz`
+- Source files in `data/uploads/` are not backed up (recoverable from user re-upload)
+
+---
+
+## 24. Database Schema Management
+
+ScholarMark uses a **dual-layer** schema management approach:
+
+### Layer 1: Drizzle ORM (`shared/schema.ts`)
+
+The canonical schema definition. All tables and their columns, types, defaults, foreign keys, and indexes are declared here.
+
+**Usage:**
+- `npm run db:push` (`drizzle-kit push`) -- applies schema diff to the database
+- Drizzle generates the SQL for table creation, column additions, and index creation
+- Used in development and for major schema updates
+
+**Important:** `db:push` is interactive -- it prompts when it detects ambiguous changes (rename vs create column, table deletions). This makes it unsuitable for non-interactive CI/CD unless the schema is perfectly aligned with the live database.
+
+### Layer 2: Runtime Bootstrap (`server/db.ts`)
+
+Safe, idempotent `CREATE TABLE IF NOT EXISTS` and `ensureColumn()` statements that run at app startup.
+
+**Purpose:**
+- Ensures tables exist even on a fresh database
+- Adds columns that were introduced after initial table creation
+- Creates indexes required by application code (e.g., the `UNIQUE(job_id, page_number)` index on `ocr_page_results` that `ocrQueue.ts` depends on for `ON CONFLICT` clauses)
+
+**Tables managed by bootstrap:**
+- `api_keys` (with indexes on `user_id`, `key_prefix`)
+- `mcp_oauth_clients`
+- `mcp_auth_codes` (with index on `expires_at`)
+- `mcp_tokens` (with indexes on `user_id`, `refresh_token_hash`)
+- `analytics_tool_calls` (with indexes on `timestamp`, `conversation_id`)
+- `analytics_context_snapshots` (with indexes on `timestamp`, `conversation_id`)
+- `web_clips` (with indexes on `created_at`, `project_id`, `source_url`)
+- `ocr_jobs` (with indexes on `status/created_at`, unique partial on `document_id` where status is active)
+- `ocr_page_results` (with `UNIQUE(job_id, page_number)` constraint + index)
+
+**Columns added via `ensureColumn()`:**
+- `project_documents.source_role` (TEXT DEFAULT 'evidence')
+- `project_documents.style_analysis` (TEXT)
+- `conversations.evidence_clipboard` (TEXT)
+- `conversations.compaction_summary` (TEXT)
+- `conversations.compacted_at_turn` (INTEGER DEFAULT 0)
+- `api_keys.label` (TEXT)
+
+### Keeping the Two Layers in Sync
+
+Both layers must define the same tables. If a table exists in `db.ts` bootstrap but not in `shared/schema.ts`, then `drizzle-kit push` will try to **delete** it (with an interactive prompt). If a table exists in `shared/schema.ts` but the bootstrap creates it with different constraints, `drizzle-kit push` may try to recreate it.
+
+**Rules:**
+1. Every `CREATE TABLE IF NOT EXISTS` in `db.ts` must have a corresponding export in `shared/schema.ts`
+2. Unique constraints and indexes referenced by `ON CONFLICT` clauses must exist in both layers
+3. When adding a new table: add to `shared/schema.ts` first, then add bootstrap SQL to `db.ts`
+4. Column renames in `shared/schema.ts` must be reflected in the live database -- `drizzle-kit push` cannot distinguish rename from drop+create without interactive confirmation
+
+### Schema Migration Helper Script
+
+**File:** `scripts/manual-push.cjs`
+
+A Node.js script that runs the same SQL statements that `drizzle-kit push` would generate, but with `PRAGMA foreign_keys = OFF` wrapping the entire batch. Use this when `db:push` fails due to:
+- FK constraint ordering (Drizzle runs FK-dependent statements before disabling FK checks)
+- Interactive prompts that can't be answered in non-interactive SSH sessions
+- Pre-existing index conflicts from the runtime bootstrap
+
+---
+
+## 25. Directory Structure
+
+```
+anotations-jan-26/
+├── ARCHITECTURE.md              # This file
+├── package.json                 # Dependencies and scripts
+├── tsconfig.json                # TypeScript config
+├── vite.config.ts               # Vite build config
+├── drizzle.config.ts            # Drizzle ORM config (SQLite, ./data/sourceannotator.db)
+├── tailwind.config.ts           # Tailwind CSS config
+├── postcss.config.js            # PostCSS config
+├── components.json              # Shadcn UI config
+│
+├── shared/                      # Shared code (frontend + backend)
+│   ├── schema.ts                # Drizzle ORM schema (canonical, ~780 lines)
+│   ├── annotationLinks.ts       # Jump link builder
+│   └── types/                   # Type declarations
+│
+├── server/                      # Express backend (38 TypeScript files)
+│   ├── index.ts                 # Entry point, middleware, startup
+│   ├── db.ts                    # Database init, bootstrap tables, ensureColumn()
+│   ├── routes.ts                # Main routes, upload handler, document processing
+│   ├── auth.ts                  # Clerk auth config
+│   ├── authRoutes.ts            # Auth endpoints
+│   ├── authStorage.ts           # Auth state persistence
+│   ├── chatRoutes.ts            # Chat system (1719 lines, largest file)
+│   ├── chatStorage.ts           # Conversation/message persistence
+│   ├── projectRoutes.ts         # Project CRUD, document management, batch ops
+│   ├── projectStorage.ts        # Project data access layer
+│   ├── writingRoutes.ts         # Writing pipeline endpoints
+│   ├── writingPipeline.ts       # One-shot pipeline (Planner→Writer→Stitcher)
+│   ├── humanizerRoutes.ts       # Humanizer endpoints
+│   ├── humanizer.ts             # Gemini/Anthropic humanization
+│   ├── extensionRoutes.ts       # Chrome extension API
+│   ├── webClipRoutes.ts         # Web clip CRUD
+│   ├── analyticsRoutes.ts       # Analytics dashboard API
+│   ├── analyticsLogger.ts       # Tool call + context snapshot logging
+│   ├── oauthRoutes.ts           # OAuth2 authorization server
+│   ├── oauthStorage.ts          # OAuth persistence
+│   ├── openai.ts                # Anthropic SDK integration, embeddings
+│   ├── pipelineV2.ts            # V2 annotation pipeline (generator→verifier→refiner)
+│   ├── citationGenerator.ts     # Chicago/MLA/APA formatting
+│   ├── contextGenerator.ts      # Retrieval context + searchable content
+│   ├── contextCompaction.ts     # Conversation summarization (Haiku)
+│   ├── evidenceClipboard.ts     # Persistent evidence accumulation
+│   ├── gatherer.ts              # Haiku evidence gathering (precision mode phase 1)
+│   ├── researchAgent.ts         # Deep-dive research with quote verification
+│   ├── projectSearch.ts         # Global annotation/document search
+│   ├── sourceRoles.ts           # evidence/style_reference/background routing
+│   ├── chunker.ts               # Text splitting/segmentation
+│   ├── ocrQueue.ts              # OCR job queue management
+│   ├── ocrProcessor.ts          # Vision OCR (Gemini/Anthropic)
+│   ├── sourceFiles.ts           # Original file storage/retrieval
+│   ├── storage.ts               # Document CRUD abstraction
+│   ├── quoteJumpLinks.ts        # Quote reference link generation
+│   ├── static.ts                # Static file serving (production)
+│   └── vite.ts                  # Vite dev server integration
+│
+├── client/src/                  # React frontend (114 files)
+│   ├── main.tsx                 # App entry, Clerk provider
+│   ├── App.tsx                  # Routes (Wouter), layout
+│   ├── index.css                # Global styles (Tailwind)
+│   ├── pages/                   # Page components (13 files)
+│   │   ├── Home.tsx             # Dashboard
+│   │   ├── Projects.tsx         # Project list
+│   │   ├── ProjectWorkspace.tsx # Project workspace (52KB, Documents + Write tabs)
+│   │   ├── ProjectDocument.tsx  # Document viewer (43KB, annotations)
+│   │   ├── Chat.tsx             # Standalone chat
+│   │   ├── WritingPage.tsx      # Chat-based writing alias
+│   │   ├── WebClips.tsx         # Web clip collection
+│   │   ├── AdminAnalytics.tsx   # Analytics dashboard
+│   │   ├── Pricing.tsx          # Pricing page
+│   │   ├── ExtensionAuth.tsx    # Extension auth flow
+│   │   ├── Login.tsx            # Clerk sign-in
+│   │   ├── Register.tsx         # Clerk sign-up
+│   │   └── not-found.tsx        # 404
+│   ├── components/              # UI components
+│   │   ├── WritingChat.tsx      # Chat UI (46KB)
+│   │   ├── WritingPane.tsx      # Paper output + export (26KB)
+│   │   ├── BatchUploadModal.tsx # File upload workflow (26KB)
+│   │   ├── AnnotationSidebar.tsx# Annotation list (18KB)
+│   │   ├── BatchAnalysisModal.tsx# Batch analysis UI (13KB)
+│   │   ├── HighlightedText.tsx  # Text highlighting (12KB)
+│   │   ├── MultiPromptPanel.tsx # Multi-prompt interface (11KB)
+│   │   ├── FileUpload.tsx       # Drop zone (9KB)
+│   │   ├── DocumentViewer.tsx   # Document display (9KB)
+│   │   ├── SearchPanel.tsx      # Search (7KB)
+│   │   ├── chat/               # Chat sub-components (6 files)
+│   │   ├── analytics/          # Analytics sub-components (6 files)
+│   │   └── ui/                 # Shadcn/Radix primitives (~40 files)
+│   ├── hooks/                   # React Query hooks
+│   └── lib/                     # Client utilities (export, markdown, etc.)
+│
+├── mcp-server/                  # MCP protocol server (port 5002)
+│   ├── server.mjs               # Express entry point
+│   ├── package.json             # Separate deps
+│   ├── src/                     # Source files
+│   │   ├── index.ts             # Server setup, transport, sessions
+│   │   ├── mcp-tools.ts         # Tool registration (proxies to backend)
+│   │   ├── backend-client.ts    # HTTP client to main app
+│   │   ├── sse-buffer.ts        # SSE stream utility
+│   │   └── discovery.ts         # OAuth metadata
+│   └── deploy/                  # PM2 config for MCP server
+│
+├── chrome-extension/            # Browser extension for web clips
+│
+├── deploy/                      # Deployment configs
+│   ├── ecosystem.config.js      # PM2 production config
+│   └── refresh-prod.sh          # Deployment refresh script
+│
+├── scripts/                     # Utility scripts
+│   ├── bootstrap-db.ts          # Import db.ts to run bootstrap (used in deploy)
+│   ├── build.ts                 # Vite + esbuild build script
+│   ├── manual-push.cjs          # Non-interactive schema migration helper
+│   ├── migrate.cjs              # Legacy migration
+│   └── backfill-chat-quote-links.ts # One-off data migration
+│
+├── prompts/                     # AI prompt templates
+│   └── humanizer.txt            # Humanizer system prompt
+│
+├── data/                        # Runtime data (gitignored)
+│   ├── sourceannotator.db       # SQLite database
+│   └── uploads/                 # Original uploaded files
+│
+├── dist/                        # Build output (gitignored)
+│   ├── index.cjs                # Bundled server (~1.4MB)
+│   └── public/                  # Built frontend assets
+│
+└── migrations/                  # Drizzle migration files
+```
