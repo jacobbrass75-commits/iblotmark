@@ -198,6 +198,7 @@ async function handleStreamableMcpRequest(req, res) {
     console.log("[SESSION] Creating new session");
     const transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
+      enableJsonResponse: true,
     });
     const mcpServer = createMcpServer();
 

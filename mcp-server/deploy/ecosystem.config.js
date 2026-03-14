@@ -9,7 +9,7 @@ module.exports = {
         MCP_SERVER_PORT: "5002",
         SCHOLARMARK_BACKEND_URL: "http://127.0.0.1:5001",
         MCP_AUTHORIZATION_SERVER: "https://app.scholarmark.ai",
-        MCP_RESOURCE_URL: "https://mcp.scholarmark.ai",
+        MCP_RESOURCE_URL: "https://mcp.scholarmark.ai/mcp",
       },
     },
   ],
