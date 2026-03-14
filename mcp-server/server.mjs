@@ -111,11 +111,17 @@ app.get("/.well-known/oauth-protected-resource", (req, res) => {
 app.get("/.well-known/oauth-protected-resource/mcp", (req, res) => {
   res.status(200).json(buildProtectedResourceMetadata(req));
 });
+app.get("/.well-known/oauth-protected-resource/mcp.", (req, res) => {
+  res.status(200).json(buildProtectedResourceMetadata(req));
+});
 
 function getResourceMetadataUrl(req) {
   const host = req.headers.host ?? `localhost:${port}`;
   const proto = req.headers["x-forwarded-proto"] ?? "https";
-  return `${proto}://${host}/.well-known/oauth-protected-resource/mcp`;
+  const metadataPath = req.path === "/mcp."
+    ? "/.well-known/oauth-protected-resource/mcp."
+    : "/.well-known/oauth-protected-resource/mcp";
+  return `${proto}://${host}${metadataPath}`;
 }
 
 function sendAuthChallenge(req, res, options = {}) {
@@ -315,6 +321,7 @@ async function handleLegacySseMessage(req, res) {
 }
 
 app.all("/mcp", handleStreamableMcpRequest);
+app.all("/mcp.", handleStreamableMcpRequest);
 app.post("/", (_req, res) => sendServiceInfo(res));
 app.options("/", (_req, res) => {
   res.status(204)
