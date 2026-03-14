@@ -61,6 +61,36 @@ function accepts(req, mimeType) {
 
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: false }));
+app.use((error, req, res, next) => {
+  if (!error) {
+    next();
+    return;
+  }
+
+  const isJsonParseError =
+    error instanceof SyntaxError
+    || error?.type === "entity.parse.failed";
+
+  if (!isJsonParseError) {
+    next(error);
+    return;
+  }
+
+  const isMcpRoute = req.path === "/mcp" || req.path === "/messages" || req.path === "/sse";
+  if (isMcpRoute) {
+    res.status(400).json({
+      jsonrpc: "2.0",
+      error: { code: -32700, message: "Parse error: Invalid JSON" },
+      id: null,
+    });
+    return;
+  }
+
+  res.status(400).json({
+    error: "invalid_json",
+    message: "Malformed JSON request body",
+  });
+});
 
 app.get("/healthz", (_req, res) => {
   res.status(200).json({ ok: true, service: "scholarmark-mcp-server" });
