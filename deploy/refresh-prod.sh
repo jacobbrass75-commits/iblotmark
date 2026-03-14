@@ -22,7 +22,7 @@ npm run build
 
 echo "[deploy] replacing web app with built production process"
 pm2 delete sourceannotator >/dev/null 2>&1 || true
-NODE_ENV=production PORT=5001 pm2 start dist/index.cjs --name sourceannotator --cwd "$APP_DIR" --interpreter /usr/bin/node
+NODE_ENV=production PORT=5001 MCP_RESOURCE_URL=https://mcp.scholarmark.ai/mcp pm2 start dist/index.cjs --name sourceannotator --cwd "$APP_DIR" --interpreter /usr/bin/node
 
 if [[ -d "$MCP_DIR" ]]; then
   echo "[deploy] ensuring MCP deps"
