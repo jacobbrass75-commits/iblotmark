@@ -1,31 +1,24 @@
-function resolveResourcePath(req) {
-    const requestPath = typeof req?.path === "string" ? req.path : "";
-    return requestPath.endsWith("/mcp.") ? "/mcp." : "/mcp";
+function normalizeCanonicalResourcePath(pathname) {
+    if (!pathname || pathname === "/") {
+        return "/mcp";
+    }
+    if (pathname.endsWith("/mcp.")) {
+        return pathname.slice(0, -1);
+    }
+    return pathname;
 }
 function getResourceBaseUrl(req) {
-    const resourcePath = resolveResourcePath(req);
     const configured = process.env.MCP_RESOURCE_URL;
     if (configured && configured.trim().length > 0) {
         try {
             const url = new URL(configured);
-            if (url.pathname === "/" || url.pathname === "") {
-                url.pathname = resourcePath;
-            }
-            else if (resourcePath.endsWith(".") && !url.pathname.endsWith(".")) {
-                url.pathname = `${url.pathname}.`;
-            }
+            url.pathname = normalizeCanonicalResourcePath(url.pathname);
             return url.toString().replace(/\/+$/, "");
         }
         catch {
             const normalized = configured.replace(/\/+$/, "");
-            if (resourcePath.endsWith(".")) {
-                if (normalized.endsWith("/mcp.")) {
-                    return normalized;
-                }
-                if (normalized.endsWith("/mcp")) {
-                    return `${normalized}.`;
-                }
-                return `${normalized}/mcp.`;
+            if (normalized.endsWith("/mcp.")) {
+                return normalized.slice(0, -1);
             }
             return normalized.endsWith("/mcp") ? normalized : `${normalized}/mcp`;
         }
@@ -33,7 +26,7 @@ function getResourceBaseUrl(req) {
     const forwardedProto = req.header("x-forwarded-proto")?.split(",")[0]?.trim();
     const protocol = forwardedProto || req.protocol || "https";
     const host = req.header("x-forwarded-host") || req.get("host") || "localhost";
-    return `${protocol}://${host}${resourcePath}`.replace(/\/+$/, "");
+    return `${protocol}://${host}/mcp`.replace(/\/+$/, "");
 }
 function getAuthorizationServer() {
     const configured = process.env.MCP_AUTHORIZATION_SERVER

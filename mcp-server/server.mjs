@@ -76,7 +76,11 @@ app.use((error, req, res, next) => {
     return;
   }
 
-  const isMcpRoute = req.path === "/mcp" || req.path === "/messages" || req.path === "/sse";
+  const isMcpRoute =
+    req.path === "/mcp"
+    || req.path === "/mcp."
+    || req.path === "/messages"
+    || req.path === "/sse";
   if (isMcpRoute) {
     res.status(400).json({
       jsonrpc: "2.0",
@@ -118,10 +122,7 @@ app.get("/.well-known/oauth-protected-resource/mcp.", (req, res) => {
 function getResourceMetadataUrl(req) {
   const host = req.headers.host ?? `localhost:${port}`;
   const proto = req.headers["x-forwarded-proto"] ?? "https";
-  const metadataPath = req.path === "/mcp."
-    ? "/.well-known/oauth-protected-resource/mcp."
-    : "/.well-known/oauth-protected-resource/mcp";
-  return `${proto}://${host}${metadataPath}`;
+  return `${proto}://${host}/.well-known/oauth-protected-resource/mcp`;
 }
 
 function sendAuthChallenge(req, res, options = {}) {
@@ -181,7 +182,7 @@ async function handleStreamableMcpRequest(req, res) {
     const bodyMethod = req.body?.method;
 
     console.log(
-      `[MCP] ${req.method} /mcp`
+      `[MCP] ${req.method} ${req.path}`
       + ` | auth=${!!req.headers.authorization}`
       + ` | session=${(sessionHeader ?? "none").substring(0, 8)}`
       + ` | method=${bodyMethod ?? "-"}`
