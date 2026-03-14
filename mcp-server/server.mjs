@@ -181,6 +181,16 @@ async function handleStreamableMcpRequest(req, res) {
     }
 
     if (sessionHeader && mcpSessions.has(sessionHeader)) {
+      // Require auth for tool methods — this triggers OAuth on first tools/list.
+      const needsAuth = typeof bodyMethod === "string" && bodyMethod.startsWith("tools/");
+      if (needsAuth && !req.auth) {
+        const resourceUrl = getResourceMetadataUrl(req);
+        console.log("[AUTH] 401 for method:", bodyMethod, "(session exists but no auth)");
+        res.status(401)
+          .set("WWW-Authenticate", `Bearer resource_metadata="${resourceUrl}"`)
+          .json({ error: "unauthorized", message: "Bearer token required." });
+        return;
+      }
       const session = mcpSessions.get(sessionHeader);
       console.log(`[SESSION] Reuse ${sessionHeader.substring(0, 8)} for ${bodyMethod ?? req.method}`);
       await session.transport.handleRequest(req, res, req.body);
