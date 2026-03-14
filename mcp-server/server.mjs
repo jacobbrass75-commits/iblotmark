@@ -9,6 +9,7 @@ import { registerScholarMarkTools } from "./dist/mcp-tools.js";
 const app = express();
 const port = Number(process.env.MCP_SERVER_PORT ?? 5002);
 const backendBaseUrl = process.env.SCHOLARMARK_BACKEND_URL ?? "http://127.0.0.1:5001";
+const MCP_SCOPE_CHALLENGE = "read write";
 
 const mcpSessions = new Map();
 const sseSessions = new Map();
@@ -84,17 +85,33 @@ app.get("/.well-known/oauth-protected-resource/mcp", (req, res) => {
 function getResourceMetadataUrl(req) {
   const host = req.headers.host ?? `localhost:${port}`;
   const proto = req.headers["x-forwarded-proto"] ?? "https";
-  return `${proto}://${host}/.well-known/oauth-protected-resource`;
+  return `${proto}://${host}/.well-known/oauth-protected-resource/mcp`;
 }
 
-function sendAuthChallenge(req, res, error = "invalid_token", description = "Authorization required.") {
+function sendAuthChallenge(req, res, options = {}) {
   const resourceUrl = getResourceMetadataUrl(req);
+  const hasAuthHeader = typeof req.headers.authorization === "string"
+    && req.headers.authorization.trim().length > 0;
+  const error = options.error ?? (hasAuthHeader ? "invalid_token" : null);
+  const description = options.description ?? "Authorization required.";
+  const challengeParts = [
+    'Bearer realm="ScholarMark MCP"',
+    `resource_metadata="${resourceUrl}"`,
+    `scope="${MCP_SCOPE_CHALLENGE}"`,
+  ];
+
+  if (error) {
+    challengeParts.push(`error="${error}"`);
+    challengeParts.push(`error_description="${description}"`);
+  }
+
   res.status(401)
-    .set(
-      "WWW-Authenticate",
-      `Bearer realm="ScholarMark MCP", resource_metadata="${resourceUrl}", error="${error}", error_description="${description}"`
-    )
-    .json({ error, error_description: description });
+    .set("Cache-Control", "no-store")
+    .set("WWW-Authenticate", challengeParts.join(", "))
+    .json({
+      error: error ?? "unauthorized",
+      error_description: description,
+    });
 }
 
 async function handleStreamableMcpRequest(req, res) {

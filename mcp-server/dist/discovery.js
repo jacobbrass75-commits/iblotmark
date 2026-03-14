@@ -6,7 +6,7 @@ function getResourceBaseUrl(req) {
     const forwardedProto = req.header("x-forwarded-proto")?.split(",")[0]?.trim();
     const protocol = forwardedProto || req.protocol || "https";
     const host = req.header("x-forwarded-host") || req.get("host") || "localhost";
-    return `${protocol}://${host}`.replace(/\/+$/, "");
+    return `${protocol}://${host}/mcp`.replace(/\/+$/, "");
 }
 function getAuthorizationServer() {
     const configured = process.env.MCP_AUTHORIZATION_SERVER
