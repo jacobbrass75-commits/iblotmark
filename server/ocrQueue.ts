@@ -100,7 +100,15 @@ const selectJobPageResults = sqlite.prepare(
    ORDER BY page_number ASC`
 );
 
-const upsertJobPageResult = sqlite.prepare(
+const updateJobPageResult = sqlite.prepare(
+  `UPDATE ocr_page_results
+   SET text = ?,
+       updated_at = ?
+   WHERE job_id = ?
+     AND page_number = ?`
+);
+
+const insertJobPageResult = sqlite.prepare(
   `INSERT INTO ocr_page_results (
      id,
      job_id,
@@ -109,11 +117,7 @@ const upsertJobPageResult = sqlite.prepare(
      text,
      created_at,
      updated_at
-   ) VALUES (?, ?, ?, ?, ?, ?, ?)
-   ON CONFLICT(job_id, page_number)
-   DO UPDATE SET
-     text = excluded.text,
-     updated_at = excluded.updated_at`
+   ) VALUES (?, ?, ?, ?, ?, ?, ?)`
 );
 
 const deleteJobPageResults = sqlite.prepare(
@@ -156,11 +160,20 @@ function persistPageCheckpoint(
 ): void {
   if (!Number.isFinite(pageNumber) || pageNumber < 1) return;
   const now = getUnixSeconds();
-  upsertJobPageResult.run(
+  const normalizedPageNumber = Math.floor(pageNumber);
+  const updated = updateJobPageResult.run(
+    text,
+    now,
+    jobId,
+    normalizedPageNumber
+  );
+  if (updated.changes > 0) return;
+
+  insertJobPageResult.run(
     randomUUID(),
     jobId,
     documentId,
-    Math.floor(pageNumber),
+    normalizedPageNumber,
     text,
     now,
     now
