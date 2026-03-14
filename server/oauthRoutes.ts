@@ -116,6 +116,15 @@ function getIssuerBaseUrl(req: Request): string {
   return `${protocol}://${host}`.replace(/\/+$/, "");
 }
 
+function getMcpResourceUrl(): string {
+  const configured = process.env.MCP_RESOURCE_URL;
+  if (configured && configured.trim().length > 0) {
+    return configured.replace(/\/+$/, "");
+  }
+
+  return "https://mcp.scholarmark.ai/mcp";
+}
+
 function getAuthorizeTemplate(): string {
   if (!authorizeTemplateCache) {
     authorizeTemplateCache = readFileSync(AUTHORIZE_TEMPLATE_PATH, "utf8");
@@ -846,10 +855,11 @@ export function registerOAuthRoutes(app: Express): void {
 
         return res.status(200).json({
           access_token: tokenPair.accessToken,
-          token_type: "Bearer",
+          token_type: "bearer",
           expires_in: ACCESS_TOKEN_TTL_SECONDS,
           refresh_token: tokenPair.refreshToken,
           scope: tokenPair.scope,
+          resource: getMcpResourceUrl(),
         });
       }
 
@@ -891,10 +901,11 @@ export function registerOAuthRoutes(app: Express): void {
 
         return res.status(200).json({
           access_token: tokenPair.accessToken,
-          token_type: "Bearer",
+          token_type: "bearer",
           expires_in: ACCESS_TOKEN_TTL_SECONDS,
           refresh_token: tokenPair.refreshToken,
           scope: tokenPair.scope,
+          resource: getMcpResourceUrl(),
         });
       }
 
