@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { Message } from "@shared/schema";
 import { storage } from "./storage";
 
-const RESEARCH_MODEL = "claude-sonnet-4-5-20250929";
+const RESEARCH_MODEL = "claude-sonnet-4-6";
 const RESEARCH_MAX_TOKENS = 8192;
 const MAX_RESEARCH_CHARS_PER_CALL = 220_000;
 const CHUNK_OVERLAP_CHARS = 1_000;

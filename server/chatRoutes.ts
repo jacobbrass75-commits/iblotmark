@@ -74,11 +74,11 @@ const MODELS = {
     verify: "claude-opus-4-6",
   },
   extended: {
-    chat: "claude-sonnet-4-5-20250929",
-    compile: "claude-sonnet-4-5-20250929",
-    verify: "claude-sonnet-4-5-20250929",
+    chat: "claude-sonnet-4-6",
+    compile: "claude-sonnet-4-6",
+    verify: "claude-sonnet-4-6",
   },
-  research: "claude-sonnet-4-5-20250929",
+  research: "claude-sonnet-4-6",
 } as const;
 
 const TOKEN_LIMITS = {

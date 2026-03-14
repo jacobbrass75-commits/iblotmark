@@ -95,7 +95,7 @@ const TARGET_WORDS: Record<string, number> = {
 };
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
-const DEEP_WRITE_MODEL = "claude-sonnet-4-5-20241022";
+const DEEP_WRITE_MODEL = "claude-sonnet-4-6";
 
 // --- Helpers ---
 
