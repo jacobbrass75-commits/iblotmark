@@ -1,5 +1,22 @@
-import pLimit from "p-limit";
-import pRetry, { AbortError } from "p-retry";
+type PLimitFn = typeof import("p-limit")["default"];
+type PRetryModule = typeof import("p-retry");
+
+let pLimitPromise: Promise<PLimitFn> | null = null;
+let pRetryPromise: Promise<PRetryModule> | null = null;
+
+function getPLimit(): Promise<PLimitFn> {
+  if (!pLimitPromise) {
+    pLimitPromise = import("p-limit").then((mod) => mod.default);
+  }
+  return pLimitPromise;
+}
+
+function getPRetry(): Promise<PRetryModule> {
+  if (!pRetryPromise) {
+    pRetryPromise = import("p-retry");
+  }
+  return pRetryPromise;
+}
 
 /**
  * Batch Processing Utilities
@@ -90,6 +107,8 @@ export async function batchProcess<T, R>(
     onProgress,
   } = options;
 
+  const [pLimit, pRetryModule] = await Promise.all([getPLimit(), getPRetry()]);
+  const { default: pRetry, AbortError } = pRetryModule;
   const limit = pLimit(concurrency);
   let completed = 0;
 
@@ -136,6 +155,7 @@ export async function batchProcessWithSSE<T, R>(
   options: Omit<BatchOptions, "concurrency" | "onProgress"> = {}
 ): Promise<R[]> {
   const { retries = 5, minTimeout = 1000, maxTimeout = 15000 } = options;
+  const { default: pRetry, AbortError } = await getPRetry();
 
   sendEvent({ type: "started", total: items.length });
 
