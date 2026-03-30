@@ -366,9 +366,10 @@ export async function runBlogPipeline(
     };
   }
 
-  // Re-stitch if quality gate fails (one retry)
-  if (!verification.passesQualityGate && verification.overallScore > 0) {
-    onEvent({ type: "status", phase: "stitcher", message: `Score ${verification.overallScore}/100 below threshold. Re-stitching with feedback...` });
+  // Always re-stitch with feedback if there are issues or suggestions to address
+  const hasFixableIssues = verification.overallScore > 0 && (verification.issues.length > 0 || verification.suggestions.length > 0);
+  if (hasFixableIssues) {
+    onEvent({ type: "status", phase: "stitcher", message: `Score ${verification.overallScore}/100. Applying ${verification.issues.length} fixes and ${verification.suggestions.length} improvements...` });
 
     try {
       const feedbackPrompt = `Previous version scored ${verification.overallScore}/100.\nIssues: ${verification.issues.join("; ")}\nSuggestions: ${verification.suggestions.join("; ")}`;

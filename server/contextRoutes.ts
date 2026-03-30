@@ -13,6 +13,9 @@ import {
   getContextStats,
   formatContextForPrompt,
 } from "./contextBanks";
+import { db } from "./db";
+import { industryVerticals } from "@shared/schema";
+import { eq } from "drizzle-orm";
 import {
   ResearchOrchestrator,
   runFullRedditResearch,
@@ -31,6 +34,45 @@ export function registerContextRoutes(app: { use: (path: string, router: Router)
     try {
       const verticals = await getVerticals();
       res.json(verticals);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/context/verticals — Create a new industry vertical
+  router.post("/verticals", async (req: Request, res: Response) => {
+    try {
+      const { name, slug, description, terminology, painPoints, useCases, regulations, seasonalRelevance, compatibleDevices } = req.body;
+      if (!name || !slug) {
+        return res.status(400).json({ error: "name and slug are required" });
+      }
+      const [vertical] = await db.insert(industryVerticals).values({
+        name,
+        slug: slug.toLowerCase().replace(/[^a-z0-9-]/g, "-"),
+        description: description || null,
+        terminology: terminology || [],
+        painPoints: painPoints || [],
+        useCases: useCases || [],
+        regulations: regulations || [],
+        seasonalRelevance: seasonalRelevance || null,
+        compatibleDevices: compatibleDevices || [],
+      }).returning();
+      res.json(vertical);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // PATCH /api/blog/context/verticals/:id — Update an industry vertical
+  router.patch("/verticals/:id", async (req: Request, res: Response) => {
+    try {
+      const updates: any = { updatedAt: new Date() };
+      const allowed = ["name", "slug", "description", "terminology", "painPoints", "useCases", "regulations", "seasonalRelevance", "compatibleDevices"];
+      for (const key of allowed) {
+        if (req.body[key] !== undefined) updates[key] = req.body[key];
+      }
+      const [vertical] = await db.update(industryVerticals).set(updates).where(eq(industryVerticals.id, req.params.id)).returning();
+      res.json(vertical);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

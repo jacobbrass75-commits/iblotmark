@@ -35,6 +35,7 @@ import { registerKeywordRoutes } from "./keywordRoutes";
 import { registerContextRoutes } from "./contextRoutes";
 import { registerBlogRoutes } from "./blogRoutes";
 import { registerProductRoutes } from "./productRoutes";
+import { registerSchedulerRoutes } from "./schedulerRoutes";
 import type { AnnotationCategory, InsertAnnotation } from "@shared/schema";
 import {
   createZipFromImageUploads,
@@ -873,6 +874,7 @@ export async function registerRoutes(
   registerContextRoutes(app);
   registerBlogRoutes(app);
   registerProductRoutes(app);
+  registerSchedulerRoutes(app);
 
   // Register A/B test routes
   // registerABTestRoutes(app); // TODO: Not implemented yet

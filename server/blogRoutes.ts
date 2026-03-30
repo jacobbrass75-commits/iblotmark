@@ -13,6 +13,7 @@ import { renderShopifyHtml, renderPreviewHtml } from "./htmlRenderer";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import { generationBatches, keywordClusters, blogPosts } from "@shared/schema";
+import { autoLinkProducts } from "./htmlRenderer";
 
 export function registerBlogRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
@@ -203,6 +204,48 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
     try {
       const batches = await db.select().from(generationBatches);
       res.json(batches);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // GET /api/blog/export — Download all approved posts as JSON with HTML
+  router.get("/export", async (req: Request, res: Response) => {
+    try {
+      const status = (req.query.status as string) || "approved";
+      const posts = await getBlogPosts(status);
+
+      const exported = [];
+      for (const post of posts) {
+        const html = await renderShopifyHtml(post);
+        exported.push({
+          title: post.title,
+          slug: post.slug,
+          metaTitle: post.metaTitle,
+          metaDescription: post.metaDescription,
+          html,
+          markdown: post.markdown,
+          wordCount: post.wordCount,
+          overallScore: post.overallScore,
+          status: post.status,
+        });
+      }
+
+      res.setHeader("Content-Disposition", `attachment; filename="ibolt-blog-export-${new Date().toISOString().slice(0, 10)}.json"`);
+      res.json(exported);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // GET /api/blog/export/:id/html — Download single post as .html file
+  router.get("/export/:id/html", async (req: Request, res: Response) => {
+    try {
+      const post = await getBlogPost(req.params.id);
+      if (!post) return res.status(404).json({ error: "Post not found" });
+      const html = await renderShopifyHtml(post);
+      res.setHeader("Content-Disposition", `attachment; filename="${post.slug}.html"`);
+      res.type("html").send(html);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
