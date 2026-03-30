@@ -230,6 +230,13 @@ async function resolveJwtUser(req: Request): Promise<Express.User | null> {
 
 // ── Install Clerk middleware globally ────────────────────────────────
 export function configureClerk(app: Express): void {
+  // Skip Clerk entirely if no publishable key — this is an internal tool
+  if (!process.env.CLERK_PUBLISHABLE_KEY && !process.env.VITE_CLERK_PUBLISHABLE_KEY) {
+    console.log("[auth] No Clerk key found — running without auth");
+    app.use((_req: Request, _res: Response, next: NextFunction) => next());
+    return;
+  }
+
   const clerk = clerkMiddleware();
   app.use((req: Request, res: Response, next: NextFunction) => {
     if (shouldBypassClerk(req)) {
