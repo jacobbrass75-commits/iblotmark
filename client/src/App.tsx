@@ -20,6 +20,12 @@ const WritingPage = lazy(() => import("@/pages/WritingPage"));
 const WebClips = lazy(() => import("@/pages/WebClips"));
 const ExtensionAuth = lazy(() => import("@/pages/ExtensionAuth"));
 const AdminAnalytics = lazy(() => import("@/pages/AdminAnalytics"));
+const BlogDashboard = lazy(() => import("@/pages/BlogDashboard"));
+const KeywordManager = lazy(() => import("@/pages/KeywordManager"));
+const BatchGenerator = lazy(() => import("@/pages/BatchGenerator"));
+const PostReview = lazy(() => import("@/pages/PostReview"));
+const IndustryContext = lazy(() => import("@/pages/IndustryContext"));
+const ProductCatalog = lazy(() => import("@/pages/ProductCatalog"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function RouteFallback() {
@@ -54,6 +60,12 @@ function Router() {
       <Route path="/write">{() => <ProtectedRoute><WritingPage /></ProtectedRoute>}</Route>
       <Route path="/writing">{() => <ProtectedRoute><WritingPage /></ProtectedRoute>}</Route>
       <Route path="/admin/analytics">{() => <ProtectedRoute><AdminAnalytics /></ProtectedRoute>}</Route>
+      <Route path="/blog">{() => <BlogDashboard />}</Route>
+      <Route path="/blog/keywords">{() => <KeywordManager />}</Route>
+      <Route path="/blog/generate">{() => <BatchGenerator />}</Route>
+      <Route path="/blog/posts/:id">{() => <PostReview />}</Route>
+      <Route path="/blog/context">{() => <IndustryContext />}</Route>
+      <Route path="/blog/products">{() => <ProductCatalog />}</Route>
       <Route component={NotFound} />
     </Switch>
   );
