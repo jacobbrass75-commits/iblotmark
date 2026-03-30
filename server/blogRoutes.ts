@@ -39,7 +39,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       try {
         const post = await runBlogPipeline({ clusterId }, sendEvent);
         // Generate HTML
-        const html = renderShopifyHtml(post);
+        const html = await renderShopifyHtml(post);
         await updateBlogPost(post.id, { html });
         sendEvent({ type: "complete", message: "HTML rendered", blogPost: { ...post, html } });
       } catch (err: any) {
@@ -101,7 +101,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
           );
 
           // Render HTML
-          const html = renderShopifyHtml(post);
+          const html = await renderShopifyHtml(post);
           await updateBlogPost(post.id, { html });
 
           completed++;
@@ -179,7 +179,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
     try {
       const post = await getBlogPost(req.params.id);
       if (!post) return res.status(404).json({ error: "Post not found" });
-      const html = renderShopifyHtml(post);
+      const html = await renderShopifyHtml(post);
       res.type("html").send(html);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
@@ -191,7 +191,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
     try {
       const post = await getBlogPost(req.params.id);
       if (!post) return res.status(404).json({ error: "Post not found" });
-      const html = renderPreviewHtml(post);
+      const html = await renderPreviewHtml(post);
       res.type("html").send(html);
     } catch (error: any) {
       res.status(500).json({ error: error.message });

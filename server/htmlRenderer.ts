@@ -1,7 +1,9 @@
 // HTML Renderer — Markdown to Shopify-ready HTML with SEO meta tags
 // Converts blog pipeline markdown output into publishable HTML.
 
-import type { BlogPost } from "@shared/schema";
+import type { BlogPost, Product } from "@shared/schema";
+import { db } from "./db";
+import { products } from "@shared/schema";
 
 /**
  * Convert markdown to HTML. Simple but effective renderer that handles
@@ -117,11 +119,45 @@ function escapeAndFormat(text: string): string {
 }
 
 /**
+ * Auto-link product mentions in HTML that aren't already wrapped in <a> tags.
+ * Searches for known product titles and wraps them with links to iboltmounts.com.
+ */
+export async function autoLinkProducts(html: string): Promise<string> {
+  const allProducts = await db.select().from(products);
+  if (allProducts.length === 0) return html;
+
+  let result = html;
+
+  // Sort by title length descending so longer names match first
+  const sorted = allProducts
+    .filter((p) => p.title && p.handle)
+    .sort((a, b) => (b.title?.length || 0) - (a.title?.length || 0));
+
+  for (const product of sorted) {
+    const title = product.title;
+    const url = `https://iboltmounts.com/products/${product.handle}`;
+
+    // Match product title that is NOT already inside an <a> tag
+    // Use a regex that checks the title isn't preceded by "> or followed by </a>
+    const escaped = title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`(?<!<a[^>]*>)(?<!">)(${escaped})(?!</a>)`, "gi");
+
+    result = result.replace(regex, (match) => {
+      // Don't re-link if already inside an anchor
+      return `<a href="${url}">${match}</a>`;
+    });
+  }
+
+  return result;
+}
+
+/**
  * Generate the full Shopify-ready HTML for a blog post, including
  * SEO meta tags and structured data.
  */
-export function renderShopifyHtml(post: BlogPost): string {
-  const bodyHtml = markdownToHtml(post.markdown || "");
+export async function renderShopifyHtml(post: BlogPost): Promise<string> {
+  let bodyHtml = markdownToHtml(post.markdown || "");
+  bodyHtml = await autoLinkProducts(bodyHtml);
 
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";
@@ -141,8 +177,9 @@ ${bodyHtml}`;
 /**
  * Generate a complete standalone HTML page for preview.
  */
-export function renderPreviewHtml(post: BlogPost): string {
-  const bodyHtml = markdownToHtml(post.markdown || "");
+export async function renderPreviewHtml(post: BlogPost): Promise<string> {
+  let bodyHtml = markdownToHtml(post.markdown || "");
+  bodyHtml = await autoLinkProducts(bodyHtml);
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";
 

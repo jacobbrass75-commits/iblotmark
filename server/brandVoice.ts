@@ -150,6 +150,7 @@ ${productDetails}
 - Use the H2 heading provided
 - Integrate keywords naturally — never stuff them
 - If products are listed, work them into the narrative as solutions
+- When mentioning a specific product, ALWAYS link to it using markdown: [Product Name](https://iboltmounts.com/products/product-handle)
 - Match the iBolt brand voice exactly`;
 }
 
