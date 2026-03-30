@@ -72,6 +72,7 @@ ${BRAND_VOICE.traits.map((t) => `- ${t}`).join("\n")}
 
 ### Writing Rules
 - Target ${BRAND_VOICE.targetWordCount.min}-${BRAND_VOICE.targetWordCount.max} words per post
+- NEVER use em dashes (—) or en dashes (–). Use commas, periods, semicolons, or colons instead.
 - NEVER use these phrases: ${BRAND_VOICE.bannedPhrases.map((p) => `"${p}"`).join(", ")}
 - Use invitational CTAs like: ${BRAND_VOICE.preferredCTAs.slice(0, 3).map((c) => `"${c}"`).join(", ")}
 - Open with a relatable scenario that makes readers feel understood
