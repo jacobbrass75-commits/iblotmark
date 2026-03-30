@@ -14,6 +14,7 @@ import { db } from "./db";
 import { eq } from "drizzle-orm";
 import { generationBatches, keywordClusters, blogPosts } from "@shared/schema";
 import { autoLinkProducts } from "./htmlRenderer";
+import JSZip from "jszip";
 
 export function registerBlogRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
@@ -246,6 +247,53 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       const html = await renderShopifyHtml(post);
       res.setHeader("Content-Disposition", `attachment; filename="${post.slug}.html"`);
       res.type("html").send(html);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // GET /api/blog/export/zip — Download all posts as a ZIP of HTML files
+  router.get("/export/zip", async (req: Request, res: Response) => {
+    try {
+      const status = req.query.status as string | undefined;
+      // If no status specified, get review + approved posts
+      const statuses = status ? [status] : ["review", "approved"];
+      let allPosts: any[] = [];
+      for (const s of statuses) {
+        const posts = await getBlogPosts(s);
+        allPosts.push(...posts);
+      }
+
+      if (allPosts.length === 0) {
+        return res.status(404).json({ error: "No posts found to export" });
+      }
+
+      const zip = new JSZip();
+
+      for (const post of allPosts) {
+        const html = await renderShopifyHtml(post);
+        const preview = await renderPreviewHtml(post);
+
+        // Shopify-ready HTML (just the body)
+        zip.file(`shopify/${post.slug}.html`, html);
+        // Full preview HTML (standalone page)
+        zip.file(`preview/${post.slug}.html`, preview);
+        // Markdown source
+        zip.file(`markdown/${post.slug}.md`, post.markdown || "");
+      }
+
+      // Add an index file
+      const index = allPosts.map((p: any) =>
+        `${p.title}\n  Slug: ${p.slug}\n  Score: ${p.overallScore}/100\n  Words: ${p.wordCount}\n  Status: ${p.status}\n  Meta: ${p.metaTitle}\n  Desc: ${p.metaDescription}\n`
+      ).join("\n");
+      zip.file("index.txt", `iBolt Blog Export — ${new Date().toISOString().slice(0, 10)}\n${allPosts.length} posts\n\n${index}`);
+
+      const zipBuffer = await zip.generateAsync({ type: "nodebuffer" });
+      const filename = `ibolt-blog-export-${new Date().toISOString().slice(0, 10)}.zip`;
+
+      res.setHeader("Content-Type", "application/zip");
+      res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+      res.send(zipBuffer);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
