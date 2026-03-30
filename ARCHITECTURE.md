@@ -1,6 +1,6 @@
 # iBolt Blog Generator — Architecture Reference
 
-Last verified against the live codebase on 2026-03-30.
+Last verified against the live codebase on 2026-03-30 (Phase 4 complete).
 
 ## Overview
 
@@ -58,19 +58,41 @@ ibolt-blog-generator/
 │   ├── contextRoutes.ts        # /api/blog/context/* (SSE streaming)
 │   ├── keywordManager.ts       # CSV import, scoring, LLM clustering
 │   ├── keywordRoutes.ts        # /api/blog/keywords/*
-│   └── iboltResearchAgent.ts   # Reddit/YouTube/web research orchestrator
+│   ├── iboltResearchAgent.ts   # Reddit/YouTube/web research orchestrator
+│   ├── blogPipeline.ts         # 4-phase: Planner → Writer → Stitcher → Verifier
+│   ├── blogRoutes.ts           # /api/blog/generate, /posts/* (SSE)
+│   ├── htmlRenderer.ts         # Markdown → Shopify-ready HTML + preview
+│   ├── productScraper.ts       # Shopify /products.json scraper + vertical mapping
+│   └── productRoutes.ts        # /api/blog/products/*
 │
 ├── shared/
 │   ├── schema.ts               # ALL Drizzle table definitions + Zod schemas (1081 lines)
 │   └── annotationLinks.ts      # Position mapping utilities
 │
 ├── client/src/
-│   ├── App.tsx                 # Wouter routes, lazy page loading, ProtectedRoute
-│   ├── main.tsx                # React entry + QueryClient + ClerkProvider
-│   ├── pages/                  # Home, Chat, WritingPage, Projects, WebClips, etc.
+│   ├── App.tsx                 # Wouter routes, lazy page loading
+│   ├── main.tsx                # React entry + QueryClient (no Clerk — internal tool)
+│   ├── pages/
+│   │   ├── # ── ScholarMark (original) ──
+│   │   ├── Home.tsx, Chat.tsx, WritingPage.tsx, Projects.tsx, WebClips.tsx, etc.
+│   │   ├── # ── iBolt Blog ──
+│   │   ├── BlogDashboard.tsx   # /blog — stats, recent posts, quick actions
+│   │   ├── KeywordManager.tsx  # /blog/keywords — CSV import, table, clustering
+│   │   ├── BatchGenerator.tsx  # /blog/generate — cluster selection, SSE progress
+│   │   ├── PostReview.tsx      # /blog/posts/:id — editor, scores, HTML export
+│   │   ├── IndustryContext.tsx  # /blog/context — vertical browser, research triggers
+│   │   └── ProductCatalog.tsx  # /blog/products — product grid, scrape, mapping
+│   ├── hooks/
+│   │   ├── # ── ScholarMark ──
+│   │   ├── useProjects.ts, useChat.ts, useWriting.ts, etc.
+│   │   ├── # ── iBolt Blog ──
+│   │   ├── useBlogPipeline.ts  # SSE streaming for blog generation
+│   │   ├── useBlogPosts.ts     # Blog post CRUD queries
+│   │   ├── useKeywords.ts      # Keyword/cluster/import queries + mutations
+│   │   ├── useVerticals.ts     # Vertical/context entry queries + mutations
+│   │   └── useProducts.ts      # Product queries + scrape/map mutations
 │   ├── components/             # 60+ shadcn/ui + feature components
-│   ├── hooks/                  # React Query hooks (useProjects, useChat, useWriting, etc.)
-│   └── lib/                    # Auth helpers, queryClient, documentExport
+│   └── lib/                    # queryClient, auth (stubbed — no login), exports
 │
 ├── data/
 │   └── sourceannotator.db      # SQLite database file
@@ -168,28 +190,15 @@ api_keys, mcp_oauth_clients, mcp_auth_codes, mcp_tokens, analytics_tool_calls, a
 
 ## Authentication
 
-### 3 Auth Methods
+**Auth is disabled** — this is an internal tool. Clerk has been removed from both client and server.
 
-1. **Clerk OAuth** — Primary. Global middleware extracts userId → resolves to local DB user with tier
-2. **API Key** (`sk_sm_*` prefix) — SHA256 hashed, validated against api_keys table
-3. **JWT** — Signed with JWT_SECRET, contains userId + email + tier
+- `configureClerk()` skips middleware when no `CLERK_PUBLISHABLE_KEY` is set
+- `client/src/lib/auth.ts` returns a permanent max-tier local admin user
+- `client/src/main.tsx` renders without ClerkProvider
+- `ProtectedRoute` is a passthrough (renders children directly)
+- All `/api/blog/*` routes are fully open
 
-### Auth Bypass (auth.ts:shouldBypassClerk)
-
-| Condition | Bypasses Clerk? |
-|---|---|
-| `/api/blog/*` routes | Yes — iBolt blog routes are a local tool |
-| `sk_sm_*` / `mcp_sm_*` bearer token | Yes — API key auth handled separately |
-| Valid JWT structure | Yes — JWT auth handled separately |
-| Everything else | No — Clerk middleware runs |
-
-### Tier System
-
-| Tier | Tokens/mo | Storage | Access |
-|---|---|---|---|
-| free | 50K | 50 MB | Documents, annotations |
-| pro | 500K | 500 MB | + Chat, writing pipeline |
-| max | 2M | 5 GB | Full access |
+The original Clerk auth code remains in `server/auth.ts` and can be re-enabled by setting `CLERK_PUBLISHABLE_KEY` in `.env`.
 
 ---
 
@@ -437,16 +446,22 @@ export function useCreateProject() {
 | POST | /api/blog/context/research/vertical/:id | Research single vertical (SSE) |
 | GET | /api/blog/context/research/jobs | Research job history |
 
-### Planned (Phase 3+)
+### Blog Generation & Products
 
 | Method | Path | Purpose |
 |---|---|---|
-| POST | /api/blog/generate | Generate post from cluster (SSE) |
-| POST | /api/blog/generate/batch | Batch generate multiple posts |
-| GET | /api/blog/posts | List generated posts |
-| GET/PATCH | /api/blog/posts/:id | Get/update post |
-| POST | /api/blog/products/scrape | Scrape iboltmounts.com catalog |
-| GET | /api/blog/products | List products |
+| POST | /api/blog/generate | Generate single post from cluster (SSE) |
+| POST | /api/blog/generate/batch | Batch generate from multiple clusters (SSE) |
+| GET | /api/blog/posts | List all blog posts (?status=) |
+| GET | /api/blog/posts/:id | Get single post with scores |
+| PATCH | /api/blog/posts/:id | Update post (edit markdown, change status) |
+| GET | /api/blog/posts/:id/html | Get Shopify-ready HTML |
+| GET | /api/blog/posts/:id/preview | Full preview HTML page with scores |
+| GET | /api/blog/batches | List generation batch history |
+| POST | /api/blog/products/scrape | Scrape iboltmounts.com product catalog |
+| POST | /api/blog/products/map-verticals | AI-map products to verticals |
+| GET | /api/blog/products | List products (?verticalId=) |
+| GET | /api/blog/products/stats | Product count + last scrape time |
 
 ---
 
@@ -459,7 +474,7 @@ export function useCreateProject() {
 | drizzle-orm + drizzle-zod | Type-safe ORM + validation |
 | @anthropic-ai/sdk | Claude AI (writing, clustering, research extraction) |
 | openai | Legacy GPT-4o-mini annotations + embeddings |
-| @clerk/express | Authentication |
+| @clerk/express | Authentication (disabled — internal tool) |
 | multer | File upload handling |
 | pdf-parse | PDF text extraction |
 | youtube-transcript | YouTube transcript fetching |
@@ -473,11 +488,25 @@ export function useCreateProject() {
 
 ---
 
-## Current State (Phase 2 complete)
+## Client Pages (Phase 4)
+
+| Route | Page | Purpose |
+|---|---|---|
+| /blog | BlogDashboard | Stats cards, recent posts, cluster overview, quick action buttons |
+| /blog/keywords | KeywordManager | CSV upload, keyword table sorted by opportunity, AI clustering trigger, cluster cards |
+| /blog/generate | BatchGenerator | Cluster selection with checkboxes, single/batch generate, SSE progress bar |
+| /blog/posts/:id | PostReview | Verification score bars, SEO meta display, markdown editor, HTML preview, approve button |
+| /blog/context | IndustryContext | Vertical sidebar, context entries with category filters, verify/delete, research triggers |
+| /blog/products | ProductCatalog | Product grid with images, vertical filter pills, search, scrape/map buttons |
+
+## Current State (Phase 4 complete)
 
 - **46 keywords** imported, scored, and clustered into **13 blog topics**
 - **299 context entries** across all 12 verticals (48 seeds + 251 from Reddit research)
+- **340 products** scraped from iboltmounts.com with **710 vertical mappings**
+- **2 blog posts generated** (credits ran out mid-batch; 86/100 avg score)
 - **36 research jobs** completed, 0 failures
-- **4 prompt builders** ready for the blog generation pipeline
+- **6 UI pages** live at /blog/* with full CRUD and SSE streaming
+- **Auth disabled** — Clerk removed, all routes open (internal tool)
 - **All API endpoints** live on port 5001
-- **Next**: Phase 3 — blogPipeline.ts, htmlRenderer.ts, productScraper.ts
+- **Next**: Phase 5 — research agent + scheduled automation (Ruflo integration)
