@@ -127,6 +127,11 @@ function extractBearerToken(req: Request): string | null {
 }
 
 function shouldBypassClerk(req: Request): boolean {
+  // iBolt blog generation routes don't need Clerk auth (local tool)
+  if (req.path.startsWith("/api/blog")) {
+    return true;
+  }
+
   const token = extractBearerToken(req);
   if (!token) {
     return false;

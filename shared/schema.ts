@@ -773,3 +773,309 @@ export const ocrPageResults = sqliteTable("ocr_page_results", {
   uniqueIndex("idx_ocr_page_results_job_page").on(table.jobId, table.pageNumber),
 ]);
 
+// === iBOLT BLOG GENERATION TABLES ===
+
+// Industry verticals (12 categories)
+export const industryVerticals = sqliteTable("industry_verticals", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  name: text("name").notNull().unique(),
+  slug: text("slug").notNull().unique(),
+  description: text("description"),
+  terminology: text("terminology", { mode: "json" }).$type<string[]>(),
+  painPoints: text("pain_points", { mode: "json" }).$type<string[]>(),
+  useCases: text("use_cases", { mode: "json" }).$type<string[]>(),
+  regulations: text("regulations", { mode: "json" }).$type<string[]>(),
+  seasonalRelevance: text("seasonal_relevance"),
+  compatibleDevices: text("compatible_devices", { mode: "json" }).$type<string[]>(),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertIndustryVerticalSchema = createInsertSchema(industryVerticals).omit({
+  id: true, createdAt: true, updatedAt: true,
+});
+export type InsertIndustryVertical = z.infer<typeof insertIndustryVerticalSchema>;
+export type IndustryVertical = typeof industryVerticals.$inferSelect;
+
+// Context entries (industry knowledge bank)
+export const contextEntries = sqliteTable("context_entries", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  verticalId: text("vertical_id").notNull().references(() => industryVerticals.id, { onDelete: "cascade" }),
+  category: text("category").notNull(), // "terminology" | "use_case" | "pain_point" | "regulation" | "trend" | "competitor" | "user_language"
+  content: text("content").notNull(),
+  sourceType: text("source_type").notNull().default("seed"), // "seed" | "youtube" | "reddit" | "web" | "manual"
+  sourceUrl: text("source_url"),
+  confidence: real("confidence").notNull().default(1.0),
+  isVerified: integer("is_verified", { mode: "boolean" }).default(true).notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertContextEntrySchema = createInsertSchema(contextEntries).omit({
+  id: true, createdAt: true,
+});
+export type InsertContextEntry = z.infer<typeof insertContextEntrySchema>;
+export type ContextEntry = typeof contextEntries.$inferSelect;
+
+// Keyword imports (CSV upload batch tracking) — declared before keywords so FK reference works
+export const keywordImports = sqliteTable("keyword_imports", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  filename: text("filename").notNull(),
+  totalKeywords: integer("total_keywords").default(0),
+  newKeywords: integer("new_keywords").default(0),
+  duplicateKeywords: integer("duplicate_keywords").default(0),
+  importedAt: integer("imported_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertKeywordImportSchema = createInsertSchema(keywordImports).omit({
+  id: true, importedAt: true,
+});
+export type InsertKeywordImport = z.infer<typeof insertKeywordImportSchema>;
+export type KeywordImport = typeof keywordImports.$inferSelect;
+
+// Keyword clusters (groups of related keywords) — declared before keywords so FK reference works
+export const keywordClusters = sqliteTable("keyword_clusters", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  name: text("name").notNull(),
+  primaryKeyword: text("primary_keyword").notNull(),
+  verticalId: text("vertical_id").references(() => industryVerticals.id, { onDelete: "set null" }),
+  totalVolume: integer("total_volume").default(0),
+  avgDifficulty: real("avg_difficulty").default(0),
+  priority: real("priority").default(0),
+  status: text("status").notNull().default("pending"), // "pending" | "generating" | "generated" | "published"
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertKeywordClusterSchema = createInsertSchema(keywordClusters).omit({
+  id: true, createdAt: true,
+});
+export type InsertKeywordCluster = z.infer<typeof insertKeywordClusterSchema>;
+export type KeywordCluster = typeof keywordClusters.$inferSelect;
+
+// Keywords (from Ubersuggest CSV)
+export const keywords = sqliteTable("keywords", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  keyword: text("keyword").notNull(),
+  volume: integer("volume").default(0),
+  difficulty: integer("difficulty").default(0),
+  cpc: real("cpc").default(0),
+  opportunityScore: real("opportunity_score").default(0),
+  status: text("status").notNull().default("new"), // "new" | "clustered" | "assigned" | "generated" | "published"
+  clusterId: text("cluster_id").references(() => keywordClusters.id, { onDelete: "set null" }),
+  importId: text("import_id").references(() => keywordImports.id, { onDelete: "set null" }),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertKeywordSchema = createInsertSchema(keywords).omit({
+  id: true, createdAt: true, opportunityScore: true,
+});
+export type InsertKeyword = z.infer<typeof insertKeywordSchema>;
+export type Keyword = typeof keywords.$inferSelect;
+
+// Products (scraped from iboltmounts.com)
+export const products = sqliteTable("ibolt_products", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  shopifyId: text("shopify_id").unique(),
+  title: text("title").notNull(),
+  handle: text("handle").notNull(),
+  description: text("description"),
+  productType: text("product_type"),
+  vendor: text("vendor"),
+  tags: text("tags", { mode: "json" }).$type<string[]>(),
+  imageUrl: text("image_url"),
+  price: text("price"),
+  url: text("url"),
+  scrapedAt: integer("scraped_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertProductSchema = createInsertSchema(products).omit({
+  id: true, scrapedAt: true, updatedAt: true,
+});
+export type InsertProduct = z.infer<typeof insertProductSchema>;
+export type Product = typeof products.$inferSelect;
+
+// Product-to-vertical mapping (many-to-many)
+export const productVerticals = sqliteTable("product_verticals", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  productId: text("product_id").notNull().references(() => products.id, { onDelete: "cascade" }),
+  verticalId: text("vertical_id").notNull().references(() => industryVerticals.id, { onDelete: "cascade" }),
+  relevanceScore: real("relevance_score").default(1.0),
+});
+
+export type ProductVertical = typeof productVerticals.$inferSelect;
+
+// Generation batches (batch job tracking) — declared before blogPosts so FK reference works
+export const generationBatches = sqliteTable("generation_batches", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  name: text("name"),
+  totalPosts: integer("total_posts").default(0),
+  completedPosts: integer("completed_posts").default(0),
+  failedPosts: integer("failed_posts").default(0),
+  status: text("status").notNull().default("pending"), // "pending" | "running" | "completed" | "failed"
+  startedAt: integer("started_at", { mode: "timestamp" }),
+  completedAt: integer("completed_at", { mode: "timestamp" }),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertGenerationBatchSchema = createInsertSchema(generationBatches).omit({
+  id: true, createdAt: true, completedPosts: true, failedPosts: true,
+});
+export type InsertGenerationBatch = z.infer<typeof insertGenerationBatchSchema>;
+export type GenerationBatch = typeof generationBatches.$inferSelect;
+
+// Blog posts (generated output)
+export const blogPosts = sqliteTable("blog_posts", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  title: text("title").notNull(),
+  slug: text("slug").notNull(),
+  metaTitle: text("meta_title"),
+  metaDescription: text("meta_description"),
+  markdown: text("markdown"),
+  html: text("html"),
+  clusterId: text("cluster_id").references(() => keywordClusters.id, { onDelete: "set null" }),
+  verticalId: text("vertical_id").references(() => industryVerticals.id, { onDelete: "set null" }),
+  batchId: text("batch_id").references(() => generationBatches.id, { onDelete: "set null" }),
+  status: text("status").notNull().default("draft"), // "draft" | "review" | "approved" | "published"
+  wordCount: integer("word_count").default(0),
+  // Verification scores (0-100)
+  brandConsistency: integer("brand_consistency"),
+  seoOptimization: integer("seo_optimization"),
+  naturalLanguage: integer("natural_language"),
+  factualAccuracy: integer("factual_accuracy"),
+  overallScore: integer("overall_score"),
+  verificationNotes: text("verification_notes"),
+  generatedAt: integer("generated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
+  id: true, generatedAt: true, updatedAt: true,
+});
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type BlogPost = typeof blogPosts.$inferSelect;
+
+// Blog post products (products mentioned in posts)
+export const blogPostProducts = sqliteTable("blog_post_products", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  blogPostId: text("blog_post_id").notNull().references(() => blogPosts.id, { onDelete: "cascade" }),
+  productId: text("product_id").notNull().references(() => products.id, { onDelete: "cascade" }),
+  mentionContext: text("mention_context"),
+});
+
+export type BlogPostProduct = typeof blogPostProducts.$inferSelect;
+
+// Research jobs (research agent job tracking)
+export const researchJobs = sqliteTable("research_jobs", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  verticalId: text("vertical_id").notNull().references(() => industryVerticals.id, { onDelete: "cascade" }),
+  sourceType: text("source_type").notNull(), // "youtube" | "reddit" | "web"
+  query: text("query").notNull(),
+  status: text("status").notNull().default("pending"), // "pending" | "running" | "completed" | "failed"
+  entriesFound: integer("entries_found").default(0),
+  error: text("error"),
+  startedAt: integer("started_at", { mode: "timestamp" }),
+  completedAt: integer("completed_at", { mode: "timestamp" }),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertResearchJobSchema = createInsertSchema(researchJobs).omit({
+  id: true, createdAt: true, entriesFound: true,
+});
+export type InsertResearchJob = z.infer<typeof insertResearchJobSchema>;
+export type ResearchJob = typeof researchJobs.$inferSelect;
+
+// === iBOLT BLOG RELATIONS ===
+
+export const industryVerticalsRelations = relations(industryVerticals, ({ many }) => ({
+  contextEntries: many(contextEntries),
+  keywordClusters: many(keywordClusters),
+  productVerticals: many(productVerticals),
+  blogPosts: many(blogPosts),
+  researchJobs: many(researchJobs),
+}));
+
+export const contextEntriesRelations = relations(contextEntries, ({ one }) => ({
+  vertical: one(industryVerticals, {
+    fields: [contextEntries.verticalId],
+    references: [industryVerticals.id],
+  }),
+}));
+
+export const keywordsRelations = relations(keywords, ({ one }) => ({
+  cluster: one(keywordClusters, {
+    fields: [keywords.clusterId],
+    references: [keywordClusters.id],
+  }),
+  kwImport: one(keywordImports, {
+    fields: [keywords.importId],
+    references: [keywordImports.id],
+  }),
+}));
+
+export const keywordClustersRelations = relations(keywordClusters, ({ one, many }) => ({
+  vertical: one(industryVerticals, {
+    fields: [keywordClusters.verticalId],
+    references: [industryVerticals.id],
+  }),
+  keywords: many(keywords),
+  blogPosts: many(blogPosts),
+}));
+
+export const keywordImportsRelations = relations(keywordImports, ({ many }) => ({
+  keywords: many(keywords),
+}));
+
+export const iboltProductsRelations = relations(products, ({ many }) => ({
+  productVerticals: many(productVerticals),
+  blogPostProducts: many(blogPostProducts),
+}));
+
+export const productVerticalsRelations = relations(productVerticals, ({ one }) => ({
+  product: one(products, {
+    fields: [productVerticals.productId],
+    references: [products.id],
+  }),
+  vertical: one(industryVerticals, {
+    fields: [productVerticals.verticalId],
+    references: [industryVerticals.id],
+  }),
+}));
+
+export const blogPostsRelations = relations(blogPosts, ({ one, many }) => ({
+  cluster: one(keywordClusters, {
+    fields: [blogPosts.clusterId],
+    references: [keywordClusters.id],
+  }),
+  vertical: one(industryVerticals, {
+    fields: [blogPosts.verticalId],
+    references: [industryVerticals.id],
+  }),
+  batch: one(generationBatches, {
+    fields: [blogPosts.batchId],
+    references: [generationBatches.id],
+  }),
+  blogPostProducts: many(blogPostProducts),
+}));
+
+export const blogPostProductsRelations = relations(blogPostProducts, ({ one }) => ({
+  blogPost: one(blogPosts, {
+    fields: [blogPostProducts.blogPostId],
+    references: [blogPosts.id],
+  }),
+  product: one(products, {
+    fields: [blogPostProducts.productId],
+    references: [products.id],
+  }),
+}));
+
+export const generationBatchesRelations = relations(generationBatches, ({ many }) => ({
+  blogPosts: many(blogPosts),
+}));
+
+export const researchJobsRelations = relations(researchJobs, ({ one }) => ({
+  vertical: one(industryVerticals, {
+    fields: [researchJobs.verticalId],
+    references: [industryVerticals.id],
+  }),
+}));
+

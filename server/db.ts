@@ -200,5 +200,174 @@ ensureColumn("conversations", "compaction_summary", "compaction_summary TEXT");
 ensureColumn("conversations", "compacted_at_turn", "compacted_at_turn INTEGER DEFAULT 0");
 ensureColumn("api_keys", "label", "label TEXT");
 
+// === iBOLT BLOG GENERATION TABLES ===
+
+sqlite.exec(`
+CREATE TABLE IF NOT EXISTS industry_verticals (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL UNIQUE,
+  slug TEXT NOT NULL UNIQUE,
+  description TEXT,
+  terminology TEXT,
+  pain_points TEXT,
+  use_cases TEXT,
+  regulations TEXT,
+  seasonal_relevance TEXT,
+  compatible_devices TEXT,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  updated_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000)
+);
+
+CREATE TABLE IF NOT EXISTS context_entries (
+  id TEXT PRIMARY KEY,
+  vertical_id TEXT NOT NULL,
+  category TEXT NOT NULL,
+  content TEXT NOT NULL,
+  source_type TEXT NOT NULL DEFAULT 'seed',
+  source_url TEXT,
+  confidence REAL NOT NULL DEFAULT 1.0,
+  is_verified INTEGER NOT NULL DEFAULT 1,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_context_entries_vertical ON context_entries(vertical_id);
+CREATE INDEX IF NOT EXISTS idx_context_entries_category ON context_entries(category);
+
+CREATE TABLE IF NOT EXISTS keyword_imports (
+  id TEXT PRIMARY KEY,
+  filename TEXT NOT NULL,
+  total_keywords INTEGER DEFAULT 0,
+  new_keywords INTEGER DEFAULT 0,
+  duplicate_keywords INTEGER DEFAULT 0,
+  imported_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000)
+);
+
+CREATE TABLE IF NOT EXISTS keyword_clusters (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  primary_keyword TEXT NOT NULL,
+  vertical_id TEXT,
+  total_volume INTEGER DEFAULT 0,
+  avg_difficulty REAL DEFAULT 0,
+  priority REAL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS keywords (
+  id TEXT PRIMARY KEY,
+  keyword TEXT NOT NULL,
+  volume INTEGER DEFAULT 0,
+  difficulty INTEGER DEFAULT 0,
+  cpc REAL DEFAULT 0,
+  opportunity_score REAL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'new',
+  cluster_id TEXT,
+  import_id TEXT,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (cluster_id) REFERENCES keyword_clusters(id) ON DELETE SET NULL,
+  FOREIGN KEY (import_id) REFERENCES keyword_imports(id) ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS idx_keywords_status ON keywords(status);
+CREATE INDEX IF NOT EXISTS idx_keywords_cluster ON keywords(cluster_id);
+
+CREATE TABLE IF NOT EXISTS ibolt_products (
+  id TEXT PRIMARY KEY,
+  shopify_id TEXT UNIQUE,
+  title TEXT NOT NULL,
+  handle TEXT NOT NULL,
+  description TEXT,
+  product_type TEXT,
+  vendor TEXT,
+  tags TEXT,
+  image_url TEXT,
+  price TEXT,
+  url TEXT,
+  scraped_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  updated_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000)
+);
+
+CREATE TABLE IF NOT EXISTS product_verticals (
+  id TEXT PRIMARY KEY,
+  product_id TEXT NOT NULL,
+  vertical_id TEXT NOT NULL,
+  relevance_score REAL DEFAULT 1.0,
+  FOREIGN KEY (product_id) REFERENCES ibolt_products(id) ON DELETE CASCADE,
+  FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS generation_batches (
+  id TEXT PRIMARY KEY,
+  name TEXT,
+  total_posts INTEGER DEFAULT 0,
+  completed_posts INTEGER DEFAULT 0,
+  failed_posts INTEGER DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'pending',
+  started_at INTEGER,
+  completed_at INTEGER,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000)
+);
+
+CREATE TABLE IF NOT EXISTS blog_posts (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  meta_title TEXT,
+  meta_description TEXT,
+  markdown TEXT,
+  html TEXT,
+  cluster_id TEXT,
+  vertical_id TEXT,
+  batch_id TEXT,
+  status TEXT NOT NULL DEFAULT 'draft',
+  word_count INTEGER DEFAULT 0,
+  brand_consistency INTEGER,
+  seo_optimization INTEGER,
+  natural_language INTEGER,
+  factual_accuracy INTEGER,
+  overall_score INTEGER,
+  verification_notes TEXT,
+  generated_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  updated_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (cluster_id) REFERENCES keyword_clusters(id) ON DELETE SET NULL,
+  FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE SET NULL,
+  FOREIGN KEY (batch_id) REFERENCES generation_batches(id) ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_status ON blog_posts(status);
+
+CREATE TABLE IF NOT EXISTS blog_post_products (
+  id TEXT PRIMARY KEY,
+  blog_post_id TEXT NOT NULL,
+  product_id TEXT NOT NULL,
+  mention_context TEXT,
+  FOREIGN KEY (blog_post_id) REFERENCES blog_posts(id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES ibolt_products(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS research_jobs (
+  id TEXT PRIMARY KEY,
+  vertical_id TEXT NOT NULL,
+  source_type TEXT NOT NULL,
+  query TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  entries_found INTEGER DEFAULT 0,
+  error TEXT,
+  started_at INTEGER,
+  completed_at INTEGER,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_research_jobs_status ON research_jobs(status);
+`);
+
+// Seed industry verticals on first run
+import { seedVerticals } from "./contextSeeds";
+seedVerticals().then((count) => {
+  if (count > 0) {
+    console.log(`[iBolt] Seeded ${count} industry verticals with context entries`);
+  }
+});
+
 // Export the raw sqlite connection for direct queries if needed
 export { sqlite };

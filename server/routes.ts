@@ -31,6 +31,8 @@ import { registerWritingRoutes } from "./writingRoutes";
 import { registerHumanizerRoutes } from "./humanizerRoutes";
 import { registerExtensionRoutes } from "./extensionRoutes";
 import { registerWebClipRoutes } from "./webClipRoutes";
+import { registerKeywordRoutes } from "./keywordRoutes";
+import { registerContextRoutes } from "./contextRoutes";
 import type { AnnotationCategory, InsertAnnotation } from "@shared/schema";
 import {
   createZipFromImageUploads,
@@ -863,6 +865,10 @@ export async function registerRoutes(
 
   // Register extension routes (Chrome extension API)
   registerExtensionRoutes(app);
+
+  // Register iBolt blog generation routes
+  registerKeywordRoutes(app);
+  registerContextRoutes(app);
 
   // Register A/B test routes
   // registerABTestRoutes(app); // TODO: Not implemented yet
