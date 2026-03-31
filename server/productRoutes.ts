@@ -3,6 +3,8 @@
 
 import { Router, type Request, type Response } from "express";
 import { scrapeProducts, mapProductsToVerticals, getProducts, getProductStats } from "./productScraper";
+import { db } from "./db";
+import { products } from "@shared/schema";
 
 export function registerProductRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
@@ -49,6 +51,30 @@ export function registerProductRoutes(app: { use: (path: string, router: Router)
     try {
       const stats = await getProductStats();
       res.json(stats);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/products — Manually add a product
+  router.post("/", async (req: Request, res: Response) => {
+    try {
+      const { title, handle, description, productType, vendor, price, url, imageUrl, tags } = req.body;
+      if (!title) return res.status(400).json({ error: "title is required" });
+
+      const [product] = await db.insert(products).values({
+        title,
+        handle: handle || title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        description: description || null,
+        productType: productType || null,
+        vendor: vendor || "iBolt",
+        price: price || null,
+        url: url || null,
+        imageUrl: imageUrl || null,
+        tags: tags || [],
+      }).returning();
+
+      res.json(product);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

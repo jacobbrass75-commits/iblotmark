@@ -15,6 +15,9 @@ import { eq } from "drizzle-orm";
 import { generationBatches, keywordClusters, blogPosts } from "@shared/schema";
 import { autoLinkProducts } from "./htmlRenderer";
 import JSZip from "jszip";
+import { writingQueue } from "./writingQueue";
+import { processCompetitorUrls, fetchCompetitorSitemap } from "./competitorScraper";
+import { createVerticalFromDescription, autoMapKeywordsToVerticals } from "./verticalCreator";
 
 export function registerBlogRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
@@ -294,6 +297,130 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       res.setHeader("Content-Type", "application/zip");
       res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
       res.send(zipBuffer);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // === WRITING QUEUE ===
+
+  // GET /api/blog/queue — Get current queue state
+  router.get("/queue", (_req: Request, res: Response) => {
+    res.json(writingQueue.getJobs());
+  });
+
+  // POST /api/blog/queue/add — Add a cluster to the generation queue
+  router.post("/queue/add", (req: Request, res: Response) => {
+    try {
+      const { clusterId, label } = req.body;
+      if (!clusterId) return res.status(400).json({ error: "clusterId required" });
+      const job = writingQueue.addJob(clusterId, label || "Blog post");
+      res.json(job);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/queue/add-batch — Add multiple clusters to queue
+  router.post("/queue/add-batch", (req: Request, res: Response) => {
+    try {
+      const { items } = req.body;
+      if (!items?.length) return res.status(400).json({ error: "items array required" });
+      const jobs = writingQueue.addJobs(items);
+      res.json(jobs);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // DELETE /api/blog/queue/:id — Remove a queued job
+  router.delete("/queue/:id", (req: Request, res: Response) => {
+    writingQueue.removeJob(req.params.id);
+    res.json({ ok: true });
+  });
+
+  // POST /api/blog/queue/clear — Clear completed/failed jobs
+  router.post("/queue/clear", (_req: Request, res: Response) => {
+    writingQueue.clearCompleted();
+    res.json({ ok: true });
+  });
+
+  // GET /api/blog/queue/stream — SSE stream of queue updates
+  router.get("/queue/stream", (req: Request, res: Response) => {
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive",
+    });
+
+    const unsubscribe = writingQueue.subscribe((jobs) => {
+      res.write(`data: ${JSON.stringify(jobs)}\n\n`);
+    });
+
+    // Send initial state
+    res.write(`data: ${JSON.stringify(writingQueue.getJobs())}\n\n`);
+
+    req.on("close", unsubscribe);
+  });
+
+  // === COMPETITOR SCRAPER ===
+
+  // POST /api/blog/competitor/analyze — Analyze competitor URLs
+  router.post("/competitor/analyze", async (req: Request, res: Response) => {
+    try {
+      const { urls } = req.body;
+      if (!urls?.length) return res.status(400).json({ error: "urls array required" });
+
+      res.writeHead(200, {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+      });
+
+      const result = await processCompetitorUrls(urls, (msg) => {
+        res.write(`data: ${JSON.stringify({ message: msg })}\n\n`);
+      });
+
+      res.write(`event: completed\ndata: ${JSON.stringify(result)}\n\n`);
+      res.end();
+    } catch (error: any) {
+      if (!res.headersSent) {
+        res.status(500).json({ error: error.message });
+      }
+    }
+  });
+
+  // POST /api/blog/competitor/sitemap — Fetch competitor blog URLs from sitemap
+  router.post("/competitor/sitemap", async (req: Request, res: Response) => {
+    try {
+      const { domain } = req.body;
+      if (!domain) return res.status(400).json({ error: "domain required" });
+      const urls = await fetchCompetitorSitemap(domain);
+      res.json({ domain, urls, count: urls.length });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // === AI VERTICAL CREATOR ===
+
+  // POST /api/blog/verticals/create-from-description — AI generates a full vertical
+  router.post("/verticals/create-from-description", async (req: Request, res: Response) => {
+    try {
+      const { description } = req.body;
+      if (!description) return res.status(400).json({ error: "description required" });
+      const vertical = await createVerticalFromDescription(description);
+      res.json(vertical);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/keywords/auto-map — Auto-map keywords to verticals
+  router.post("/keywords/auto-map", async (_req: Request, res: Response) => {
+    try {
+      const result = await autoMapKeywordsToVerticals();
+      res.json({ message: `Mapped ${result.mapped} keyword clusters to verticals`, ...result });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
