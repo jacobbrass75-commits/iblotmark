@@ -1,13 +1,14 @@
 # iBolt Blog Generator — Architecture Reference
 
-Last verified against the live codebase on 2026-03-30 (Phase 4 complete).
+Last verified against the live codebase on 2026-03-31 (Phase 4 complete, AI Search Optimization plan active).
 
 ## Overview
 
-Fork of **ScholarMark** (academic annotation platform) extended with an autonomous SEO blog generation system for **iBolt Mounts** (iboltmounts.com).
+Fork of **ScholarMark** (academic annotation platform) extended with an autonomous SEO blog generation system for **iBolt Mounts** (iboltmounts.com). The system now serves a dual purpose: generating SEO blog content AND executing a comprehensive AI Search Optimization strategy to increase iBolt's visibility in AI search engines (ChatGPT, Google AI Overviews, Perplexity).
 
-**Stack**: Express + TypeScript + SQLite/Drizzle ORM + React 18/Vite + Anthropic SDK + Clerk Auth
+**Stack**: Express + TypeScript + SQLite/Drizzle ORM + React 18/Vite + Anthropic SDK
 **Port**: 5001 (development)
+**Auth**: Disabled (internal tool, Clerk removed)
 
 ---
 
@@ -15,11 +16,11 @@ Fork of **ScholarMark** (academic annotation platform) extended with an autonomo
 
 ```
 ibolt-blog-generator/
-├── server/                     # Express backend (43 files)
+├── server/                     # Express backend (55+ files)
 │   ├── index.ts                # App startup, CORS, middleware chain
 │   ├── routes.ts               # Main route registration → sub-routers (877 lines)
 │   ├── db.ts                   # SQLite + Drizzle init, table creation, seeding
-│   ├── auth.ts                 # Clerk + API key + JWT auth, /api/blog bypass
+│   ├── auth.ts                 # Clerk + API key + JWT auth (disabled, all routes open)
 │   │
 │   ├── # ── Original ScholarMark ──
 │   ├── storage.ts              # Document CRUD
@@ -56,14 +57,26 @@ ibolt-blog-generator/
 │   ├── contextBanks.ts         # Context entry CRUD + formatContextForPrompt()
 │   ├── contextSeeds.ts         # 12 vertical seed data (48 initial entries)
 │   ├── contextRoutes.ts        # /api/blog/context/* (SSE streaming)
+│   ├── contextChunker.ts       # Context compaction + token budget management
 │   ├── keywordManager.ts       # CSV import, scoring, LLM clustering
 │   ├── keywordRoutes.ts        # /api/blog/keywords/*
-│   ├── iboltResearchAgent.ts   # Reddit/YouTube/web research orchestrator
+│   ├── iboltResearchAgent.ts   # Reddit/YouTube/web research orchestrator (18.5KB)
 │   ├── blogPipeline.ts         # 4-phase: Planner → Writer → Stitcher → Verifier
-│   ├── blogRoutes.ts           # /api/blog/generate, /posts/* (SSE)
-│   ├── htmlRenderer.ts         # Markdown → Shopify-ready HTML + preview
+│   ├── blogRoutes.ts           # /api/blog/generate, /posts, /export, /queue (SSE)
+│   ├── htmlRenderer.ts         # Markdown → Shopify-ready HTML + FAQ schema + preview
 │   ├── productScraper.ts       # Shopify /products.json scraper + vertical mapping
-│   └── productRoutes.ts        # /api/blog/products/*
+│   ├── productRoutes.ts        # /api/blog/products/*
+│   ├── photoBank.ts            # Product photo storage, AI vision analysis (GPT-4o)
+│   ├── photoSelector.ts        # AI photo selection + scoring for blog posts
+│   ├── photoRoutes.ts          # /api/blog/photos/*
+│   ├── catalogImporter.ts      # PDF catalog → product enrichment (3-tier matching)
+│   ├── catalogRoutes.ts        # /api/blog/catalog/*
+│   ├── competitorScraper.ts    # Competitor URL analysis + auto-queue generation
+│   ├── seoStrategy.ts          # SEO focus areas, comparison post specs, repositioning
+│   ├── verticalCreator.ts      # AI-generate verticals from description + auto-map
+│   ├── writingQueue.ts         # Queue management (max 3 concurrent, SSE updates)
+│   ├── scheduler.ts            # Autonomous batch: research/sync/generate/photos/chunks
+│   └── schedulerRoutes.ts      # /api/blog/scheduler/* (start/stop/trigger/config)
 │
 ├── shared/
 │   ├── schema.ts               # ALL Drizzle table definitions + Zod schemas (1081 lines)
@@ -499,7 +512,215 @@ export function useCreateProject() {
 | /blog/context | IndustryContext | Vertical sidebar, context entries with category filters, verify/delete, research triggers |
 | /blog/products | ProductCatalog | Product grid with images, vertical filter pills, search, scrape/map buttons |
 
-## Current State (Phase 4 complete)
+## Scheduler & Autonomous Orchestration
+
+### Architecture
+
+```
+Scheduler (server/scheduler.ts)
+  ├── Research Agent     (every 24h)  — Reddit/YouTube/web → context banks
+  ├── Product Sync       (every 12h)  — Shopify /products.json → product DB
+  ├── Photo Analysis     (every 6h)   — AI vision analysis of unanalyzed product photos
+  ├── Context Chunks     (every 12h)  — Rebuild token-budgeted context for section writing
+  └── Auto-Generate      (every 1h)   — Generate posts from pending clusters (max 3/run)
+```
+
+### API Endpoints
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | /api/blog/scheduler/status | Scheduler status + next run times |
+| POST | /api/blog/scheduler/start | Start with optional config |
+| POST | /api/blog/scheduler/stop | Stop scheduler |
+| PATCH | /api/blog/scheduler/config | Update intervals/settings |
+| POST | /api/blog/scheduler/trigger/{task} | Manual trigger (research, products, generate, photos, chunks) |
+
+### Manual Triggers
+
+- `triggerResearch()` — run research agents immediately
+- `triggerProductSync()` — re-scrape Shopify catalog
+- `triggerAutoGenerate()` — generate from pending clusters
+- `triggerPhotoAnalysis()` — analyze unanalyzed product photos
+- `triggerChunkRebuild()` — rebuild context chunks
+
+---
+
+## Photo Pipeline
+
+### Photo Bank (`server/photoBank.ts`)
+
+- Upload + storage with UUID filenames and thumbnails (300px wide, JPEG 80%)
+- Directory import (recursive, supports JPG/PNG/WebP/HEIC/TIFF/BMP)
+- AI vision analysis via GPT-4o: angle type, context type, setting, quality score, hero candidates
+- Auto-association: matches unassigned photos to products by filename + AI analysis
+
+### Photo Selector (`server/photoSelector.ts`)
+
+- Deterministic scoring: product relevance (+3), context type (+2 in-use, +1.5 lifestyle), vertical match (+2), quality score, hero bonus (+0.5), diversity penalty (-2)
+- Selects hero photo + one photo per section
+- Formats as markdown image references for stitcher
+
+### Database Tables
+
+| Table | Purpose |
+|---|---|
+| product_photos | Photo storage, AI analysis results, hero flags |
+| blog_post_photos | Photo selections per post (hero/inline/product-spotlight) |
+
+---
+
+## Catalog Importer (`server/catalogImporter.ts`)
+
+- PDF extraction via pdf-parse
+- AI product extraction (Claude identifies products + descriptions)
+- 3-tier matching: exact title (1.0) → contains/overlap (0.85) → Levenshtein similarity (threshold ≥ 0.6)
+- Enriches matched products with catalog descriptions and page references
+
+---
+
+## Competitor Analysis
+
+### Competitor Scraper (`server/competitorScraper.ts`)
+
+- Fetches competitor blog posts from URLs
+- Claude analyzes relevance to iBolt offerings
+- Creates keyword clusters for relevant competitor posts
+- Queues blog generation as response content
+
+### API Endpoints
+
+| Method | Path | Purpose |
+|---|---|---|
+| POST | /api/blog/competitor/analyze | Analyze competitor URLs (SSE) |
+| POST | /api/blog/competitor/sitemap | Fetch blog URLs from sitemap |
+
+### SEO Strategy (`server/seoStrategy.ts`)
+
+Maps directly to the AI Search Optimization execution plan:
+- **Repositioning goal**: "Budget RAM alternative" → "Purpose-built modular mounting system"
+- **6 priority focus areas**: Restaurant, Forklift, Modularity, Barcode Scanner, Truck/ELD, General
+- **6 comparison post specs** with target queries, competitor lists, and key angles
+- **Unique differentiators**: Tablet Tower, XL Barcode Scanner Mount, LockPro, 300+ modular parts
+
+---
+
+## Vertical Creator (`server/verticalCreator.ts`)
+
+- `createVerticalFromDescription()` — generates full vertical from natural language description (terminology, pain points, use cases, regulations, seed context entries)
+- `autoMapKeywordsToVerticals()` — Claude assigns unmapped keyword clusters to best-matching verticals
+
+---
+
+## Export & Shopify Integration
+
+### Export Formats
+
+| Method | Path | Output |
+|---|---|---|
+| GET | /api/blog/posts/:id/html | Shopify-ready HTML (copy/paste into Shopify editor) |
+| GET | /api/blog/posts/:id/preview | Standalone preview page with verification scores |
+| GET | /api/blog/export | JSON export of all approved posts |
+| GET | /api/blog/export/:id/html | Download single post HTML |
+| GET | /api/blog/export/zip | ZIP bundle (Shopify HTML + Preview + Markdown) |
+
+### HTML Renderer Features (`server/htmlRenderer.ts`)
+
+- Markdown → Shopify-ready HTML
+- FAQ structured data: extracts FAQ sections, generates JSON-LD `FAQPage` schema
+- Product auto-linking: scans for product title mentions, wraps with iboltmounts.com URLs
+- SEO meta tags in HTML comments (for Shopify)
+
+### Not Yet Implemented
+
+- Direct Shopify Admin API integration (publish, image upload)
+- Shopify collection page content creation via API
+- Auto-publish workflow
+
+---
+
+## Writing Queue (`server/writingQueue.ts`)
+
+- Max 3 concurrent blog generations
+- Job states: queued → running → completed/failed
+- SSE streaming of queue updates to client
+- Phase progress tracking (planner → writer → stitcher → verifier → save)
+- In-memory (not persisted across restarts)
+
+---
+
+## AI Search Optimization Execution Plan
+
+### Baseline (March 31, 2026)
+
+iBolt mentioned in **5 out of 12** query/platform combinations across ChatGPT and Perplexity.
+
+| Query | ChatGPT | Perplexity |
+|---|---|---|
+| Best forklift tablet mount | NOT mentioned | BEST OVERALL |
+| Best phone mount delivery drivers | NOT mentioned | NOT mentioned |
+| Best tablet mount warehouse | BEST OVERALL | Mentioned |
+| Best restaurant tablet mount | Mentioned (3rd) | NOT mentioned |
+| iBolt vs RAM Mount | "Cheaper option" | "Cheaper option" |
+| Best ELD mount for trucks | Mentioned (4th) | NOT mentioned |
+| Best heavy duty vehicle phone mount | NOT mentioned | NOT mentioned |
+
+### Repositioning Goal
+
+**FROM**: "iBOLT = cheaper/easier alternative to RAM"
+**TO**: "iBOLT = the modular, industrial-grade mounting system purpose-built for warehouses, forklifts, restaurants, and commercial fleets, with 300+ interchangeable parts"
+
+### Priority Focus Areas
+
+| Priority | Category | Why | Baseline Gap |
+|---|---|---|---|
+| 1 | Restaurant Mounts | Tablet Tower is unique, no competitor has multi-tablet system | 3rd on ChatGPT, invisible on Perplexity |
+| 2 | Forklift Mounts | New industrial solution launching, already #1 on Perplexity for warehouse | Not mentioned on ChatGPT for forklift queries |
+| 3 | Modularity | 300+ parts, industry-standard ball sizes, AI doesn't know about it | Not surfaced in any query |
+| 4 | Barcode Scanner Holders | Zero competition in AI search, blue ocean | No competitor mentioned anywhere |
+| 5 | Truck/ELD Mounts | Large market (ELD mandate), iBolt barely shows up | 4th on ChatGPT, invisible on Perplexity |
+
+### 4-Phase Execution Plan
+
+**Phase 1: Collection Page Content + FAQs** (Shopify theme edits)
+- Restaurant/POS collection pages
+- Forklift/material handling collection pages
+- Modularity/Build Your Own Mount page
+- Barcode scanner collection pages
+- Truck/fleet/ELD collection pages
+
+**Phase 2: Comparison Blog Posts** (generated by this tool)
+1. "Best Restaurant Tablet Mounts and POS Stands (2026 Comparison)"
+2. "Best Forklift Tablet Mounts for Warehouses (2026 Comparison)"
+3. "Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)"
+4. "iBOLT vs RAM Mount: Which Is Better? (2026)"
+5. "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)"
+6. "Why Modular Mounting Systems Beat One-Piece Mounts"
+
+**Phase 3: Update Existing Blog Posts** (Shopify blog updates)
+- Restaurant Tablet Holder (Feb 2023 → 2026)
+- How to Mount a Tablet to a Forklift Pillar (Jul 2023 → 2026)
+- How to Use iBOLT's Modular Mounting System (Feb 2024 → 2026)
+- Garmin GPS Mount Sizes (Apr 2022 → 2026)
+
+**Phase 4: Reframe "iBOLT vs RAM" Narrative** (cross-cutting)
+- Embed repositioning messaging in all content
+- Never use "budget," "affordable alternative," or "cheaper than RAM"
+- Frame as "specialist vs generalist" comparison
+
+### How This Tool Maps to Each Phase
+
+| Phase | Tool Capability | Status |
+|---|---|---|
+| Phase 1 (Collection Pages) | NOT directly supported; requires Shopify theme editing | Manual via Shopify admin |
+| Phase 2 (Comparison Posts) | Full pipeline support: keyword clusters → 4-phase generation → Shopify HTML export | Ready to generate |
+| Phase 3 (Update Existing) | Can generate replacement content; manual Shopify paste required | Ready to generate |
+| Phase 4 (Reframing) | Brand voice system enforces repositioning in ALL generated content | Already active |
+
+---
+
+## Current State (Phase 4 complete, AI Search Optimization active)
+
+### Infrastructure
 
 - **46 keywords** imported, scored, and clustered into **13 blog topics**
 - **299 context entries** across all 12 verticals (48 seeds + 251 from Reddit research)
@@ -509,4 +730,31 @@ export function useCreateProject() {
 - **6 UI pages** live at /blog/* with full CRUD and SSE streaming
 - **Auth disabled** — Clerk removed, all routes open (internal tool)
 - **All API endpoints** live on port 5001
-- **Next**: Phase 5 — research agent + scheduled automation (Ruflo integration)
+
+### AI Search Optimization Progress
+
+| # | Task | Status | Notes |
+|---|---|---|---|
+| 1 | Restaurant collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
+| 2 | Forklift collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
+| 3 | "Best Restaurant Tablet Mounts 2026" comparison post | NOT STARTED | Pipeline ready, needs keyword cluster |
+| 4 | "Best Forklift Tablet Mounts 2026" comparison post | NOT STARTED | Pipeline ready, needs keyword cluster |
+| 5 | Barcode scanner collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
+| 6 | "Best Barcode Scanner Mounts 2026" post | NOT STARTED | Pipeline ready, needs keyword cluster |
+| 7 | Modularity/Build Your Own Mount page content + FAQ | NOT STARTED | Requires Shopify theme editing |
+| 8 | "iBOLT vs RAM Mount 2026" comparison post | NOT STARTED | Pipeline ready, needs keyword cluster |
+| 9 | Update restaurant blog post (2023 → 2026) | NOT STARTED | Needs existing content pulled |
+| 10 | Update forklift blog post (2023 → 2026) | NOT STARTED | Needs existing content pulled |
+| 11 | Fleet/ELD collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
+| 12 | "Best ELD Mount for Trucks 2026" post | NOT STARTED | Pipeline ready, needs keyword cluster |
+| 13 | Update modularity blog post (2024 → 2026) | NOT STARTED | Needs existing content pulled |
+| 14 | "Modular Mounting Systems" thought leadership post | NOT STARTED | Pipeline ready, needs keyword cluster |
+| 15 | Remaining industry page enhancements | NOT STARTED | Lower priority |
+
+### Next Steps
+
+1. Seed keyword clusters targeting the 6 comparison post topics
+2. Seed competitor context entries (RAM, Bouncepad, Heckler, ProClip, Tackform, Arkon)
+3. Run blog pipeline to generate Phase 2 comparison posts
+4. Begin Phase 1 Shopify collection page edits (manual or via Shopify API integration)
+5. Re-run AI search baseline test in 4-6 weeks
