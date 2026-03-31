@@ -27,6 +27,8 @@ import {
   BRAND_VOICE,
 } from "./brandVoice";
 import { formatContextForPrompt } from "./contextBanks";
+import { buildSectionContext, compactContext, TOKEN_BUDGETS } from "./contextChunker";
+import { selectPhotosForPost, savePhotoSelections, formatPhotoPlacementsForPrompt, type PhotoSelection } from "./photoSelector";
 
 // --- Types ---
 
@@ -314,7 +316,19 @@ export async function runBlogPipeline(
     throw err;
   }
 
-  // Phase 2: Write sections
+  // Photo selection (after plan, before writing)
+  let photoSelections: PhotoSelection[] = [];
+  try {
+    const productIds = relevantProducts.map((p) => p.id);
+    photoSelections = await selectPhotosForPost(plan, vertical?.id || null, productIds, vertical?.slug || null);
+    if (photoSelections.length > 0) {
+      onEvent({ type: "status", phase: "photos", message: `Selected ${photoSelections.length} photos for post` });
+    }
+  } catch {
+    onEvent({ type: "status", phase: "photos", message: "Photo selection skipped (no analyzed photos)" });
+  }
+
+  // Phase 2: Write sections (with per-section context budgets)
   onEvent({ type: "status", phase: "writer", message: `Writing ${plan.sections.length} sections...` });
 
   const sectionContents: string[] = [];
@@ -323,7 +337,21 @@ export async function runBlogPipeline(
     onEvent({ type: "status", phase: "writer", message: `Writing section ${i + 1}/${plan.sections.length}: "${section.title}"` });
 
     try {
-      const content = await writeSection(client, plan, i, industryContext, productContext);
+      // Build per-section context with token budget
+      let sectionContext: string;
+      try {
+        sectionContext = await buildSectionContext(
+          section.keywords || [],
+          section.productMentions || [],
+          vertical?.id || null,
+          "sectionWriter",
+        );
+      } catch {
+        // Fallback to full context if chunker fails
+        sectionContext = compactContext(industryContext + "\n\n" + productContext, TOKEN_BUDGETS.sectionWriter);
+      }
+
+      const content = await writeSection(client, plan, i, sectionContext, productContext);
       sectionContents.push(content);
       onEvent({ type: "section", phase: "writer", sectionIndex: i, sectionTitle: section.title, sectionContent: content });
     } catch (err: any) {
@@ -332,11 +360,17 @@ export async function runBlogPipeline(
     }
   }
 
-  // Phase 3: Stitch
+  // Phase 3: Stitch (with photo placements)
   onEvent({ type: "status", phase: "stitcher", message: "Stitching sections into cohesive post..." });
 
   let markdown: string;
   try {
+    // Inject photo placements into stitcher if we have photos
+    const photoPrompt = formatPhotoPlacementsForPrompt(photoSelections);
+    if (photoPrompt) {
+      // Append photo instructions to the section block
+      sectionContents.push(photoPrompt);
+    }
     markdown = await runStitcher(client, plan, sectionContents);
     onEvent({ type: "stitched", phase: "stitcher", markdown, message: "Post stitched successfully" });
   } catch (err: any) {
@@ -434,6 +468,11 @@ export async function runBlogPipeline(
         });
       }
     }
+  }
+
+  // Save photo selections
+  if (photoSelections.length > 0) {
+    await savePhotoSelections(post.id, photoSelections);
   }
 
   // Update cluster status
