@@ -40,3 +40,6 @@ server/python/__pycache__/
 
 # Database
 data/
+ruflo/
+uploads/
+data/*.txt
