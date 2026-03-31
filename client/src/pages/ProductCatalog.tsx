@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { useProducts, useProductStats, useScrapeProducts, useMapVerticals } from "@/hooks/useProducts";
 import { useVerticals } from "@/hooks/useVerticals";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export default function ProductCatalog() {
   const [, setLocation] = useLocation();
@@ -17,6 +18,9 @@ export default function ProductCatalog() {
   const scrapeMutation = useScrapeProducts();
   const mapMutation = useMapVerticals();
   const [search, setSearch] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newProduct, setNewProduct] = useState({ title: "", handle: "", description: "", productType: "", price: "", url: "", imageUrl: "" });
+  const [addingProduct, setAddingProduct] = useState(false);
 
   const handleScrape = async () => {
     try {
@@ -50,6 +54,9 @@ export default function ProductCatalog() {
             <span className="text-sm text-muted-foreground">{stats?.count || 0} products</span>
           </div>
           <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => setShowAddForm(!showAddForm)}>
+              {showAddForm ? "Cancel" : "+ Add Product"}
+            </Button>
             <Button variant="outline" size="sm" onClick={handleScrape} disabled={scrapeMutation.isPending}>
               {scrapeMutation.isPending ? "Scraping..." : "Scrape Products"}
             </Button>
@@ -61,6 +68,38 @@ export default function ProductCatalog() {
       </header>
 
       <main className="flex-1 container mx-auto px-4 py-6 space-y-4">
+        {/* Manual product add form */}
+        {showAddForm && (
+          <Card className="border-primary/50">
+            <CardContent className="pt-4 space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Product title *" value={newProduct.title} onChange={(e) => setNewProduct({ ...newProduct, title: e.target.value })} />
+                <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Handle (auto from title)" value={newProduct.handle} onChange={(e) => setNewProduct({ ...newProduct, handle: e.target.value })} />
+                <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Product type" value={newProduct.productType} onChange={(e) => setNewProduct({ ...newProduct, productType: e.target.value })} />
+                <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Price" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} />
+                <input className="text-sm border rounded px-3 py-1.5 bg-transparent col-span-2" placeholder="Product URL" value={newProduct.url} onChange={(e) => setNewProduct({ ...newProduct, url: e.target.value })} />
+                <input className="text-sm border rounded px-3 py-1.5 bg-transparent col-span-2" placeholder="Image URL" value={newProduct.imageUrl} onChange={(e) => setNewProduct({ ...newProduct, imageUrl: e.target.value })} />
+              </div>
+              <textarea className="w-full text-sm border rounded p-2 bg-transparent min-h-[60px]" placeholder="Description" value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} />
+              <Button size="sm" disabled={addingProduct || !newProduct.title} onClick={async () => {
+                setAddingProduct(true);
+                try {
+                  await apiRequest("POST", "/api/blog/products", newProduct);
+                  toast({ title: "Product added" });
+                  setNewProduct({ title: "", handle: "", description: "", productType: "", price: "", url: "", imageUrl: "" });
+                  setShowAddForm(false);
+                  queryClient.invalidateQueries({ queryKey: ["/api/blog/products"] });
+                } catch (err: any) {
+                  toast({ title: "Error", description: err.message, variant: "destructive" });
+                }
+                setAddingProduct(false);
+              }}>
+                {addingProduct ? "Adding..." : "Add Product"}
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Filters */}
         <div className="flex gap-3 items-center">
           <input

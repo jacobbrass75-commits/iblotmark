@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { useVerticals, useContextEntries, useVerifyEntry, useDeleteEntry, useResearchJobs } from "@/hooks/useVerticals";
+import { useVerticals, useContextEntries, useVerifyEntry, useDeleteEntry, useAddContextEntry, useResearchJobs } from "@/hooks/useVerticals";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export default function IndustryContext() {
   const [, setLocation] = useLocation();
@@ -13,6 +14,15 @@ export default function IndustryContext() {
   const { data: jobs = [] } = useResearchJobs();
   const [selectedVertical, setSelectedVertical] = useState<string>("");
   const { data: entries = [] } = useContextEntries(selectedVertical);
+  // AI vertical creator
+  const [showCreator, setShowCreator] = useState(false);
+  const [creatorInput, setCreatorInput] = useState("");
+  const [creating, setCreating] = useState(false);
+  // Manual entry add
+  const [showAddEntry, setShowAddEntry] = useState(false);
+  const [newEntryCategory, setNewEntryCategory] = useState("use_case");
+  const [newEntryContent, setNewEntryContent] = useState("");
+  const addEntryMutation = useAddContextEntry();
   const verifyMutation = useVerifyEntry();
   const deleteMutation = useDeleteEntry();
   const [researchRunning, setResearchRunning] = useState(false);
@@ -100,13 +110,52 @@ export default function IndustryContext() {
             <Button variant="ghost" size="sm" onClick={() => setLocation("/blog")}>Back</Button>
             <h1 className="text-lg font-bold">Industry Context Banks</h1>
           </div>
+          <Button variant="outline" size="sm" onClick={() => setShowCreator(!showCreator)}>
+            {showCreator ? "Hide Creator" : "AI Create Vertical"}
+          </Button>
           <Button size="sm" onClick={runFullResearch} disabled={researchRunning}>
             {researchRunning ? researchStatus : "Research All Verticals"}
           </Button>
         </div>
       </header>
 
-      <main className="flex-1 container mx-auto px-4 py-6">
+      <main className="flex-1 container mx-auto px-4 py-6 space-y-4">
+        {/* AI Vertical Creator */}
+        {showCreator && (
+          <Card className="border-primary/50">
+            <CardHeader><CardTitle className="text-base">AI-Powered Vertical Creator</CardTitle></CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Describe a new industry vertical in a few lines. AI will generate the full vertical with terminology,
+                pain points, use cases, regulations, and initial context entries.
+              </p>
+              <textarea
+                className="w-full min-h-[100px] text-sm bg-transparent border rounded-lg p-3 resize-y focus:outline-none focus:ring-1 focus:ring-primary"
+                placeholder="e.g., Healthcare and medical facilities where tablets and phones need secure, sanitizable mounting for patient check-in kiosks, nurse workstations, and telemedicine carts..."
+                value={creatorInput}
+                onChange={(e) => setCreatorInput(e.target.value)}
+              />
+              <Button onClick={async () => {
+                if (!creatorInput.trim()) return;
+                setCreating(true);
+                try {
+                  const res = await apiRequest("POST", "/api/blog/verticals/create-from-description", { description: creatorInput });
+                  const vertical = await res.json();
+                  toast({ title: "Vertical Created", description: `"${vertical.name}" with context entries seeded` });
+                  setCreatorInput("");
+                  setShowCreator(false);
+                  queryClient.invalidateQueries({ queryKey: ["/api/blog/context/verticals"] });
+                } catch (err: any) {
+                  toast({ title: "Error", description: err.message, variant: "destructive" });
+                }
+                setCreating(false);
+              }} disabled={creating || !creatorInput.trim()}>
+                {creating ? "Generating..." : "Create Vertical with AI"}
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
         <div className="grid grid-cols-12 gap-6">
           {/* Vertical list */}
           <div className="col-span-4 space-y-2">
@@ -157,6 +206,46 @@ export default function IndustryContext() {
                     );
                   })}
                 </div>
+
+                {/* Manual add entry */}
+                <div className="flex gap-2">
+                  <Button variant="outline" size="sm" onClick={() => setShowAddEntry(!showAddEntry)}>
+                    {showAddEntry ? "Cancel" : "+ Add Entry"}
+                  </Button>
+                </div>
+
+                {showAddEntry && (
+                  <Card className="border-primary/30">
+                    <CardContent className="pt-3 space-y-2">
+                      <select
+                        className="w-full text-sm border rounded px-2 py-1 bg-transparent"
+                        value={newEntryCategory}
+                        onChange={(e) => setNewEntryCategory(e.target.value)}
+                      >
+                        {categories.map((c) => <option key={c} value={c}>{c.replace("_", " ")}</option>)}
+                      </select>
+                      <textarea
+                        className="w-full text-sm border rounded p-2 bg-transparent min-h-[60px] resize-y"
+                        placeholder="Enter context entry content..."
+                        value={newEntryContent}
+                        onChange={(e) => setNewEntryContent(e.target.value)}
+                      />
+                      <Button size="sm" onClick={async () => {
+                        if (!newEntryContent.trim()) return;
+                        try {
+                          await addEntryMutation.mutateAsync({ verticalId: selectedVertical, category: newEntryCategory, content: newEntryContent });
+                          setNewEntryContent("");
+                          setShowAddEntry(false);
+                          toast({ title: "Entry added" });
+                        } catch (err: any) {
+                          toast({ title: "Error", description: err.message, variant: "destructive" });
+                        }
+                      }} disabled={addEntryMutation.isPending}>
+                        Add Entry
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )}
 
                 {/* Entries */}
                 <div className="space-y-2">

@@ -47,6 +47,21 @@ export const BRAND_VOICE = {
     "in today's fast-paced world",
     "look no further",
     "without further ado",
+    "budget option",
+    "affordable alternative",
+    "cheaper than RAM",
+    "cost-effective alternative",
+    "economical choice",
+  ],
+
+  // SEO repositioning — embed in all content
+  keyMessaging: [
+    "300+ modular parts in industry-standard sizes",
+    "Purpose-built for specific industries, not generic mounts adapted for business",
+    "Industrial-grade: heavy-gauge steel, aluminum construction, powder coating",
+    "Compatible with industry-standard ball sizes (17mm, 20mm, 25mm/B size, 38mm/C size)",
+    "Ships within 24 business hours, 2-year warranty",
+    "Cross-compatible with RAM and other industry-standard mounts",
   ],
 
   // Preferred CTA language
@@ -65,7 +80,17 @@ export const BRAND_VOICE = {
 export function buildBrandVoicePrompt(): string {
   return `## iBolt Brand Voice Guidelines
 
-You are writing blog content for iBolt Mounts (iboltmounts.com), a leading provider of device mounting solutions across multiple industries.
+You are writing blog content for iBOLT Mounts (iboltmounts.com), the modular, industrial-grade mounting system purpose-built for warehouses, forklifts, restaurants, and commercial fleets, with 300+ interchangeable parts.
+
+### Brand Positioning (CRITICAL)
+- NEVER frame iBOLT as "budget," "affordable alternative," or "cheaper option" vs RAM or any competitor
+- Frame iBOLT as the SPECIALIST vs generalist competitors: "RAM tries to do everything. iBOLT focuses on business and industrial applications and does them better."
+- Emphasize: purpose-built for specific industries, 300+ modular parts, industrial-grade materials, cross-compatible with industry standards
+- Key differentiators: Tablet Tower (only multi-tablet restaurant solution), XL Barcode Scanner Mount (only purpose-built scanner holder), LockPro security system, Mount Configurator tool
+- Always use "iBOLT" (not "ibolt" or "Ibolt")
+
+### Key Facts to Weave In Naturally
+${BRAND_VOICE.keyMessaging.map((m) => `- ${m}`).join("\n")}
 
 ### Voice & Tone
 ${BRAND_VOICE.traits.map((t) => `- ${t}`).join("\n")}
