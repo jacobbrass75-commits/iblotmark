@@ -15,16 +15,20 @@ import { ResearchOrchestrator } from "./iboltResearchAgent";
 import { scrapeProducts, mapProductsToVerticals } from "./productScraper";
 import { runBlogPipeline } from "./blogPipeline";
 import { renderShopifyHtml } from "./htmlRenderer";
+import { batchAnalyzePhotos } from "./photoBank";
+import { rebuildContextChunks } from "./contextChunker";
 
 // --- Types ---
 
 export interface SchedulerConfig {
-  researchIntervalMs: number;     // How often to run research agents (default: 24h)
-  productSyncIntervalMs: number;  // How often to sync products (default: 12h)
-  autoGenerateIntervalMs: number; // How often to check for pending clusters (default: 1h)
+  researchIntervalMs: number;       // How often to run research agents (default: 24h)
+  productSyncIntervalMs: number;    // How often to sync products (default: 12h)
+  autoGenerateIntervalMs: number;   // How often to check for pending clusters (default: 1h)
+  photoAnalysisIntervalMs: number;  // How often to analyze unanalyzed photos (default: 6h)
+  chunkRebuildIntervalMs: number;   // How often to rebuild context chunks (default: 12h)
   enabled: boolean;
-  autoGenerate: boolean;          // Auto-generate posts for pending clusters
-  maxAutoPostsPerRun: number;     // Max posts to auto-generate per interval
+  autoGenerate: boolean;            // Auto-generate posts for pending clusters
+  maxAutoPostsPerRun: number;       // Max posts to auto-generate per interval
   researchSources: Array<"reddit" | "youtube" | "web">;
   researchConcurrency: number;
 }
@@ -52,6 +56,8 @@ const DEFAULT_CONFIG: SchedulerConfig = {
   researchIntervalMs: 24 * 60 * 60 * 1000,     // 24 hours
   productSyncIntervalMs: 12 * 60 * 60 * 1000,  // 12 hours
   autoGenerateIntervalMs: 60 * 60 * 1000,       // 1 hour
+  photoAnalysisIntervalMs: 6 * 60 * 60 * 1000,  // 6 hours
+  chunkRebuildIntervalMs: 12 * 60 * 60 * 1000,  // 12 hours
   enabled: false, // Must be explicitly enabled
   autoGenerate: false,
   maxAutoPostsPerRun: 3,
@@ -66,12 +72,18 @@ export class BlogScheduler {
   private researchTimer: ReturnType<typeof setInterval> | null = null;
   private productTimer: ReturnType<typeof setInterval> | null = null;
   private generateTimer: ReturnType<typeof setInterval> | null = null;
+  private photoTimer: ReturnType<typeof setInterval> | null = null;
+  private chunkTimer: ReturnType<typeof setInterval> | null = null;
   private lastResearch: Date | null = null;
   private lastProductSync: Date | null = null;
   private lastAutoGenerate: Date | null = null;
+  private lastPhotoAnalysis: Date | null = null;
+  private lastChunkRebuild: Date | null = null;
   private isResearching = false;
   private isSyncing = false;
   private isGenerating = false;
+  private isAnalyzingPhotos = false;
+  private isRebuildingChunks = false;
   private log: (msg: string) => void;
 
   constructor(config?: Partial<SchedulerConfig>) {
@@ -93,7 +105,11 @@ export class BlogScheduler {
       this.generateTimer = setInterval(() => this.runAutoGenerate(), this.config.autoGenerateIntervalMs);
     }
 
+    this.photoTimer = setInterval(() => this.runPhotoAnalysis(), this.config.photoAnalysisIntervalMs);
+    this.chunkTimer = setInterval(() => this.runChunkRebuild(), this.config.chunkRebuildIntervalMs);
+
     this.log(`Research every ${Math.round(this.config.researchIntervalMs / 3600000)}h, Product sync every ${Math.round(this.config.productSyncIntervalMs / 3600000)}h`);
+    this.log(`Photo analysis every ${Math.round(this.config.photoAnalysisIntervalMs / 3600000)}h, Chunk rebuild every ${Math.round(this.config.chunkRebuildIntervalMs / 3600000)}h`);
     if (this.config.autoGenerate) {
       this.log(`Auto-generate every ${Math.round(this.config.autoGenerateIntervalMs / 60000)}min (max ${this.config.maxAutoPostsPerRun} posts/run)`);
     }
@@ -104,6 +120,8 @@ export class BlogScheduler {
     if (this.researchTimer) { clearInterval(this.researchTimer); this.researchTimer = null; }
     if (this.productTimer) { clearInterval(this.productTimer); this.productTimer = null; }
     if (this.generateTimer) { clearInterval(this.generateTimer); this.generateTimer = null; }
+    if (this.photoTimer) { clearInterval(this.photoTimer); this.photoTimer = null; }
+    if (this.chunkTimer) { clearInterval(this.chunkTimer); this.chunkTimer = null; }
     this.log("Scheduler stopped");
   }
 
@@ -267,6 +285,50 @@ export class BlogScheduler {
     }
   }
 
+  async runPhotoAnalysis(): Promise<{ analyzed: number }> {
+    if (this.isAnalyzingPhotos) {
+      this.log("Photo analysis already in progress, skipping");
+      return { analyzed: 0 };
+    }
+
+    this.isAnalyzingPhotos = true;
+    this.log("Starting scheduled photo analysis...");
+
+    try {
+      const result = await batchAnalyzePhotos(30, (msg) => this.log(`  [photos] ${msg}`));
+      this.lastPhotoAnalysis = new Date();
+      this.log(`Photo analysis complete: ${result.analyzed} analyzed, ${result.failed} failed`);
+      return { analyzed: result.analyzed };
+    } catch (err: any) {
+      this.log(`Photo analysis failed: ${err.message}`);
+      return { analyzed: 0 };
+    } finally {
+      this.isAnalyzingPhotos = false;
+    }
+  }
+
+  async runChunkRebuild(): Promise<{ chunks: number }> {
+    if (this.isRebuildingChunks) {
+      this.log("Chunk rebuild already in progress, skipping");
+      return { chunks: 0 };
+    }
+
+    this.isRebuildingChunks = true;
+    this.log("Rebuilding context chunks...");
+
+    try {
+      const count = await rebuildContextChunks();
+      this.lastChunkRebuild = new Date();
+      this.log(`Chunk rebuild complete: ${count} chunks`);
+      return { chunks: count };
+    } catch (err: any) {
+      this.log(`Chunk rebuild failed: ${err.message}`);
+      return { chunks: 0 };
+    } finally {
+      this.isRebuildingChunks = false;
+    }
+  }
+
   // --- Manual triggers ---
 
   async triggerResearch(): Promise<{ entriesFound: number }> {
@@ -283,6 +345,14 @@ export class BlogScheduler {
     const result = await this.runAutoGenerate();
     this.config.autoGenerate = original;
     return result;
+  }
+
+  async triggerPhotoAnalysis(): Promise<{ analyzed: number }> {
+    return this.runPhotoAnalysis();
+  }
+
+  async triggerChunkRebuild(): Promise<{ chunks: number }> {
+    return this.runChunkRebuild();
   }
 }
 
