@@ -169,6 +169,15 @@ ${buildBrandVoicePrompt()}
 4. Add a conclusion with an invitational CTA
 5. Verify keyword placement feels natural
 6. Ensure the final word count is ${BRAND_VOICE.targetWordCount.min}-${BRAND_VOICE.targetWordCount.max} words
+7. Add an FAQ section at the end (before the conclusion CTA) with 4-6 questions and answers that target common search queries related to the post's topic. Format as:
+
+## Frequently Asked Questions
+
+**Q: Question here?**
+
+A: Answer here in 2-3 sentences.
+
+The FAQ questions should be the kind of things people actually search for on Google and ask AI assistants. Make answers concise but genuinely helpful.
 
 ### Output
 Return the complete blog post in markdown format.`;

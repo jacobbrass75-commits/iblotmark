@@ -119,6 +119,42 @@ function escapeAndFormat(text: string): string {
 }
 
 /**
+ * Extract FAQ questions and answers from markdown and generate JSON-LD schema.
+ */
+function extractFaqSchema(markdown: string): string {
+  const faqSection = markdown.match(/## Frequently Asked Questions[\s\S]*$/i);
+  if (!faqSection) return "";
+
+  const qaPairs: Array<{ question: string; answer: string }> = [];
+  const qaRegex = /\*\*Q:\s*(.+?)\?\*\*\s*\n+A:\s*(.+?)(?=\n\n\*\*Q:|\n##|$)/gi;
+  let match;
+
+  while ((match = qaRegex.exec(faqSection[0])) !== null) {
+    qaPairs.push({
+      question: match[1].trim() + "?",
+      answer: match[2].trim(),
+    });
+  }
+
+  if (qaPairs.length === 0) return "";
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": qaPairs.map((qa) => ({
+      "@type": "Question",
+      "name": qa.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": qa.answer,
+      },
+    })),
+  };
+
+  return `\n<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>`;
+}
+
+/**
  * Auto-link product mentions in HTML that aren't already wrapped in <a> tags.
  * Searches for known product titles and wraps them with links to iboltmounts.com.
  */
@@ -162,14 +198,18 @@ export async function renderShopifyHtml(post: BlogPost): Promise<string> {
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";
 
-  // Shopify blog HTML — just the article body.
+  // Extract FAQ schema from the HTML
+  const faqSchema = extractFaqSchema(post.markdown || "");
+
+  // Shopify blog HTML — article body + FAQ schema.
   // Meta tags are set separately in Shopify's blog post editor.
   const shopifyBody = `<!-- SEO Meta (set in Shopify) -->
 <!-- Title: ${metaTitle} -->
 <!-- Description: ${metaDescription} -->
 <!-- Slug: ${post.slug} -->
 
-${bodyHtml}`;
+${bodyHtml}
+${faqSchema}`;
 
   return shopifyBody;
 }
