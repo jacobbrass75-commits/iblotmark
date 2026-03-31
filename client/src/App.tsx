@@ -26,6 +26,8 @@ const BatchGenerator = lazy(() => import("@/pages/BatchGenerator"));
 const PostReview = lazy(() => import("@/pages/PostReview"));
 const IndustryContext = lazy(() => import("@/pages/IndustryContext"));
 const ProductCatalog = lazy(() => import("@/pages/ProductCatalog"));
+const CatalogImport = lazy(() => import("@/pages/CatalogImport"));
+const PhotoBank = lazy(() => import("@/pages/PhotoBank"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function RouteFallback() {
@@ -66,6 +68,8 @@ function Router() {
       <Route path="/blog/posts/:id">{() => <PostReview />}</Route>
       <Route path="/blog/context">{() => <IndustryContext />}</Route>
       <Route path="/blog/products">{() => <ProductCatalog />}</Route>
+      <Route path="/blog/catalog">{() => <CatalogImport />}</Route>
+      <Route path="/blog/photos">{() => <PhotoBank />}</Route>
       <Route component={NotFound} />
     </Switch>
   );
