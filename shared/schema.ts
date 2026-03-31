@@ -884,6 +884,11 @@ export const products = sqliteTable("ibolt_products", {
   imageUrl: text("image_url"),
   price: text("price"),
   url: text("url"),
+  // Catalog enrichment fields
+  catalogDescription: text("catalog_description"),
+  catalogPageRef: text("catalog_page_ref"),
+  hasPhotos: integer("has_photos", { mode: "boolean" }).default(false),
+  photoCount: integer("photo_count").default(0),
   scrapedAt: integer("scraped_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
 });
@@ -1076,6 +1081,142 @@ export const researchJobsRelations = relations(researchJobs, ({ one }) => ({
   vertical: one(industryVerticals, {
     fields: [researchJobs.verticalId],
     references: [industryVerticals.id],
+  }),
+}));
+
+// === PRODUCT INFO BANK + PICTURE BANK ===
+
+// Catalog imports (PDF import tracking)
+export const productCatalogImports = sqliteTable("product_catalog_imports", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  filename: text("filename").notNull(),
+  totalPages: integer("total_pages"),
+  extractedProducts: integer("extracted_products").default(0),
+  matchedProducts: integer("matched_products").default(0),
+  newProducts: integer("new_products").default(0),
+  status: text("status").notNull().default("pending"), // "pending" | "extracting" | "matching" | "completed" | "failed"
+  error: text("error"),
+  importedAt: integer("imported_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  completedAt: integer("completed_at", { mode: "timestamp" }),
+});
+
+export const insertCatalogImportSchema = createInsertSchema(productCatalogImports).omit({
+  id: true, importedAt: true, extractedProducts: true, matchedProducts: true, newProducts: true,
+});
+export type InsertCatalogImport = z.infer<typeof insertCatalogImportSchema>;
+export type CatalogImport = typeof productCatalogImports.$inferSelect;
+
+// Catalog extractions (AI-extracted products from PDF)
+export const productCatalogExtractions = sqliteTable("product_catalog_extractions", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  importId: text("import_id").notNull().references(() => productCatalogImports.id, { onDelete: "cascade" }),
+  extractedName: text("extracted_name").notNull(),
+  extractedDescription: text("extracted_description"),
+  pageNumber: integer("page_number"),
+  confidence: real("confidence").default(0.8),
+  matchedProductId: text("matched_product_id").references(() => products.id, { onDelete: "set null" }),
+  matchStatus: text("match_status").notNull().default("pending"), // "pending" | "matched" | "new" | "rejected"
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertCatalogExtractionSchema = createInsertSchema(productCatalogExtractions).omit({
+  id: true, createdAt: true, matchedProductId: true, matchStatus: true,
+});
+export type InsertCatalogExtraction = z.infer<typeof insertCatalogExtractionSchema>;
+export type CatalogExtraction = typeof productCatalogExtractions.$inferSelect;
+
+// Product photos (the Picture Bank)
+export const productPhotos = sqliteTable("product_photos", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  productId: text("product_id").references(() => products.id, { onDelete: "set null" }),
+  filename: text("filename").notNull(),
+  originalFilename: text("original_filename").notNull(),
+  mimeType: text("mime_type").notNull(),
+  fileSize: integer("file_size"),
+  filePath: text("file_path").notNull(),
+  thumbnailPath: text("thumbnail_path"),
+  width: integer("width"),
+  height: integer("height"),
+  // AI vision analysis
+  angleType: text("angle_type"), // "front" | "back" | "side" | "top" | "detail" | "full" | "in-use"
+  contextType: text("context_type"), // "studio" | "in-use" | "lifestyle" | "packaging" | "technical"
+  settingDescription: text("setting_description"),
+  qualityScore: real("quality_score"),
+  isHero: integer("is_hero", { mode: "boolean" }).default(false),
+  verticalRelevance: text("vertical_relevance", { mode: "json" }).$type<string[]>(),
+  aiAnalysis: text("ai_analysis", { mode: "json" }),
+  analyzedAt: integer("analyzed_at", { mode: "timestamp" }),
+  uploadedAt: integer("uploaded_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertProductPhotoSchema = createInsertSchema(productPhotos).omit({
+  id: true, uploadedAt: true, analyzedAt: true,
+});
+export type InsertProductPhoto = z.infer<typeof insertProductPhotoSchema>;
+export type ProductPhoto = typeof productPhotos.$inferSelect;
+
+// Blog post photos (photos selected for posts)
+export const blogPostPhotos = sqliteTable("blog_post_photos", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  blogPostId: text("blog_post_id").notNull().references(() => blogPosts.id, { onDelete: "cascade" }),
+  photoId: text("photo_id").notNull().references(() => productPhotos.id, { onDelete: "cascade" }),
+  sectionIndex: integer("section_index"),
+  placement: text("placement").notNull().default("inline"), // "hero" | "inline" | "product-spotlight"
+  altText: text("alt_text"),
+  caption: text("caption"),
+  selectionReason: text("selection_reason"),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export type BlogPostPhoto = typeof blogPostPhotos.$inferSelect;
+
+// Pre-chunked context for intelligent pipeline retrieval
+export const pipelineContextChunks = sqliteTable("pipeline_context_chunks", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  sourceType: text("source_type").notNull(), // "product" | "context_entry" | "catalog" | "research"
+  sourceId: text("source_id").notNull(),
+  chunkIndex: integer("chunk_index").notNull(),
+  chunkText: text("chunk_text").notNull(),
+  tokenEstimate: integer("token_estimate"),
+  verticalId: text("vertical_id").references(() => industryVerticals.id, { onDelete: "set null" }),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export type PipelineContextChunk = typeof pipelineContextChunks.$inferSelect;
+
+// === Phase 5 Relations ===
+
+export const catalogImportsRelations = relations(productCatalogImports, ({ many }) => ({
+  extractions: many(productCatalogExtractions),
+}));
+
+export const catalogExtractionsRelations = relations(productCatalogExtractions, ({ one }) => ({
+  import_: one(productCatalogImports, {
+    fields: [productCatalogExtractions.importId],
+    references: [productCatalogImports.id],
+  }),
+  matchedProduct: one(products, {
+    fields: [productCatalogExtractions.matchedProductId],
+    references: [products.id],
+  }),
+}));
+
+export const productPhotosRelations = relations(productPhotos, ({ one, many }) => ({
+  product: one(products, {
+    fields: [productPhotos.productId],
+    references: [products.id],
+  }),
+  blogPostPhotos: many(blogPostPhotos),
+}));
+
+export const blogPostPhotosRelations = relations(blogPostPhotos, ({ one }) => ({
+  blogPost: one(blogPosts, {
+    fields: [blogPostPhotos.blogPostId],
+    references: [blogPosts.id],
+  }),
+  photo: one(productPhotos, {
+    fields: [blogPostPhotos.photoId],
+    references: [productPhotos.id],
   }),
 }));
 

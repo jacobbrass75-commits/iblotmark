@@ -361,6 +361,96 @@ CREATE TABLE IF NOT EXISTS research_jobs (
 CREATE INDEX IF NOT EXISTS idx_research_jobs_status ON research_jobs(status);
 `);
 
+// === PRODUCT INFO BANK + PICTURE BANK TABLES ===
+
+sqlite.exec(`
+CREATE TABLE IF NOT EXISTS product_catalog_imports (
+  id TEXT PRIMARY KEY,
+  filename TEXT NOT NULL,
+  total_pages INTEGER,
+  extracted_products INTEGER DEFAULT 0,
+  matched_products INTEGER DEFAULT 0,
+  new_products INTEGER DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'pending',
+  error TEXT,
+  imported_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  completed_at INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS product_catalog_extractions (
+  id TEXT PRIMARY KEY,
+  import_id TEXT NOT NULL,
+  extracted_name TEXT NOT NULL,
+  extracted_description TEXT,
+  page_number INTEGER,
+  confidence REAL DEFAULT 0.8,
+  matched_product_id TEXT,
+  match_status TEXT NOT NULL DEFAULT 'pending',
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (import_id) REFERENCES product_catalog_imports(id) ON DELETE CASCADE,
+  FOREIGN KEY (matched_product_id) REFERENCES ibolt_products(id) ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS idx_catalog_extractions_import ON product_catalog_extractions(import_id);
+
+CREATE TABLE IF NOT EXISTS product_photos (
+  id TEXT PRIMARY KEY,
+  product_id TEXT,
+  filename TEXT NOT NULL,
+  original_filename TEXT NOT NULL,
+  mime_type TEXT NOT NULL,
+  file_size INTEGER,
+  file_path TEXT NOT NULL,
+  thumbnail_path TEXT,
+  width INTEGER,
+  height INTEGER,
+  angle_type TEXT,
+  context_type TEXT,
+  setting_description TEXT,
+  quality_score REAL,
+  is_hero INTEGER DEFAULT 0,
+  vertical_relevance TEXT,
+  ai_analysis TEXT,
+  analyzed_at INTEGER,
+  uploaded_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (product_id) REFERENCES ibolt_products(id) ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS idx_product_photos_product ON product_photos(product_id);
+
+CREATE TABLE IF NOT EXISTS blog_post_photos (
+  id TEXT PRIMARY KEY,
+  blog_post_id TEXT NOT NULL,
+  photo_id TEXT NOT NULL,
+  section_index INTEGER,
+  placement TEXT NOT NULL DEFAULT 'inline',
+  alt_text TEXT,
+  caption TEXT,
+  selection_reason TEXT,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (blog_post_id) REFERENCES blog_posts(id) ON DELETE CASCADE,
+  FOREIGN KEY (photo_id) REFERENCES product_photos(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS pipeline_context_chunks (
+  id TEXT PRIMARY KEY,
+  source_type TEXT NOT NULL,
+  source_id TEXT NOT NULL,
+  chunk_index INTEGER NOT NULL,
+  chunk_text TEXT NOT NULL,
+  token_estimate INTEGER,
+  vertical_id TEXT,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS idx_pipeline_chunks_source ON pipeline_context_chunks(source_type, source_id);
+CREATE INDEX IF NOT EXISTS idx_pipeline_chunks_vertical ON pipeline_context_chunks(vertical_id);
+`);
+
+// Extend products table with catalog enrichment columns
+ensureColumn("ibolt_products", "catalog_description", "catalog_description TEXT");
+ensureColumn("ibolt_products", "catalog_page_ref", "catalog_page_ref TEXT");
+ensureColumn("ibolt_products", "has_photos", "has_photos INTEGER DEFAULT 0");
+ensureColumn("ibolt_products", "photo_count", "photo_count INTEGER DEFAULT 0");
+
 // Seed industry verticals on first run
 import { seedVerticals } from "./contextSeeds";
 seedVerticals().then((count) => {
