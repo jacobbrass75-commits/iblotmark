@@ -1,0 +1,16 @@
+name = "iboltblog"
+client_id = "725e8a2aae03af58909170d0fa2cad38"
+application_url = "https://iboltmounts.com"
+embedded = false
+
+[access_scopes]
+scopes = "read_content,write_content,read_products,write_products,read_online_store_pages,write_online_store_pages"
+
+[access.admin]
+direct_api_mode = "offline"
+
+[auth]
+redirect_urls = ["https://iboltmounts.com/auth/callback"]
+
+[webhooks]
+api_version = "2025-01"

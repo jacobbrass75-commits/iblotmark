@@ -1,539 +1,239 @@
-// Shopify Publisher — Auto-upload blog posts to Shopify via REST Admin API
-// Uses client credentials grant (tokens expire every 24h, auto-refreshed).
+// Shopify Publisher — pushes blog posts and collection content to iboltmounts.myshopify.com
+// Uses Dev Dashboard app (iboltblog) with client credentials grant.
 
-import { db } from "./db";
-import { eq } from "drizzle-orm";
-import { blogPosts, type BlogPost } from "@shared/schema";
-import { renderShopifyHtml } from "./htmlRenderer";
-import { shopifyLimiter, cachedApiCall, cache } from "./apiCache";
+const SHOPIFY_SHOP = process.env.SHOPIFY_SHOP || "iboltmounts";
+const SHOPIFY_CLIENT_ID = process.env.SHOPIFY_CLIENT_ID || "";
+const SHOPIFY_CLIENT_SECRET = process.env.SHOPIFY_CLIENT_SECRET || "";
+const SHOPIFY_API_VERSION = "2025-01";
+const SHOPIFY_NEWS_BLOG_ID = 104843772196;
 
-// --- Configuration ---
+let cachedToken: string | null = null;
+let tokenExpiresAt = 0;
 
-const SHOPIFY_CONFIG = {
-  shop: "iboltmounts",
-  apiVersion: "2025-01",
-  blogId: 104843772196, // "News" blog
-  fishFinderBlogId: 110121517348, // "How to Mount a Fish Finder" blog
-};
+export async function getShopifyToken(): Promise<string> {
+  if (cachedToken && Date.now() < tokenExpiresAt - 60000) {
+    return cachedToken;
+  }
 
-function getShopifyCredentials() {
-  const clientId = process.env.SHOPIFY_CLIENT_ID;
-  const clientSecret = process.env.SHOPIFY_CLIENT_SECRET;
-  if (!clientId || !clientSecret) {
+  if (!SHOPIFY_CLIENT_ID || !SHOPIFY_CLIENT_SECRET) {
     throw new Error(
-      "Missing SHOPIFY_CLIENT_ID or SHOPIFY_CLIENT_SECRET environment variables"
+      "SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET must be set in environment"
     );
   }
-  return { clientId, clientSecret };
-}
 
-function getShopifyBaseUrl(): string {
-  return `https://${SHOPIFY_CONFIG.shop}.myshopify.com/admin/api/${SHOPIFY_CONFIG.apiVersion}`;
-}
-
-// --- Token Management ---
-
-let cachedToken: { accessToken: string; expiresAt: number } | null = null;
-
-/**
- * Get a Shopify access token via client credentials grant.
- * Caches the token for 23 hours (they expire at 24h).
- */
-export async function getShopifyToken(): Promise<string> {
-  const now = Date.now();
-
-  // Return cached token if still valid (with 1-hour buffer)
-  if (cachedToken && cachedToken.expiresAt > now) {
-    return cachedToken.accessToken;
-  }
-
-  const { clientId, clientSecret } = getShopifyCredentials();
-
-  console.log("[Shopify] Requesting new access token via client credentials grant...");
-
-  const tokenUrl = `https://${SHOPIFY_CONFIG.shop}.myshopify.com/admin/oauth/access_token`;
-
-  const response = await fetch(tokenUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      client_id: clientId,
-      client_secret: clientSecret,
-      grant_type: "client_credentials",
-    }),
-  });
+  const response = await fetch(
+    `https://${SHOPIFY_SHOP}.myshopify.com/admin/oauth/access_token`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        grant_type: "client_credentials",
+        client_id: SHOPIFY_CLIENT_ID,
+        client_secret: SHOPIFY_CLIENT_SECRET,
+      }).toString(),
+    }
+  );
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(
-      `[Shopify] Token request failed (${response.status}): ${errorText}`
-    );
+    throw new Error(`Shopify token request failed: ${response.status}`);
   }
 
-  const data = (await response.json()) as {
-    access_token: string;
-    scope: string;
-  };
-
-  // Cache for 23 hours (tokens expire at 24h)
-  cachedToken = {
-    accessToken: data.access_token,
-    expiresAt: now + 23 * 60 * 60 * 1000,
-  };
-
-  console.log("[Shopify] Access token acquired successfully.");
-  return cachedToken.accessToken;
+  const data = await response.json();
+  cachedToken = data.access_token;
+  tokenExpiresAt = Date.now() + (data.expires_in || 86400) * 1000;
+  return cachedToken!;
 }
 
-// --- Generic REST Wrapper ---
-
-interface ShopifyRestOptions {
-  method: "GET" | "POST" | "PUT" | "DELETE";
-  endpoint: string;
-  body?: Record<string, unknown>;
-  skipCache?: boolean;
-}
-
-/**
- * Generic Shopify REST API wrapper with auth + rate limiting via shopifyLimiter.
- */
-export async function shopifyREST<T = unknown>(
-  opts: ShopifyRestOptions
-): Promise<T> {
-  const { method, endpoint, body, skipCache = true } = opts;
-  const url = `${getShopifyBaseUrl()}${endpoint}`;
-  const cacheKey = `shopify:${method}:${endpoint}`;
-
-  return cachedApiCall<T>(
-    cacheKey,
-    async () => {
-      const token = await getShopifyToken();
-
-      const fetchOpts: RequestInit = {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-          "X-Shopify-Access-Token": token,
-        },
-      };
-
-      if (body && (method === "POST" || method === "PUT")) {
-        fetchOpts.body = JSON.stringify(body);
-      }
-
-      const response = await fetch(url, fetchOpts);
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        const error: any = new Error(
-          `[Shopify] ${method} ${endpoint} failed (${response.status}): ${errorText}`
-        );
-        error.status = response.status;
-        throw error;
-      }
-
-      // DELETE requests may return 200 with empty body
-      const text = await response.text();
-      if (!text) return {} as T;
-
-      return JSON.parse(text) as T;
+async function shopifyREST(
+  method: string,
+  endpoint: string,
+  body?: any
+): Promise<any> {
+  const token = await getShopifyToken();
+  const url = `https://${SHOPIFY_SHOP}.myshopify.com/admin/api/${SHOPIFY_API_VERSION}/${endpoint}`;
+  const opts: RequestInit = {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": token,
     },
-    { limiter: shopifyLimiter, skipCache }
-  );
+  };
+  if (body) opts.body = JSON.stringify(body);
+  const r = await fetch(url, opts);
+  if (!r.ok) {
+    const text = await r.text();
+    throw new Error(`Shopify API ${method} ${endpoint} failed: ${r.status} ${text}`);
+  }
+  if (method === "DELETE") return { success: true };
+  return await r.json();
 }
 
-// --- Article CRUD ---
+// --- Blog Post Operations ---
 
-interface ShopifyArticleInput {
-  title: string;
-  body_html: string;
-  tags?: string;
-  published?: boolean;
-  metafields?: Array<{
-    key: string;
-    value: string;
-    type: string;
-    namespace: string;
-  }>;
-}
-
-interface ShopifyArticle {
+export interface ShopifyArticle {
   id: number;
   title: string;
   body_html: string;
-  blog_id: number;
-  published_at: string | null;
+  published: boolean;
   tags: string;
-  created_at: string;
-  updated_at: string;
-  summary_html: string | null;
-  handle: string;
+  metafields?: Array<{
+    namespace: string;
+    key: string;
+    value: string;
+    type: string;
+  }>;
 }
 
-interface ShopifyArticleResponse {
-  article: ShopifyArticle;
-}
+export async function publishBlogPost(opts: {
+  title: string;
+  bodyHtml: string;
+  tags?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  published?: boolean;
+  blogId?: number;
+}): Promise<{ articleId: number; adminUrl: string }> {
+  const blogId = opts.blogId || SHOPIFY_NEWS_BLOG_ID;
+  const metafields: any[] = [];
 
-interface ShopifyArticlesListResponse {
-  articles: ShopifyArticle[];
-}
+  if (opts.metaTitle) {
+    metafields.push({
+      namespace: "global",
+      key: "title_tag",
+      value: opts.metaTitle,
+      type: "single_line_text_field",
+    });
+  }
+  if (opts.metaDescription) {
+    metafields.push({
+      namespace: "global",
+      key: "description_tag",
+      value: opts.metaDescription,
+      type: "single_line_text_field",
+    });
+  }
 
-/**
- * Create a draft article on a Shopify blog.
- */
-export async function createShopifyArticle(
-  blogId: number,
-  article: ShopifyArticleInput
-): Promise<ShopifyArticle> {
-  const metafields = article.metafields || [];
+  const result = await shopifyREST(
+    "POST",
+    `blogs/${blogId}/articles.json`,
+    {
+      article: {
+        title: opts.title,
+        body_html: opts.bodyHtml,
+        published: opts.published ?? false,
+        tags: opts.tags || "",
+        ...(metafields.length > 0 ? { metafields } : {}),
+      },
+    }
+  );
 
-  const payload: Record<string, unknown> = {
-    article: {
-      title: article.title,
-      body_html: article.body_html,
-      tags: article.tags || "",
-      published: article.published ?? false, // default to draft
-      metafields: metafields.length > 0 ? metafields : undefined,
-    },
+  const articleId = result.article.id;
+  return {
+    articleId,
+    adminUrl: `https://admin.shopify.com/store/${SHOPIFY_SHOP}/articles/${articleId}`,
   };
-
-  const result = await shopifyREST<ShopifyArticleResponse>({
-    method: "POST",
-    endpoint: `/blogs/${blogId}/articles.json`,
-    body: payload,
-  });
-
-  return result.article;
 }
 
-/**
- * Update an existing Shopify article.
- */
 export async function updateShopifyArticle(
-  blogId: number,
   articleId: number,
-  updates: Partial<ShopifyArticleInput>
-): Promise<ShopifyArticle> {
-  const payload: Record<string, unknown> = {
-    article: {
-      id: articleId,
-      ...updates,
-    },
-  };
+  updates: {
+    title?: string;
+    bodyHtml?: string;
+    tags?: string;
+    published?: boolean;
+  }
+): Promise<void> {
+  const article: any = { id: articleId };
+  if (updates.title !== undefined) article.title = updates.title;
+  if (updates.bodyHtml !== undefined) article.body_html = updates.bodyHtml;
+  if (updates.tags !== undefined) article.tags = updates.tags;
+  if (updates.published !== undefined) article.published = updates.published;
 
-  const result = await shopifyREST<ShopifyArticleResponse>({
-    method: "PUT",
-    endpoint: `/blogs/${blogId}/articles/${articleId}.json`,
-    body: payload,
-  });
-
-  return result.article;
+  await shopifyREST("PUT", `articles/${articleId}.json`, { article });
 }
 
-/**
- * Set a Shopify article to published.
- */
-export async function publishShopifyArticle(
-  blogId: number,
-  articleId: number
-): Promise<ShopifyArticle> {
-  return updateShopifyArticle(blogId, articleId, {
-    published: true,
-  });
+export async function deleteShopifyArticle(articleId: number): Promise<void> {
+  await shopifyREST("DELETE", `articles/${articleId}.json`);
 }
 
-/**
- * Fetch the current state of a Shopify article.
- */
-export async function getShopifyArticle(
-  blogId: number,
-  articleId: number
-): Promise<ShopifyArticle> {
-  const result = await shopifyREST<ShopifyArticleResponse>({
-    method: "GET",
-    endpoint: `/blogs/${blogId}/articles/${articleId}.json`,
-    skipCache: false,
-  });
-
-  return result.article;
-}
-
-/**
- * List all articles on a Shopify blog.
- */
 export async function listShopifyArticles(
-  blogId: number,
+  blogId?: number,
   limit = 50
 ): Promise<ShopifyArticle[]> {
-  const result = await shopifyREST<ShopifyArticlesListResponse>({
-    method: "GET",
-    endpoint: `/blogs/${blogId}/articles.json?limit=${limit}`,
-    skipCache: false,
-  });
-
+  const id = blogId || SHOPIFY_NEWS_BLOG_ID;
+  const result = await shopifyREST(
+    "GET",
+    `blogs/${id}/articles.json?limit=${limit}`
+  );
   return result.articles;
 }
 
-/**
- * List available Shopify blogs.
- */
-export async function listShopifyBlogs(): Promise<
+// --- Collection Operations ---
+
+export async function updateCollectionDescription(
+  collectionId: number,
+  bodyHtml: string
+): Promise<void> {
+  await shopifyREST("PUT", `custom_collections/${collectionId}.json`, {
+    custom_collection: { id: collectionId, body_html: bodyHtml },
+  });
+}
+
+export async function listCollections(): Promise<
   Array<{ id: number; title: string; handle: string }>
 > {
-  const result = await shopifyREST<{
-    blogs: Array<{ id: number; title: string; handle: string }>;
-  }>({
-    method: "GET",
-    endpoint: "/blogs.json",
-    skipCache: false,
+  const result = await shopifyREST(
+    "GET",
+    "custom_collections.json?limit=250"
+  );
+  return result.custom_collections.map((c: any) => ({
+    id: c.id,
+    title: c.title,
+    handle: c.handle,
+  }));
+}
+
+// --- Page Operations ---
+
+export async function updatePage(
+  pageId: number,
+  bodyHtml: string
+): Promise<void> {
+  await shopifyREST("PUT", `pages/${pageId}.json`, {
+    page: { id: pageId, body_html: bodyHtml },
   });
-
-  return result.blogs;
 }
 
-// --- Main Sync Functions ---
+export async function listPages(): Promise<
+  Array<{ id: number; title: string; handle: string }>
+> {
+  const result = await shopifyREST("GET", "pages.json?limit=50");
+  return result.pages.map((p: any) => ({
+    id: p.id,
+    title: p.title,
+    handle: p.handle,
+  }));
+}
 
-export interface SyncResult {
-  success: boolean;
-  blogPostId: string;
-  shopifyArticleId?: number;
-  shopifyBlogId?: number;
-  action?: "created" | "updated";
+// --- Health Check ---
+
+export async function checkShopifyConnection(): Promise<{
+  connected: boolean;
+  shopName?: string;
   error?: string;
-}
-
-/**
- * Main function: Sync a single blog post to Shopify.
- * Reads blog post from DB, renders HTML via htmlRenderer,
- * creates/updates Shopify article, stores shopify_article_id back in DB.
- */
-export async function syncBlogPostToShopify(
-  blogPostId: string,
-  targetBlogId?: number
-): Promise<SyncResult> {
+}> {
   try {
-    // 1. Fetch blog post from DB
-    const [post] = await db
-      .select()
-      .from(blogPosts)
-      .where(eq(blogPosts.id, blogPostId));
-
-    if (!post) {
-      return {
-        success: false,
-        blogPostId,
-        error: "Blog post not found",
-      };
+    const token = await getShopifyToken();
+    const r = await fetch(
+      `https://${SHOPIFY_SHOP}.myshopify.com/admin/api/${SHOPIFY_API_VERSION}/shop.json`,
+      { headers: { "X-Shopify-Access-Token": token } }
+    );
+    if (r.ok) {
+      const data = await r.json();
+      return { connected: true, shopName: data.shop.name };
     }
-
-    // 2. Render HTML
-    const bodyHtml = await renderShopifyHtml(post);
-
-    if (!bodyHtml || bodyHtml.trim().length === 0) {
-      return {
-        success: false,
-        blogPostId,
-        error: "HTML rendering produced empty output",
-      };
-    }
-
-    // 3. Determine target Shopify blog
-    const blogId = targetBlogId || post.shopifyBlogId || SHOPIFY_CONFIG.blogId;
-
-    // 4. Build tags from cluster keywords
-    const tags = buildTagsFromPost(post);
-
-    // 5. Build metafields for SEO
-    const metafields: ShopifyArticleInput["metafields"] = [];
-    if (post.metaTitle) {
-      metafields.push({
-        key: "title_tag",
-        value: post.metaTitle,
-        type: "single_line_text_field",
-        namespace: "global",
-      });
-    }
-    if (post.metaDescription) {
-      metafields.push({
-        key: "description_tag",
-        value: post.metaDescription,
-        type: "single_line_text_field",
-        namespace: "global",
-      });
-    }
-
-    // 6. Create or update on Shopify
-    let shopifyArticle: ShopifyArticle;
-    let action: "created" | "updated";
-
-    if (post.shopifyArticleId) {
-      // Update existing article
-      shopifyArticle = await updateShopifyArticle(blogId, post.shopifyArticleId, {
-        title: post.title,
-        body_html: bodyHtml,
-        tags,
-        // Don't include metafields on update -- Shopify doesn't support metafields in article PUT
-      });
-      action = "updated";
-      console.log(
-        `[Shopify] Updated article #${shopifyArticle.id}: "${post.title}"`
-      );
-    } else {
-      // Create new article as draft
-      shopifyArticle = await createShopifyArticle(blogId, {
-        title: post.title,
-        body_html: bodyHtml,
-        tags,
-        published: false,
-        metafields: metafields.length > 0 ? metafields : undefined,
-      });
-      action = "created";
-      console.log(
-        `[Shopify] Created draft article #${shopifyArticle.id}: "${post.title}"`
-      );
-    }
-
-    // 7. Store Shopify article ID back in DB
-    const now = new Date().toISOString();
-    await db
-      .update(blogPosts)
-      .set({
-        shopifyArticleId: shopifyArticle.id,
-        shopifyBlogId: blogId,
-        shopifySyncedAt: now,
-      })
-      .where(eq(blogPosts.id, blogPostId));
-
-    // Invalidate any cached article data
-    cache.invalidate(`shopify:GET:/blogs/${blogId}/articles`);
-
-    return {
-      success: true,
-      blogPostId,
-      shopifyArticleId: shopifyArticle.id,
-      shopifyBlogId: blogId,
-      action,
-    };
-  } catch (error: unknown) {
-    const message =
-      error instanceof Error ? error.message : "Unknown error during sync";
-    console.error(`[Shopify] Sync failed for post ${blogPostId}:`, message);
-    return {
-      success: false,
-      blogPostId,
-      error: message,
-    };
+    return { connected: false, error: `Status ${r.status}` };
+  } catch (e: any) {
+    return { connected: false, error: e.message };
   }
-}
-
-export interface BatchSyncProgress {
-  total: number;
-  completed: number;
-  succeeded: number;
-  failed: number;
-  currentPostId?: string;
-  currentPostTitle?: string;
-}
-
-/**
- * Bulk sync multiple blog posts to Shopify with rate limiting and progress tracking.
- */
-export async function batchSyncToShopify(
-  blogPostIds: string[],
-  targetBlogId?: number,
-  onProgress?: (progress: BatchSyncProgress) => void
-): Promise<SyncResult[]> {
-  const results: SyncResult[] = [];
-  const progress: BatchSyncProgress = {
-    total: blogPostIds.length,
-    completed: 0,
-    succeeded: 0,
-    failed: 0,
-  };
-
-  for (const postId of blogPostIds) {
-    // Fetch post title for progress reporting
-    const [post] = await db
-      .select({ id: blogPosts.id, title: blogPosts.title })
-      .from(blogPosts)
-      .where(eq(blogPosts.id, postId));
-
-    progress.currentPostId = postId;
-    progress.currentPostTitle = post?.title || "Unknown";
-
-    if (onProgress) {
-      onProgress({ ...progress });
-    }
-
-    const result = await syncBlogPostToShopify(postId, targetBlogId);
-    results.push(result);
-
-    progress.completed++;
-    if (result.success) {
-      progress.succeeded++;
-    } else {
-      progress.failed++;
-    }
-
-    if (onProgress) {
-      onProgress({ ...progress });
-    }
-
-    // Brief pause between posts to be kind to rate limiter queue
-    // (the rate limiter handles the actual throttling, this just spaces them out)
-    if (progress.completed < progress.total) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-    }
-  }
-
-  return results;
-}
-
-// --- Helpers ---
-
-/**
- * Build comma-separated tags string from blog post metadata.
- */
-function buildTagsFromPost(post: BlogPost): string {
-  const tags: string[] = [];
-
-  // Add "iBolt" brand tag
-  tags.push("iBolt");
-
-  // Try to extract keywords from post title
-  if (post.title) {
-    // Common mounting-related tags
-    const titleLower = post.title.toLowerCase();
-    if (titleLower.includes("mount")) tags.push("mounting");
-    if (titleLower.includes("tablet")) tags.push("tablet mount");
-    if (titleLower.includes("phone")) tags.push("phone mount");
-    if (titleLower.includes("truck")) tags.push("trucking");
-    if (titleLower.includes("forklift")) tags.push("forklift");
-    if (titleLower.includes("boat") || titleLower.includes("fish"))
-      tags.push("marine");
-    if (titleLower.includes("restaurant") || titleLower.includes("pos"))
-      tags.push("restaurant");
-    if (titleLower.includes("farm") || titleLower.includes("agriculture"))
-      tags.push("agriculture");
-  }
-
-  return tags.join(", ");
-}
-
-/**
- * Get available Shopify blog targets with their IDs.
- */
-export function getShopifyBlogTargets() {
-  return [
-    {
-      id: SHOPIFY_CONFIG.blogId,
-      name: "News",
-      handle: "news",
-    },
-    {
-      id: SHOPIFY_CONFIG.fishFinderBlogId,
-      name: "How to Mount a Fish Finder",
-      handle: "how-to-mount-a-fish-finder",
-    },
-  ];
 }

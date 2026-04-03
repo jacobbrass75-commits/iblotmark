@@ -18,6 +18,15 @@ import JSZip from "jszip";
 import { writingQueue } from "./writingQueue";
 import { processCompetitorUrls, fetchCompetitorSitemap } from "./competitorScraper";
 import { createVerticalFromDescription, autoMapKeywordsToVerticals } from "./verticalCreator";
+import {
+  publishBlogPost,
+  updateShopifyArticle,
+  deleteShopifyArticle,
+  listShopifyArticles,
+  updateCollectionDescription,
+  listCollections,
+  checkShopifyConnection,
+} from "./shopifyPublisher";
 
 export function registerBlogRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
@@ -421,6 +430,104 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
     try {
       const result = await autoMapKeywordsToVerticals();
       res.json({ message: `Mapped ${result.mapped} keyword clusters to verticals`, ...result });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // --- Shopify Publishing Routes ---
+
+  // GET /api/blog/shopify/status — Check Shopify connection
+  router.get("/shopify/status", async (_req: Request, res: Response) => {
+    try {
+      const status = await checkShopifyConnection();
+      res.json(status);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/shopify/publish/:id — Publish a blog post to Shopify
+  router.post("/shopify/publish/:id", async (req: Request, res: Response) => {
+    try {
+      const post = await getBlogPost(req.params.id);
+      if (!post) return res.status(404).json({ error: "Post not found" });
+
+      const html = post.html || await renderShopifyHtml(post as any);
+      const result = await publishBlogPost({
+        title: post.title,
+        bodyHtml: html,
+        metaTitle: post.metaTitle || undefined,
+        metaDescription: post.metaDescription || undefined,
+        tags: `2026, ${post.verticalId || "general"}`,
+        published: req.body.published ?? false,
+      });
+
+      // Store Shopify article ID back on the post
+      await updateBlogPost(post.id, {
+        status: "published",
+      });
+
+      res.json({
+        message: "Published to Shopify",
+        shopifyArticleId: result.articleId,
+        adminUrl: result.adminUrl,
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // GET /api/blog/shopify/articles — List Shopify blog articles
+  router.get("/shopify/articles", async (_req: Request, res: Response) => {
+    try {
+      const articles = await listShopifyArticles();
+      res.json({ articles });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // PUT /api/blog/shopify/articles/:articleId — Update a Shopify article
+  router.put("/shopify/articles/:articleId", async (req: Request, res: Response) => {
+    try {
+      await updateShopifyArticle(Number(req.params.articleId), {
+        title: req.body.title,
+        bodyHtml: req.body.body_html,
+        tags: req.body.tags,
+        published: req.body.published,
+      });
+      res.json({ message: "Updated" });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // DELETE /api/blog/shopify/articles/:articleId — Delete a Shopify article
+  router.delete("/shopify/articles/:articleId", async (req: Request, res: Response) => {
+    try {
+      await deleteShopifyArticle(Number(req.params.articleId));
+      res.json({ message: "Deleted" });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // GET /api/blog/shopify/collections — List Shopify collections
+  router.get("/shopify/collections", async (_req: Request, res: Response) => {
+    try {
+      const collections = await listCollections();
+      res.json({ collections });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // PUT /api/blog/shopify/collections/:id — Update collection description
+  router.put("/shopify/collections/:id", async (req: Request, res: Response) => {
+    try {
+      await updateCollectionDescription(Number(req.params.id), req.body.body_html);
+      res.json({ message: "Collection updated" });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
