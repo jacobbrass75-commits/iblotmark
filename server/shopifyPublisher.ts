@@ -428,6 +428,168 @@ export async function listPages(): Promise<
   }));
 }
 
+// --- Sync Types ---
+
+export interface SyncResult {
+  success: boolean;
+  postId: string;
+  action: "created" | "updated";
+  shopifyArticleId?: number;
+  shopifyBlogId?: number;
+  error?: string;
+}
+
+export interface BatchSyncProgress {
+  current: number;
+  total: number;
+  postId: string;
+  status: "syncing" | "success" | "failed";
+  error?: string;
+}
+
+// --- Blog Targets ---
+
+const KNOWN_BLOGS = [
+  { id: SHOPIFY_NEWS_BLOG_ID, name: "News", handle: "news" },
+];
+
+export function getShopifyBlogTargets() {
+  return KNOWN_BLOGS;
+}
+
+// --- Blog & Article Fetching ---
+
+export async function listShopifyBlogs(): Promise<
+  Array<{ id: number; title: string; handle: string }>
+> {
+  const result = await shopifyREST("GET", "blogs.json");
+  return result.blogs.map((b: any) => ({
+    id: b.id,
+    title: b.title,
+    handle: b.handle,
+  }));
+}
+
+export async function getShopifyArticle(
+  blogId: number,
+  articleId: number
+): Promise<any> {
+  const result = await shopifyREST(
+    "GET",
+    `blogs/${blogId}/articles/${articleId}.json`
+  );
+  return result.article;
+}
+
+// --- Sync Operations ---
+
+export async function syncBlogPostToShopify(
+  postId: string,
+  blogId?: number
+): Promise<SyncResult> {
+  const { db } = await import("./db");
+  const { eq } = await import("drizzle-orm");
+  const { blogPosts } = await import("@shared/schema");
+
+  const [post] = await db
+    .select()
+    .from(blogPosts)
+    .where(eq(blogPosts.id, postId));
+
+  if (!post) {
+    return { success: false, postId, action: "created", error: "Post not found" };
+  }
+
+  const targetBlogId = blogId || SHOPIFY_NEWS_BLOG_ID;
+  const bodyHtml = post.html || post.markdown || "";
+
+  try {
+    let articleId: number;
+    let action: "created" | "updated";
+
+    if (post.shopifyArticleId) {
+      // Update existing article
+      await updateShopifyArticle(post.shopifyArticleId, {
+        title: post.title,
+        bodyHtml,
+        published: true,
+      });
+      articleId = post.shopifyArticleId;
+      action = "updated";
+    } else {
+      // Create new article
+      const result = await publishBlogPost({
+        title: post.title,
+        bodyHtml,
+        tags: "",
+        metaTitle: post.metaTitle || post.title,
+        metaDescription: post.metaDescription || "",
+        published: true,
+        blogId: targetBlogId,
+      });
+      articleId = result.articleId;
+      action = "created";
+    }
+
+    // Update local DB with Shopify IDs
+    await db
+      .update(blogPosts)
+      .set({
+        shopifyArticleId: articleId,
+        shopifyBlogId: targetBlogId,
+        shopifySyncedAt: new Date().toISOString(),
+      })
+      .where(eq(blogPosts.id, postId));
+
+    return {
+      success: true,
+      postId,
+      action,
+      shopifyArticleId: articleId,
+      shopifyBlogId: targetBlogId,
+    };
+  } catch (e: any) {
+    return { success: false, postId, action: "created", error: e.message };
+  }
+}
+
+export async function batchSyncToShopify(
+  postIds: string[],
+  blogId?: number,
+  onProgress?: (progress: BatchSyncProgress) => void
+): Promise<SyncResult[]> {
+  const results: SyncResult[] = [];
+
+  for (let i = 0; i < postIds.length; i++) {
+    const postId = postIds[i];
+
+    onProgress?.({
+      current: i + 1,
+      total: postIds.length,
+      postId,
+      status: "syncing",
+    });
+
+    const result = await syncBlogPostToShopify(postId, blogId);
+    results.push(result);
+
+    onProgress?.({
+      current: i + 1,
+      total: postIds.length,
+      postId,
+      status: result.success ? "success" : "failed",
+      error: result.error,
+    });
+
+    // Small delay between API calls to respect rate limits
+    if (i < postIds.length - 1) {
+      await new Promise((r) => setTimeout(r, 500));
+    }
+  }
+
+  return results;
+}
+
 // --- Health Check ---
 
 export async function checkShopifyConnection(): Promise<{
