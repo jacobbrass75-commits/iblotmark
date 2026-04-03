@@ -949,6 +949,10 @@ export const blogPosts = sqliteTable("blog_posts", {
   factualAccuracy: integer("factual_accuracy"),
   overallScore: integer("overall_score"),
   verificationNotes: text("verification_notes"),
+  // Shopify integration
+  shopifyArticleId: integer("shopify_article_id"),
+  shopifyBlogId: integer("shopify_blog_id"),
+  shopifySyncedAt: text("shopify_synced_at"),
   generatedAt: integer("generated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
 });

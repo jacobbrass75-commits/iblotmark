@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { useBlogPost, useUpdateBlogPost } from "@/hooks/useBlogPosts";
+import { usePublishToShopify, useShopifyStatus, useShopifyBlogs } from "@/hooks/useShopifyPublish";
 
 export default function PostReview() {
   const [, setLocation] = useLocation();
@@ -13,8 +14,12 @@ export default function PostReview() {
   const { toast } = useToast();
   const { data: post, isLoading } = useBlogPost(params.id || "");
   const updateMutation = useUpdateBlogPost();
+  const publishMutation = usePublishToShopify();
+  const { data: shopifyStatus, isLoading: statusLoading } = useShopifyStatus(params.id || "");
+  const { data: shopifyBlogsData } = useShopifyBlogs();
   const [tab, setTab] = useState<"preview" | "markdown" | "html">("preview");
   const [editedMarkdown, setEditedMarkdown] = useState<string | null>(null);
+  const [selectedBlogId, setSelectedBlogId] = useState<number | undefined>(undefined);
 
   if (isLoading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading...</div>;
   if (!post) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Post not found</div>;
@@ -46,6 +51,33 @@ export default function PostReview() {
     window.open(`/api/blog/posts/${post.id}/html`, "_blank");
   };
 
+  const handlePublishToShopify = async () => {
+    try {
+      const result = await publishMutation.mutateAsync({
+        postId: post.id,
+        blogId: selectedBlogId,
+      });
+      if (result.success) {
+        toast({
+          title: `${result.action === "created" ? "Published" : "Updated"} on Shopify`,
+          description: `Article #${result.shopifyArticleId} ${result.action} as draft`,
+        });
+      } else {
+        toast({
+          title: "Shopify Publish Failed",
+          description: result.error || "Unknown error",
+          variant: "destructive",
+        });
+      }
+    } catch (err: any) {
+      toast({
+        title: "Shopify Publish Error",
+        description: err.message,
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="border-b border-border bg-background/95 sticky top-0 z-40 backdrop-blur">
@@ -66,6 +98,18 @@ export default function PostReview() {
             {post.status !== "approved" && (
               <Button size="sm" onClick={handleApprove} disabled={updateMutation.isPending}>Approve</Button>
             )}
+            <Button
+              size="sm"
+              variant={shopifyStatus?.isSynced ? "outline" : "default"}
+              onClick={handlePublishToShopify}
+              disabled={publishMutation.isPending || (!post.markdown && !post.html)}
+            >
+              {publishMutation.isPending
+                ? "Publishing..."
+                : shopifyStatus?.isSynced
+                ? "Re-sync to Shopify"
+                : "Publish to Shopify"}
+            </Button>
           </div>
         </div>
       </header>
@@ -93,6 +137,61 @@ export default function PostReview() {
             <div className="text-sm">
               <span className="text-muted-foreground">Word Count: </span>
               <span className="font-medium">{post.wordCount}</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Shopify sync status + blog selector */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-3">
+              Shopify Integration
+              {statusLoading ? (
+                <Badge variant="outline">Loading...</Badge>
+              ) : shopifyStatus?.isSynced ? (
+                <Badge variant="secondary">Synced</Badge>
+              ) : (
+                <Badge variant="outline">Not synced</Badge>
+              )}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <label className="text-sm text-muted-foreground block mb-1">Target Blog</label>
+                <select
+                  className="w-full border rounded-md px-3 py-1.5 text-sm bg-background"
+                  value={selectedBlogId || ""}
+                  onChange={(e) => setSelectedBlogId(e.target.value ? Number(e.target.value) : undefined)}
+                >
+                  <option value="">Default (News)</option>
+                  {shopifyBlogsData?.blogs?.map((blog) => (
+                    <option key={blog.id} value={blog.id}>
+                      {blog.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {shopifyStatus?.isSynced && (
+                <div className="flex-1 text-sm space-y-1">
+                  <div>
+                    <span className="text-muted-foreground">Article ID: </span>
+                    <span className="font-mono">{shopifyStatus.shopifyArticleId}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Status: </span>
+                    <Badge variant={shopifyStatus.shopifyStatus === "published" ? "default" : "outline"} className="text-xs">
+                      {shopifyStatus.shopifyStatus || "unknown"}
+                    </Badge>
+                  </div>
+                  {shopifyStatus.shopifySyncedAt && (
+                    <div>
+                      <span className="text-muted-foreground">Last synced: </span>
+                      <span className="text-xs">{new Date(shopifyStatus.shopifySyncedAt).toLocaleString()}</span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>

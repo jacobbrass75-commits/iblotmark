@@ -1,760 +1,493 @@
 # iBolt Blog Generator — Architecture Reference
 
-Last verified against the live codebase on 2026-03-31 (Phase 4 complete, AI Search Optimization plan active).
+Last verified against the live codebase on 2026-04-02 (Phase 5 complete, 24 AI Search Optimization posts with product photos published as Shopify drafts).
 
 ## Overview
 
-Fork of **ScholarMark** (academic annotation platform) extended with an autonomous SEO blog generation system for **iBolt Mounts** (iboltmounts.com). The system now serves a dual purpose: generating SEO blog content AND executing a comprehensive AI Search Optimization strategy to increase iBolt's visibility in AI search engines (ChatGPT, Google AI Overviews, Perplexity).
+Fork of **ScholarMark** (academic annotation platform) extended with an autonomous SEO blog generation system for **iBolt Mounts** (iboltmounts.com). Generates 800-1400 word, SEO-optimized blog posts targeting 12 industry verticals through a 4-phase AI pipeline: Planner → Section Writer → Stitcher → Verifier.
 
 **Stack**: Express + TypeScript + SQLite/Drizzle ORM + React 18/Vite + Anthropic SDK
-**Port**: 5001 (development)
+**Port**: 5001 (main app), 5002 (MCP server)
 **Auth**: Disabled (internal tool, Clerk removed)
+**Production**: Hetzner cx23 (89.167.10.34), PM2, https://app.scholarmark.ai
 
 ---
 
 ## Project Structure
 
 ```
-ibolt-blog-generator/
-├── server/                     # Express backend (55+ files)
-│   ├── index.ts                # App startup, CORS, middleware chain
-│   ├── routes.ts               # Main route registration → sub-routers (877 lines)
-│   ├── db.ts                   # SQLite + Drizzle init, table creation, seeding
-│   ├── auth.ts                 # Clerk + API key + JWT auth (disabled, all routes open)
+iblotmark/
+├── server/                     # Express backend (55+ files, 22,079 lines)
+│   ├── index.ts                # App bootstrap, CORS, middleware chain
+│   ├── routes.ts               # Route registration → sub-routers (877 lines)
+│   ├── db.ts                   # SQLite + Drizzle init, table creation, seeding (464 lines)
+│   ├── auth.ts                 # Clerk + API key + JWT auth (disabled)
 │   │
-│   ├── # ── Original ScholarMark ──
+│   ├── # ── ScholarMark (Original) ──
 │   ├── storage.ts              # Document CRUD
 │   ├── projectStorage.ts       # Project/folder CRUD
 │   ├── projectRoutes.ts        # /api/projects/*
 │   ├── projectSearch.ts        # Semantic search across annotations
-│   ├── chatRoutes.ts           # /api/chat/* (SSE streaming)
+│   ├── chatRoutes.ts           # /api/chat/* (SSE streaming, 60KB)
 │   ├── chatStorage.ts          # Conversation persistence
-│   ├── writingPipeline.ts      # 3-phase: Planner → Writer → Stitcher
+│   ├── writingPipeline.ts      # 3-phase: Planner → Writer → Stitcher (18KB)
 │   ├── writingRoutes.ts        # /api/write (SSE)
-│   ├── humanizer.ts            # Post-write voice transformation
+│   ├── humanizer.ts            # Post-write voice transformation (Gemini/Anthropic)
 │   ├── humanizerRoutes.ts      # /api/humanize (SSE)
-│   ├── pipelineV2.ts           # Annotation pipeline: Generator → Verifier → Refiner
-│   ├── citationGenerator.ts    # Chicago/MLA/APA formatting
-│   ├── sourceRoles.ts          # Source classification (primary/secondary/tertiary)
+│   ├── pipelineV2.ts           # Annotation pipeline: Generator → Verifier → Refiner (32KB)
+│   ├── citationGenerator.ts    # Chicago/MLA/APA formatting (28KB)
+│   ├── sourceRoles.ts          # Source classification
 │   ├── webClipRoutes.ts        # /api/web-clips (browser extension)
-│   ├── ocrProcessor.ts         # PDF/image OCR (pdf-parse + vision API)
+│   ├── ocrProcessor.ts         # PDF/image OCR (43KB)
 │   ├── ocrQueue.ts             # Persistent OCR job queue with retry
-│   ├── openai.ts               # OpenAI embeddings + legacy AI helpers
+│   ├── openai.ts               # OpenAI embeddings + legacy AI helpers (27KB)
 │   ├── contextGenerator.ts     # ScholarMark context utilities
 │   ├── contextCompaction.ts    # Context window optimization
 │   ├── evidenceClipboard.ts    # Evidence copy/paste for chat
 │   ├── analyticsLogger.ts      # Usage analytics
 │   ├── analyticsRoutes.ts      # /api/admin/analytics/*
-│   ├── authRoutes.ts           # /api/auth/*
-│   ├── authStorage.ts          # User DB management
+│   ├── oauthRoutes.ts          # MCP OAuth flow (32KB)
+│   ├── oauthStorage.ts         # OAuth state persistence
 │   ├── extensionRoutes.ts      # Chrome extension API
-│   ├── oauthRoutes.ts          # MCP OAuth flow
-│   ├── static.ts               # Production static serving
+│   ├── static.ts               # Production static file serving
 │   ├── vite.ts                 # Dev server Vite integration
 │   │
 │   ├── # ── iBolt Blog Generation ──
-│   ├── brandVoice.ts           # Brand voice constants + 4 prompt builders
-│   ├── contextBanks.ts         # Context entry CRUD + formatContextForPrompt()
-│   ├── contextSeeds.ts         # 12 vertical seed data (48 initial entries)
-│   ├── contextRoutes.ts        # /api/blog/context/* (SSE streaming)
-│   ├── contextChunker.ts       # Context compaction + token budget management
-│   ├── keywordManager.ts       # CSV import, scoring, LLM clustering
+│   ├── brandVoice.ts           # Brand voice constants + 4 prompt builders (9.5KB)
+│   ├── seoStrategy.ts          # SEO positioning, focus areas, competitor specs
+│   ├── contextBanks.ts         # Context entry CRUD + formatContextForPrompt() (4.8KB)
+│   ├── contextSeeds.ts         # 12 vertical seed data, 48 initial entries (26KB)
+│   ├── contextRoutes.ts        # /api/blog/context/* with SSE streaming (9.3KB)
+│   ├── contextChunker.ts       # Smart context retrieval + token budgets (7.4KB)
+│   ├── keywordManager.ts       # CSV import, opportunity scoring, LLM clustering (9.9KB)
 │   ├── keywordRoutes.ts        # /api/blog/keywords/*
-│   ├── iboltResearchAgent.ts   # Reddit/YouTube/web research orchestrator (18.5KB)
-│   ├── blogPipeline.ts         # 4-phase: Planner → Writer → Stitcher → Verifier
-│   ├── blogRoutes.ts           # /api/blog/generate, /posts, /export, /queue (SSE)
-│   ├── htmlRenderer.ts         # Markdown → Shopify-ready HTML + FAQ schema + preview
-│   ├── productScraper.ts       # Shopify /products.json scraper + vertical mapping
+│   ├── iboltResearchAgent.ts   # Reddit/YouTube/web research orchestrator (18KB)
+│   ├── blogPipeline.ts         # 4-phase: Planner → Writer → Stitcher → Verifier (18KB)
+│   ├── blogRoutes.ts           # /api/blog/generate, /posts, /export, /queue (15KB)
+│   ├── htmlRenderer.ts         # Markdown → Shopify HTML + FAQ schema + auto-links (10KB)
+│   ├── productScraper.ts       # iboltmounts.com/products.json scraper + mapping (7.3KB)
 │   ├── productRoutes.ts        # /api/blog/products/*
-│   ├── photoBank.ts            # Product photo storage, AI vision analysis (GPT-4o)
-│   ├── photoSelector.ts        # AI photo selection + scoring for blog posts
+│   ├── photoBank.ts            # Photo storage, thumbnails, GPT-4V analysis (12KB)
+│   ├── photoSelector.ts        # Deterministic photo scoring for posts (5.9KB)
 │   ├── photoRoutes.ts          # /api/blog/photos/*
-│   ├── catalogImporter.ts      # PDF catalog → product enrichment (3-tier matching)
+│   ├── catalogImporter.ts      # PDF catalog → product enrichment, 3-tier matching (8.5KB)
 │   ├── catalogRoutes.ts        # /api/blog/catalog/*
-│   ├── competitorScraper.ts    # Competitor URL analysis + auto-queue generation
-│   ├── seoStrategy.ts          # SEO focus areas, comparison post specs, repositioning
-│   ├── verticalCreator.ts      # AI-generate verticals from description + auto-map
-│   ├── writingQueue.ts         # Queue management (max 3 concurrent, SSE updates)
+│   ├── competitorScraper.ts    # Competitor URL analysis + auto-queue (7.6KB)
+│   ├── verticalCreator.ts      # AI-generate verticals from description
+│   ├── writingQueue.ts         # Queue management (max 3 concurrent, SSE)
 │   ├── scheduler.ts            # Autonomous batch: research/sync/generate/photos/chunks
 │   └── schedulerRoutes.ts      # /api/blog/scheduler/* (start/stop/trigger/config)
 │
-├── shared/
-│   ├── schema.ts               # ALL Drizzle table definitions + Zod schemas (1081 lines)
-│   └── annotationLinks.ts      # Position mapping utilities
-│
-├── client/src/
-│   ├── App.tsx                 # Wouter routes, lazy page loading
-│   ├── main.tsx                # React entry + QueryClient (no Clerk — internal tool)
-│   ├── pages/
-│   │   ├── # ── ScholarMark (original) ──
-│   │   ├── Home.tsx, Chat.tsx, WritingPage.tsx, Projects.tsx, WebClips.tsx, etc.
-│   │   ├── # ── iBolt Blog ──
+├── client/src/                 # React 18 frontend
+│   ├── App.tsx                 # wouter router + lazy routes
+│   ├── main.tsx                # React DOM render
+│   ├── index.css               # Tailwind + Eva theme (dual light/dark)
+│   ├── pages/                  # 21 route pages
+│   │   ├── Home.tsx            # Dashboard
 │   │   ├── BlogDashboard.tsx   # /blog — stats, recent posts, quick actions
 │   │   ├── KeywordManager.tsx  # /blog/keywords — CSV import, table, clustering
-│   │   ├── BatchGenerator.tsx  # /blog/generate — cluster selection, SSE progress
+│   │   ├── BatchGenerator.tsx  # /blog/generate — cluster queue, SSE progress, competitor scraper
 │   │   ├── PostReview.tsx      # /blog/posts/:id — editor, scores, HTML export
 │   │   ├── IndustryContext.tsx  # /blog/context — vertical browser, research triggers
-│   │   └── ProductCatalog.tsx  # /blog/products — product grid, scrape, mapping
-│   ├── hooks/
-│   │   ├── # ── ScholarMark ──
-│   │   ├── useProjects.ts, useChat.ts, useWriting.ts, etc.
-│   │   ├── # ── iBolt Blog ──
-│   │   ├── useBlogPipeline.ts  # SSE streaming for blog generation
+│   │   ├── ProductCatalog.tsx  # /blog/products — product grid, scrape, vertical mapping
+│   │   ├── CatalogImport.tsx   # /blog/catalog — PDF catalog upload
+│   │   ├── PhotoBank.tsx       # /blog/photos — photo management, vision analysis
+│   │   ├── Chat.tsx            # Multi-conversation chat
+│   │   ├── WritingPage.tsx     # Academic writing workspace
+│   │   ├── Projects.tsx        # Project list
+│   │   ├── ProjectWorkspace.tsx # Project hub (51KB)
+│   │   ├── ProjectDocument.tsx # Document annotator (42KB)
+│   │   ├── WebClips.tsx        # Web clip manager
+│   │   ├── AdminAnalytics.tsx  # Analytics dashboard
+│   │   └── [Login, Register, Pricing, ExtensionAuth, not-found]
+│   ├── components/
+│   │   ├── ui/                 # 50 shadcn/ui primitives (Radix UI + Tailwind)
+│   │   ├── chat/               # Chat sub-components
+│   │   ├── analytics/          # Admin dashboard charts (Recharts)
+│   │   ├── WritingChat.tsx     # AI writing interface with SSE
+│   │   ├── BootSequence.tsx    # NERV-style animated boot
+│   │   ├── ThemeToggle.tsx     # Eva/Darling theme switcher
+│   │   └── [19 more custom components]
+│   ├── hooks/                  # 18 React hooks
+│   │   ├── useBlogPipeline.ts  # SSE streaming for 4-phase generation
 │   │   ├── useBlogPosts.ts     # Blog post CRUD queries
 │   │   ├── useKeywords.ts      # Keyword/cluster/import queries + mutations
 │   │   ├── useVerticals.ts     # Vertical/context entry queries + mutations
-│   │   └── useProducts.ts      # Product queries + scrape/map mutations
-│   ├── components/             # 60+ shadcn/ui + feature components
-│   └── lib/                    # queryClient, auth (stubbed — no login), exports
+│   │   ├── useProducts.ts      # Product queries + scrape/map mutations
+│   │   ├── usePhotoBank.ts     # Photo management
+│   │   ├── useCatalogImport.ts # Catalog upload
+│   │   └── [11 ScholarMark hooks]
+│   └── lib/
+│       ├── queryClient.ts      # TanStack React Query (staleTime: 5min)
+│       ├── markdownConfig.tsx   # Markdown rendering config
+│       └── [export utils, clipboard, auth]
 │
-├── data/
-│   └── sourceannotator.db      # SQLite database file
+├── shared/
+│   ├── schema.ts               # All 31 database tables + Zod validation (1,222 lines)
+│   └── annotationLinks.ts      # Quote fingerprinting utilities
 │
-├── CLAUDE.md                   # Claude Code instructions
-├── ARCHITECTURE.md             # This file
-└── .env                        # ANTHROPIC_API_KEY (gitignored)
+├── mcp-server/                 # MCP server (port 5002)
+│   ├── server.mjs              # StreamableHTTP + SSE transports
+│   ├── dist/mcp-tools.js       # 10 tools (projects, sources, conversations, compile)
+│   ├── deploy/                 # nginx + PM2 configs
+│   └── README.md               # Live at https://mcp.scholarmark.ai
+│
+├── chrome-extension/           # Web clipper browser extension
+├── content-output/             # 24 generated blog posts (4 phases)
+├── scripts/                    # Build, migrate, test utilities
+├── .claude/                    # Claude Code skills, commands, hooks
+├── .claude-docs/               # Internal documentation (10 files)
+├── changelog/                  # MARCH-2026.md development history
+├── tests/                      # Vitest test suite
+├── prompts/                    # Prompt templates
+└── deploy/                     # Production deployment scripts
 ```
 
 ---
 
-## Startup Sequence
+## Database Schema (31 Tables)
 
-```
-index.ts
-  ├── Load .env (dotenv/config)
-  ├── Create Express app + HTTP server
-  ├── CORS (localhost, claude.ai, claude.com, custom ALLOWED_ORIGINS)
-  ├── JSON parser (with rawBody capture for Clerk webhooks)
-  ├── URL-encoded parser
-  ├── Malformed URI guard (rejects bad percent-encoding)
-  ├── configureClerk(app) — global Clerk middleware with bypass logic
-  ├── Request logger (method, path, status, duration, response preview)
-  ├── registerOAuthRoutes(app)
-  ├── registerAuthRoutes(app)
-  ├── registerRoutes(httpServer, app) ──→ routes.ts
-  │     ├── Multer upload config (50MB limit)
-  │     ├── initializeOcrQueue()
-  │     ├── Document upload/CRUD/search routes (inline in routes.ts)
-  │     ├── Annotation batch routes (inline)
-  │     ├── registerProjectRoutes(app)
-  │     ├── registerWebClipRoutes(app)
-  │     ├── registerChatRoutes(app)
-  │     ├── registerWritingRoutes(app)
-  │     ├── registerHumanizerRoutes(app)
-  │     ├── registerExtensionRoutes(app)
-  │     ├── registerKeywordRoutes(app)     ← iBolt
-  │     └── registerContextRoutes(app)     ← iBolt
-  ├── initAnalytics()
-  ├── Global error handler (malformed URI, 500s)
-  ├── Vite dev server (dev) or serveStatic (prod)
-  └── Listen on 0.0.0.0:5001
-```
+**SQLite via Drizzle ORM** — File: `./data/sourceannotator.db`
 
----
+### iBolt Blog Tables
 
-## Database (23 Tables)
+| Table | Purpose | Key Fields |
+|-------|---------|------------|
+| `industry_verticals` | 12 industry categories | name, slug, terminology[], painPoints[], useCases[], regulations[], seasonalRelevance, compatibleDevices[] |
+| `context_entries` | Industry knowledge bank | vertical_id, category (terminology/use_case/pain_point/regulation/trend/competitor/user_language), content, source_type, confidence, is_verified |
+| `keywords` | From Ubersuggest CSV | keyword, volume, difficulty, cpc, opportunity_score, status, cluster_id |
+| `keyword_imports` | CSV upload batch tracking | filename, total_keywords, new_keywords, duplicate_keywords |
+| `keyword_clusters` | Grouped keywords for posts | name, primary_keyword, vertical_id, total_volume, avg_difficulty, priority, status |
+| `ibolt_products` | Scraped from iboltmounts.com | shopify_id, title, handle, description, product_type, vendor, tags, image_url, price, url, catalog_description |
+| `product_verticals` | Product ↔ vertical mapping | product_id, vertical_id, relevance_score |
+| `blog_posts` | Generated posts | title, slug, meta_title, meta_description, markdown, html, status, word_count, verification scores (brand/seo/language/accuracy/overall), batch_id |
+| `blog_post_products` | Products mentioned in posts | blog_post_id, product_id, mention_context |
+| `generation_batches` | Batch job tracking | name, total_posts, completed_posts, failed_posts, status |
+| `research_jobs` | Research agent tracking | vertical_id, source_type (reddit/youtube/web), query, status, entries_found, error |
 
-### SQLite + Drizzle ORM
+### Photo & Catalog Tables
 
-**Connection**: `./data/sourceannotator.db` via better-sqlite3
-**Foreign keys**: Enabled via pragma
-**Schema definition**: `shared/schema.ts` (Drizzle table definitions + Zod insert schemas + TypeScript types)
-**Table creation**: `server/db.ts` uses `CREATE TABLE IF NOT EXISTS` SQL (safe for repeated runs)
-**Column migrations**: `ensureColumn()` — adds columns if missing without breaking existing data
+| Table | Purpose | Key Fields |
+|-------|---------|------------|
+| `product_photos` | Product images + AI analysis | product_id, filename, file_path, thumbnail_path, angle_type, context_type, setting_description, quality_score, is_hero, vertical_relevance, ai_analysis |
+| `blog_post_photos` | Photos selected for posts | blog_post_id, photo_id, section_index, placement (inline/product-spotlight/hero), alt_text, caption, selection_reason |
+| `product_catalog_imports` | PDF catalog import tracking | filename, total_pages, extracted_products, matched_products, status |
+| `product_catalog_extractions` | AI-extracted from PDFs | import_id, extracted_name, extracted_description, page_number, confidence, matched_product_id, match_status |
+| `pipeline_context_chunks` | Pre-chunked context for retrieval | source_type, source_id, chunk_text, token_estimate, vertical_id |
 
-### ScholarMark Tables (12)
+### ScholarMark Tables
 
-| Table | Purpose | Key Columns |
-|---|---|---|
-| documents | Uploaded PDFs/text | fullText, summary, mainArguments, keyConcepts, status |
-| text_chunks | Document chunks | text, startPosition, endPosition, embedding |
-| annotations | AI-generated highlights | highlightedText, category, note, confidence |
-| users | Auth + usage | email, tier (free/pro/max), tokensUsed, storageUsed |
-| projects | Workspaces | name, thesis, scope, contextSummary, contextEmbedding |
-| folders | Nested project folders | projectId, parentFolderId, name |
-| project_documents | Links docs to projects | citationData, sourceRole, styleAnalysis |
-| project_annotations | Project-scoped annotations | highlightedText, category, promptText, promptColor |
-| prompt_templates | Saved multi-prompt sets | prompts (JSON array of {text, color}) |
-| conversations | Chat threads | model, writingModel, citationStyle, tone, compactionSummary |
-| messages | Chat messages | role (user/assistant/system), content, tokensUsed |
-| web_clips | Browser extension clips | highlightedText, sourceUrl, pageTitle, citationData |
-
-### iBolt Blog Tables (11)
-
-| Table | Purpose | Key Columns |
-|---|---|---|
-| industry_verticals | 12 categories | name, slug, terminology[], painPoints[], useCases[], regulations[], seasonalRelevance |
-| context_entries | Knowledge bank | verticalId, category, content, sourceType, confidence, isVerified |
-| keyword_imports | CSV upload tracking | filename, totalKeywords, newKeywords, duplicateKeywords |
-| keyword_clusters | Keyword groups | name, primaryKeyword, verticalId, totalVolume, avgDifficulty, priority |
-| keywords | From Ubersuggest CSV | keyword, volume, difficulty, cpc, opportunityScore, status, clusterId |
-| ibolt_products | Shopify scraped | shopifyId, title, handle, description, productType, tags[], price, imageUrl |
-| product_verticals | Product ↔ vertical | productId, verticalId, relevanceScore |
-| generation_batches | Batch job tracking | totalPosts, completedPosts, failedPosts, status |
-| blog_posts | Generated posts | title, slug, markdown, html, verification scores (0-100), status |
-| blog_post_products | Products in posts | blogPostId, productId, mentionContext |
-| research_jobs | Research agent tracking | verticalId, sourceType, query, status, entriesFound, error |
+| Table | Purpose |
+|-------|---------|
+| `documents` | Uploaded PDFs/text with fullText, summary, embeddings |
+| `text_chunks` | Document segments with embedding vectors |
+| `annotations` | AI-generated highlights (category, confidence, multi-prompt) |
+| `users` | Auth + usage tracking (tier-based) |
+| `projects` | Workspaces with thesis, scope, context |
+| `folders` | Nested project folder hierarchy |
+| `project_documents` | Document ↔ project links with sourceRole |
+| `project_annotations` | Project-scoped annotations |
+| `prompt_templates` | Saved multi-prompt sets |
+| `conversations` | Chat threads |
+| `messages` | Chat messages with token tracking |
+| `web_clips` | Browser extension clips |
 
 ### Infrastructure Tables
 
-api_keys, mcp_oauth_clients, mcp_auth_codes, mcp_tokens, analytics_tool_calls, analytics_context_snapshots, ocr_jobs, ocr_page_results
+| Table | Purpose |
+|-------|---------|
+| `api_keys` | API key management |
+| `mcp_oauth_clients` / `mcp_auth_codes` / `mcp_tokens` | MCP OAuth flow |
+| `analytics_tool_calls` / `analytics_context_snapshots` | Usage analytics |
+| `ocr_jobs` / `ocr_page_results` | OCR processing queue |
 
 ---
 
-## Authentication
+## Blog Generation Pipeline (4 Phases)
 
-**Auth is disabled** — this is an internal tool. Clerk has been removed from both client and server.
+**Entry point**: `server/blogPipeline.ts` → `runBlogPipeline()`
+**LLM Model**: `claude-sonnet-4-20250514`
+**Streaming**: SSE events (status, plan, section, stitched, verified, complete, error)
 
-- `configureClerk()` skips middleware when no `CLERK_PUBLISHABLE_KEY` is set
-- `client/src/lib/auth.ts` returns a permanent max-tier local admin user
-- `client/src/main.tsx` renders without ClerkProvider
-- `ProtectedRoute` is a passthrough (renders children directly)
-- All `/api/blog/*` routes are fully open
+### Phase 1: Planner
+- **Input**: Keyword cluster + industry context + product catalog
+- **Output**: JSON outline with SEO meta tags, sections[], keyword distribution, productMentions[]
+- **Prompt**: `buildPlannerPrompt()` from `brandVoice.ts`
+- **Context**: Top-K relevant chunks from `contextChunker.ts` (budget: 3000 tokens)
 
-The original Clerk auth code remains in `server/auth.ts` and can be re-enabled by setting `CLERK_PUBLISHABLE_KEY` in `.env`.
+### Phase 2: Section Writer
+- **Input**: Plan outline + per-section context
+- **Output**: Individual section markdown with product mentions
+- **Prompt**: `buildSectionWriterPrompt()` with brand voice baked in
+- **Context**: Section-specific chunks (budget: 1500 tokens per section)
+- **Photos**: `photoSelector.ts` scores and selects 1 photo per section
+
+### Phase 3: Stitcher
+- **Input**: All sections + photo placements + plan metadata
+- **Output**: Complete markdown document with smooth transitions
+- **Prompt**: `buildStitcherPrompt()` ensures voice consistency
+- **Context**: Compact overview (budget: 800 tokens)
+
+### Phase 4: Verifier
+- **Input**: Final markdown + original plan + keyword targets
+- **Output**: Quality scores (0-100 each):
+  - `brandConsistency` — matches iBolt voice guidelines
+  - `seoOptimization` — keyword placement, meta tags, structure
+  - `naturalLanguage` — reads like human expert, no AI patterns
+  - `factualAccuracy` — product specs, claims, pricing correct
+  - `overall` — weighted average
+- **Action**: If overall < 70, re-runs Stitcher with verifier feedback
+- **Non-fatal**: Pipeline continues even if verifier fails
+
+### Post-Pipeline Processing
+- `htmlRenderer.ts` → Markdown to Shopify-ready HTML
+  - `autoLinkProducts()` — links product mentions to Shopify URLs
+  - `extractFaqSchema()` — generates JSON-LD FAQ structured data
+  - `renderShopifyHtml()` — full HTML with meta tags + schema markup
+- Status set to "draft" → ready for human review
 
 ---
 
-## AI Integration
+## Brand Voice System
 
-### Anthropic SDK (Claude)
+**File**: `server/brandVoice.ts` (9.5KB)
 
-| Module | Model | Purpose |
-|---|---|---|
-| writingPipeline.ts | claude-haiku-4-5 / claude-sonnet-4-6 | Writing phases (plan/write/stitch) |
-| chatRoutes.ts | claude-opus-4-6 | Conversation AI |
-| humanizer.ts | claude-sonnet-4-6 | Voice transformation |
-| keywordManager.ts | claude-sonnet-4-6 | Keyword clustering |
-| iboltResearchAgent.ts | claude-sonnet-4-6 | Context extraction from Reddit/YouTube/web |
-| contextCompaction.ts | claude-haiku-4-5 | Context window optimization |
+**BRAND_VOICE constant** injected into ALL 4 pipeline phases:
+- **Tone**: Conversational expertise — friendly but credible
+- **Approach**: Education-first, sales-second
+- **Word count**: 800-1400 words
+- **Key messaging**: 300+ modular parts, industry-standard ball sizes (17mm/20mm/25mm/38mm/57mm), cross-compatible with RAM, industrial-grade materials, 24hr shipping, 2-yr warranty
+- **Unique products**: Tablet Tower (restaurants), XL Barcode Scanner Mount, LockPro security, Mount Configurator
 
-### OpenAI SDK (Legacy ScholarMark)
-
-| Module | Model | Purpose |
-|---|---|---|
-| pipelineV2.ts | gpt-4o-mini | Annotation generation/verification/refinement |
-| openai.ts | text-embedding-3-small | Semantic search embeddings |
+**Banned phrases**: "game-changer", "seamless", "cutting-edge", "next-level", "empower", "revolutionize"
+**No em dashes / en dashes** — use commas or periods instead
 
 ---
 
-## iBolt Blog Pipeline (4 Phases)
+## SEO Strategy
 
-```
-Keyword Cluster + Industry Context + Products
-  ↓
-Phase 1: PLANNER (brandVoice.ts:buildPlannerPrompt)
-  → JSON outline: title, metaTitle, metaDescription, slug
-  → sections[]: title, description, keywords[], productMentions[], targetWords
-  ↓
-Phase 2: SECTION WRITER (brandVoice.ts:buildSectionWriterPrompt, runs per section)
-  → Markdown for each section with brand voice baked in
-  → Integrates industry context + product details naturally
-  ↓
-Phase 3: STITCHER (brandVoice.ts:buildStitcherPrompt)
-  → Combines sections into cohesive post
-  → Adds intro (relatable scenario) + conclusion (invitational CTA)
-  → Smooths transitions, verifies keyword placement
-  → 800-1400 word target
-  ↓
-Phase 4: VERIFIER (brandVoice.ts:buildVerifierPrompt)
-  → Scores: brandConsistency, seoOptimization, naturalLanguage, factualAccuracy (0-100)
-  → overallScore < 70 → re-runs stitcher
-  → Passes → blog post saved as "review" status
-```
+**File**: `server/seoStrategy.ts`
 
-### Brand Voice Rules (injected into ALL phase prompts)
+**Repositioning**:
+- OLD: "iBOLT = cheaper/easier alternative to RAM"
+- NEW: "iBOLT = modular, industrial-grade, purpose-built for warehouses, forklifts, restaurants, commercial fleets"
 
-- Conversational expertise — friendly but credible, like a knowledgeable friend
-- Education-first, sales-second — products are solutions to articulated problems
-- Industry terminology used naturally (ELD Mandate, AMPS plates, etc.)
-- Context-setting openings — relatable scenarios
-- Specific tech specs — model numbers, dimensions, materials, compatibility
-- Multiple product options — not pushy, present alternatives
-- Invitational CTAs — "explore our selection" not "buy now"
-- 800-1400 words per post
-- **Banned phrases**: game-changer, revolutionize, seamless, cutting-edge, next-level, state-of-the-art, paradigm shift, etc.
+**5 Priority Focus Areas**:
+1. Restaurant Mounts (Tablet Tower angle)
+2. Forklift Mounts (industrial vs car adaptation)
+3. Modularity / Build-Your-Own
+4. Barcode Scanner Holders
+5. Truck / ELD Mounts
+
+**Comparison posts** planned vs RAM, Arkon, Heckler Design
 
 ---
 
 ## Research Agent System
 
-### Architecture
+**File**: `server/iboltResearchAgent.ts` (18KB)
 
-```
-ResearchOrchestrator (iboltResearchAgent.ts)
-  ├── Configurable concurrency (default 3-5 parallel agents)
-  ├── SSE progress streaming to client
-  │
-  ├── Reddit Agent
-  │     ├── Predefined subreddit mapping per vertical
-  │     ├── Public JSON API — no auth needed
-  │     ├── Multiple search queries per vertical
-  │     └── Claude extracts: user_language, pain_point, use_case, terminology, trend, competitor
-  │
-  ├── YouTube Agent (requires YOUTUBE_API_KEY)
-  │     ├── YouTube Data API v3 search
-  │     ├── Transcript extraction (youtube-transcript package)
-  │     └── Claude extracts context entries from transcripts
-  │
-  └── Web Agent
-        ├── Predefined industry URLs per vertical
-        ├── HTML → text extraction
-        └── Claude extracts context entries
-```
+Ruflo-inspired parallel agent system that auto-populates context banks:
 
-### Subreddit Mapping
+| Agent | Source | Method |
+|-------|--------|--------|
+| RedditAgent | `/r/{subreddit}/search.json` | Public JSON API, no auth. Pre-configured subreddit lists per vertical |
+| YouTubeAgent | YouTube Data API v3 | Search + `youtube-transcript` for transcript extraction |
+| WebAgent | Web fetch | URL scraping + Claude extraction |
 
-| Vertical | Subreddits |
-|---|---|
-| fishing-boating | r/fishing, r/kayakfishing, r/boating, r/bassfishing, r/Fishfinder |
-| trucking-fleet | r/Truckers, r/trucking, r/FreightBrokers |
-| offroading-jeep | r/Jeep, r/4x4, r/overlanding, r/Wrangler, r/offroad |
-| restaurants-food-delivery | r/KitchenConfidential, r/doordash_drivers, r/UberEATS |
-| content-creation-streaming | r/Twitch, r/NewTubers, r/videography, r/streaming |
-| agriculture-farming | r/farming, r/agriculture, r/tractors, r/homestead |
-| mountain-biking-cycling | r/MTB, r/cycling, r/ebikes, r/bikepacking |
-| road-trips-travel | r/roadtrip, r/CarHacks, r/uberdrivers, r/GoRVing |
-| education-schools | r/Teachers, r/edtech, r/k12sysadmin |
-| kitchen-home | r/Cooking, r/HomeImprovement, r/homeautomation |
-| forklifts-warehousing | r/warehouse, r/forklift, r/logistics |
-| general-mounting | r/gadgets, r/DIY, r/CarAV, r/techsupport |
-
-### Context Entry Categories
-
-| Category | What It Captures |
-|---|---|
-| terminology | Industry jargon and technical terms |
-| use_case | Real-world scenarios where mounting is needed |
-| pain_point | Customer frustrations and problems |
-| regulation | Compliance requirements (ELD, OSHA, ADA, etc.) |
-| trend | Emerging patterns and market shifts |
-| competitor | Mentions of RAM Mount, ProClip, etc. |
-| user_language | Exact phrases and slang real people use |
+**Orchestrator**: Up to 50 concurrent agents, reports progress via SSE callbacks
+**Extraction**: Claude extracts terminology, pain_points, user_language, trends from raw content
+**Output**: `contextEntries` with `isVerified: false` for human review
 
 ---
 
-## SSE Streaming Pattern
+## Product Management
 
-Used across writing pipeline, chat, research agents, and blog generation.
+### Product Scraper (`server/productScraper.ts`)
+- Hits `iboltmounts.com/products.json` (public Shopify endpoint, paginated 250/page)
+- Strips HTML, deduplicates, upserts to DB
+- `mapProductsToVerticals()` — Claude assigns products to verticals with relevance scores
 
-### Server
-
-```typescript
-res.writeHead(200, {
-  "Content-Type": "text/event-stream",
-  "Cache-Control": "no-cache",
-  Connection: "keep-alive",
-});
-const sendEvent = (event: string, data: any) => {
-  res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
-};
-sendEvent("started", { message: "Processing..." });
-// ... work ...
-sendEvent("completed", { result });
-res.end();
-```
-
-### Client
-
-```typescript
-const response = await fetch(url, { method: "POST", signal });
-const reader = response.body.getReader();
-const decoder = new TextDecoder();
-let buffer = "";
-while (true) {
-  const { done, value } = await reader.read();
-  if (done) break;
-  buffer += decoder.decode(value);
-  const lines = buffer.split("\n");
-  buffer = lines.pop() || "";
-  for (const line of lines) {
-    if (line.startsWith("data: ")) handleEvent(JSON.parse(line.slice(6)));
-  }
-}
-```
-
----
-
-## Client Architecture
-
-### Routing (wouter)
-
-Lazy-loaded pages with ProtectedRoute wrapper:
-- `/` — Home (project list)
-- `/projects/:id` — ProjectWorkspace
-- `/projects/:id/documents/:docId` — Document viewer + annotation sidebar
-- `/chat/:conversationId` — Chat AI
-- `/write` — Writing pipeline
-- `/web-clips` — Web clip manager
-- `/admin/analytics` — Analytics dashboard
-- `/blog/*` — iBolt blog pages (Phase 4+)
-
-### Component Library
-
-**shadcn/ui** — 60+ components built on Radix primitives + Tailwind CSS:
-Button, Dialog, Tabs, Select, Accordion, Toast, Tooltip, ScrollArea, Sheet, etc.
-
-### React Query Hooks Pattern
-
-```typescript
-// Query hook
-export function useProjects() {
-  return useQuery({
-    queryKey: ["projects"],
-    queryFn: () => fetch("/api/projects", { headers: getAuthHeaders() }).then(r => r.json()),
-    staleTime: 5 * 60 * 1000,
-  });
-}
-// Mutation hook
-export function useCreateProject() {
-  return useMutation({
-    mutationFn: (data) => fetch("/api/projects", { method: "POST", body: JSON.stringify(data) }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects"] }),
-  });
-}
-```
-
----
-
-## API Endpoints
-
-### ScholarMark (Original)
-
-| Method | Path | Purpose |
-|---|---|---|
-| POST | /api/upload | Upload document (PDF/text) |
-| GET | /api/documents | List documents |
-| GET | /api/documents/:id | Get document with full text |
-| POST | /api/documents/:id/search | Semantic search within doc |
-| POST | /api/documents/:id/annotations | Create annotations |
-| GET/POST/PATCH/DELETE | /api/projects/* | Project CRUD |
-| GET/POST/DELETE | /api/projects/:id/documents | Project documents |
-| GET/POST/PATCH/DELETE | /api/projects/:id/folders | Folder management |
-| GET/POST | /api/chat/conversations | Conversation CRUD |
-| POST | /api/chat/conversations/:id/messages | Send message (SSE) |
-| POST | /api/write | Writing pipeline (SSE) |
-| POST | /api/humanize | Voice transformation (SSE) |
-| GET/POST/DELETE | /api/web-clips | Browser clips |
-| GET | /api/auth/me | Current user + usage |
-
-### iBolt Blog Generation
-
-| Method | Path | Purpose |
-|---|---|---|
-| POST | /api/blog/keywords/import | Upload keyword CSV (multipart) |
-| POST | /api/blog/keywords/import-file | Import CSV by file path |
-| POST | /api/blog/keywords/cluster | AI-cluster unclustered keywords |
-| GET | /api/blog/keywords | List all keywords (?status=) |
-| GET | /api/blog/keywords/clusters | List clusters with keywords |
-| GET | /api/blog/keywords/imports | Import history |
-| GET | /api/blog/context/verticals | List 12 industry verticals |
-| GET | /api/blog/context/verticals/:id | Get vertical with context stats |
-| GET | /api/blog/context/entries/:verticalId | List context entries (?category=&includeUnverified=) |
-| POST | /api/blog/context/entries | Add manual context entry |
-| PATCH | /api/blog/context/entries/:id/verify | Verify/unverify entry |
-| DELETE | /api/blog/context/entries/:id | Delete entry |
-| GET | /api/blog/context/prompt/:verticalId | Get formatted prompt context |
-| POST | /api/blog/context/research/run | Launch research agents (SSE) |
-| POST | /api/blog/context/research/reddit | Reddit swarm all verticals (SSE) |
-| POST | /api/blog/context/research/vertical/:id | Research single vertical (SSE) |
-| GET | /api/blog/context/research/jobs | Research job history |
-
-### Blog Generation & Products
-
-| Method | Path | Purpose |
-|---|---|---|
-| POST | /api/blog/generate | Generate single post from cluster (SSE) |
-| POST | /api/blog/generate/batch | Batch generate from multiple clusters (SSE) |
-| GET | /api/blog/posts | List all blog posts (?status=) |
-| GET | /api/blog/posts/:id | Get single post with scores |
-| PATCH | /api/blog/posts/:id | Update post (edit markdown, change status) |
-| GET | /api/blog/posts/:id/html | Get Shopify-ready HTML |
-| GET | /api/blog/posts/:id/preview | Full preview HTML page with scores |
-| GET | /api/blog/batches | List generation batch history |
-| POST | /api/blog/products/scrape | Scrape iboltmounts.com product catalog |
-| POST | /api/blog/products/map-verticals | AI-map products to verticals |
-| GET | /api/blog/products | List products (?verticalId=) |
-| GET | /api/blog/products/stats | Product count + last scrape time |
-
----
-
-## Key Dependencies
-
-| Package | Purpose |
-|---|---|
-| express | HTTP server |
-| better-sqlite3 | SQLite database driver |
-| drizzle-orm + drizzle-zod | Type-safe ORM + validation |
-| @anthropic-ai/sdk | Claude AI (writing, clustering, research extraction) |
-| openai | Legacy GPT-4o-mini annotations + embeddings |
-| @clerk/express | Authentication (disabled — internal tool) |
-| multer | File upload handling |
-| pdf-parse | PDF text extraction |
-| youtube-transcript | YouTube transcript fetching |
-| zod | Runtime type validation |
-| react + react-dom | Frontend framework |
-| @tanstack/react-query | Server state management |
-| wouter | Client-side routing |
-| tailwindcss | Utility CSS |
-| @radix-ui/* | Accessible UI primitives |
-| vite | Build tool + dev server |
-
----
-
-## Client Pages (Phase 4)
-
-| Route | Page | Purpose |
-|---|---|---|
-| /blog | BlogDashboard | Stats cards, recent posts, cluster overview, quick action buttons |
-| /blog/keywords | KeywordManager | CSV upload, keyword table sorted by opportunity, AI clustering trigger, cluster cards |
-| /blog/generate | BatchGenerator | Cluster selection with checkboxes, single/batch generate, SSE progress bar |
-| /blog/posts/:id | PostReview | Verification score bars, SEO meta display, markdown editor, HTML preview, approve button |
-| /blog/context | IndustryContext | Vertical sidebar, context entries with category filters, verify/delete, research triggers |
-| /blog/products | ProductCatalog | Product grid with images, vertical filter pills, search, scrape/map buttons |
-
-## Scheduler & Autonomous Orchestration
-
-### Architecture
-
-```
-Scheduler (server/scheduler.ts)
-  ├── Research Agent     (every 24h)  — Reddit/YouTube/web → context banks
-  ├── Product Sync       (every 12h)  — Shopify /products.json → product DB
-  ├── Photo Analysis     (every 6h)   — AI vision analysis of unanalyzed product photos
-  ├── Context Chunks     (every 12h)  — Rebuild token-budgeted context for section writing
-  └── Auto-Generate      (every 1h)   — Generate posts from pending clusters (max 3/run)
-```
-
-### API Endpoints
-
-| Method | Path | Purpose |
-|---|---|---|
-| GET | /api/blog/scheduler/status | Scheduler status + next run times |
-| POST | /api/blog/scheduler/start | Start with optional config |
-| POST | /api/blog/scheduler/stop | Stop scheduler |
-| PATCH | /api/blog/scheduler/config | Update intervals/settings |
-| POST | /api/blog/scheduler/trigger/{task} | Manual trigger (research, products, generate, photos, chunks) |
-
-### Manual Triggers
-
-- `triggerResearch()` — run research agents immediately
-- `triggerProductSync()` — re-scrape Shopify catalog
-- `triggerAutoGenerate()` — generate from pending clusters
-- `triggerPhotoAnalysis()` — analyze unanalyzed product photos
-- `triggerChunkRebuild()` — rebuild context chunks
-
----
-
-## Photo Pipeline
+### Catalog Importer (`server/catalogImporter.ts`)
+- PDF upload → `pdf-parse` text extraction
+- Smart chunking on page boundaries
+- Claude extracts product names/descriptions per chunk
+- 3-tier matching: exact title → fuzzy match → LLM similarity
 
 ### Photo Bank (`server/photoBank.ts`)
-
-- Upload + storage with UUID filenames and thumbnails (300px wide, JPEG 80%)
-- Directory import (recursive, supports JPG/PNG/WebP/HEIC/TIFF/BMP)
-- AI vision analysis via GPT-4o: angle type, context type, setting, quality score, hero candidates
-- Auto-association: matches unassigned photos to products by filename + AI analysis
+- File upload with `sharp` normalization + thumbnail generation
+- Batch import from directory, auto-associates via filename
+- GPT-4V analysis: angle_type, context_type, quality_score, vertical_relevance
 
 ### Photo Selector (`server/photoSelector.ts`)
-
-- Deterministic scoring: product relevance (+3), context type (+2 in-use, +1.5 lifestyle), vertical match (+2), quality score, hero bonus (+0.5), diversity penalty (-2)
-- Selects hero photo + one photo per section
-- Formats as markdown image references for stitcher
-
-### Database Tables
-
-| Table | Purpose |
-|---|---|
-| product_photos | Photo storage, AI analysis results, hero flags |
-| blog_post_photos | Photo selections per post (hero/inline/product-spotlight) |
+- **Deterministic scoring** (no AI, reproducible):
+  - Product mention in section: +3
+  - Context type match: +0.5 to +2
+  - Vertical relevance: +2
+  - Quality score: +0 to +1
+  - Diversity penalty: -2 (avoid repeats)
+- Selects 1 photo per section + hero photo
 
 ---
 
-## Catalog Importer (`server/catalogImporter.ts`)
+## Context Banking
 
-- PDF extraction via pdf-parse
-- AI product extraction (Claude identifies products + descriptions)
-- 3-tier matching: exact title (1.0) → contains/overlap (0.85) → Levenshtein similarity (threshold ≥ 0.6)
-- Enriches matched products with catalog descriptions and page references
+### Context Seeds (`server/contextSeeds.ts`)
+12 pre-seeded verticals with 48 initial entries covering terminology, pain points, use cases, regulations, seasonal relevance, compatible devices.
 
----
+### Context Chunker (`server/contextChunker.ts`)
+Token budget management for prompt injection:
 
-## Competitor Analysis
+| Phase | Budget |
+|-------|--------|
+| Planner | 3,000 tokens |
+| Section Writer | 1,500 tokens |
+| Stitcher | 800 tokens |
+| Verifier | 500 tokens |
 
-### Competitor Scraper (`server/competitorScraper.ts`)
-
-- Fetches competitor blog posts from URLs
-- Claude analyzes relevance to iBolt offerings
-- Creates keyword clusters for relevant competitor posts
-- Queues blog generation as response content
-
-### API Endpoints
-
-| Method | Path | Purpose |
-|---|---|---|
-| POST | /api/blog/competitor/analyze | Analyze competitor URLs (SSE) |
-| POST | /api/blog/competitor/sitemap | Fetch blog URLs from sitemap |
-
-### SEO Strategy (`server/seoStrategy.ts`)
-
-Maps directly to the AI Search Optimization execution plan:
-- **Repositioning goal**: "Budget RAM alternative" → "Purpose-built modular mounting system"
-- **6 priority focus areas**: Restaurant, Forklift, Modularity, Barcode Scanner, Truck/ELD, General
-- **6 comparison post specs** with target queries, competitor lists, and key angles
-- **Unique differentiators**: Tablet Tower, XL Barcode Scanner Mount, LockPro, 300+ modular parts
+- `rebuildContextChunks()` — pre-chunks context entries and product descriptions
+- `getRelevantChunks()` — scores by keyword relevance, returns top-K within budget
+- `compactContext()` — truncates preserving sentence boundaries
 
 ---
 
-## Vertical Creator (`server/verticalCreator.ts`)
+## Keyword System
 
-- `createVerticalFromDescription()` — generates full vertical from natural language description (terminology, pain points, use cases, regulations, seed context entries)
-- `autoMapKeywordsToVerticals()` — Claude assigns unmapped keyword clusters to best-matching verticals
+**File**: `server/keywordManager.ts`
 
----
-
-## Export & Shopify Integration
-
-### Export Formats
-
-| Method | Path | Output |
-|---|---|---|
-| GET | /api/blog/posts/:id/html | Shopify-ready HTML (copy/paste into Shopify editor) |
-| GET | /api/blog/posts/:id/preview | Standalone preview page with verification scores |
-| GET | /api/blog/export | JSON export of all approved posts |
-| GET | /api/blog/export/:id/html | Download single post HTML |
-| GET | /api/blog/export/zip | ZIP bundle (Shopify HTML + Preview + Markdown) |
-
-### HTML Renderer Features (`server/htmlRenderer.ts`)
-
-- Markdown → Shopify-ready HTML
-- FAQ structured data: extracts FAQ sections, generates JSON-LD `FAQPage` schema
-- Product auto-linking: scans for product title mentions, wraps with iboltmounts.com URLs
-- SEO meta tags in HTML comments (for Shopify)
-
-### Not Yet Implemented
-
-- Direct Shopify Admin API integration (publish, image upload)
-- Shopify collection page content creation via API
-- Auto-publish workflow
+1. **Import**: Parse Ubersuggest/SEMrush CSV → deduplicate → store
+2. **Score**: `opportunityScore = volume(0.4) + difficulty(0.3) + position(0.3)`
+3. **Cluster**: Claude groups keywords semantically (batch 10 at a time)
+4. **Map**: `autoMapKeywordsToVerticals()` assigns to best-matching vertical
+5. **Status flow**: `new → clustered → draft → published`
 
 ---
 
-## Writing Queue (`server/writingQueue.ts`)
+## API Routes
 
-- Max 3 concurrent blog generations
-- Job states: queued → running → completed/failed
-- SSE streaming of queue updates to client
-- Phase progress tracking (planner → writer → stitcher → verifier → save)
-- In-memory (not persisted across restarts)
+### Blog Routes (`/api/blog/*`)
 
----
+| Method | Endpoint | Purpose |
+|--------|----------|---------|
+| POST | `/blog/generate` | Single post generation (SSE streaming) |
+| POST | `/blog/generate/batch` | Batch generation from cluster IDs |
+| GET | `/blog/posts` | List posts (filter: status, verticalId, limit) |
+| GET | `/blog/posts/:id` | Single post with all metadata |
+| PATCH | `/blog/posts/:id` | Update post (status, markdown) |
+| DELETE | `/blog/posts/:id` | Delete post |
+| POST | `/blog/posts/:id/publish` | Mark as published |
+| GET | `/blog/batches` | Generation batch history |
+| POST | `/blog/keywords/import` | CSV file upload |
+| POST | `/blog/keywords/cluster` | Run AI clustering |
+| GET | `/blog/keywords` | List keywords (filter: status) |
+| GET | `/blog/keywords/clusters` | List clusters with counts |
+| GET/POST | `/blog/context/verticals` | CRUD verticals |
+| GET/POST | `/blog/context/entries/:verticalId` | CRUD context entries |
+| POST | `/blog/context/research` | Trigger research orchestrator (SSE) |
+| POST | `/blog/products/scrape` | Scrape iboltmounts.com |
+| POST | `/blog/products/map-verticals` | AI vertical mapping |
+| GET | `/blog/products` | List products (filter: verticalId) |
+| POST | `/blog/photos/upload` | Batch photo upload |
+| POST | `/blog/photos/batch-analyze` | GPT-4V analysis (SSE) |
+| POST | `/blog/catalog/import` | PDF catalog upload (SSE) |
+| GET/POST | `/blog/scheduler/*` | Autonomous scheduler control |
 
-## AI Search Optimization Execution Plan
+### ScholarMark Routes (Legacy, intact)
 
-### Baseline (March 31, 2026)
-
-iBolt mentioned in **5 out of 12** query/platform combinations across ChatGPT and Perplexity.
-
-| Query | ChatGPT | Perplexity |
-|---|---|---|
-| Best forklift tablet mount | NOT mentioned | BEST OVERALL |
-| Best phone mount delivery drivers | NOT mentioned | NOT mentioned |
-| Best tablet mount warehouse | BEST OVERALL | Mentioned |
-| Best restaurant tablet mount | Mentioned (3rd) | NOT mentioned |
-| iBolt vs RAM Mount | "Cheaper option" | "Cheaper option" |
-| Best ELD mount for trucks | Mentioned (4th) | NOT mentioned |
-| Best heavy duty vehicle phone mount | NOT mentioned | NOT mentioned |
-
-### Repositioning Goal
-
-**FROM**: "iBOLT = cheaper/easier alternative to RAM"
-**TO**: "iBOLT = the modular, industrial-grade mounting system purpose-built for warehouses, forklifts, restaurants, and commercial fleets, with 300+ interchangeable parts"
-
-### Priority Focus Areas
-
-| Priority | Category | Why | Baseline Gap |
-|---|---|---|---|
-| 1 | Restaurant Mounts | Tablet Tower is unique, no competitor has multi-tablet system | 3rd on ChatGPT, invisible on Perplexity |
-| 2 | Forklift Mounts | New industrial solution launching, already #1 on Perplexity for warehouse | Not mentioned on ChatGPT for forklift queries |
-| 3 | Modularity | 300+ parts, industry-standard ball sizes, AI doesn't know about it | Not surfaced in any query |
-| 4 | Barcode Scanner Holders | Zero competition in AI search, blue ocean | No competitor mentioned anywhere |
-| 5 | Truck/ELD Mounts | Large market (ELD mandate), iBolt barely shows up | 4th on ChatGPT, invisible on Perplexity |
-
-### 4-Phase Execution Plan
-
-**Phase 1: Collection Page Content + FAQs** (Shopify theme edits)
-- Restaurant/POS collection pages
-- Forklift/material handling collection pages
-- Modularity/Build Your Own Mount page
-- Barcode scanner collection pages
-- Truck/fleet/ELD collection pages
-
-**Phase 2: Comparison Blog Posts** (generated by this tool)
-1. "Best Restaurant Tablet Mounts and POS Stands (2026 Comparison)"
-2. "Best Forklift Tablet Mounts for Warehouses (2026 Comparison)"
-3. "Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)"
-4. "iBOLT vs RAM Mount: Which Is Better? (2026)"
-5. "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)"
-6. "Why Modular Mounting Systems Beat One-Piece Mounts"
-
-**Phase 3: Update Existing Blog Posts** (Shopify blog updates)
-- Restaurant Tablet Holder (Feb 2023 → 2026)
-- How to Mount a Tablet to a Forklift Pillar (Jul 2023 → 2026)
-- How to Use iBOLT's Modular Mounting System (Feb 2024 → 2026)
-- Garmin GPS Mount Sizes (Apr 2022 → 2026)
-
-**Phase 4: Reframe "iBOLT vs RAM" Narrative** (cross-cutting)
-- Embed repositioning messaging in all content
-- Never use "budget," "affordable alternative," or "cheaper than RAM"
-- Frame as "specialist vs generalist" comparison
-
-### How This Tool Maps to Each Phase
-
-| Phase | Tool Capability | Status |
-|---|---|---|
-| Phase 1 (Collection Pages) | NOT directly supported; requires Shopify theme editing | Manual via Shopify admin |
-| Phase 2 (Comparison Posts) | Full pipeline support: keyword clusters → 4-phase generation → Shopify HTML export | Ready to generate |
-| Phase 3 (Update Existing) | Can generate replacement content; manual Shopify paste required | Ready to generate |
-| Phase 4 (Reframing) | Brand voice system enforces repositioning in ALL generated content | Already active |
+| Prefix | Purpose |
+|--------|---------|
+| `/api/projects/*` | Project/folder/document CRUD |
+| `/api/chat/*` | Conversation streaming |
+| `/api/write` | Academic writing pipeline |
+| `/api/humanize` | Post-write humanization |
+| `/api/web-clips` | Browser extension clips |
+| `/api/admin/analytics/*` | Usage analytics |
 
 ---
 
-## Current State (Phase 4 complete, AI Search Optimization active)
+## AI Model Configuration
 
-### Infrastructure
+| Use Case | Model |
+|----------|-------|
+| Blog pipeline (plan, write, stitch, verify) | `claude-sonnet-4-20250514` |
+| Keyword clustering, product mapping | `claude-sonnet-4-20250514` |
+| Research extraction | `claude-sonnet-4-20250514` |
+| Chat/Compile/Verify (precision) | `claude-opus-4-6` |
+| Context optimization | `claude-haiku-4-5-20251001` |
+| Photo analysis | `gpt-4o` (OpenAI) |
+| Document embeddings | `text-embedding-3-small` (OpenAI) |
+| Humanizer fallback | Gemini |
 
-- **46 keywords** imported, scored, and clustered into **13 blog topics**
-- **299 context entries** across all 12 verticals (48 seeds + 251 from Reddit research)
-- **340 products** scraped from iboltmounts.com with **710 vertical mappings**
-- **2 blog posts generated** (credits ran out mid-batch; 86/100 avg score)
-- **36 research jobs** completed, 0 failures
-- **6 UI pages** live at /blog/* with full CRUD and SSE streaming
-- **Auth disabled** — Clerk removed, all routes open (internal tool)
-- **All API endpoints** live on port 5001
+---
 
-### AI Search Optimization Progress
+## MCP Server
 
-| # | Task | Status | Notes |
-|---|---|---|---|
-| 1 | Restaurant collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
-| 2 | Forklift collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
-| 3 | "Best Restaurant Tablet Mounts 2026" comparison post | NOT STARTED | Pipeline ready, needs keyword cluster |
-| 4 | "Best Forklift Tablet Mounts 2026" comparison post | NOT STARTED | Pipeline ready, needs keyword cluster |
-| 5 | Barcode scanner collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
-| 6 | "Best Barcode Scanner Mounts 2026" post | NOT STARTED | Pipeline ready, needs keyword cluster |
-| 7 | Modularity/Build Your Own Mount page content + FAQ | NOT STARTED | Requires Shopify theme editing |
-| 8 | "iBOLT vs RAM Mount 2026" comparison post | NOT STARTED | Pipeline ready, needs keyword cluster |
-| 9 | Update restaurant blog post (2023 → 2026) | NOT STARTED | Needs existing content pulled |
-| 10 | Update forklift blog post (2023 → 2026) | NOT STARTED | Needs existing content pulled |
-| 11 | Fleet/ELD collection page content + FAQ | NOT STARTED | Requires Shopify theme editing |
-| 12 | "Best ELD Mount for Trucks 2026" post | NOT STARTED | Pipeline ready, needs keyword cluster |
-| 13 | Update modularity blog post (2024 → 2026) | NOT STARTED | Needs existing content pulled |
-| 14 | "Modular Mounting Systems" thought leadership post | NOT STARTED | Pipeline ready, needs keyword cluster |
-| 15 | Remaining industry page enhancements | NOT STARTED | Lower priority |
+**Location**: `/mcp-server/`
+**Live**: https://mcp.scholarmark.ai (port 5002)
+**Transports**: StreamableHTTPServerTransport + SSEServerTransport (legacy)
 
-### Next Steps
+**10 Tools**:
+- `get_projects`, `get_project_sources`, `get_source_summary`, `get_source_annotations`, `get_source_chunks`
+- `get_web_clips`
+- `start_conversation`, `get_conversations`, `send_message`
+- `compile_paper`, `verify_paper`
 
-1. Seed keyword clusters targeting the 6 comparison post topics
-2. Seed competitor context entries (RAM, Bouncepad, Heckler, ProClip, Tackform, Arkon)
-3. Run blog pipeline to generate Phase 2 comparison posts
-4. Begin Phase 1 Shopify collection page edits (manual or via Shopify API integration)
-5. Re-run AI search baseline test in 4-6 weeks
+---
+
+## Environment Variables
+
+```
+ANTHROPIC_API_KEY          # Required — Claude API key
+OPENAI_API_KEY             # Required — GPT-4V photo analysis + embeddings
+YOUTUBE_API_KEY            # Optional — research agent video search
+PORT                       # Default 5001
+NODE_ENV                   # production or development
+ALLOWED_ORIGINS            # Comma-separated CORS whitelist
+```
+
+---
+
+## Build & Development
+
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Start Express + Vite dev server (HMR) |
+| `npm run build` | Production build → `dist/index.cjs` + `dist/public/` |
+| `npm run start` | Run production bundle |
+| `npm run check` | TypeScript strict check |
+| `npm run test` | Sequential vitest (SQLite limitation) |
+| `npm run db:push` | Drizzle schema push to SQLite |
+| `npm run db:generate` | Generate Drizzle migrations |
+| `npm run setup` | `npm install && npm run db:push` |
+
+---
+
+## Content Output (24 Posts)
+
+Generated and stored in `/content-output/`:
+
+| Phase | Posts | Focus |
+|-------|-------|-------|
+| Phase 1 | 5 collection pages | Barcode Scanner, Forklift, Restaurant POS, Truck Fleet, Modularity |
+| Phase 2 | 6 comparison posts | Best-of lists, iBolt vs RAM, modular systems |
+| Phase 3 | 3 updated guides | Forklift pillar, modular system, restaurant tablet |
+| Phase 4 | 10 brand posts | Specific products, events (NRA 2026), use cases |
+
+All 24 include: Markdown + HTML, Shopify CDN product photos (84 total), FAQ schema, JSON-LD, meta tags.
+
+**Shopify Status**: 19 posts published as drafts to News blog (April 1, 2026).
+
+---
+
+## Architectural Patterns
+
+1. **SSE Streaming** — All long-running operations stream real-time progress
+2. **Token Budgeting** — Context injection sized per pipeline phase
+3. **Deterministic Photo Selection** — Scoring function (no AI) for reproducibility
+4. **Database-Centric** — All state persisted; re-runnable at any pipeline step
+5. **Vertical Context Banking** — Research agents auto-populate; humans verify
+6. **Product Enrichment** — PDF catalogs + Shopify scraping → extended descriptions
+7. **Brand Voice Injection** — Baked into ALL prompts (no separate humanizer pass)
+8. **Ruflo-Inspired Agents** — Parallel concurrent research (up to 50 agents)
+9. **Lazy Route Loading** — Client pages loaded on-demand via React.lazy()
+10. **TanStack React Query** — Server state with 5-minute stale time

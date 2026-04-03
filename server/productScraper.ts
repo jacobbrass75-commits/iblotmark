@@ -11,6 +11,7 @@ import {
   type IndustryVertical,
 } from "@shared/schema";
 import Anthropic from "@anthropic-ai/sdk";
+import { cachedApiCall, shopifyLimiter, anthropicLimiter, TTL } from "./apiCache";
 
 const SHOPIFY_BASE = "https://iboltmounts.com";
 const PRODUCTS_PER_PAGE = 250; // Shopify max
@@ -40,16 +41,21 @@ async function fetchAllProducts(): Promise<ShopifyProduct[]> {
     const url = `${SHOPIFY_BASE}/products.json?limit=${PRODUCTS_PER_PAGE}&page=${page}`;
     console.log(`[Scraper] Fetching page ${page}: ${url}`);
 
-    const response = await fetch(url, {
-      headers: { "User-Agent": "iBoltBlogGenerator/1.0" },
-      signal: AbortSignal.timeout(15000),
-    });
+    const data = await cachedApiCall<{ products: ShopifyProduct[] }>(
+      `shopify:products:page:${page}`,
+      async () => {
+        const response = await fetch(url, {
+          headers: { "User-Agent": "iBoltBlogGenerator/1.0" },
+          signal: AbortSignal.timeout(15000),
+        });
+        if (!response.ok) {
+          throw new Error(`Shopify API returned ${response.status}: ${response.statusText}`);
+        }
+        return response.json() as Promise<{ products: ShopifyProduct[] }>;
+      },
+      { ttlMs: TTL.SHOPIFY_PRODUCTS, limiter: shopifyLimiter },
+    );
 
-    if (!response.ok) {
-      throw new Error(`Shopify API returned ${response.status}: ${response.statusText}`);
-    }
-
-    const data = await response.json() as { products: ShopifyProduct[] };
     const pageProducts = data.products || [];
 
     allProducts.push(...pageProducts);
@@ -148,6 +154,7 @@ export async function mapProductsToVerticals(): Promise<{ mapped: number }> {
 
     const verticalList = verticals.map((v) => `"${v.slug}": ${v.name}`).join("\n");
 
+    await anthropicLimiter.acquire();
     const response = await client.messages.create({
       model: "claude-sonnet-4-20250514",
       max_tokens: 4096,

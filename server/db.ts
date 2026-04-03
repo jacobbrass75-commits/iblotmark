@@ -445,6 +445,11 @@ CREATE INDEX IF NOT EXISTS idx_pipeline_chunks_source ON pipeline_context_chunks
 CREATE INDEX IF NOT EXISTS idx_pipeline_chunks_vertical ON pipeline_context_chunks(vertical_id);
 `);
 
+// === SHOPIFY INTEGRATION COLUMNS ===
+ensureColumn("blog_posts", "shopify_article_id", "shopify_article_id INTEGER");
+ensureColumn("blog_posts", "shopify_blog_id", "shopify_blog_id INTEGER");
+ensureColumn("blog_posts", "shopify_synced_at", "shopify_synced_at TEXT");
+
 // Extend products table with catalog enrichment columns
 ensureColumn("ibolt_products", "catalog_description", "catalog_description TEXT");
 ensureColumn("ibolt_products", "catalog_page_ref", "catalog_page_ref TEXT");

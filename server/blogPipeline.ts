@@ -26,6 +26,7 @@ import {
   buildVerifierPrompt,
   BRAND_VOICE,
 } from "./brandVoice";
+import { anthropicLimiter } from "./apiCache";
 import { formatContextForPrompt } from "./contextBanks";
 import { buildSectionContext, compactContext, TOKEN_BUDGETS } from "./contextChunker";
 import { selectPhotosForPost, savePhotoSelections, formatPhotoPlacementsForPrompt, type PhotoSelection } from "./photoSelector";
@@ -166,6 +167,7 @@ async function runPlanner(
 
   const systemPrompt = buildPlannerPrompt(industryContext, productContext);
 
+  await anthropicLimiter.acquire();
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: 4096,
@@ -210,6 +212,7 @@ async function writeSection(
     productDetails,
   );
 
+  await anthropicLimiter.acquire();
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: 2048,
@@ -236,6 +239,7 @@ async function runStitcher(
     .map((content, i) => `--- Section ${i + 1}: ${plan.sections[i]?.title || "Untitled"} ---\n\n${content}`)
     .join("\n\n");
 
+  await anthropicLimiter.acquire();
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: 8192,
@@ -258,6 +262,7 @@ async function runVerifier(
 ): Promise<VerificationResult> {
   const systemPrompt = buildVerifierPrompt();
 
+  await anthropicLimiter.acquire();
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: 2048,
@@ -408,6 +413,7 @@ export async function runBlogPipeline(
     try {
       const feedbackPrompt = `Previous version scored ${verification.overallScore}/100.\nIssues: ${verification.issues.join("; ")}\nSuggestions: ${verification.suggestions.join("; ")}`;
 
+      await anthropicLimiter.acquire();
       const restitchResponse = await client.messages.create({
         model: MODEL,
         max_tokens: 8192,

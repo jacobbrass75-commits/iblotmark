@@ -15,6 +15,7 @@ import { join, basename, extname } from "path";
 import { randomUUID } from "crypto";
 import OpenAI from "openai";
 import { readFile } from "fs/promises";
+import { cachedApiCall, openaiLimiter, TTL } from "./apiCache";
 
 const PHOTO_DIR = "./uploads/product-photos";
 const THUMB_DIR = "./uploads/product-photos/thumbs";
@@ -184,15 +185,18 @@ export async function analyzePhoto(photoId: string): Promise<PhotoAnalysis> {
   const base64 = imageBuffer.toString("base64");
   const mediaType = photo.mimeType.startsWith("image/") ? photo.mimeType : "image/jpeg";
 
-  const response = await openai.chat.completions.create({
-    model: "gpt-4o",
-    max_tokens: 1000,
-    messages: [{
-      role: "user",
-      content: [
-        {
-          type: "text",
-          text: `Analyze this product photo for iBolt Mounts (device mounting solutions company).
+  const analysis = await cachedApiCall<PhotoAnalysis>(
+    `openai:photo:${photoId}`,
+    async () => {
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        max_tokens: 1000,
+        messages: [{
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: `Analyze this product photo for iBolt Mounts (device mounting solutions company).
 
 Return JSON only:
 {
@@ -206,20 +210,22 @@ Return JSON only:
 }
 
 Vertical slugs to choose from: fishing-boating, forklifts-warehousing, trucking-fleet, offroading-jeep, restaurants-food-delivery, education-schools, content-creation-streaming, agriculture-farming, kitchen-home, road-trips-travel, mountain-biking-cycling, general-mounting`,
-        },
-        {
-          type: "image_url",
-          image_url: { url: `data:${mediaType};base64,${base64}` },
-        },
-      ],
-    }],
-  });
+            },
+            {
+              type: "image_url",
+              image_url: { url: `data:${mediaType};base64,${base64}` },
+            },
+          ],
+        }],
+      });
 
-  const text = response.choices[0]?.message?.content || "";
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) throw new Error("Failed to parse vision analysis");
-
-  const analysis = JSON.parse(jsonMatch[0]) as PhotoAnalysis;
+      const text = response.choices[0]?.message?.content || "";
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error("Failed to parse vision analysis");
+      return JSON.parse(jsonMatch[0]) as PhotoAnalysis;
+    },
+    { ttlMs: TTL.PHOTO_ANALYSIS, limiter: openaiLimiter },
+  );
 
   // Update DB
   await db.update(productPhotos).set({

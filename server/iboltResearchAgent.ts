@@ -8,6 +8,7 @@
 // 3. Stores extracted entries in the context_entries table
 
 import Anthropic from "@anthropic-ai/sdk";
+import { cachedApiCall, redditLimiter, youtubeLimiter, anthropicLimiter, TTL } from "./apiCache";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import {
@@ -71,16 +72,21 @@ async function fetchReddit(subreddit: string, query: string): Promise<string[]> 
   const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${encodeURIComponent(query)}&restrict_sr=1&sort=relevance&t=year&limit=25`;
 
   try {
-    const response = await fetch(url, {
-      headers: { "User-Agent": "iBoltResearchBot/1.0" },
-    });
+    const data = await cachedApiCall<any>(
+      `reddit:${subreddit}:${query}`,
+      async () => {
+        const response = await fetch(url, {
+          headers: { "User-Agent": "iBoltResearchBot/1.0" },
+        });
+        if (!response.ok) {
+          console.log(`[Reddit] ${subreddit} returned ${response.status}`);
+          return { data: { children: [] } };
+        }
+        return response.json();
+      },
+      { ttlMs: TTL.RESEARCH_REDDIT, limiter: redditLimiter },
+    );
 
-    if (!response.ok) {
-      console.log(`[Reddit] ${subreddit} returned ${response.status}`);
-      return [];
-    }
-
-    const data = await response.json() as any;
     const posts: string[] = [];
 
     for (const child of data?.data?.children || []) {
@@ -150,9 +156,15 @@ async function fetchYouTubeSearch(query: string): Promise<Array<{ title: string;
   const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=10&key=${apiKey}`;
 
   try {
-    const response = await fetch(url);
-    if (!response.ok) return [];
-    const data = await response.json() as any;
+    const data = await cachedApiCall<any>(
+      `youtube:${query}`,
+      async () => {
+        const response = await fetch(url);
+        if (!response.ok) return { items: [] };
+        return response.json();
+      },
+      { ttlMs: TTL.RESEARCH_YOUTUBE, limiter: youtubeLimiter },
+    );
 
     return (data.items || []).map((item: any) => ({
       title: item.snippet.title,
@@ -219,23 +231,26 @@ async function runYouTubeAgent(task: AgentTask): Promise<InsertContextEntry[]> {
 
 async function fetchWebPage(url: string): Promise<string> {
   try {
-    const response = await fetch(url, {
-      headers: { "User-Agent": "Mozilla/5.0 (compatible; iBoltResearchBot/1.0)" },
-      signal: AbortSignal.timeout(10000),
-    });
-
-    if (!response.ok) return "";
-
-    const html = await response.text();
-    // Strip HTML tags for a rough text extraction
-    const text = html
-      .replace(/<script[\s\S]*?<\/script>/gi, "")
-      .replace(/<style[\s\S]*?<\/style>/gi, "")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    return text.slice(0, 5000);
+    return await cachedApiCall<string>(
+      `web:${url}`,
+      async () => {
+        const response = await fetch(url, {
+          headers: { "User-Agent": "Mozilla/5.0 (compatible; iBoltResearchBot/1.0)" },
+          signal: AbortSignal.timeout(10000),
+        });
+        if (!response.ok) return "";
+        const html = await response.text();
+        // Strip HTML tags for a rough text extraction
+        const text = html
+          .replace(/<script[\s\S]*?<\/script>/gi, "")
+          .replace(/<style[\s\S]*?<\/style>/gi, "")
+          .replace(/<[^>]+>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+        return text.slice(0, 5000);
+      },
+      { ttlMs: TTL.RESEARCH_WEB },
+    );
   } catch {
     return "";
   }
@@ -304,6 +319,7 @@ async function extractContextFromContent(
     web: "industry websites and forums",
   }[sourceType];
 
+  await anthropicLimiter.acquire();
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4096,
