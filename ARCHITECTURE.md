@@ -1,6 +1,6 @@
 # iBolt Blog Generator — Architecture Reference
 
-Last verified against the live codebase on 2026-04-02 (Phase 5 complete, 24 AI Search Optimization posts with product photos published as Shopify drafts).
+Last verified against the live codebase on 2026-04-06 (Phase 5 complete, 24 AI Search Optimization posts with product photos published as Shopify drafts. Stdio MCP server added for Claude Code integration).
 
 ## Overview
 
@@ -420,17 +420,41 @@ Token budget management for prompt injection:
 
 ---
 
-## MCP Server
+## MCP Servers
 
-**Location**: `/mcp-server/`
+### Remote MCP Server (ScholarMark)
+
+**Location**: `/mcp-server/server.mjs`
 **Live**: https://mcp.scholarmark.ai (port 5002)
 **Transports**: StreamableHTTPServerTransport + SSEServerTransport (legacy)
 
-**10 Tools**:
+**11 Tools**:
 - `get_projects`, `get_project_sources`, `get_source_summary`, `get_source_annotations`, `get_source_chunks`
 - `get_web_clips`
 - `start_conversation`, `get_conversations`, `send_message`
 - `compile_paper`, `verify_paper`
+
+### Stdio MCP Server (iBolt Blog Generator)
+
+**Location**: `/mcp-server/ibolt-stdio.mjs`
+**Transport**: StdioServerTransport (for Claude Code local integration)
+**Backend**: Proxies to main app at `http://127.0.0.1:5001`
+**Requires**: Main app running (`npm run dev` in repo root)
+
+**25 Tools** across 7 domains:
+
+| Domain | Tools |
+|--------|-------|
+| Blog Posts | `list_blog_posts`, `get_blog_post`, `get_blog_post_html`, `update_blog_post`, `generate_blog_post` |
+| Keywords | `list_keywords`, `list_keyword_clusters`, `import_keywords`, `cluster_keywords` |
+| Industry Context | `list_verticals`, `get_context_entries`, `add_context_entry`, `run_research` |
+| Products | `list_products`, `scrape_products` |
+| Queue | `get_queue`, `add_to_queue`, `add_batch_to_queue` |
+| Shopify | `publish_to_shopify`, `shopify_status`, `list_shopify_articles` |
+| Scheduler | `scheduler_status`, `start_scheduler`, `stop_scheduler`, `trigger_scheduler_action` |
+| Competitor | `analyze_competitor` |
+
+**Configuration**: Registered in `.claude/settings.json` for automatic loading in Claude Code sessions within this project.
 
 ---
 
@@ -491,3 +515,19 @@ All 24 include: Markdown + HTML, Shopify CDN product photos (84 total), FAQ sche
 8. **Ruflo-Inspired Agents** — Parallel concurrent research (up to 50 agents)
 9. **Lazy Route Loading** — Client pages loaded on-demand via React.lazy()
 10. **TanStack React Query** — Server state with 5-minute stale time
+11. **Dual MCP Transports** — Remote HTTP/SSE for web clients + local stdio for Claude Code
+
+---
+
+## Claude Code Integration
+
+### Skills
+
+**Blog Writer** (`.claude/skills/blog-writer/SKILL.md`):
+One-shot blog post generation from a topic idea. Uses ibolt MCP tools to pull industry context, products, and photos, then generates a complete Shopify-ready blog post following brand voice guidelines. Invoked via `/blog-writer` or naturally when asking to write a blog post.
+
+### Agents
+34 reusable agents in `.claude/agents/` covering code review, testing, debugging, SEO, design, and more.
+
+### Commands
+23 slash commands in `.claude/commands/` for workflows like multi-review, issue resolution, PR management, and session handoffs.
