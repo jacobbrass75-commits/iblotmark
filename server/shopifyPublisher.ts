@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { blogPosts } from "@shared/schema";
 import { db } from "./db";
 import { renderShopifyHtml } from "./htmlRenderer";
+import { ensureExcerptForPost } from "./blogExcerpt";
 
 const SHOPIFY_SHOP = process.env.SHOPIFY_SHOP || "iboltmounts";
 const SHOPIFY_CLIENT_ID = process.env.SHOPIFY_CLIENT_ID || "";
@@ -139,24 +140,7 @@ export async function publishBlogPost(opts: {
   blogId?: number;
 }): Promise<{ articleId: number; adminUrl: string }> {
   const blogId = opts.blogId || SHOPIFY_NEWS_BLOG_ID;
-  const metafields: any[] = [];
-
-  if (opts.metaTitle) {
-    metafields.push({
-      namespace: "global",
-      key: "title_tag",
-      value: opts.metaTitle,
-      type: "single_line_text_field",
-    });
-  }
-  if (opts.metaDescription) {
-    metafields.push({
-      namespace: "global",
-      key: "description_tag",
-      value: opts.metaDescription,
-      type: "single_line_text_field",
-    });
-  }
+  const metafields = buildSeoMetafields(opts.metaTitle, opts.metaDescription);
 
   const result = await shopifyREST(
     "POST",
@@ -186,6 +170,8 @@ export async function updateShopifyArticle(
     title?: string;
     bodyHtml?: string;
     excerpt?: string;
+    metaTitle?: string;
+    metaDescription?: string;
     tags?: string;
     published?: boolean;
   }
@@ -194,6 +180,8 @@ export async function updateShopifyArticle(
   if (updates.title !== undefined) article.title = updates.title;
   if (updates.bodyHtml !== undefined) article.body_html = updates.bodyHtml;
   if (updates.excerpt !== undefined) article.summary_html = toShopifySummaryHtml(updates.excerpt);
+  const metafields = buildSeoMetafields(updates.metaTitle, updates.metaDescription);
+  if (metafields.length > 0) article.metafields = metafields;
   if (updates.tags !== undefined) article.tags = updates.tags;
   if (updates.published !== undefined) article.published = updates.published;
 
@@ -261,6 +249,29 @@ function buildPostTags(post: {
   return tags.join(", ");
 }
 
+function buildSeoMetafields(metaTitle?: string, metaDescription?: string): any[] {
+  const metafields: any[] = [];
+
+  if (metaTitle) {
+    metafields.push({
+      namespace: "seo",
+      key: "title",
+      value: metaTitle,
+      type: "single_line_text_field",
+    });
+  }
+  if (metaDescription) {
+    metafields.push({
+      namespace: "seo",
+      key: "description",
+      value: metaDescription,
+      type: "single_line_text_field",
+    });
+  }
+
+  return metafields;
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -302,6 +313,7 @@ export async function syncBlogPostToShopify(
   }
 
   const targetBlogId = blogId || post.shopifyBlogId || SHOPIFY_NEWS_BLOG_ID;
+  const excerpt = await ensureExcerptForPost(post);
   const html = post.html || (await renderShopifyHtml(post));
   const syncedAt = new Date().toISOString();
 
@@ -310,7 +322,9 @@ export async function syncBlogPostToShopify(
       await updateShopifyArticle(post.shopifyArticleId, {
         title: post.title,
         bodyHtml: html,
-        excerpt: post.excerpt ?? undefined,
+        excerpt,
+        metaTitle: post.metaTitle || undefined,
+        metaDescription: post.metaDescription || undefined,
         tags: buildPostTags(post),
       });
 
@@ -337,7 +351,7 @@ export async function syncBlogPostToShopify(
     const published = await publishBlogPost({
       title: post.title,
       bodyHtml: html,
-      excerpt: post.excerpt ?? undefined,
+      excerpt,
       tags: buildPostTags(post),
       metaTitle: post.metaTitle || undefined,
       metaDescription: post.metaDescription || undefined,

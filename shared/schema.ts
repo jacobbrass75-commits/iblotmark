@@ -938,6 +938,7 @@ export const blogPosts = sqliteTable("blog_posts", {
   excerpt: text("excerpt"),
   markdown: text("markdown"),
   html: text("html"),
+  photosInjected: integer("photos_injected", { mode: "boolean" }).default(false),
   hasPhotos: integer("has_photos", { mode: "boolean" }).default(false),
   photoCount: integer("photo_count").default(0),
   clusterId: text("cluster_id").references(() => keywordClusters.id, { onDelete: "set null" }),

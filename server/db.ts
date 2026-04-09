@@ -329,6 +329,7 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   excerpt TEXT,
   markdown TEXT,
   html TEXT,
+  photos_injected INTEGER DEFAULT 0,
   has_photos INTEGER DEFAULT 0,
   photo_count INTEGER DEFAULT 0,
   cluster_id TEXT,
@@ -464,6 +465,7 @@ ensureColumn("blog_posts", "shopify_article_id", "shopify_article_id INTEGER");
 ensureColumn("blog_posts", "shopify_blog_id", "shopify_blog_id INTEGER");
 ensureColumn("blog_posts", "shopify_synced_at", "shopify_synced_at TEXT");
 ensureColumn("blog_posts", "excerpt", "excerpt TEXT");
+ensureColumn("blog_posts", "photos_injected", "photos_injected INTEGER DEFAULT 0");
 ensureColumn("blog_posts", "has_photos", "has_photos INTEGER DEFAULT 0");
 ensureColumn("blog_posts", "photo_count", "photo_count INTEGER DEFAULT 0");
 

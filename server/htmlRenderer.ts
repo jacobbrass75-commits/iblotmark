@@ -260,7 +260,7 @@ export async function renderPreviewHtml(post: BlogPost): Promise<string> {
     h2 { font-size: 1.5rem; margin-top: 2rem; color: #2c3e50; }
     h3 { font-size: 1.25rem; margin-top: 1.5rem; }
     p { margin: 1rem 0; }
-    img { max-width: 100%; height: auto; margin: 16px 0; }
+    img { max-width: 100%; height: auto; margin: 16px 0; border-radius: 4px; }
     a { color: #e8491d; text-decoration: none; }
     a:hover { text-decoration: underline; }
     ul, ol { padding-left: 1.5rem; }

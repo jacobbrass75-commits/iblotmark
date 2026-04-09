@@ -59,6 +59,8 @@ describe("shopifyPublisher", () => {
       title: "Photo-ready post",
       bodyHtml: "<p>Body</p>",
       excerpt: "Short summary for the blog index.",
+      metaTitle: "Tablet Mount Guide",
+      metaDescription: "Find the right iBOLT tablet mount for work and travel.",
       blogId: 104843772196,
     });
 
@@ -66,5 +68,19 @@ describe("shopifyPublisher", () => {
     expect(requestBody.article.summary_html).toBe(
       "<p>Short summary for the blog index.</p>"
     );
+    expect(requestBody.article.metafields).toEqual([
+      {
+        namespace: "seo",
+        key: "title",
+        value: "Tablet Mount Guide",
+        type: "single_line_text_field",
+      },
+      {
+        namespace: "seo",
+        key: "description",
+        value: "Find the right iBOLT tablet mount for work and travel.",
+        type: "single_line_text_field",
+      },
+    ]);
   });
 });

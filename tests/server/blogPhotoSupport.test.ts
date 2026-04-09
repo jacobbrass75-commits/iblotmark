@@ -49,16 +49,16 @@ Choose the mount that fits your use case.`;
       "ibolt-tabdock-extendibolt-triple-suction-cup-mount",
     ]);
     expect(result.markdown).toContain(
-      '## Desktop and Workspace\n<img src="https://cdn.shopify.com/desktop.jpg" alt="iBOLT TabDock POS Tablet Stand" style="width:100%;max-width:800px;height:auto;margin:16px 0;" />'
+      '## Desktop and Workspace\n<img src="https://cdn.shopify.com/desktop.jpg" alt="iBOLT TabDock POS Tablet Stand" style="width:100%;max-width:800px;height:auto;margin:16px 0;border-radius:4px;" />'
     );
     expect(result.markdown).toContain(
-      '## Vehicle Tablet Mounting\n<img src="https://cdn.shopify.com/vehicle.jpg" alt="iBOLT TabDock Extend iBOLT Triple Suction Cup Mount" style="width:100%;max-width:800px;height:auto;margin:16px 0;" />'
+      '## Vehicle Tablet Mounting\n<img src="https://cdn.shopify.com/vehicle.jpg" alt="iBOLT TabDock Extend iBOLT Triple Suction Cup Mount" style="width:100%;max-width:800px;height:auto;margin:16px 0;border-radius:4px;" />'
     );
   });
 
   it("skips sections that already have an image immediately after the H2", () => {
     const markdown = `## Headrest Tablet Holders
-<img src="https://cdn.shopify.com/headrest.jpg" alt="Existing image" style="width:100%;max-width:800px;height:auto;margin:16px 0;" />
+<img src="https://cdn.shopify.com/headrest.jpg" alt="Existing image" style="width:100%;max-width:800px;height:auto;margin:16px 0;border-radius:4px;" />
 
 The iBOLT sPro2 Headrest Viewer keeps tablets steady for passengers.`;
 
@@ -66,5 +66,30 @@ The iBOLT sPro2 Headrest Viewer keeps tablets steady for passengers.`;
 
     expect(result.inserted).toBe(0);
     expect(result.markdown).toBe(markdown);
+  });
+
+  it("matches normalized product titles and skips generic installation sections", () => {
+    const markdown = `## Magnetic Tablet Mounts
+
+The **iBOLT TabDock MagDock Heavy Duty Magnetic Mount** works well on fridges and workout equipment.
+
+## Installation Best Practices
+
+Use the **iBOLT AMPS to VESA 75/100 Plate** when you need hardware adapters.`;
+
+    const result = injectProductImagesIntoMarkdown(markdown, [
+      ...products,
+      {
+        id: "product-4",
+        handle: "ibolt-tabdock-magdock-heavy-duty-magnetic-mount-for-fridges-restaurants-automotive-workout-equipment",
+        title: "iBOLT TabDock™ MagDock- Heavy Duty Magnetic Mount for All 7”-10” Tablets- Great for fridges, Restaurants, Automotive, Workout Equipment",
+        imageUrl: "https://cdn.shopify.com/magnetic.jpg",
+        url: "https://iboltmounts.com/products/ibolt-tabdock-magdock-heavy-duty-magnetic-mount-for-fridges-restaurants-automotive-workout-equipment",
+      },
+    ] as any);
+
+    expect(result.inserted).toBe(1);
+    expect(result.markdown).toContain("https://cdn.shopify.com/magnetic.jpg");
+    expect(result.markdown).not.toContain("Installation Best Practices\n<img");
   });
 });

@@ -421,7 +421,7 @@ server.tool(
   { id: z.string().describe("Blog post ID to publish") },
   async ({ id }) => {
     try {
-      const data = await api("POST", `/api/blog/shopify/publish/${encodeURIComponent(id)}`);
+      const data = await api("POST", `/api/blog/shopify/posts/${encodeURIComponent(id)}/publish`, {});
       return ok(data);
     } catch (e) { return err(e.message); }
   }
@@ -495,12 +495,13 @@ server.tool(
   "trigger_scheduler_action",
   "Manually trigger a specific scheduler action",
   {
-    action: z.enum(["research", "products", "generate", "photos", "chunks"])
+    action: z.enum(["research", "products", "generate", "excerpts", "photos", "full_publish", "chunks"])
       .describe("Which action to trigger"),
+    postId: z.string().optional().describe("Optional blog post ID for post-specific actions like excerpts, photos, or full_publish"),
   },
-  async ({ action }) => {
+  async ({ action, postId }) => {
     try {
-      const data = await api("POST", `/api/blog/scheduler/trigger/${action}`);
+      const data = await api("POST", `/api/blog/scheduler/trigger/${action}`, postId ? { postId } : {});
       return ok(data);
     } catch (e) { return err(e.message); }
   }

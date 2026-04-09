@@ -60,6 +60,7 @@ describe("database bootstrap", () => {
       )
     );
     expect(blogPostColumns.has("excerpt")).toBe(true);
+    expect(blogPostColumns.has("photos_injected")).toBe(true);
     expect(blogPostColumns.has("has_photos")).toBe(true);
     expect(blogPostColumns.has("photo_count")).toBe(true);
 

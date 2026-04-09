@@ -33,7 +33,7 @@ describe("htmlRenderer", () => {
     );
 
     expect(html).toContain(
-      '<img src="https://cdn.shopify.com/s/files/1/tablet-mount.jpg" alt="Tablet mount" style="width:100%;max-width:800px;height:auto;margin:16px 0;" />'
+      '<img src="https://cdn.shopify.com/s/files/1/tablet-mount.jpg" alt="Tablet mount" style="width:100%;max-width:800px;height:auto;margin:16px 0;border-radius:4px;" />'
     );
     expect(html).not.toContain("<a href=");
   });
@@ -44,12 +44,12 @@ describe("htmlRenderer", () => {
     sqliteHandle = sqlite;
 
     const html = markdownToHtml(
-      '## Photo Section\n<img src="https://cdn.shopify.com/raw.jpg" alt="Raw photo" style="width:100%;max-width:800px;height:auto;margin:16px 0;" />'
+      '## Photo Section\n<img src="https://cdn.shopify.com/raw.jpg" alt="Raw photo" style="width:100%;max-width:800px;height:auto;margin:16px 0;border-radius:4px;" />'
     );
 
     expect(html).toContain("<h2>Photo Section</h2>");
     expect(html).toContain(
-      '<img src="https://cdn.shopify.com/raw.jpg" alt="Raw photo" style="width:100%;max-width:800px;height:auto;margin:16px 0;" />'
+      '<img src="https://cdn.shopify.com/raw.jpg" alt="Raw photo" style="width:100%;max-width:800px;height:auto;margin:16px 0;border-radius:4px;" />'
     );
     expect(html).not.toContain("&lt;img");
   });

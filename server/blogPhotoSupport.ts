@@ -1,7 +1,7 @@
 import type { BlogPost, Product } from "@shared/schema";
 
 export const BLOG_INLINE_IMAGE_STYLE =
-  "width:100%;max-width:800px;height:auto;margin:16px 0;";
+  "width:100%;max-width:800px;height:auto;margin:16px 0;border-radius:4px;";
 
 const PRODUCT_URL_REGEX =
   /https?:\/\/(?:www\.)?iboltmounts\.com\/products\/([a-z0-9][a-z0-9-]*)/gi;
@@ -11,6 +11,26 @@ const RAW_IMAGE_LINE_REGEX = /^\s*<img\b[^>]*\/?>\s*$/i;
 const H2_LINE_REGEX = /^##\s+(.+)$/;
 const HTML_H2_SECTION_REGEX =
   /(<h2\b[^>]*>[\s\S]*?<\/h2>)([\s\S]*?)(?=<h2\b[^>]*>[\s\S]*?<\/h2>|$)/gi;
+const SKIPPED_SECTION_HEADINGS = /\b(choosing the right|installation best practices|frequently asked questions)\b/i;
+const TITLE_STOPWORDS = new Set([
+  "ibolt",
+  "the",
+  "and",
+  "for",
+  "all",
+  "tablet",
+  "tablets",
+  "mount",
+  "mounts",
+  "holder",
+  "holders",
+  "universal",
+  "heavy",
+  "duty",
+  "great",
+  "inch",
+  "inches",
+]);
 
 type MentionableProduct = Pick<Product, "id" | "handle" | "title" | "url" | "imageUrl">;
 
@@ -45,6 +65,32 @@ function escapeAttribute(value: string): string {
 
 function normalizeWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
+}
+
+function normalizeTokens(value: string): string[] {
+  return value
+    .toLowerCase()
+    .replace(/[™®]/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+function buildSearchNeedles(product: MentionableProduct): string[] {
+  const titleTokens = normalizeTokens(product.title || "").filter((token) => !TITLE_STOPWORDS.has(token));
+  const handleTokens = normalizeTokens(product.handle).filter((token) => token !== "ibolt");
+  const needles = new Set<string>();
+
+  for (const size of [5, 4, 3]) {
+    if (titleTokens.length >= size) {
+      needles.add(titleTokens.slice(0, size).join(" "));
+    }
+    if (handleTokens.length >= size) {
+      needles.add(handleTokens.slice(0, size).join(" "));
+    }
+  }
+
+  return Array.from(needles);
 }
 
 function isImmediateImageLine(line: string | undefined): boolean {
@@ -117,6 +163,17 @@ export function findFirstMentionedProduct(
     }
   }
 
+  const normalizedContent = normalizeTokens(sectionContent).join(" ");
+  for (const product of buildTitleCandidates(productsWithImages)) {
+    for (const needle of buildSearchNeedles(product)) {
+      const index = normalizedContent.indexOf(needle);
+      if (index >= 0) {
+        bestMatch = updateBestMatch(bestMatch, { product, index });
+        break;
+      }
+    }
+  }
+
   return bestMatch?.product ?? null;
 }
 
@@ -133,6 +190,9 @@ export function injectProductImagesIntoMarkdown(
     if (!headingMatch) continue;
 
     const heading = normalizeWhitespace(headingMatch[1] || "");
+    if (SKIPPED_SECTION_HEADINGS.test(heading)) {
+      continue;
+    }
     let sectionEnd = lines.length;
     for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
       if (H2_LINE_REGEX.test(lines[cursor])) {
@@ -200,6 +260,9 @@ export function injectProductImagesIntoHtml(
       }
 
       const heading = stripHtmlTags(headingHtml);
+      if (SKIPPED_SECTION_HEADINGS.test(heading)) {
+        return fullMatch;
+      }
       const sectionText = `${heading}\n${stripHtmlTags(sectionBody)}`;
       const product = findFirstMentionedProduct(sectionText, products);
       if (!product?.imageUrl) {

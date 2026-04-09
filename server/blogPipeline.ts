@@ -30,6 +30,7 @@ import { anthropicLimiter } from "./apiCache";
 import { formatContextForPrompt } from "./contextBanks";
 import { buildSectionContext, compactContext, TOKEN_BUDGETS } from "./contextChunker";
 import { selectPhotosForPost, savePhotoSelections, formatPhotoPlacementsForPrompt, type PhotoSelection } from "./photoSelector";
+import { generateExcerpt } from "./blogExcerpt";
 
 // --- Types ---
 
@@ -440,6 +441,16 @@ export async function runBlogPipeline(
   // Count words
   const wordCount = markdown.split(/\s+/).filter(Boolean).length;
 
+  onEvent({ type: "status", phase: "excerpt", message: "Generating Shopify excerpt..." });
+  const excerpt = await generateExcerpt({
+    title: plan.title,
+    metaTitle: plan.metaTitle,
+    metaDescription: plan.metaDescription,
+    markdown,
+    primaryKeyword: plan.primaryKeyword,
+    secondaryKeywords: plan.secondaryKeywords,
+  });
+
   // Save to database
   onEvent({ type: "status", phase: "save", message: "Saving blog post..." });
 
@@ -448,6 +459,7 @@ export async function runBlogPipeline(
     slug: plan.slug,
     metaTitle: plan.metaTitle,
     metaDescription: plan.metaDescription,
+    excerpt,
     markdown,
     clusterId: request.clusterId,
     verticalId: vertical?.id || null,
@@ -525,12 +537,17 @@ export async function updateBlogPost(id: string, updates: Partial<{
   metaTitle: string;
   metaDescription: string;
   excerpt: string;
+  photosInjected: boolean;
   hasPhotos: boolean;
   photoCount: number;
 }>): Promise<BlogPost> {
   const updateData: any = { ...updates, updatedAt: new Date() };
   if (updates.markdown) {
     updateData.wordCount = updates.markdown.split(/\s+/).filter(Boolean).length;
+    if (updates.photosInjected === undefined) updateData.photosInjected = false;
+    if (updates.hasPhotos === undefined) updateData.hasPhotos = false;
+    if (updates.photoCount === undefined) updateData.photoCount = 0;
+    if (updates.excerpt === undefined) updateData.excerpt = null;
   }
   const [post] = await db.update(blogPosts).set(updateData).where(eq(blogPosts.id, id)).returning();
   return post;

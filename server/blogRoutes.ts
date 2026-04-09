@@ -19,13 +19,13 @@ import { writingQueue } from "./writingQueue";
 import { processCompetitorUrls, fetchCompetitorSitemap } from "./competitorScraper";
 import { createVerticalFromDescription, autoMapKeywordsToVerticals } from "./verticalCreator";
 import {
-  publishBlogPost,
   updateShopifyArticle,
   deleteShopifyArticle,
   listShopifyArticles,
   updateCollectionDescription,
   listCollections,
   checkShopifyConnection,
+  syncBlogPostToShopify,
 } from "./shopifyPublisher";
 
 export function registerBlogRoutes(app: { use: (path: string, router: Router) => void }) {
@@ -476,27 +476,14 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
     try {
       const post = await getBlogPost(req.params.id);
       if (!post) return res.status(404).json({ error: "Post not found" });
-
-      const html = post.html || await renderShopifyHtml(post as any);
-      const result = await publishBlogPost({
-        title: post.title,
-        bodyHtml: html,
-        metaTitle: post.metaTitle || undefined,
-        metaDescription: post.metaDescription || undefined,
-        excerpt: post.excerpt ?? undefined,
-        tags: `2026, ${post.verticalId || "general"}`,
-        published: req.body.published ?? false,
-      });
-
-      // Store Shopify article ID back on the post
-      await updateBlogPost(post.id, {
-        status: "published",
-      });
+      const result = await syncBlogPostToShopify(post.id, req.body.blogId);
+      if (!result.success) {
+        return res.status(500).json({ error: result.error || "Failed to publish to Shopify" });
+      }
 
       res.json({
         message: "Published to Shopify",
-        shopifyArticleId: result.articleId,
-        adminUrl: result.adminUrl,
+        ...result,
       });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
@@ -520,6 +507,8 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
         title: req.body.title,
         bodyHtml: req.body.body_html,
         excerpt: req.body.excerpt,
+        metaTitle: req.body.metaTitle,
+        metaDescription: req.body.metaDescription,
         tags: req.body.tags,
         published: req.body.published,
       });

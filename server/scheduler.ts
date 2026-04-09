@@ -22,6 +22,7 @@ import {
   injectProductImagesIntoMarkdown,
 } from "./blogPhotoSupport";
 import { syncBlogPostToShopify } from "./shopifyPublisher";
+import { generateExcerptForPost } from "./blogExcerpt";
 
 // --- Types ---
 
@@ -88,6 +89,7 @@ export class BlogScheduler {
   private isSyncing = false;
   private isGenerating = false;
   private isAnalyzingPhotos = false;
+  private isGeneratingExcerpts = false;
   private isRebuildingChunks = false;
   private log: (msg: string) => void;
 
@@ -290,7 +292,57 @@ export class BlogScheduler {
     }
   }
 
-  async runPhotoAnalysis(): Promise<{ analyzed: number }> {
+  async runExcerptGeneration(postId?: string): Promise<{ generated: number }> {
+    if (this.isGeneratingExcerpts) {
+      this.log("Excerpt generation already in progress, skipping");
+      return { generated: 0 };
+    }
+
+    this.isGeneratingExcerpts = true;
+    this.log("Starting excerpt generation...");
+
+    try {
+      const allPosts = postId
+        ? await db.select().from(blogPosts).where(eq(blogPosts.id, postId)).limit(1)
+        : await db.select().from(blogPosts);
+
+      let generated = 0;
+
+      for (const post of allPosts) {
+        if (!post?.markdown && !post?.html) continue;
+        if (!postId && post.excerpt?.trim()) continue;
+
+        const excerpt = await generateExcerptForPost(post);
+        await db
+          .update(blogPosts)
+          .set({
+            excerpt,
+            updatedAt: new Date(),
+          })
+          .where(eq(blogPosts.id, post.id));
+
+        if (post.shopifyArticleId) {
+          const syncResult = await syncBlogPostToShopify(post.id, post.shopifyBlogId || undefined);
+          if (!syncResult.success) {
+            this.log(`  [excerpts] Shopify sync failed for "${post.title}": ${syncResult.error}`);
+          }
+        }
+
+        generated += 1;
+        this.log(`  [excerpts] Generated excerpt for "${post.title}"`);
+      }
+
+      this.log(`Excerpt generation complete: ${generated} posts updated`);
+      return { generated };
+    } catch (err: any) {
+      this.log(`Excerpt generation failed: ${err.message}`);
+      return { generated: 0 };
+    } finally {
+      this.isGeneratingExcerpts = false;
+    }
+  }
+
+  async runPhotoAnalysis(postId?: string): Promise<{ analyzed: number }> {
     if (this.isAnalyzingPhotos) {
       this.log("Photo analysis already in progress, skipping");
       return { analyzed: 0 };
@@ -300,15 +352,18 @@ export class BlogScheduler {
     this.log("Starting scheduled photo injection...");
 
     try {
-      const eligiblePosts = await db
-        .select()
-        .from(blogPosts)
-        .where(or(eq(blogPosts.status, "approved"), eq(blogPosts.status, "published")));
+      const eligiblePosts = postId
+        ? await db.select().from(blogPosts).where(eq(blogPosts.id, postId)).limit(1)
+        : await db
+            .select()
+            .from(blogPosts)
+            .where(or(eq(blogPosts.status, "approved"), eq(blogPosts.status, "published")));
       const availableProducts = (await db.select().from(products)).filter((product) => product.imageUrl);
 
       let analyzed = 0;
 
       for (const post of eligiblePosts) {
+        if (!postId && post.photosInjected) continue;
         const sourceType = getPhotoEnrichmentSource(post);
         if (!sourceType) continue;
 
@@ -337,6 +392,7 @@ export class BlogScheduler {
           .set({
             markdown: nextMarkdown,
             html: nextHtml,
+            photosInjected: true,
             hasPhotos: true,
             photoCount: inserted,
             updatedAt: new Date(),
@@ -403,12 +459,43 @@ export class BlogScheduler {
     return result;
   }
 
-  async triggerPhotoAnalysis(): Promise<{ analyzed: number }> {
-    return this.runPhotoAnalysis();
+  async triggerExcerptGeneration(postId?: string): Promise<{ generated: number }> {
+    return this.runExcerptGeneration(postId);
+  }
+
+  async triggerPhotoAnalysis(postId?: string): Promise<{ analyzed: number }> {
+    return this.runPhotoAnalysis(postId);
   }
 
   async triggerChunkRebuild(): Promise<{ chunks: number }> {
     return this.runChunkRebuild();
+  }
+
+  async triggerFullPublish(postId: string): Promise<{
+    products: number;
+    newProducts: number;
+    excerpts: number;
+    analyzed: number;
+    published: number;
+    syncResult?: Awaited<ReturnType<typeof syncBlogPostToShopify>>;
+  }> {
+    if (!postId) {
+      throw new Error("postId is required for full_publish");
+    }
+
+    const productSync = await this.runProductSync();
+    const excerpts = await this.runExcerptGeneration(postId);
+    const photos = await this.runPhotoAnalysis(postId);
+    const syncResult = await syncBlogPostToShopify(postId);
+
+    return {
+      products: productSync.total,
+      newProducts: productSync.new_,
+      excerpts: excerpts.generated,
+      analyzed: photos.analyzed,
+      published: syncResult.success ? 1 : 0,
+      syncResult,
+    };
   }
 }
 
