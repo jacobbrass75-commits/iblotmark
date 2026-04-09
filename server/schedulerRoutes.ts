@@ -80,7 +80,7 @@ export function registerSchedulerRoutes(app: { use: (path: string, router: Route
   // POST /api/blog/scheduler/trigger/photos — Manually trigger photo analysis
   router.post("/trigger/photos", async (_req: Request, res: Response) => {
     try {
-      res.json({ message: "Photo analysis triggered", ...(await scheduler.triggerPhotoAnalysis()) });
+      res.json({ message: "Photo injection triggered", ...(await scheduler.triggerPhotoAnalysis()) });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

@@ -24,7 +24,18 @@ function getExistingColumnNames(tableName: string): Set<string> {
   return new Set(columns.map((column) => column.name));
 }
 
+function tableExists(tableName: string): boolean {
+  const result = sqlite
+    .prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ? LIMIT 1")
+    .get(tableName);
+  return !!result;
+}
+
 function ensureColumn(tableName: string, columnName: string, columnDefinition: string): void {
+  if (!tableExists(tableName)) {
+    return;
+  }
+
   const existingColumns = getExistingColumnNames(tableName);
   if (existingColumns.has(columnName)) {
     return;
@@ -315,8 +326,11 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   slug TEXT NOT NULL,
   meta_title TEXT,
   meta_description TEXT,
+  excerpt TEXT,
   markdown TEXT,
   html TEXT,
+  has_photos INTEGER DEFAULT 0,
+  photo_count INTEGER DEFAULT 0,
   cluster_id TEXT,
   vertical_id TEXT,
   batch_id TEXT,
@@ -449,6 +463,9 @@ CREATE INDEX IF NOT EXISTS idx_pipeline_chunks_vertical ON pipeline_context_chun
 ensureColumn("blog_posts", "shopify_article_id", "shopify_article_id INTEGER");
 ensureColumn("blog_posts", "shopify_blog_id", "shopify_blog_id INTEGER");
 ensureColumn("blog_posts", "shopify_synced_at", "shopify_synced_at TEXT");
+ensureColumn("blog_posts", "excerpt", "excerpt TEXT");
+ensureColumn("blog_posts", "has_photos", "has_photos INTEGER DEFAULT 0");
+ensureColumn("blog_posts", "photo_count", "photo_count INTEGER DEFAULT 0");
 
 // Extend products table with catalog enrichment columns
 ensureColumn("ibolt_products", "catalog_description", "catalog_description TEXT");

@@ -177,6 +177,7 @@ server.tool(
     status: z.string().optional().describe("New status: draft, approved, published"),
     metaTitle: z.string().optional().describe("SEO meta title"),
     metaDescription: z.string().optional().describe("SEO meta description"),
+    excerpt: z.string().optional().describe("Summary shown on the blog index or home page"),
   },
   async ({ id, ...updates }) => {
     try {

@@ -80,6 +80,7 @@ export interface ShopifyArticle {
   id: number;
   title: string;
   body_html: string;
+  summary_html?: string;
   published: boolean;
   tags: string;
   handle?: string;
@@ -130,6 +131,7 @@ export interface BatchSyncProgress {
 export async function publishBlogPost(opts: {
   title: string;
   bodyHtml: string;
+  excerpt?: string;
   tags?: string;
   metaTitle?: string;
   metaDescription?: string;
@@ -163,6 +165,7 @@ export async function publishBlogPost(opts: {
       article: {
         title: opts.title,
         body_html: opts.bodyHtml,
+        ...(opts.excerpt !== undefined ? { summary_html: toShopifySummaryHtml(opts.excerpt) } : {}),
         published: opts.published ?? false,
         tags: opts.tags || "",
         ...(metafields.length > 0 ? { metafields } : {}),
@@ -182,6 +185,7 @@ export async function updateShopifyArticle(
   updates: {
     title?: string;
     bodyHtml?: string;
+    excerpt?: string;
     tags?: string;
     published?: boolean;
   }
@@ -189,6 +193,7 @@ export async function updateShopifyArticle(
   const article: any = { id: articleId };
   if (updates.title !== undefined) article.title = updates.title;
   if (updates.bodyHtml !== undefined) article.body_html = updates.bodyHtml;
+  if (updates.excerpt !== undefined) article.summary_html = toShopifySummaryHtml(updates.excerpt);
   if (updates.tags !== undefined) article.tags = updates.tags;
   if (updates.published !== undefined) article.published = updates.published;
 
@@ -256,6 +261,20 @@ function buildPostTags(post: {
   return tags.join(", ");
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function toShopifySummaryHtml(excerpt: string): string {
+  if (/<[a-z][\s\S]*>/i.test(excerpt)) {
+    return excerpt;
+  }
+  return `<p>${escapeHtml(excerpt)}</p>`;
+}
+
 export async function syncBlogPostToShopify(
   blogPostId: string,
   blogId?: number
@@ -291,6 +310,7 @@ export async function syncBlogPostToShopify(
       await updateShopifyArticle(post.shopifyArticleId, {
         title: post.title,
         bodyHtml: html,
+        excerpt: post.excerpt ?? undefined,
         tags: buildPostTags(post),
       });
 
@@ -317,6 +337,7 @@ export async function syncBlogPostToShopify(
     const published = await publishBlogPost({
       title: post.title,
       bodyHtml: html,
+      excerpt: post.excerpt ?? undefined,
       tags: buildPostTags(post),
       metaTitle: post.metaTitle || undefined,
       metaDescription: post.metaDescription || undefined,

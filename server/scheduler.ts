@@ -2,7 +2,7 @@
 // Runs research, product sync, keyword refresh, and auto-generation on intervals.
 
 import { db } from "./db";
-import { eq, and, isNull } from "drizzle-orm";
+import { eq, or } from "drizzle-orm";
 import {
   industryVerticals,
   keywordClusters,
@@ -15,8 +15,13 @@ import { ResearchOrchestrator } from "./iboltResearchAgent";
 import { scrapeProducts, mapProductsToVerticals } from "./productScraper";
 import { runBlogPipeline } from "./blogPipeline";
 import { renderShopifyHtml } from "./htmlRenderer";
-import { batchAnalyzePhotos } from "./photoBank";
 import { rebuildContextChunks } from "./contextChunker";
+import {
+  getPhotoEnrichmentSource,
+  injectProductImagesIntoHtml,
+  injectProductImagesIntoMarkdown,
+} from "./blogPhotoSupport";
+import { syncBlogPostToShopify } from "./shopifyPublisher";
 
 // --- Types ---
 
@@ -292,15 +297,66 @@ export class BlogScheduler {
     }
 
     this.isAnalyzingPhotos = true;
-    this.log("Starting scheduled photo analysis...");
+    this.log("Starting scheduled photo injection...");
 
     try {
-      const result = await batchAnalyzePhotos(30, (msg) => this.log(`  [photos] ${msg}`));
+      const eligiblePosts = await db
+        .select()
+        .from(blogPosts)
+        .where(or(eq(blogPosts.status, "approved"), eq(blogPosts.status, "published")));
+      const availableProducts = (await db.select().from(products)).filter((product) => product.imageUrl);
+
+      let analyzed = 0;
+
+      for (const post of eligiblePosts) {
+        const sourceType = getPhotoEnrichmentSource(post);
+        if (!sourceType) continue;
+
+        let nextMarkdown = post.markdown;
+        let nextHtml = post.html;
+        let inserted = 0;
+
+        if (sourceType === "markdown") {
+          const enrichment = injectProductImagesIntoMarkdown(post.markdown || "", availableProducts);
+          if (enrichment.inserted === 0) continue;
+          nextMarkdown = enrichment.markdown;
+          nextHtml = await renderShopifyHtml(
+            { ...post, markdown: enrichment.markdown, html: "" },
+            { preferStoredHtml: false },
+          );
+          inserted = enrichment.inserted;
+        } else {
+          const enrichment = injectProductImagesIntoHtml(post.html || "", availableProducts);
+          if (enrichment.inserted === 0) continue;
+          nextHtml = enrichment.html;
+          inserted = enrichment.inserted;
+        }
+
+        await db
+          .update(blogPosts)
+          .set({
+            markdown: nextMarkdown,
+            html: nextHtml,
+            hasPhotos: true,
+            photoCount: inserted,
+            updatedAt: new Date(),
+          })
+          .where(eq(blogPosts.id, post.id));
+
+        const syncResult = await syncBlogPostToShopify(post.id, post.shopifyBlogId || undefined);
+        if (!syncResult.success) {
+          this.log(`  [photos] Shopify sync failed for "${post.title}": ${syncResult.error}`);
+        }
+
+        analyzed += 1;
+        this.log(`  [photos] Injected ${inserted} images into "${post.title}"`);
+      }
+
       this.lastPhotoAnalysis = new Date();
-      this.log(`Photo analysis complete: ${result.analyzed} analyzed, ${result.failed} failed`);
-      return { analyzed: result.analyzed };
+      this.log(`Photo injection complete: ${analyzed} posts updated`);
+      return { analyzed };
     } catch (err: any) {
-      this.log(`Photo analysis failed: ${err.message}`);
+      this.log(`Photo injection failed: ${err.message}`);
       return { analyzed: 0 };
     } finally {
       this.isAnalyzingPhotos = false;

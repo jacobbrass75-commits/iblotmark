@@ -1,35 +1,36 @@
-// HTML Renderer — Markdown to Shopify-ready HTML with SEO meta tags
+// HTML Renderer â€” Markdown to Shopify-ready HTML with SEO meta tags
 // Converts blog pipeline markdown output into publishable HTML.
 
-import type { BlogPost, Product } from "@shared/schema";
+import type { BlogPost } from "@shared/schema";
 import { db } from "./db";
 import { products } from "@shared/schema";
+import { BLOG_INLINE_IMAGE_STYLE } from "./blogPhotoSupport";
 
 /**
  * Convert markdown to HTML. Simple but effective renderer that handles
  * the markdown patterns our pipeline outputs (headings, paragraphs,
- * bold, italic, links, lists, images).
+ * bold, italic, links, lists, and images).
  */
 export function markdownToHtml(markdown: string): string {
-  let html = markdown;
-
-  // Escape HTML entities in content (but not our generated tags)
-  // We'll do this per-line to preserve structure
-  const lines = html.split("\n");
+  const lines = markdown.split("\n");
   const outputLines: string[] = [];
   let inList = false;
   let listType: "ul" | "ol" = "ul";
 
-  for (let i = 0; i < lines.length; i++) {
-    let line = lines[i];
+  for (const sourceLine of lines) {
+    let line = sourceLine;
+    const trimmedLine = line.trim();
 
-    // Close list if we're no longer in one
-    if (inList && !line.match(/^\s*[-*]\s/) && !line.match(/^\s*\d+\.\s/) && line.trim() !== "") {
+    if (
+      inList &&
+      !line.match(/^\s*[-*]\s/) &&
+      !line.match(/^\s*\d+\.\s/) &&
+      trimmedLine !== ""
+    ) {
       outputLines.push(listType === "ul" ? "</ul>" : "</ol>");
       inList = false;
     }
 
-    // Headings
     if (line.match(/^#{1}\s/)) {
       line = `<h1>${escapeAndFormat(line.replace(/^#\s+/, ""))}</h1>`;
     } else if (line.match(/^#{2}\s/)) {
@@ -38,8 +39,6 @@ export function markdownToHtml(markdown: string): string {
       line = `<h3>${escapeAndFormat(line.replace(/^###\s+/, ""))}</h3>`;
     } else if (line.match(/^#{4}\s/)) {
       line = `<h4>${escapeAndFormat(line.replace(/^####\s+/, ""))}</h4>`;
-
-    // Unordered list
     } else if (line.match(/^\s*[-*]\s/)) {
       if (!inList) {
         outputLines.push("<ul>");
@@ -47,8 +46,6 @@ export function markdownToHtml(markdown: string): string {
         listType = "ul";
       }
       line = `<li>${escapeAndFormat(line.replace(/^\s*[-*]\s+/, ""))}</li>`;
-
-    // Ordered list
     } else if (line.match(/^\s*\d+\.\s/)) {
       if (!inList) {
         outputLines.push("<ol>");
@@ -56,16 +53,12 @@ export function markdownToHtml(markdown: string): string {
         listType = "ol";
       }
       line = `<li>${escapeAndFormat(line.replace(/^\s*\d+\.\s+/, ""))}</li>`;
-
-    // Horizontal rule
     } else if (line.match(/^---+$/)) {
       line = "<hr>";
-
-    // Empty line (paragraph break)
-    } else if (line.trim() === "") {
+    } else if (trimmedLine.match(/^<img\b[^>]*\/?>$/i)) {
+      line = trimmedLine;
+    } else if (trimmedLine === "") {
       line = "";
-
-    // Regular paragraph
     } else {
       line = `<p>${escapeAndFormat(line)}</p>`;
     }
@@ -73,47 +66,59 @@ export function markdownToHtml(markdown: string): string {
     outputLines.push(line);
   }
 
-  // Close any open list
   if (inList) {
     outputLines.push(listType === "ul" ? "</ul>" : "</ol>");
   }
 
-  // Clean up: merge adjacent paragraphs that are part of the same block,
-  // remove empty lines between list items, etc.
   return outputLines
     .filter((line) => line !== "")
     .join("\n")
-    .replace(/<\/p>\n<p>/g, "</p>\n<p>") // Keep paragraph breaks
-    .replace(/<\/ul>\n<ul>/g, "\n") // Merge adjacent lists
+    .replace(/<\/ul>\n<ul>/g, "\n")
     .replace(/<\/ol>\n<ol>/g, "\n");
+}
+
+function escapeAttribute(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 /**
  * Escape HTML entities and apply inline formatting (bold, italic, links, code).
  */
 function escapeAndFormat(text: string): string {
-  // Don't double-escape
-  let result = text
+  const rawImages: string[] = [];
+  const withPlaceholders = text.replace(/<img\b[^>]*\/?>/gi, (match) => {
+    const token = `__IBOLT_RAW_IMG_${rawImages.length}__`;
+    rawImages.push(match);
+    return token;
+  });
+
+  let result = withPlaceholders
     .replace(/&(?!amp;|lt;|gt;|quot;)/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
-  // Bold: **text** or __text__
+  result = result.replace(
+    /!\[([^\]]*)\]\((.+?)\)/g,
+    (_match, altText: string, url: string) =>
+      `<img src="${escapeAttribute(url)}" alt="${escapeAttribute(altText)}" style="${BLOG_INLINE_IMAGE_STYLE}" />`
+  );
   result = result.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
   result = result.replace(/__(.+?)__/g, "<strong>$1</strong>");
-
-  // Italic: *text* or _text_
   result = result.replace(/\*(.+?)\*/g, "<em>$1</em>");
   result = result.replace(/_(.+?)_/g, "<em>$1</em>");
-
-  // Inline code: `text`
   result = result.replace(/`(.+?)`/g, "<code>$1</code>");
-
-  // Links: [text](url)
-  result = result.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
-
-  // Images: ![alt](url)
-  result = result.replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1" loading="lazy">');
+  result = result.replace(
+    /\[(.+?)\]\((.+?)\)/g,
+    (_match, label: string, url: string) =>
+      `<a href="${escapeAttribute(url)}">${label}</a>`
+  );
+  result = result.replace(/__IBOLT_RAW_IMG_(\d+)__/g, (_match, index: string) => {
+    return rawImages[Number(index)] || "";
+  });
 
   return result;
 }
@@ -131,7 +136,7 @@ function extractFaqSchema(markdown: string): string {
 
   while ((match = qaRegex.exec(faqSection[0])) !== null) {
     qaPairs.push({
-      question: match[1].trim() + "?",
+      question: `${match[1].trim()}?`,
       answer: match[2].trim(),
     });
   }
@@ -141,12 +146,12 @@ function extractFaqSchema(markdown: string): string {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": qaPairs.map((qa) => ({
+    mainEntity: qaPairs.map((qa) => ({
       "@type": "Question",
-      "name": qa.question,
-      "acceptedAnswer": {
+      name: qa.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": qa.answer,
+        text: qa.answer,
       },
     })),
   };
@@ -163,63 +168,72 @@ export async function autoLinkProducts(html: string): Promise<string> {
   if (allProducts.length === 0) return html;
 
   let result = html;
-
-  // Sort by title length descending so longer names match first
   const sorted = allProducts
-    .filter((p) => p.title && p.handle)
+    .filter((product) => product.title && product.handle)
     .sort((a, b) => (b.title?.length || 0) - (a.title?.length || 0));
 
   for (const product of sorted) {
     const title = product.title;
     const url = `https://iboltmounts.com/products/${product.handle}`;
-
-    // Match product title that is NOT already inside an <a> tag
-    // Use a regex that checks the title isn't preceded by "> or followed by </a>
     const escaped = title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const regex = new RegExp(`(?<!<a[^>]*>)(?<!">)(${escaped})(?!</a>)`, "gi");
 
-    result = result.replace(regex, (match) => {
-      // Don't re-link if already inside an anchor
-      return `<a href="${url}">${match}</a>`;
-    });
+    result = result.replace(regex, (match) => `<a href="${url}">${match}</a>`);
   }
 
   return result;
 }
 
-/**
- * Generate the full Shopify-ready HTML for a blog post, including
- * SEO meta tags and structured data.
- */
-export async function renderShopifyHtml(post: BlogPost): Promise<string> {
-  let bodyHtml = markdownToHtml(post.markdown || "");
+export async function renderMarkdownBodyHtml(markdown: string): Promise<string> {
+  let bodyHtml = markdownToHtml(markdown);
   bodyHtml = await autoLinkProducts(bodyHtml);
+  return bodyHtml;
+}
 
+function buildShopifyBody(
+  post: Pick<BlogPost, "title" | "metaTitle" | "metaDescription" | "slug" | "markdown">,
+  bodyHtml: string
+): string {
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";
-
-  // Extract FAQ schema from the HTML
   const faqSchema = extractFaqSchema(post.markdown || "");
 
-  // Shopify blog HTML — article body + FAQ schema.
-  // Meta tags are set separately in Shopify's blog post editor.
-  const shopifyBody = `<!-- SEO Meta (set in Shopify) -->
+  return `<!-- SEO Meta (set in Shopify) -->
 <!-- Title: ${metaTitle} -->
 <!-- Description: ${metaDescription} -->
 <!-- Slug: ${post.slug} -->
 
 ${bodyHtml}
 ${faqSchema}`;
+}
 
-  return shopifyBody;
+/**
+ * Generate the full Shopify-ready HTML for a blog post, including
+ * SEO meta tags and structured data.
+ */
+export async function renderShopifyHtml(
+  post: BlogPost,
+  options?: { preferStoredHtml?: boolean }
+): Promise<string> {
+  if (options?.preferStoredHtml && post.html?.trim()) {
+    return post.html;
+  }
+
+  if (!post.markdown?.trim() && post.html?.trim()) {
+    return post.html;
+  }
+
+  const bodyHtml = await renderMarkdownBodyHtml(post.markdown || "");
+  return buildShopifyBody(post, bodyHtml);
 }
 
 /**
  * Generate a complete standalone HTML page for preview.
  */
 export async function renderPreviewHtml(post: BlogPost): Promise<string> {
-  let bodyHtml = markdownToHtml(post.markdown || "");
-  bodyHtml = await autoLinkProducts(bodyHtml);
+  const bodyHtml = post.markdown?.trim()
+    ? await renderMarkdownBodyHtml(post.markdown)
+    : post.html?.trim() || "";
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";
 
@@ -246,6 +260,7 @@ export async function renderPreviewHtml(post: BlogPost): Promise<string> {
     h2 { font-size: 1.5rem; margin-top: 2rem; color: #2c3e50; }
     h3 { font-size: 1.25rem; margin-top: 1.5rem; }
     p { margin: 1rem 0; }
+    img { max-width: 100%; height: auto; margin: 16px 0; }
     a { color: #e8491d; text-decoration: none; }
     a:hover { text-decoration: underline; }
     ul, ol { padding-left: 1.5rem; }

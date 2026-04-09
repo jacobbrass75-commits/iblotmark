@@ -54,6 +54,15 @@ describe("database bootstrap", () => {
     expect(indexes.has("idx_ocr_jobs_status_created")).toBe(true);
     expect(indexes.has("idx_ocr_jobs_document_active")).toBe(true);
 
+    const blogPostColumns = new Set(
+      (sqlite.pragma("table_info(blog_posts)") as Array<{ name: string }>).map(
+        (row) => row.name
+      )
+    );
+    expect(blogPostColumns.has("excerpt")).toBe(true);
+    expect(blogPostColumns.has("has_photos")).toBe(true);
+    expect(blogPostColumns.has("photo_count")).toBe(true);
+
     sqlite.close();
   });
 });

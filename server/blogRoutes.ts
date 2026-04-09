@@ -180,7 +180,30 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
   // PATCH /api/blog/posts/:id — Update a blog post
   router.patch("/posts/:id", async (req: Request, res: Response) => {
     try {
-      const updates = req.body;
+      const existingPost = await getBlogPost(req.params.id);
+      if (!existingPost) return res.status(404).json({ error: "Post not found" });
+
+      const { content, ...rawUpdates } = req.body || {};
+      const updates: any = {
+        ...rawUpdates,
+        ...(content !== undefined ? { markdown: content } : {}),
+      };
+
+      if (
+        updates.html === undefined &&
+        (
+          updates.markdown !== undefined ||
+          updates.title !== undefined ||
+          updates.metaTitle !== undefined ||
+          updates.metaDescription !== undefined
+        )
+      ) {
+        updates.html = await renderShopifyHtml(
+          { ...existingPost, ...updates, html: "" },
+          { preferStoredHtml: false },
+        );
+      }
+
       const post = await updateBlogPost(req.params.id, updates);
       res.json(post);
     } catch (error: any) {
@@ -236,6 +259,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
           slug: post.slug,
           metaTitle: post.metaTitle,
           metaDescription: post.metaDescription,
+          excerpt: post.excerpt,
           html,
           markdown: post.markdown,
           wordCount: post.wordCount,
@@ -459,6 +483,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
         bodyHtml: html,
         metaTitle: post.metaTitle || undefined,
         metaDescription: post.metaDescription || undefined,
+        excerpt: post.excerpt ?? undefined,
         tags: `2026, ${post.verticalId || "general"}`,
         published: req.body.published ?? false,
       });
@@ -494,6 +519,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       await updateShopifyArticle(Number(req.params.articleId), {
         title: req.body.title,
         bodyHtml: req.body.body_html,
+        excerpt: req.body.excerpt,
         tags: req.body.tags,
         published: req.body.published,
       });

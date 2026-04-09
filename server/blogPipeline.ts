@@ -524,6 +524,9 @@ export async function updateBlogPost(id: string, updates: Partial<{
   status: string;
   metaTitle: string;
   metaDescription: string;
+  excerpt: string;
+  hasPhotos: boolean;
+  photoCount: number;
 }>): Promise<BlogPost> {
   const updateData: any = { ...updates, updatedAt: new Date() };
   if (updates.markdown) {
