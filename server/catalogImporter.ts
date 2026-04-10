@@ -116,8 +116,8 @@ function levenshteinSimilarity(a: string, b: string): number {
   // Simple word overlap score
   const aWords = new Set(an.split(" "));
   const bWords = new Set(bn.split(" "));
-  const intersection = [...aWords].filter((w) => bWords.has(w) && w.length > 2);
-  const union = new Set([...aWords, ...bWords]);
+  const intersection = Array.from(aWords).filter((w) => bWords.has(w) && w.length > 2);
+  const union = new Set(Array.from(aWords).concat(Array.from(bWords)));
   return intersection.length / union.size;
 }
 

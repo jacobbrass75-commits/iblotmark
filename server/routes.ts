@@ -36,6 +36,7 @@ import { registerContextRoutes } from "./contextRoutes";
 import { registerBlogRoutes } from "./blogRoutes";
 import { registerProductRoutes } from "./productRoutes";
 import { registerSchedulerRoutes } from "./schedulerRoutes";
+import { registerBenchmarkRoutes } from "./benchmarkRoutes";
 import { registerCatalogRoutes } from "./catalogRoutes";
 import { registerPhotoRoutes } from "./photoRoutes";
 import { registerCacheRoutes } from "./cacheRoutes";
@@ -879,6 +880,7 @@ export async function registerRoutes(
   registerBlogRoutes(app);
   registerProductRoutes(app);
   registerSchedulerRoutes(app);
+  registerBenchmarkRoutes(app);
   registerCatalogRoutes(app);
   registerPhotoRoutes(app);
   registerCacheRoutes(app);

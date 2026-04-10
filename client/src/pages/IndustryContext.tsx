@@ -29,7 +29,20 @@ export default function IndustryContext() {
   const [researchStatus, setResearchStatus] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
 
-  const categories = ["terminology", "use_case", "pain_point", "regulation", "trend", "competitor", "user_language"];
+  const categories = [
+    "terminology",
+    "use_case",
+    "pain_point",
+    "regulation",
+    "trend",
+    "competitor",
+    "user_language",
+    "buyer_question",
+    "install_constraint",
+    "device_pattern",
+    "specification",
+    "ai_signal",
+  ];
 
   const runResearch = async (verticalId: string) => {
     setResearchRunning(true);

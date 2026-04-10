@@ -122,6 +122,11 @@ export async function formatContextForPrompt(verticalId: string): Promise<string
     trend: "Industry Trends",
     competitor: "Competitive Landscape",
     user_language: "How Customers Talk About This",
+    buyer_question: "Buyer Questions",
+    install_constraint: "Install Constraints",
+    device_pattern: "Devices & Compatibility Patterns",
+    specification: "Specs & Fit Notes",
+    ai_signal: "AI Search Signals",
   };
 
   for (const [cat, entries] of Object.entries(grouped)) {

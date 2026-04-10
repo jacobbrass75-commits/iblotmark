@@ -241,7 +241,7 @@ export async function fetchCompetitorSitemap(domain: string): Promise<string[]> 
       if (!response.ok) continue;
 
       const xml = await response.text();
-      const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+      const urls = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g))
         .map((m) => m[1])
         .filter((url) => url.includes("/blogs/"));
 

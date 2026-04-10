@@ -546,7 +546,7 @@ function buildAuthorizationDecisionCacheKey(userId: string, params: AuthorizeReq
 }
 
 function pruneRecentAuthorizationDecisions(now: number): void {
-  for (const [key, entry] of recentAuthorizationDecisions.entries()) {
+  for (const [key, entry] of Array.from(recentAuthorizationDecisions.entries())) {
     if (entry.createdAt + AUTHORIZE_DEDUP_WINDOW_SECONDS <= now) {
       recentAuthorizationDecisions.delete(key);
     }

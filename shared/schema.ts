@@ -993,6 +993,82 @@ export const insertResearchJobSchema = createInsertSchema(researchJobs).omit({
 export type InsertResearchJob = z.infer<typeof insertResearchJobSchema>;
 export type ResearchJob = typeof researchJobs.$inferSelect;
 
+// AI benchmark queries (tracked prompts used to compare AI search/provider visibility)
+export const aiBenchmarkQueries = sqliteTable("ai_benchmark_queries", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  category: text("category").notNull(),
+  label: text("label"),
+  query: text("query").notNull().unique(),
+  verticalId: text("vertical_id").references(() => industryVerticals.id, { onDelete: "set null" }),
+  intentType: text("intent_type").notNull().default("buyer_guide"),
+  priority: real("priority").notNull().default(50),
+  benchmarkGoal: text("benchmark_goal"),
+  notes: text("notes"),
+  status: text("status").notNull().default("active"), // "active" | "archived"
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertAiBenchmarkQuerySchema = createInsertSchema(aiBenchmarkQueries).omit({
+  id: true, createdAt: true, updatedAt: true,
+});
+export type InsertAiBenchmarkQuery = z.infer<typeof insertAiBenchmarkQuerySchema>;
+export type AiBenchmarkQuery = typeof aiBenchmarkQueries.$inferSelect;
+
+// AI benchmark runs (one weekly/manual benchmark execution)
+export const aiBenchmarkRuns = sqliteTable("ai_benchmark_runs", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  name: text("name"),
+  providers: text("providers", { mode: "json" }).$type<string[]>().notNull(),
+  status: text("status").notNull().default("pending"), // "pending" | "running" | "completed" | "failed"
+  queryCount: integer("query_count").notNull().default(0),
+  resultCount: integer("result_count").notNull().default(0),
+  error: text("error"),
+  summary: text("summary", { mode: "json" }).$type<Record<string, unknown>>(),
+  startedAt: integer("started_at", { mode: "timestamp" }),
+  completedAt: integer("completed_at", { mode: "timestamp" }),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertAiBenchmarkRunSchema = createInsertSchema(aiBenchmarkRuns).omit({
+  id: true, createdAt: true, startedAt: true, completedAt: true, resultCount: true, summary: true, error: true,
+});
+export type InsertAiBenchmarkRun = z.infer<typeof insertAiBenchmarkRunSchema>;
+export type AiBenchmarkRun = typeof aiBenchmarkRuns.$inferSelect;
+
+// AI benchmark results (one provider answer for one benchmark query)
+export const aiBenchmarkResults = sqliteTable("ai_benchmark_results", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  runId: text("run_id").notNull().references(() => aiBenchmarkRuns.id, { onDelete: "cascade" }),
+  queryId: text("query_id").notNull().references(() => aiBenchmarkQueries.id, { onDelete: "cascade" }),
+  provider: text("provider").notNull(),
+  model: text("model"),
+  prompt: text("prompt"),
+  rawResponse: text("raw_response"),
+  status: text("status").notNull().default("completed"), // "completed" | "failed" | "skipped"
+  error: text("error"),
+  brandMentioned: integer("brand_mentioned", { mode: "boolean" }).notNull().default(false),
+  iboltCited: integer("ibolt_cited", { mode: "boolean" }).notNull().default(false),
+  topPickRank: integer("top_pick_rank"),
+  coverageScore: integer("coverage_score").notNull().default(0),
+  sentiment: text("sentiment"),
+  positioning: text("positioning"),
+  positioningTags: text("positioning_tags", { mode: "json" }).$type<string[]>(),
+  mentionedProducts: text("mentioned_products", { mode: "json" }).$type<string[]>(),
+  competitors: text("competitors", { mode: "json" }).$type<string[]>(),
+  sourceUrls: text("source_urls", { mode: "json" }).$type<string[]>(),
+  analysisNotes: text("analysis_notes"),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+}, (table) => [
+  uniqueIndex("idx_ai_benchmark_run_query_provider").on(table.runId, table.queryId, table.provider),
+]);
+
+export const insertAiBenchmarkResultSchema = createInsertSchema(aiBenchmarkResults).omit({
+  id: true, createdAt: true,
+});
+export type InsertAiBenchmarkResult = z.infer<typeof insertAiBenchmarkResultSchema>;
+export type AiBenchmarkResult = typeof aiBenchmarkResults.$inferSelect;
+
 // === iBOLT BLOG RELATIONS ===
 
 export const industryVerticalsRelations = relations(industryVerticals, ({ many }) => ({
@@ -1001,6 +1077,7 @@ export const industryVerticalsRelations = relations(industryVerticals, ({ many }
   productVerticals: many(productVerticals),
   blogPosts: many(blogPosts),
   researchJobs: many(researchJobs),
+  aiBenchmarkQueries: many(aiBenchmarkQueries),
 }));
 
 export const contextEntriesRelations = relations(contextEntries, ({ one }) => ({
@@ -1085,6 +1162,29 @@ export const researchJobsRelations = relations(researchJobs, ({ one }) => ({
   vertical: one(industryVerticals, {
     fields: [researchJobs.verticalId],
     references: [industryVerticals.id],
+  }),
+}));
+
+export const aiBenchmarkQueriesRelations = relations(aiBenchmarkQueries, ({ one, many }) => ({
+  vertical: one(industryVerticals, {
+    fields: [aiBenchmarkQueries.verticalId],
+    references: [industryVerticals.id],
+  }),
+  results: many(aiBenchmarkResults),
+}));
+
+export const aiBenchmarkRunsRelations = relations(aiBenchmarkRuns, ({ many }) => ({
+  results: many(aiBenchmarkResults),
+}));
+
+export const aiBenchmarkResultsRelations = relations(aiBenchmarkResults, ({ one }) => ({
+  run: one(aiBenchmarkRuns, {
+    fields: [aiBenchmarkResults.runId],
+    references: [aiBenchmarkRuns.id],
+  }),
+  query: one(aiBenchmarkQueries, {
+    fields: [aiBenchmarkResults.queryId],
+    references: [aiBenchmarkQueries.id],
   }),
 }));
 
@@ -1223,4 +1323,3 @@ export const blogPostPhotosRelations = relations(blogPostPhotos, ({ one }) => ({
     references: [productPhotos.id],
   }),
 }));
-

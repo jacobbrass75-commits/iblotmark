@@ -89,6 +89,10 @@ export default function BlogDashboard() {
             <span className="text-sm font-medium">Products</span>
             <span className="text-xs opacity-70">{productStats?.count || 0} scraped</span>
           </Button>
+          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/benchmark")}>
+            <span className="text-sm font-medium">AI Benchmark</span>
+            <span className="text-xs opacity-70">Track weekly rankings</span>
+          </Button>
         </div>
 
         {/* Recent posts */}

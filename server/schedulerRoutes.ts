@@ -95,5 +95,14 @@ export function registerSchedulerRoutes(app: { use: (path: string, router: Route
     }
   });
 
+  // POST /api/blog/scheduler/trigger/benchmark — Manually trigger AI benchmark
+  router.post("/trigger/benchmark", async (_req: Request, res: Response) => {
+    try {
+      res.json({ message: "AI benchmark triggered", ...(await scheduler.triggerBenchmark()) });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   app.use("/api/blog/scheduler", router);
 }

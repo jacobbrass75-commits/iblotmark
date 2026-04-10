@@ -260,25 +260,55 @@ const WEB_SOURCES: Record<string, string[]> = {
   "fishing-boating": [
     "https://www.bassmaster.com/gear/",
     "https://www.sportfishingmag.com/gear/",
+    "https://www.boatingmag.com/gear/",
   ],
   "trucking-fleet": [
     "https://www.truckinginfo.com/",
     "https://www.overdriveonline.com/",
+    "https://www.ccjdigital.com/",
   ],
   "offroading-jeep": [
     "https://www.jlwranglerforums.com/forum/",
     "https://expeditionportal.com/forum/",
+    "https://www.quadratec.com/c/blog",
   ],
   "forklifts-warehousing": [
     "https://www.mmh.com/",
     "https://www.logisticsmgmt.com/",
+    "https://www.supplychainbrain.com/",
+  ],
+  "restaurants-food-delivery": [
+    "https://restauranttechnologynews.com/",
+    "https://modernrestaurantmanagement.com/",
+    "https://www.qsrmagazine.com/",
+  ],
+  "education-schools": [
+    "https://districtadministration.com/",
+    "https://edtechmagazine.com/k12/",
   ],
   "content-creation-streaming": [
     "https://www.tubefilter.com/",
+    "https://www.streamingmedia.com/",
   ],
   "agriculture-farming": [
     "https://www.agweb.com/",
     "https://www.precisionag.com/",
+  ],
+  "kitchen-home": [
+    "https://www.thekitchn.com/",
+    "https://www.apartmenttherapy.com/kitchen",
+  ],
+  "road-trips-travel": [
+    "https://www.outsideonline.com/adventure-travel/",
+    "https://www.travelandleisure.com/",
+  ],
+  "mountain-biking-cycling": [
+    "https://www.pinkbike.com/news/",
+    "https://www.bicycling.com/",
+  ],
+  "general-mounting": [
+    "https://www.twice.com/",
+    "https://www.cepro.com/",
   ],
 };
 
@@ -343,11 +373,15 @@ Extract valuable context entries for our content knowledge bank. Focus on:
 4. **terminology** — Industry-specific terms and jargon used naturally
 5. **trend** — Emerging patterns, new technologies, or shifting behaviors
 6. **competitor** — Mentions of competing products or solutions (RAM Mount, ProClip, etc.)
+7. **buyer_question** — Purchase questions or evaluation criteria buyers repeatedly ask
+8. **install_constraint** — Physical install blockers: vibration, space limits, drill/no-drill, glare, theft, weather
+9. **device_pattern** — Specific devices, models, screen sizes, or workflows repeatedly referenced
+10. **specification** — Measurements, materials, mounts, or fit details writers should preserve accurately
 
 Return JSON array. Each entry should be a self-contained insight that helps us write authentic blog content:
 [
   {
-    "category": "user_language|pain_point|use_case|terminology|trend|competitor",
+    "category": "user_language|pain_point|use_case|terminology|trend|competitor|buyer_question|install_constraint|device_pattern|specification",
     "content": "Specific, detailed insight written as a reference note. Include direct quotes when available.",
     "confidence": 0.0-1.0
   }
@@ -356,6 +390,7 @@ Return JSON array. Each entry should be a self-contained insight that helps us w
 Rules:
 - Only include genuinely useful, specific insights — no generic filler
 - Prefer entries with real user quotes or specific details
+- Prefer model numbers, installation constraints, buyer objections, and workflow details over broad summaries
 - Confidence should reflect how reliable/representative the insight is
 - Aim for 5-15 high-quality entries per source batch
 - Content should be written so a blog writer can use it directly as context`,

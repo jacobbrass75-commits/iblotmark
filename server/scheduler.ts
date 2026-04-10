@@ -10,6 +10,8 @@ import {
   products,
   blogPosts,
   contextEntries,
+  aiBenchmarkQueries,
+  aiBenchmarkRuns,
 } from "@shared/schema";
 import { ResearchOrchestrator } from "./iboltResearchAgent";
 import { scrapeProducts, mapProductsToVerticals } from "./productScraper";
@@ -17,6 +19,7 @@ import { runBlogPipeline } from "./blogPipeline";
 import { renderShopifyHtml } from "./htmlRenderer";
 import { batchAnalyzePhotos } from "./photoBank";
 import { rebuildContextChunks } from "./contextChunker";
+import { BENCHMARK_PROVIDERS, runAiBenchmark, type BenchmarkProvider } from "./aiBenchmark";
 
 // --- Types ---
 
@@ -26,11 +29,14 @@ export interface SchedulerConfig {
   autoGenerateIntervalMs: number;   // How often to check for pending clusters (default: 1h)
   photoAnalysisIntervalMs: number;  // How often to analyze unanalyzed photos (default: 6h)
   chunkRebuildIntervalMs: number;   // How often to rebuild context chunks (default: 12h)
+  benchmarkIntervalMs: number;      // How often to run AI benchmark tracking (default: 7d)
   enabled: boolean;
   autoGenerate: boolean;            // Auto-generate posts for pending clusters
+  autoBenchmark: boolean;           // Auto-run AI benchmark on schedule
   maxAutoPostsPerRun: number;       // Max posts to auto-generate per interval
   researchSources: Array<"reddit" | "youtube" | "web">;
   researchConcurrency: number;
+  benchmarkProviders: BenchmarkProvider[];
 }
 
 export interface SchedulerStatus {
@@ -39,14 +45,18 @@ export interface SchedulerStatus {
   lastResearch: Date | null;
   lastProductSync: Date | null;
   lastAutoGenerate: Date | null;
+  lastBenchmark: Date | null;
   nextResearch: Date | null;
   nextProductSync: Date | null;
   nextAutoGenerate: Date | null;
+  nextBenchmark: Date | null;
   stats: {
     totalPosts: number;
     pendingClusters: number;
     contextEntries: number;
     products: number;
+    benchmarkQueries: number;
+    benchmarkRuns: number;
   };
 }
 
@@ -58,11 +68,14 @@ const DEFAULT_CONFIG: SchedulerConfig = {
   autoGenerateIntervalMs: 60 * 60 * 1000,       // 1 hour
   photoAnalysisIntervalMs: 6 * 60 * 60 * 1000,  // 6 hours
   chunkRebuildIntervalMs: 12 * 60 * 60 * 1000,  // 12 hours
+  benchmarkIntervalMs: 7 * 24 * 60 * 60 * 1000, // 7 days
   enabled: false, // Must be explicitly enabled
   autoGenerate: false,
+  autoBenchmark: false,
   maxAutoPostsPerRun: 3,
   researchSources: ["reddit"],
   researchConcurrency: 3,
+  benchmarkProviders: [...BENCHMARK_PROVIDERS],
 };
 
 // --- Scheduler Class ---
@@ -74,16 +87,19 @@ export class BlogScheduler {
   private generateTimer: ReturnType<typeof setInterval> | null = null;
   private photoTimer: ReturnType<typeof setInterval> | null = null;
   private chunkTimer: ReturnType<typeof setInterval> | null = null;
+  private benchmarkTimer: ReturnType<typeof setInterval> | null = null;
   private lastResearch: Date | null = null;
   private lastProductSync: Date | null = null;
   private lastAutoGenerate: Date | null = null;
   private lastPhotoAnalysis: Date | null = null;
   private lastChunkRebuild: Date | null = null;
+  private lastBenchmark: Date | null = null;
   private isResearching = false;
   private isSyncing = false;
   private isGenerating = false;
   private isAnalyzingPhotos = false;
   private isRebuildingChunks = false;
+  private isBenchmarking = false;
   private log: (msg: string) => void;
 
   constructor(config?: Partial<SchedulerConfig>) {
@@ -107,11 +123,17 @@ export class BlogScheduler {
 
     this.photoTimer = setInterval(() => this.runPhotoAnalysis(), this.config.photoAnalysisIntervalMs);
     this.chunkTimer = setInterval(() => this.runChunkRebuild(), this.config.chunkRebuildIntervalMs);
+    if (this.config.autoBenchmark) {
+      this.benchmarkTimer = setInterval(() => this.runBenchmark(), this.config.benchmarkIntervalMs);
+    }
 
     this.log(`Research every ${Math.round(this.config.researchIntervalMs / 3600000)}h, Product sync every ${Math.round(this.config.productSyncIntervalMs / 3600000)}h`);
     this.log(`Photo analysis every ${Math.round(this.config.photoAnalysisIntervalMs / 3600000)}h, Chunk rebuild every ${Math.round(this.config.chunkRebuildIntervalMs / 3600000)}h`);
     if (this.config.autoGenerate) {
       this.log(`Auto-generate every ${Math.round(this.config.autoGenerateIntervalMs / 60000)}min (max ${this.config.maxAutoPostsPerRun} posts/run)`);
+    }
+    if (this.config.autoBenchmark) {
+      this.log(`AI benchmark every ${Math.round(this.config.benchmarkIntervalMs / 3600000)}h across ${this.config.benchmarkProviders.join(", ")}`);
     }
   }
 
@@ -122,6 +144,7 @@ export class BlogScheduler {
     if (this.generateTimer) { clearInterval(this.generateTimer); this.generateTimer = null; }
     if (this.photoTimer) { clearInterval(this.photoTimer); this.photoTimer = null; }
     if (this.chunkTimer) { clearInterval(this.chunkTimer); this.chunkTimer = null; }
+    if (this.benchmarkTimer) { clearInterval(this.benchmarkTimer); this.benchmarkTimer = null; }
     this.log("Scheduler stopped");
   }
 
@@ -137,6 +160,8 @@ export class BlogScheduler {
     const pending = await db.select().from(keywordClusters).where(eq(keywordClusters.status, "pending"));
     const entries = await db.select().from(contextEntries);
     const prods = await db.select().from(products);
+    const benchmarkQueryRows = await db.select().from(aiBenchmarkQueries);
+    const benchmarkRunRows = await db.select().from(aiBenchmarkRuns);
 
     const now = Date.now();
 
@@ -146,6 +171,7 @@ export class BlogScheduler {
       lastResearch: this.lastResearch,
       lastProductSync: this.lastProductSync,
       lastAutoGenerate: this.lastAutoGenerate,
+      lastBenchmark: this.lastBenchmark,
       nextResearch: this.config.enabled && this.lastResearch
         ? new Date(this.lastResearch.getTime() + this.config.researchIntervalMs)
         : null,
@@ -155,11 +181,16 @@ export class BlogScheduler {
       nextAutoGenerate: this.config.enabled && this.config.autoGenerate && this.lastAutoGenerate
         ? new Date(this.lastAutoGenerate.getTime() + this.config.autoGenerateIntervalMs)
         : null,
+      nextBenchmark: this.config.enabled && this.config.autoBenchmark && this.lastBenchmark
+        ? new Date(this.lastBenchmark.getTime() + this.config.benchmarkIntervalMs)
+        : null,
       stats: {
         totalPosts: allPosts.length,
         pendingClusters: pending.length,
         contextEntries: entries.length,
         products: prods.length,
+        benchmarkQueries: benchmarkQueryRows.length,
+        benchmarkRuns: benchmarkRunRows.length,
       },
     };
   }
@@ -329,6 +360,44 @@ export class BlogScheduler {
     }
   }
 
+  async runBenchmark(): Promise<{ results: number }> {
+    if (this.isBenchmarking) {
+      this.log("AI benchmark already in progress, skipping");
+      return { results: 0 };
+    }
+
+    if (!this.config.autoBenchmark) {
+      return { results: 0 };
+    }
+
+    this.isBenchmarking = true;
+    this.log("Starting scheduled AI benchmark...");
+
+    try {
+      const summary = await runAiBenchmark(
+        {
+          name: `Scheduled AI Benchmark ${new Date().toISOString().slice(0, 10)}`,
+          providers: this.config.benchmarkProviders,
+          concurrency: 2,
+        },
+        (event) => {
+          if (event.type === "progress" && event.current && event.total) {
+            this.log(`  [benchmark] ${event.current}/${event.total} ${event.provider} -> ${event.query}`);
+          }
+        },
+      );
+
+      this.lastBenchmark = new Date();
+      this.log(`AI benchmark complete: ${summary.run.resultCount} results saved`);
+      return { results: summary.run.resultCount || 0 };
+    } catch (err: any) {
+      this.log(`AI benchmark failed: ${err.message}`);
+      return { results: 0 };
+    } finally {
+      this.isBenchmarking = false;
+    }
+  }
+
   // --- Manual triggers ---
 
   async triggerResearch(): Promise<{ entriesFound: number }> {
@@ -353,6 +422,14 @@ export class BlogScheduler {
 
   async triggerChunkRebuild(): Promise<{ chunks: number }> {
     return this.runChunkRebuild();
+  }
+
+  async triggerBenchmark(): Promise<{ results: number }> {
+    const original = this.config.autoBenchmark;
+    this.config.autoBenchmark = true;
+    const result = await this.runBenchmark();
+    this.config.autoBenchmark = original;
+    return result;
   }
 }
 

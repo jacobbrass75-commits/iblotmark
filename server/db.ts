@@ -359,6 +359,69 @@ CREATE TABLE IF NOT EXISTS research_jobs (
   FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_research_jobs_status ON research_jobs(status);
+
+CREATE TABLE IF NOT EXISTS ai_benchmark_queries (
+  id TEXT PRIMARY KEY,
+  category TEXT NOT NULL,
+  label TEXT,
+  query TEXT NOT NULL UNIQUE,
+  vertical_id TEXT,
+  intent_type TEXT NOT NULL DEFAULT 'buyer_guide',
+  priority REAL NOT NULL DEFAULT 50,
+  benchmark_goal TEXT,
+  notes TEXT,
+  status TEXT NOT NULL DEFAULT 'active',
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  updated_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (vertical_id) REFERENCES industry_verticals(id) ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS idx_ai_benchmark_queries_status ON ai_benchmark_queries(status);
+CREATE INDEX IF NOT EXISTS idx_ai_benchmark_queries_vertical ON ai_benchmark_queries(vertical_id);
+
+CREATE TABLE IF NOT EXISTS ai_benchmark_runs (
+  id TEXT PRIMARY KEY,
+  name TEXT,
+  providers TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  query_count INTEGER NOT NULL DEFAULT 0,
+  result_count INTEGER NOT NULL DEFAULT 0,
+  error TEXT,
+  summary TEXT,
+  started_at INTEGER,
+  completed_at INTEGER,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000)
+);
+CREATE INDEX IF NOT EXISTS idx_ai_benchmark_runs_status ON ai_benchmark_runs(status);
+
+CREATE TABLE IF NOT EXISTS ai_benchmark_results (
+  id TEXT PRIMARY KEY,
+  run_id TEXT NOT NULL,
+  query_id TEXT NOT NULL,
+  provider TEXT NOT NULL,
+  model TEXT,
+  prompt TEXT,
+  raw_response TEXT,
+  status TEXT NOT NULL DEFAULT 'completed',
+  error TEXT,
+  brand_mentioned INTEGER NOT NULL DEFAULT 0,
+  ibolt_cited INTEGER NOT NULL DEFAULT 0,
+  top_pick_rank INTEGER,
+  coverage_score INTEGER NOT NULL DEFAULT 0,
+  sentiment TEXT,
+  positioning TEXT,
+  positioning_tags TEXT,
+  mentioned_products TEXT,
+  competitors TEXT,
+  source_urls TEXT,
+  analysis_notes TEXT,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (run_id) REFERENCES ai_benchmark_runs(id) ON DELETE CASCADE,
+  FOREIGN KEY (query_id) REFERENCES ai_benchmark_queries(id) ON DELETE CASCADE,
+  UNIQUE(run_id, query_id, provider)
+);
+CREATE INDEX IF NOT EXISTS idx_ai_benchmark_results_run ON ai_benchmark_results(run_id);
+CREATE INDEX IF NOT EXISTS idx_ai_benchmark_results_query ON ai_benchmark_results(query_id);
+CREATE INDEX IF NOT EXISTS idx_ai_benchmark_results_provider ON ai_benchmark_results(provider);
 `);
 
 // === PRODUCT INFO BANK + PICTURE BANK TABLES ===
@@ -458,11 +521,21 @@ ensureColumn("ibolt_products", "photo_count", "photo_count INTEGER DEFAULT 0");
 
 // Seed industry verticals on first run
 import { seedVerticals } from "./contextSeeds";
-seedVerticals().then((count) => {
-  if (count > 0) {
-    console.log(`[iBolt] Seeded ${count} industry verticals with context entries`);
-  }
-});
+import { seedBenchmarkQueries } from "./benchmarkSeeds";
+seedVerticals()
+  .then(async (count) => {
+    if (count > 0) {
+      console.log(`[iBolt] Seeded ${count} industry verticals with context entries`);
+    }
+
+    const seededQueries = await seedBenchmarkQueries();
+    if (seededQueries > 0) {
+      console.log(`[iBolt] Seeded ${seededQueries} AI benchmark queries`);
+    }
+  })
+  .catch((error) => {
+    console.error("[iBolt] Seed bootstrap failed:", error);
+  });
 
 // Export the raw sqlite connection for direct queries if needed
 export { sqlite };
