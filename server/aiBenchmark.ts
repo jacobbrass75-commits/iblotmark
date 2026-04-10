@@ -1,6 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import pLimit from "p-limit";
 import { desc, eq, inArray } from "drizzle-orm";
 import { db } from "./db";
 import {
@@ -18,6 +17,23 @@ import {
 } from "@shared/schema";
 import { computeSimilarity, toTitleCase } from "./aiBenchmarkUtils";
 import { writingQueue } from "./writingQueue";
+
+type PLimitFn = typeof import("p-limit")["default"];
+
+let pLimitPromise: Promise<PLimitFn> | null = null;
+
+function getPLimit(): Promise<PLimitFn> {
+  if (!pLimitPromise) {
+    pLimitPromise = import("p-limit").then((mod) => {
+      const candidate = (mod as { default?: unknown }).default ?? mod;
+      if (typeof candidate !== "function") {
+        throw new Error("p-limit did not export a callable limiter.");
+      }
+      return candidate as PLimitFn;
+    });
+  }
+  return pLimitPromise;
+}
 
 export const BENCHMARK_PROVIDERS = [
   "chatgpt",
@@ -1057,6 +1073,7 @@ export async function runAiBenchmark(
     total: totalTasks,
   });
 
+  const pLimit = await getPLimit();
   const limit = pLimit(Math.max(1, options.concurrency || Number.parseInt(process.env.AI_BENCHMARK_CONCURRENCY || "2", 10) || 2));
   let completed = 0;
 
