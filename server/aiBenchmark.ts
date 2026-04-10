@@ -134,7 +134,7 @@ export interface MaterializeContentPlanOptions {
   queueForGeneration?: boolean;
 }
 
-const OPENAI_DEFAULT_MODEL = process.env.AI_BENCHMARK_OPENAI_MODEL || "gpt-5";
+const OPENAI_DEFAULT_MODEL = process.env.AI_BENCHMARK_OPENAI_MODEL || "gpt-4.1";
 const ANTHROPIC_DEFAULT_MODEL = process.env.AI_BENCHMARK_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
 const GEMINI_DEFAULT_MODEL = process.env.AI_BENCHMARK_GEMINI_MODEL || "gemini-2.5-flash";
 
@@ -407,18 +407,34 @@ async function runOpenAiProvider(prompt: string): Promise<ProviderExecution> {
   }
 
   try {
-    const response = await getOpenAIClient().responses.create({
-      model: OPENAI_DEFAULT_MODEL,
-      input: prompt,
-      tools: [{ type: "web_search" }],
-    } as any);
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: OPENAI_DEFAULT_MODEL,
+        input: prompt,
+        tools: [{ type: "web_search" }],
+        max_output_tokens: 900,
+      }),
+      signal: AbortSignal.timeout(75000),
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`OpenAI API returned ${response.status}: ${body}`);
+    }
+
+    const json = await response.json();
 
     return {
       status: "completed",
       model: OPENAI_DEFAULT_MODEL,
       prompt,
-      responseText: extractOpenAIText(response),
-      sourceUrls: collectUrls(response),
+      responseText: extractOpenAIText(json),
+      sourceUrls: collectUrls(json),
     };
   } catch (error: any) {
     return {
@@ -483,53 +499,73 @@ async function runAnthropicProvider(prompt: string): Promise<ProviderExecution> 
 
 async function runGeminiProvider(prompt: string, grounded: boolean): Promise<ProviderExecution> {
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_AI_API_KEY;
-  const model = GEMINI_DEFAULT_MODEL;
+  const models = dedupeStrings([GEMINI_DEFAULT_MODEL, "gemini-2.5-flash-lite"]);
   if (!apiKey) {
     return {
       status: "skipped",
-      model,
+      model: GEMINI_DEFAULT_MODEL,
       prompt,
       error: "GEMINI_API_KEY or GOOGLE_AI_API_KEY is not configured.",
     };
   }
 
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.2,
-          },
-          ...(grounded ? { tools: [{ google_search: {} }] } : {}),
-        }),
-      },
-    );
+  let lastError = "Gemini benchmark call failed.";
 
-    if (!response.ok) {
-      const body = await response.text();
-      throw new Error(`Gemini API returned ${response.status}: ${body}`);
+  for (const model of models) {
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.2,
+            },
+            ...(grounded ? { tools: [{ google_search: {} }] } : {}),
+          }),
+          signal: AbortSignal.timeout(45000),
+        },
+      );
+
+      if (!response.ok) {
+        const body = await response.text();
+        lastError = `Gemini API returned ${response.status}: ${body}`;
+        if (response.status === 503 || response.status === 429) {
+          continue;
+        }
+        throw new Error(lastError);
+      }
+
+      const json = await response.json();
+      return {
+        status: "completed",
+        model,
+        prompt,
+        responseText: extractGeminiText(json),
+        sourceUrls: grounded ? extractGeminiGroundingUrls(json) : collectUrls(json),
+      };
+    } catch (error: any) {
+      lastError = error.message || lastError;
+      if (/503|429|timeout/i.test(lastError)) {
+        continue;
+      }
+      return {
+        status: "failed",
+        model,
+        prompt,
+        error: lastError,
+      };
     }
-
-    const json = await response.json();
-    return {
-      status: "completed",
-      model,
-      prompt,
-      responseText: extractGeminiText(json),
-      sourceUrls: grounded ? extractGeminiGroundingUrls(json) : collectUrls(json),
-    };
-  } catch (error: any) {
-    return {
-      status: "failed",
-      model,
-      prompt,
-      error: error.message || "Gemini benchmark call failed.",
-    };
   }
+
+  return {
+    status: "failed",
+    model: models[models.length - 1] || GEMINI_DEFAULT_MODEL,
+    prompt,
+    error: lastError,
+  };
 }
 
 async function runProvider(provider: BenchmarkProvider, prompt: string): Promise<ProviderExecution> {

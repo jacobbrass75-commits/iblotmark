@@ -135,7 +135,9 @@ export async function seedBenchmarkQueries(): Promise<number> {
       notes: seed.notes || null,
       status: "active",
     })),
-  ).returning();
+  ).onConflictDoNothing({
+    target: aiBenchmarkQueries.query,
+  }).returning();
 
   return inserted.length;
 }

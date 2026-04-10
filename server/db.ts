@@ -24,7 +24,18 @@ function getExistingColumnNames(tableName: string): Set<string> {
   return new Set(columns.map((column) => column.name));
 }
 
+function tableExists(tableName: string): boolean {
+  const row = sqlite
+    .prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?")
+    .get(tableName) as { name: string } | undefined;
+  return Boolean(row?.name);
+}
+
 function ensureColumn(tableName: string, columnName: string, columnDefinition: string): void {
+  if (!tableExists(tableName)) {
+    return;
+  }
+
   const existingColumns = getExistingColumnNames(tableName);
   if (existingColumns.has(columnName)) {
     return;
