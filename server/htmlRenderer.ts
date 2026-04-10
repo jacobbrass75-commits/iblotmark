@@ -5,6 +5,8 @@ import type { BlogPost, Product } from "@shared/schema";
 import { db } from "./db";
 import { products } from "@shared/schema";
 
+const PUBLIC_BASE_URL = process.env.PUBLIC_BASE_URL || "https://app.scholarmark.ai";
+
 /**
  * Convert markdown to HTML. Simple but effective renderer that handles
  * the markdown patterns our pipeline outputs (headings, paragraphs,
@@ -109,11 +111,11 @@ function escapeAndFormat(text: string): string {
   // Inline code: `text`
   result = result.replace(/`(.+?)`/g, "<code>$1</code>");
 
+  // Images MUST come before links — otherwise [alt](url) in ![alt](url) matches the link regex first
+  result = result.replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1" loading="lazy">');
+
   // Links: [text](url)
   result = result.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
-
-  // Images: ![alt](url)
-  result = result.replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1" loading="lazy">');
 
   return result;
 }
@@ -194,6 +196,12 @@ export async function autoLinkProducts(html: string): Promise<string> {
 export async function renderShopifyHtml(post: BlogPost): Promise<string> {
   let bodyHtml = markdownToHtml(post.markdown || "");
   bodyHtml = await autoLinkProducts(bodyHtml);
+
+  // Convert local photo serve URLs to public URLs so images work on Shopify
+  bodyHtml = bodyHtml.replace(
+    /src="\/api\/blog\/photos\/serve\/([^"]+)"/g,
+    `src="${PUBLIC_BASE_URL}/api/blog/photos/serve/$1"`
+  );
 
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";

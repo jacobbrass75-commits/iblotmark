@@ -1,158 +1,104 @@
 # iBolt Blog Generator - Claude Code Instructions
 
-## What This Repo Is
+## What This Is
 
-This is a fork of **ScholarMark**, an academic source annotator built with Express + React (Vite) + SQLite/Drizzle ORM. We are converting it into an **autonomous SEO blog post generator for iBolt Mounts** (iboltmounts.com).
+Autonomous SEO blog generator for **iBolt Mounts** (iboltmounts.com), forked from ScholarMark. Full-stack Express + React + SQLite/Drizzle ORM + Anthropic Claude + OpenAI GPT-4V.
 
-The existing ScholarMark features (citations, annotations, OCR, academic writing) remain intact but are NOT being developed further. All new work adds the blog generation system alongside.
+- **Local dev**: `npm run dev` → port 5001
+- **Production**: Hetzner cx23 at https://app.scholarmark.ai
+- **MCP Server**: `node mcp-server/ibolt-stdio.mjs` (stdio transport, proxies to port 5001)
 
-## Current State
+## System Architecture
 
-- The repo is the **original ScholarMark codebase** — no iBolt blog features have been built yet
-- The app runs locally on port 5001: `npm run dev`
-- Auth uses Clerk (but for local dev, the existing setup works)
-- The existing writing pipeline at `server/writingPipeline.ts` is the template to adapt
+### 4-Phase Blog Pipeline (`server/blogPipeline.ts`)
+1. **Planner** → JSON outline with SEO meta, sections, keyword distribution
+2. **Section Writer** → per-section markdown with brand voice + photo scoring
+3. **Stitcher** → combines sections + image placements into cohesive markdown
+4. **Verifier** → quality scores (brand, SEO, language, accuracy); retries if < 70
 
-## What To Build
+### Photo Bank (`server/photoBank.ts`, `server/photoSelector.ts`)
+- Photos stored in `./uploads/product-photos/` with thumbnails in `./uploads/product-photos/thumbs/`
+- GPT-4V analyzes: product identification, angle type, context, quality score, vertical relevance
+- Deterministic photo scoring selects best images per section (no AI at selection time)
+- Photos served at `/api/blog/photos/serve/{id}` — converted to production URL for Shopify
 
-An autonomous blog post generator that:
-1. Ingests keyword data from Ubersuggest CSV exports
-2. Smart-clusters keywords and prioritizes by opportunity score
-3. Pulls industry context from pre-built knowledge banks + web research (YouTube transcripts, Reddit, web)
-4. Scrapes product catalog from iboltmounts.com (Shopify JSON API at `/products.json`)
-5. Generates SEO-optimized blog posts using a 4-phase pipeline
-6. Outputs Shopify-ready HTML with meta tags
-7. Supports batch generation with human review
+### Shopify Publishing (`server/shopifyPublisher.ts`)
+- Client credentials auth (env: `SHOPIFY_CLIENT_ID`, `SHOPIFY_CLIENT_SECRET`)
+- News Blog ID: `104843772196`, Fish Finder Blog ID: `110121517348`
+- API version: 2025-01
+- Publishes as draft by default, sets SEO metafields
 
-## Architecture: 4-Phase Blog Pipeline
+### HTML Rendering (`server/htmlRenderer.ts`)
+- Markdown → HTML with headings, lists, bold/italic, links, images
+- Auto-links product mentions to iboltmounts.com
+- Extracts FAQ sections into JSON-LD FAQPage schema
+- Converts local `/api/blog/photos/serve/` URLs to `PUBLIC_BASE_URL` for Shopify
 
-Adapt from `server/writingPipeline.ts` (3-phase: Planner → Writer → Stitcher). Add a 4th phase:
+## MCP Server — 33 Tools (`mcp-server/ibolt-stdio.mjs`)
 
-1. **Planner** — Takes keyword cluster + industry context + products → JSON outline with SEO meta tags, sections, keyword distribution
-2. **Section Writer** — Writes each section with iBolt brand voice baked directly into prompts (NO separate humanizer pass)
-3. **Stitcher** — Combines sections, smooths transitions, ensures consistent voice + SEO keyword placement
-4. **Verifier** (NEW) — Quality gate scoring: brandConsistency, seoOptimization, naturalLanguage, factualAccuracy (0-100). Re-runs stitcher if overall < 70
+### Blog Posts
+`list_blog_posts`, `get_blog_post`, `get_blog_post_html`, `update_blog_post`, `generate_blog_post`
 
-## iBolt Brand Voice (bake into ALL writing prompts)
+### Keywords
+`list_keywords`, `list_keyword_clusters`, `import_keywords`, `cluster_keywords`
 
-From analysis of https://iboltmounts.com/blogs/news:
-- **Conversational expertise** — friendly but credible, like a knowledgeable friend
-- **Education-first, sales-second** — lead with helpful info, products are solutions to articulated problems
-- **Industry terminology** — use naturally without over-explaining (ELD Mandate, AMPS plates, etc.)
-- **Context-setting openings** — relatable scenarios that make readers feel understood
-- **Specific tech specs** — model numbers, dimensions, materials, compatibility info
-- **Multiple product options** — not pushy, present alternatives so readers feel informed
-- **Invitational CTAs** — "explore our selection" not "buy now"
-- **800-1400 words** per post
-- No AI buzzwords: avoid "game-changer", "revolutionize", "seamless", "cutting-edge"
+### Industry Context (12 verticals)
+`list_verticals`, `get_context_entries`, `add_context_entry`, `run_research`
 
-## 12 Industry Verticals (Context Banks)
+### Products
+`list_products`, `scrape_products`
 
-Each needs a context bank with terminology, use cases, pain points, compatible devices, regulations, seasonal relevance:
+### Queue
+`get_queue`, `add_to_queue`, `add_batch_to_queue`
 
-1. Fishing/Boating
-2. Forklifts/Warehousing
-3. Trucking/Fleet
-4. Offroading/Jeep
-5. Restaurants/Food Delivery
-6. Education/Schools
-7. Content Creation/Streaming
-8. Agriculture/Farming
-9. Kitchen/Home
-10. Road Trips/Travel
-11. Mountain Biking/Cycling
-12. General Mounting Solutions
+### Shopify
+`publish_to_shopify`, `shopify_status`, `list_shopify_articles`
 
-## Database Tables Needed (add to `shared/schema.ts`)
+### Scheduler
+`scheduler_status`, `start_scheduler`, `stop_scheduler`, `trigger_scheduler_action`
 
-- `industryVerticals` — 12 vertical categories
-- `contextEntries` — industry knowledge bank entries (category, content, sourceType, confidence)
-- `keywords` — from Ubersuggest CSV (keyword, volume, difficulty, CPC, opportunityScore, status)
-- `keywordClusters` — groups of related keywords for comprehensive posts
-- `keywordImports` — CSV upload batch tracking
-- `products` — scraped from iboltmounts.com
-- `productVerticals` — many-to-many product-to-vertical mapping
-- `blogPosts` — generated posts (markdown, html, status, verification scores)
-- `blogPostProducts` — products mentioned in posts
-- `generationBatches` — batch job tracking
-- `researchJobs` — research agent job tracking
+### Competitor
+`analyze_competitor`
 
-## Server Modules To Create
+### Photo Bank
+`list_photos`, `get_photo`, `photo_stats`, `import_photos`, `analyze_photo`, `batch_analyze_photos`, `auto_associate_photos`, `delete_photo`
+
+## Key Files
 
 | File | Purpose |
-|---|---|
-| `server/brandVoice.ts` | Brand voice constants and prompt builders |
-| `server/contextBanks.ts` | Context bank CRUD + `formatContextForPrompt()` |
-| `server/contextSeeds.ts` | Initial seed data for 12 verticals |
-| `server/contextRoutes.ts` | Context bank API routes |
-| `server/keywordManager.ts` | CSV parsing (papaparse), scoring, LLM clustering |
-| `server/keywordRoutes.ts` | Keyword API routes |
-| `server/productScraper.ts` | Fetch iboltmounts.com/products.json, parse, map to verticals |
-| `server/productRoutes.ts` | Product API routes |
-| `server/blogPipeline.ts` | 4-phase blog generation engine (adapt from writingPipeline.ts) |
-| `server/blogRoutes.ts` | Blog generation API routes (SSE streaming) |
-| `server/htmlRenderer.ts` | Markdown → Shopify-ready HTML with SEO meta |
-| `server/iboltResearchAgent.ts` | YouTube/Reddit/web research → context bank population |
+|------|---------|
+| `server/blogPipeline.ts` | 4-phase generation orchestrator |
+| `server/htmlRenderer.ts` | Markdown → Shopify HTML + FAQ schema |
+| `server/shopifyPublisher.ts` | Shopify REST API publishing |
+| `server/photoBank.ts` | Photo storage, import, GPT-4V analysis |
+| `server/photoSelector.ts` | Deterministic photo scoring for posts |
+| `server/photoRoutes.ts` | Photo API endpoints (11 routes) |
+| `server/brandVoice.ts` | Brand voice constants for prompts |
+| `server/keywordManager.ts` | CSV parsing, scoring, AI clustering |
+| `server/iboltResearchAgent.ts` | Reddit/YouTube/web → context banks |
+| `shared/schema.ts` | 31 Drizzle ORM tables |
+| `mcp-server/ibolt-stdio.mjs` | MCP stdio server (33 tools) |
 
-## Client Pages To Create
+## Brand Voice (baked into all generation prompts)
 
-| Page | Route | Purpose |
-|---|---|---|
-| `BlogDashboard.tsx` | `/blog` | Overview, stats, recent posts, quick actions |
-| `KeywordManager.tsx` | `/blog/keywords` | CSV upload, keyword table, cluster view, content calendar |
-| `BatchGenerator.tsx` | `/blog/generate` | Select clusters, configure, generate with SSE progress |
-| `PostReview.tsx` | `/blog/posts/:id` | Markdown editor + HTML preview, verification scores, export |
-| `IndustryContext.tsx` | `/blog/context` | Context bank viewer/editor, research agent trigger |
-| `ProductCatalog.tsx` | `/blog/products` | Product grid, vertical mapping, scrape trigger |
+- Conversational expertise — friendly but credible
+- Education-first, sales-second — products are solutions to stated problems
+- Industry terminology used naturally
+- 800-1400 words per post
+- No AI buzzwords: avoid "game-changer", "revolutionize", "seamless", "cutting-edge"
+- Invitational CTAs: "explore our selection" not "buy now"
 
-## Client Hooks To Create
+## 12 Industry Verticals
 
-- `useBlogPipeline.ts` — adapt from `client/src/hooks/useWriting.ts` (SSE streaming)
-- `useKeywords.ts`, `useVerticals.ts`, `useProducts.ts`, `useBlogPosts.ts` — React Query CRUD hooks
+Fishing/Boating, Forklifts/Warehousing, Trucking/Fleet, Offroading/Jeep, Restaurants/Food Delivery, Education/Schools, Content Creation/Streaming, Agriculture/Farming, Kitchen/Home, Road Trips/Travel, Mountain Biking/Cycling, General Mounting Solutions
 
-## Autonomous Research Agent (`server/iboltResearchAgent.ts`)
-
-Runs independently from blog generation. Populates context banks:
-
-- **YouTube**: YouTube Data API v3 → `youtube-transcript` package → Claude extracts industry context
-- **Reddit**: `reddit.com/r/{subreddit}/search.json` (public JSON API, no auth) → Claude extracts user language + pain points
-- **Web**: Web fetch → Claude extracts industry context
-- All findings stored as `contextEntries` with `isVerified: false` for human review
-
-## Ruflo Integration
-
-Clone https://github.com/ruvnet/ruflo.git and integrate its autonomous agent capabilities for:
-- Automated research workflows
-- Scheduled context bank population
-- Autonomous batch generation orchestration
-
-## Key Patterns To Follow (from existing codebase)
-
-- **SSE streaming**: See `server/writingRoutes.ts` for the pattern
-- **Drizzle ORM tables**: See `shared/schema.ts` for table definition patterns
-- **React Query hooks**: See `client/src/hooks/useProjects.ts` for the pattern
-- **Lazy page loading**: See `client/src/App.tsx` for route registration
-- **AI calls**: Use Anthropic SDK (already configured in the project)
-
-## Implementation Order
-
-1. Schema + brand voice + context banks + seed data
-2. Keyword manager + product scraper
-3. Blog pipeline (4-phase) + HTML renderer + blog routes
-4. Client UI (dashboard, keyword manager, batch generator, post review)
-5. Research agent + context/product management UI
-6. Ruflo integration for autonomous orchestration
-
-## Dependencies To Add
+## Environment Variables
 
 ```
-npm install papaparse marked youtube-transcript cheerio
+SHOPIFY_SHOP=iboltmounts
+SHOPIFY_CLIENT_ID=...
+SHOPIFY_CLIENT_SECRET=...
+PUBLIC_BASE_URL=https://app.scholarmark.ai
+OPENAI_API_KEY=... (for GPT-4V photo analysis)
+ANTHROPIC_API_KEY=... (for blog generation)
 ```
-
-## Quick Verification
-
-After each phase, verify:
-- `npm run dev` still starts without errors
-- New API endpoints respond (test with curl)
-- New UI pages render at their routes
-- Blog pipeline generates actual HTML output

@@ -523,6 +523,114 @@ server.tool(
   }
 );
 
+// ═══════════════════════════════════════
+//  PHOTO BANK & IMAGE MANAGEMENT
+// ═══════════════════════════════════════
+
+server.tool(
+  "list_photos",
+  "List photos in the image bank, optionally filtered by product. Returns metadata including analysis results, quality scores, and vertical relevance.",
+  {
+    productId: z.string().optional().describe("Filter photos by product ID"),
+  },
+  async ({ productId }) => {
+    try {
+      const data = await api("GET", `/api/blog/photos${qs({ productId })}`);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "get_photo",
+  "Get detailed metadata for a single photo — analysis results, quality score, angle type, vertical relevance, hero candidacy",
+  { id: z.string().describe("Photo ID") },
+  async ({ id }) => {
+    try {
+      const data = await api("GET", `/api/blog/photos/${encodeURIComponent(id)}`);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "photo_stats",
+  "Get photo bank statistics — total count, analyzed, unanalyzed, and unassigned photos",
+  {},
+  async () => {
+    try {
+      const data = await api("GET", "/api/blog/photos/stats");
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "import_photos",
+  "Import photos from a local directory into the image bank. Recursively scans for jpg, png, webp, heic, tiff, bmp. Skips duplicates. Takes a few minutes for large directories.",
+  {
+    dirPath: z.string().describe("Absolute path to the directory containing images"),
+  },
+  async ({ dirPath }) => {
+    try {
+      const result = await apiSSE("POST", "/api/blog/photos/import-directory", { dirPath }, 600_000);
+      return ok(result.text || "Import complete");
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "analyze_photo",
+  "Run GPT-4V vision analysis on a single photo — identifies product, angle type, context, quality score, vertical relevance, and hero candidacy",
+  { id: z.string().describe("Photo ID to analyze") },
+  async ({ id }) => {
+    try {
+      const data = await api("POST", `/api/blog/photos/${encodeURIComponent(id)}/analyze`);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "batch_analyze_photos",
+  "Batch-analyze unanalyzed photos with GPT-4V vision. Processes up to 20 photos by default.",
+  {
+    limit: z.number().optional().describe("Max photos to analyze (default 20)"),
+  },
+  async ({ limit }) => {
+    try {
+      const body = {};
+      if (limit !== undefined) body.limit = limit;
+      const result = await apiSSE("POST", "/api/blog/photos/batch-analyze", body, 600_000);
+      return ok(result.text || "Batch analysis complete");
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "auto_associate_photos",
+  "Automatically match unassigned photos to products using filename matching and AI analysis results",
+  {},
+  async () => {
+    try {
+      const data = await api("POST", "/api/blog/photos/auto-associate");
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "delete_photo",
+  "Delete a photo from the image bank (removes files and database record)",
+  { id: z.string().describe("Photo ID to delete") },
+  async ({ id }) => {
+    try {
+      const data = await api("DELETE", `/api/blog/photos/${encodeURIComponent(id)}`);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
 // ── Start ──
 
 const transport = new StdioServerTransport();
