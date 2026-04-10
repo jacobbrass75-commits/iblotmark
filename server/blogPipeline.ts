@@ -3,6 +3,7 @@
 // Adapted from writingPipeline.ts for SEO blog generation.
 
 import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import {
@@ -84,12 +85,92 @@ export interface BlogSSEEvent {
 
 // --- Helpers ---
 
-const MODEL = "claude-sonnet-4-20250514";
+const ANTHROPIC_MODEL = process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
+const OPENAI_MODEL = process.env.BLOG_OPENAI_MODEL || "gpt-4.1-mini";
 
-function getClient(): Anthropic {
+let anthropicClient: Anthropic | null = null;
+let openaiClient: OpenAI | null = null;
+
+function getAnthropicClient(): Anthropic | null {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY is not set.");
-  return new Anthropic({ apiKey });
+  if (!apiKey) return null;
+  if (!anthropicClient) {
+    anthropicClient = new Anthropic({ apiKey });
+  }
+  return anthropicClient;
+}
+
+function getOpenAIClient(): OpenAI | null {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return null;
+  if (!openaiClient) {
+    openaiClient = new OpenAI({ apiKey });
+  }
+  return openaiClient;
+}
+
+function extractAnthropicText(response: Anthropic.Messages.Message): string {
+  return response.content
+    .filter((item): item is Anthropic.TextBlock => item.type === "text")
+    .map((item) => item.text)
+    .join("\n")
+    .trim();
+}
+
+async function generateText(
+  systemPrompt: string,
+  userPrompt: string,
+  maxTokens: number,
+  temperature = 0.3,
+): Promise<string> {
+  const anthropic = getAnthropicClient();
+  let lastError: Error | null = null;
+
+  if (anthropic) {
+    try {
+      await anthropicLimiter.acquire();
+      const response = await anthropic.messages.create({
+        model: ANTHROPIC_MODEL,
+        max_tokens: maxTokens,
+        system: systemPrompt,
+        messages: [{ role: "user", content: userPrompt }],
+      });
+      return extractAnthropicText(response);
+    } catch (error: any) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+    }
+  }
+
+  const openai = getOpenAIClient();
+  if (openai) {
+    const response = await openai.chat.completions.create({
+      model: OPENAI_MODEL,
+      temperature,
+      max_tokens: maxTokens,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+    });
+
+    const text = response.choices[0]?.message?.content?.trim();
+    if (!text) {
+      throw new Error("OpenAI returned an empty response.");
+    }
+    return text;
+  }
+
+  throw lastError || new Error("No blog-generation provider is configured.");
+}
+
+async function generateJson<T>(
+  systemPrompt: string,
+  userPrompt: string,
+  maxTokens: number,
+  temperature = 0.2,
+): Promise<T> {
+  const text = await generateText(systemPrompt, userPrompt, maxTokens, temperature);
+  return JSON.parse(extractJSON(text)) as T;
 }
 
 function extractJSON(text: string): string {
@@ -101,6 +182,44 @@ function extractJSON(text: string): string {
   if (objMatch) return objMatch[0];
   if (arrMatch) return arrMatch[0];
   return cleaned;
+}
+
+function buildProductImageGalleryMarkdown(relevantProducts: Product[]): string {
+  const picks = relevantProducts
+    .filter((product) => product.imageUrl && product.url)
+    .slice(0, 3);
+
+  if (picks.length === 0) return "";
+
+  const blocks = picks.map((product) => {
+    const price = product.price ? ` - $${product.price}` : "";
+    return `<div style="text-align: center; margin: 20px 0;">
+  <a href="${product.url}">
+    <img src="${product.imageUrl}" alt="${product.title} - iBOLT Mounts" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px;" loading="lazy">
+  </a>
+  <p style="font-size: 14px; color: #666; margin-top: 8px;"><strong>${product.title}</strong>${price}</p>
+</div>`;
+  });
+
+  return `## Product Options\n\n${blocks.join("\n\n")}`;
+}
+
+function injectProductImages(markdown: string, relevantProducts: Product[]): string {
+  if (/<img\s/i.test(markdown)) {
+    return markdown;
+  }
+
+  const gallery = buildProductImageGalleryMarkdown(relevantProducts);
+  if (!gallery) {
+    return markdown;
+  }
+
+  const faqMatch = markdown.match(/^## Frequently Asked Questions/m);
+  if (!faqMatch || faqMatch.index === undefined) {
+    return `${markdown.trim()}\n\n${gallery}\n`;
+  }
+
+  return `${markdown.slice(0, faqMatch.index).trimEnd()}\n\n${gallery}\n\n${markdown.slice(faqMatch.index).trimStart()}`;
 }
 
 async function getClusterData(clusterId: string): Promise<{
@@ -131,9 +250,52 @@ async function getClusterData(clusterId: string): Promise<{
     }
   }
 
-  // If no vertical-specific products, get all products
+  // If no vertical-specific products, rank all products by keyword overlap
   if (relevantProducts.length === 0) {
-    relevantProducts = await db.select().from(products).limit(20);
+    const allProducts = await db.select().from(products);
+    const queryText = [
+      cluster.primaryKeyword,
+      cluster.name,
+      ...clusterKeywords.map((item) => item.keyword),
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    const tokens = Array.from(new Set(
+      queryText
+        .split(/[^a-z0-9]+/i)
+        .map((token) => token.trim())
+        .filter((token) => token.length >= 4),
+    ));
+
+    const scoreProduct = (product: Product) => {
+      const haystack = [
+        product.title,
+        product.handle,
+        product.description,
+        product.productType,
+        product.vendor,
+        ...(Array.isArray(product.tags) ? product.tags : []),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      let score = 0;
+      for (const token of tokens) {
+        if (haystack.includes(token)) score += 2;
+      }
+      if (/fish|marine|boat|kayak|garmin|humminbird|lowrance/i.test(haystack)) score += 6;
+      if (product.imageUrl) score += 1;
+      return score;
+    };
+
+    relevantProducts = allProducts
+      .map((product) => ({ product, score: scoreProduct(product) }))
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 20)
+      .map((item) => item.product);
   }
 
   return { cluster, clusterKeywords, vertical, relevantProducts };
@@ -148,6 +310,7 @@ function formatProductsForPrompt(prods: Product[]): string {
     if (p.productType) parts.push(`  Type: ${p.productType}`);
     if (p.description) parts.push(`  ${p.description.slice(0, 200)}`);
     if (p.url) parts.push(`  URL: ${p.url}`);
+    if (p.imageUrl) parts.push(`  Image URL: ${p.imageUrl}`);
     return parts.join("\n");
   }).join("\n\n");
 }
@@ -155,7 +318,6 @@ function formatProductsForPrompt(prods: Product[]): string {
 // --- Phase 1: PLANNER ---
 
 async function runPlanner(
-  client: Anthropic,
   clusterKeywords: Keyword[],
   industryContext: string,
   productContext: string,
@@ -167,19 +329,12 @@ async function runPlanner(
 
   const systemPrompt = buildPlannerPrompt(industryContext, productContext);
 
-  await anthropicLimiter.acquire();
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 4096,
-    system: systemPrompt,
-    messages: [{
-      role: "user",
-      content: `Create a blog post outline targeting these keywords: ${kwList}\n\nPrimary keyword should be the highest-volume keyword. Distribute all keywords naturally across sections.`,
-    }],
-  });
-
-  const text = response.content[0].type === "text" ? response.content[0].text : "";
-  const parsed = JSON.parse(extractJSON(text)) as BlogPlan;
+  const parsed = await generateJson<BlogPlan>(
+    systemPrompt,
+    `Create a blog post outline targeting these keywords: ${kwList}\n\nPrimary keyword should be the highest-volume keyword. Distribute all keywords naturally across sections.`,
+    4096,
+    0.2,
+  );
 
   if (!parsed.title || !parsed.sections || !Array.isArray(parsed.sections)) {
     throw new Error("Invalid blog plan structure");
@@ -198,7 +353,6 @@ async function runPlanner(
 // --- Phase 2: SECTION WRITER ---
 
 async function writeSection(
-  client: Anthropic,
   plan: BlogPlan,
   sectionIndex: number,
   industryContext: string,
@@ -212,24 +366,17 @@ async function writeSection(
     productDetails,
   );
 
-  await anthropicLimiter.acquire();
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 2048,
-    system: systemPrompt,
-    messages: [{
-      role: "user",
-      content: `Write section ${sectionIndex + 1} of ${plan.sections.length}: "${section.title}"\n\nTarget: ~${section.targetWords} words\nBlog title: "${plan.title}"\nPrimary keyword: "${plan.primaryKeyword}"`,
-    }],
-  });
-
-  return response.content[0].type === "text" ? response.content[0].text : "";
+  return generateText(
+    systemPrompt,
+    `Write section ${sectionIndex + 1} of ${plan.sections.length}: "${section.title}"\n\nTarget: ~${section.targetWords} words\nBlog title: "${plan.title}"\nPrimary keyword: "${plan.primaryKeyword}"`,
+    2048,
+    0.5,
+  );
 }
 
 // --- Phase 3: STITCHER ---
 
 async function runStitcher(
-  client: Anthropic,
   plan: BlogPlan,
   sections: string[],
 ): Promise<string> {
@@ -239,42 +386,28 @@ async function runStitcher(
     .map((content, i) => `--- Section ${i + 1}: ${plan.sections[i]?.title || "Untitled"} ---\n\n${content}`)
     .join("\n\n");
 
-  await anthropicLimiter.acquire();
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 8192,
-    system: systemPrompt,
-    messages: [{
-      role: "user",
-      content: `Stitch these ${sections.length} sections into a cohesive blog post.\n\nTitle: "${plan.title}"\nPrimary keyword: "${plan.primaryKeyword}"\nSecondary keywords: ${plan.secondaryKeywords.join(", ")}\n\n${sectionBlock}`,
-    }],
-  });
-
-  return response.content[0].type === "text" ? response.content[0].text : "";
+  return generateText(
+    systemPrompt,
+    `Stitch these ${sections.length} sections into a cohesive blog post.\n\nTitle: "${plan.title}"\nPrimary keyword: "${plan.primaryKeyword}"\nSecondary keywords: ${plan.secondaryKeywords.join(", ")}\n\n${sectionBlock}`,
+    8192,
+    0.3,
+  );
 }
 
 // --- Phase 4: VERIFIER ---
 
 async function runVerifier(
-  client: Anthropic,
   plan: BlogPlan,
   markdown: string,
 ): Promise<VerificationResult> {
   const systemPrompt = buildVerifierPrompt();
 
-  await anthropicLimiter.acquire();
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 2048,
-    system: systemPrompt,
-    messages: [{
-      role: "user",
-      content: `Verify this blog post:\n\nTitle: "${plan.title}"\nMeta Title: "${plan.metaTitle}"\nMeta Description: "${plan.metaDescription}"\nPrimary Keyword: "${plan.primaryKeyword}"\nSecondary Keywords: ${plan.secondaryKeywords.join(", ")}\n\n---\n\n${markdown}`,
-    }],
-  });
-
-  const text = response.content[0].type === "text" ? response.content[0].text : "";
-  const parsed = JSON.parse(extractJSON(text)) as VerificationResult;
+  const parsed = await generateJson<VerificationResult>(
+    systemPrompt,
+    `Verify this blog post:\n\nTitle: "${plan.title}"\nMeta Title: "${plan.metaTitle}"\nMeta Description: "${plan.metaDescription}"\nPrimary Keyword: "${plan.primaryKeyword}"\nSecondary Keywords: ${plan.secondaryKeywords.join(", ")}\n\n---\n\n${markdown}`,
+    2048,
+    0.1,
+  );
 
   // Calculate overall if not provided
   if (!parsed.overallScore) {
@@ -297,8 +430,6 @@ export async function runBlogPipeline(
   request: BlogGenerationRequest,
   onEvent: (event: BlogSSEEvent) => void,
 ): Promise<BlogPost> {
-  const client = getClient();
-
   // Load cluster data
   onEvent({ type: "status", phase: "init", message: "Loading cluster data..." });
   const { cluster, clusterKeywords, vertical, relevantProducts } = await getClusterData(request.clusterId);
@@ -314,7 +445,7 @@ export async function runBlogPipeline(
 
   let plan: BlogPlan;
   try {
-    plan = await runPlanner(client, clusterKeywords, industryContext, productContext);
+    plan = await runPlanner(clusterKeywords, industryContext, productContext);
     onEvent({ type: "plan", phase: "planner", plan, message: `Plan created: "${plan.title}" with ${plan.sections.length} sections` });
   } catch (err: any) {
     onEvent({ type: "error", error: `Planner failed: ${err.message}` });
@@ -356,7 +487,7 @@ export async function runBlogPipeline(
         sectionContext = compactContext(industryContext + "\n\n" + productContext, TOKEN_BUDGETS.sectionWriter);
       }
 
-      const content = await writeSection(client, plan, i, sectionContext, productContext);
+      const content = await writeSection(plan, i, sectionContext, productContext);
       sectionContents.push(content);
       onEvent({ type: "section", phase: "writer", sectionIndex: i, sectionTitle: section.title, sectionContent: content });
     } catch (err: any) {
@@ -376,7 +507,8 @@ export async function runBlogPipeline(
       // Append photo instructions to the section block
       sectionContents.push(photoPrompt);
     }
-    markdown = await runStitcher(client, plan, sectionContents);
+    markdown = await runStitcher(plan, sectionContents);
+    markdown = injectProductImages(markdown, relevantProducts);
     onEvent({ type: "stitched", phase: "stitcher", markdown, message: "Post stitched successfully" });
   } catch (err: any) {
     onEvent({ type: "error", error: `Stitcher failed: ${err.message}` });
@@ -388,7 +520,7 @@ export async function runBlogPipeline(
 
   let verification: VerificationResult;
   try {
-    verification = await runVerifier(client, plan, markdown);
+    verification = await runVerifier(plan, markdown);
     onEvent({ type: "verified", phase: "verifier", verification, message: `Score: ${verification.overallScore}/100 (${verification.passesQualityGate ? "PASS" : "FAIL"})` });
   } catch (err: any) {
     // Verification failure is non-fatal — save with no scores
@@ -412,25 +544,17 @@ export async function runBlogPipeline(
 
     try {
       const feedbackPrompt = `Previous version scored ${verification.overallScore}/100.\nIssues: ${verification.issues.join("; ")}\nSuggestions: ${verification.suggestions.join("; ")}`;
-
-      await anthropicLimiter.acquire();
-      const restitchResponse = await client.messages.create({
-        model: MODEL,
-        max_tokens: 8192,
-        system: buildStitcherPrompt(),
-        messages: [
-          {
-            role: "user",
-            content: `Improve this blog post based on the feedback below.\n\nTitle: "${plan.title}"\nPrimary keyword: "${plan.primaryKeyword}"\n\nFeedback:\n${feedbackPrompt}\n\nOriginal post:\n${markdown}`,
-          },
-        ],
-      });
-
-      markdown = restitchResponse.content[0].type === "text" ? restitchResponse.content[0].text : markdown;
+      markdown = await generateText(
+        buildStitcherPrompt(),
+        `Improve this blog post based on the feedback below.\n\nTitle: "${plan.title}"\nPrimary keyword: "${plan.primaryKeyword}"\n\nFeedback:\n${feedbackPrompt}\n\nOriginal post:\n${markdown}`,
+        8192,
+        0.3,
+      );
+      markdown = injectProductImages(markdown, relevantProducts);
       onEvent({ type: "stitched", phase: "stitcher", markdown, message: "Re-stitched with improvements" });
 
       // Re-verify
-      verification = await runVerifier(client, plan, markdown);
+      verification = await runVerifier(plan, markdown);
       onEvent({ type: "verified", phase: "verifier", verification, message: `Re-verified: ${verification.overallScore}/100 (${verification.passesQualityGate ? "PASS" : "FAIL"})` });
     } catch {
       onEvent({ type: "status", phase: "stitcher", message: "Re-stitch failed, proceeding with original" });

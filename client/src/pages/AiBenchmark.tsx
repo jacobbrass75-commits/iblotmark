@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import {
   useAddBenchmarkQuery,
+  useAddBenchmarkQueriesBulk,
   useBenchmarkContentPlan,
   useBenchmarkQueries,
   useBenchmarkRuns,
@@ -32,6 +33,7 @@ export default function AiBenchmark() {
   const latestRunId = latestSummary?.run?.id as string | undefined;
   const { data: contentPlan = [] } = useBenchmarkContentPlan(latestRunId);
   const addQueryMutation = useAddBenchmarkQuery();
+  const addBulkQueriesMutation = useAddBenchmarkQueriesBulk();
   const materializeMutation = useMaterializeContentPlan();
 
   const [selectedProviders, setSelectedProviders] = useState<Record<ProviderId, boolean>>({
@@ -47,6 +49,12 @@ export default function AiBenchmark() {
     category: "fishing",
     query: "",
     benchmarkGoal: "",
+  });
+  const [bulkQueries, setBulkQueries] = useState({
+    category: "fishing",
+    queries: "",
+    benchmarkGoal: "",
+    priority: 90,
   });
 
   const providerSelection = useMemo(
@@ -320,6 +328,78 @@ export default function AiBenchmark() {
             </CardContent>
           </Card>
         </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Bulk Add Subcategories</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <select
+                className="w-full rounded-md border bg-transparent px-3 py-2 text-sm"
+                value={bulkQueries.category}
+                onChange={(e) => setBulkQueries((current) => ({ ...current, category: e.target.value }))}
+              >
+                <option value="fishing">Fishing</option>
+                <option value="warehouse">Warehouse</option>
+                <option value="fleet">Fleet</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="comparison">Comparison</option>
+                <option value="general">General</option>
+              </select>
+              <input
+                className="w-full rounded-md border bg-transparent px-3 py-2 text-sm"
+                type="number"
+                min={1}
+                max={100}
+                value={bulkQueries.priority}
+                onChange={(e) => setBulkQueries((current) => ({ ...current, priority: Number(e.target.value) || 50 }))}
+                placeholder="Priority"
+              />
+              <input
+                className="w-full rounded-md border bg-transparent px-3 py-2 text-sm"
+                value={bulkQueries.benchmarkGoal}
+                onChange={(e) => setBulkQueries((current) => ({ ...current, benchmarkGoal: e.target.value }))}
+                placeholder="Shared benchmark goal"
+              />
+            </div>
+            <textarea
+              className="w-full rounded-md border bg-transparent px-3 py-2 text-sm min-h-[180px] resize-y"
+              placeholder={`Paste one subcategory per line, for example:\nbest fish finder mount for jon boat\nbest fish finder mount for aluminum boat\nbest fish finder mount for kayak tournament setup`}
+              value={bulkQueries.queries}
+              onChange={(e) => setBulkQueries((current) => ({ ...current, queries: e.target.value }))}
+            />
+            <Button
+              className="w-full"
+              disabled={addBulkQueriesMutation.isPending || !bulkQueries.queries.trim()}
+              onClick={async () => {
+                try {
+                  const queries = bulkQueries.queries
+                    .split(/\n+/)
+                    .map((value) => value.trim())
+                    .filter(Boolean);
+
+                  const result = await addBulkQueriesMutation.mutateAsync({
+                    category: bulkQueries.category,
+                    queries,
+                    benchmarkGoal: bulkQueries.benchmarkGoal,
+                    priority: bulkQueries.priority,
+                  });
+
+                  setBulkQueries((current) => ({ ...current, queries: "", benchmarkGoal: "" }));
+                  toast({ title: `Added ${result.createdCount} subcategories` });
+                } catch (error: any) {
+                  toast({ title: "Failed to add subcategories", description: error.message, variant: "destructive" });
+                }
+              }}
+            >
+              Add Subcategory Batch
+            </Button>
+            <div className="text-xs text-muted-foreground">
+              This is the backlog input for the 100-plus long-tail queries you want to dominate. Paste one query per line, then rerun the benchmark.
+            </div>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">

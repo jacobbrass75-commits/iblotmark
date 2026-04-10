@@ -40,6 +40,23 @@ export function useAddBenchmarkQuery() {
   });
 }
 
+export function useAddBenchmarkQueriesBulk() {
+  return useMutation({
+    mutationFn: async (data: {
+      category: string;
+      queries: string[];
+      benchmarkGoal?: string;
+      priority?: number;
+    }) => {
+      const res = await apiRequest("POST", "/api/blog/benchmark/queries/bulk", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/blog/benchmark/queries"] });
+    },
+  });
+}
+
 export function useMaterializeContentPlan() {
   return useMutation({
     mutationFn: async (data: { item: any; generateNow?: boolean; queueForGeneration?: boolean }) => {

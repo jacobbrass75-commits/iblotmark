@@ -61,6 +61,45 @@ export function registerBenchmarkRoutes(app: { use: (path: string, router: Route
     }
   });
 
+  router.post("/queries/bulk", async (req: Request, res: Response) => {
+    try {
+      const { category, queries, benchmarkGoal, priority } = req.body || {};
+      if (!category || !Array.isArray(queries) || queries.length === 0) {
+        return res.status(400).json({ error: "category and queries are required" });
+      }
+
+      const normalized = Array.from(new Set(
+        queries
+          .filter((value: unknown): value is string => typeof value === "string")
+          .map((value) => value.trim())
+          .filter(Boolean),
+      ));
+
+      const created = [];
+      for (const query of normalized) {
+        try {
+          created.push(await createBenchmarkQuery({
+            category,
+            query,
+            benchmarkGoal: benchmarkGoal || null,
+            intentType: "buyer_guide",
+            priority: priority ?? 50,
+            label: null,
+            verticalId: null,
+            notes: null,
+            status: "active",
+          }));
+        } catch {
+          // Ignore duplicates and continue with the rest.
+        }
+      }
+
+      res.json({ createdCount: created.length, created });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   router.patch("/queries/:id", async (req: Request, res: Response) => {
     try {
       res.json(await updateBenchmarkQuery(req.params.id, req.body || {}));
