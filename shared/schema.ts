@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer, real, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer, real, uniqueIndex, index } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -247,6 +247,211 @@ export const registerSchema = z.object({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+// === COMPANY / BRAND PRODUCTIZATION LAYER ===
+
+export const companies = sqliteTable("companies", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  websiteUrl: text("website_url"),
+  primaryDomain: text("primary_domain"),
+  logoUrl: text("logo_url"),
+  primaryMarket: text("primary_market"),
+  ecommercePlatform: text("ecommerce_platform"),
+  status: text("status").notNull().default("active"),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertCompanySchema = createInsertSchema(companies).omit({
+  id: true, createdAt: true, updatedAt: true,
+});
+export type InsertCompany = z.infer<typeof insertCompanySchema>;
+export type Company = typeof companies.$inferSelect;
+
+export const companyMemberships = sqliteTable("company_memberships", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  role: text("role").notNull().default("owner"),
+  status: text("status").notNull().default("active"),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+}, (table) => [
+  uniqueIndex("idx_company_memberships_company_user").on(table.companyId, table.userId),
+]);
+
+export const insertCompanyMembershipSchema = createInsertSchema(companyMemberships).omit({
+  id: true, createdAt: true,
+});
+export type InsertCompanyMembership = z.infer<typeof insertCompanyMembershipSchema>;
+export type CompanyMembership = typeof companyMemberships.$inferSelect;
+
+export const brandProfiles = sqliteTable("brand_profiles", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  displayName: text("display_name").notNull(),
+  websiteUrl: text("website_url"),
+  blogUrl: text("blog_url"),
+  productUrlPattern: text("product_url_pattern"),
+  shortDescription: text("short_description"),
+  positioning: text("positioning"),
+  audiencePersonas: text("audience_personas", { mode: "json" }).$type<string[]>(),
+  toneTraits: text("tone_traits", { mode: "json" }).$type<string[]>(),
+  bannedPhrases: text("banned_phrases", { mode: "json" }).$type<string[]>(),
+  preferredCtas: text("preferred_ctas", { mode: "json" }).$type<string[]>(),
+  keyMessaging: text("key_messaging", { mode: "json" }).$type<string[]>(),
+  requiredTerms: text("required_terms", { mode: "json" }).$type<string[]>(),
+  requiredClaims: text("required_claims", { mode: "json" }).$type<string[]>(),
+  forbiddenClaims: text("forbidden_claims", { mode: "json" }).$type<string[]>(),
+  competitors: text("competitors", { mode: "json" }).$type<Array<{ name: string; domains: string[] }>>(),
+  writingSamples: text("writing_samples", { mode: "json" }).$type<string[]>(),
+  targetWordCountMin: integer("target_word_count_min").notNull().default(800),
+  targetWordCountMax: integer("target_word_count_max").notNull().default(1400),
+  htmlStylePreferences: text("html_style_preferences", { mode: "json" }).$type<Record<string, unknown>>(),
+  isDefault: integer("is_default", { mode: "boolean" }).notNull().default(true),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertBrandProfileSchema = createInsertSchema(brandProfiles).omit({
+  id: true, createdAt: true, updatedAt: true,
+});
+export type InsertBrandProfile = z.infer<typeof insertBrandProfileSchema>;
+export type BrandProfile = typeof brandProfiles.$inferSelect;
+
+export const companyIntegrations = sqliteTable("company_integrations", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  type: text("type").notNull(),
+  name: text("name").notNull(),
+  status: text("status").notNull().default("configured"),
+  accessTokenRef: text("access_token_ref"),
+  config: text("config", { mode: "json" }).$type<Record<string, unknown>>(),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertCompanyIntegrationSchema = createInsertSchema(companyIntegrations).omit({
+  id: true, createdAt: true, updatedAt: true,
+});
+export type InsertCompanyIntegration = z.infer<typeof insertCompanyIntegrationSchema>;
+export type CompanyIntegration = typeof companyIntegrations.$inferSelect;
+
+export const companySettings = sqliteTable("company_settings", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  settings: text("settings", { mode: "json" }).$type<Record<string, unknown>>().notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+}, (table) => [
+  uniqueIndex("idx_company_settings_company").on(table.companyId),
+]);
+
+export const insertCompanySettingsSchema = createInsertSchema(companySettings).omit({
+  id: true, createdAt: true, updatedAt: true,
+});
+export type InsertCompanySettings = z.infer<typeof insertCompanySettingsSchema>;
+export type CompanySettings = typeof companySettings.$inferSelect;
+
+export const companyUsageEvents = sqliteTable("company_usage_events", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  userId: text("user_id").references(() => users.id, { onDelete: "set null" }),
+  eventType: text("event_type").notNull(),
+  metadata: text("metadata", { mode: "json" }).$type<Record<string, unknown>>(),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertCompanyUsageEventSchema = createInsertSchema(companyUsageEvents).omit({
+  id: true, createdAt: true,
+});
+export type InsertCompanyUsageEvent = z.infer<typeof insertCompanyUsageEventSchema>;
+export type CompanyUsageEvent = typeof companyUsageEvents.$inferSelect;
+
+export const companyJobLocks = sqliteTable("company_job_locks", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  jobType: text("job_type").notNull(),
+  ownerId: text("owner_id").notNull(),
+  acquiredAt: integer("acquired_at").$defaultFn(() => Date.now()).notNull(),
+  heartbeatAt: integer("heartbeat_at").$defaultFn(() => Date.now()).notNull(),
+  expiresAt: integer("expires_at").notNull(),
+}, (table) => [
+  uniqueIndex("idx_company_job_locks_company_type").on(table.companyId, table.jobType),
+  index("idx_company_job_locks_expires").on(table.expiresAt),
+]);
+
+export type CompanyJobLock = typeof companyJobLocks.$inferSelect;
+
+export const companyJobRuns = sqliteTable("company_job_runs", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  jobType: text("job_type").notNull(),
+  triggerType: text("trigger_type").notNull().default("scheduled"),
+  status: text("status").notNull().default("running"),
+  ownerId: text("owner_id"),
+  startedAt: integer("started_at").$defaultFn(() => Date.now()).notNull(),
+  completedAt: integer("completed_at"),
+  durationMs: integer("duration_ms"),
+  result: text("result", { mode: "json" }).$type<Record<string, unknown>>(),
+  error: text("error"),
+}, (table) => [
+  index("idx_company_job_runs_company_started").on(table.companyId, table.startedAt),
+  index("idx_company_job_runs_type_status").on(table.jobType, table.status),
+]);
+
+export type CompanyJobRun = typeof companyJobRuns.$inferSelect;
+
+export const companiesRelations = relations(companies, ({ many }) => ({
+  memberships: many(companyMemberships),
+  brandProfiles: many(brandProfiles),
+  integrations: many(companyIntegrations),
+  usageEvents: many(companyUsageEvents),
+}));
+
+export const companyMembershipsRelations = relations(companyMemberships, ({ one }) => ({
+  company: one(companies, {
+    fields: [companyMemberships.companyId],
+    references: [companies.id],
+  }),
+  user: one(users, {
+    fields: [companyMemberships.userId],
+    references: [users.id],
+  }),
+}));
+
+export const brandProfilesRelations = relations(brandProfiles, ({ one }) => ({
+  company: one(companies, {
+    fields: [brandProfiles.companyId],
+    references: [companies.id],
+  }),
+}));
+
+export const companyIntegrationsRelations = relations(companyIntegrations, ({ one }) => ({
+  company: one(companies, {
+    fields: [companyIntegrations.companyId],
+    references: [companies.id],
+  }),
+}));
+
+export const companySettingsRelations = relations(companySettings, ({ one }) => ({
+  company: one(companies, {
+    fields: [companySettings.companyId],
+    references: [companies.id],
+  }),
+}));
+
+export const companyUsageEventsRelations = relations(companyUsageEvents, ({ one }) => ({
+  company: one(companies, {
+    fields: [companyUsageEvents.companyId],
+    references: [companies.id],
+  }),
+  user: one(users, {
+    fields: [companyUsageEvents.userId],
+    references: [users.id],
+  }),
+}));
 
 // === PROJECT STORAGE LAYER ===
 
@@ -778,8 +983,9 @@ export const ocrPageResults = sqliteTable("ocr_page_results", {
 // Industry verticals (12 categories)
 export const industryVerticals = sqliteTable("industry_verticals", {
   id: text("id").primaryKey().$defaultFn(genId),
-  name: text("name").notNull().unique(),
-  slug: text("slug").notNull().unique(),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  slug: text("slug").notNull(),
   description: text("description"),
   terminology: text("terminology", { mode: "json" }).$type<string[]>(),
   painPoints: text("pain_points", { mode: "json" }).$type<string[]>(),
@@ -789,7 +995,10 @@ export const industryVerticals = sqliteTable("industry_verticals", {
   compatibleDevices: text("compatible_devices", { mode: "json" }).$type<string[]>(),
   createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
-});
+}, (table) => [
+  uniqueIndex("idx_industry_verticals_company_name").on(table.companyId, table.name),
+  uniqueIndex("idx_industry_verticals_company_slug").on(table.companyId, table.slug),
+]);
 
 export const insertIndustryVerticalSchema = createInsertSchema(industryVerticals).omit({
   id: true, createdAt: true, updatedAt: true,
@@ -800,6 +1009,7 @@ export type IndustryVertical = typeof industryVerticals.$inferSelect;
 // Context entries (industry knowledge bank)
 export const contextEntries = sqliteTable("context_entries", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   verticalId: text("vertical_id").notNull().references(() => industryVerticals.id, { onDelete: "cascade" }),
   category: text("category").notNull(), // "terminology" | "use_case" | "pain_point" | "regulation" | "trend" | "competitor" | "user_language"
   content: text("content").notNull(),
@@ -819,6 +1029,7 @@ export type ContextEntry = typeof contextEntries.$inferSelect;
 // Keyword imports (CSV upload batch tracking) — declared before keywords so FK reference works
 export const keywordImports = sqliteTable("keyword_imports", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   filename: text("filename").notNull(),
   totalKeywords: integer("total_keywords").default(0),
   newKeywords: integer("new_keywords").default(0),
@@ -835,6 +1046,7 @@ export type KeywordImport = typeof keywordImports.$inferSelect;
 // Keyword clusters (groups of related keywords) — declared before keywords so FK reference works
 export const keywordClusters = sqliteTable("keyword_clusters", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   primaryKeyword: text("primary_keyword").notNull(),
   verticalId: text("vertical_id").references(() => industryVerticals.id, { onDelete: "set null" }),
@@ -854,6 +1066,7 @@ export type KeywordCluster = typeof keywordClusters.$inferSelect;
 // Keywords (from Ubersuggest CSV)
 export const keywords = sqliteTable("keywords", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   keyword: text("keyword").notNull(),
   volume: integer("volume").default(0),
   difficulty: integer("difficulty").default(0),
@@ -874,16 +1087,28 @@ export type Keyword = typeof keywords.$inferSelect;
 // Products (scraped from iboltmounts.com)
 export const products = sqliteTable("ibolt_products", {
   id: text("id").primaryKey().$defaultFn(genId),
-  shopifyId: text("shopify_id").unique(),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  shopifyId: text("shopify_id"),
   title: text("title").notNull(),
   handle: text("handle").notNull(),
   description: text("description"),
   productType: text("product_type"),
   vendor: text("vendor"),
+  sku: text("sku"),
   tags: text("tags", { mode: "json" }).$type<string[]>(),
   imageUrl: text("image_url"),
   price: text("price"),
   url: text("url"),
+  specs: text("specs", { mode: "json" }).$type<Record<string, unknown>>(),
+  compatibility: text("compatibility", { mode: "json" }).$type<string[]>(),
+  claims: text("claims", { mode: "json" }).$type<string[]>(),
+  disclaimers: text("disclaimers", { mode: "json" }).$type<string[]>(),
+  variants: text("variants", { mode: "json" }).$type<Array<Record<string, unknown>>>(),
+  availability: text("availability"),
+  sourceType: text("source_type").notNull().default("manual"),
+  sourceUrl: text("source_url"),
+  sourceData: text("source_data", { mode: "json" }).$type<Record<string, unknown>>(),
+  sourceSyncedAt: integer("source_synced_at", { mode: "timestamp" }),
   // Catalog enrichment fields
   catalogDescription: text("catalog_description"),
   catalogPageRef: text("catalog_page_ref"),
@@ -891,7 +1116,9 @@ export const products = sqliteTable("ibolt_products", {
   photoCount: integer("photo_count").default(0),
   scrapedAt: integer("scraped_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
-});
+}, (table) => [
+  uniqueIndex("idx_products_company_shopify_id").on(table.companyId, table.shopifyId),
+]);
 
 export const insertProductSchema = createInsertSchema(products).omit({
   id: true, scrapedAt: true, updatedAt: true,
@@ -899,9 +1126,41 @@ export const insertProductSchema = createInsertSchema(products).omit({
 export type InsertProduct = z.infer<typeof insertProductSchema>;
 export type Product = typeof products.$inferSelect;
 
+// Product/feed audit runs for hero SKU readiness before content generation.
+export const productFeedAudits = sqliteTable("product_feed_audits", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  lane: text("lane").notNull(),
+  laneLabel: text("lane_label").notNull(),
+  heroProductId: text("hero_product_id").references(() => products.id, { onDelete: "set null" }),
+  heroProductHandle: text("hero_product_handle").notNull(),
+  auditChecks: text("audit_checks", { mode: "json" }).$type<Array<{
+    key: string;
+    label: string;
+    status: "pass" | "warn" | "fail";
+    score: number;
+    maxScore: number;
+    details: string;
+  }>>().notNull(),
+  score: integer("score").notNull().default(0),
+  status: text("status").notNull().default("needs_review"), // "ready" | "needs_review" | "blocked"
+  productGapRisk: text("product_gap_risk").notNull().default("medium"), // "low" | "medium" | "high"
+  recommendations: text("recommendations", { mode: "json" }).$type<string[]>().notNull(),
+  shopifySnapshot: text("shopify_snapshot", { mode: "json" }).$type<Record<string, unknown>>(),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+});
+
+export const insertProductFeedAuditSchema = createInsertSchema(productFeedAudits).omit({
+  id: true, createdAt: true, updatedAt: true,
+});
+export type InsertProductFeedAudit = z.infer<typeof insertProductFeedAuditSchema>;
+export type ProductFeedAudit = typeof productFeedAudits.$inferSelect;
+
 // Product-to-vertical mapping (many-to-many)
 export const productVerticals = sqliteTable("product_verticals", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   productId: text("product_id").notNull().references(() => products.id, { onDelete: "cascade" }),
   verticalId: text("vertical_id").notNull().references(() => industryVerticals.id, { onDelete: "cascade" }),
   relevanceScore: real("relevance_score").default(1.0),
@@ -912,6 +1171,7 @@ export type ProductVertical = typeof productVerticals.$inferSelect;
 // Generation batches (batch job tracking) — declared before blogPosts so FK reference works
 export const generationBatches = sqliteTable("generation_batches", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   name: text("name"),
   totalPosts: integer("total_posts").default(0),
   completedPosts: integer("completed_posts").default(0),
@@ -931,6 +1191,7 @@ export type GenerationBatch = typeof generationBatches.$inferSelect;
 // Blog posts (generated output)
 export const blogPosts = sqliteTable("blog_posts", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
   slug: text("slug").notNull(),
   metaTitle: text("meta_title"),
@@ -949,6 +1210,8 @@ export const blogPosts = sqliteTable("blog_posts", {
   factualAccuracy: integer("factual_accuracy"),
   overallScore: integer("overall_score"),
   verificationNotes: text("verification_notes"),
+  generationProvider: text("generation_provider"),
+  generationModel: text("generation_model"),
   // Shopify integration
   shopifyArticleId: integer("shopify_article_id"),
   shopifyBlogId: integer("shopify_blog_id"),
@@ -966,6 +1229,7 @@ export type BlogPost = typeof blogPosts.$inferSelect;
 // Blog post products (products mentioned in posts)
 export const blogPostProducts = sqliteTable("blog_post_products", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   blogPostId: text("blog_post_id").notNull().references(() => blogPosts.id, { onDelete: "cascade" }),
   productId: text("product_id").notNull().references(() => products.id, { onDelete: "cascade" }),
   mentionContext: text("mention_context"),
@@ -976,6 +1240,7 @@ export type BlogPostProduct = typeof blogPostProducts.$inferSelect;
 // Research jobs (research agent job tracking)
 export const researchJobs = sqliteTable("research_jobs", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   verticalId: text("vertical_id").notNull().references(() => industryVerticals.id, { onDelete: "cascade" }),
   sourceType: text("source_type").notNull(), // "youtube" | "reddit" | "web"
   query: text("query").notNull(),
@@ -996,18 +1261,28 @@ export type ResearchJob = typeof researchJobs.$inferSelect;
 // AI benchmark queries (tracked prompts used to compare AI search/provider visibility)
 export const aiBenchmarkQueries = sqliteTable("ai_benchmark_queries", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   category: text("category").notNull(),
   label: text("label"),
-  query: text("query").notNull().unique(),
+  query: text("query").notNull(),
   verticalId: text("vertical_id").references(() => industryVerticals.id, { onDelete: "set null" }),
   intentType: text("intent_type").notNull().default("buyer_guide"),
   priority: real("priority").notNull().default(50),
   benchmarkGoal: text("benchmark_goal"),
+  persona: text("persona"),
+  painPoint: text("pain_point"),
+  brandAngle: text("brand_angle"),
+  iboltAngle: text("ibolt_angle"),
+  targetProducts: text("target_products", { mode: "json" }).$type<string[]>(),
+  benchmarkBaseline: text("benchmark_baseline", { mode: "json" }).$type<Record<string, unknown>>(),
+  benchmarkBaselinedAt: integer("benchmark_baselined_at", { mode: "timestamp" }),
   notes: text("notes"),
   status: text("status").notNull().default("active"), // "active" | "archived"
   createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
-});
+}, (table) => [
+  uniqueIndex("idx_ai_benchmark_queries_company_query").on(table.companyId, table.query),
+]);
 
 export const insertAiBenchmarkQuerySchema = createInsertSchema(aiBenchmarkQueries).omit({
   id: true, createdAt: true, updatedAt: true,
@@ -1018,6 +1293,7 @@ export type AiBenchmarkQuery = typeof aiBenchmarkQueries.$inferSelect;
 // AI benchmark runs (one weekly/manual benchmark execution)
 export const aiBenchmarkRuns = sqliteTable("ai_benchmark_runs", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   name: text("name"),
   providers: text("providers", { mode: "json" }).$type<string[]>().notNull(),
   status: text("status").notNull().default("pending"), // "pending" | "running" | "completed" | "failed"
@@ -1039,6 +1315,7 @@ export type AiBenchmarkRun = typeof aiBenchmarkRuns.$inferSelect;
 // AI benchmark results (one provider answer for one benchmark query)
 export const aiBenchmarkResults = sqliteTable("ai_benchmark_results", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   runId: text("run_id").notNull().references(() => aiBenchmarkRuns.id, { onDelete: "cascade" }),
   queryId: text("query_id").notNull().references(() => aiBenchmarkQueries.id, { onDelete: "cascade" }),
   provider: text("provider").notNull(),
@@ -1047,7 +1324,9 @@ export const aiBenchmarkResults = sqliteTable("ai_benchmark_results", {
   rawResponse: text("raw_response"),
   status: text("status").notNull().default("completed"), // "completed" | "failed" | "skipped"
   error: text("error"),
+  targetBrandMentioned: integer("target_brand_mentioned", { mode: "boolean" }).notNull().default(false),
   brandMentioned: integer("brand_mentioned", { mode: "boolean" }).notNull().default(false),
+  targetDomainCited: integer("target_domain_cited", { mode: "boolean" }).notNull().default(false),
   iboltCited: integer("ibolt_cited", { mode: "boolean" }).notNull().default(false),
   topPickRank: integer("top_pick_rank"),
   coverageScore: integer("coverage_score").notNull().default(0),
@@ -1114,6 +1393,14 @@ export const keywordImportsRelations = relations(keywordImports, ({ many }) => (
 export const iboltProductsRelations = relations(products, ({ many }) => ({
   productVerticals: many(productVerticals),
   blogPostProducts: many(blogPostProducts),
+  productFeedAudits: many(productFeedAudits),
+}));
+
+export const productFeedAuditsRelations = relations(productFeedAudits, ({ one }) => ({
+  heroProduct: one(products, {
+    fields: [productFeedAudits.heroProductId],
+    references: [products.id],
+  }),
 }));
 
 export const productVerticalsRelations = relations(productVerticals, ({ one }) => ({
@@ -1193,6 +1480,7 @@ export const aiBenchmarkResultsRelations = relations(aiBenchmarkResults, ({ one 
 // Catalog imports (PDF import tracking)
 export const productCatalogImports = sqliteTable("product_catalog_imports", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   filename: text("filename").notNull(),
   totalPages: integer("total_pages"),
   extractedProducts: integer("extracted_products").default(0),
@@ -1213,6 +1501,7 @@ export type CatalogImport = typeof productCatalogImports.$inferSelect;
 // Catalog extractions (AI-extracted products from PDF)
 export const productCatalogExtractions = sqliteTable("product_catalog_extractions", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   importId: text("import_id").notNull().references(() => productCatalogImports.id, { onDelete: "cascade" }),
   extractedName: text("extracted_name").notNull(),
   extractedDescription: text("extracted_description"),
@@ -1232,6 +1521,7 @@ export type CatalogExtraction = typeof productCatalogExtractions.$inferSelect;
 // Product photos (the Picture Bank)
 export const productPhotos = sqliteTable("product_photos", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   productId: text("product_id").references(() => products.id, { onDelete: "set null" }),
   filename: text("filename").notNull(),
   originalFilename: text("original_filename").notNull(),
@@ -1241,6 +1531,15 @@ export const productPhotos = sqliteTable("product_photos", {
   thumbnailPath: text("thumbnail_path"),
   width: integer("width"),
   height: integer("height"),
+  assetStatus: text("asset_status").notNull().default("needs_review"), // "needs_review" | "approved" | "archived"
+  rightsStatus: text("rights_status").notNull().default("unknown"), // "unknown" | "owned" | "licensed" | "restricted"
+  usageRestrictions: text("usage_restrictions"),
+  useCases: text("use_cases", { mode: "json" }).$type<string[]>(),
+  altText: text("alt_text"),
+  caption: text("caption"),
+  notes: text("notes"),
+  sourceType: text("source_type").notNull().default("upload"), // "upload" | "directory" | "shopify" | "url" | "manual"
+  sourceUrl: text("source_url"),
   // AI vision analysis
   angleType: text("angle_type"), // "front" | "back" | "side" | "top" | "detail" | "full" | "in-use"
   contextType: text("context_type"), // "studio" | "in-use" | "lifestyle" | "packaging" | "technical"
@@ -1262,6 +1561,7 @@ export type ProductPhoto = typeof productPhotos.$inferSelect;
 // Blog post photos (photos selected for posts)
 export const blogPostPhotos = sqliteTable("blog_post_photos", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   blogPostId: text("blog_post_id").notNull().references(() => blogPosts.id, { onDelete: "cascade" }),
   photoId: text("photo_id").notNull().references(() => productPhotos.id, { onDelete: "cascade" }),
   sectionIndex: integer("section_index"),
@@ -1277,6 +1577,7 @@ export type BlogPostPhoto = typeof blogPostPhotos.$inferSelect;
 // Pre-chunked context for intelligent pipeline retrieval
 export const pipelineContextChunks = sqliteTable("pipeline_context_chunks", {
   id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
   sourceType: text("source_type").notNull(), // "product" | "context_entry" | "catalog" | "research"
   sourceId: text("source_id").notNull(),
   chunkIndex: integer("chunk_index").notNull(),
