@@ -95,8 +95,11 @@ async function apiSSE(method, path, body, timeoutMs = 300_000) {
       }
       if (payload.type === "error") throw new Error(payload.error ?? "SSE stream error");
       // progress / phase events — accumulate as text
-      if (payload.type === "progress" || payload.type === "phase") {
+      if (payload.type === "started" || payload.type === "progress" || payload.type === "phase" || payload.type === "completed") {
         plainText += `[${payload.type}] ${payload.message ?? payload.phase ?? ""}\n`;
+        if (payload.type === "completed" && payload.summary) {
+          plainText += `${JSON.stringify(payload.summary, null, 2)}\n`;
+        }
       }
     }
   }
@@ -398,6 +401,126 @@ server.tool(
   async ({ description }) => {
     try {
       const data = await api("POST", "/api/blog/verticals/create", { description });
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+// ═══════════════════════════════════════
+//  AI VISIBILITY BENCHMARK
+// ═══════════════════════════════════════
+
+server.tool(
+  "run_ai_benchmark",
+  "Run the AI visibility benchmark: queries ChatGPT, Claude, Gemini, and Google with buyer-style questions and measures whether iBOLT is mentioned/ranked/cited. Long-running.",
+  {
+    name: z.string().optional().describe("Optional name for this benchmark run"),
+    queryIds: z.array(z.string()).optional().describe("Specific benchmark query IDs to run; omit for all active queries"),
+    providers: z.array(z.string()).optional().describe("Providers to run: openai, anthropic, gemini, google"),
+    concurrency: z.number().optional().describe("Provider/query concurrency; default comes from the backend"),
+  },
+  async ({ name, queryIds, providers, concurrency }) => {
+    try {
+      const body = {};
+      if (name) body.name = name;
+      if (queryIds?.length) body.queryIds = queryIds;
+      if (providers?.length) body.providers = providers;
+      if (concurrency !== undefined) body.concurrency = concurrency;
+      const result = await apiSSE("POST", "/api/blog/benchmark/run", body, 1_800_000);
+      return ok(result.text || "Benchmark complete");
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "get_benchmark_summary",
+  "Get provider-level and query-level results from the latest benchmark run, including biggest gaps and top wins.",
+  {
+    runId: z.string().optional().describe("Benchmark run ID; omit for the latest run"),
+  },
+  async ({ runId }) => {
+    try {
+      const path = runId
+        ? `/api/blog/benchmark/runs/${encodeURIComponent(runId)}`
+        : "/api/blog/benchmark/latest";
+      const data = await api("GET", path);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "list_benchmark_queries",
+  "List the tracked buyer-style benchmark queries.",
+  {},
+  async () => {
+    try {
+      const data = await api("GET", "/api/blog/benchmark/queries");
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "add_benchmark_query",
+  "Add a buyer-style query to track (e.g. 'best forklift tablet mount'). Use when entering a new category.",
+  {
+    category: z.string().describe("Category or vertical label, e.g. Forklift mounts"),
+    query: z.string().describe("Buyer-style AI-search query to track"),
+    label: z.string().optional().describe("Short display label"),
+    verticalId: z.string().optional().describe("Optional industry vertical ID"),
+    intentType: z.string().optional().describe("Intent type, default buyer_guide"),
+    priority: z.number().optional().describe("Priority score, default 50"),
+    benchmarkGoal: z.string().optional().describe("What a good answer should say"),
+    persona: z.string().optional().describe("Target persona"),
+    painPoint: z.string().optional().describe("Customer pain point"),
+    brandAngle: z.string().optional().describe("Desired iBOLT positioning angle"),
+    targetProducts: z.array(z.string()).optional().describe("Product names or handles the answer should connect to"),
+    notes: z.string().optional().describe("Internal notes"),
+    status: z.string().optional().describe("Query status, default active"),
+  },
+  async (body) => {
+    try {
+      const data = await api("POST", "/api/blog/benchmark/queries", body);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "generate_content_plan",
+  "Turn the weakest benchmark queries into a deduplicated content plan (titles, keywords, angles, gap scores).",
+  {
+    runId: z.string().optional().describe("Benchmark run ID; omit for latest"),
+    limit: z.number().optional().describe("Maximum plan items to return; default 8"),
+  },
+  async ({ runId, limit }) => {
+    try {
+      const data = await api("GET", `/api/blog/benchmark/content-plan${qs({ runId, limit })}`);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "materialize_content_plan",
+  "Convert a content-plan item into a keyword cluster; optionally queue it for generation (generateNow flag).",
+  {
+    item: z.object({
+      queryId: z.string(),
+      primaryKeyword: z.string(),
+      title: z.string(),
+    }).passthrough().describe("Content-plan item returned by generate_content_plan"),
+    generateNow: z.boolean().optional().describe("Immediately generate a post after creating the cluster"),
+    queueForGeneration: z.boolean().optional().describe("Queue the created cluster for generation"),
+  },
+  async ({ item, generateNow, queueForGeneration }) => {
+    try {
+      const data = await api("POST", "/api/blog/benchmark/content-plan/materialize", {
+        item,
+        generateNow: Boolean(generateNow),
+        queueForGeneration: Boolean(queueForGeneration),
+      });
       return ok(data);
     } catch (e) { return err(e.message); }
   }
