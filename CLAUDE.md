@@ -14,7 +14,9 @@ Autonomous SEO blog generator for **iBolt Mounts** (iboltmounts.com), forked fro
 1. **Planner** → JSON outline with SEO meta, sections, keyword distribution
 2. **Section Writer** → per-section markdown with brand voice + photo scoring
 3. **Stitcher** → combines sections + image placements into cohesive markdown
-4. **Verifier** → quality scores (brand, SEO, language, accuracy); retries if < 70
+4. **Verifier** → quality scores (brand, SEO, language, accuracy); current quality gate defaults to 80 via `BLOG_QUALITY_GATE`
+
+The pipeline records provider/model metadata, warns on Anthropic→OpenAI fallback, runs the deterministic content linter before review, inserts safe internal links, and rejects restitch/refresh attempts that lower quality.
 
 ### Photo Bank (`server/photoBank.ts`, `server/photoSelector.ts`)
 - Photos stored in `./uploads/product-photos/` with thumbnails in `./uploads/product-photos/thumbs/`
@@ -29,10 +31,16 @@ Autonomous SEO blog generator for **iBolt Mounts** (iboltmounts.com), forked fro
 - Publishes as draft by default, sets SEO metafields
 
 ### HTML Rendering (`server/htmlRenderer.ts`)
-- Markdown → HTML with headings, lists, bold/italic, links, images
+- Markdown → HTML through `marked` with GFM tables, nested lists, links, images, and raw HTML passthrough
 - Auto-links product mentions to iboltmounts.com
-- Extracts FAQ sections into JSON-LD FAQPage schema
+- Emits JSON-LD FAQPage, Article, BreadcrumbList, and listicle ItemList schema where applicable
 - Converts local `/api/blog/photos/serve/` URLs to `PUBLIC_BASE_URL` for Shopify
+
+### Research, Benchmark, And Refresh
+- Research scheduling uses company-configured Reddit, YouTube, and web queries per vertical and tracks staleness/coverage.
+- AI visibility benchmark tools cover run, summary, query CRUD, content-plan generation, and content-plan materialization.
+- Content refresh is disabled by default (`autoRefresh: false`) and only saves/syncs published posts when lint passes and the verifier score does not regress.
+- Keyword CSV import uses Papa Parse, batch-inserts new keywords in chunks, and clusters unclustered keywords in 150-keyword LLM batches.
 
 ## MCP Server — 45 Tools (`mcp-server/ibolt-stdio.mjs`)
 
@@ -104,4 +112,7 @@ SHOPIFY_CLIENT_SECRET=...
 PUBLIC_BASE_URL=https://app.scholarmark.ai
 OPENAI_API_KEY=... (for GPT-4V photo analysis)
 ANTHROPIC_API_KEY=... (for blog generation)
+GEMINI_API_KEY=... (for AI benchmark)
+BLOG_QUALITY_GATE=80
+SHOPIFY_BLOG_HANDLES={"104843772196":"news"}
 ```

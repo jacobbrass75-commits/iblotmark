@@ -1,14 +1,25 @@
 # iBolt Blog Generator — Roadmap & Development Plan
 
-Last updated: April 2, 2026
+Last updated: June 11, 2026
 
 ---
 
 ## Current State Summary
 
-**Complete**: 4-phase blog pipeline, keyword system, 12 industry verticals, research agents, product scraper, photo bank, full UI (7 blog pages), HTML renderer, 24 generated posts, 19 Shopify drafts published.
+**Complete**: 4-phase blog pipeline, provider/model tracking, deterministic content linter, product-grounded verifier, keyword system with Papa Parse CSV import and 150-keyword clustering batches, company-configurable research sources, research coverage/staleness reporting, 12 seeded industry verticals, product scraper, photo bank, Shopify-ready HTML renderer with Article/BreadcrumbList/FAQ/ItemList JSON-LD, safe internal linking, Shopify sync/update path, MCP tools for generation/research/benchmark/content planning/refresh, and a disabled-by-default content refresh job with no-regression quality checks.
 
-**Not yet built**: Shopify auto-upload, MCP blog tools, Claude skill for non-technical users, competitor product database, inventory management, Shopify design templates.
+**Still planned**: broader standalone onboarding polish, competitor product database, inventory-aware content selection, richer Shopify design templates, and external search-console style reporting.
+
+## Recent Production-Hardening Shipped
+
+- T1: Blog generation now records provider/model metadata, passes temperature correctly, warns on provider fallback, and rejects lower-scoring restitches.
+- T2: `server/contentLinter.ts` adds deterministic brand/SEO/product linting with API and MCP access.
+- T3: The verifier receives product catalog facts and uses `BLOG_QUALITY_GATE` instead of a hard-coded 70.
+- T4: Research sources are DB-backed per vertical, scheduled research prioritizes thin/stale verticals, and MCP can suggest/create new verticals.
+- T5: Internal linking uses a validator that only allows approved link insertions and rejects prose rewrites.
+- T6: Markdown rendering uses `marked` and emits Article, BreadcrumbList, FAQPage, and listicle ItemList JSON-LD.
+- T7: MCP benchmark loop tools cover benchmark runs, summaries, tracked queries, content plans, and materialization into keyword clusters.
+- T8: Published-post refresh is available manually and as a disabled-by-default scheduler job; it only saves when lint passes and score does not regress.
 
 ---
 
