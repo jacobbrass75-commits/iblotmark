@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
-import { useBlogPost, useUpdateBlogPost } from "@/hooks/useBlogPosts";
+import { useBlogPost, useUpdateBlogPost, usePostPhotos, useAddPostPhoto, useDeletePostPhoto } from "@/hooks/useBlogPosts";
 import { usePublishToShopify, useShopifyStatus, useShopifyBlogs } from "@/hooks/useShopifyPublish";
+import { usePhotos } from "@/hooks/usePhotoBank";
+import { companyScopedUrl, getActiveCompanyId } from "@/lib/company";
+
+function photoUrl(kind: "thumb" | "serve", photoId: string): string {
+  const companyId = getActiveCompanyId();
+  const query = companyId ? `?companyId=${encodeURIComponent(companyId)}` : "";
+  return `/api/blog/photos/${kind}/${photoId}${query}`;
+}
 
 export default function PostReview() {
   const [, setLocation] = useLocation();
@@ -17,15 +26,30 @@ export default function PostReview() {
   const publishMutation = usePublishToShopify();
   const { data: shopifyStatus, isLoading: statusLoading } = useShopifyStatus(params.id || "");
   const { data: shopifyBlogsData } = useShopifyBlogs();
+  const { data: companyContext } = useQuery<any>({
+    queryKey: [companyScopedUrl("/api/blog/company/context")],
+  });
+  const { data: postPhotos = [] } = usePostPhotos(params.id || "");
+  const { data: availablePhotos = [] } = usePhotos();
+  const addPostPhotoMutation = useAddPostPhoto();
+  const deletePostPhotoMutation = useDeletePostPhoto();
   const [tab, setTab] = useState<"preview" | "markdown" | "html">("preview");
   const [editedMarkdown, setEditedMarkdown] = useState<string | null>(null);
   const [selectedBlogId, setSelectedBlogId] = useState<number | undefined>(undefined);
+  const [selectedPhotoId, setSelectedPhotoId] = useState("");
+  const [selectedPlacement, setSelectedPlacement] = useState<"hero" | "inline" | "product-spotlight">("inline");
 
   if (isLoading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading...</div>;
   if (!post) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Post not found</div>;
 
   const markdown = editedMarkdown ?? post.markdown ?? "";
   const notes = post.verificationNotes ? JSON.parse(post.verificationNotes) : null;
+  const shopifyIntegration = companyContext?.integrations?.shopify;
+  const defaultBlog = shopifyBlogsData?.blogs?.find((blog) => blog.isDefault) || shopifyBlogsData?.blogs?.[0];
+  const selectedTargetBlogId = selectedBlogId || defaultBlog?.id || shopifyIntegration?.defaultBlogId;
+  const shopifyReady = Boolean(shopifyIntegration?.hasAccessToken && selectedTargetBlogId);
+  const postReadyForPublish = ["approved", "published"].includes(post.status);
+  const canPublishToShopify = Boolean((post.markdown || post.html) && postReadyForPublish && shopifyReady);
 
   const handleApprove = async () => {
     try {
@@ -48,14 +72,14 @@ export default function PostReview() {
   };
 
   const handleCopyHtml = () => {
-    window.open(`/api/blog/posts/${post.id}/html`, "_blank");
+    window.open(companyScopedUrl(`/api/blog/posts/${post.id}/html`), "_blank");
   };
 
   const handlePublishToShopify = async () => {
     try {
       const result = await publishMutation.mutateAsync({
         postId: post.id,
-        blogId: selectedBlogId,
+        blogId: selectedTargetBlogId,
       });
       if (result.success) {
         toast({
@@ -78,6 +102,28 @@ export default function PostReview() {
     }
   };
 
+  const selectablePhotos = availablePhotos.filter((photo: any) =>
+    photo.assetStatus !== "archived"
+    && photo.assetStatus === "approved"
+    && ["owned", "licensed"].includes(photo.rightsStatus)
+    && !postPhotos.some((item: any) => item.photo?.id === photo.id)
+  );
+
+  const handleAddPhoto = async () => {
+    if (!selectedPhotoId) return;
+    try {
+      await addPostPhotoMutation.mutateAsync({
+        postId: post.id,
+        photoId: selectedPhotoId,
+        placement: selectedPlacement,
+      });
+      setSelectedPhotoId("");
+      toast({ title: "Asset added" });
+    } catch (err: any) {
+      toast({ title: "Asset Add Failed", description: err.message, variant: "destructive" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="border-b border-border bg-background/95 sticky top-0 z-40 backdrop-blur">
@@ -94,7 +140,7 @@ export default function PostReview() {
               <Button variant="outline" size="sm" onClick={handleSaveEdits} disabled={updateMutation.isPending}>Save Edits</Button>
             )}
             <Button variant="outline" size="sm" onClick={handleCopyHtml}>View HTML</Button>
-            <Button variant="outline" size="sm" onClick={() => window.open(`/api/blog/posts/${post.id}/preview`, "_blank")}>Preview</Button>
+            <Button variant="outline" size="sm" onClick={() => window.open(companyScopedUrl(`/api/blog/posts/${post.id}/preview`), "_blank")}>Preview</Button>
             {post.status !== "approved" && (
               <Button size="sm" onClick={handleApprove} disabled={updateMutation.isPending}>Approve</Button>
             )}
@@ -102,7 +148,8 @@ export default function PostReview() {
               size="sm"
               variant={shopifyStatus?.isSynced ? "outline" : "default"}
               onClick={handlePublishToShopify}
-              disabled={publishMutation.isPending || (!post.markdown && !post.html)}
+              disabled={publishMutation.isPending || !canPublishToShopify}
+              title={!canPublishToShopify ? "Approve the post and connect Shopify before publishing." : undefined}
             >
               {publishMutation.isPending
                 ? "Publishing..."
@@ -161,16 +208,29 @@ export default function PostReview() {
                 <label className="text-sm text-muted-foreground block mb-1">Target Blog</label>
                 <select
                   className="w-full border rounded-md px-3 py-1.5 text-sm bg-background"
+                  aria-label="Target Shopify blog"
                   value={selectedBlogId || ""}
                   onChange={(e) => setSelectedBlogId(e.target.value ? Number(e.target.value) : undefined)}
                 >
-                  <option value="">Default (News)</option>
+                  <option value="">
+                    {defaultBlog ? `Default (${defaultBlog.title})` : "Choose a connected Shopify blog"}
+                  </option>
                   {shopifyBlogsData?.blogs?.map((blog) => (
                     <option key={blog.id} value={blog.id}>
                       {blog.title}
                     </option>
                   ))}
                 </select>
+                {!shopifyIntegration?.hasAccessToken && (
+                  <p className="mt-2 text-xs text-destructive">
+                    Connect Shopify with OAuth in setup before publishing drafts.
+                  </p>
+                )}
+                {!postReadyForPublish && (
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Approve this post before sending it to Shopify.
+                  </p>
+                )}
               </div>
               {shopifyStatus?.isSynced && (
                 <div className="flex-1 text-sm space-y-1">
@@ -192,6 +252,87 @@ export default function PostReview() {
                   )}
                 </div>
               )}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Selected image assets */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-3">
+              Selected Assets
+              <Badge variant="outline">{postPhotos.length}</Badge>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {postPhotos.length > 0 ? (
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                {postPhotos.map((item: any) => (
+                  <div key={item.selection.id} className="flex gap-3 rounded-md border p-2">
+                    <div className="h-20 w-20 shrink-0 overflow-hidden rounded-md bg-muted">
+                      <img
+                        src={photoUrl("thumb", item.photo.id)}
+                        alt={item.selection.altText || item.photo.altText || item.photo.originalFilename}
+                        className="h-full w-full object-cover"
+                        onError={(event) => {
+                          event.currentTarget.onerror = null;
+                          event.currentTarget.src = photoUrl("serve", item.photo.id);
+                        }}
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1 space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Badge variant={item.selection.placement === "hero" ? "default" : "outline"} className="text-[10px]">
+                          {item.selection.placement}
+                        </Badge>
+                        {item.photo.assetStatus === "approved" && <Badge variant="secondary" className="text-[10px]">approved</Badge>}
+                      </div>
+                      <p className="truncate text-sm font-medium">{item.photo.caption || item.photo.originalFilename}</p>
+                      <p className="line-clamp-2 text-xs text-muted-foreground">{item.selection.altText || item.photo.altText}</p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-7 px-2 text-xs text-destructive"
+                        onClick={() => deletePostPhotoMutation.mutate({ postId: post.id, selectionId: item.selection.id })}
+                        disabled={deletePostPhotoMutation.isPending}
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground">No assets selected for this post yet.</p>
+            )}
+
+            <div className="grid gap-2 border-t pt-4 md:grid-cols-[1fr_180px_auto]">
+              <select
+                className="min-w-0 rounded-md border bg-background px-3 py-2 text-sm"
+                aria-label="Select post asset"
+                value={selectedPhotoId}
+                onChange={(event) => setSelectedPhotoId(event.target.value)}
+              >
+                <option value="">Choose an approved or usable asset</option>
+                {selectablePhotos.map((photo: any) => (
+                  <option key={photo.id} value={photo.id}>
+                    {photo.caption || photo.altText || photo.originalFilename}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="rounded-md border bg-background px-3 py-2 text-sm"
+                aria-label="Selected asset placement"
+                value={selectedPlacement}
+                onChange={(event) => setSelectedPlacement(event.target.value as typeof selectedPlacement)}
+              >
+                <option value="inline">Inline</option>
+                <option value="hero">Hero</option>
+                <option value="product-spotlight">Product spotlight</option>
+              </select>
+              <Button onClick={handleAddPhoto} disabled={!selectedPhotoId || addPostPhotoMutation.isPending}>
+                Add Asset
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -239,6 +380,31 @@ export default function PostReview() {
                       <li key={i} className="text-blue-600">- {sug}</li>
                     ))}
                   </ul>
+                </div>
+              )}
+              {(notes?.lint?.errors?.length > 0 || notes?.lint?.warnings?.length > 0) && (
+                <div className="mt-3 pt-3 border-t">
+                  <p className="text-xs font-medium text-muted-foreground mb-1">
+                    Content Linter: {notes.lint.passed ? "Passed" : "Needs fixes"}
+                  </p>
+                  {notes.lint.errors?.length > 0 && (
+                    <ul className="text-xs space-y-1">
+                      {notes.lint.errors.map((issue: any, i: number) => (
+                        <li key={`lint-error-${i}`} className="text-red-600">
+                          - {issue.rule}: {issue.message}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {notes.lint.warnings?.length > 0 && (
+                    <ul className="text-xs space-y-1 mt-2">
+                      {notes.lint.warnings.map((issue: any, i: number) => (
+                        <li key={`lint-warning-${i}`} className="text-amber-600">
+                          - {issue.rule}: {issue.message}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
             </CardContent>

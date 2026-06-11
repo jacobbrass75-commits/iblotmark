@@ -34,6 +34,7 @@ import { formatContextForPrompt } from "./contextBanks";
 import { buildSectionContext, compactContext, TOKEN_BUDGETS } from "./contextChunker";
 import { selectPhotosForPost, savePhotoSelections, formatPhotoPlacementsForPrompt, type PhotoSelection } from "./photoSelector";
 import { getCompanyContext } from "./companyContext";
+import { lintContent, type LintReport } from "./contentLinter";
 
 // --- Types ---
 
@@ -83,6 +84,7 @@ export interface BlogSSEEvent {
   sectionContent?: string;
   markdown?: string;
   verification?: VerificationResult;
+  lint?: LintReport;
   blogPost?: BlogPost;
   error?: string;
 }
@@ -362,6 +364,27 @@ function formatProductsForPrompt(prods: Product[], brandProfile?: BrandVoiceInpu
   }).join("\n\n");
 }
 
+function parseProductPrice(price: string | null | undefined): number | null {
+  if (!price) return null;
+  const parsed = Number.parseFloat(price);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function productsForLint(prods: Product[]): Array<{ title: string; handle: string; price: number | null }> {
+  return prods.map((product) => ({
+    title: product.title,
+    handle: product.handle,
+    price: parseProductPrice(product.price),
+  }));
+}
+
+function formatLintErrorsForPrompt(report: LintReport): string {
+  return report.errors.map((issue, index) => {
+    const excerpt = issue.excerpt ? `\n   Excerpt: ${issue.excerpt}` : "";
+    return `${index + 1}. [${issue.rule}] ${issue.message}${excerpt}`;
+  }).join("\n");
+}
+
 // --- Phase 1: PLANNER ---
 
 async function runPlanner(
@@ -520,11 +543,71 @@ export async function runBlogPipeline(
     ? await formatContextForPrompt(vertical.id, companyContext.company.id)
     : `${brandProfile.shortDescription || brandProfile.positioning || companyContext.company.primaryMarket || "General brand and customer context."}`;
   const productContext = formatProductsForPrompt(relevantProducts, brandProfile);
+  const lintProducts = productsForLint(await db.select().from(products).where(eq(products.companyId, companyContext.company.id)));
+  let plan: BlogPlan;
+  let markdown = "";
+  let lintReport: LintReport = { errors: [], warnings: [], passed: true };
+  let lintCorrectionUsed = false;
+  const runLintPass = async (allowCorrection: boolean): Promise<LintReport> => {
+    onEvent({ type: "status", phase: "linter", message: "Running deterministic content linter..." });
+    let report = lintContent({
+      markdown,
+      title: plan.title,
+      metaTitle: plan.metaTitle,
+      metaDescription: plan.metaDescription,
+      primaryKeyword: plan.primaryKeyword,
+      products: lintProducts,
+    });
+
+    onEvent({
+      type: "status",
+      phase: "linter",
+      lint: report,
+      message: report.passed
+        ? `Lint passed with ${report.warnings.length} warnings.`
+        : `Lint found ${report.errors.length} errors and ${report.warnings.length} warnings.`,
+    });
+
+    if (report.errors.length > 0 && allowCorrection) {
+      lintCorrectionUsed = true;
+      onEvent({ type: "status", phase: "linter", message: "Applying one corrective pass for lint errors..." });
+      try {
+        const correctedMarkdown = await generateText(
+          buildStitcherPrompt(brandProfile),
+          `Fix exactly the lint errors below without otherwise rewriting the post. Preserve the title, structure, product facts, links, images, and all correct prose. Return the complete corrected markdown only.\n\nLint errors:\n${formatLintErrorsForPrompt(report)}\n\nOriginal post:\n${markdown}`,
+          8192,
+          0.2,
+          "linter",
+          recordGeneration,
+        );
+        markdown = injectProductImages(correctedMarkdown, relevantProducts, brandProfile);
+        report = lintContent({
+          markdown,
+          title: plan.title,
+          metaTitle: plan.metaTitle,
+          metaDescription: plan.metaDescription,
+          primaryKeyword: plan.primaryKeyword,
+          products: lintProducts,
+        });
+        onEvent({
+          type: "status",
+          phase: "linter",
+          lint: report,
+          message: report.passed
+            ? `Lint passed after correction with ${report.warnings.length} warnings.`
+            : `Lint still has ${report.errors.length} errors after correction.`,
+        });
+      } catch (error: any) {
+        onEvent({ type: "status", phase: "linter", message: `Lint correction failed, keeping current draft: ${error.message}` });
+      }
+    }
+
+    return report;
+  };
 
   // Phase 1: Plan
   onEvent({ type: "status", phase: "planner", message: `Planning blog post for "${cluster.primaryKeyword}"...` });
 
-  let plan: BlogPlan;
   try {
     plan = await runPlanner(clusterKeywords, industryContext, productContext, brandProfile, recordGeneration);
     onEvent({ type: "plan", phase: "planner", plan, message: `Plan created: "${plan.title}" with ${plan.sections.length} sections` });
@@ -588,7 +671,6 @@ export async function runBlogPipeline(
   // Phase 3: Stitch (with photo placements)
   onEvent({ type: "status", phase: "stitcher", message: "Stitching sections into cohesive post..." });
 
-  let markdown: string;
   try {
     // Inject photo placements into stitcher if we have photos
     const photoPrompt = formatPhotoPlacementsForPrompt(photoSelections, companyContext.company.id);
@@ -599,6 +681,7 @@ export async function runBlogPipeline(
     markdown = await runStitcher(plan, sectionContents, brandProfile, recordGeneration);
     markdown = injectProductImages(markdown, relevantProducts, brandProfile);
     onEvent({ type: "stitched", phase: "stitcher", markdown, message: "Post stitched successfully" });
+    lintReport = await runLintPass(true);
   } catch (err: any) {
     onEvent({ type: "error", error: `Stitcher failed: ${err.message}` });
     throw err;
@@ -634,6 +717,7 @@ export async function runBlogPipeline(
     try {
       const originalMarkdown = markdown;
       const originalVerification = verification;
+      const originalLintReport = lintReport;
       const feedbackPrompt = `Previous version scored ${verification.overallScore}/100.\nIssues: ${verification.issues.join("; ")}\nSuggestions: ${verification.suggestions.join("; ")}`;
       const revisedMarkdown = await generateText(
         buildStitcherPrompt(brandProfile),
@@ -645,12 +729,14 @@ export async function runBlogPipeline(
       );
       markdown = injectProductImages(revisedMarkdown, relevantProducts, brandProfile);
       onEvent({ type: "stitched", phase: "stitcher", markdown, message: "Re-stitched with improvements" });
+      lintReport = await runLintPass(!lintCorrectionUsed);
 
       // Re-verify
       const revisedVerification = await runVerifier(plan, markdown, brandProfile, recordGeneration);
       if (revisedVerification.overallScore < originalVerification.overallScore) {
         markdown = originalMarkdown;
         verification = originalVerification;
+        lintReport = originalLintReport;
         onEvent({
           type: "status",
           phase: "stitcher",
@@ -688,14 +774,14 @@ export async function runBlogPipeline(
     clusterId: request.clusterId,
     verticalId: vertical?.id || null,
     batchId: request.batchId || null,
-    status: verification.passesQualityGate ? "review" : "draft",
+    status: verification.passesQualityGate && lintReport.passed ? "review" : "draft",
     wordCount,
     brandConsistency: verification.brandConsistency,
     seoOptimization: verification.seoOptimization,
     naturalLanguage: verification.naturalLanguage,
     factualAccuracy: verification.factualAccuracy,
     overallScore: verification.overallScore,
-    verificationNotes: JSON.stringify({ issues: verification.issues, suggestions: verification.suggestions }),
+    verificationNotes: JSON.stringify({ issues: verification.issues, suggestions: verification.suggestions, lint: lintReport }),
     generationProvider,
     generationModel,
   }).returning();

@@ -210,6 +210,24 @@ server.tool(
   }
 );
 
+server.tool(
+  "lint_content",
+  "Run the deterministic brand/SEO linter on blog markdown. Returns errors and warnings. Use before publishing anything.",
+  {
+    markdown: z.string().describe("Blog post markdown to lint"),
+    title: z.string().optional().describe("Article title"),
+    metaTitle: z.string().optional().describe("SEO meta title"),
+    metaDescription: z.string().optional().describe("SEO meta description"),
+    primaryKeyword: z.string().optional().describe("Primary target keyword"),
+  },
+  async (body) => {
+    try {
+      const data = await api("POST", "/api/blog/lint", body);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
 // ═══════════════════════════════════════
 //  KEYWORDS
 // ═══════════════════════════════════════
