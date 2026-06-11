@@ -12,6 +12,7 @@ import {
 import { renderShopifyHtml, renderPreviewHtml } from "./htmlRenderer";
 import { lintContent } from "./contentLinter";
 import { addInternalLinks } from "./internalLinker";
+import { refreshPublishedPost } from "./contentRefresh";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import { generationBatches, blogPosts, products as productTable } from "@shared/schema";
@@ -294,6 +295,19 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       res.json(await addInternalLinks(req.params.id));
     } catch (error: any) {
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/posts/:id/refresh — Refresh a published Shopify-synced post without quality regression
+  router.post("/posts/:id/refresh", async (req: Request, res: Response) => {
+    try {
+      const companyId = getCompanyIdFromRequest(req);
+      const post = await getBlogPost(req.params.id, companyId);
+      if (!post) return res.status(404).json({ error: "Post not found" });
+      res.json(await refreshPublishedPost(req.params.id, companyId));
+    } catch (error: any) {
+      const status = /not found/i.test(error.message) ? 404 : 500;
+      res.status(status).json({ error: error.message });
     }
   });
 

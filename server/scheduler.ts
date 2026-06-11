@@ -2,7 +2,7 @@
 // Runs research, product sync, keyword refresh, and auto-generation on intervals.
 
 import { db } from "./db";
-import { eq, and, isNull } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import {
   companySettings,
   industryVerticals,
@@ -23,6 +23,7 @@ import { rebuildContextChunks } from "./contextChunker";
 import { BENCHMARK_PROVIDERS, runAiBenchmark, type BenchmarkProvider } from "./aiBenchmark";
 import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 import { getCompanyContext } from "./companyContext";
+import { refreshPublishedPost, selectContentRefreshCandidates } from "./contentRefresh";
 import {
   beginSchedulerJob,
   clearExpiredSchedulerLocks,
@@ -43,11 +44,15 @@ export interface SchedulerConfig {
   photoAnalysisIntervalMs: number;  // How often to analyze unanalyzed photos (default: 6h)
   chunkRebuildIntervalMs: number;   // How often to rebuild context chunks (default: 12h)
   benchmarkIntervalMs: number;      // How often to run AI benchmark tracking (default: 7d)
+  refreshIntervalMs: number;        // How often to refresh stale published posts (default: 7d)
   enabled: boolean;
   autoGenerate: boolean;            // Auto-generate posts for pending clusters
   autoBenchmark: boolean;           // Auto-run AI benchmark on schedule
+  autoRefresh: boolean;             // Auto-refresh stale published posts on schedule
   maxAutoPostsPerRun: number;       // Max posts to auto-generate per interval
   maxVerticalsPerResearchRun: number; // Max thin/stale verticals to research per run
+  maxRefreshPerRun: number;         // Max published posts to refresh per interval
+  refreshAgeDays: number;           // Only refresh posts older than this
   researchSources: Array<"reddit" | "youtube" | "web">;
   researchConcurrency: number;
   benchmarkProviders: BenchmarkProvider[];
@@ -61,10 +66,12 @@ export interface SchedulerStatus {
   lastProductSync: Date | null;
   lastAutoGenerate: Date | null;
   lastBenchmark: Date | null;
+  lastContentRefresh: Date | null;
   nextResearch: Date | null;
   nextProductSync: Date | null;
   nextAutoGenerate: Date | null;
   nextBenchmark: Date | null;
+  nextContentRefresh: Date | null;
   stats: {
     totalPosts: number;
     pendingClusters: number;
@@ -84,11 +91,15 @@ const DEFAULT_CONFIG: SchedulerConfig = {
   photoAnalysisIntervalMs: 6 * 60 * 60 * 1000,  // 6 hours
   chunkRebuildIntervalMs: 12 * 60 * 60 * 1000,  // 12 hours
   benchmarkIntervalMs: 7 * 24 * 60 * 60 * 1000, // 7 days
+  refreshIntervalMs: 7 * 24 * 60 * 60 * 1000,   // 7 days
   enabled: false, // Must be explicitly enabled
   autoGenerate: false,
   autoBenchmark: false,
+  autoRefresh: false,
   maxAutoPostsPerRun: 3,
   maxVerticalsPerResearchRun: 4,
+  maxRefreshPerRun: 2,
+  refreshAgeDays: 60,
   researchSources: ["reddit", "youtube", "web"],
   researchConcurrency: 3,
   benchmarkProviders: [...BENCHMARK_PROVIDERS],
@@ -131,11 +142,15 @@ export function normalizeSchedulerConfig(input: unknown, base: SchedulerConfig =
     photoAnalysisIntervalMs: numberFrom(value.photoAnalysisIntervalMs, base.photoAnalysisIntervalMs, 15 * 60 * 1000, 30 * 24 * 60 * 60 * 1000),
     chunkRebuildIntervalMs: numberFrom(value.chunkRebuildIntervalMs, base.chunkRebuildIntervalMs, 15 * 60 * 1000, 30 * 24 * 60 * 60 * 1000),
     benchmarkIntervalMs: numberFrom(value.benchmarkIntervalMs, base.benchmarkIntervalMs, 60 * 60 * 1000, 90 * 24 * 60 * 60 * 1000),
+    refreshIntervalMs: numberFrom(value.refreshIntervalMs, base.refreshIntervalMs, 60 * 60 * 1000, 90 * 24 * 60 * 60 * 1000),
     enabled: booleanFrom(value.enabled, base.enabled),
     autoGenerate: booleanFrom(value.autoGenerate, base.autoGenerate),
     autoBenchmark: booleanFrom(value.autoBenchmark, base.autoBenchmark),
+    autoRefresh: booleanFrom(value.autoRefresh, base.autoRefresh),
     maxAutoPostsPerRun: numberFrom(value.maxAutoPostsPerRun, base.maxAutoPostsPerRun, 1, 20),
     maxVerticalsPerResearchRun: numberFrom(value.maxVerticalsPerResearchRun, base.maxVerticalsPerResearchRun, 1, 25),
+    maxRefreshPerRun: numberFrom(value.maxRefreshPerRun, base.maxRefreshPerRun, 1, 10),
+    refreshAgeDays: numberFrom(value.refreshAgeDays, base.refreshAgeDays, 1, 365),
     researchSources: researchSourcesFrom(value.researchSources, base.researchSources),
     researchConcurrency: numberFrom(value.researchConcurrency, base.researchConcurrency, 1, 10),
     benchmarkProviders: benchmarkProvidersFrom(value.benchmarkProviders, base.benchmarkProviders),
@@ -237,18 +252,21 @@ export class BlogScheduler {
   private photoTimer: ReturnType<typeof setInterval> | null = null;
   private chunkTimer: ReturnType<typeof setInterval> | null = null;
   private benchmarkTimer: ReturnType<typeof setInterval> | null = null;
+  private refreshTimer: ReturnType<typeof setInterval> | null = null;
   private lastResearch: Date | null = null;
   private lastProductSync: Date | null = null;
   private lastAutoGenerate: Date | null = null;
   private lastPhotoAnalysis: Date | null = null;
   private lastChunkRebuild: Date | null = null;
   private lastBenchmark: Date | null = null;
+  private lastContentRefresh: Date | null = null;
   private isResearching = false;
   private isSyncing = false;
   private isGenerating = false;
   private isAnalyzingPhotos = false;
   private isRebuildingChunks = false;
   private isBenchmarking = false;
+  private isRefreshing = false;
   private scheduledCompanyId = DEFAULT_COMPANY_ID;
   private log: (msg: string) => void;
 
@@ -277,6 +295,9 @@ export class BlogScheduler {
     if (this.config.autoBenchmark) {
       this.benchmarkTimer = setInterval(() => this.runBenchmark(this.scheduledCompanyId), this.config.benchmarkIntervalMs);
     }
+    if (this.config.autoRefresh) {
+      this.refreshTimer = setInterval(() => this.runContentRefresh(this.scheduledCompanyId), this.config.refreshIntervalMs);
+    }
 
     this.log(`Research every ${Math.round(this.config.researchIntervalMs / 3600000)}h, Product sync every ${Math.round(this.config.productSyncIntervalMs / 3600000)}h`);
     this.log(`Photo analysis every ${Math.round(this.config.photoAnalysisIntervalMs / 3600000)}h, Chunk rebuild every ${Math.round(this.config.chunkRebuildIntervalMs / 3600000)}h`);
@@ -285,6 +306,9 @@ export class BlogScheduler {
     }
     if (this.config.autoBenchmark) {
       this.log(`AI benchmark every ${Math.round(this.config.benchmarkIntervalMs / 3600000)}h across ${this.config.benchmarkProviders.join(", ")}`);
+    }
+    if (this.config.autoRefresh) {
+      this.log(`Content refresh every ${Math.round(this.config.refreshIntervalMs / 3600000)}h (max ${this.config.maxRefreshPerRun} posts/run)`);
     }
   }
 
@@ -296,6 +320,7 @@ export class BlogScheduler {
     if (this.photoTimer) { clearInterval(this.photoTimer); this.photoTimer = null; }
     if (this.chunkTimer) { clearInterval(this.chunkTimer); this.chunkTimer = null; }
     if (this.benchmarkTimer) { clearInterval(this.benchmarkTimer); this.benchmarkTimer = null; }
+    if (this.refreshTimer) { clearInterval(this.refreshTimer); this.refreshTimer = null; }
     this.log("Scheduler stopped");
   }
 
@@ -338,6 +363,7 @@ export class BlogScheduler {
       lastProductSync: this.lastProductSync,
       lastAutoGenerate: this.lastAutoGenerate,
       lastBenchmark: this.lastBenchmark,
+      lastContentRefresh: this.lastContentRefresh,
       nextResearch: this.config.enabled && this.lastResearch
         ? new Date(this.lastResearch.getTime() + this.config.researchIntervalMs)
         : null,
@@ -349,6 +375,9 @@ export class BlogScheduler {
         : null,
       nextBenchmark: this.config.enabled && this.config.autoBenchmark && this.lastBenchmark
         ? new Date(this.lastBenchmark.getTime() + this.config.benchmarkIntervalMs)
+        : null,
+      nextContentRefresh: this.config.enabled && this.config.autoRefresh && this.lastContentRefresh
+        ? new Date(this.lastContentRefresh.getTime() + this.config.refreshIntervalMs)
         : null,
       stats: {
         totalPosts: allPosts.length,
@@ -647,6 +676,66 @@ export class BlogScheduler {
     });
   }
 
+  async runContentRefresh(
+    companyId = DEFAULT_COMPANY_ID,
+    triggerType: SchedulerTriggerType = "scheduled",
+  ): Promise<{ refreshed: number; skipped: number }> {
+    return this.runLocked("content_refresh", companyId, triggerType, { refreshed: 0, skipped: 0 }, async () => {
+      if (this.isRefreshing) {
+        this.log("Content refresh already in progress, skipping");
+        return { refreshed: 0, skipped: 0 };
+      }
+
+      if (!this.config.autoRefresh && triggerType === "scheduled") {
+        return { refreshed: 0, skipped: 0 };
+      }
+
+      this.isRefreshing = true;
+      this.log("Starting content refresh...");
+
+      try {
+        const candidates = await selectContentRefreshCandidates(
+          companyId,
+          this.config.maxRefreshPerRun,
+          this.config.refreshAgeDays,
+        );
+
+        if (candidates.length === 0) {
+          this.lastContentRefresh = new Date();
+          this.log("No stale Shopify-synced posts found for refresh");
+          return { refreshed: 0, skipped: 0 };
+        }
+
+        let refreshed = 0;
+        let skipped = 0;
+        for (const post of candidates) {
+          try {
+            const result = await refreshPublishedPost(post.id, companyId);
+            if (result.refreshed) {
+              refreshed += 1;
+              this.log(`Refreshed "${post.title}" (${result.previousScore} -> ${result.newScore})`);
+            } else {
+              skipped += 1;
+              this.log(`Skipped refresh for "${post.title}": ${result.reason || "quality gate"}`);
+            }
+          } catch (err: any) {
+            skipped += 1;
+            this.log(`Refresh failed for "${post.title}": ${err.message}`);
+          }
+        }
+
+        this.lastContentRefresh = new Date();
+        this.log(`Content refresh complete: ${refreshed} refreshed, ${skipped} skipped`);
+        return { refreshed, skipped };
+      } finally {
+        this.isRefreshing = false;
+      }
+    }).catch((err: any) => {
+      this.log(`Content refresh failed: ${err.message}`);
+      return { refreshed: 0, skipped: 0 };
+    });
+  }
+
   // --- Manual triggers ---
 
   async triggerResearch(companyId = DEFAULT_COMPANY_ID): Promise<{ entriesFound: number }> {
@@ -679,6 +768,10 @@ export class BlogScheduler {
     const result = await this.runBenchmark(companyId, "manual");
     this.config.autoBenchmark = original;
     return result;
+  }
+
+  async triggerContentRefresh(companyId = DEFAULT_COMPANY_ID): Promise<{ refreshed: number; skipped: number }> {
+    return this.runContentRefresh(companyId, "manual");
   }
 }
 

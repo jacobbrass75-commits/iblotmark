@@ -245,6 +245,20 @@ server.tool(
   }
 );
 
+server.tool(
+  "refresh_post",
+  "Refresh a published post: update dates, prices, and product links against the current catalog, then sync to Shopify. Only saves if quality does not regress.",
+  {
+    id: z.string().describe("Blog post ID to refresh"),
+  },
+  async ({ id }) => {
+    try {
+      const data = await api("POST", `/api/blog/posts/${encodeURIComponent(id)}/refresh`, {});
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
 // ═══════════════════════════════════════
 //  KEYWORDS
 // ═══════════════════════════════════════

@@ -134,7 +134,7 @@ function extractAnthropicText(response: Anthropic.Messages.Message): string {
     .trim();
 }
 
-async function generateText(
+export async function generateText(
   systemPrompt: string,
   userPrompt: string,
   maxTokens: number,
@@ -260,7 +260,7 @@ function injectProductImages(markdown: string, relevantProducts: Product[], bran
   return `${markdown.slice(0, faqMatch.index).trimEnd()}\n\n${gallery}\n\n${markdown.slice(faqMatch.index).trimStart()}`;
 }
 
-async function getClusterData(clusterId: string, companyId: string): Promise<{
+export async function getClusterData(clusterId: string, companyId: string): Promise<{
   cluster: KeywordCluster;
   clusterKeywords: Keyword[];
   vertical: IndustryVertical | null;
@@ -349,7 +349,7 @@ async function getClusterData(clusterId: string, companyId: string): Promise<{
   return { cluster, clusterKeywords, vertical, relevantProducts };
 }
 
-function formatProductsForPrompt(prods: Product[], brandProfile?: BrandVoiceInput | null): string {
+export function formatProductsForPrompt(prods: Product[], brandProfile?: BrandVoiceInput | null): string {
   const voice = resolveBrandVoice(brandProfile);
   if (prods.length === 0) {
     return `No products are available yet. Write helpful category content for ${voice.displayName} using only verified brand context, customer needs, and non-fabricated examples.`;
@@ -372,7 +372,7 @@ function parseProductPrice(price: string | null | undefined): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function productsForLint(prods: Product[]): Array<{ title: string; handle: string; price: number | null }> {
+export function productsForLint(prods: Product[]): Array<{ title: string; handle: string; price: number | null }> {
   return prods.map((product) => ({
     title: product.title,
     handle: product.handle,
@@ -387,7 +387,7 @@ function formatLintErrorsForPrompt(report: LintReport): string {
   }).join("\n");
 }
 
-function buildProductFactsForVerifier(relevantProducts: Product[], brandProfile?: BrandVoiceInput | null): string {
+export function buildProductFactsForVerifier(relevantProducts: Product[], brandProfile?: BrandVoiceInput | null): string {
   if (relevantProducts.length === 0) {
     return "No relevant products were selected for this post.";
   }
@@ -498,7 +498,7 @@ async function runStitcher(
 
 // --- Phase 4: VERIFIER ---
 
-async function runVerifier(
+export async function runVerifier(
   plan: BlogPlan,
   markdown: string,
   productFacts: string,
