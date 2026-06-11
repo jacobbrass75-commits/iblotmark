@@ -11,6 +11,7 @@ import {
 } from "./blogPipeline";
 import { renderShopifyHtml, renderPreviewHtml } from "./htmlRenderer";
 import { lintContent } from "./contentLinter";
+import { addInternalLinks } from "./internalLinker";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import { generationBatches, blogPosts, products as productTable } from "@shared/schema";
@@ -282,6 +283,17 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
     } catch (error: any) {
       const status = /invalid|must be/i.test(error.message) ? 400 : 500;
       res.status(status).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/posts/:id/internal-links — Insert contextual links to related posts
+  router.post("/posts/:id/internal-links", async (req: Request, res: Response) => {
+    try {
+      const post = await getBlogPost(req.params.id, getCompanyIdFromRequest(req));
+      if (!post) return res.status(404).json({ error: "Post not found" });
+      res.json(await addInternalLinks(req.params.id));
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
     }
   });
 

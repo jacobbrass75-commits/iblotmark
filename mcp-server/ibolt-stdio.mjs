@@ -228,6 +228,20 @@ server.tool(
   }
 );
 
+server.tool(
+  "add_internal_links",
+  "Insert links to related iBOLT blog posts into an existing post. Use to retrofit older posts when new related content is published.",
+  {
+    id: z.string().describe("Blog post ID"),
+  },
+  async ({ id }) => {
+    try {
+      const data = await api("POST", `/api/blog/posts/${encodeURIComponent(id)}/internal-links`, {});
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
 // ═══════════════════════════════════════
 //  KEYWORDS
 // ═══════════════════════════════════════

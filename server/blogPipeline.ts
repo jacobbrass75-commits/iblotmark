@@ -35,6 +35,7 @@ import { buildSectionContext, compactContext, TOKEN_BUDGETS } from "./contextChu
 import { selectPhotosForPost, savePhotoSelections, formatPhotoPlacementsForPrompt, type PhotoSelection } from "./photoSelector";
 import { getCompanyContext } from "./companyContext";
 import { lintContent, type LintReport } from "./contentLinter";
+import { addInternalLinks } from "./internalLinker";
 
 // --- Types ---
 
@@ -783,7 +784,7 @@ export async function runBlogPipeline(
     : providersUsed[0] || null;
   const generationModel = modelsUsed.join(", ") || null;
 
-  const [post] = await db.insert(blogPosts).values({
+  let [post] = await db.insert(blogPosts).values({
     companyId: companyContext.company.id,
     title: plan.title,
     slug: plan.slug,
@@ -804,6 +805,17 @@ export async function runBlogPipeline(
     generationProvider,
     generationModel,
   }).returning();
+
+  try {
+    const linkResult = await addInternalLinks(post.id);
+    if (linkResult.added > 0) {
+      markdown = linkResult.markdown;
+      post = { ...post, markdown };
+      onEvent({ type: "status", phase: "internal-links", message: `Added ${linkResult.added} internal links.` });
+    }
+  } catch (error: any) {
+    onEvent({ type: "status", phase: "internal-links", message: `Internal linking skipped: ${error.message}` });
+  }
 
   // Link mentioned products
   if (relevantProducts.length > 0) {
