@@ -3,7 +3,7 @@ import { clerkClient, getAuth } from "@clerk/express";
 import { createHash, randomBytes, randomUUID } from "crypto";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { TIER_LEVELS } from "./auth";
+import { TIER_LEVELS, normalizeUserTier } from "./auth";
 import { getOrCreateUser } from "./authStorage";
 import {
   createAuthorizationCode,
@@ -17,6 +17,7 @@ import {
   revokeMcpTokenById,
   consumeAuthorizationCode,
 } from "./oauthStorage";
+import { readResponseTextLimited, safeFetch } from "./safeFetch";
 
 const DEFAULT_SCOPES = ["read", "write"];
 const ALLOWED_SCOPES = new Set(DEFAULT_SCOPES);
@@ -122,7 +123,8 @@ function getMcpResourceUrl(): string {
     return configured.replace(/\/+$/, "");
   }
 
-  return "https://mcp.scholarmark.ai/mcp";
+  const appBase = process.env.APP_BASE_URL || process.env.PUBLIC_BASE_URL || process.env.PUBLIC_APP_URL;
+  return appBase ? `${appBase.replace(/\/+$/, "")}/mcp` : "http://localhost:5001/mcp";
 }
 
 function getAuthorizeTemplate(): string {
@@ -247,7 +249,7 @@ async function resolveSessionUser(req: Request): Promise<SessionUser | null> {
 
   const clerkUser = await clerkClient.users.getUser(auth.userId);
   const email = clerkUser.emailAddresses?.[0]?.emailAddress ?? "";
-  const tier = (clerkUser.publicMetadata?.tier as string) || "max";
+  const tier = normalizeUserTier(clerkUser.publicMetadata?.tier);
   await getOrCreateUser(auth.userId, email, tier);
 
   return {
@@ -400,7 +402,7 @@ async function resolveOAuthClient(clientId: string): Promise<OAuthClientLike | n
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
-    const response = await fetch(clientId, {
+    const response = await safeFetch(clientId, {
       method: "GET",
       headers: { Accept: "application/json" },
       signal: controller.signal,
@@ -408,7 +410,7 @@ async function resolveOAuthClient(clientId: string): Promise<OAuthClientLike | n
     clearTimeout(timeout);
 
     if (!response.ok) return null;
-    const metadata = await response.json();
+    const metadata = JSON.parse(await readResponseTextLimited(response, 500_000));
     const parsedClient = parseMetadataClient(metadata, clientId);
     if (!parsedClient) {
       return null;
@@ -730,7 +732,7 @@ export function registerOAuthRoutes(app: Express): void {
         return;
       }
 
-      const userTierLevel = TIER_LEVELS[sessionUser.tier] ?? 0;
+      const userTierLevel = TIER_LEVELS[normalizeUserTier(sessionUser.tier)];
       const proTierLevel = TIER_LEVELS.pro ?? 1;
       const tierNotice = userTierLevel < proTierLevel
         ? "<p class=\"notice warning\">Note: Chat, compile, and verify endpoints require a Pro plan. Authorization can still proceed.</p>"

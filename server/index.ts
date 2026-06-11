@@ -10,6 +10,15 @@ import { configureClerk } from "./auth";
 import { serveStatic } from "./static";
 import { initAnalytics } from "./analyticsLogger";
 import { createServer } from "http";
+import { envEnabled, isProduction, legacyScholarMarkEnabled, validateProductionConfig } from "./runtimeConfig";
+import { startPersistedSchedulers } from "./scheduler";
+import { validateBlogTenantIntegrity } from "./db";
+import { summarizeApiResponseForLog } from "./responseLogRedaction";
+
+validateProductionConfig();
+if (process.env.NODE_ENV === "production") {
+  validateBlogTenantIntegrity();
+}
 
 const app = express();
 const httpServer = createServer(app);
@@ -20,12 +29,27 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? "")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-const ALWAYS_ALLOWED_ORIGINS = new Set([
-  "https://claude.ai",
-  "https://claude.com",
-  "https://mcp.scholarmark.ai",
-  "https://app.scholarmark.ai",
-]);
+const configuredAppOrigins = [
+  process.env.PUBLIC_BASE_URL,
+  process.env.APP_BASE_URL,
+  process.env.PUBLIC_APP_URL,
+]
+  .map((origin) => (origin || "").trim())
+  .filter(Boolean);
+
+const alwaysAllowedOrigins = isProduction()
+  ? [...configuredAppOrigins]
+  : [
+      ...configuredAppOrigins,
+      "https://claude.ai",
+      "https://claude.com",
+    ];
+
+if (legacyScholarMarkEnabled()) {
+  alwaysAllowedOrigins.push("https://mcp.scholarmark.ai", "https://app.scholarmark.ai");
+}
+
+const ALWAYS_ALLOWED_ORIGINS = new Set(alwaysAllowedOrigins);
 const ALLOWED_ORIGIN_SET = new Set(allowedOrigins.map((origin) => normalizeOrigin(origin)));
 
 function normalizeOrigin(origin: string): string {
@@ -35,9 +59,9 @@ function normalizeOrigin(origin: string): string {
 function isAllowedOrigin(origin?: string): boolean {
   if (!origin) return true;
   const normalizedOrigin = normalizeOrigin(origin);
-  if (origin.startsWith("chrome-extension://")) return true;
-  if (/^https?:\/\/(localhost|127\\.0\\.0\\.1)(:\\d+)?$/i.test(origin)) return true;
-  if (/^https?:\/\/89\\.167\\.10\\.34(:\\d+)?$/i.test(origin)) return true;
+  if (origin.startsWith("chrome-extension://")) return !isProduction() || envEnabled("ALLOW_CHROME_EXTENSION_ORIGINS");
+  if (/^https?:\/\/(localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0)(:\\d+)?$/i.test(origin)) return !isProduction();
+  if (/^https?:\/\/89\\.167\\.10\\.34(:\\d+)?$/i.test(origin)) return !isProduction();
   if (ALWAYS_ALLOWED_ORIGINS.has(normalizedOrigin)) return true;
   if (ALLOWED_ORIGIN_SET.has(normalizedOrigin)) return true;
   return false;
@@ -97,26 +121,6 @@ export function log(message: string, source = "express") {
   console.log(`${formattedTime} [${source}] ${message}`);
 }
 
-function summarizeApiResponse(path: string, body: unknown): string | null {
-  if (typeof body === "undefined") return null;
-
-  if ((path === "/api/documents" || path === "/api/documents/meta") && Array.isArray(body)) {
-    return `items=${body.length}`;
-  }
-
-  try {
-    const serialized = JSON.stringify(body);
-    if (!serialized) return null;
-    const maxLength = 2000;
-    if (serialized.length <= maxLength) {
-      return serialized;
-    }
-    return `${serialized.slice(0, maxLength)}...<truncated ${serialized.length - maxLength} chars>`;
-  } catch {
-    return "[unserializable]";
-  }
-}
-
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -133,7 +137,7 @@ app.use((req, res, next) => {
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
-        const summary = summarizeApiResponse(path, capturedJsonResponse);
+        const summary = summarizeApiResponseForLog(path, capturedJsonResponse, { isProduction: isProduction() });
         if (summary) {
           logLine += ` :: ${summary}`;
         }
@@ -147,12 +151,18 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  registerOAuthRoutes(app);
+  if (legacyScholarMarkEnabled()) {
+    registerOAuthRoutes(app);
+  }
 
   // Register auth routes before other routes
   registerAuthRoutes(app);
 
   await registerRoutes(httpServer, app);
+  const restoredSchedulers = await startPersistedSchedulers();
+  if (restoredSchedulers > 0) {
+    log(`restored ${restoredSchedulers} persisted blog scheduler(s)`, "scheduler");
+  }
   initAnalytics();
 
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
@@ -173,6 +183,13 @@ app.use((req, res, next) => {
     }
 
     return res.status(status).json({ message });
+  });
+
+  app.use("/api", (req: Request, res: Response) => {
+    res.status(404).json({
+      message: "API route not found",
+      path: req.originalUrl,
+    });
   });
 
   // importantly only setup vite in development and after

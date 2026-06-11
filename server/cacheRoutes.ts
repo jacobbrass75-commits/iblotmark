@@ -3,9 +3,11 @@
 
 import { Router, type Request, type Response } from "express";
 import { getSystemStatus, cache } from "./apiCache";
+import { requireAuth, requireTier } from "./auth";
 
 export function registerCacheRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
+  router.use(requireAuth, requireTier("max"));
 
   // GET /api/cache/status — Returns cache stats + rate limiter status
   router.get("/status", (_req: Request, res: Response) => {

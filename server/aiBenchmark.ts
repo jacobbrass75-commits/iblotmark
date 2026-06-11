@@ -1,13 +1,15 @@
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import { desc, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray } from "drizzle-orm";
 import { db } from "./db";
 import {
   aiBenchmarkQueries,
   aiBenchmarkResults,
   aiBenchmarkRuns,
   blogPosts,
+  industryVerticals,
   keywordClusters,
+  productVerticals,
   products,
   keywords,
   type AiBenchmarkQuery,
@@ -17,6 +19,8 @@ import {
 } from "@shared/schema";
 import { computeSimilarity, toTitleCase } from "./aiBenchmarkUtils";
 import { writingQueue } from "./writingQueue";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
+import { getCompanyContext, type CompanyContext } from "./companyContext";
 
 type PLimitFn = typeof import("p-limit")["default"];
 
@@ -38,11 +42,31 @@ function getPLimit(): Promise<PLimitFn> {
 export const BENCHMARK_PROVIDERS = [
   "chatgpt",
   "claude",
-  "gemini",
-  "google_search",
+  "gemini_plain",
+  "gemini_google_search",
 ] as const;
 
 export type BenchmarkProvider = typeof BENCHMARK_PROVIDERS[number];
+
+const BENCHMARK_PROVIDER_LABELS: Record<BenchmarkProvider, string> = {
+  chatgpt: "ChatGPT",
+  claude: "Claude",
+  gemini_plain: "Gemini",
+  gemini_google_search: "Gemini + Google Search",
+};
+
+const LEGACY_PROVIDER_ALIASES: Record<string, BenchmarkProvider> = {
+  gemini: "gemini_plain",
+  google_search: "gemini_google_search",
+};
+
+export function normalizeBenchmarkProvider(value: unknown): BenchmarkProvider | null {
+  if (typeof value !== "string") return null;
+  if (BENCHMARK_PROVIDERS.includes(value as BenchmarkProvider)) {
+    return value as BenchmarkProvider;
+  }
+  return LEGACY_PROVIDER_ALIASES[value] || null;
+}
 
 export interface BenchmarkProgressEvent {
   type: "started" | "progress" | "completed";
@@ -61,6 +85,7 @@ export interface BenchmarkRunOptions {
   queryIds?: string[];
   providers?: BenchmarkProvider[];
   concurrency?: number;
+  companyId?: string;
 }
 
 export interface BenchmarkRunSummary {
@@ -83,6 +108,11 @@ export interface BenchmarkRunSummary {
     label: string | null;
     verticalId: string | null;
     priority: number;
+    persona: string | null;
+    painPoint: string | null;
+    iboltAngle: string | null;
+    targetProducts: string[];
+    benchmarkBaseline: Record<string, unknown> | null;
     averageScore: number;
     averageMentionRate: number;
     weakestProviders: BenchmarkProvider[];
@@ -117,6 +147,10 @@ export interface ContentPlanItem {
   supportingProducts: string[];
   researchNeeds: string[];
   recommendedProviders: BenchmarkProvider[];
+  persona?: string | null;
+  painPoint?: string | null;
+  iboltAngle?: string | null;
+  targetProducts?: string[];
   closestExistingTitle?: string;
   similarityScore?: number;
   gapScore: number;
@@ -144,15 +178,42 @@ type ExistingContentItem = {
   kind: "post" | "cluster";
 };
 
+type ProductInventoryItem = {
+  id: string;
+  title: string;
+  handle: string;
+  description: string | null;
+  productType: string | null;
+};
+
+type ProductVerticalMapping = {
+  productId: string;
+  verticalId: string;
+  relevanceScore: number | null;
+};
+
 export interface MaterializeContentPlanOptions {
   item: ContentPlanItem;
   generateNow?: boolean;
   queueForGeneration?: boolean;
+  companyId?: string;
 }
 
 const OPENAI_DEFAULT_MODEL = process.env.AI_BENCHMARK_OPENAI_MODEL || "gpt-4.1";
 const ANTHROPIC_DEFAULT_MODEL = process.env.AI_BENCHMARK_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
 const GEMINI_DEFAULT_MODEL = process.env.AI_BENCHMARK_GEMINI_MODEL || "gemini-2.5-flash";
+const QUERY_PRODUCT_STOP_WORDS = new Set([
+  "best",
+  "for",
+  "with",
+  "and",
+  "the",
+  "2026",
+  "guide",
+  "buyer",
+  "buyers",
+  "commercial",
+]);
 
 const KNOWN_COMPETITORS = [
   "RAM",
@@ -179,11 +240,11 @@ const KNOWN_COMPETITORS = [
 ];
 
 const POSITIONING_TAGS: Array<{ tag: string; terms: string[] }> = [
-  { tag: "specialist", terms: ["purpose-built", "specialized", "warehouse", "forklift", "fleet", "commercial", "eld", "restaurant"] },
+  { tag: "specialist", terms: ["purpose-built", "specialized", "specialist", "expert", "category leader"] },
   { tag: "budget", terms: ["budget", "cheap", "cheaper", "affordable", "low-cost", "economical"] },
   { tag: "value", terms: ["best value", "value pick", "cost-conscious", "cost effective"] },
-  { tag: "modular", terms: ["modular", "amps", "ball size", "interchangeable", "configurator"] },
-  { tag: "rugged", terms: ["heavy-duty", "industrial", "rugged", "locking", "drill-in"] },
+  { tag: "premium", terms: ["premium", "high-end", "professional-grade", "professional grade"] },
+  { tag: "durable", terms: ["durable", "heavy-duty", "long-lasting", "weather-resistant", "rugged"] },
 ];
 
 let openaiClient: OpenAI | null = null;
@@ -219,6 +280,118 @@ function dedupeStrings(values: Array<string | null | undefined>): string[] {
   return Array.from(new Set(values.filter((value): value is string => Boolean(value && value.trim())).map((value) => value.trim())));
 }
 
+function normalizeBenchmarkResult(result: AiBenchmarkResult): AiBenchmarkResult {
+  const provider = normalizeBenchmarkProvider(result.provider) || result.provider;
+  return provider === result.provider ? result : { ...result, provider };
+}
+
+function formatProviderList(providers: BenchmarkProvider[]): string {
+  const labels = dedupeStrings(
+    providers.map((provider) => BENCHMARK_PROVIDER_LABELS[provider] || provider),
+  );
+  return labels.join(", ");
+}
+
+function isUsableBenchmarkBaseline(value: unknown): value is Record<string, unknown> {
+  if (!value || typeof value !== "object") return false;
+  const providers = (value as { providers?: unknown }).providers;
+  return Array.isArray(providers) && providers.some((provider) =>
+    provider &&
+    typeof provider === "object" &&
+    (provider as { status?: unknown }).status === "completed",
+  );
+}
+
+function toIsoTimestamp(value: unknown): string | null {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString();
+  }
+
+  if (typeof value === "number" && Number.isFinite(value)) {
+    const millis = value < 10_000_000_000 ? value * 1000 : value;
+    return new Date(millis).toISOString();
+  }
+
+  if (typeof value === "string" && value.trim()) {
+    const numeric = Number(value);
+    if (Number.isFinite(numeric)) {
+      return toIsoTimestamp(numeric);
+    }
+
+    const parsed = new Date(value);
+    if (!Number.isNaN(parsed.getTime())) {
+      return parsed.toISOString();
+    }
+  }
+
+  return null;
+}
+
+function buildBenchmarkBaselineSnapshot(
+  run: AiBenchmarkRun,
+  averageScore: number,
+  averageMentionRate: number,
+  completedResults: AiBenchmarkResult[],
+): Record<string, unknown> | null {
+  if (completedResults.length === 0) return null;
+
+  return {
+    runId: run.id,
+    capturedAt: toIsoTimestamp(run.completedAt || run.startedAt || run.createdAt) || new Date().toISOString(),
+    averageScore,
+    averageMentionRate,
+    providers: completedResults.map((result) => ({
+      provider: normalizeBenchmarkProvider(result.provider) || result.provider,
+      status: result.status,
+      coverageScore: result.coverageScore,
+      targetBrandMentioned: result.targetBrandMentioned ?? result.brandMentioned,
+      brandMentioned: result.brandMentioned,
+      targetDomainCited: result.targetDomainCited ?? result.iboltCited,
+      iboltCited: result.iboltCited,
+      topPickRank: result.topPickRank,
+      mentionedProducts: result.mentionedProducts,
+      competitors: result.competitors,
+    })),
+  };
+}
+
+function isProviderConfigured(provider: BenchmarkProvider): boolean {
+  switch (provider) {
+    case "chatgpt":
+      return Boolean(process.env.OPENAI_API_KEY);
+    case "claude":
+      return Boolean(process.env.ANTHROPIC_API_KEY);
+    case "gemini_plain":
+    case "gemini_google_search":
+      return Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_AI_API_KEY);
+  }
+}
+
+export function getBenchmarkProviderConfigStatus(): Record<BenchmarkProvider, boolean> {
+  return BENCHMARK_PROVIDERS.reduce((status, provider) => {
+    status[provider] = isProviderConfigured(provider);
+    return status;
+  }, {} as Record<BenchmarkProvider, boolean>);
+}
+
+function parseStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return dedupeStrings(value.filter((item): item is string => typeof item === "string"));
+  }
+  if (typeof value !== "string" || !value.trim()) {
+    return [];
+  }
+  try {
+    const parsed = JSON.parse(value);
+    if (Array.isArray(parsed)) {
+      return dedupeStrings(parsed.filter((item): item is string => typeof item === "string"));
+    }
+  } catch {
+    // Fall through to comma/newline parsing.
+  }
+  return dedupeStrings(value.split(/[\n,]+/));
+}
+
 function collectUrls(value: unknown, sink = new Set<string>()): string[] {
   if (typeof value === "string") {
     const matches = value.match(/https?:\/\/[^\s)<>"']+/g) || [];
@@ -246,6 +419,17 @@ function collectUrls(value: unknown, sink = new Set<string>()): string[] {
   }
 
   return Array.from(sink);
+}
+
+function getQueryTokens(query: string): string[] {
+  return dedupeStrings(
+    query
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, " ")
+      .split(/\s+/)
+      .map((token) => token.trim())
+      .filter((token) => token.length > 3 && !QUERY_PRODUCT_STOP_WORDS.has(token)),
+  );
 }
 
 function extractOpenAIText(response: any): string {
@@ -288,9 +472,64 @@ function extractGeminiGroundingUrls(response: any): string[] {
   return dedupeStrings(urls);
 }
 
-function getKnownCompetitors(text: string): string[] {
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function getBrandAliases(companyContext: CompanyContext): string[] {
+  const aliases = [
+    companyContext.brandProfile.displayName,
+    companyContext.company.name,
+  ].filter(Boolean);
+  return dedupeStrings(aliases.flatMap((alias) => [
+    alias,
+    alias.replace(/[\s-]+/g, ""),
+    alias.replace(/[\s-]+/g, " "),
+  ]).filter((alias) => alias.length >= 3));
+}
+
+function hasTargetBrandMention(text: string, companyContext: CompanyContext): boolean {
+  return getBrandAliases(companyContext).some((alias) => {
+    const normalizedAlias = escapeRegExp(alias).replace(/\\ /g, "[\\s-]?");
+    return new RegExp(`\\b${normalizedAlias}\\b`, "i").test(text);
+  });
+}
+
+function getTargetDomains(companyContext: CompanyContext): string[] {
+  const urls = [
+    companyContext.company.websiteUrl,
+    companyContext.brandProfile.websiteUrl,
+  ].filter(Boolean);
+  const domains = urls.flatMap((value) => {
+    try {
+      return [new URL(value).hostname.replace(/^www\./, "")];
+    } catch {
+      return [];
+    }
+  });
+  if (companyContext.company.primaryDomain) domains.push(companyContext.company.primaryDomain.replace(/^www\./, ""));
+  return dedupeStrings(domains.filter(Boolean));
+}
+
+function hasTargetDomainCitation(sourceUrls: string[], companyContext: CompanyContext): boolean {
+  const targetDomains = getTargetDomains(companyContext);
+  if (targetDomains.length === 0) return false;
+
+  return sourceUrls.some((url) => {
+    try {
+      const hostname = new URL(url).hostname.replace(/^www\./, "");
+      return targetDomains.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`));
+    } catch {
+      return targetDomains.some((domain) => url.includes(domain));
+    }
+  });
+}
+
+function getKnownCompetitors(text: string, companyContext?: CompanyContext): string[] {
   const lower = text.toLowerCase();
-  return KNOWN_COMPETITORS.filter((brand) => lower.includes(brand.toLowerCase()));
+  const configured = companyContext?.competitors.map((competitor) => competitor.name) || [];
+  const demoDefaults = companyContext?.company.id === DEFAULT_COMPANY_ID ? KNOWN_COMPETITORS : [];
+  return dedupeStrings([...configured, ...demoDefaults]).filter((brand) => lower.includes(brand.toLowerCase()));
 }
 
 function getPositioningTags(text: string): string[] {
@@ -300,12 +539,12 @@ function getPositioningTags(text: string): string[] {
     .map(({ tag }) => tag);
 }
 
-function findTopPickRank(text: string): number | null {
+function findTopPickRank(text: string, companyContext: CompanyContext): number | null {
   const lower = text.toLowerCase();
   const lines = text.split("\n").map((line) => line.trim()).filter(Boolean);
 
   for (const line of lines) {
-    if (!/\bibolt\b/i.test(line)) continue;
+    if (!hasTargetBrandMention(line, companyContext)) continue;
 
     const numberedMatch = line.match(/^(\d+)[.)-]\s/);
     if (numberedMatch) {
@@ -318,7 +557,7 @@ function findTopPickRank(text: string): number | null {
     }
   }
 
-  if ((/best overall|top pick|overall winner/.test(lower)) && /\bibolt\b/.test(lower)) {
+  if ((/best overall|top pick|overall winner/.test(lower)) && hasTargetBrandMention(text, companyContext)) {
     return 1;
   }
 
@@ -333,16 +572,24 @@ function getSentiment(brandMentioned: boolean, positioningTags: string[], rank: 
   return "mixed";
 }
 
-function buildPositioningSummary(brandMentioned: boolean, cited: boolean, tags: string[], rank: number | null): string {
+function buildPositioningSummary(
+  brandMentioned: boolean,
+  cited: boolean,
+  tags: string[],
+  rank: number | null,
+  companyContext: CompanyContext,
+): string {
+  const brandName = companyContext.brandProfile.displayName;
+  const domain = getTargetDomains(companyContext)[0] || "the target domain";
   if (!brandMentioned) {
     return cited
-      ? "iBolt sources were cited but the brand still did not make the recommendation list."
-      : "iBolt was absent from the recommendation set.";
+      ? `${brandName} sources were cited but the brand still did not make the recommendation list.`
+      : `${brandName} was absent from the recommendation set.`;
   }
 
   const tagSummary = tags.length > 0 ? tags.join(", ") : "general";
   const rankSummary = rank ? `Ranked at #${rank}.` : "No explicit list rank was detected.";
-  const citationSummary = cited ? "iboltmounts.com was cited." : "iboltmounts.com was not cited.";
+  const citationSummary = cited ? `${domain} was cited.` : `${domain} was not cited.`;
   return `${rankSummary} Framing tags: ${tagSummary}. ${citationSummary}`;
 }
 
@@ -351,19 +598,14 @@ function analyzeResponse(
   responseText: string,
   sourceUrls: string[],
   allProducts: Array<{ title: string; handle: string }>,
+  companyContext: CompanyContext,
 ): Omit<
   typeof aiBenchmarkResults.$inferInsert,
-  "runId" | "queryId" | "provider" | "model" | "prompt" | "status" | "error"
+  "companyId" | "runId" | "queryId" | "provider" | "model" | "prompt" | "status" | "error"
 > {
   const lower = responseText.toLowerCase();
-  const brandMentioned = /\bi[\s-]?bolt\b/i.test(responseText);
-  const iboltCited = sourceUrls.some((url) => {
-    try {
-      return new URL(url).hostname.includes("iboltmounts.com");
-    } catch {
-      return url.includes("iboltmounts.com");
-    }
-  });
+  const brandMentioned = hasTargetBrandMention(responseText, companyContext);
+  const iboltCited = hasTargetDomainCitation(sourceUrls, companyContext);
   const mentionedProducts = dedupeStrings(
     allProducts
       .filter((product) => {
@@ -372,8 +614,10 @@ function analyzeResponse(
       })
       .map((product) => product.title),
   );
-  const competitors = dedupeStrings(getKnownCompetitors(responseText).filter((brand) => !/ibolt/i.test(brand)));
-  const topPickRank = findTopPickRank(responseText);
+  const competitors = dedupeStrings(getKnownCompetitors(responseText, companyContext).filter((brand) => {
+    return !getBrandAliases(companyContext).some((alias) => alias.toLowerCase() === brand.toLowerCase());
+  }));
+  const topPickRank = findTopPickRank(responseText, companyContext);
   const positioningTags = getPositioningTags(responseText);
   const sentiment = getSentiment(brandMentioned, positioningTags, topPickRank);
 
@@ -384,13 +628,12 @@ function analyzeResponse(
   else if (topPickRank && topPickRank <= 3) coverageScore += 18;
   else if (topPickRank) coverageScore += 10;
   if (positioningTags.includes("specialist")) coverageScore += 10;
-  if (positioningTags.includes("modular")) coverageScore += 5;
   if (positioningTags.includes("budget") && !positioningTags.includes("specialist")) coverageScore -= 8;
   coverageScore += Math.min(10, mentionedProducts.length * 3);
 
   const analysisNotes = [
-    brandMentioned ? "iBolt surfaced in the answer." : "iBolt did not surface in the answer.",
-    iboltCited ? "Provider cited iboltmounts.com." : "Provider did not cite iboltmounts.com.",
+    brandMentioned ? `${companyContext.brandProfile.displayName} surfaced in the answer.` : `${companyContext.brandProfile.displayName} did not surface in the answer.`,
+    iboltCited ? "Provider cited the target domain." : "Provider did not cite the target domain.",
     topPickRank ? `Detected explicit ranking at #${topPickRank}.` : "No explicit list ranking detected.",
     competitors.length > 0 ? `Competitors named: ${competitors.join(", ")}.` : "No known competitors detected.",
     query.benchmarkGoal ? `Benchmark goal: ${query.benchmarkGoal}` : null,
@@ -398,12 +641,14 @@ function analyzeResponse(
 
   return {
     rawResponse: responseText,
+    targetBrandMentioned: brandMentioned,
     brandMentioned,
+    targetDomainCited: iboltCited,
     iboltCited,
     topPickRank,
     coverageScore: clampScore(coverageScore),
     sentiment,
-    positioning: buildPositioningSummary(brandMentioned, iboltCited, positioningTags, topPickRank),
+    positioning: buildPositioningSummary(brandMentioned, iboltCited, positioningTags, topPickRank, companyContext),
     positioningTags,
     mentionedProducts,
     competitors,
@@ -590,9 +835,9 @@ async function runProvider(provider: BenchmarkProvider, prompt: string): Promise
       return runOpenAiProvider(prompt);
     case "claude":
       return runAnthropicProvider(prompt);
-    case "gemini":
-      return runGeminiProvider(prompt, true);
-    case "google_search":
+    case "gemini_plain":
+      return runGeminiProvider(prompt, false);
+    case "gemini_google_search":
       return runGeminiProvider(prompt, true);
   }
 }
@@ -601,15 +846,19 @@ function sortQueries(rows: AiBenchmarkQuery[]): AiBenchmarkQuery[] {
   return [...rows].sort((a, b) => (b.priority || 0) - (a.priority || 0) || a.query.localeCompare(b.query));
 }
 
-export async function listBenchmarkQueries(): Promise<AiBenchmarkQuery[]> {
-  const rows = await db.select().from(aiBenchmarkQueries);
+export async function listBenchmarkQueries(companyId = DEFAULT_COMPANY_ID): Promise<AiBenchmarkQuery[]> {
+  const rows = await db.select().from(aiBenchmarkQueries).where(eq(aiBenchmarkQueries.companyId, companyId));
   return sortQueries(rows);
 }
 
 export async function createBenchmarkQuery(input: Omit<InsertAiBenchmarkQuery, "query"> & { query: string }): Promise<AiBenchmarkQuery> {
   const [row] = await db.insert(aiBenchmarkQueries).values({
     ...input,
+    companyId: input.companyId || DEFAULT_COMPANY_ID,
     query: normalizeQuery(input.query),
+    brandAngle: input.brandAngle || input.iboltAngle || null,
+    iboltAngle: input.iboltAngle || input.brandAngle || null,
+    targetProducts: parseStringArray(input.targetProducts),
     status: input.status || "active",
     updatedAt: new Date(),
   }).returning();
@@ -619,6 +868,7 @@ export async function createBenchmarkQuery(input: Omit<InsertAiBenchmarkQuery, "
 export async function updateBenchmarkQuery(
   id: string,
   updates: Partial<Omit<InsertAiBenchmarkQuery, "query"> & { query: string }>,
+  companyId = DEFAULT_COMPANY_ID,
 ): Promise<AiBenchmarkQuery> {
   const payload: Partial<typeof aiBenchmarkQueries.$inferInsert> = { updatedAt: new Date() };
   if (updates.category !== undefined) payload.category = updates.category;
@@ -628,15 +878,33 @@ export async function updateBenchmarkQuery(
   if (updates.intentType !== undefined) payload.intentType = updates.intentType;
   if (updates.priority !== undefined) payload.priority = updates.priority;
   if (updates.benchmarkGoal !== undefined) payload.benchmarkGoal = updates.benchmarkGoal;
+  if (updates.persona !== undefined) payload.persona = updates.persona;
+  if (updates.painPoint !== undefined) payload.painPoint = updates.painPoint;
+  if (updates.brandAngle !== undefined) payload.brandAngle = updates.brandAngle;
+  if (updates.iboltAngle !== undefined) {
+    payload.iboltAngle = updates.iboltAngle;
+    if (updates.brandAngle === undefined) payload.brandAngle = updates.iboltAngle;
+  }
+  if (updates.targetProducts !== undefined) payload.targetProducts = parseStringArray(updates.targetProducts);
+  if (updates.benchmarkBaseline !== undefined) payload.benchmarkBaseline = updates.benchmarkBaseline;
+  if (updates.benchmarkBaselinedAt !== undefined) payload.benchmarkBaselinedAt = updates.benchmarkBaselinedAt;
   if (updates.notes !== undefined) payload.notes = updates.notes;
   if (updates.status !== undefined) payload.status = updates.status;
 
-  const [row] = await db.update(aiBenchmarkQueries).set(payload).where(eq(aiBenchmarkQueries.id, id)).returning();
+  const [row] = await db
+    .update(aiBenchmarkQueries)
+    .set(payload)
+    .where(and(eq(aiBenchmarkQueries.companyId, companyId), eq(aiBenchmarkQueries.id, id)))
+    .returning();
   return row;
 }
 
-export async function listBenchmarkRuns(limit = 10): Promise<AiBenchmarkRun[]> {
-  const rows = await db.select().from(aiBenchmarkRuns).orderBy(desc(aiBenchmarkRuns.createdAt));
+export async function listBenchmarkRuns(limit = 10, companyId = DEFAULT_COMPANY_ID): Promise<AiBenchmarkRun[]> {
+  const rows = await db
+    .select()
+    .from(aiBenchmarkRuns)
+    .where(eq(aiBenchmarkRuns.companyId, companyId))
+    .orderBy(desc(aiBenchmarkRuns.createdAt));
   return rows.slice(0, limit);
 }
 
@@ -645,8 +913,14 @@ function buildRunSummary(
   queries: AiBenchmarkQuery[],
   results: AiBenchmarkResult[],
 ): BenchmarkRunSummary {
-  const providerSummaries = (run.providers as BenchmarkProvider[]).map((provider) => {
-    const providerResults = results.filter((result) => result.provider === provider);
+  const normalizedResults = results.map(normalizeBenchmarkResult);
+  const runProviders = dedupeStrings(
+    ((run.providers || []) as string[]).map((provider) => normalizeBenchmarkProvider(provider) || provider),
+  ) as BenchmarkProvider[];
+  const normalizedRun = { ...run, providers: runProviders };
+
+  const providerSummaries = runProviders.map((provider) => {
+    const providerResults = normalizedResults.filter((result) => result.provider === provider);
     const completed = providerResults.filter((result) => result.status === "completed");
     const mentionRate = completed.length > 0
       ? Math.round((completed.filter((result) => result.brandMentioned).length / completed.length) * 100)
@@ -675,7 +949,7 @@ function buildRunSummary(
   });
 
   const querySummaries = queries.map((query) => {
-    const queryResults = results
+    const queryResults = normalizedResults
       .filter((result) => result.queryId === query.id)
       .sort((a, b) => (b.coverageScore || 0) - (a.coverageScore || 0));
     const completed = queryResults.filter((result) => result.status === "completed");
@@ -688,7 +962,8 @@ function buildRunSummary(
     const weakestProviders = queryResults
       .filter((result) => result.status !== "completed" || !result.brandMentioned || (result.coverageScore || 0) < 60)
       .sort((a, b) => (a.coverageScore || 0) - (b.coverageScore || 0))
-      .map((result) => result.provider as BenchmarkProvider);
+      .map((result) => normalizeBenchmarkProvider(result.provider))
+      .filter((provider): provider is BenchmarkProvider => Boolean(provider));
 
     return {
       queryId: query.id,
@@ -697,6 +972,13 @@ function buildRunSummary(
       label: query.label,
       verticalId: query.verticalId,
       priority: query.priority || 0,
+      persona: query.persona || null,
+      painPoint: query.painPoint || null,
+      iboltAngle: query.iboltAngle || null,
+      targetProducts: parseStringArray(query.targetProducts),
+      benchmarkBaseline: isUsableBenchmarkBaseline(query.benchmarkBaseline)
+        ? query.benchmarkBaseline
+        : buildBenchmarkBaselineSnapshot(normalizedRun, averageScore, averageMentionRate, completed),
       averageScore,
       averageMentionRate,
       weakestProviders: dedupeStrings(weakestProviders) as BenchmarkProvider[],
@@ -704,7 +986,7 @@ function buildRunSummary(
     };
   });
 
-  const biggestGaps = results
+  const biggestGaps = normalizedResults
     .filter((result) => result.status !== "completed" || !result.brandMentioned || (result.coverageScore || 0) < 70)
     .sort((a, b) => (a.coverageScore || 0) - (b.coverageScore || 0))
     .slice(0, 8)
@@ -723,7 +1005,7 @@ function buildRunSummary(
       };
     });
 
-  const topWins = results
+  const topWins = normalizedResults
     .filter((result) => result.status === "completed" && result.brandMentioned)
     .sort((a, b) => (b.coverageScore || 0) - (a.coverageScore || 0))
     .slice(0, 6)
@@ -738,7 +1020,7 @@ function buildRunSummary(
     });
 
   return {
-    run,
+    run: normalizedRun,
     providerSummaries,
     querySummaries,
     biggestGaps,
@@ -746,23 +1028,39 @@ function buildRunSummary(
   };
 }
 
-export async function getBenchmarkRunSummary(runId: string): Promise<BenchmarkRunSummary | null> {
-  const [run] = await db.select().from(aiBenchmarkRuns).where(eq(aiBenchmarkRuns.id, runId)).limit(1);
+export async function getBenchmarkRunSummary(runId: string, companyId = DEFAULT_COMPANY_ID): Promise<BenchmarkRunSummary | null> {
+  const [run] = await db
+    .select()
+    .from(aiBenchmarkRuns)
+    .where(and(eq(aiBenchmarkRuns.companyId, companyId), eq(aiBenchmarkRuns.id, runId)))
+    .limit(1);
   if (!run) return null;
 
-  const results = await db.select().from(aiBenchmarkResults).where(eq(aiBenchmarkResults.runId, runId));
+  const results = await db
+    .select()
+    .from(aiBenchmarkResults)
+    .where(and(eq(aiBenchmarkResults.companyId, companyId), eq(aiBenchmarkResults.runId, runId)));
   const queryIds = dedupeStrings(results.map((result) => result.queryId));
   const queries = queryIds.length > 0
-    ? await db.select().from(aiBenchmarkQueries).where(inArray(aiBenchmarkQueries.id, queryIds))
+    ? await db
+      .select()
+      .from(aiBenchmarkQueries)
+      .where(and(eq(aiBenchmarkQueries.companyId, companyId), inArray(aiBenchmarkQueries.id, queryIds)))
     : [];
 
   return buildRunSummary(run, queries, results);
 }
 
-export async function getLatestBenchmarkRunSummary(): Promise<BenchmarkRunSummary | null> {
-  const [run] = await db.select().from(aiBenchmarkRuns).orderBy(desc(aiBenchmarkRuns.createdAt)).limit(1);
-  if (!run) return null;
-  return getBenchmarkRunSummary(run.id);
+export async function getLatestBenchmarkRunSummary(companyId = DEFAULT_COMPANY_ID): Promise<BenchmarkRunSummary | null> {
+  const runs = await db
+    .select()
+    .from(aiBenchmarkRuns)
+    .where(eq(aiBenchmarkRuns.companyId, companyId))
+    .orderBy(desc(aiBenchmarkRuns.createdAt));
+  const usableRun = runs.find((run) => run.status === "completed" && (run.resultCount || 0) > 0);
+  const fallbackRun = runs[0];
+  if (!usableRun && !fallbackRun) return null;
+  return getBenchmarkRunSummary((usableRun || fallbackRun).id, companyId);
 }
 
 function getClosestExistingContent(
@@ -798,6 +1096,7 @@ function buildDeterministicPlanItem(
   querySummary: BenchmarkRunSummary["querySummaries"][number],
   existingInventory: ExistingContentItem[],
   productTitles: string[],
+  brandName: string,
 ): ContentPlanItem {
   const closest = getClosestExistingContent(querySummary.query, existingInventory);
   const format = classifyFormatFromQuery(querySummary.query);
@@ -808,12 +1107,16 @@ function buildDeterministicPlanItem(
     `${querySummary.query} buyer's guide`,
   ]).slice(0, 3);
   const title = format === "comparison"
-    ? `${querySummary.query.toUpperCase().includes("IBOLT") ? "iBOLT vs RAM Mount for Commercial Workflows" : toTitleCase(querySummary.query)}: Which Option Fits Commercial Use?`
+    ? `${querySummary.query.toLowerCase().includes(brandName.toLowerCase()) ? `${brandName} Comparison Guide` : toTitleCase(querySummary.query)}: Which Option Fits Commercial Use?`
     : `${toTitleCase(querySummary.query)} (2026 Buyer's Guide)`;
   const lowestScore = Math.max(0, 100 - querySummary.averageScore);
-  const supportingProducts = productTitles
-    .filter((titleItem) => querySummary.query.toLowerCase().split(" ").some((token) => token.length > 4 && titleItem.toLowerCase().includes(token)))
-    .slice(0, 4);
+  const supportingProducts = productTitles.slice(0, 4);
+  const weakProviderLabels = formatProviderList(querySummary.weakestProviders);
+  const humanAngleParts = [
+    querySummary.persona ? `Persona: ${querySummary.persona}` : null,
+    querySummary.painPoint ? `Pain point: ${querySummary.painPoint}` : null,
+    querySummary.iboltAngle ? `Brand angle: ${querySummary.iboltAngle}` : null,
+  ].filter(Boolean).join(" ");
 
   return {
     queryId: querySummary.queryId,
@@ -823,24 +1126,69 @@ function buildDeterministicPlanItem(
     primaryKeyword,
     secondaryKeywords,
     format,
-    angle: closest.similarity >= 0.55
+    angle: querySummary.iboltAngle
+      ? querySummary.iboltAngle
+      : closest.similarity >= 0.55
       ? `Attack a narrower sub-intent around "${querySummary.query}" that existing content does not cover cleanly.`
       : `Create a direct answer page for "${querySummary.query}" with stronger product fit, proof, and operational detail.`,
-    whyNow: `Average benchmark score is ${querySummary.averageScore}/100 with weak coverage from ${querySummary.weakestProviders.join(", ") || "multiple providers"}.`,
+    whyNow: `Average benchmark score is ${querySummary.averageScore}/100 with weak coverage from ${weakProviderLabels || "multiple providers"}.`,
     uniquenessReason: closest.title
       ? `Differentiate from "${closest.title}" by focusing on the exact buying intent, install constraints, and proof points the current inventory misses.`
       : "No close overlap with the current post inventory was detected.",
-    supportingProducts,
+    supportingProducts: dedupeStrings([...(querySummary.targetProducts || []), ...supportingProducts]).slice(0, 5),
     researchNeeds: [
-      "real buyer phrasing from Reddit and forums",
-      "installation constraints and device dimensions",
-      "competitor comparisons with pricing and mounting style",
+      humanAngleParts || "real buyer phrasing from Reddit and forums",
+      "usage constraints, fit details, and product specifications",
+      "competitor comparisons with pricing, positioning, and evidence",
     ],
     recommendedProviders: querySummary.weakestProviders.slice(0, 3),
+    persona: querySummary.persona,
+    painPoint: querySummary.painPoint,
+    iboltAngle: querySummary.iboltAngle,
+    targetProducts: querySummary.targetProducts,
     closestExistingTitle: closest.title,
     similarityScore: closest.similarity,
     gapScore: lowestScore,
   };
+}
+
+function getProductTitlesForQuery(
+  querySummary: BenchmarkRunSummary["querySummaries"][number],
+  productRows: ProductInventoryItem[],
+  mappings: ProductVerticalMapping[],
+): string[] {
+  const tokens = getQueryTokens(querySummary.query);
+  const verticalMappedIds = new Set(
+    querySummary.verticalId
+      ? mappings
+        .filter((mapping) => mapping.verticalId === querySummary.verticalId && (mapping.relevanceScore ?? 0) >= 0.58)
+        .map((mapping) => mapping.productId)
+      : [],
+  );
+
+  const scored = productRows
+    .map((product) => {
+      const searchText = [
+        product.title,
+        product.handle,
+        product.description,
+        product.productType,
+      ].filter(Boolean).join(" ").toLowerCase();
+      let score = 0;
+      if (verticalMappedIds.has(product.id)) score += 5;
+      for (const token of tokens) {
+        if (searchText.includes(token)) score += 2;
+      }
+      return { product, score };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.product.title.localeCompare(b.product.title));
+
+  const selected = scored.length > 0
+    ? scored.slice(0, 8).map((item) => item.product.title)
+    : productRows.slice(0, 8).map((product) => product.title);
+
+  return dedupeStrings([...(querySummary.targetProducts || []), ...selected]).slice(0, 8);
 }
 
 async function buildContentPlanWithClaude(
@@ -848,15 +1196,17 @@ async function buildContentPlanWithClaude(
   existingInventory: ExistingContentItem[],
   productTitles: string[],
   limit: number,
+  companyContext: CompanyContext,
 ): Promise<ContentPlanItem[] | null> {
   if (!process.env.ANTHROPIC_API_KEY) return null;
 
   const client = getAnthropicClient();
   const prompt = [
-    "You are building a non-duplicative SEO content plan for iBolt Mounts.",
+    `You are building a non-duplicative SEO content plan for ${companyContext.brandProfile.displayName}.`,
     `Return up to ${limit} plan items as a JSON array.`,
     "Every plan item must attack a benchmark gap and avoid thin rewrites of existing posts.",
-    "Favor specific commercial use cases, install constraints, device compatibility, and operational proof over generic fluff.",
+    `Brand positioning: ${companyContext.brandProfile.positioning || companyContext.brandProfile.shortDescription || "Use the configured brand profile and product evidence."}`,
+    "Favor specific use cases, constraints, compatibility details, and operational proof over generic fluff.",
     "",
     "Benchmark gaps:",
     JSON.stringify(
@@ -866,6 +1216,10 @@ async function buildContentPlanWithClaude(
         category: item.category,
         averageScore: item.averageScore,
         weakestProviders: item.weakestProviders,
+        persona: item.persona,
+        painPoint: item.painPoint,
+        iboltAngle: item.iboltAngle,
+        targetProducts: item.targetProducts,
       })),
       null,
       2,
@@ -890,6 +1244,10 @@ async function buildContentPlanWithClaude(
         whyNow: "why this closes an AI benchmark gap",
         uniquenessReason: "why this is not a rewrite of an existing post",
         supportingProducts: ["product title"],
+        persona: "who is asking",
+        painPoint: "specific pain/problem",
+        iboltAngle: "why the target brand is the right answer",
+        targetProducts: ["target product"],
         researchNeeds: ["research task"],
         recommendedProviders: ["provider"],
       },
@@ -913,17 +1271,30 @@ async function buildContentPlanWithClaude(
   }
 }
 
-export async function generateContentPlan(runId?: string, limit = 8): Promise<ContentPlanItem[]> {
-  const summary = runId ? await getBenchmarkRunSummary(runId) : await getLatestBenchmarkRunSummary();
+export async function generateContentPlan(runId?: string, limit = 8, companyId = DEFAULT_COMPANY_ID): Promise<ContentPlanItem[]> {
+  const companyContext = await getCompanyContext(companyId);
+  const summary = runId ? await getBenchmarkRunSummary(runId, companyId) : await getLatestBenchmarkRunSummary(companyId);
   if (!summary) return [];
+  if ((summary.run.resultCount || 0) === 0) return [];
 
   const gapQueries = [...summary.querySummaries]
     .sort((a, b) => a.averageScore - b.averageScore || b.priority - a.priority)
     .slice(0, Math.max(limit * 2, limit));
 
-  const posts = await db.select().from(blogPosts);
-  const clusters = await db.select().from(keywordClusters);
-  const productRows = await db.select().from(products);
+  const posts = await db.select().from(blogPosts).where(eq(blogPosts.companyId, companyId));
+  const clusters = await db.select().from(keywordClusters).where(eq(keywordClusters.companyId, companyId));
+  const productRows = await db.select({
+    id: products.id,
+    title: products.title,
+    handle: products.handle,
+    description: products.description,
+    productType: products.productType,
+  }).from(products).where(eq(products.companyId, companyId));
+  const productMappings = await db.select({
+    productId: productVerticals.productId,
+    verticalId: productVerticals.verticalId,
+    relevanceScore: productVerticals.relevanceScore,
+  }).from(productVerticals).where(eq(productVerticals.companyId, companyId));
 
   const existingInventory: ExistingContentItem[] = [
     ...posts.map((post) => ({ title: post.title, kind: "post" as const })),
@@ -931,10 +1302,17 @@ export async function generateContentPlan(runId?: string, limit = 8): Promise<Co
   ];
   const productTitles = productRows.map((product) => product.title);
 
-  const aiPlan = await buildContentPlanWithClaude(gapQueries, existingInventory, productTitles, limit);
+  const aiPlan = await buildContentPlanWithClaude(gapQueries, existingInventory, productTitles, limit, companyContext);
   const baseline = aiPlan && aiPlan.length > 0
     ? aiPlan
-    : gapQueries.map((querySummary) => buildDeterministicPlanItem(querySummary, existingInventory, productTitles));
+    : gapQueries.map((querySummary) =>
+      buildDeterministicPlanItem(
+        querySummary,
+        existingInventory,
+        getProductTitlesForQuery(querySummary, productRows, productMappings),
+        companyContext.brandProfile.displayName,
+      )
+    );
 
   const filtered: ContentPlanItem[] = [];
   for (const item of baseline) {
@@ -944,7 +1322,10 @@ export async function generateContentPlan(runId?: string, limit = 8): Promise<Co
       secondaryKeywords: dedupeStrings(item.secondaryKeywords).slice(0, 5),
       supportingProducts: dedupeStrings(item.supportingProducts).slice(0, 5),
       researchNeeds: dedupeStrings(item.researchNeeds).slice(0, 5),
-      recommendedProviders: dedupeStrings(item.recommendedProviders) as BenchmarkProvider[],
+      recommendedProviders: dedupeStrings(item.recommendedProviders)
+        .map((provider) => normalizeBenchmarkProvider(provider))
+        .filter((provider): provider is BenchmarkProvider => Boolean(provider)),
+      targetProducts: dedupeStrings(item.targetProducts || []).slice(0, 5),
       closestExistingTitle: closest.title,
       similarityScore: closest.similarity,
       gapScore: item.gapScore || Math.max(0, 100 - (gapQueries.find((querySummary) => querySummary.queryId === item.queryId)?.averageScore || 0)),
@@ -964,7 +1345,12 @@ export async function generateContentPlan(runId?: string, limit = 8): Promise<Co
 
   for (const querySummary of gapQueries) {
     if (filtered.some((item) => item.queryId === querySummary.queryId)) continue;
-    const fallback = buildDeterministicPlanItem(querySummary, existingInventory, productTitles);
+    const fallback = buildDeterministicPlanItem(
+      querySummary,
+      existingInventory,
+      getProductTitlesForQuery(querySummary, productRows, productMappings),
+      companyContext.brandProfile.displayName,
+    );
     if ((fallback.similarityScore || 0) >= 0.82) continue;
     filtered.push(fallback);
     if (filtered.length >= limit) break;
@@ -982,7 +1368,8 @@ export async function materializeContentPlanItem(
   queued: boolean;
   jobId?: string;
 }> {
-  const clusterRows = await db.select().from(keywordClusters);
+  const companyId = options.companyId || DEFAULT_COMPANY_ID;
+  const clusterRows = await db.select().from(keywordClusters).where(eq(keywordClusters.companyId, companyId));
   const candidates = [options.item.title, options.item.primaryKeyword, options.item.query];
   const duplicateCluster = clusterRows.find((cluster) =>
     candidates.some((candidate) =>
@@ -993,12 +1380,24 @@ export async function materializeContentPlanItem(
 
   let cluster = duplicateCluster;
   let created = false;
+  let verticalId = options.item.verticalId || null;
+  if (verticalId) {
+    const [vertical] = await db
+      .select({ id: industryVerticals.id })
+      .from(industryVerticals)
+      .where(and(eq(industryVerticals.companyId, companyId), eq(industryVerticals.id, verticalId)))
+      .limit(1);
+    if (!vertical) {
+      throw new Error("Vertical not found for active company.");
+    }
+  }
 
   if (!cluster) {
     const [createdCluster] = await db.insert(keywordClusters).values({
+      companyId,
       name: options.item.title,
       primaryKeyword: options.item.primaryKeyword,
-      verticalId: options.item.verticalId || null,
+      verticalId,
       totalVolume: 0,
       avgDifficulty: 0,
       priority: options.item.gapScore || 75,
@@ -1013,6 +1412,7 @@ export async function materializeContentPlanItem(
       options.item.query,
       ...(options.item.secondaryKeywords || []),
     ]).map((keyword) => ({
+      companyId,
       keyword,
       volume: 0,
       difficulty: 0,
@@ -1031,7 +1431,7 @@ export async function materializeContentPlanItem(
   let queued = false;
   let jobId: string | undefined;
   if (options.generateNow || options.queueForGeneration) {
-    const job = writingQueue.addJob(cluster.id, options.item.title);
+    const job = writingQueue.addJob(cluster.id, options.item.title, companyId);
     queued = true;
     jobId = job.id;
   }
@@ -1045,30 +1445,86 @@ export async function materializeContentPlanItem(
   };
 }
 
+async function captureMissingQueryBaselines(summary: BenchmarkRunSummary, companyId = DEFAULT_COMPANY_ID): Promise<void> {
+  const now = new Date();
+
+  for (const querySummary of summary.querySummaries) {
+    const [storedQuery] = await db.select({
+      benchmarkBaseline: aiBenchmarkQueries.benchmarkBaseline,
+    }).from(aiBenchmarkQueries).where(and(eq(aiBenchmarkQueries.companyId, companyId), eq(aiBenchmarkQueries.id, querySummary.queryId))).limit(1);
+    if (isUsableBenchmarkBaseline(storedQuery?.benchmarkBaseline)) continue;
+
+    const completedResults = querySummary.results.filter((result) => result.status === "completed");
+    if (completedResults.length === 0) continue;
+
+    await db.update(aiBenchmarkQueries).set({
+      benchmarkBaseline: {
+        runId: summary.run.id,
+        capturedAt: now.toISOString(),
+        averageScore: querySummary.averageScore,
+        averageMentionRate: querySummary.averageMentionRate,
+        providers: completedResults.map((result) => ({
+          provider: normalizeBenchmarkProvider(result.provider) || result.provider,
+          status: result.status,
+          coverageScore: result.coverageScore,
+          targetBrandMentioned: result.targetBrandMentioned ?? result.brandMentioned,
+          brandMentioned: result.brandMentioned,
+          targetDomainCited: result.targetDomainCited ?? result.iboltCited,
+          iboltCited: result.iboltCited,
+          topPickRank: result.topPickRank,
+          mentionedProducts: result.mentionedProducts,
+          competitors: result.competitors,
+        })),
+      },
+      benchmarkBaselinedAt: now,
+      updatedAt: now,
+    }).where(and(eq(aiBenchmarkQueries.companyId, companyId), eq(aiBenchmarkQueries.id, querySummary.queryId)));
+  }
+}
+
 export async function runAiBenchmark(
   options: BenchmarkRunOptions,
   onProgress?: (event: BenchmarkProgressEvent) => void,
 ): Promise<BenchmarkRunSummary> {
-  const providers = (options.providers?.length ? options.providers : BENCHMARK_PROVIDERS) as BenchmarkProvider[];
+  const providers = dedupeStrings(
+    (options.providers?.length ? options.providers : BENCHMARK_PROVIDERS)
+      .map((provider) => normalizeBenchmarkProvider(provider)),
+  ) as BenchmarkProvider[];
+  const activeProviders = providers.length > 0 ? providers : [...BENCHMARK_PROVIDERS];
+  if (!activeProviders.some((provider) => isProviderConfigured(provider))) {
+    throw new Error("No benchmark provider API keys are configured. Set OPENAI_API_KEY, ANTHROPIC_API_KEY, or GEMINI_API_KEY/GOOGLE_AI_API_KEY before running a benchmark.");
+  }
+  const companyId = options.companyId || DEFAULT_COMPANY_ID;
+  const companyContext = await getCompanyContext(companyId);
   const availableQueries = options.queryIds?.length
-    ? await db.select().from(aiBenchmarkQueries).where(inArray(aiBenchmarkQueries.id, options.queryIds))
-    : await db.select().from(aiBenchmarkQueries).where(eq(aiBenchmarkQueries.status, "active"));
+    ? await db
+      .select()
+      .from(aiBenchmarkQueries)
+      .where(and(eq(aiBenchmarkQueries.companyId, companyId), inArray(aiBenchmarkQueries.id, options.queryIds)))
+    : await db
+      .select()
+      .from(aiBenchmarkQueries)
+      .where(and(eq(aiBenchmarkQueries.companyId, companyId), eq(aiBenchmarkQueries.status, "active")));
   const queries = sortQueries(availableQueries);
-  const productRows = await db.select({ title: products.title, handle: products.handle }).from(products);
+  const productRows = await db
+    .select({ title: products.title, handle: products.handle })
+    .from(products)
+    .where(eq(products.companyId, companyId));
 
   const [run] = await db.insert(aiBenchmarkRuns).values({
+    companyId,
     name: options.name || `AI Benchmark ${new Date().toISOString().slice(0, 10)}`,
-    providers,
+    providers: activeProviders,
     status: "running",
     queryCount: queries.length,
     startedAt: new Date(),
   }).returning();
 
-  const totalTasks = queries.length * providers.length;
+  const totalTasks = queries.length * activeProviders.length;
   onProgress?.({
     type: "started",
     runId: run.id,
-    message: `Starting benchmark for ${queries.length} queries across ${providers.length} providers.`,
+    message: `Starting benchmark for ${queries.length} queries across ${activeProviders.length} providers.`,
     current: 0,
     total: totalTasks,
   });
@@ -1078,12 +1534,13 @@ export async function runAiBenchmark(
   let completed = 0;
 
   const tasks = queries.flatMap((query) =>
-    providers.map((provider) =>
+    activeProviders.map((provider) =>
       limit(async () => {
         const prompt = buildBenchmarkPrompt(query.query);
         const execution = await runProvider(provider, prompt);
 
         const insertBase = {
+          companyId,
           runId: run.id,
           queryId: query.id,
           provider,
@@ -1093,7 +1550,7 @@ export async function runAiBenchmark(
 
         let saved: AiBenchmarkResult;
         if (execution.status === "completed") {
-          const analysis = analyzeResponse(query, execution.responseText, execution.sourceUrls, productRows);
+          const analysis = analyzeResponse(query, execution.responseText, execution.sourceUrls, productRows, companyContext);
           [saved] = await db.insert(aiBenchmarkResults).values({
             ...insertBase,
             ...analysis,
@@ -1105,7 +1562,9 @@ export async function runAiBenchmark(
             rawResponse: execution.responseText || null,
             status: execution.status,
             error: execution.error,
+            targetBrandMentioned: false,
             brandMentioned: false,
+            targetDomainCited: false,
             iboltCited: false,
             coverageScore: 0,
             sentiment: execution.status,
@@ -1137,6 +1596,7 @@ export async function runAiBenchmark(
 
   const results = await Promise.all(tasks);
   const fullSummary = buildRunSummary(run, queries, results);
+  await captureMissingQueryBaselines(fullSummary, companyId);
 
   const [updatedRun] = await db.update(aiBenchmarkRuns).set({
     status: results.some((result) => result.status === "completed") ? "completed" : "failed",
@@ -1147,7 +1607,7 @@ export async function runAiBenchmark(
       topWins: fullSummary.topWins,
     },
     completedAt: new Date(),
-  }).where(eq(aiBenchmarkRuns.id, run.id)).returning();
+  }).where(and(eq(aiBenchmarkRuns.companyId, companyId), eq(aiBenchmarkRuns.id, run.id))).returning();
 
   const summary = {
     ...fullSummary,

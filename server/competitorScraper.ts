@@ -1,5 +1,5 @@
 // Competitor Blog Scraper — Fetch, analyze, filter, and queue competitor posts
-// Scrapes RAM Mount and Arkon blogs, filters for iBolt-relevant topics,
+// Scrapes competitor blogs, filters for company-relevant topics,
 // creates keyword clusters, and queues blog generation.
 
 import Anthropic from "@anthropic-ai/sdk";
@@ -12,6 +12,9 @@ import {
   products,
 } from "@shared/schema";
 import { writingQueue } from "./writingQueue";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
+import { getCompanyContext, type CompanyContext } from "./companyContext";
+import { readResponseTextLimited, safeFetch } from "./safeFetch";
 
 function getClient(): Anthropic {
   return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -33,14 +36,14 @@ export interface CompetitorPost {
  * Fetch a competitor blog post and extract its content.
  */
 async function fetchBlogContent(url: string): Promise<{ title: string; content: string }> {
-  const response = await fetch(url, {
-    headers: { "User-Agent": "Mozilla/5.0 (compatible; iBoltResearchBot/1.0)" },
+  const response = await safeFetch(url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; StandaloneBlogWriterResearch/1.0)" },
     signal: AbortSignal.timeout(15000),
   });
 
   if (!response.ok) throw new Error(`Failed to fetch ${url}: ${response.status}`);
 
-  const html = await response.text();
+  const html = await readResponseTextLimited(response, 2_000_000);
 
   // Extract title
   const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
@@ -66,7 +69,7 @@ async function fetchBlogContent(url: string): Promise<{ title: string; content: 
 }
 
 /**
- * Analyze a competitor post for iBolt relevance.
+ * Analyze a competitor post for company relevance.
  */
 async function analyzeCompetitorPost(
   title: string,
@@ -74,36 +77,52 @@ async function analyzeCompetitorPost(
   url: string,
   productTitles: string[],
   verticalNames: string[],
+  companyContext: CompanyContext,
 ): Promise<CompetitorPost> {
   const client = getClient();
+  const brandName = companyContext.brandProfile.displayName || companyContext.company.name;
+  const positioning = companyContext.brandProfile.positioning || companyContext.brandProfile.shortDescription || "No positioning configured yet.";
+  const competitors = companyContext.competitors.length > 0
+    ? companyContext.competitors.map((competitor) => `${competitor.name} (${competitor.domains.join(", ") || "domain not set"})`).join("; ")
+    : "No configured competitors.";
+  const productContext = productTitles.length > 0
+    ? productTitles.slice(0, 30).join(", ")
+    : "No products imported yet. Judge relevance from brand positioning and verticals.";
+  const verticalContext = verticalNames.length > 0 ? verticalNames.join(", ") : "No verticals configured yet.";
 
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 2048,
     messages: [{
       role: "user",
-      content: `Analyze this competitor blog post for iBolt Mounts (device mounting solutions company).
+      content: `Analyze this competitor blog post for ${brandName}.
+
+Brand positioning:
+${positioning}
+
+Configured competitors:
+${competitors}
 
 Competitor URL: ${url}
 Title: ${title}
 Content excerpt: ${content.slice(0, 4000)}
 
-iBolt's product categories include: ${productTitles.slice(0, 30).join(", ")}
-iBolt's industry verticals: ${verticalNames.join(", ")}
+${brandName}'s product/category context: ${productContext}
+${brandName}'s industry verticals: ${verticalContext}
 
 Determine:
-1. Is this topic relevant to iBolt's product offerings? (phone mounts, tablet mounts, device holders, AMPS mounts, etc.)
-2. If yes, what iBolt-specific angle should we take to outrank this post?
+1. Is this topic relevant to ${brandName}'s products, positioning, audience, or content strategy?
+2. If yes, what brand-specific angle should ${brandName} take to outrank this post?
 3. What keywords should we target?
 
 Return JSON:
 {
   "isRelevant": true/false,
-  "relevanceReason": "why this is or isn't relevant to iBolt",
-  "suggestedTitle": "iBolt-specific blog post title that would outrank this",
+  "relevanceReason": "why this is or isn't relevant to ${brandName}",
+  "suggestedTitle": "brand-specific blog post title that would outrank this",
   "suggestedKeywords": ["keyword1", "keyword2", ...],
   "suggestedVertical": "best-matching-vertical-slug",
-  "matchingProducts": ["product types from iBolt that compete here"]
+  "matchingProducts": ["product names, categories, or types from ${brandName} that compete here"]
 }`,
     }],
   });
@@ -128,6 +147,7 @@ Return JSON:
 export async function processCompetitorUrls(
   urls: string[],
   onProgress?: (msg: string) => void,
+  companyId = DEFAULT_COMPANY_ID,
 ): Promise<{
   total: number;
   relevant: number;
@@ -136,11 +156,12 @@ export async function processCompetitorUrls(
   results: CompetitorPost[];
 }> {
   const log = onProgress || ((msg: string) => console.log(`[Competitor] ${msg}`));
+  const companyContext = await getCompanyContext(companyId);
 
   // Load reference data
-  const allProducts = await db.select().from(products);
+  const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
   const productTitles = allProducts.map((p) => p.title);
-  const verticals = await db.select().from(industryVerticals);
+  const verticals = await db.select().from(industryVerticals).where(eq(industryVerticals.companyId, companyId));
   const verticalNames = verticals.map((v) => `${v.name} (${v.slug})`);
 
   const results: CompetitorPost[] = [];
@@ -160,7 +181,7 @@ export async function processCompetitorUrls(
       log(`  Fetched: "${title}" (${content.length} chars)`);
 
       // Analyze relevance
-      const analysis = await analyzeCompetitorPost(title, content, url, productTitles, verticalNames);
+      const analysis = await analyzeCompetitorPost(title, content, url, productTitles, verticalNames, companyContext);
       results.push(analysis);
 
       if (!analysis.isRelevant) {
@@ -176,6 +197,7 @@ export async function processCompetitorUrls(
       const vertical = verticals.find((v) => v.slug === analysis.suggestedVertical);
 
       const [cluster] = await db.insert(keywordClusters).values({
+        companyId,
         name: analysis.suggestedTitle,
         primaryKeyword: analysis.suggestedKeywords[0] || analysis.suggestedTitle,
         verticalId: vertical?.id || null,
@@ -188,6 +210,7 @@ export async function processCompetitorUrls(
       // Add keywords
       for (const kw of analysis.suggestedKeywords) {
         await db.insert(keywords).values({
+          companyId,
           keyword: kw,
           volume: 0,
           difficulty: 0,
@@ -197,7 +220,7 @@ export async function processCompetitorUrls(
       }
 
       // Queue for generation
-      writingQueue.addJob(cluster.id, `Outrank: ${analysis.suggestedTitle}`);
+      writingQueue.addJob(cluster.id, `Outrank: ${analysis.suggestedTitle}`, companyId);
       queued++;
       log(`  Queued for generation: "${analysis.suggestedTitle}"`);
     } catch (err: any) {
@@ -233,14 +256,14 @@ export async function fetchCompetitorSitemap(domain: string): Promise<string[]> 
 
   for (const sitemapUrl of sitemapUrls) {
     try {
-      const response = await fetch(sitemapUrl, {
-        headers: { "User-Agent": "Mozilla/5.0 (compatible; iBoltResearchBot/1.0)" },
+      const response = await safeFetch(sitemapUrl, {
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; StandaloneBlogWriterResearch/1.0)" },
         signal: AbortSignal.timeout(10000),
       });
 
       if (!response.ok) continue;
 
-      const xml = await response.text();
+      const xml = await readResponseTextLimited(response, 1_000_000);
       const urls = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g))
         .map((m) => m[1])
         .filter((url) => url.includes("/blogs/"));

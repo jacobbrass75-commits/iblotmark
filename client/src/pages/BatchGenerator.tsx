@@ -7,35 +7,43 @@ import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { useClusters } from "@/hooks/useKeywords";
 import { apiRequest } from "@/lib/queryClient";
+import { companyScopedUrl, getCompanyScopedHeaders, getRequiredCompanyScopedHeaders, useActiveCompanyId } from "@/lib/company";
 
 export default function BatchGenerator() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const activeCompanyId = useActiveCompanyId();
   const { data: clusters = [] } = useClusters();
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [queue, setQueue] = useState<any[]>([]);
   const [tab, setTab] = useState<"clusters" | "queue" | "competitor">("queue");
   const [competitorUrls, setCompetitorUrls] = useState("");
+  const [competitorDomain, setCompetitorDomain] = useState("");
   const [competitorRunning, setCompetitorRunning] = useState(false);
   const [competitorStatus, setCompetitorStatus] = useState("");
   const [competitorResults, setCompetitorResults] = useState<any[]>([]);
 
   // SSE stream for queue updates
   useEffect(() => {
-    const evtSource = new EventSource("/api/blog/queue/stream");
+    if (!activeCompanyId) return;
+    const evtSource = new EventSource(companyScopedUrl("/api/blog/queue/stream"));
     evtSource.onmessage = (e) => {
       try { setQueue(JSON.parse(e.data)); } catch {}
     };
     return () => evtSource.close();
-  }, []);
+  }, [activeCompanyId]);
 
   // Refresh queue on mount
   useEffect(() => {
-    fetch("/api/blog/queue", { credentials: "include" })
+    if (!activeCompanyId) return;
+    fetch(companyScopedUrl("/api/blog/queue"), {
+      headers: getCompanyScopedHeaders(),
+      credentials: "include",
+    })
       .then((r) => r.json())
       .then(setQueue)
       .catch(() => {});
-  }, []);
+  }, [activeCompanyId]);
 
   const pendingClusters = clusters.filter((c: any) => c.status === "pending");
   const queueRunning = queue.filter((j: any) => j.status === "running");
@@ -82,13 +90,14 @@ export default function BatchGenerator() {
     try {
       const res = await fetch("/api/blog/competitor/analyze", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: getRequiredCompanyScopedHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ urls }),
         credentials: "include",
       });
+      if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
 
       const reader = res.body?.getReader();
-      if (!reader) return;
+      if (!reader) throw new Error("No response stream returned");
       const decoder = new TextDecoder();
       let buffer = "";
 
@@ -112,8 +121,9 @@ export default function BatchGenerator() {
       toast({ title: "Competitor Analysis Complete" });
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
+    } finally {
+      setCompetitorRunning(false);
     }
-    setCompetitorRunning(false);
   };
 
   const fetchSitemap = async (domain: string) => {
@@ -278,13 +288,25 @@ export default function BatchGenerator() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <p className="text-sm text-muted-foreground">
-                  Paste competitor blog URLs (one per line). AI will analyze each, filter for iBOLT relevance,
-                  and automatically queue generation for posts that apply to our products.
+                  Paste competitor blog URLs (one per line). AI will analyze each, filter for brand relevance,
+                  and automatically queue generation for posts that apply to your products.
                 </p>
 
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={() => fetchSitemap("rammount.com")}>Load RAM Mount Blog URLs</Button>
-                  <Button variant="outline" size="sm" onClick={() => fetchSitemap("arkon.com")}>Load Arkon Blog URLs</Button>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <input
+                    className="min-h-9 flex-1 rounded-md border bg-transparent px-3 py-1 text-sm"
+                    placeholder="competitor-domain.com"
+                    value={competitorDomain}
+                    onChange={(event) => setCompetitorDomain(event.target.value)}
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => competitorDomain.trim() && fetchSitemap(competitorDomain.trim())}
+                    disabled={!competitorDomain.trim()}
+                  >
+                    Load Blog URLs
+                  </Button>
                 </div>
 
                 <textarea
@@ -323,7 +345,7 @@ export default function BatchGenerator() {
                             <p className="text-xs text-muted-foreground mt-0.5 truncate">{result.url}</p>
                             <p className="text-xs mt-1">{result.relevanceReason}</p>
                             {result.isRelevant && result.suggestedTitle && (
-                              <p className="text-xs text-green-600 mt-1">iBOLT post: {result.suggestedTitle}</p>
+                              <p className="text-xs text-green-600 mt-1">Suggested post: {result.suggestedTitle}</p>
                             )}
                           </div>
                           <Badge variant={result.isRelevant ? "default" : "outline"} className="ml-2">

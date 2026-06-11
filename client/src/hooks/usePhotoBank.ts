@@ -1,14 +1,55 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { companyScopedUrl, getRequiredCompanyScopedHeaders, useActiveCompanyId } from "@/lib/company";
+
+export type PhotoStats = {
+  total: number;
+  analyzed: number;
+  unanalyzed: number;
+  unassigned: number;
+  approved: number;
+  needsReview: number;
+  restricted: number;
+};
+
+export type PhotoMetadataUpdate = {
+  productId?: string | null;
+  assetStatus?: "needs_review" | "approved" | "archived";
+  rightsStatus?: "unknown" | "owned" | "licensed" | "restricted";
+  usageRestrictions?: string | null;
+  useCases?: string[] | string | null;
+  altText?: string | null;
+  caption?: string | null;
+  notes?: string | null;
+  sourceType?: "upload" | "directory" | "shopify" | "url" | "manual";
+  sourceUrl?: string | null;
+  angleType?: string | null;
+  contextType?: string | null;
+  settingDescription?: string | null;
+  isHero?: boolean;
+  verticalRelevance?: string[] | string | null;
+};
+
+function invalidatePhotoQueries() {
+  queryClient.invalidateQueries({
+    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/photos"),
+  });
+  queryClient.invalidateQueries({
+    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/products"),
+  });
+}
 
 export function usePhotos(productId?: string) {
-  const url = productId ? `/api/blog/photos?productId=${productId}` : "/api/blog/photos";
-  return useQuery<any[]>({ queryKey: [url] });
+  const activeCompanyId = useActiveCompanyId();
+  const url = companyScopedUrl("/api/blog/photos", { productId });
+  return useQuery<any[]>({ queryKey: [url], enabled: Boolean(activeCompanyId) });
 }
 
 export function usePhotoStats() {
-  return useQuery<{ total: number; analyzed: number; unanalyzed: number; unassigned: number }>({
-    queryKey: ["/api/blog/photos/stats"],
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<PhotoStats>({
+    queryKey: [companyScopedUrl("/api/blog/photos/stats")],
+    enabled: Boolean(activeCompanyId),
   });
 }
 
@@ -22,6 +63,7 @@ export function useUploadPhotos() {
       if (productId) formData.append("productId", productId);
       const res = await fetch("/api/blog/photos/upload", {
         method: "POST",
+        headers: getRequiredCompanyScopedHeaders(),
         body: formData,
         credentials: "include",
       });
@@ -29,7 +71,7 @@ export function useUploadPhotos() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/photos"] });
+      invalidatePhotoQueries();
     },
   });
 }
@@ -41,7 +83,19 @@ export function useAnalyzePhoto() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/photos"] });
+      invalidatePhotoQueries();
+    },
+  });
+}
+
+export function useUpdatePhoto() {
+  return useMutation({
+    mutationFn: async ({ id, updates }: { id: string; updates: PhotoMetadataUpdate }) => {
+      const res = await apiRequest("PATCH", `/api/blog/photos/${id}`, updates);
+      return res.json();
+    },
+    onSuccess: () => {
+      invalidatePhotoQueries();
     },
   });
 }
@@ -53,7 +107,7 @@ export function useAutoAssociate() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/photos"] });
+      invalidatePhotoQueries();
     },
   });
 }
@@ -65,7 +119,7 @@ export function useDeletePhoto() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/photos"] });
+      invalidatePhotoQueries();
     },
   });
 }

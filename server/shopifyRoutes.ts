@@ -2,31 +2,318 @@
 // Handles publishing blog posts to Shopify and checking sync status.
 
 import { Router, type Request, type Response } from "express";
+import { createHmac, timingSafeEqual } from "crypto";
 import {
   syncBlogPostToShopify,
   batchSyncToShopify,
   getShopifyArticle,
+  updateShopifyArticle,
+  deleteShopifyArticle,
+  listShopifyArticles,
   listShopifyBlogs,
+  updateCollectionDescription,
+  listCollections,
+  checkShopifyConnection,
   getShopifyBlogTargets,
   type SyncResult,
   type BatchSyncProgress,
 } from "./shopifyPublisher";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
-import { blogPosts } from "@shared/schema";
+import { and, eq } from "drizzle-orm";
+import { blogPosts, companyIntegrations, companyMemberships, companyUsageEvents } from "@shared/schema";
+import { companyRoleAtLeast, getCompanyContext, getCompanyIdFromRequest, requireBlogRole } from "./companyContext";
+import { encryptSecret } from "./integrationSecrets";
+
+const SHOPIFY_CLIENT_ID = process.env.SHOPIFY_CLIENT_ID || "";
+const SHOPIFY_CLIENT_SECRET = process.env.SHOPIFY_CLIENT_SECRET || "";
+const SHOPIFY_API_VERSION = process.env.SHOPIFY_API_VERSION || "2026-04";
+const SHOPIFY_OAUTH_SCOPES = process.env.SHOPIFY_OAUTH_SCOPES || "read_products,read_content,write_content";
+
+function normalizeShop(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const host = value.trim().replace(/^https?:\/\//i, "").replace(/\/.*$/, "").toLowerCase();
+  if (!host) return null;
+  const shop = host.replace(/\.myshopify\.com$/i, "");
+  return /^[a-z0-9][a-z0-9-]*$/.test(shop) ? shop : null;
+}
+
+function allowDirectCollectionMutation(): boolean {
+  return ["1", "true", "yes", "on"].includes((process.env.BLOG_ALLOW_SHOPIFY_COLLECTION_MUTATION || "").toLowerCase());
+}
+
+function parseNumericId(value: unknown): number | null {
+  const id = Number(value);
+  return Number.isFinite(id) && id > 0 ? id : null;
+}
+
+async function getLinkedShopifyPost(companyId: string, articleId: number) {
+  const [post] = await db
+    .select()
+    .from(blogPosts)
+    .where(and(eq(blogPosts.companyId, companyId), eq(blogPosts.shopifyArticleId, articleId)))
+    .limit(1);
+  return post;
+}
+
+function appBaseUrl(req: Request): string {
+  const configured = process.env.APP_BASE_URL || process.env.PUBLIC_BASE_URL || process.env.PUBLIC_APP_URL;
+  if (configured) return configured.replace(/\/$/, "");
+  const proto = req.get("x-forwarded-proto") || req.protocol || "http";
+  return `${proto}://${req.get("host")}`;
+}
+
+function normalizeReturnPath(value: unknown): string {
+  if (typeof value !== "string") return "/blog/settings";
+  const trimmed = value.trim();
+  if (!trimmed || !trimmed.startsWith("/") || trimmed.startsWith("//")) return "/blog/settings";
+  try {
+    const parsed = new URL(trimmed, "https://app.local");
+    return `${parsed.pathname}${parsed.search}${parsed.hash}` || "/blog/settings";
+  } catch {
+    return "/blog/settings";
+  }
+}
+
+function signPayload(payload: string): string {
+  return createHmac("sha256", SHOPIFY_CLIENT_SECRET || process.env.JWT_SECRET || "dev-shopify-state")
+    .update(payload)
+    .digest("base64url");
+}
+
+function createOAuthState(input: { companyId: string; shop: string; returnPath?: string; userId?: string | null }): string {
+  const payload = Buffer.from(JSON.stringify({
+    companyId: input.companyId,
+    userId: input.userId || null,
+    shop: input.shop,
+    returnPath: normalizeReturnPath(input.returnPath),
+    exp: Date.now() + 10 * 60 * 1000,
+  })).toString("base64url");
+  return `${payload}.${signPayload(payload)}`;
+}
+
+function verifyOAuthState(state: unknown): { companyId: string; shop: string; returnPath: string; userId: string | null } {
+  if (typeof state !== "string" || !state.includes(".")) {
+    throw new Error("Missing Shopify OAuth state.");
+  }
+  const [payload, signature] = state.split(".");
+  const expected = signPayload(payload);
+  const left = Buffer.from(signature || "");
+  const right = Buffer.from(expected);
+  if (left.length !== right.length || !timingSafeEqual(left, right)) {
+    throw new Error("Invalid Shopify OAuth state.");
+  }
+
+  const parsed = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as {
+    companyId?: string;
+    userId?: string | null;
+    shop?: string;
+    returnPath?: string;
+    exp?: number;
+  };
+  if (!parsed.companyId || !parsed.shop || !parsed.exp || parsed.exp < Date.now()) {
+    throw new Error("Expired Shopify OAuth state.");
+  }
+
+  return {
+    companyId: parsed.companyId,
+    userId: parsed.userId || null,
+    shop: parsed.shop,
+    returnPath: normalizeReturnPath(parsed.returnPath),
+  };
+}
+
+function verifyShopifyHmac(query: Request["query"]): boolean {
+  const hmac = typeof query.hmac === "string" ? query.hmac : "";
+  if (!hmac || !SHOPIFY_CLIENT_SECRET) return false;
+
+  const message = Object.entries(query)
+    .filter(([key]) => key !== "hmac" && key !== "signature")
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, value]) => {
+      const rendered = Array.isArray(value) ? value.join(",") : String(value ?? "");
+      return `${key}=${rendered}`;
+    })
+    .join("&");
+
+  const digest = createHmac("sha256", SHOPIFY_CLIENT_SECRET).update(message).digest("hex");
+  const left = Buffer.from(hmac, "hex");
+  const right = Buffer.from(digest, "hex");
+  return left.length === right.length && timingSafeEqual(left, right);
+}
+
+async function fetchShopifyBlogs(shop: string, accessToken: string): Promise<Array<{ id: number; name: string; handle: string }>> {
+  const response = await fetch(`https://${shop}.myshopify.com/admin/api/${SHOPIFY_API_VERSION}/blogs.json?limit=50`, {
+    headers: { "X-Shopify-Access-Token": accessToken },
+  });
+  if (!response.ok) return [];
+  const data = await response.json();
+  return (data.blogs || []).map((blog: any) => ({
+    id: Number(blog.id),
+    name: blog.title,
+    handle: blog.handle,
+  })).filter((blog: { id: number; name: string; handle: string }) => Number.isFinite(blog.id) && blog.name && blog.handle);
+}
+
+async function exchangeOAuthCode(shop: string, code: string): Promise<{ accessToken: string; scope?: string }> {
+  const response = await fetch(`https://${shop}.myshopify.com/admin/oauth/access_token`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      client_id: SHOPIFY_CLIENT_ID,
+      client_secret: SHOPIFY_CLIENT_SECRET,
+      code,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Shopify OAuth token exchange failed with status ${response.status}.`);
+  }
+
+  const data = await response.json();
+  if (!data.access_token) throw new Error("Shopify OAuth did not return an access token.");
+  return { accessToken: data.access_token, scope: data.scope };
+}
 
 export function registerShopifyRoutes(app: {
   use: (path: string, router: Router) => void;
 }) {
   const router = Router();
 
+  router.post("/oauth/start", requireBlogRole("admin"), async (req: Request, res: Response) => {
+    try {
+      if (!SHOPIFY_CLIENT_ID || !SHOPIFY_CLIENT_SECRET) {
+        return res.status(400).json({ error: "SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET must be configured." });
+      }
+
+      const shop = normalizeShop(req.body?.shop);
+      if (!shop) return res.status(400).json({ error: "A valid Shopify shop is required." });
+
+      const companyId = getCompanyIdFromRequest(req);
+      const redirectUri = `${appBaseUrl(req)}/api/blog/shopify/oauth/callback`;
+      const state = createOAuthState({
+        companyId,
+        userId: req.user?.userId || null,
+        shop,
+        returnPath: normalizeReturnPath(req.body?.returnPath),
+      });
+      const installUrl = new URL(`https://${shop}.myshopify.com/admin/oauth/authorize`);
+      installUrl.searchParams.set("client_id", SHOPIFY_CLIENT_ID);
+      installUrl.searchParams.set("scope", SHOPIFY_OAUTH_SCOPES);
+      installUrl.searchParams.set("redirect_uri", redirectUri);
+      installUrl.searchParams.set("state", state);
+
+      res.json({ installUrl: installUrl.toString(), redirectUri, scopes: SHOPIFY_OAUTH_SCOPES.split(",") });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
+    }
+  });
+
+  router.get("/oauth/callback", async (req: Request, res: Response) => {
+    let returnPath = "/blog/settings";
+    try {
+      if (!SHOPIFY_CLIENT_ID || !SHOPIFY_CLIENT_SECRET) {
+        throw new Error("SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET must be configured.");
+      }
+      if (!verifyShopifyHmac(req.query)) {
+        throw new Error("Invalid Shopify OAuth HMAC.");
+      }
+
+      const state = verifyOAuthState(req.query.state);
+      returnPath = state.returnPath;
+      if (state.userId && req.user?.userId && req.user.userId !== state.userId) {
+        throw new Error("Shopify OAuth state does not match the current user.");
+      }
+      if (state.userId) {
+        const [membership] = await db
+          .select({ id: companyMemberships.id, role: companyMemberships.role })
+          .from(companyMemberships)
+          .where(and(
+            eq(companyMemberships.companyId, state.companyId),
+            eq(companyMemberships.userId, state.userId),
+            eq(companyMemberships.status, "active"),
+          ))
+          .limit(1);
+        if (!membership) throw new Error("Shopify OAuth user no longer has access to this company.");
+        if (!companyRoleAtLeast(membership.role, "admin")) {
+          throw new Error("Shopify OAuth requires admin access to this company.");
+        }
+      }
+      const shop = normalizeShop(req.query.shop);
+      const code = typeof req.query.code === "string" ? req.query.code : "";
+      if (!shop || shop !== state.shop || !code) {
+        throw new Error("Invalid Shopify OAuth callback.");
+      }
+
+      const { accessToken, scope } = await exchangeOAuthCode(shop, code);
+      const blogTargets = await fetchShopifyBlogs(shop, accessToken);
+      const defaultBlogId = blogTargets[0]?.id || null;
+      const encryptedAccessToken = encryptSecret(accessToken);
+      const productUrlPattern = `https://${shop}.myshopify.com/products/{handle}`;
+
+      const [existing] = await db
+        .select()
+        .from(companyIntegrations)
+        .where(and(eq(companyIntegrations.companyId, state.companyId), eq(companyIntegrations.type, "shopify")))
+        .limit(1);
+
+      const previousConfig = existing?.config && typeof existing.config === "object" && !Array.isArray(existing.config)
+        ? existing.config as Record<string, unknown>
+        : {};
+      const config = {
+        ...previousConfig,
+        shop,
+        defaultBlogId,
+        blogTargets,
+        productUrlPattern,
+        scopes: scope ? String(scope).split(",") : SHOPIFY_OAUTH_SCOPES.split(","),
+        encryptedAccessToken,
+        installedAt: new Date().toISOString(),
+      };
+      const payload = {
+        companyId: state.companyId,
+        type: "shopify",
+        name: "Shopify",
+        status: "connected",
+        accessTokenRef: null,
+        config,
+        updatedAt: new Date(),
+      };
+
+      if (existing) {
+        await db.update(companyIntegrations).set(payload).where(eq(companyIntegrations.id, existing.id));
+      } else {
+        await db.insert(companyIntegrations).values({ ...payload, createdAt: new Date() });
+      }
+
+      await db.insert(companyUsageEvents).values({
+        companyId: state.companyId,
+        userId: state.userId || req.user?.userId || null,
+        eventType: "integration.shopify.oauth_connected",
+        metadata: { shop, scopes: config.scopes, blogTargets: blogTargets.length },
+      });
+
+      const redirect = new URL(returnPath, appBaseUrl(req));
+      redirect.searchParams.set("shopify", "connected");
+      redirect.searchParams.set("companyId", state.companyId);
+      res.redirect(302, redirect.toString());
+    } catch (error: unknown) {
+      console.warn("[Shopify OAuth] callback failed:", error instanceof Error ? error.message : "Unknown error");
+      const redirect = new URL(returnPath, appBaseUrl(req));
+      redirect.searchParams.set("shopify_error", "oauth_failed");
+      res.redirect(302, redirect.toString());
+    }
+  });
+
   // POST /api/blog/shopify/posts/:id/publish — Sync single post to Shopify
   router.post(
     "/posts/:id/publish",
+    requireBlogRole("reviewer"),
     async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
         const { blogId } = req.body as { blogId?: number };
+        const companyId = getCompanyIdFromRequest(req);
 
         if (!id) {
           return res.status(400).json({ error: "Post ID is required" });
@@ -36,7 +323,7 @@ export function registerShopifyRoutes(app: {
         const [post] = await db
           .select()
           .from(blogPosts)
-          .where(eq(blogPosts.id, id));
+          .where(and(eq(blogPosts.companyId, companyId), eq(blogPosts.id, id)));
 
         if (!post) {
           return res.status(404).json({ error: "Blog post not found" });
@@ -49,7 +336,7 @@ export function registerShopifyRoutes(app: {
           });
         }
 
-        const result = await syncBlogPostToShopify(id, blogId);
+        const result = await syncBlogPostToShopify(id, blogId, companyId);
 
         if (result.success) {
           return res.json({
@@ -74,12 +361,14 @@ export function registerShopifyRoutes(app: {
   // POST /api/blog/shopify/posts/batch-publish — Bulk sync posts to Shopify (SSE)
   router.post(
     "/posts/batch-publish",
+    requireBlogRole("reviewer"),
     async (req: Request, res: Response) => {
       try {
         const { postIds, blogId } = req.body as {
           postIds?: string[];
           blogId?: number;
         };
+        const companyId = getCompanyIdFromRequest(req);
 
         if (!postIds || !Array.isArray(postIds) || postIds.length === 0) {
           return res.status(400).json({
@@ -87,13 +376,13 @@ export function registerShopifyRoutes(app: {
           });
         }
 
-        // Validate all post IDs exist
+        // Validate all post IDs exist inside the active company.
         const posts = await Promise.all(
           postIds.map((id) =>
             db
               .select({ id: blogPosts.id, title: blogPosts.title })
               .from(blogPosts)
-              .where(eq(blogPosts.id, id))
+              .where(and(eq(blogPosts.companyId, companyId), eq(blogPosts.id, id)))
           )
         );
 
@@ -128,7 +417,8 @@ export function registerShopifyRoutes(app: {
           blogId,
           (progress: BatchSyncProgress) => {
             sendEvent("progress", progress);
-          }
+          },
+          companyId,
         );
 
         const succeeded = results.filter((r) => r.success).length;
@@ -165,6 +455,8 @@ export function registerShopifyRoutes(app: {
     async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
+        const companyId = getCompanyIdFromRequest(req);
+        const companyContext = await getCompanyContext(companyId);
 
         const [post] = await db
           .select({
@@ -176,7 +468,7 @@ export function registerShopifyRoutes(app: {
             shopifySyncedAt: blogPosts.shopifySyncedAt,
           })
           .from(blogPosts)
-          .where(eq(blogPosts.id, id));
+          .where(and(eq(blogPosts.companyId, companyId), eq(blogPosts.id, id)));
 
         if (!post) {
           return res.status(404).json({ error: "Blog post not found" });
@@ -197,7 +489,8 @@ export function registerShopifyRoutes(app: {
           try {
             const article = await getShopifyArticle(
               post.shopifyBlogId,
-              post.shopifyArticleId
+              post.shopifyArticleId,
+              companyContext,
             );
             syncStatus.shopifyStatus = article.published_at
               ? "published"
@@ -226,14 +519,15 @@ export function registerShopifyRoutes(app: {
   );
 
   // GET /api/blog/shopify/blogs — List available Shopify blogs
-  router.get("/blogs", async (_req: Request, res: Response) => {
+  router.get("/blogs", async (req: Request, res: Response) => {
     try {
+      const companyContext = await getCompanyContext(getCompanyIdFromRequest(req));
       // First return our known blogs (fast, no API call)
-      const knownBlogs = getShopifyBlogTargets();
+      const knownBlogs = getShopifyBlogTargets(companyContext);
 
       // Try to also fetch from Shopify for the complete list
       try {
-        const shopifyBlogs = await listShopifyBlogs();
+        const shopifyBlogs = await listShopifyBlogs(companyContext);
         return res.json({
           blogs: shopifyBlogs.map((b) => ({
             id: b.id,
@@ -259,6 +553,133 @@ export function registerShopifyRoutes(app: {
         error instanceof Error ? error.message : "Unknown error";
       console.error("[Shopify Route] List blogs error:", message);
       return res.status(500).json({ error: message });
+    }
+  });
+
+  // GET /api/blog/shopify/status — Check active company's Shopify connection
+  router.get("/status", async (req: Request, res: Response) => {
+    try {
+      const status = await checkShopifyConnection(await getCompanyContext(getCompanyIdFromRequest(req)));
+      res.json(status);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
+    }
+  });
+
+  // GET /api/blog/shopify/articles — List Shopify blog articles
+  router.get("/articles", async (req: Request, res: Response) => {
+    try {
+      const articles = await listShopifyArticles(undefined, 50, await getCompanyContext(getCompanyIdFromRequest(req)));
+      res.json({ articles });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
+    }
+  });
+
+  // PUT /api/blog/shopify/articles/:articleId — Update a Shopify article
+  router.put("/articles/:articleId", requireBlogRole("reviewer"), async (req: Request, res: Response) => {
+    try {
+      const articleId = parseNumericId(req.params.articleId);
+      if (!articleId) return res.status(400).json({ error: "A valid article ID is required." });
+      const companyId = getCompanyIdFromRequest(req);
+      const linkedPost = await getLinkedShopifyPost(companyId, articleId);
+      if (!linkedPost) {
+        return res.status(404).json({ error: "Shopify article is not linked to a post in this company." });
+      }
+      if (!linkedPost.shopifyBlogId) {
+        return res.status(400).json({ error: "Linked post is missing its Shopify blog ID." });
+      }
+      const companyContext = await getCompanyContext(companyId);
+
+      await updateShopifyArticle(linkedPost.shopifyBlogId, articleId, {
+        title: req.body.title,
+        bodyHtml: req.body.body_html,
+        tags: req.body.tags,
+        published: req.body.published,
+      }, companyContext);
+      await db.insert(companyUsageEvents).values({
+        companyId,
+        userId: req.user?.userId || null,
+        eventType: "shopify.article.updated",
+        metadata: { articleId, blogPostId: linkedPost.id },
+      });
+      res.json({ message: "Updated" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
+    }
+  });
+
+  // DELETE /api/blog/shopify/articles/:articleId — Delete a Shopify article
+  router.delete("/articles/:articleId", requireBlogRole("admin"), async (req: Request, res: Response) => {
+    try {
+      const articleId = parseNumericId(req.params.articleId);
+      if (!articleId) return res.status(400).json({ error: "A valid article ID is required." });
+      const companyId = getCompanyIdFromRequest(req);
+      const linkedPost = await getLinkedShopifyPost(companyId, articleId);
+      if (!linkedPost) {
+        return res.status(404).json({ error: "Shopify article is not linked to a post in this company." });
+      }
+      if (!linkedPost.shopifyBlogId) {
+        return res.status(400).json({ error: "Linked post is missing its Shopify blog ID." });
+      }
+      await deleteShopifyArticle(linkedPost.shopifyBlogId, articleId, await getCompanyContext(companyId));
+      await db
+        .update(blogPosts)
+        .set({
+          shopifyArticleId: null,
+          shopifyBlogId: null,
+          shopifySyncedAt: null,
+          status: linkedPost.status === "published" ? "approved" : linkedPost.status,
+          updatedAt: new Date(),
+        })
+        .where(and(eq(blogPosts.companyId, companyId), eq(blogPosts.id, linkedPost.id)));
+      await db.insert(companyUsageEvents).values({
+        companyId,
+        userId: req.user?.userId || null,
+        eventType: "shopify.article.deleted",
+        metadata: { articleId, blogPostId: linkedPost.id },
+      });
+      res.json({ message: "Deleted" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
+    }
+  });
+
+  // GET /api/blog/shopify/collections — List Shopify collections
+  router.get("/collections", async (req: Request, res: Response) => {
+    try {
+      const collections = await listCollections(await getCompanyContext(getCompanyIdFromRequest(req)));
+      res.json({ collections });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
+    }
+  });
+
+  // PUT /api/blog/shopify/collections/:id — Update collection description
+  router.put("/collections/:id", requireBlogRole("admin"), async (req: Request, res: Response) => {
+    try {
+      if (!allowDirectCollectionMutation()) {
+        return res.status(403).json({ error: "Direct Shopify collection mutation is disabled. Set BLOG_ALLOW_SHOPIFY_COLLECTION_MUTATION=true to enable this admin tool." });
+      }
+      const collectionId = parseNumericId(req.params.id);
+      if (!collectionId) return res.status(400).json({ error: "A valid collection ID is required." });
+      const companyId = getCompanyIdFromRequest(req);
+      await updateCollectionDescription(collectionId, req.body.body_html, await getCompanyContext(companyId));
+      await db.insert(companyUsageEvents).values({
+        companyId,
+        userId: req.user?.userId || null,
+        eventType: "shopify.collection.updated",
+        metadata: { collectionId },
+      });
+      res.json({ message: "Collection updated" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
     }
   });
 

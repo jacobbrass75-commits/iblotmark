@@ -1,5 +1,15 @@
 import { useState, useCallback, useRef } from "react";
 import { queryClient } from "@/lib/queryClient";
+import { getRequiredCompanyScopedHeaders } from "@/lib/company";
+
+function invalidatePipelineQueries() {
+  queryClient.invalidateQueries({
+    predicate: (query) => {
+      const key = String(query.queryKey[0] || "");
+      return key.startsWith("/api/blog/posts") || key.startsWith("/api/blog/keywords/clusters");
+    },
+  });
+}
 
 export interface PipelineState {
   isRunning: boolean;
@@ -39,12 +49,13 @@ export function useBlogPipeline() {
     try {
       const response = await fetch("/api/blog/generate", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: getRequiredCompanyScopedHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ clusterId }),
         credentials: "include",
         signal: controller.signal,
       });
 
+      if (!response.ok) throw new Error(`${response.status}: ${await response.text()}`);
       if (!response.body) throw new Error("No response body");
 
       const reader = response.body.getReader();
@@ -88,8 +99,7 @@ export function useBlogPipeline() {
       }
 
       setState((prev) => ({ ...prev, isRunning: false }));
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/posts"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/keywords/clusters"] });
+      invalidatePipelineQueries();
     } catch (err: any) {
       if (err.name !== "AbortError") {
         setState((prev) => ({ ...prev, isRunning: false, error: err.message }));

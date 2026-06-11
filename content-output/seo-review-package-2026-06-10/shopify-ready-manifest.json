@@ -1,0 +1,112 @@
+[
+  {
+    "id": "product-tabdock-bizmount-metal-amps",
+    "targetType": "product",
+    "title": "iBOLT TabDock Bizmount Metal AMPS",
+    "sourceUrl": "https://iboltmounts.com/products/ibolt-tabdock-bizmount-metal-amps",
+    "previewFile": "storefront-previews/products/product-tabdock-bizmount-metal-amps.html",
+    "bodyFile": "shopify-ready/products/product-tabdock-bizmount-metal-amps.body.html",
+    "payloadFile": "shopify-ready/payloads/product-tabdock-bizmount-metal-amps.json",
+    "wordCount": 580
+  },
+  {
+    "id": "product-tabdock-incredibolt-amps-425",
+    "targetType": "product",
+    "title": "iBOLT TabDock IncrediBOLT AMPS 4.25 Inch Drill Base",
+    "sourceUrl": "https://iboltmounts.com/products/ibolt-tabdock-dynamount-amps-w-4-25-dual-socket-arm-drill-base",
+    "previewFile": "storefront-previews/products/product-tabdock-incredibolt-amps-425.html",
+    "bodyFile": "shopify-ready/products/product-tabdock-incredibolt-amps-425.body.html",
+    "payloadFile": "shopify-ready/payloads/product-tabdock-incredibolt-amps-425.json",
+    "wordCount": 545
+  },
+  {
+    "id": "product-tablet-tower-wall-4",
+    "targetType": "product",
+    "title": "iBOLT Tablet Tower POS Wall Mount with 4 Tablet Holders",
+    "sourceUrl": "https://iboltmounts.com/products/ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+    "previewFile": "storefront-previews/products/product-tablet-tower-wall-4.html",
+    "bodyFile": "shopify-ready/products/product-tablet-tower-wall-4.body.html",
+    "payloadFile": "shopify-ready/payloads/product-tablet-tower-wall-4.json",
+    "wordCount": 525
+  },
+  {
+    "id": "product-tablet-tower-clamp-5",
+    "targetType": "product",
+    "title": "iBOLT Tablet Tower POS Clamp Mount with 5 Tablet Holders",
+    "sourceUrl": "https://iboltmounts.com/products/multi-tablet-stand-five-holders-restaurant-point-of-sale-purchase-ipad-ibrt-34706",
+    "previewFile": "storefront-previews/products/product-tablet-tower-clamp-5.html",
+    "bodyFile": "shopify-ready/products/product-tablet-tower-clamp-5.body.html",
+    "payloadFile": "shopify-ready/payloads/product-tablet-tower-clamp-5.json",
+    "wordCount": 536
+  },
+  {
+    "id": "collection-live-streaming",
+    "targetType": "collection",
+    "title": "Live Streaming Phone and Camera Mounts",
+    "sourceUrl": "https://iboltmounts.com/collections/live-streaming",
+    "previewFile": "storefront-previews/collections/collection-live-streaming.html",
+    "bodyFile": "shopify-ready/collections/collection-live-streaming.body.html",
+    "payloadFile": "shopify-ready/payloads/collection-live-streaming.json",
+    "wordCount": 611
+  },
+  {
+    "id": "collection-top-eld-solutions",
+    "targetType": "collection",
+    "title": "Fleet and ELD Tablet Mounting Systems",
+    "sourceUrl": "https://iboltmounts.com/collections/top-eld-solutions",
+    "previewFile": "storefront-previews/collections/collection-top-eld-solutions.html",
+    "bodyFile": "shopify-ready/collections/collection-top-eld-solutions.body.html",
+    "payloadFile": "shopify-ready/payloads/collection-top-eld-solutions.json",
+    "wordCount": 630
+  },
+  {
+    "id": "collection-20mm-ball-adapters",
+    "targetType": "collection",
+    "title": "20mm Ball Adapters and Mounts",
+    "sourceUrl": "https://iboltmounts.com/collections/20mm-ball-adapters-andmounts",
+    "previewFile": "storefront-previews/collections/collection-20mm-ball-adapters.html",
+    "bodyFile": "shopify-ready/collections/collection-20mm-ball-adapters.body.html",
+    "payloadFile": "shopify-ready/payloads/collection-20mm-ball-adapters.json",
+    "wordCount": 598
+  },
+  {
+    "id": "collection-smartphone-phone-mounts",
+    "targetType": "collection",
+    "title": "Smartphone and Phone Mounts",
+    "sourceUrl": "https://iboltmounts.com/collections/smartphone-phone-mounts",
+    "previewFile": "storefront-previews/collections/collection-smartphone-phone-mounts.html",
+    "bodyFile": "shopify-ready/collections/collection-smartphone-phone-mounts.body.html",
+    "payloadFile": "shopify-ready/payloads/collection-smartphone-phone-mounts.json",
+    "wordCount": 631
+  },
+  {
+    "id": "article-managing-multiple-tablets-restaurant-refresh",
+    "targetType": "article_refresh",
+    "title": "How to Manage Multiple Restaurant Tablets",
+    "sourceUrl": "https://iboltmounts.com/blogs/news/managing-multiple-tablets-in-a-restaurant",
+    "previewFile": "storefront-previews/article-refreshes/article-managing-multiple-tablets-restaurant-refresh.html",
+    "bodyFile": "shopify-ready/article-refreshes/article-managing-multiple-tablets-restaurant-refresh.body.html",
+    "payloadFile": "shopify-ready/payloads/article-managing-multiple-tablets-restaurant-refresh.json",
+    "wordCount": 1196
+  },
+  {
+    "id": "article-eld-mandate-refresh",
+    "targetType": "article_refresh",
+    "title": "ELD Tablet Mounting Guide for Fleets",
+    "sourceUrl": "https://iboltmounts.com/blogs/news/confused-about-the-eld-mandate",
+    "previewFile": "storefront-previews/article-refreshes/article-eld-mandate-refresh.html",
+    "bodyFile": "shopify-ready/article-refreshes/article-eld-mandate-refresh.body.html",
+    "payloadFile": "shopify-ready/payloads/article-eld-mandate-refresh.json",
+    "wordCount": 1045
+  },
+  {
+    "id": "article-clamping-phone-tablet-mounts-refresh",
+    "targetType": "article_refresh",
+    "title": "Where to Use Clamp Phone and Tablet Mounts",
+    "sourceUrl": "https://iboltmounts.com/blogs/news/great-places-to-use-clamping-tablet-and-phone-mounts",
+    "previewFile": "storefront-previews/article-refreshes/article-clamping-phone-tablet-mounts-refresh.html",
+    "bodyFile": "shopify-ready/article-refreshes/article-clamping-phone-tablet-mounts-refresh.body.html",
+    "payloadFile": "shopify-ready/payloads/article-clamping-phone-tablet-mounts-refresh.json",
+    "wordCount": 1057
+  }
+]

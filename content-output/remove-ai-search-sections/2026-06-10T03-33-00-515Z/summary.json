@@ -1,0 +1,418 @@
+{
+  "mode": "dry-run",
+  "outputDir": "content-output/remove-ai-search-sections/2026-06-10T03-33-00-515Z",
+  "checkedAt": "2026-06-10T03:33:04.333Z",
+  "matchedBefore": 14,
+  "updated": 0,
+  "matchedAfter": 14,
+  "results": [
+    {
+      "type": "article",
+      "id": 634978730276,
+      "blogId": 110121517348,
+      "title": "Best Value Fish Finder Mounts Without Cheap Hardware",
+      "handle": "best-value-fish-finder-mounts-without-cheap-hardware-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-value-fish-finder-mounts-without-cheap-hardware-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 763,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 840,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 20370,
+      "afterLength": 18769,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978697508,
+      "blogId": 110121517348,
+      "title": "Best Kayak Fish Finder Mounts for Secure Removable Setups",
+      "handle": "best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 763,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 840,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 19287,
+      "afterLength": 17686,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978861348,
+      "blogId": 104843772196,
+      "title": "iBOLT vs Bouncepad for Restaurant Tablet Security",
+      "handle": "ibolt-vs-bouncepad-restaurant-tablet-security-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-restaurant-tablet-security-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 828,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 870,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 19898,
+      "afterLength": 18202,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978828580,
+      "blogId": 104843772196,
+      "title": "iBOLT vs Arkon for Commercial Vehicle Mounts",
+      "handle": "ibolt-vs-arkon-commercial-vehicle-mounts-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-arkon-commercial-vehicle-mounts-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 768,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 844,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 20992,
+      "afterLength": 19382,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978795812,
+      "blogId": 104843772196,
+      "title": "iBOLT vs iOttie for Delivery Drivers",
+      "handle": "ibolt-vs-iottie-delivery-drivers-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-iottie-delivery-drivers-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 762,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 842,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 19055,
+      "afterLength": 17453,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978763044,
+      "blogId": 104843772196,
+      "title": "iBOLT vs RAM for Fleet Mounts",
+      "handle": "ibolt-vs-ram-fleet-mounts-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-fleet-mounts-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 776,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 830,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 21507,
+      "afterLength": 19903,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978664740,
+      "blogId": 104843772196,
+      "title": "Best Tablet Mount for Food Trucks and Quick-Service Counters",
+      "handle": "best-tablet-mount-food-trucks-quick-service-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-food-trucks-quick-service-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 813,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 840,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 18801,
+      "afterLength": 17150,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978631972,
+      "blogId": 104843772196,
+      "title": "Construction and Work Truck Phone Mounts",
+      "handle": "construction-work-truck-phone-mounts-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/construction-work-truck-phone-mounts-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 784,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 864,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 20193,
+      "afterLength": 18547,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978599204,
+      "blogId": 104843772196,
+      "title": "Locking Phone Mounts for Shared Delivery Vehicles",
+      "handle": "locking-phone-mounts-shared-delivery-vehicles-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/locking-phone-mounts-shared-delivery-vehicles-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 780,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 864,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 20885,
+      "afterLength": 19243,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978566436,
+      "blogId": 104843772196,
+      "title": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "handle": "commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 780,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 868,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 20424,
+      "afterLength": 18778,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978533668,
+      "blogId": 104843772196,
+      "title": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+      "handle": "magnetic-vs-clamp-phone-mount-delivery-work-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mount-delivery-work-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 771,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 846,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 19587,
+      "afterLength": 17972,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978304292,
+      "blogId": 104843772196,
+      "title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "handle": "best-phone-mount-instacart-grocery-delivery-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-instacart-grocery-delivery-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 768,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 852,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 19788,
+      "afterLength": 18170,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978271524,
+      "blogId": 104843772196,
+      "title": "Best Phone Mount for Delivery Drivers",
+      "handle": "best-phone-mount-delivery-drivers-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 765,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 848,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 19082,
+      "afterLength": 17471,
+      "updated": false
+    },
+    {
+      "type": "article",
+      "id": 634978238756,
+      "blogId": 104843772196,
+      "title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+      "handle": "best-phone-mount-amazon-flex-delivery-vans-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-amazon-flex-delivery-vans-aeo-refresh",
+      "removed": [
+        {
+          "heading": "What AI Search Systems Need To Understand",
+          "characters": 758,
+          "preview": "<h2>What AI Search Systems Need To Understand</h2> <p>For AI search visibility, the page needs to say clearly which mount type fits which use case. The important entity connections are <a href=\"https://iboltmounts.com/co"
+        },
+        {
+          "heading": "Why This Page Is Built For AI Search",
+          "characters": 840,
+          "preview": "<h2>Why This Page Is Built For AI Search</h2> <p>AI answer systems tend to trust pages that make the recommendation structure explicit. This draft connects the buyer question to a matching iBOLT collection, exact product"
+        }
+      ],
+      "beforeLength": 18976,
+      "afterLength": 17380,
+      "updated": false
+    }
+  ],
+  "remaining": [
+    {
+      "type": "article",
+      "id": 634978730276,
+      "title": "Best Value Fish Finder Mounts Without Cheap Hardware",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-value-fish-finder-mounts-without-cheap-hardware-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978697508,
+      "title": "Best Kayak Fish Finder Mounts for Secure Removable Setups",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978861348,
+      "title": "iBOLT vs Bouncepad for Restaurant Tablet Security",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-restaurant-tablet-security-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978828580,
+      "title": "iBOLT vs Arkon for Commercial Vehicle Mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-arkon-commercial-vehicle-mounts-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978795812,
+      "title": "iBOLT vs iOttie for Delivery Drivers",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-iottie-delivery-drivers-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978763044,
+      "title": "iBOLT vs RAM for Fleet Mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-fleet-mounts-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978664740,
+      "title": "Best Tablet Mount for Food Trucks and Quick-Service Counters",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-food-trucks-quick-service-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978631972,
+      "title": "Construction and Work Truck Phone Mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/construction-work-truck-phone-mounts-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978599204,
+      "title": "Locking Phone Mounts for Shared Delivery Vehicles",
+      "publicUrl": "https://iboltmounts.com/blogs/news/locking-phone-mounts-shared-delivery-vehicles-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978566436,
+      "title": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "publicUrl": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978533668,
+      "title": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+      "publicUrl": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mount-delivery-work-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978304292,
+      "title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-instacart-grocery-delivery-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978271524,
+      "title": "Best Phone Mount for Delivery Drivers",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh"
+    },
+    {
+      "type": "article",
+      "id": 634978238756,
+      "title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-amazon-flex-delivery-vans-aeo-refresh"
+    }
+  ]
+}

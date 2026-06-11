@@ -1,0 +1,57 @@
+{
+  "publishedAt": "2026-06-09T00:09:09.525Z",
+  "dryRun": false,
+  "apiVersion": "2026-04",
+  "shop": "iboltmounts",
+  "brollUpload": null,
+  "pages": [
+    {
+      "action": "created",
+      "pageId": 163833512228,
+      "handle": "restaurant-tablet-mounts-multi-tablet-delivery-stations",
+      "title": "Restaurant Tablet Mounts and Multi-Tablet Delivery Stations",
+      "url": "https://iboltmounts.com/pages/restaurant-tablet-mounts-multi-tablet-delivery-stations",
+      "publishedAt": "2026-06-08T17:09:06-07:00"
+    },
+    {
+      "action": "created",
+      "pageId": 163833544996,
+      "handle": "amps-mounting-system-amps-mounting-plates",
+      "title": "AMPS Mounting System and AMPS Mounting Plates",
+      "url": "https://iboltmounts.com/pages/amps-mounting-system-amps-mounting-plates",
+      "publishedAt": "2026-06-08T17:09:07-07:00"
+    },
+    {
+      "action": "created",
+      "pageId": 163833577764,
+      "handle": "forklift-tablet-mounting-solutions",
+      "title": "Forklift Tablet Mounting Solutions",
+      "url": "https://iboltmounts.com/pages/forklift-tablet-mounting-solutions",
+      "publishedAt": "2026-06-08T17:09:07-07:00"
+    },
+    {
+      "action": "created",
+      "pageId": 163833610532,
+      "handle": "fleet-eld-mounting-systems",
+      "title": "Fleet and ELD Mounting Systems",
+      "url": "https://iboltmounts.com/pages/fleet-eld-mounting-systems",
+      "publishedAt": "2026-06-08T17:09:08-07:00"
+    },
+    {
+      "action": "created",
+      "pageId": 163833643300,
+      "handle": "live-streaming-phone-camera-mounts",
+      "title": "Live Streaming Phone and Camera Mounts",
+      "url": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts",
+      "publishedAt": "2026-06-08T17:09:08-07:00"
+    },
+    {
+      "action": "created",
+      "pageId": 163833676068,
+      "handle": "phone-clamp-clip-screw-ball-socket-mount-guide",
+      "title": "Phone Clamp, Clip, Screw, Ball, and Socket Mount Guide",
+      "url": "https://iboltmounts.com/pages/phone-clamp-clip-screw-ball-socket-mount-guide",
+      "publishedAt": "2026-06-08T17:09:09-07:00"
+    }
+  ]
+}

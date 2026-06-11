@@ -1,0 +1,249 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://iboltmounts.com/#organization",
+      "name": "iBOLT Mounts",
+      "url": "https://iboltmounts.com",
+      "sameAs": [
+        "https://www.facebook.com/iBOLTMounts/",
+        "https://www.instagram.com/iboltmounts/",
+        "https://www.pinterest.com/iBOLTMounts/",
+        "https://www.youtube.com/channel/UCf8Ah8orl0Ek3XcjC7sWWOA",
+        "https://www.tiktok.com/@iboltmounts"
+      ],
+      "knowsAbout": [
+        "phone mounts",
+        "tablet mounts",
+        "fleet mounting systems",
+        "ELD mounts",
+        "forklift tablet mounts",
+        "AMPS mounting plates",
+        "restaurant tablet mounts",
+        "live streaming camera mounts"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://iboltmounts.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Solutions",
+          "item": "https://iboltmounts.com/pages"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Live Streaming Phone and Camera Mounts",
+          "item": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts#webpage",
+      "url": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts",
+      "name": "Live Streaming Phone and Camera Mounts",
+      "description": "Find phone stands for live streaming, table camera mounts, overhead rigs, clamp mounts, and camera screw adapters for creators.",
+      "isPartOf": {
+        "@id": "https://iboltmounts.com/#website"
+      },
+      "about": [
+        "best phone stand for live streaming",
+        "phone stand for streaming",
+        "table camera mount"
+      ],
+      "publisher": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts#breadcrumb"
+      },
+      "mainEntity": [
+        {
+          "@id": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts#faq"
+        },
+        {
+          "@id": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts#howto"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best phone stand for live streaming?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The best phone stand for live streaming depends on the shot. Use an overhead phone mount for cooking, art, product demos, and unboxing. Use a front-facing stand or clamp mount when the creator needs to speak directly to the camera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a table camera mount used for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A table camera mount holds a camera, phone, or action camera over or beside a work surface. It is useful for product videos, tutorials, live sales, overhead cooking shots, and hands-on demonstrations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I mount a DSLR camera for overhead videos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but the mount needs to support the camera weight and use a 1/4-20 camera screw connection. The iBOLT Stream-Cast Overhead Camera Rig is built for top-down and front-facing camera setups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do phone streaming mounts work for TikTok, YouTube, and Instagram?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The mount holds the phone or camera, so it can support any platform that runs on the device. Choose the mount by device size, shooting angle, and table or desk layout."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should creators use a clamp mount or a freestanding mount?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clamp mounts save desk space and stay fixed to a table, shelf, rail, or rig. Freestanding mounts are easier to move and work better when the setup changes often."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615#product",
+      "name": "iBOLT Stream-Cast Creator Custom mount kit with over 60 variations- great for live streaming tutorial videos and photos",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-great-for-live-streaming-tutorial-videos-and-photos-1050407750.jpg?v=1768845551"
+      ],
+      "url": "https://iboltmounts.com/products/ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+        "priceCurrency": "USD",
+        "price": "139.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount#product",
+      "name": "iBOLT Stream-Cast IncrediBOLT Stand Adjustable Overhead Phone Mount",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-stream-cast-incredibolt-stand-adjustable-overhead-phone-mount-1050409986.jpg?v=1768913830"
+      ],
+      "url": "https://iboltmounts.com/products/ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount",
+        "priceCurrency": "USD",
+        "price": "84.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography#product",
+      "name": "iBOLT Stream-Cast Overhead Camera Rig Desk Mount for DSLR Cameras for Top Down and Front Facing Photography",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography-1050407814.jpg?v=1768919590"
+      ],
+      "url": "https://iboltmounts.com/products/ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+        "priceCurrency": "USD",
+        "price": "179.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603#product",
+      "name": "3 Camera Phone & Tablet Slide Bar - 10 inch",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-3-camera-phone-tablet-slide-bar-10-inch-1050406484.jpg?v=1768893610"
+      ],
+      "url": "https://iboltmounts.com/products/phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+        "priceCurrency": "USD",
+        "price": "34.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories#product",
+      "name": "iBOLT 1/4 20 Camera Screw IncrediBOLT Suction Cup Mount - Secure, Adjustable Mount for Cameras & Accessories",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/files/ibolt-mounts-ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories-1130818920.jpg?v=1768836970"
+      ],
+      "url": "https://iboltmounts.com/products/ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+        "priceCurrency": "USD",
+        "price": "24.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts#howto",
+      "name": "How to choose a live streaming mount",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Decide whether the camera needs front-facing, overhead, side-angle, or product-table positioning."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Match the device connection: phone holder, GoPro adapter, or 1/4-20 camera screw."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Choose a table, clamp, suction, or overhead rig based on the shooting surface."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Test the angle with lights and cables connected before recording the final setup."
+        }
+      ]
+    }
+  ]
+}

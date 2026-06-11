@@ -1,21 +1,35 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { companyScopedUrl, useActiveCompanyId } from "@/lib/company";
+
+function invalidateContextQueries() {
+  queryClient.invalidateQueries({
+    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/context"),
+  });
+  queryClient.invalidateQueries({ queryKey: [companyScopedUrl("/api/blog/company/setup-status")] });
+}
 
 export function useVerticals() {
-  return useQuery<any[]>({ queryKey: ["/api/blog/context/verticals"] });
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<any[]>({
+    queryKey: [companyScopedUrl("/api/blog/context/verticals")],
+    enabled: Boolean(activeCompanyId),
+  });
 }
 
 export function useVertical(id: string) {
+  const activeCompanyId = useActiveCompanyId();
   return useQuery<any>({
-    queryKey: ["/api/blog/context/verticals", id],
-    enabled: !!id,
+    queryKey: [companyScopedUrl(`/api/blog/context/verticals/${id}`)],
+    enabled: Boolean(activeCompanyId && id),
   });
 }
 
 export function useContextEntries(verticalId: string, includeUnverified = true) {
+  const activeCompanyId = useActiveCompanyId();
   return useQuery<any[]>({
-    queryKey: [`/api/blog/context/entries/${verticalId}?includeUnverified=${includeUnverified}`],
-    enabled: !!verticalId,
+    queryKey: [companyScopedUrl(`/api/blog/context/entries/${verticalId}`, { includeUnverified })],
+    enabled: Boolean(activeCompanyId && verticalId),
   });
 }
 
@@ -26,7 +40,7 @@ export function useAddContextEntry() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/context"] });
+      invalidateContextQueries();
     },
   });
 }
@@ -38,7 +52,7 @@ export function useVerifyEntry() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/context"] });
+      invalidateContextQueries();
     },
   });
 }
@@ -50,11 +64,15 @@ export function useDeleteEntry() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/context"] });
+      invalidateContextQueries();
     },
   });
 }
 
 export function useResearchJobs() {
-  return useQuery<any[]>({ queryKey: ["/api/blog/context/research/jobs"] });
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<any[]>({
+    queryKey: [companyScopedUrl("/api/blog/context/research/jobs")],
+    enabled: Boolean(activeCompanyId),
+  });
 }

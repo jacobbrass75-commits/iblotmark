@@ -1,0 +1,24 @@
+{
+  "brandConsistency": 85,
+  "seoOptimization": 75,
+  "naturalLanguage": 90,
+  "factualAccuracy": 80,
+  "operationalSpecificity": 95,
+  "competitorFairness": 85,
+  "overallScore": 85,
+  "passesQualityGate": true,
+  "issues": [
+    "Missing comma in 'anymore,it's' - should be 'anymore, it's'",
+    "Missing space in 'products,they're' - should be 'products, they're'",
+    "Missing space in 'trucking,vibration' - should be 'trucking, vibration'",
+    "Some product claims about durability and vibration resistance lack specific supporting data",
+    "Could benefit from more specific SEO optimization for target keywords"
+  ],
+  "suggestions": [
+    "Add specific vibration testing data or certifications to support durability claims",
+    "Include more target keywords naturally throughout the content",
+    "Consider adding customer testimonials or case studies for fleet deployments",
+    "Add specific compliance certifications or DOT approval numbers if available",
+    "Include more specific technical specifications for the mounting systems"
+  ]
+}

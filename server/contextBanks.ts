@@ -10,37 +10,46 @@ import {
   type ContextEntry,
   type IndustryVertical,
 } from "@shared/schema";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 
 // --- CRUD ---
 
-export async function getVerticals(): Promise<IndustryVertical[]> {
-  return db.select().from(industryVerticals).orderBy(industryVerticals.name);
+export async function getVerticals(companyId = DEFAULT_COMPANY_ID): Promise<IndustryVertical[]> {
+  return db.select().from(industryVerticals).where(eq(industryVerticals.companyId, companyId)).orderBy(industryVerticals.name);
 }
 
-export async function getVerticalBySlug(slug: string): Promise<IndustryVertical | undefined> {
+export async function getVerticalBySlug(slug: string, companyId = DEFAULT_COMPANY_ID): Promise<IndustryVertical | undefined> {
   const [row] = await db
     .select()
     .from(industryVerticals)
-    .where(eq(industryVerticals.slug, slug))
+    .where(and(eq(industryVerticals.companyId, companyId), eq(industryVerticals.slug, slug)))
     .limit(1);
   return row;
 }
 
-export async function getVerticalById(id: string): Promise<IndustryVertical | undefined> {
+export async function getVerticalById(id: string, companyId = DEFAULT_COMPANY_ID): Promise<IndustryVertical | undefined> {
   const [row] = await db
     .select()
     .from(industryVerticals)
-    .where(eq(industryVerticals.id, id))
+    .where(and(eq(industryVerticals.companyId, companyId), eq(industryVerticals.id, id)))
     .limit(1);
   return row;
+}
+
+async function assertVerticalBelongsToCompany(verticalId: string, companyId: string): Promise<void> {
+  const vertical = await getVerticalById(verticalId, companyId);
+  if (!vertical) {
+    throw new Error("Vertical not found for active company");
+  }
 }
 
 export async function getContextEntries(
   verticalId: string,
   category?: string,
   verifiedOnly = true,
+  companyId = DEFAULT_COMPANY_ID,
 ): Promise<ContextEntry[]> {
-  const conditions = [eq(contextEntries.verticalId, verticalId)];
+  const conditions = [eq(contextEntries.companyId, companyId), eq(contextEntries.verticalId, verticalId)];
   if (category) conditions.push(eq(contextEntries.category, category));
   if (verifiedOnly) conditions.push(eq(contextEntries.isVerified, true));
 
@@ -52,32 +61,50 @@ export async function getContextEntries(
 }
 
 export async function addContextEntry(entry: InsertContextEntry): Promise<ContextEntry> {
-  const [row] = await db.insert(contextEntries).values(entry).returning();
+  const companyId = entry.companyId || DEFAULT_COMPANY_ID;
+  await assertVerticalBelongsToCompany(entry.verticalId, companyId);
+
+  const [row] = await db.insert(contextEntries).values({
+    ...entry,
+    companyId,
+  }).returning();
   return row;
 }
 
 export async function addContextEntries(entries: InsertContextEntry[]): Promise<number> {
   if (entries.length === 0) return 0;
-  const result = await db.insert(contextEntries).values(entries).returning();
+  const seen = new Set<string>();
+  for (const entry of entries) {
+    const companyId = entry.companyId || DEFAULT_COMPANY_ID;
+    const key = `${companyId}:${entry.verticalId}`;
+    if (seen.has(key)) continue;
+    await assertVerticalBelongsToCompany(entry.verticalId, companyId);
+    seen.add(key);
+  }
+
+  const result = await db.insert(contextEntries).values(entries.map((entry) => ({
+    ...entry,
+    companyId: entry.companyId || DEFAULT_COMPANY_ID,
+  }))).returning();
   return result.length;
 }
 
-export async function verifyContextEntry(id: string, verified: boolean): Promise<void> {
+export async function verifyContextEntry(id: string, verified: boolean, companyId = DEFAULT_COMPANY_ID): Promise<void> {
   await db
     .update(contextEntries)
     .set({ isVerified: verified })
-    .where(eq(contextEntries.id, id));
+    .where(and(eq(contextEntries.companyId, companyId), eq(contextEntries.id, id)));
 }
 
-export async function deleteContextEntry(id: string): Promise<void> {
-  await db.delete(contextEntries).where(eq(contextEntries.id, id));
+export async function deleteContextEntry(id: string, companyId = DEFAULT_COMPANY_ID): Promise<void> {
+  await db.delete(contextEntries).where(and(eq(contextEntries.companyId, companyId), eq(contextEntries.id, id)));
 }
 
-export async function getContextStats(verticalId: string): Promise<Record<string, number>> {
+export async function getContextStats(verticalId: string, companyId = DEFAULT_COMPANY_ID): Promise<Record<string, number>> {
   const entries = await db
     .select()
     .from(contextEntries)
-    .where(eq(contextEntries.verticalId, verticalId));
+    .where(and(eq(contextEntries.companyId, companyId), eq(contextEntries.verticalId, verticalId)));
 
   const stats: Record<string, number> = {};
   for (const entry of entries) {
@@ -92,11 +119,11 @@ export async function getContextStats(verticalId: string): Promise<Record<string
  * Format all verified context entries for a vertical into a prompt-ready string.
  * Groups by category for structured context injection.
  */
-export async function formatContextForPrompt(verticalId: string): Promise<string> {
-  const vertical = await getVerticalById(verticalId);
+export async function formatContextForPrompt(verticalId: string, companyId = DEFAULT_COMPANY_ID): Promise<string> {
+  const vertical = await getVerticalById(verticalId, companyId);
   if (!vertical) return "";
 
-  const entries = await getContextEntries(verticalId, undefined, true);
+  const entries = await getContextEntries(verticalId, undefined, true, companyId);
   if (entries.length === 0) {
     return `Industry: ${vertical.name}\nNo detailed context available yet.`;
   }

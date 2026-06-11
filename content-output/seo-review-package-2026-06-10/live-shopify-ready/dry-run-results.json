@@ -1,0 +1,84 @@
+{
+  "dryRun": true,
+  "generatedAt": "2026-06-10T20:08:53.134Z",
+  "results": [
+    {
+      "type": "product",
+      "handle": "ibolt-tabdock-bizmount-metal-amps",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-bizmount-metal-amps",
+      "error": "Shopify REST GET products/8724372685092.json failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "product",
+      "handle": "ibolt-tabdock-dynamount-amps-w-4-25-dual-socket-arm-drill-base",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-dynamount-amps-w-4-25-dual-socket-arm-drill-base",
+      "error": "Shopify REST GET products/8724464992548.json failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "product",
+      "handle": "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "error": "Shopify REST GET products/8724391362852.json failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "product",
+      "handle": "multi-tablet-stand-five-holders-restaurant-point-of-sale-purchase-ipad-ibrt-34706",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/products/multi-tablet-stand-five-holders-restaurant-point-of-sale-purchase-ipad-ibrt-34706",
+      "error": "Shopify REST GET products/8724382744868.json failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "collection",
+      "handle": "live-streaming",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/collections/live-streaming",
+      "error": "Shopify REST GET custom_collections.json?limit=250 failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "collection",
+      "handle": "top-eld-solutions",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/collections/top-eld-solutions",
+      "error": "Shopify REST GET custom_collections.json?limit=250 failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "collection",
+      "handle": "20mm-ball-adapters-andmounts",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/collections/20mm-ball-adapters-andmounts",
+      "error": "Shopify REST GET custom_collections.json?limit=250 failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "collection",
+      "handle": "smartphone-phone-mounts",
+      "action": "blocked",
+      "url": "https://iboltmounts.com/collections/smartphone-phone-mounts",
+      "error": "Shopify REST GET custom_collections.json?limit=250 failed: 403 {\"errors\":\"[API] This action requires merchant approval for read_products scope.\"}"
+    },
+    {
+      "type": "article",
+      "handle": "managing-multiple-tablets-in-a-restaurant",
+      "id": 618285957412,
+      "action": "would_update",
+      "url": "https://iboltmounts.com/blogs/news/managing-multiple-tablets-in-a-restaurant"
+    },
+    {
+      "type": "article",
+      "handle": "confused-about-the-eld-mandate",
+      "id": 618286055716,
+      "action": "would_update",
+      "url": "https://iboltmounts.com/blogs/news/confused-about-the-eld-mandate"
+    },
+    {
+      "type": "article",
+      "handle": "great-places-to-use-clamping-tablet-and-phone-mounts",
+      "id": 618285695268,
+      "action": "would_update",
+      "url": "https://iboltmounts.com/blogs/news/great-places-to-use-clamping-tablet-and-phone-mounts"
+    }
+  ],
+  "publicChecks": []
+}

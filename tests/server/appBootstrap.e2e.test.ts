@@ -99,7 +99,7 @@ describe("full app bootstrap smoke", () => {
     const port = await getAvailablePort();
     tempDirs.push(tempDir);
 
-    const repoRoot = "/Users/brass/Documents/New project/anotations-jan-26";
+    const repoRoot = process.cwd();
     const wrapper = `(async () => {
       process.chdir(${JSON.stringify(tempDir)});
       await import('./server/index.ts');
@@ -119,6 +119,9 @@ describe("full app bootstrap smoke", () => {
           PORT: String(port),
           CLERK_PUBLISHABLE_KEY: buildTestPublishableKey("clerk.testing.dev"),
           CLERK_SECRET_KEY: "sk_test_dummy",
+          IBOLT_INTERNAL_AUTH_BYPASS: "true",
+          ENABLE_LEGACY_SCHOLARMARK: "false",
+          VITE_ENABLE_LEGACY_SCHOLARMARK: "false",
         },
         stdio: ["ignore", "pipe", "pipe"],
       }
@@ -140,12 +143,20 @@ describe("full app bootstrap smoke", () => {
       }
     });
 
-    await waitForUrl(`http://127.0.0.1:${port}/api/system/status`);
+    await waitForUrl(`http://127.0.0.1:${port}/api/blog/company`);
     expect(earlyExitMessage).toBeNull();
 
-    const status = await requestJson<Record<string, unknown>>(
+    const companies = await requestJson<unknown[]>(
+      `http://127.0.0.1:${port}`,
+      "/api/blog/company"
+    );
+    const legacyStatus = await requestJson<Record<string, unknown>>(
       `http://127.0.0.1:${port}`,
       "/api/system/status"
+    );
+    const blogHealth = await requestJson<Record<string, unknown>>(
+      `http://127.0.0.1:${port}`,
+      "/api/blog/health"
     );
     const malformed = await requestJson<Record<string, unknown>>(
       `http://127.0.0.1:${port}`,
@@ -154,23 +165,18 @@ describe("full app bootstrap smoke", () => {
     const pricingResponse = await fetch(`http://127.0.0.1:${port}/pricing`);
     const pricingHtml = await pricingResponse.text();
 
-    expect(status.status).toBe(200);
-    expect(status.body).toMatchObject({
-      counts: {
-        projects: 0,
-        documents: 0,
-        annotations: 0,
-      },
-      documentsByStatus: {
-        ready: 0,
-        processing: 0,
-        error: 0,
-        other: 0,
-      },
+    expect(companies.status).toBe(200);
+    expect(Array.isArray(companies.body)).toBe(true);
+    expect(legacyStatus.status).toBe(404);
+    expect(legacyStatus.body).toMatchObject({
+      message: "Legacy ScholarMark API disabled in standalone blog deployment",
+      path: "/api/system/status",
     });
-    expect(status.body?.system).toMatchObject({
-      nodeVersion: expect.any(String),
-      platform: expect.any(String),
+    expect(blogHealth.status).toBe(200);
+    expect(blogHealth.body).toMatchObject({
+      ok: true,
+      product: "standalone-blog-writer",
+      legacyScholarMarkEnabled: false,
     });
 
     expect(malformed.status).toBe(400);

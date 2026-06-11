@@ -1,23 +1,50 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { companyScopedUrl, useActiveCompanyId } from "@/lib/company";
+
+function invalidateBenchmarkQueries() {
+  queryClient.invalidateQueries({
+    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/benchmark"),
+  });
+}
 
 export function useBenchmarkQueries() {
-  return useQuery<any[]>({ queryKey: ["/api/blog/benchmark/queries"] });
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<any[]>({
+    queryKey: [companyScopedUrl("/api/blog/benchmark/queries")],
+    enabled: Boolean(activeCompanyId),
+  });
 }
 
 export function useBenchmarkRuns(limit = 8) {
-  return useQuery<any[]>({ queryKey: [`/api/blog/benchmark/runs?limit=${limit}`] });
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<any[]>({
+    queryKey: [companyScopedUrl("/api/blog/benchmark/runs", { limit })],
+    enabled: Boolean(activeCompanyId),
+  });
 }
 
 export function useLatestBenchmarkSummary() {
-  return useQuery<any | null>({ queryKey: ["/api/blog/benchmark/latest"] });
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<any | null>({
+    queryKey: [companyScopedUrl("/api/blog/benchmark/latest")],
+    enabled: Boolean(activeCompanyId),
+  });
+}
+
+export function useBenchmarkProviderStatus() {
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<Record<string, boolean>>({
+    queryKey: [companyScopedUrl("/api/blog/benchmark/providers")],
+    enabled: Boolean(activeCompanyId),
+  });
 }
 
 export function useBenchmarkContentPlan(runId?: string, limit = 8) {
-  const suffix = runId ? `?runId=${runId}&limit=${limit}` : `?limit=${limit}`;
+  const activeCompanyId = useActiveCompanyId();
   return useQuery<any[]>({
-    queryKey: [`/api/blog/benchmark/content-plan${suffix}`],
-    enabled: true,
+    queryKey: [companyScopedUrl("/api/blog/benchmark/content-plan", { runId, limit })],
+    enabled: Boolean(activeCompanyId),
   });
 }
 
@@ -29,13 +56,17 @@ export function useAddBenchmarkQuery() {
       query: string;
       verticalId?: string | null;
       benchmarkGoal?: string;
+      persona?: string;
+      painPoint?: string;
+      brandAngle?: string;
+      targetProducts?: string[];
       priority?: number;
     }) => {
       const res = await apiRequest("POST", "/api/blog/benchmark/queries", data);
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/benchmark/queries"] });
+      invalidateBenchmarkQueries();
     },
   });
 }
@@ -44,7 +75,15 @@ export function useAddBenchmarkQueriesBulk() {
   return useMutation({
     mutationFn: async (data: {
       category: string;
-      queries: string[];
+      queries: Array<string | {
+        query: string;
+        label?: string | null;
+        persona?: string | null;
+        painPoint?: string | null;
+        brandAngle?: string | null;
+        targetProducts?: string[];
+        benchmarkGoal?: string | null;
+      }>;
       benchmarkGoal?: string;
       priority?: number;
     }) => {
@@ -52,7 +91,7 @@ export function useAddBenchmarkQueriesBulk() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/benchmark/queries"] });
+      invalidateBenchmarkQueries();
     },
   });
 }
@@ -64,9 +103,15 @@ export function useMaterializeContentPlan() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/keywords/clusters"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/posts"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/queue"] });
+      queryClient.invalidateQueries({
+        predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/keywords/clusters"),
+      });
+      queryClient.invalidateQueries({
+        predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/posts"),
+      });
+      queryClient.invalidateQueries({
+        predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/queue"),
+      });
     },
   });
 }

@@ -34,6 +34,12 @@ describe("database bootstrap", () => {
         .all() as Array<{ name: string }>)
         .map((row) => row.name)
     );
+    const views = new Set(
+      (sqlite
+        .prepare("SELECT name FROM sqlite_master WHERE type = 'view'")
+        .all() as Array<{ name: string }>)
+        .map((row) => row.name)
+    );
 
     expect(sqlite.pragma("foreign_keys", { simple: true })).toBe(1);
     for (const table of [
@@ -53,6 +59,19 @@ describe("database bootstrap", () => {
     expect(indexes.has("idx_api_keys_key_hash")).toBe(true);
     expect(indexes.has("idx_ocr_jobs_status_created")).toBe(true);
     expect(indexes.has("idx_ocr_jobs_document_active")).toBe(true);
+    expect(views.has("products")).toBe(true);
+
+    const benchmarkQueryColumns = new Set(
+      (sqlite.prepare("PRAGMA table_info(ai_benchmark_queries)").all() as Array<{ name: string }>).map((row) => row.name)
+    );
+    const benchmarkResultColumns = new Set(
+      (sqlite.prepare("PRAGMA table_info(ai_benchmark_results)").all() as Array<{ name: string }>).map((row) => row.name)
+    );
+    expect(benchmarkQueryColumns.has("brand_angle")).toBe(true);
+    expect(benchmarkQueryColumns.has("ibolt_angle")).toBe(true);
+    expect(benchmarkResultColumns.has("target_brand_mentioned")).toBe(true);
+    expect(benchmarkResultColumns.has("target_domain_cited")).toBe(true);
+    expect(benchmarkResultColumns.has("ibolt_cited")).toBe(true);
 
     sqlite.close();
   });

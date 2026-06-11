@@ -1,0 +1,28 @@
+{
+  "status": 201,
+  "data": {
+    "article": {
+      "id": 635072807204,
+      "title": "AEO Asset Upload - Modular Clamp Components B-roll",
+      "created_at": "2026-06-08T17:11:38-07:00",
+      "body_html": "<p>Image asset for the Phone Clamp, Clip, Screw, Ball, and Socket Mount Guide solution page.</p>",
+      "blog_id": 104843772196,
+      "author": "Shopify API",
+      "user_id": null,
+      "published_at": null,
+      "updated_at": "2026-06-08T17:11:38-07:00",
+      "summary_html": null,
+      "template_suffix": null,
+      "handle": "aeo-asset-upload-modular-clamp-components-b-roll-1",
+      "tags": "aeo asset upload, solution page b-roll",
+      "admin_graphql_api_id": "gid://shopify/Article/635072807204",
+      "image": {
+        "created_at": "2026-06-08T17:11:38-07:00",
+        "alt": null,
+        "width": 1672,
+        "height": 941,
+        "src": "https://cdn.shopify.com/s/files/1/0818/5957/6100/articles/modular-clamp-components-broll.png?v=1780963898"
+      }
+    }
+  }
+}

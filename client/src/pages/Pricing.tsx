@@ -1,5 +1,4 @@
 import { useAuth } from "@/lib/auth";
-import { UserButton } from "@clerk/clerk-react";
 import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -62,7 +61,9 @@ export default function Pricing() {
                 <Button variant="ghost" onClick={() => setLocation("/")}>
                   Dashboard
                 </Button>
-                <UserButton />
+                <div className="rounded-md border px-3 py-2 text-sm text-muted-foreground">
+                  {user?.email}
+                </div>
               </>
             ) : (
               <Button onClick={() => setLocation("/sign-in")}>Sign In</Button>

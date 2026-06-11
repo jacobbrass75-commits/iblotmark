@@ -1,0 +1,24 @@
+{
+  "brandConsistency": 85,
+  "seoOptimization": 75,
+  "naturalLanguage": 90,
+  "factualAccuracy": 80,
+  "operationalSpecificity": 95,
+  "competitorFairness": 85,
+  "overallScore": 85,
+  "passesQualityGate": true,
+  "issues": [
+    "Missing specific vibration resistance data or testing standards",
+    "No concrete ROI calculations or cost comparison data",
+    "OSHA compliance claims need specific regulation references",
+    "Some product claims lack supporting technical specifications"
+  ],
+  "suggestions": [
+    "Add specific vibration testing standards (e.g., MIL-STD-810G)",
+    "Include concrete cost analysis showing replacement frequency reduction",
+    "Provide specific OSHA regulation numbers for compliance claims",
+    "Add technical specifications for load capacity and material grades",
+    "Consider adding customer testimonials or case studies",
+    "Include more specific tablet model compatibility information"
+  ]
+}

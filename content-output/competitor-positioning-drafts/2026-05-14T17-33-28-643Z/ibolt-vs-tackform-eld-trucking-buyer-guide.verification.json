@@ -1,0 +1,23 @@
+{
+  "brandConsistency": 85,
+  "seoOptimization": 75,
+  "naturalLanguage": 90,
+  "factualAccuracy": 80,
+  "operationalSpecificity": 95,
+  "competitorFairness": 90,
+  "overallScore": 86,
+  "passesQualityGate": true,
+  "issues": [
+    "Missing space after comma in 'device,it's about positioning' (paragraph 3)",
+    "Product pricing claims not supported by provided data - specific prices listed without verification",
+    "Some technical specifications (temperature ratings, vibration resistance) stated without supporting data",
+    "SEO could be improved with more strategic keyword placement in headings"
+  ],
+  "suggestions": [
+    "Add meta description and structured data for better SEO",
+    "Include more long-tail keywords related to ELD mounting in subheadings",
+    "Verify all product pricing and specifications against current data",
+    "Consider adding customer testimonials or case studies to support claims",
+    "Add internal links to related iBOLT product categories"
+  ]
+}

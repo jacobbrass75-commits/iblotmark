@@ -1,0 +1,2964 @@
+{
+  "generatedAt": "2026-06-01T20:51:41.790Z",
+  "shop": "iboltmounts",
+  "storeOrigin": "https://iboltmounts.com",
+  "outputDir": "/Users/yakub/Desktop/iblotmark/content-output/add-to-cart-cta/verification-2026-06-01T20-51-40-184Z",
+  "totals": {
+    "blogs": 2,
+    "articlesChecked": 203,
+    "articlesWithProductLinks": 159,
+    "productLinks": 1626,
+    "addToCartButtons": 1518,
+    "articlesWithFailures": 1,
+    "failures": 1
+  },
+  "failures": [
+    {
+      "blogId": 104843772196,
+      "articleId": 634908475684,
+      "articleTitle": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "handle": "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "reason": "missing nearby matching Add to Cart CTA",
+      "ctaCount": 0,
+      "snippet": "<p>Restaurants running three or more delivery platforms need a fundamentally different solution. This is exactly why iBOLT engineered the Tablet Tower lineup. The <a href=\"https://iboltmounts.com/products/tablet-tower-multi-tablet-stand-ipad-point-of-sale-purchase-restaurant-triple-ibrt-34700\">TabDock POS Clamp Mount with 3 Tablet Holders</a> handles three delivery apps in one compact station, with options scaling up to the <a href=\"https://iboltmounts.com/products/multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707\">4-tablet clamp mount</a> and the <a href=\"https"
+    }
+  ],
+  "articles": [
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634978730276,
+      "articleTitle": "Best Value Fish Finder Mounts Without Cheap Hardware",
+      "articleHandle": "best-value-fish-finder-mounts-without-cheap-hardware-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-value-fish-finder-mounts-without-cheap-hardware-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount-featuring-a-2-75-inch-composite-25mm-1-inch-bizmount-arm",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634978697508,
+      "articleTitle": "Best Kayak Fish Finder Mounts for Secure Removable Setups",
+      "articleHandle": "best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634974798116,
+      "articleTitle": "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+      "articleHandle": "rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop",
+      "productLinkCount": 11,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-moto-vise-heavy-duty-phone-handlebar-rail-mount",
+        "ibolt-moto-vise-heavy-duty-phone-dual-arm-handlebar-rail-mount",
+        "ibolt-spro2-amps-drill-base-phone-and-tablet-mounting-solution",
+        "ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "tabdock-bizmount-heavy-duty-tablet-clamp-mount-ibbz-33910",
+        "ibolt-25mm-1-inch-metal-amps-round-adapter-plate-for-industry-standard-dual-ball-socket"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634974765348,
+      "articleTitle": "Garmin GPS Mount Compatibility: Finding the Right Mount for Your Boat, Truck, or Vehicle",
+      "articleHandle": "garmin-gps-mount-compatibility-finding-the-right-mount-for-your-boat-truck-or-vehicle",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/garmin-gps-mount-compatibility-finding-the-right-mount-for-your-boat-truck-or-vehicle",
+      "productLinkCount": 6,
+      "addToCartCount": 3,
+      "productHandles": [
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "tabdock-bizmount-heavy-duty-tablet-clamp-mount-ibbz-33910",
+        "ibolt-25mm-1-inch-metal-amps-round-adapter-plate-for-industry-standard-dual-ball-socket"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634974732580,
+      "articleTitle": "Pontoon Boat Mounts: Complete Guide to Fish Finder, Phone & GPS Mounting Solutions",
+      "articleHandle": "pontoon-boat-mounts-complete-guide-to-fish-finder-phone-gps-mounting-solutions",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/pontoon-boat-mounts-complete-guide-to-fish-finder-phone-gps-mounting-solutions",
+      "productLinkCount": 7,
+      "addToCartCount": 4,
+      "productHandles": [
+        "tabdock-bizmount-heavy-duty-tablet-clamp-mount-ibbz-33910",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-25mm-1-inch-metal-amps-round-adapter-plate-for-industry-standard-dual-ball-socket"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634908213540,
+      "articleTitle": "Best Boat Phone Mount for Rough Water: How to Keep Your Phone Secure on the Chop",
+      "articleHandle": "best-boat-phone-mount-for-rough-water-how-to-keep-your-phone-secure-on-the-chop",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-boat-phone-mount-for-rough-water-how-to-keep-your-phone-secure-on-the-chop",
+      "productLinkCount": 12,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-25mm-1-inch-metal-amps-round-adapter-plate-for-industry-standard-dual-ball-socket",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-heavy-duty-phone-dual-arm-handlebar-rail-mount",
+        "ibolt-spro2-amps-drill-base-phone-and-tablet-mounting-solution",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-gopro-action-camera-selfie-pole-clamp-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634908180772,
+      "articleTitle": "Best Fish Finder Mounts That Stay Put and Do Not Bounce Loose",
+      "articleHandle": "best-fish-finder-mounts-that-stay-put-and-do-not-bounce-loose",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-fish-finder-mounts-that-stay-put-and-do-not-bounce-loose",
+      "productLinkCount": 11,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount-1",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-action-camera-inch-20-dual-bizmount-cup-holder-mount",
+        "ibolt-action-camera-inch-20-bizmount-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634908148004,
+      "articleTitle": "Kayak Fish Finder Mount Setup: A Complete Guide to Secure, Removable Electronics Mounting",
+      "articleHandle": "kayak-fish-finder-mount-setup-a-complete-guide-to-secure-removable-electronics-mounting",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/kayak-fish-finder-mount-setup-a-complete-guide-to-secure-removable-electronics-mounting",
+      "productLinkCount": 13,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-25mm-1-inch-composite-diamond-2-hole-amps-adapter-plate-for-industry-standard-dual-ball-socket-mounting-arms",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-dual-arm-handlebar-rail-mount",
+        "ibolt-moto-vise-heavy-duty-phone-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634908115236,
+      "articleTitle": "Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat",
+      "articleHandle": "pontoon-fish-finder-rail-mount-compatibility-how-to-match-your-mount-to-your-boat",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/pontoon-fish-finder-rail-mount-compatibility-how-to-match-your-mount-to-your-boat",
+      "productLinkCount": 13,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-dual-arm-handlebar-rail-mount",
+        "ibolt-38mm-1-5-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634908082468,
+      "articleTitle": "Best No-Drill Fish Finder Mounts for Aluminum Boats and Jon Boats",
+      "articleHandle": "best-no-drill-fish-finder-mounts-for-aluminum-boats-and-jon-boats",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-no-drill-fish-finder-mounts-for-aluminum-boats-and-jon-boats",
+      "productLinkCount": 12,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount-1",
+        "ibolt-garmin-striker-4-fish-finder-dual-arm-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-moto-vise-heavy-duty-phone-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-electronics-mounting-plate"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634908049700,
+      "articleTitle": "RAM vs Scotty vs YakAttack Fish Finder Mounts: How Do They Really Compare (And What They're Missing)",
+      "articleHandle": "ram-vs-scotty-vs-yakattack-fish-finder-mounts-how-do-they-really-compare-and-what-theyre-missing",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/ram-vs-scotty-vs-yakattack-fish-finder-mounts-how-do-they-really-compare-and-what-theyre-missing",
+      "productLinkCount": 14,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-action-camera-inch-20-dual-bizmount-cup-holder-mount",
+        "ibolt-action-camera-inch-20-bizmount-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634908016932,
+      "articleTitle": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+      "articleHandle": "best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+      "productLinkCount": 13,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-dual-arm-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount",
+        "ibolt-universal-marine-electronics-mounting-plate"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634807288100,
+      "articleTitle": "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing",
+      "articleHandle": "choosing-the-best-kayak-fish-finder-mount-for-secure-and-convenient-fishing",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/choosing-the-best-kayak-fish-finder-mount-for-secure-and-convenient-fishing",
+      "productLinkCount": 14,
+      "addToCartCount": 14,
+      "productHandles": [
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount-1",
+        "ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount-featuring-a-2-75-inch-composite-25mm-1-inch-bizmount-arm",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-metal-amps-drill-base-mount",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 110121517348,
+      "blogHandle": "how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "articleId": 634807255332,
+      "articleTitle": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+      "articleHandle": "best-fish-finder-mount-for-small-boats-comparison-and-buyers-guide",
+      "publicUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-fish-finder-mount-for-small-boats-comparison-and-buyers-guide",
+      "productLinkCount": 13,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-composite-amps-drill-base-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount-featuring-a-8-5-inch-aluminum-38mm-bizmount-arm"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978861348,
+      "articleTitle": "iBOLT vs Bouncepad for Restaurant Tablet Security",
+      "articleHandle": "ibolt-vs-bouncepad-restaurant-tablet-security-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-restaurant-tablet-security-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "tablet-tower-multi-tablet-locking-stand-three-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34701",
+        "ibolt-quad-tablet-tower-stand"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978828580,
+      "articleTitle": "iBOLT vs Arkon for Commercial Vehicle Mounts",
+      "articleHandle": "ibolt-vs-arkon-commercial-vehicle-mounts-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-arkon-commercial-vehicle-mounts-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-dock-n-lock-bizmount-heavy-duty-industrial-composite-locking-drill-base-mount",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978795812,
+      "articleTitle": "iBOLT vs iOttie for Delivery Drivers",
+      "articleHandle": "ibolt-vs-iottie-delivery-drivers-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-iottie-delivery-drivers-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978763044,
+      "articleTitle": "iBOLT vs RAM for Fleet Mounts",
+      "articleHandle": "ibolt-vs-ram-fleet-mounts-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-fleet-mounts-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978664740,
+      "articleTitle": "Best Tablet Mount for Food Trucks and Quick-Service Counters",
+      "articleHandle": "best-tablet-mount-food-trucks-quick-service-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-food-trucks-quick-service-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-dock-n-lock-pos-tablet-stand",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-quad-tablet-tower-stand"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978631972,
+      "articleTitle": "Construction and Work Truck Phone Mounts",
+      "articleHandle": "construction-work-truck-phone-mounts-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/construction-work-truck-phone-mounts-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "moto-vise-xl-amps-heavy-duty-metal-vehicle-specific-drill-base-amps-mount-ibu-33521",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978599204,
+      "articleTitle": "Locking Phone Mounts for Shared Delivery Vehicles",
+      "articleHandle": "locking-phone-mounts-shared-delivery-vehicles-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/locking-phone-mounts-shared-delivery-vehicles-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978566436,
+      "articleTitle": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "articleHandle": "commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978533668,
+      "articleTitle": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+      "articleHandle": "magnetic-vs-clamp-phone-mount-delivery-work-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mount-delivery-work-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930",
+        "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978304292,
+      "articleTitle": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "articleHandle": "best-phone-mount-instacart-grocery-delivery-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-instacart-grocery-delivery-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930",
+        "ibolt-xprodock-nfc-bizmount-phone-holder-mount-heavy-duty-suction-cup-base-and-1-5m-usb-c-cable-ibbz-33969"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978271524,
+      "articleTitle": "Best Phone Mount for Delivery Drivers",
+      "articleHandle": "best-phone-mount-delivery-drivers-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634978238756,
+      "articleTitle": "Best Phone Mount for Amazon Flex and Delivery Vans",
+      "articleHandle": "best-phone-mount-amazon-flex-delivery-vans-aeo-refresh",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-amazon-flex-delivery-vans-aeo-refresh",
+      "productLinkCount": 12,
+      "addToCartCount": 9,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634975093028,
+      "articleTitle": "AMPS VESA Ball Mount Sizes: Complete Guide to Device Mounting Standards",
+      "articleHandle": "amps-vesa-ball-mount-sizes-complete-guide-to-device-mounting-standards",
+      "publicUrl": "https://iboltmounts.com/blogs/news/amps-vesa-ball-mount-sizes-complete-guide-to-device-mounting-standards",
+      "productLinkCount": 19,
+      "addToCartCount": 16,
+      "productHandles": [
+        "17mm-garmin-compatible-amps-plate-21145",
+        "industry-standard-amps-packing-plate",
+        "ibolt-amps-to-vesa-75-100-plate",
+        "ibolt-17mm-to-17mm-composite-ball-adapter-for-industry-standard-dual-ball-socket-mounting-arms",
+        "ibolt-20mm-metal-amps-adapter-plate-for-industry-standard-20mm-dual-ball-socket-mounting-arms",
+        "ibolt-25mm-1-inch-composite-extension-ball-adapter-23520",
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-38mm-1-5-inch-ball-joint",
+        "ibolt-metal-vesa-75-vesa-100-to-25mm-ball-1-inch-adapter-mounts-vesa",
+        "composite-3-75-inch-double-socket-arm-for-all-industry-standard-1-inch-25mm-b-size-ball-22158",
+        "aluminum-2-75-inch-double-socket-arm-industry-standard-1-inch-25mm-b-size-ball-adapters-mounts-22202",
+        "ibolt-25mm-1-inch-to-25mm-1-inch-metal-extension-ball-adapter",
+        "build-your-own-mount",
+        "ibolt-security-hardware-or-1-inch-25mm-bizmount-arms",
+        "ibolt-dock-n-lock-pos-phone-stand",
+        "ibolt-dock-n-lock-pos-tablet-stand",
+        "ibolt-tabdock-pos-tablet-stand"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634975027492,
+      "articleTitle": "ELD Tablet Mounting Guide: How to Choose the Right Mount for Fleet Compliance",
+      "articleHandle": "eld-tablet-mounting-guide-how-to-choose-the-right-mount-for-fleet-compliance",
+      "publicUrl": "https://iboltmounts.com/blogs/news/eld-tablet-mounting-guide-how-to-choose-the-right-mount-for-fleet-compliance",
+      "productLinkCount": 18,
+      "addToCartCount": 15,
+      "productHandles": [
+        "tabdock-bizmount-heavy-duty-tablet-suction-cup-mount-ibbz-33754",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "tabdock-bizmount-console-heavy-duty-cup-holder-mount-ibbz-33784",
+        "ibolt-tabdock-extendibolt-triple-suction-cup-mount",
+        "ibolt-tabdock-extendibolt-dual-suction-cup-mount",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-tabdock-flexpro-heavy-duty-seat-rail-gooseneck-tablet-eld-floor-mount-ibbz-33762",
+        "ibolt-25mm-1-inch-ball-flexpro-seatrail-mount-heavy-duty-floor-mount-for-industry-standard-25mm-1-inch-dual-ball-mounts-arms-cars-vans-large-trucks-great-for-telematics-and-fleets",
+        "ibolt-lockpro-metal-locking-tablet-drill-base-mount-ibbz-33779",
+        "heavy-duty-composite-locking-tablet-cradle-dock-n-lock-ibbz-33935",
+        "tabdock-bizmount-seat-wedge-tablet-mount-ibbz-33795",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-57mm-2-5-inch-ball-joint",
+        "ibolt-vesa-trimag-magnetic-monitor-mount-heavy-duty-screen-mount-with-38mm-ball-joints-and-vesa-75x75-100x100-plate-for-forklifts-warehouse-vehicles-and-material-handling-equipment"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634974994724,
+      "articleTitle": "Complete Guide to Forklift Tablet Scanner Mounts: Boost Warehouse Productivity with Industrial Mounting Solutions",
+      "articleHandle": "complete-guide-to-forklift-tablet-scanner-mounts-boost-warehouse-productivity-with-industrial-mounting-solutions",
+      "publicUrl": "https://iboltmounts.com/blogs/news/complete-guide-to-forklift-tablet-scanner-mounts-boost-warehouse-productivity-with-industrial-mounting-solutions",
+      "productLinkCount": 22,
+      "addToCartCount": 19,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-38mm-1-5-inch-ball-joint",
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-57mm-2-5-inch-ball-joint",
+        "heavy-duty-forklift-overhead-cage-bracket-amps-pattern-metal-plates-ibfl-34501",
+        "heavy-duty-metal-forklift-pillar-bracket-amps-pattern-ibfl-34500",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "forklift-and-warehouse-vehicle-pillar-bracket-mount-barcode-scanner-holder-ibfl-34503",
+        "ibolt-vesa-trimag-magnetic-monitor-mount-heavy-duty-screen-mount-with-38mm-ball-joints-and-vesa-75x75-100x100-plate-for-forklifts-warehouse-vehicles-and-material-handling-equipment",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-38mm-1-5-inch-ball-joint-copy"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634974929188,
+      "articleTitle": "Best Tablet Mounts for Delivery Apps: Complete Setup Guide for Restaurants",
+      "articleHandle": "best-tablet-mounts-for-delivery-apps-complete-setup-guide-for-restaurants",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mounts-for-delivery-apps-complete-setup-guide-for-restaurants",
+      "productLinkCount": 19,
+      "addToCartCount": 18,
+      "productHandles": [
+        "tablet-tower-multi-tablet-stand-ipad-point-of-sale-purchase-restaurant-triple-ibrt-34700",
+        "multi-tablet-stand-five-holders-restaurant-point-of-sale-purchase-ipad-ibrt-34706",
+        "multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+        "ibolt-dock-n-lock-pos-tablet-stand",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-5-tablet-holders",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+        "ibolt-tabdock-pos-tablet-stand",
+        "tablet-tower-multi-tablet-locking-stand-three-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34701",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolt-dock-n-lock-pos-phone-stand"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634974896420,
+      "articleTitle": "Restaurant Tablet Mount Setup: Complete Guide for Toast, Square & Delivery Apps",
+      "articleHandle": "restaurant-tablet-mount-setup-complete-guide-for-toast-square-delivery-apps",
+      "publicUrl": "https://iboltmounts.com/blogs/news/restaurant-tablet-mount-setup-complete-guide-for-toast-square-delivery-apps",
+      "productLinkCount": 19,
+      "addToCartCount": 18,
+      "productHandles": [
+        "ibolt-dock-n-lock-pos-tablet-stand",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+        "ibolt-tabdock-pos-tablet-stand",
+        "ibolt-clamp-base-for-4-hole-amps-mounts",
+        "tablet-tower-multi-tablet-stand-ipad-point-of-sale-purchase-restaurant-triple-ibrt-34700",
+        "multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+        "ibolt-tabdock-magdock-heavy-duty-magnetic-mount-for-fridges-restaurants-automotive-workout-equipment",
+        "ibolt-dock-n-lock-bizmount-heavy-duty-industrial-composite-locking-drill-base-mount",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "tabdock-flexpro-tablet-gooseneck-clamp-ibbz-33763",
+        "tablet-tower-multi-tablet-locking-stand-three-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34701",
+        "ibolt-lockpro-metal-locking-tablet-drill-base-mount-ibbz-33779",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-dock-n-lock-pos-phone-stand"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634974863652,
+      "articleTitle": "The Complete Guide to Overhead Livestream Setup: Best Phone and Camera Mounts for Content Creators",
+      "articleHandle": "the-complete-guide-to-overhead-livestream-setup-best-phone-and-camera-mounts-for-content-creators",
+      "publicUrl": "https://iboltmounts.com/blogs/news/the-complete-guide-to-overhead-livestream-setup-best-phone-and-camera-mounts-for-content-creators",
+      "productLinkCount": 28,
+      "addToCartCount": 25,
+      "productHandles": [
+        "livestreaming-overhead-phone-camera-stream-cast-stand-ibsc-34607",
+        "livestream-stream-cast-stand-adjustable-overhead-camera-phone-mount-ibsc-34606",
+        "livestream-stream-cast-clamp-adjustable-overhead-camera-phone-mount-ibsc-34605",
+        "ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+        "livestream-stream-cast-clamp-bendable-overhead-phone-camera-mount",
+        "ibolt-stream-cast-spro2-phone-stand-weighted-base-mount-for-live-streaming-distance-learning-ibsc-34611",
+        "ibolt-stream-cast-tabdock-tablet-livestreaming-social-media-stand-ibsc-34614",
+        "ibolt-stream-cast-dual-spro2-phone-holder-stand-livestreaming-ibsc-34613",
+        "phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+        "ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+        "xprodock-nfc-phone-holder-ibpb-33804",
+        "1-inch-25mm-b-size-ball-1-4-20-camera-screw-mount-adapter",
+        "ibolt-stream-cast-overhead-ceiling-wall-metal-multi-angle-drill-base-mount-for-dslr-cameras-smartphones-mini-projectors",
+        "ibolt-dual-tablet-tripod-slider-bar",
+        "iphone-charging-phone-holder-dock-iba-33450"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634974830884,
+      "articleTitle": "Overhead Camera Mount for Product Photography: Complete Setup Guide",
+      "articleHandle": "overhead-camera-mount-for-product-photography-complete-setup-guide",
+      "publicUrl": "https://iboltmounts.com/blogs/news/overhead-camera-mount-for-product-photography-complete-setup-guide",
+      "productLinkCount": 17,
+      "addToCartCount": 14,
+      "productHandles": [
+        "ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+        "livestream-stream-cast-clamp-adjustable-overhead-camera-phone-mount-ibsc-34605",
+        "ibolt-stream-cast-overhead-ceiling-wall-metal-multi-angle-drill-base-mount-for-dslr-cameras-smartphones-mini-projectors",
+        "livestream-stream-cast-stand-adjustable-overhead-camera-phone-mount-ibsc-34606",
+        "livestream-stream-cast-clamp-bendable-overhead-phone-camera-mount",
+        "livestreaming-overhead-phone-camera-stream-cast-stand-ibsc-34607",
+        "ibamps-34241-ibolt-38mm-1-5-inch-metal-rectangular-amps-pattern-to-20-metal-camera-screw-dual-ball-mount",
+        "ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+        "ibolt-dual-tablet-tripod-slider-bar",
+        "phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+        "phone-slide-bar-camera-screw-tripod-attachment-ibcm-34602",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+        "iphone-charging-phone-holder-dock-iba-33450"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908475684,
+      "articleTitle": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "articleHandle": "best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "productLinkCount": 18,
+      "addToCartCount": 18,
+      "productHandles": [
+        "tablet-tower-multi-tablet-stand-ipad-point-of-sale-purchase-restaurant-triple-ibrt-34700",
+        "multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+        "multi-tablet-stand-five-holders-restaurant-point-of-sale-purchase-ipad-ibrt-34706",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-dock-n-lock-pos-tablet-stand",
+        "ibolt-dock-n-lock-drill-base-locking-dual-tablet-stand",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-5-tablet-holders",
+        "ibolt-tabdock-magdock-heavy-duty-magnetic-mount-for-fridges-restaurants-automotive-workout-equipment",
+        "tabdock-bizmount-heavy-duty-tablet-suction-cup-mount-ibbz-33754"
+      ],
+      "failures": [
+        {
+          "handle": "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+          "reason": "missing nearby matching Add to Cart CTA",
+          "ctaCount": 0,
+          "snippet": "<p>Restaurants running three or more delivery platforms need a fundamentally different solution. This is exactly why iBOLT engineered the Tablet Tower lineup. The <a href=\"https://iboltmounts.com/products/tablet-tower-multi-tablet-stand-ipad-point-of-sale-purchase-restaurant-triple-ibrt-34700\">TabDock POS Clamp Mount with 3 Tablet Holders</a> handles three delivery apps in one compact station, with options scaling up to the <a href=\"https://iboltmounts.com/products/multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707\">4-tablet clamp mount</a> and the <a href=\"https"
+        }
+      ]
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908442916,
+      "articleTitle": "Best Drill Base Phone Mount for Construction Vehicles and Work Trucks",
+      "articleHandle": "best-drill-base-phone-mount-for-construction-vehicles-and-work-trucks",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-drill-base-phone-mount-for-construction-vehicles-and-work-trucks",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones",
+        "ibolt-moto-vise-xl-smartphone-holder-25mm-1-inch-ball-ibpb-33893",
+        "fixed-install-hardwire-usb-charge-30w-2-port-quick-charge-3-0-standard-usb-a"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908410148,
+      "articleTitle": "iBOLT vs ProClip vs RAM: Which Phone Mount Actually Survives Delivery Van Life?",
+      "articleHandle": "ibolt-vs-proclip-vs-ram-which-phone-mount-actually-survives-delivery-van-life",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-proclip-vs-ram-which-phone-mount-actually-survives-delivery-van-life",
+      "productLinkCount": 17,
+      "addToCartCount": 17,
+      "productHandles": [
+        "ibolt-25mm-1-inch-ball-to-sticky-suction-cup-windshield-dashboard-mount-base-adapter",
+        "ibolt-25mm-1-inch-ball-to-strong-vhb-adhesive-mount-base-adapter",
+        "ibolt-25mm-1-inch-ball-flexpro-seatrail-mount-heavy-duty-floor-mount-for-industry-standard-25mm-1-inch-dual-ball-mounts-arms-cars-vans-large-trucks-great-for-telematics-and-fleets",
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "ibolt-xprodock-nfc-bizmount-phone-holder-mount-heavy-duty-suction-cup-base-and-1-5m-usb-c-cable-ibbz-33969",
+        "ibolt-25mm-1-inch-ball-flexpro-seatrail-mount-w-3-inch-arm-heavy-duty-floor-mount-for-industry-standard-25mm-1-inch-dual-ball-mounts-cars-vans-large-trucks-great-for-telematics-and-fleets",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "ibolt-moto-vise-xl-smartphone-holder-25mm-1-inch-ball-ibpb-33893",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908377380,
+      "articleTitle": "Fleet Phone Mount Standardization Checklist: How to Deploy the Right Mounts Across Every Vehicle",
+      "articleHandle": "fleet-phone-mount-standardization-checklist-how-to-deploy-the-right-mounts-across-every-vehicle",
+      "publicUrl": "https://iboltmounts.com/blogs/news/fleet-phone-mount-standardization-checklist-how-to-deploy-the-right-mounts-across-every-vehicle",
+      "productLinkCount": 12,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-25mm-1-inch-ball-to-sticky-suction-cup-windshield-dashboard-mount-base-adapter",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+        "xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930",
+        "ibolt-moto-vise-xl-smartphone-holder-25mm-1-inch-ball-ibpb-33893",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones",
+        "fixed-install-hardwire-usb-charge-30w-2-port-quick-charge-3-0-standard-usb-a"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908344612,
+      "articleTitle": "Best Phone and Action Camera Mounts for UTV Trails, Jeeps, and Overlanding Rigs",
+      "articleHandle": "best-phone-and-action-camera-mounts-for-utv-trails-jeeps-and-overlanding-rigs",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-and-action-camera-mounts-for-utv-trails-jeeps-and-overlanding-rigs",
+      "productLinkCount": 15,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-bizmount-clamp-heavy-duty-phone-claw-clamp-motorcycle-excercise-equipment-ibmc-34700",
+        "ibolt-moto-vise-bizmount-metal-handlebar-phone-motorcycle-pole-post-handlebar-mount-ibmc-34701",
+        "ibolt-25mm-1-inch-ball-flexpro-seatrail-mount-w-3-inch-arm-heavy-duty-floor-mount-for-industry-standard-25mm-1-inch-dual-ball-mounts-cars-vans-large-trucks-great-for-telematics-and-fleets",
+        "ibolt-88mm-diameter-magnetic-mount-base-w-1-4-20-camera-screw-and-compatible-with-gopro-adapter",
+        "heavy-duty-smartphone-motorcycle-moto-vise-holder-25mm-1-inch-ball-ibpb-33892",
+        "ibolt-moto-vise-xl-smartphone-holder-25mm-1-inch-ball-ibpb-33893",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "ibolt-20mm-clamp-secure-mount-for-atvs-utvs-ag-equipment"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908311844,
+      "articleTitle": "Best Multi-Camera Desk Mount for Live Streaming: How to Build a Pro Setup With Your Phone",
+      "articleHandle": "best-multi-camera-desk-mount-for-live-streaming-how-to-build-a-pro-setup-with-your-phone",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-multi-camera-desk-mount-for-live-streaming-how-to-build-a-pro-setup-with-your-phone",
+      "productLinkCount": 16,
+      "addToCartCount": 15,
+      "productHandles": [
+        "ibolt-stream-cast-dual-spro2-phone-holder-stand-livestreaming-ibsc-34613",
+        "phone-slide-bar-camera-screw-tripod-attachment-ibcm-34602",
+        "livestream-stream-cast-clamp-adjustable-overhead-camera-phone-mount-ibsc-34605",
+        "ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount",
+        "ibolt-20-camera-screw-incredibolt-360-amps-w-6-multi-angle-arm-drill-drill-base-mount",
+        "ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+        "phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+        "ibolt-20-camera-screw-to-gopro-adapter",
+        "ibolt-stream-cast-spro2-phone-stand-weighted-base-mount-for-live-streaming-distance-learning-ibsc-34611"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908279076,
+      "articleTitle": "Phone vs Camera Overhead Rig for Product Photography: Which Setup Actually Works Better?",
+      "articleHandle": "phone-vs-camera-overhead-rig-for-product-photography-which-setup-actually-works-better",
+      "publicUrl": "https://iboltmounts.com/blogs/news/phone-vs-camera-overhead-rig-for-product-photography-which-setup-actually-works-better",
+      "productLinkCount": 14,
+      "addToCartCount": 11,
+      "productHandles": [
+        "livestream-stream-cast-clamp-adjustable-overhead-camera-phone-mount-ibsc-34605",
+        "ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount",
+        "ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+        "ibolt-stream-cast-overhead-ceiling-wall-metal-multi-angle-drill-base-mount-for-dslr-cameras-smartphones-mini-projectors",
+        "ibolt-stream-cast-dual-phone-and-tablet-holder-stand-ibsc-34612",
+        "ibolt-dual-tablet-tripod-slider-bar",
+        "ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+        "ibolt-20-camera-screw-to-gopro-adapter",
+        "ibolt-38mm-1-5-inch-metal-rectangular-amps-pattern-to-20-metal-camera-screw-dual-ball-mount-featuring-a-3-5-inch-composite-38mm-bizmount-arm",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634908246308,
+      "articleTitle": "Best Overhead Camera Mount for Product Videos: The Complete Setup Guide for Sellers",
+      "articleHandle": "best-overhead-camera-mount-for-product-videos-the-complete-setup-guide-for-sellers",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-overhead-camera-mount-for-product-videos-the-complete-setup-guide-for-sellers",
+      "productLinkCount": 14,
+      "addToCartCount": 11,
+      "productHandles": [
+        "livestream-stream-cast-stand-adjustable-overhead-camera-phone-mount-ibsc-34606",
+        "livestream-stream-cast-clamp-adjustable-overhead-camera-phone-mount-ibsc-34605",
+        "livestream-stream-cast-clamp-bendable-overhead-phone-camera-mount",
+        "ibolt-stream-cast-spro2-phone-stand-weighted-base-mount-for-live-streaming-distance-learning-ibsc-34611",
+        "ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+        "ibolt-stream-cast-dual-spro2-phone-holder-stand-livestreaming-ibsc-34613",
+        "ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+        "ibolt-stream-cast-overhead-ceiling-wall-metal-multi-angle-drill-base-mount-for-dslr-cameras-smartphones-mini-projectors",
+        "ibolt-38mm-1-5-inch-metal-rectangular-amps-pattern-to-20-metal-camera-screw-dual-ball-mount-featuring-a-3-5-inch-composite-38mm-bizmount-arm",
+        "ibolt-dual-tablet-tripod-slider-bar",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634827538724,
+      "articleTitle": "The Smart ELD Tablet Mount Choice for Truck Fleets",
+      "articleHandle": "smart-eld-tablet-mount-choice-for-truck-fleets",
+      "publicUrl": "https://iboltmounts.com/blogs/news/smart-eld-tablet-mount-choice-for-truck-fleets",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-dock-n-lock-incredibolt-360-amps",
+        "tabdock-fixedpro-360-heavy-duty-metal-drill-base-tablet-mount-ibbz-33768"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634827505956,
+      "articleTitle": "The Smart Forklift Tablet Mount Choice for Warehouses",
+      "articleHandle": "smart-forklift-tablet-mount-choice-for-warehouses",
+      "publicUrl": "https://iboltmounts.com/blogs/news/smart-forklift-tablet-mount-choice-for-warehouses",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-lockprotm-incredibolttm-360-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-dock-n-lock-bizmount-forklift-locking-tablet-mount",
+        "heavy-duty-metal-forklift-pillar-bracket-amps-pattern-ibfl-34500"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634827473188,
+      "articleTitle": "iBOLT vs Tackform: ELD and Trucking Buyer Guide",
+      "articleHandle": "ibolt-vs-tackform-eld-trucking-buyer-guide",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-tackform-eld-trucking-buyer-guide",
+      "productLinkCount": 3,
+      "addToCartCount": 3,
+      "productHandles": [
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-dock-n-lock-incredibolt-360-amps",
+        "tabdock-fixedpro-360-heavy-duty-metal-drill-base-tablet-mount-ibbz-33768"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634827407652,
+      "articleTitle": "iBOLT vs Arkon: Operations Manager's Guide to Business Tablet Mounting Systems",
+      "articleHandle": "ibolt-vs-arkon-business-tablet-mount-guide",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-arkon-business-tablet-mount-guide",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-dock-n-lock-incredibolt-360-amps",
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-clamp-base-for-4-hole-amps-mounts"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634827374884,
+      "articleTitle": "iBOLT vs RAM Mounts: Warehouse and Forklift Guide",
+      "articleHandle": "ibolt-vs-ram-mounts-warehouse-forklift-guide",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-mounts-warehouse-forklift-guide",
+      "productLinkCount": 3,
+      "addToCartCount": 3,
+      "productHandles": [
+        "ibolt-lockprotm-incredibolttm-360-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-tabdock-incredibolt-360-forklift-tablet-mount",
+        "ibolt-tabdock-bizmount-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821869860,
+      "articleTitle": "Best Wheelchair Tablet Mount for Communication Devices",
+      "articleHandle": "best-wheelchair-tablet-mount-for-communication-devices",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-wheelchair-tablet-mount-for-communication-devices",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-tabdock-accessibolt-universal-wheelchair-multi-arm-mobility-tablet-mount",
+        "ibolt-accessibolt-dock-n-lock-wheelchair-multi-angle-mobility-tablet-mount",
+        "ibolt-diamond-amps-plate-accessibolt-armtrack-great-for-wheelchairs-rehab-chairs-and-mobility-devices-with-a-track-system"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821837092,
+      "articleTitle": "Best VESA Monitor Mount for Forklifts",
+      "articleHandle": "best-vesa-monitor-mount-for-forklifts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-vesa-monitor-mount-for-forklifts",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-38mm-1-5-inch-ball-joint",
+        "ibolt-vesa-trimag-magnetic-monitor-mount-heavy-duty-screen-mount-with-38mm-ball-joints-and-vesa-75x75-100x100-plate-for-forklifts-warehouse-vehicles-and-material-handling-equipment",
+        "ibolt-amps-to-vesa-75-100-plate"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821804324,
+      "articleTitle": "Best Tablet Mount for Utility Truck Crews",
+      "articleHandle": "best-tablet-mount-for-utility-truck-crews",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-utility-truck-crews",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "ibolt-tabdock-dynamount-360-amps-tablet-mount",
+        "ibolt-tabdocktm-incredibolttm-360-wedge-heavy-duty-vehicle-console-seat-gap-mount-for-all-7-10-tablets"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821771556,
+      "articleTitle": "Best Tablet Mount for Trade Show Kiosk Booths",
+      "articleHandle": "best-tablet-mount-for-trade-show-kiosk-booths",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-trade-show-kiosk-booths",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "tablet-tower-multi-tablet-locking-stand-three-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34701"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821738788,
+      "articleTitle": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "articleHandle": "best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-tabdock-dynamount-360-amps-tablet-mount",
+        "ibolt-20mm-clamp-secure-mount-for-atvs-utvs-ag-equipment",
+        "ibolt-tabdock-grip-post-pole-mount-fits-7-10-inch-tablets-and-posts-18mm-35mm-in-diameter"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821706020,
+      "articleTitle": "Best Tablet Mount for School Bus and Transportation Fleets",
+      "articleHandle": "best-tablet-mount-for-school-bus-and-transportation-fleets",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-school-bus-and-transportation-fleets",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "ibolt-tabdocktm-incredibolttm-360-wedge-heavy-duty-vehicle-console-seat-gap-mount-for-all-7-10-tablets"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821673252,
+      "articleTitle": "Best Tablet Mount for Overlanding Navigation",
+      "articleHandle": "best-tablet-mount-for-overlanding-navigation",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-overlanding-navigation",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdocktm-incredibolttm-360-wedge-heavy-duty-vehicle-console-seat-gap-mount-for-all-7-10-tablets",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821640484,
+      "articleTitle": "Best Rugged Tablet Mount for Field Service Vans",
+      "articleHandle": "best-rugged-tablet-mount-for-field-service-vans",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-rugged-tablet-mount-for-field-service-vans",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdocktm-incredibolttm-360-wedge-heavy-duty-vehicle-console-seat-gap-mount-for-all-7-10-tablets",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821607716,
+      "articleTitle": "Best Phone Mount for Jeep Wrangler Off-Road Trails",
+      "articleHandle": "best-phone-mount-for-jeep-wrangler-off-road-trails",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-jeep-wrangler-off-road-trails",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "ibolt-xprodock-nfc-bizmount-phone-holder-mount-heavy-duty-suction-cup-base-and-1-5m-usb-c-cable-ibbz-33969"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821574948,
+      "articleTitle": "Best Phone Mount for Exercise Bikes and Treadmills",
+      "articleHandle": "best-phone-mount-for-exercise-bikes-and-treadmills",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-exercise-bikes-and-treadmills",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-bizmount-metal-handlebar-phone-motorcycle-pole-post-handlebar-mount-ibmc-34701",
+        "ibolt-moto-vise-bizmount-clamp-heavy-duty-phone-claw-clamp-motorcycle-excercise-equipment-ibmc-34700"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821542180,
+      "articleTitle": "Best Overhead Phone Mount for Cooking Videos",
+      "articleHandle": "best-overhead-phone-mount-for-cooking-videos",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-overhead-phone-mount-for-cooking-videos",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount",
+        "ibolt-stream-cast-spro2-phone-stand-weighted-base-mount-for-live-streaming-distance-learning-ibsc-34611",
+        "ibolt-stream-cast-dual-phone-and-tablet-holder-stand-ibsc-34612"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821509412,
+      "articleTitle": "Best Overhead Camera Rig for Product Photography",
+      "articleHandle": "best-overhead-camera-rig-for-product-photography",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-overhead-camera-rig-for-product-photography",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+        "ibolt-stream-cast-overhead-ceiling-wall-metal-multi-angle-drill-base-mount-for-dslr-cameras-smartphones-mini-projectors",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821476644,
+      "articleTitle": "Best Nintendo Switch Headrest Mount for Road Trips",
+      "articleHandle": "best-nintendo-switch-headrest-mount-for-road-trips",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-nintendo-switch-headrest-mount-for-road-trips",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "nintendo-switch-headrest-mount-holder",
+        "ibolt-spro2-headrest-viewer",
+        "ibolttm-lockprotm-incredibolttm-headrest-heavy-duty-security-tablet-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821443876,
+      "articleTitle": "Best Multi-Camera Phone Mount for Live Streaming",
+      "articleHandle": "best-multi-camera-phone-mount-for-live-streaming",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+        "phone-slide-bar-camera-screw-tripod-attachment-ibcm-34602",
+        "three-1-4-20-camera-screw-slider-bar-tripod-attachment-ibcm-34601"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821411108,
+      "articleTitle": "Best Marine Electronics AMPS Mounting Plate",
+      "articleHandle": "best-marine-electronics-amps-mounting-plate",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-marine-electronics-amps-mounting-plate",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-amps-to-vesa-75-100-plate",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821378340,
+      "articleTitle": "Best Locking Tablet Mount for Classrooms",
+      "articleHandle": "best-locking-tablet-mount-for-classrooms",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-locking-tablet-mount-for-classrooms",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-lockpro-metal-locking-tablet-drill-base-mount-ibbz-33779",
+        "ibolt-dock-n-lock-drill-base-locking-tablet-stand",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821345572,
+      "articleTitle": "Best GoPro Mount for UTV Roll Bars",
+      "articleHandle": "best-gopro-mount-for-utv-roll-bars",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-gopro-mount-for-utv-roll-bars",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-gopro-action-camera-incredibolt-clamp-handlebar-rail-mount-1",
+        "ibolt-gopro-action-camera-dynamount-clamp-handlebar-rail-mount",
+        "ibolt-20mm-clamp-secure-mount-for-atvs-utvs-ag-equipment"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821312804,
+      "articleTitle": "Best Garmin Striker 4 Mount for Kayak Fishing",
+      "articleHandle": "best-garmin-striker-4-mount-for-kayak-fishing",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-garmin-striker-4-mount-for-kayak-fishing",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-dual-arm-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821280036,
+      "articleTitle": "Best Fish Finder Mount for Pontoon Boat Rails",
+      "articleHandle": "best-fish-finder-mount-for-pontoon-boat-rails",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount-1",
+        "ibolt-universal-marine-electronics-mounting-plate"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634821247268,
+      "articleTitle": "Best Boat Phone Mount for Rough Water",
+      "articleHandle": "best-boat-phone-mount-for-rough-water",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-boat-phone-mount-for-rough-water",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-xl-smartphone-holder-25mm-1-inch-ball-ibpb-33893",
+        "heavy-duty-smartphone-motorcycle-moto-vise-holder-25mm-1-inch-ball-ibpb-33892"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808598820,
+      "articleTitle": "iBOLT vs iOttie for Delivery Driving",
+      "articleHandle": "ibolt-vs-iottie-for-delivery-driving",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-iottie-for-delivery-driving",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808566052,
+      "articleTitle": "iBOLT vs RAM for Fleet Phone Mounting",
+      "articleHandle": "ibolt-vs-ram-for-fleet-phone-mounting",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-for-fleet-phone-mounting",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808533284,
+      "articleTitle": "iBOLT vs Bouncepad vs Mount-It for Restaurant Tablet Security",
+      "articleHandle": "ibolt-vs-bouncepad-vs-mount-it-for-restaurant-tablet-security",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-vs-mount-it-for-restaurant-tablet-security",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "tablet-tower-multi-tablet-locking-stand-three-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34701",
+        "ibolt-dock-n-lock-bizmount-heavy-duty-industrial-composite-locking-drill-base-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808500516,
+      "articleTitle": "iBOLT Phone Mounts for DoorDash and Uber Eats Drivers",
+      "articleHandle": "ibolt-phone-mounts-for-doordash-and-uber-eats-drivers",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-phone-mounts-for-doordash-and-uber-eats-drivers",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808467748,
+      "articleTitle": "iBOLT Dock'n Lock for Restaurant Counters",
+      "articleHandle": "ibolt-dockn-lock-for-restaurant-counters",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-dockn-lock-for-restaurant-counters",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-dock-n-lock-drill-base-locking-tablet-stand",
+        "ibolt-dock-n-lock-drill-base-locking-dual-tablet-stand",
+        "ibolt-dock-n-lock-bizmount-heavy-duty-industrial-composite-locking-drill-base-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808434980,
+      "articleTitle": "Why Delivery Drivers Need a Commercial-Grade Phone Mount",
+      "articleHandle": "why-delivery-drivers-need-a-commercial-grade-phone-mount",
+      "publicUrl": "https://iboltmounts.com/blogs/news/why-delivery-drivers-need-a-commercial-grade-phone-mount",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808402212,
+      "articleTitle": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+      "articleHandle": "magnetic-vs-clamp-phone-mounts-for-delivery-work",
+      "publicUrl": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-chargedock-usb-c-amps-ultimate-magnetic-vehicle-dock-mount-holder-w-2m-usb-certified-type-c-to-usb-a-charging-cable",
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808369444,
+      "articleTitle": "How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub",
+      "articleHandle": "how-to-set-up-multiple-tablets-for-doordash-uber-eats-and-grubhub",
+      "publicUrl": "https://iboltmounts.com/blogs/news/how-to-set-up-multiple-tablets-for-doordash-uber-eats-and-grubhub",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "tablet-tower-multi-tablet-stand-ipad-point-of-sale-purchase-restaurant-triple-ibrt-34700",
+        "multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808336676,
+      "articleTitle": "Best Tablet Mount for Restaurant POS and Delivery Apps",
+      "articleHandle": "best-tablet-mount-for-restaurant-pos-and-delivery-apps",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-dock-n-lock-drill-base-locking-dual-tablet-stand"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808303908,
+      "articleTitle": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "articleHandle": "best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "ibolt-miniproxl-flexibolt-phone-cup-holder-mount",
+        "minipro-xl-phone-holder-ibu-33425"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808271140,
+      "articleTitle": "Best Phone Mount for Construction Vehicles and Work Trucks",
+      "articleHandle": "best-phone-mount-for-construction-vehicles-and-work-trucks",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+        "moto-vise-xl-amps-heavy-duty-metal-vehicle-specific-drill-base-amps-mount-ibu-33521",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808238372,
+      "articleTitle": "Best Phone Mount for Amazon Flex and Delivery Vans",
+      "articleHandle": "best-phone-mount-for-amazon-flex-and-delivery-vans",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+        "xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930",
+        "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808205604,
+      "articleTitle": "Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants",
+      "articleHandle": "best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-dock-n-lock-drill-base-locking-tablet-stand",
+        "ibolt-lockpro-metal-locking-tablet-drill-base-mount-ibbz-33779"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808172836,
+      "articleTitle": "Best Locking Phone Mount for Shared Delivery Vehicles",
+      "articleHandle": "best-locking-phone-mount-for-shared-delivery-vehicles",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808140068,
+      "articleTitle": "Best Drill-Base Phone Mount for Semi Trucks",
+      "articleHandle": "best-drill-base-phone-mount-for-semi-trucks",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-drill-base-phone-mount-for-semi-trucks",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc",
+        "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+        "moto-vise-xl-amps-heavy-duty-metal-vehicle-specific-drill-base-amps-mount-ibu-33521"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808107300,
+      "articleTitle": "iBOLT vs RAM Mount: Which Is Better for Warehouses, Forklifts, and Commercial Use? (2026)",
+      "articleHandle": "ibolt-vs-ram-mount-which-is-better-for-warehouses-forklifts-and-commercial-use-2027",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-mount-which-is-better-for-warehouses-forklifts-and-commercial-use-2027",
+      "productLinkCount": 12,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "build-your-own-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808074532,
+      "articleTitle": "iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026",
+      "articleHandle": "ibolt-tablet-tower-system-featured-at-national-restaurant-association-show-2027",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-tablet-tower-system-featured-at-national-restaurant-association-show-2027",
+      "productLinkCount": 5,
+      "addToCartCount": 5,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808041764,
+      "articleTitle": "iBOLT Mounts and Toast POS: Powering Modern Restaurant Technology",
+      "articleHandle": "ibolt-mounts-and-toast-pos-powering-modern-restaurant-technology-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-mounts-and-toast-pos-powering-modern-restaurant-technology-1",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634808008996,
+      "articleTitle": "iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets",
+      "articleHandle": "ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets-1",
+      "productLinkCount": 4,
+      "addToCartCount": 4,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807976228,
+      "articleTitle": "iBOLT Mounting Solutions for Delivery Fleets: From DoorDash Drivers to Amazon DSP",
+      "articleHandle": "ibolt-mounting-solutions-for-delivery-fleets-from-doordash-drivers-to-amazon-dsp-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-mounting-solutions-for-delivery-fleets-from-doordash-drivers-to-amazon-dsp-1",
+      "productLinkCount": 5,
+      "addToCartCount": 5,
+      "productHandles": [
+        "spro2-phone-holder-ibu-33415",
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807943460,
+      "articleTitle": "iBOLT LockPro Series: Industrial-Grade Security for Unattended Tablets in Warehouses and Retail",
+      "articleHandle": "ibolt-lockpro-series-industrial-grade-security-for-unattended-tablets-in-warehouses-and-retail-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-lockpro-series-industrial-grade-security-for-unattended-tablets-in-warehouses-and-retail-1",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolttm-lockprotm-incredibolttm-headrest-heavy-duty-security-tablet-mount",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807910692,
+      "articleTitle": "iBOLT Launches Next-Generation Industrial Forklift Mounting System",
+      "articleHandle": "ibolt-launches-next-generation-industrial-forklift-mounting-system-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-launches-next-generation-industrial-forklift-mounting-system-1",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807877924,
+      "articleTitle": "iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution",
+      "articleHandle": "ibolt-introduces-mount-configurator-2-0-build-your-perfect-custom-mounting-solution-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-introduces-mount-configurator-2-0-build-your-perfect-custom-mounting-solution-1",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "build-your-own-mount",
+        "ibolt-22mm-to-25mm-composite-ball-adapter",
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "ibolt-tabdock-extendibolt-dual-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807845156,
+      "articleTitle": "iBOLT Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series",
+      "articleHandle": "ibolt-confirms-universal-mounting-solutions-for-samsung-galaxy-tab-a9-and-s9-series-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-confirms-universal-mounting-solutions-for-samsung-galaxy-tab-a9-and-s9-series-1",
+      "productLinkCount": 4,
+      "addToCartCount": 4,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807812388,
+      "articleTitle": "iBOLT Confirms Universal Mounting Solutions for Apple iPad 10th Generation and iPad Air M2",
+      "articleHandle": "ibolt-confirms-universal-mounting-solutions-for-apple-ipad-10th-generation-and-ipad-air-m2-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-confirms-universal-mounting-solutions-for-apple-ipad-10th-generation-and-ipad-air-m2-1",
+      "productLinkCount": 5,
+      "addToCartCount": 5,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807779620,
+      "articleTitle": "iBOLT Confirms Barcode Scanner Mounting Solutions Compatible with Honeywell, Zebra, and Symbol Scanners",
+      "articleHandle": "ibolt-confirms-barcode-scanner-mounting-solutions-compatible-with-honeywell-zebra-and-symbol-scanners-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-confirms-barcode-scanner-mounting-solutions-compatible-with-honeywell-zebra-and-symbol-scanners-1",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-xl-barcode-scanner-dualmag-low-profile-strong-magnetic-mount",
+        "ibolt-xl-barcode-scanner-bizmount-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-xl-barcode-scanner-incredibolt-360-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807746852,
+      "articleTitle": "Why Restaurants Need Dedicated Tablet Mounts",
+      "articleHandle": "why-restaurants-need-dedicated-tablet-mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/why-restaurants-need-dedicated-tablet-mounts",
+      "productLinkCount": 14,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807714084,
+      "articleTitle": "Why Modular Mounting Systems Beat One-Piece Mounts: The Case for iBOLT's 300+ Part Ecosystem",
+      "articleHandle": "why-modular-mounting-systems-beat-one-piece-mounts-the-case-for-ibolts-300-part-ecosystem-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/why-modular-mounting-systems-beat-one-piece-mounts-the-case-for-ibolts-300-part-ecosystem-1",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "build-your-own-mount",
+        "ibolt-22mm-to-25mm-composite-ball-adapter",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807681316,
+      "articleTitle": "What Makes Forklift Mounting Different",
+      "articleHandle": "what-makes-forklift-mounting-different",
+      "publicUrl": "https://iboltmounts.com/blogs/news/what-makes-forklift-mounting-different",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807648548,
+      "articleTitle": "Truck, Fleet & ELD Mounts",
+      "articleHandle": "truck-fleet-eld-mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/truck-fleet-eld-mounts",
+      "productLinkCount": 5,
+      "addToCartCount": 5,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+        "ibolt-tabdock-suction-cup-extender-holder-mount-for-your-windshield-dashboard-or-desk"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807615780,
+      "articleTitle": "Restaurant & POS Mounts",
+      "articleHandle": "restaurant-pos-mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/restaurant-pos-mounts",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807583012,
+      "articleTitle": "How the Modular System Works",
+      "articleHandle": "how-the-modular-system-works",
+      "publicUrl": "https://iboltmounts.com/blogs/news/how-the-modular-system-works",
+      "productLinkCount": 9,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "ibolt-22mm-to-25mm-composite-ball-adapter",
+        "build-your-own-mount",
+        "ibolt-tabdock-extendibolt-dual-suction-cup-mount",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807550244,
+      "articleTitle": "Forklift & Warehouse Tablet Mounts",
+      "articleHandle": "forklift-warehouse-tablet-mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/forklift-warehouse-tablet-mounts",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807517476,
+      "articleTitle": "Choosing the Best Phone Mount for Delivery Drivers: Durable, Secure, and Easy to Use",
+      "articleHandle": "choosing-the-best-phone-mount-for-delivery-drivers-durable-secure-and-easy-to-use",
+      "publicUrl": "https://iboltmounts.com/blogs/news/choosing-the-best-phone-mount-for-delivery-drivers-durable-secure-and-easy-to-use",
+      "productLinkCount": 13,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-22mm-extendibolt-triple-suction-cup-mount-heavy-duty-triple-suction-cup-mount",
+        "ibolt-moto-vise-heavy-duty-phone-dual-arm-handlebar-rail-mount",
+        "ibolt-moto-vise-heavy-duty-phone-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807484708,
+      "articleTitle": "Build Your Own Mount / Modularity",
+      "articleHandle": "build-your-own-mount-modularity",
+      "publicUrl": "https://iboltmounts.com/blogs/news/build-your-own-mount-modularity",
+      "productLinkCount": 6,
+      "addToCartCount": 7,
+      "productHandles": [
+        "build-your-own-mount",
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "ibolt-22mm-to-25mm-composite-ball-adapter"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807451940,
+      "articleTitle": "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)",
+      "articleHandle": "best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2027",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2027",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807419172,
+      "articleTitle": "Best Restaurant Tablet Mounts and POS Stands (2026 Comparison)",
+      "articleHandle": "best-restaurant-tablet-mounts-and-pos-stands-2026-comparison-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mounts-and-pos-stands-2026-comparison-1",
+      "productLinkCount": 18,
+      "addToCartCount": 18,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807386404,
+      "articleTitle": "Best Forklift Tablet Mounts for Warehouses (2026 Comparison)",
+      "articleHandle": "best-forklift-tablet-mounts-for-warehouses-2026-comparison-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison-1",
+      "productLinkCount": 15,
+      "addToCartCount": 15,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807353636,
+      "articleTitle": "Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)",
+      "articleHandle": "best-barcode-scanner-mounts-for-forklifts-and-warehouses-2027",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2027",
+      "productLinkCount": 18,
+      "addToCartCount": 18,
+      "productHandles": [
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-xl-barcode-scanner-dualmag-low-profile-strong-magnetic-mount",
+        "ibolt-xl-barcode-scanner-bizmount-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-xl-barcode-scanner-incredibolt-360-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634807320868,
+      "articleTitle": "Barcode Scanner Mounts",
+      "articleHandle": "barcode-scanner-mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/barcode-scanner-mounts",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-xl-barcode-scanner-dualmag-low-profile-strong-magnetic-mount",
+        "ibolt-xl-barcode-scanner-bizmount-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-xl-barcode-scanner-incredibolt-360-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634078757156,
+      "articleTitle": "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing",
+      "articleHandle": "choosing-the-best-kayak-fish-finder-mount-for-secure-and-convenient-fishing",
+      "publicUrl": "https://iboltmounts.com/blogs/news/choosing-the-best-kayak-fish-finder-mount-for-secure-and-convenient-fishing",
+      "productLinkCount": 16,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-metal-amps-drill-base-mount",
+        "ibolt-garmin-striker-4-fish-finder-dual-arm-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount-1",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount-featuring-a-8-5-inch-aluminum-38mm-bizmount-arm"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634078724388,
+      "articleTitle": "Choosing the Best Phone Mount for Delivery Drivers: Durable, Secure, and Purpose-Built",
+      "articleHandle": "choosing-the-best-phone-mount-for-delivery-drivers-durable-secure-and-purpose-built",
+      "publicUrl": "https://iboltmounts.com/blogs/news/choosing-the-best-phone-mount-for-delivery-drivers-durable-secure-and-purpose-built",
+      "productLinkCount": 15,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-heavy-duty-phone-handlebar-rail-mount",
+        "ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders",
+        "ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders",
+        "ibolt-20mm-to-25mm-1-inch-aluminum-extension-ball-adapter-for-industry-standard-dual-ball-socket-mounting-arms",
+        "ibolt-dock-n-lock-incredibolt-360-amps-locking-tablet-mount",
+        "ibolt-22mm-extendibolt-triple-suction-cup-mount-heavy-duty-triple-suction-cup-mount",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-22mm-to-25mm-composite-ball-adapter"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 634078691620,
+      "articleTitle": "Choosing the Best Fish Finder Mount for Your Small or Aluminum Boat",
+      "articleHandle": "choosing-the-best-fish-finder-mount-for-your-small-or-aluminum-boat",
+      "publicUrl": "https://iboltmounts.com/blogs/news/choosing-the-best-fish-finder-mount-for-your-small-or-aluminum-boat",
+      "productLinkCount": 17,
+      "addToCartCount": 14,
+      "productHandles": [
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-25mm-1-inch-composite-universal-marine-fish-finder-to-metal-amps2-75-inch-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-metal-amps-drill-base-mount",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-composite-amps-drill-base-mount",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount-featuring-a-2-75-inch-composite-25mm-1-inch-bizmount-arm",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount-1",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount-featuring-a-8-5-inch-aluminum-38mm-bizmount-arm"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633972162852,
+      "articleTitle": "Why Trucking Companies Are Switching to Locking Phone Mounts",
+      "articleHandle": "why-trucking-companies-are-switching-to-locking-phone-mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/why-trucking-companies-are-switching-to-locking-phone-mounts",
+      "productLinkCount": 2,
+      "addToCartCount": 2,
+      "productHandles": [
+        "ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633972130084,
+      "articleTitle": "Cup Holder Tablet Mounts: The No-Drill Solution for Work Vehicles",
+      "articleHandle": "cup-holder-tablet-mounts-the-no-drill-solution-for-work-vehicles",
+      "publicUrl": "https://iboltmounts.com/blogs/news/cup-holder-tablet-mounts-the-no-drill-solution-for-work-vehicles",
+      "productLinkCount": 2,
+      "addToCartCount": 2,
+      "productHandles": [
+        "tabdock-bizmount-console-heavy-duty-cup-holder-mount-ibbz-33784"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633972097316,
+      "articleTitle": "AMPS Drill Base Tablet Mounts: 3 Options from Entry-Level to Heavy-Duty",
+      "articleHandle": "amps-drill-base-tablet-mounts-3-options-from-entry-level-to-heavy-duty",
+      "publicUrl": "https://iboltmounts.com/blogs/news/amps-drill-base-tablet-mounts-3-options-from-entry-level-to-heavy-duty",
+      "productLinkCount": 3,
+      "addToCartCount": 3,
+      "productHandles": [
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "tabdock-fixedpro-360-heavy-duty-metal-drill-base-tablet-mount-ibbz-33768",
+        "ibolt-tabdock-dynamount-360-amps-tablet-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633972064548,
+      "articleTitle": "Dual vs Triple Suction Cup Tablet Mounts: Which One Do You Need?",
+      "articleHandle": "dual-vs-triple-suction-cup-tablet-mounts-which-one-do-you-need",
+      "publicUrl": "https://iboltmounts.com/blogs/news/dual-vs-triple-suction-cup-tablet-mounts-which-one-do-you-need",
+      "productLinkCount": 2,
+      "addToCartCount": 2,
+      "productHandles": [
+        "ibolt-tabdock-incredibolt-360-heavy-duty-dual-suction-cup-mount",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633972031780,
+      "articleTitle": "Why Your POS System Needs a Dedicated Tablet Stand",
+      "articleHandle": "why-your-pos-system-needs-a-dedicated-tablet-stand",
+      "publicUrl": "https://iboltmounts.com/blogs/news/why-your-pos-system-needs-a-dedicated-tablet-stand",
+      "productLinkCount": 2,
+      "addToCartCount": 2,
+      "productHandles": [
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633971999012,
+      "articleTitle": "Best Locking Tablet Mounts for Business Security",
+      "articleHandle": "best-locking-tablet-mounts-for-business-security",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-locking-tablet-mounts-for-business-security",
+      "productLinkCount": 3,
+      "addToCartCount": 3,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount-heavy-duty-industrial-composite-locking-drill-base-mount",
+        "ibolt-dock-n-lock-incredibolt-360-amps",
+        "ibolt-lockpro-metal-locking-tablet-drill-base-mount-ibbz-33779"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633971966244,
+      "articleTitle": "Best Forklift Tablet Mounts for Warehouse Operations in 2026",
+      "articleHandle": "best-forklift-tablet-mounts-for-warehouse-operations-in-2026",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouse-operations-in-2026",
+      "productLinkCount": 4,
+      "addToCartCount": 4,
+      "productHandles": [
+        "ibolt-xl-barcode-scanner-forklift-pillar-mount-for-warehouse-vehicles-inventory-management-and-material-handling",
+        "ibolt-vesa-75x75-mm-100x100-mm-incredibolt-forklift-mount",
+        "ibolt-tabdock-incredibolt-360-forklift-tablet-mount",
+        "ibolt-dock-n-lock-bizmount-forklift-locking-tablet-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693503780,
+      "articleTitle": "Build Your Own Modular Tablet Mount: Complete Guide to Customizable AMPS Systems",
+      "articleHandle": "build-your-own-modular-tablet-mount-complete-guide-to-customizable-amps-systems",
+      "publicUrl": "https://iboltmounts.com/blogs/news/build-your-own-modular-tablet-mount-complete-guide-to-customizable-amps-systems",
+      "productLinkCount": 21,
+      "addToCartCount": 21,
+      "productHandles": [
+        "build-your-own-mount",
+        "ibolt-tabdock-tablet-holder-with-4-hole-amps-pattern-connection",
+        "ibolt-amps-to-vesa-75-100-plate",
+        "ibolt-clamp-base-for-4-hole-amps-mounts",
+        "25mm-1-inch-ball-b-size-adjustable-clamp-mount-22174",
+        "composite-2-75-inch-double-socket-arm-for-all-industry-standard-1-inch-25mm-b-size-ball-22156",
+        "aluminum-3-75-inch-double-socket-arm-industry-standard-1-inch-25mm-b-size-ball-mount-22193",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "ibolt-tabdock-magdock-heavy-duty-magnetic-mount-for-fridges-restaurants-automotive-workout-equipment",
+        "ibolt-mounts-3-5-inch-composite-dual-ball-socket-arm-for-38-mm-1-5-inch-ball-joint-adapters-and-bases",
+        "5-inch-metal-dual-ball-socket-arm-for-38-mm-1-5-inch-c-size-ball-mount-22184",
+        "ibolt-mounts-8-5-inch-metal-dual-ball-socket-arm-for-38-mm-1-5-inch-ball-joint-adapters-and-bases",
+        "ibolt-dock-n-lock-composite-locking-tablet-holder-fits-7-to-10-inch-tablets-and-all-industry-standard-4-hole-amps-pattern-mounts-and-adapters",
+        "tabdock-universal-tablet-holder-21110",
+        "ibolt-tabdock-pos-tablet-stand",
+        "ibolt-tabdock-bizmount-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "tabdock-bizmount-seat-wedge-tablet-mount-ibbz-33795"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693471012,
+      "articleTitle": "iBOLT vs RAM Mount: Why Specialists Beat Generalists for Business Mounting",
+      "articleHandle": "ibolt-vs-ram-mount-why-specialists-beat-generalists-for-business-mounting",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-mount-why-specialists-beat-generalists-for-business-mounting",
+      "productLinkCount": 12,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-tabdock-bizmount-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-xl-barcode-scanner-forklift-pillar-mount-for-warehouse-vehicles-inventory-management-and-material-handling",
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-38mm-1-5-inch-ball-joint",
+        "ibolt-lockprotm-incredibolttm-360-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-amps-to-vesa-75-100-plate",
+        "build-your-own-mount",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-quad-tablet-tower-stand"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693438244,
+      "articleTitle": "Best ELD Mount for Trucks: Complete Guide to Heavy-Duty Tablet Holders for Commercial Fleets",
+      "articleHandle": "best-eld-mount-for-trucks-complete-guide-to-heavy-duty-tablet-holders-for-commercial-fleets",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-eld-mount-for-trucks-complete-guide-to-heavy-duty-tablet-holders-for-commercial-fleets",
+      "productLinkCount": 13,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-tabdock-extendibolt-triple-suction-cup-mount",
+        "ibolt-tabdocktm-incredibolttm-360-wedge-heavy-duty-vehicle-console-seat-gap-mount-for-all-7-10-tablets",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+        "tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+        "ibolt-25mm-1-inch-dualmag-industrial-strength-magnetic-base",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+        "ibolt-miniproxl-flexibolt-phone-cup-holder-mount",
+        "ibolt-dock-n-lock-incredibolt-360-amps-locking-tablet-mount",
+        "ibolt-lockpro-metal-locking-tablet-drill-base-mount-ibbz-33779",
+        "ibolt-triple-suction-cup-base-with-universal-4-hole-amps-pattern",
+        "fixed-install-hardwire-usb-charge-30w-2-port-quick-charge-3-0-standard-usb-a"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693405476,
+      "articleTitle": "Best Forklift Tablet Mount: Complete 2024 Guide for Warehouse Operations",
+      "articleHandle": "best-forklift-tablet-mount-complete-2024-guide-for-warehouse-operations",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mount-complete-2024-guide-for-warehouse-operations",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-tabdock-bizmount-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-lockprotm-incredibolttm-360-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-tabdock-incredibolt-360-forklift-tablet-mount",
+        "security-hardware-for-25mm-bizmount-set-of-3-bolts-1-hex-key"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693372708,
+      "articleTitle": "Best Restaurant Tablet Mount Solutions for Multi-App Delivery Management in 2024",
+      "articleHandle": "best-restaurant-tablet-mount-solutions-for-multi-app-delivery-management-in-2024",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-solutions-for-multi-app-delivery-management-in-2024",
+      "productLinkCount": 13,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-tabdock-pos-tablet-stand",
+        "ibolt-dock-n-lock-pos-tablet-stand",
+        "ibolt-dock-n-lock-drill-base-locking-tablet-stand",
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-dock-n-lock-drill-base-locking-dual-tablet-stand",
+        "tablet-tower-multi-tablet-locking-stand-three-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34701",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-5-tablet-holders",
+        "multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693339940,
+      "articleTitle": "Forklift Barcode Scanner Mount Guide: Best Warehouse Scanner Holders for 2024",
+      "articleHandle": "forklift-barcode-scanner-mount-guide-best-warehouse-scanner-holders-for-2024",
+      "publicUrl": "https://iboltmounts.com/blogs/news/forklift-barcode-scanner-mount-guide-best-warehouse-scanner-holders-for-2024",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-xl-barcode-scanner-dualmag-low-profile-strong-magnetic-mount",
+        "ibolt-xl-barcode-scanner-forklift-pillar-mount-for-warehouse-vehicles-inventory-management-and-material-handling",
+        "ibolt-tabdock-dual-xl-barcode-scanner-forklift-pillar-mount",
+        "ibolt-vesa-75x75-mm-100x100-mm-dual-xl-barcode-scanner-forklift-pillar-mount",
+        "ibolt-xl-barcode-scanner-incredibolt-360-forklift-pillar-mount",
+        "ibolt-xl-barcode-scanner-bizmount-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-xl-barcode-scanner-magnetic-forklift-mount",
+        "security-hardware-for-25mm-bizmount-set-of-3-bolts-1-hex-key"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693307172,
+      "articleTitle": "Best Boat Tablet Holders: Secure Marine Mounting Solutions for Navigation and Entertainment",
+      "articleHandle": "best-boat-tablet-holders-secure-marine-mounting-solutions-for-navigation-and-entertainment",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-boat-tablet-holders-secure-marine-mounting-solutions-for-navigation-and-entertainment",
+      "productLinkCount": 8,
+      "addToCartCount": 8,
+      "productHandles": [
+        "ibolt-17mm-dual-ball-horizontal-clamp-mount-for-handlebars-poles-posts",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-25mm-1-inch-heavy-duty-metal-ball-suction-cup-base",
+        "ibolt-17mm-dual-ball-clamping-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems-and-ibolt-phone-holders",
+        "ibolt-17mm-dual-ball-vertical-clamp-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693274404,
+      "articleTitle": "Best Boat Tablet Holders: Secure Mounts for Marine Electronics and Navigation",
+      "articleHandle": "best-boat-tablet-holders-secure-mounts-for-marine-electronics-and-navigation",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-boat-tablet-holders-secure-mounts-for-marine-electronics-and-navigation",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-17mm-dual-ball-clamping-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems-and-ibolt-phone-holders",
+        "ibolt-25mm-1-inch-heavy-duty-metal-ball-suction-cup-base",
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-17mm-dual-ball-vertical-clamp-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems",
+        "ibolt-25mm-1-inch-ball-flexpro-seatrail-mount-w-3-inch-arm-heavy-duty-floor-mount-for-industry-standard-25mm-1-inch-dual-ball-mounts-cars-vans-large-trucks-great-for-telematics-and-fleets"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693241636,
+      "articleTitle": "Tablet Mount for Forklift: Complete Guide to Forklift Mounted Tablet Solutions",
+      "articleHandle": "tablet-mount-for-forklift-complete-guide-to-forklift-mounted-tablet-solutions",
+      "publicUrl": "https://iboltmounts.com/blogs/news/tablet-mount-for-forklift-complete-guide-to-forklift-mounted-tablet-solutions",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-tabdock-bizmount-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-lockprotm-incredibolttm-360-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-tabdock-bizmount-dualmag-low-profile-strong-magnetic-mount-for-7-to-10-inch-tablets",
+        "security-hardware-for-25mm-bizmount-set-of-3-bolts-1-hex-key",
+        "ibolt-tabdock-dual-xl-barcode-scanner-forklift-pillar-mount",
+        "ibolt-vesa-75x75-mm-100x100-mm-dual-xl-barcode-scanner-forklift-pillar-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693208868,
+      "articleTitle": "Tablet Mount for Forklift: Complete Guide to Warehouse Productivity Solutions",
+      "articleHandle": "tablet-mount-for-forklift-complete-guide-to-warehouse-productivity-solutions",
+      "publicUrl": "https://iboltmounts.com/blogs/news/tablet-mount-for-forklift-complete-guide-to-warehouse-productivity-solutions",
+      "productLinkCount": 13,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-tabdock-bizmount-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-lockprotm-incredibolttm-360-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+        "ibolt-dock-n-lock-bizmount-forklift-locking-tablet-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-tabdock-bizmount-dualmag-low-profile-strong-magnetic-mount-for-7-to-10-inch-tablets",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "security-hardware-for-25mm-bizmount-set-of-3-bolts-1-hex-key",
+        "ibolt-tabdock-incredibolt-360-forklift-tablet-mount",
+        "ibolt-vesa-75x75-mm-100x100-mm-incredibolt-forklift-mount",
+        "ibolt-tabdock-dual-xl-barcode-scanner-forklift-pillar-mount",
+        "ibolt-amps-monitor-pillar-mount-with-57mm-2-25-inch-ball-joint"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693176100,
+      "articleTitle": "GoPro Screw Mount Guide: Best ¼-20 Threading Options for Action Cameras",
+      "articleHandle": "gopro-screw-mount-guide-best-20-threading-options-for-action-cameras",
+      "publicUrl": "https://iboltmounts.com/blogs/news/gopro-screw-mount-guide-best-20-threading-options-for-action-cameras",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-20-camera-screw-to-gopro-adapter",
+        "ibolt-gopro-action-camera-handlebar-rail-mount",
+        "ibolt-gopro-action-camera-dynamount-clamp-handlebar-rail-mount",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+        "ibolt-88mm-diameter-magnetic-mount-base-w-1-4-20-camera-screw-gopro-adapter",
+        "ibolt-action-camera-inch-20-to-25mm-1-inch-b-size-ball-adapter",
+        "ibolt-action-camera-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+        "ibolt-gopro-action-camera-incredibolt-clamp-handlebar-rail-mount-1",
+        "ibolt-action-camera-incredibolt-heavy-duty-handlebar-post-pole-rail-mount",
+        "ibolt-gopro-action-camera-dual-arm-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693143332,
+      "articleTitle": "GoPro Screw Mount Guide: Best 1/4-20 Adapters and Mounting Solutions for Action Cameras",
+      "articleHandle": "gopro-screw-mount-guide-best-1-4-20-adapters-and-mounting-solutions-for-action-cameras",
+      "publicUrl": "https://iboltmounts.com/blogs/news/gopro-screw-mount-guide-best-1-4-20-adapters-and-mounting-solutions-for-action-cameras",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-20-camera-screw-to-gopro-adapter",
+        "ibolt-action-camera-inch-20-to-25mm-1-inch-b-size-ball-adapter",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+        "ibolt-gopro-action-camera-handlebar-rail-mount",
+        "ibolt-88mm-diameter-magnetic-mount-base-w-1-4-20-camera-screw-and-compatible-with-gopro-adapter",
+        "ibolt-gopro-action-camera-incredibolt-clamp-handlebar-rail-mount-1",
+        "ibolt-action-camera-incredibolt-360-heavy-duty-dual-double-suction-cup-mount",
+        "ibolt-gopro-action-camera-selfie-pole-clamp-handlebar-rail-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693110564,
+      "articleTitle": "The Ultimate Guide to Mountable Cup Holders: Secure Drink Storage for Any Space",
+      "articleHandle": "the-ultimate-guide-to-mountable-cup-holders-secure-drink-storage-for-any-space",
+      "publicUrl": "https://iboltmounts.com/blogs/news/the-ultimate-guide-to-mountable-cup-holders-secure-drink-storage-for-any-space",
+      "productLinkCount": 14,
+      "addToCartCount": 14,
+      "productHandles": [
+        "25mm-1-inch-ball-b-size-adjustable-cupholder-mount-22159",
+        "tabdock-bizmount-console-heavy-duty-cup-holder-mount-ibbz-33784",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+        "ibolt™25mm-1-inch-ball-to-clamp-post-pole-handlebar-mount",
+        "ibolt-clamp-base-for-4-hole-amps-mounts",
+        "25mm-1-inch-ball-b-size-adjustable-clamp-mount-22174",
+        "industry-standard-amps-packing-plate",
+        "ibolt-20mm-adjustable-aluminum-ball-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693077796,
+      "articleTitle": "Mountable Cup Holder Solutions: Secure Your Drinks in Any Vehicle or Workspace",
+      "articleHandle": "mountable-cup-holder-solutions-secure-your-drinks-in-any-vehicle-or-workspace",
+      "publicUrl": "https://iboltmounts.com/blogs/news/mountable-cup-holder-solutions-secure-your-drinks-in-any-vehicle-or-workspace",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "25mm-1-inch-ball-b-size-adjustable-cupholder-mount-22159",
+        "tabdock-bizmount-console-heavy-duty-cup-holder-mount-ibbz-33784",
+        "25mm-1-inch-ball-b-size-adjustable-clamp-mount-22174",
+        "ibolt-clamp-base-for-4-hole-amps-mounts",
+        "ibolt-20mm-adjustable-aluminum-ball-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693045028,
+      "articleTitle": "Mountable Cup Holder Solutions: The Complete Guide to Vehicle and Workspace Mounting",
+      "articleHandle": "mountable-cup-holder-solutions-the-complete-guide-to-vehicle-and-workspace-mounting",
+      "publicUrl": "https://iboltmounts.com/blogs/news/mountable-cup-holder-solutions-the-complete-guide-to-vehicle-and-workspace-mounting",
+      "productLinkCount": 12,
+      "addToCartCount": 12,
+      "productHandles": [
+        "25mm-1-inch-ball-b-size-adjustable-cupholder-mount-22159",
+        "tabdock-bizmount-console-heavy-duty-cup-holder-mount-ibbz-33784",
+        "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+        "ibolt-17mm-dual-ball-to-cup-holder-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders",
+        "ibolt-clamp-base-for-4-hole-amps-mounts",
+        "25mm-1-inch-ball-b-size-adjustable-clamp-mount-22174",
+        "ibolt-25mm-1-inch-ball-to-clamp-post-pole-handlebar-mount-base-adapter",
+        "ibolt-20mm-adjustable-aluminum-ball-cup-holder-mount",
+        "ibolt-action-camera-inch-20-dual-bizmount-cup-holder-mount",
+        "ibolt-action-camera-inch-20-bizmount-cup-holder-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633693012260,
+      "articleTitle": "Best Handlebar Mount Phone Solutions for Cyclists: A Complete Guide to Secure Smartphone Mounting",
+      "articleHandle": "best-handlebar-mount-phone-solutions-for-cyclists-a-complete-guide-to-secure-smartphone-mounting",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-handlebar-mount-phone-solutions-for-cyclists-a-complete-guide-to-secure-smartphone-mounting",
+      "productLinkCount": 9,
+      "addToCartCount": 9,
+      "productHandles": [
+        "ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount",
+        "ibolt-moto-vise-bizmount-metal-handlebar-phone-motorcycle-pole-post-handlebar-mount-ibmc-34701",
+        "ibolt-moto-vise-heavy-duty-phone-handlebar-rail-mount",
+        "ibolt-moto-vise-heavy-duty-phone-dual-arm-handlebar-rail-mount",
+        "ibolt-1-inch-25mm-composite-motorcycle-bicycle-handlebar-pole-post-mount",
+        "ibolt™25mm-1-inch-ball-to-clamp-post-pole-handlebar-mount",
+        "ibolt™-38mm-1-5-inch-ball-to-clamp-post-pole-handlebar-mount",
+        "ibolt-17mm-dual-ball-clamping-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems-and-ibolt-phone-holders"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633692979492,
+      "articleTitle": "iBolt Mounts: The Complete Guide to Professional Device Mounting Solutions",
+      "articleHandle": "ibolt-mounts-the-complete-guide-to-professional-device-mounting-solutions",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-mounts-the-complete-guide-to-professional-device-mounting-solutions",
+      "productLinkCount": 14,
+      "addToCartCount": 14,
+      "productHandles": [
+        "build-your-own-mount",
+        "ibolt-clamp-base-for-4-hole-amps-mounts",
+        "ibolt-triple-suction-cup-base-with-universal-4-hole-amps-pattern",
+        "ibolt-spro2-grip-compact-clamp-mount",
+        "ibolt-miniproxl-flexibolt-phone-cup-holder-mount",
+        "ibolt-tabdock-pos-tablet-stand",
+        "ibolt-tabdock-accessibolt-universal-wheelchair-multi-arm-mobility-tablet-mount",
+        "ibolt-vesa-75x75-100x100-monitor-pillar-mount-with-38mm-1-5-inch-ball-joint",
+        "ibolt-xl-barcode-scanner-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-dual-suction-cup-base-with-universal-4-hole-amps-pattern",
+        "ibolt-25mm-1-inch-dualmag-industrial-strength-magnetic-base",
+        "ibolt-accessibolt-dock-n-lock-wheelchair-mobility-tablet-mount",
+        "ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+        "security-hardware-for-25mm-bizmount-set-of-3-bolts-1-hex-key"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633692946724,
+      "articleTitle": "AMPS Adapter Guide: Universal Mounting Solutions for Every Device",
+      "articleHandle": "amps-adapter-guide-universal-mounting-solutions-for-every-device",
+      "publicUrl": "https://iboltmounts.com/blogs/news/amps-adapter-guide-universal-mounting-solutions-for-every-device",
+      "productLinkCount": 13,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-amps-to-vesa-75-100-plate",
+        "ibolt-25mm-1-inch-composite-amps-adapter-plate-dual-ball-socket-mounting-arms",
+        "ibolt-clamp-base-for-4-hole-amps-mounts",
+        "ibolt-triple-suction-cup-base-with-universal-4-hole-amps-pattern",
+        "ibolt-38mm-1-5-inch-ball-metal-amps-adapter-plate",
+        "ibolt-20mm-metal-amps-adapter-plate-for-industry-standard-20mm-dual-ball-socket-mounting-arms",
+        "ibolt-incredibolt-amps-3-2-inch-dual-ball-drill-base-mount",
+        "ibolt-dual-suction-cup-base-with-universal-4-hole-amps-pattern",
+        "aluminum-17mm-amps-adapter-plate-for-garmin-gps-devices-smartphone-holders-and-other-industry-standard-17mm-adapters-22153",
+        "25mm-1-inch-b-size-metal-amps-pattern-adapter-plate-ibpb-33890",
+        "ibolt-composite-2-5-open-socket-amps-drill-base-mount-for-1-inch-25mm-ball-joints",
+        "build-your-own-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633692913956,
+      "articleTitle": "Fish Finder Mounts: Complete Guide to Mounting Your Fish Finder for Every Boat Type",
+      "articleHandle": "fish-finder-mounts-complete-guide-to-mounting-your-fish-finder-for-every-boat-type",
+      "publicUrl": "https://iboltmounts.com/blogs/news/fish-finder-mounts-complete-guide-to-mounting-your-fish-finder-for-every-boat-type",
+      "productLinkCount": 12,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount",
+        "ibolt-universal-marine-electronics-mounting-plate",
+        "ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount",
+        "ibolt-38mm-1-5-inch-composite-universal-marine-fish-finder-to-aluminum-amps-drill-base-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-dual-arm-handlebar-rail-mount",
+        "ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-38mm-1-5-inch-ball-composite-universal-marine-fish-finder-mounting-plate",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount",
+        "ibolt-universal-marine-fish-finder-handlebar-rail-mount-1"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633692881188,
+      "articleTitle": "Ball Mounts Explained: Complete Guide to 20mm, 25mm, and Universal Mounting Solutions",
+      "articleHandle": "ball-mounts-explained-complete-guide-to-20mm-25mm-and-universal-mounting-solutions-1",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ball-mounts-explained-complete-guide-to-20mm-25mm-and-universal-mounting-solutions-1",
+      "productLinkCount": 13,
+      "addToCartCount": 13,
+      "productHandles": [
+        "ibolt-20mm-to-25mm-1-inch-aluminum-extension-ball-adapter-for-industry-standard-dual-ball-socket-mounting-arms",
+        "ibolt-25mm-1-inch-to-25mm-1-inch-metal-extension-ball-adapter",
+        "ibolt-20mm-metal-ball-suction-cup-base-for-industry-standard-20mm-dual-ball-socket-mounting-arms",
+        "ibolt-20mm-metal-amps-adapter-plate-for-industry-standard-20mm-dual-ball-socket-mounting-arms",
+        "ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders",
+        "aluminum-17mm-amps-adapter-plate-for-garmin-gps-devices-smartphone-holders-and-other-industry-standard-17mm-adapters-22153",
+        "25mm-1-inch-b-size-metal-amps-pattern-adapter-plate-ibpb-33890",
+        "ibolt-25mm-1-inch-ball-to-clamp-post-pole-handlebar-mount-base-adapter",
+        "ibolt-20mm-clamp-secure-mount-for-atvs-utvs-ag-equipment",
+        "ibolt-20mm-adjustable-aluminum-ball-cup-holder-mount",
+        "ibolt-22mm-to-25mm-composite-ball-adapter",
+        "ibolt-25mm-1-inch-to-17mm-composite-ball-adapter-for-industry-standard-dual-ball-socket"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633692848420,
+      "articleTitle": "Best iPad Mount for Truck: Complete Guide to Heavy-Duty Tablet Truck Mounts",
+      "articleHandle": "best-ipad-mount-for-truck-complete-guide-to-heavy-duty-tablet-truck-mounts",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-ipad-mount-for-truck-complete-guide-to-heavy-duty-tablet-truck-mounts",
+      "productLinkCount": 11,
+      "addToCartCount": 11,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolttm-lockprotm-incredibolttm-headrest-heavy-duty-security-tablet-mount",
+        "ibolt-dock-n-lock-incredibolt-360-amps-locking-tablet-mount",
+        "ibolttm-incredibolttm-flexpro-heavy-duty-seat-rail-mount-w-4-25-inch-arm-amps-plate-adapter",
+        "ibolt-tabdocktm-incredibolttm-360-wedge-heavy-duty-vehicle-console-seat-gap-mount-for-all-7-10-tablets",
+        "ibolt-tabdock-tablet-holder-with-4-hole-amps-pattern-connection",
+        "ibolt-dock-n-lock-composite-locking-tablet-holder-fits-7-to-10-inch-tablets-and-all-industry-standard-4-hole-amps-pattern-mounts-and-adapters",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+        "ibolt-tabdock-fixedpro-360-suction-heavy-duty-metal-8-multi-angle-suction-cup-mount-for-all-7-10-tablets"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633692815652,
+      "articleTitle": "Camera Mount Solutions for Content Creators: From Clamps to Overhead Streaming Setups",
+      "articleHandle": "camera-mount-solutions-for-content-creators-from-clamps-to-overhead-streaming-setups",
+      "publicUrl": "https://iboltmounts.com/blogs/news/camera-mount-solutions-for-content-creators-from-clamps-to-overhead-streaming-setups",
+      "productLinkCount": 16,
+      "addToCartCount": 16,
+      "productHandles": [
+        "ibolt-17mm-clamp-mount-for-handlebars-poles-posts-for-gopro-hero-action-cameras-20-camera-screw",
+        "ibolt-gopro-action-camera-incredibolt-clamp-handlebar-rail-mount-1",
+        "livestream-stream-cast-clamp-adjustable-overhead-camera-phone-mount-ibsc-34605",
+        "ibolt-stream-cast-spro2-phone-stand-weighted-base-mount-for-live-streaming-distance-learning-ibsc-34611",
+        "ibolt-stream-cast-dual-spro2-phone-holder-stand-livestreaming-ibsc-34613",
+        "ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+        "ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount",
+        "livestream-stream-cast-stand-adjustable-overhead-camera-phone-mount-ibsc-34606",
+        "ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+        "ibolt-20-camera-screw-to-gopro-adapter",
+        "ibolt-20-camera-screw-to-38mm-1-5-inch-ball-mount-adapter-for-all-industry-standard-1-5-inch-38-mm-mounts",
+        "1-inch-25mm-b-size-ball-1-4-20-camera-screw-mount-adapter",
+        "ibolt-dual-tablet-tripod-slider-bar",
+        "phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+        "ibolt-38mm-1-5-inch-metal-rectangular-amps-pattern-to-20-metal-camera-screw-dual-ball-mount-featuring-a-3-5-inch-composite-38mm-bizmount-arm",
+        "ibolt-action-camera-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468584228,
+      "articleTitle": "iBOLT Launches Next-Generation Industrial Forklift Mounting System",
+      "articleHandle": "ibolt-launches-next-generation-industrial-forklift-mounting-system",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-launches-next-generation-industrial-forklift-mounting-system",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468551460,
+      "articleTitle": "iBOLT Mounts and Toast POS: Powering Modern Restaurant Technology",
+      "articleHandle": "ibolt-mounts-and-toast-pos-powering-modern-restaurant-technology",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-mounts-and-toast-pos-powering-modern-restaurant-technology",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468518692,
+      "articleTitle": "iBOLT Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series",
+      "articleHandle": "ibolt-confirms-universal-mounting-solutions-for-samsung-galaxy-tab-a9-and-s9-series",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-confirms-universal-mounting-solutions-for-samsung-galaxy-tab-a9-and-s9-series",
+      "productLinkCount": 4,
+      "addToCartCount": 4,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468485924,
+      "articleTitle": "iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026",
+      "articleHandle": "ibolt-tablet-tower-system-featured-at-national-restaurant-association-show-2026",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-tablet-tower-system-featured-at-national-restaurant-association-show-2026",
+      "productLinkCount": 5,
+      "addToCartCount": 5,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468453156,
+      "articleTitle": "iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution",
+      "articleHandle": "ibolt-introduces-mount-configurator-2-0-build-your-perfect-custom-mounting-solution",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-introduces-mount-configurator-2-0-build-your-perfect-custom-mounting-solution",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "build-your-own-mount",
+        "ibolt-22mm-to-25mm-composite-ball-adapter",
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "ibolt-tabdock-extendibolt-dual-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468420388,
+      "articleTitle": "iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets",
+      "articleHandle": "ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets",
+      "productLinkCount": 4,
+      "addToCartCount": 4,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468387620,
+      "articleTitle": "iBOLT LockPro Series: Industrial-Grade Security for Unattended Tablets in Warehouses and Retail",
+      "articleHandle": "ibolt-lockpro-series-industrial-grade-security-for-unattended-tablets-in-warehouses-and-retail",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-lockpro-series-industrial-grade-security-for-unattended-tablets-in-warehouses-and-retail",
+      "productLinkCount": 6,
+      "addToCartCount": 6,
+      "productHandles": [
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolttm-lockprotm-incredibolttm-headrest-heavy-duty-security-tablet-mount",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468354852,
+      "articleTitle": "iBOLT Confirms Universal Mounting Solutions for Apple iPad 10th Generation and iPad Air M2",
+      "articleHandle": "ibolt-confirms-universal-mounting-solutions-for-apple-ipad-10th-generation-and-ipad-air-m2",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-confirms-universal-mounting-solutions-for-apple-ipad-10th-generation-and-ipad-air-m2",
+      "productLinkCount": 5,
+      "addToCartCount": 5,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468322084,
+      "articleTitle": "iBOLT Confirms Barcode Scanner Mounting Solutions Compatible with Honeywell, Zebra, and Symbol Scanners",
+      "articleHandle": "ibolt-confirms-barcode-scanner-mounting-solutions-compatible-with-honeywell-zebra-and-symbol-scanners",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-confirms-barcode-scanner-mounting-solutions-compatible-with-honeywell-zebra-and-symbol-scanners",
+      "productLinkCount": 7,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-xl-barcode-scanner-dualmag-low-profile-strong-magnetic-mount",
+        "ibolt-xl-barcode-scanner-bizmount-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-xl-barcode-scanner-incredibolt-360-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468289316,
+      "articleTitle": "iBOLT Mounting Solutions for Delivery Fleets: From DoorDash Drivers to Amazon DSP",
+      "articleHandle": "ibolt-mounting-solutions-for-delivery-fleets-from-doordash-drivers-to-amazon-dsp",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-mounting-solutions-for-delivery-fleets-from-doordash-drivers-to-amazon-dsp",
+      "productLinkCount": 5,
+      "addToCartCount": 5,
+      "productHandles": [
+        "spro2-phone-holder-ibu-33415",
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468256548,
+      "articleTitle": "Best Restaurant Tablet Mounts for Delivery Apps and POS (2026 Guide)",
+      "articleHandle": "best-restaurant-tablet-mounts-for-delivery-apps-and-pos-2026-guide",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mounts-for-delivery-apps-and-pos-2026-guide",
+      "productLinkCount": 14,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468223780,
+      "articleTitle": "iBOLT Modular Mounting System: 300+ Parts, Unlimited Configurations (2026 Guide)",
+      "articleHandle": "ibolt-modular-mounting-system-300-parts-unlimited-configurations-2026-guide",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-modular-mounting-system-300-parts-unlimited-configurations-2026-guide",
+      "productLinkCount": 9,
+      "addToCartCount": 7,
+      "productHandles": [
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "ibolt-22mm-to-25mm-composite-ball-adapter",
+        "build-your-own-mount",
+        "ibolt-tabdock-extendibolt-dual-suction-cup-mount",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468191012,
+      "articleTitle": "How to Mount a Tablet to a Forklift: Complete Guide (2026)",
+      "articleHandle": "how-to-mount-a-tablet-to-a-forklift-complete-guide-2026",
+      "publicUrl": "https://iboltmounts.com/blogs/news/how-to-mount-a-tablet-to-a-forklift-complete-guide-2026",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468158244,
+      "articleTitle": "Why Modular Mounting Systems Beat One-Piece Mounts: The Case for iBOLT's 300+ Part Ecosystem",
+      "articleHandle": "why-modular-mounting-systems-beat-one-piece-mounts-the-case-for-ibolts-300-part-ecosystem",
+      "publicUrl": "https://iboltmounts.com/blogs/news/why-modular-mounting-systems-beat-one-piece-mounts-the-case-for-ibolts-300-part-ecosystem",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "build-your-own-mount",
+        "ibolt-22mm-to-25mm-composite-ball-adapter",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468125476,
+      "articleTitle": "iBOLT vs RAM Mount: Which Is Better for Warehouses, Forklifts, and Commercial Use? (2026)",
+      "articleHandle": "ibolt-vs-ram-mount-which-is-better-for-warehouses-forklifts-and-commercial-use-2026",
+      "publicUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-mount-which-is-better-for-warehouses-forklifts-and-commercial-use-2026",
+      "productLinkCount": 12,
+      "addToCartCount": 12,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-25mm-1-inch-to-dual-17mm-composite-ball-adapter",
+        "build-your-own-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468092708,
+      "articleTitle": "Best Restaurant Tablet Mounts and POS Stands (2026 Comparison)",
+      "articleHandle": "best-restaurant-tablet-mounts-and-pos-stands-2026-comparison",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mounts-and-pos-stands-2026-comparison",
+      "productLinkCount": 18,
+      "addToCartCount": 18,
+      "productHandles": [
+        "ibolt-quad-tablet-tower-stand",
+        "ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders",
+        "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+        "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468059940,
+      "articleTitle": "Best Forklift Tablet Mounts for Warehouses (2026 Comparison)",
+      "articleHandle": "best-forklift-tablet-mounts-for-warehouses-2026-comparison",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison",
+      "productLinkCount": 15,
+      "addToCartCount": 15,
+      "productHandles": [
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount",
+        "ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder",
+        "ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633468027172,
+      "articleTitle": "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)",
+      "articleHandle": "best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+      "productLinkCount": 10,
+      "addToCartCount": 10,
+      "productHandles": [
+        "ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 633467994404,
+      "articleTitle": "Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)",
+      "articleHandle": "best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026",
+      "publicUrl": "https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026",
+      "productLinkCount": 18,
+      "addToCartCount": 18,
+      "productHandles": [
+        "ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+        "ibolt-xl-barcode-scanner-dualmag-low-profile-strong-magnetic-mount",
+        "ibolt-xl-barcode-scanner-bizmount-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-xl-barcode-scanner-incredibolt-360-magnetic-mount-heavy-duty-88mm-magnetic-base-for-warehouse-vehicles-inventory-management-material-handling",
+        "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 618784391460,
+      "articleTitle": "Unmatched Adaptability: Explore iBOLT's Modular Tablet Mount Solutions",
+      "articleHandle": "customizable-mounting-solutions-for-every-need",
+      "publicUrl": "https://iboltmounts.com/blogs/news/customizable-mounting-solutions-for-every-need",
+      "productLinkCount": 2,
+      "addToCartCount": 3,
+      "productHandles": [
+        "build-your-own-mount"
+      ],
+      "failures": []
+    },
+    {
+      "blogId": 104843772196,
+      "blogHandle": "news",
+      "articleId": 608132235556,
+      "articleTitle": "WHAT SIZE IS THE BALL MOUNT ON A GARMIN GPS AND HOW DO I FIND A COMPATIBLE MOUNT?",
+      "articleHandle": "what-size-is-the-ball-mount-on-a-garmin-gps-and-how-do-i-find-a-compatible-mount",
+      "publicUrl": "https://iboltmounts.com/blogs/news/what-size-is-the-ball-mount-on-a-garmin-gps-and-how-do-i-find-a-compatible-mount",
+      "productLinkCount": 4,
+      "addToCartCount": 4,
+      "productHandles": [
+        "ibolt-38mm-1-5-inch-composite-rectangular-amps-pattern-to-amps-pattern-drill-base-dual-ball-mount-featuring-a-5-75-inch-composite-38mm-bizmount-arm",
+        "ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount",
+        "ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount",
+        "ibolt-38mm-1-5-inch-metal-circular-amps-pattern-to-metal-circular-amps-pattern-drill-base-dual-ball-mount"
+      ],
+      "failures": []
+    }
+  ]
+}

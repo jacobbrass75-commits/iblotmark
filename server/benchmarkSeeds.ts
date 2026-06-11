@@ -1,5 +1,7 @@
 import { db } from "./db";
 import { aiBenchmarkQueries, industryVerticals } from "@shared/schema";
+import { eq } from "drizzle-orm";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 
 type BenchmarkSeed = {
   category: string;
@@ -119,6 +121,25 @@ export async function seedBenchmarkQueries(): Promise<number> {
   const verticalBySlug = new Map(verticals.map((vertical) => [vertical.slug, vertical.id]));
 
   const missingSeeds = QUERY_SEEDS.filter((seed) => !existingQueries.has(seed.query.toLowerCase()));
+
+  for (const seed of QUERY_SEEDS) {
+    const existingRow = existing.find((row) => row.query.toLowerCase() === seed.query.toLowerCase());
+    if (!existingRow || !seed.verticalSlug) continue;
+
+    const verticalId = verticalBySlug.get(seed.verticalSlug) || null;
+    if (verticalId && existingRow.verticalId !== verticalId) {
+      await db
+        .update(aiBenchmarkQueries)
+        .set({
+          companyId: existingRow.companyId || DEFAULT_COMPANY_ID,
+          verticalId,
+          benchmarkGoal: existingRow.benchmarkGoal || seed.benchmarkGoal,
+          updatedAt: new Date(),
+        })
+        .where(eq(aiBenchmarkQueries.id, existingRow.id));
+    }
+  }
+
   if (missingSeeds.length === 0) {
     return 0;
   }
@@ -126,6 +147,7 @@ export async function seedBenchmarkQueries(): Promise<number> {
   const inserted = await db.insert(aiBenchmarkQueries).values(
     missingSeeds.map((seed) => ({
       category: seed.category,
+      companyId: DEFAULT_COMPANY_ID,
       label: seed.label,
       query: seed.query,
       verticalId: seed.verticalSlug ? verticalBySlug.get(seed.verticalSlug) || null : null,

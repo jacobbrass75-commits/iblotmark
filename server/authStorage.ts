@@ -1,6 +1,7 @@
 import { users, type User } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
+import { getTierLimits } from "./authTiers";
 
 /** Strip password from user object before returning to clients */
 export function sanitizeUser(user: User): Omit<User, "password"> {
@@ -17,11 +18,20 @@ export async function getOrCreateUser(
   email: string,
   tier: string,
 ): Promise<User> {
+  const limits = getTierLimits(tier);
   const existing = await getUserById(clerkUserId);
   if (existing) {
-    // Sync tier from Clerk if it changed
-    if (existing.tier !== tier) {
-      return await updateUser(clerkUserId, { tier } as Partial<User>);
+    // Sync tier and plan limits from Clerk if they changed.
+    if (
+      existing.tier !== limits.tier
+        || existing.tokenLimit !== limits.tokenLimit
+        || existing.storageLimit !== limits.storageLimit
+    ) {
+      return await updateUser(clerkUserId, {
+        tier: limits.tier,
+        tokenLimit: limits.tokenLimit,
+        storageLimit: limits.storageLimit,
+      } as Partial<User>);
     }
     return existing;
   }
@@ -35,11 +45,11 @@ export async function getOrCreateUser(
       email,
       username: email, // default username to email
       password: "", // not used with Clerk
-      tier,
+      tier: limits.tier,
       tokensUsed: 0,
-      tokenLimit: 50000,
+      tokenLimit: limits.tokenLimit,
       storageUsed: 0,
-      storageLimit: 52428800,
+      storageLimit: limits.storageLimit,
       emailVerified: true, // Clerk handles verification
       billingCycleStart: now,
       createdAt: now,

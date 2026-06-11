@@ -23,20 +23,15 @@ export default function BlogDashboard() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <header className="border-b border-border bg-background/95 sticky top-0 z-40 backdrop-blur">
-        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <h1 className="text-lg font-bold tracking-tight">iBolt Blog Generator</h1>
-            <Badge variant="outline" className="text-xs">Phase 4</Badge>
+      <main className="container mx-auto px-4 py-6 space-y-6">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight">Blog Dashboard</h1>
+            <p className="text-sm text-muted-foreground">Posts, products, context, assets, and visibility</p>
           </div>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={() => setLocation("/")}>Home</Button>
-          </div>
+          <Badge variant="outline" className="w-fit text-xs">Pipeline v4</Badge>
         </div>
-      </header>
 
-      <main className="flex-1 container mx-auto px-4 py-6 space-y-6">
         {/* Stats row */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           <Card>
@@ -72,7 +67,7 @@ export default function BlogDashboard() {
         </div>
 
         {/* Quick actions */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-3">
           <Button className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/generate")}>
             <span className="text-sm font-medium">Generate Posts</span>
             <span className="text-xs opacity-70">Batch generate</span>
@@ -89,9 +84,17 @@ export default function BlogDashboard() {
             <span className="text-sm font-medium">Products</span>
             <span className="text-xs opacity-70">{productStats?.count || 0} scraped</span>
           </Button>
+          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/catalog")}>
+            <span className="text-sm font-medium">Catalog PDFs</span>
+            <span className="text-xs opacity-70">Import specs</span>
+          </Button>
+          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/photos")}>
+            <span className="text-sm font-medium">Assets</span>
+            <span className="text-xs opacity-70">Photos & media</span>
+          </Button>
           <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/benchmark")}>
-            <span className="text-sm font-medium">AI Benchmark</span>
-            <span className="text-xs opacity-70">Track weekly rankings</span>
+            <span className="text-sm font-medium">AI Visibility</span>
+            <span className="text-xs opacity-70">Track answers</span>
           </Button>
         </div>
 
@@ -160,6 +163,5 @@ export default function BlogDashboard() {
           </CardContent>
         </Card>
       </main>
-    </div>
   );
 }

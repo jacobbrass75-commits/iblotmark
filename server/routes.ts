@@ -5,7 +5,7 @@ import { join } from "path";
 import multer from "multer";
 import { PDFParse } from "pdf-parse";
 import { storage } from "./storage";
-import { db } from "./db";
+import { DB_PATH, db } from "./db";
 import { extractTextFromTxt } from "./chunker";
 import {
   getEmbedding,
@@ -41,6 +41,8 @@ import { registerCatalogRoutes } from "./catalogRoutes";
 import { registerPhotoRoutes } from "./photoRoutes";
 import { registerCacheRoutes } from "./cacheRoutes";
 import { registerShopifyRoutes } from "./shopifyRoutes";
+import { registerCompanyRoutes } from "./companyRoutes";
+import { registerPublicPhotoRoutes } from "./publicPhotoRoutes";
 import type { AnnotationCategory, InsertAnnotation } from "@shared/schema";
 import {
   createZipFromImageUploads,
@@ -61,7 +63,9 @@ import {
 } from "./sourceFiles";
 import { annotations, documents, projectAnnotations, projects } from "@shared/schema";
 import { sql } from "drizzle-orm";
-import { requireAuth } from "./auth";
+import { requireAuth, requireBlogAuth } from "./auth";
+import { requireBlogCompanyAccess } from "./companyContext";
+import { legacyScholarMarkEnabled } from "./runtimeConfig";
 
 const IMAGE_EXTENSIONS = new Set([
   ".png",
@@ -85,7 +89,6 @@ const IMAGE_MIME_TYPES = new Set([
 const MAX_COMBINED_UPLOAD_FILES = Number.isFinite(Number(process.env.MAX_COMBINED_UPLOAD_FILES))
   ? Math.max(1, Math.floor(Number(process.env.MAX_COMBINED_UPLOAD_FILES)))
   : 25;
-const DATABASE_PATH = join(process.cwd(), "data", "sourceannotator.db");
 const SOURCE_UPLOADS_PATH = join(process.cwd(), "data", "uploads");
 
 function getFileExtension(filename: string): string {
@@ -174,11 +177,48 @@ const upload = multer({
   },
 });
 
+const LEGACY_API_PREFIXES = [
+  "/api/system",
+  "/api/upload",
+  "/api/upload-group",
+  "/api/documents",
+  "/api/annotations",
+  "/api/projects",
+  "/api/project-",
+  "/api/prompt-templates",
+  "/api/folders",
+  "/api/citations",
+  "/api/chat",
+  "/api/write",
+  "/api/humanize",
+  "/api/web-clips",
+  "/api/extension",
+  "/api/admin/analytics",
+];
+
+function blockLegacyScholarMarkApis(app: ExpressApp): void {
+  app.use((req, res, next) => {
+    if (LEGACY_API_PREFIXES.some((prefix) => req.path === prefix || req.path.startsWith(`${prefix}/`))) {
+      res.status(404).json({
+        message: "Legacy ScholarMark API disabled in standalone blog deployment",
+        path: req.originalUrl,
+      });
+      return;
+    }
+    next();
+  });
+}
+
 export async function registerRoutes(
   httpServer: Server,
   app: ExpressApp
 ): Promise<Server> {
-  await initializeOcrQueue();
+  if (legacyScholarMarkEnabled()) {
+    await initializeOcrQueue();
+  }
+  if (!legacyScholarMarkEnabled()) {
+    blockLegacyScholarMarkApis(app);
+  }
 
   app.get("/api/system/status", async (_req: Request, res: Response) => {
     try {
@@ -215,7 +255,7 @@ export async function registerRoutes(
         }
       }
 
-      const dbBytes = await getFileSizeBytes(DATABASE_PATH);
+      const dbBytes = await getFileSizeBytes(DB_PATH);
       const sourceFilesBytes = await getDirectorySizeBytes(SOURCE_UPLOADS_PATH);
       const heapUsage = process.memoryUsage();
 
@@ -858,23 +898,28 @@ export async function registerRoutes(
     }
   });
 
-  // Register project routes
-  registerProjectRoutes(app);
-  registerWebClipRoutes(app);
-
-  // Register chat routes
-  registerChatRoutes(app);
-
-  // Register writing pipeline routes
-  registerWritingRoutes(app);
-
-  // Register humanizer routes
-  registerHumanizerRoutes(app);
-
-  // Register extension routes (Chrome extension API)
-  registerExtensionRoutes(app);
+  if (legacyScholarMarkEnabled()) {
+    // Register ScholarMark routes only when explicitly enabled for legacy deployments.
+    registerProjectRoutes(app);
+    registerWebClipRoutes(app);
+    registerChatRoutes(app);
+    registerWritingRoutes(app);
+    registerHumanizerRoutes(app);
+    registerExtensionRoutes(app);
+  }
 
   // Register iBolt blog generation routes
+  registerPublicPhotoRoutes(app);
+  app.get("/api/blog/health", (_req, res) => {
+    res.json({
+      ok: true,
+      product: "standalone-blog-writer",
+      legacyScholarMarkEnabled: legacyScholarMarkEnabled(),
+    });
+  });
+  app.use("/api/blog", requireBlogAuth);
+  app.use("/api/blog", requireBlogCompanyAccess);
+  registerCompanyRoutes(app);
   registerKeywordRoutes(app);
   registerContextRoutes(app);
   registerBlogRoutes(app);

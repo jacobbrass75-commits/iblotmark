@@ -3,11 +3,14 @@
 import { Router, type Request, type Response } from "express";
 import multer from "multer";
 import { importCatalog, getCatalogImports, getCatalogExtractions } from "./catalogImporter";
+import { getCompanyIdFromRequest, requireBlogMutationRole } from "./companyContext";
+import { localFileImportsEnabled, resolveAllowedLocalImportPath } from "./localImportGuards";
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 100 * 1024 * 1024 } });
 
 export function registerCatalogRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
+  router.use(requireBlogMutationRole("editor"));
 
   // POST /api/blog/catalog/import — Upload and import a PDF catalog
   router.post("/import", upload.single("file"), async (req: Request, res: Response) => {
@@ -26,7 +29,7 @@ export function registerCatalogRoutes(app: { use: (path: string, router: Router)
         res.write(`data: ${JSON.stringify({ message: msg })}\n\n`);
       };
 
-      const result = await importCatalog(file.buffer, file.originalname, sendEvent);
+      const result = await importCatalog(file.buffer, file.originalname, sendEvent, getCompanyIdFromRequest(req));
       res.write(`event: completed\ndata: ${JSON.stringify(result)}\n\n`);
       res.end();
     } catch (error: any) {
@@ -44,11 +47,23 @@ export function registerCatalogRoutes(app: { use: (path: string, router: Router)
     try {
       const { filePath } = req.body;
       if (!filePath) return res.status(400).json({ error: "filePath is required" });
+      if (!localFileImportsEnabled()) {
+        return res.status(403).json({ error: "Local file imports are disabled in this environment." });
+      }
 
       const fs = await import("fs/promises");
       const path = await import("path");
-      const buffer = await fs.readFile(filePath);
-      const filename = path.basename(filePath);
+      let allowedPath: string;
+      try {
+        allowedPath = await resolveAllowedLocalImportPath(filePath, {
+          extensions: [".pdf"],
+          maxBytes: 100 * 1024 * 1024,
+        });
+      } catch (error: any) {
+        return res.status(400).json({ error: error.message });
+      }
+      const buffer = await fs.readFile(allowedPath);
+      const filename = path.basename(allowedPath);
 
       res.writeHead(200, {
         "Content-Type": "text/event-stream",
@@ -60,7 +75,7 @@ export function registerCatalogRoutes(app: { use: (path: string, router: Router)
         res.write(`data: ${JSON.stringify({ message: msg })}\n\n`);
       };
 
-      const result = await importCatalog(Buffer.from(buffer), filename, sendEvent);
+      const result = await importCatalog(Buffer.from(buffer), filename, sendEvent, getCompanyIdFromRequest(req));
       res.write(`event: completed\ndata: ${JSON.stringify(result)}\n\n`);
       res.end();
     } catch (error: any) {
@@ -74,9 +89,9 @@ export function registerCatalogRoutes(app: { use: (path: string, router: Router)
   });
 
   // GET /api/blog/catalog/imports — List all imports
-  router.get("/imports", async (_req: Request, res: Response) => {
+  router.get("/imports", async (req: Request, res: Response) => {
     try {
-      res.json(await getCatalogImports());
+      res.json(await getCatalogImports(getCompanyIdFromRequest(req)));
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
@@ -85,7 +100,7 @@ export function registerCatalogRoutes(app: { use: (path: string, router: Router)
   // GET /api/blog/catalog/imports/:id/extractions — List extractions for an import
   router.get("/imports/:id/extractions", async (req: Request, res: Response) => {
     try {
-      res.json(await getCatalogExtractions(req.params.id));
+      res.json(await getCatalogExtractions(req.params.id, getCompanyIdFromRequest(req)));
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

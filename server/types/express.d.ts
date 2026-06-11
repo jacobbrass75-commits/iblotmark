@@ -8,9 +8,10 @@ declare global {
 
     interface Request {
       user?: User;
+      companyId?: string;
+      companyRole?: "owner" | "admin" | "editor" | "reviewer" | "viewer";
     }
   }
 }
 
 export {};
-

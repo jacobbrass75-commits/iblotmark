@@ -1,0 +1,32 @@
+{
+  "cases": [
+    {
+      "name": "Pre-Korea Program Origins",
+      "question": "Find evidence that institutional mind-control interest existed before the Korean War.",
+      "queries": [
+        "BLUEBIRD origins before Korean War",
+        "pre-Korea CIA hypnosis research",
+        "early CIA psychological control programs"
+      ],
+      "mustIncludeTerms": ["BLUEBIRD", "Korean War", "CIA"],
+      "minEvidence": 8,
+      "minRecall": 0.66,
+      "includeSemantic": true,
+      "top": 30
+    },
+    {
+      "name": "Acceleration During Panic",
+      "question": "Find evidence that the Korean War panic accelerated existing programs.",
+      "queries": [
+        "ARTICHOKE MKULTRA acceleration",
+        "brainwashing panic congressional testimony",
+        "Dulles psychological warfare expansion"
+      ],
+      "mustIncludeTerms": ["ARTICHOKE", "MKULTRA", "brainwashing"],
+      "minEvidence": 8,
+      "minRecall": 0.66,
+      "includeSemantic": true,
+      "top": 30
+    }
+  ]
+}

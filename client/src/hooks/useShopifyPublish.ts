@@ -1,5 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { companyScopedUrl, getRequiredCompanyScopedHeaders, useActiveCompanyId } from "@/lib/company";
 
 interface ShopifyPublishResult {
   success: boolean;
@@ -38,6 +39,21 @@ interface ShopifyBlogsResponse {
   note?: string;
 }
 
+function invalidateShopifyQueries(postId?: string) {
+  queryClient.invalidateQueries({
+    predicate: (query) => {
+      const key = String(query.queryKey[0] || "");
+      if (key.startsWith("/api/blog/shopify")) {
+        return !postId || key.includes(`/api/blog/shopify/posts/${postId}/`);
+      }
+      if (key.startsWith("/api/blog/posts")) {
+        return !postId || key.includes(`/api/blog/posts/${postId}`) || key.startsWith("/api/blog/posts?");
+      }
+      return false;
+    },
+  });
+}
+
 /**
  * Mutation to publish a single blog post to Shopify.
  */
@@ -56,14 +72,7 @@ export function usePublishToShopify() {
       return res.json();
     },
     onSuccess: (_data, variables) => {
-      // Invalidate the blog posts list and the specific post
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/posts"] });
-      queryClient.invalidateQueries({
-        queryKey: ["/api/blog/posts", variables.postId],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [`/api/blog/shopify/posts/${variables.postId}/status`],
-      });
+      invalidateShopifyQueries(variables.postId);
     },
   });
 }
@@ -82,7 +91,7 @@ export function useBatchPublishToShopify() {
       // Use SSE for batch publish to get progress updates
       const res = await fetch("/api/blog/shopify/posts/batch-publish", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: getRequiredCompanyScopedHeaders({ "Content-Type": "application/json" }),
         credentials: "include",
         body: JSON.stringify({ postIds, blogId }),
       });
@@ -130,7 +139,7 @@ export function useBatchPublishToShopify() {
       return results;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/posts"] });
+      invalidateShopifyQueries();
     },
   });
 }
@@ -139,9 +148,10 @@ export function useBatchPublishToShopify() {
  * Query for Shopify sync status of a specific post.
  */
 export function useShopifyStatus(postId: string) {
+  const activeCompanyId = useActiveCompanyId();
   return useQuery<ShopifyStatus>({
-    queryKey: [`/api/blog/shopify/posts/${postId}/status`],
-    enabled: !!postId,
+    queryKey: [companyScopedUrl(`/api/blog/shopify/posts/${postId}/status`)],
+    enabled: Boolean(activeCompanyId && postId),
     staleTime: 30_000, // 30 seconds
   });
 }
@@ -150,8 +160,10 @@ export function useShopifyStatus(postId: string) {
  * Query to list available Shopify blogs.
  */
 export function useShopifyBlogs() {
+  const activeCompanyId = useActiveCompanyId();
   return useQuery<ShopifyBlogsResponse>({
-    queryKey: ["/api/blog/shopify/blogs"],
+    queryKey: [companyScopedUrl("/api/blog/shopify/blogs")],
+    enabled: Boolean(activeCompanyId),
     staleTime: 5 * 60_000, // 5 minutes
   });
 }

@@ -1,0 +1,249 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://iboltmounts.com/#organization",
+      "name": "iBOLT Mounts",
+      "url": "https://iboltmounts.com",
+      "sameAs": [
+        "https://www.facebook.com/iBOLTMounts/",
+        "https://www.instagram.com/iboltmounts/",
+        "https://www.pinterest.com/iBOLTMounts/",
+        "https://www.youtube.com/channel/UCf8Ah8orl0Ek3XcjC7sWWOA",
+        "https://www.tiktok.com/@iboltmounts"
+      ],
+      "knowsAbout": [
+        "phone mounts",
+        "tablet mounts",
+        "fleet mounting systems",
+        "ELD mounts",
+        "forklift tablet mounts",
+        "AMPS mounting plates",
+        "restaurant tablet mounts",
+        "live streaming camera mounts"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://iboltmounts.com/pages/fleet-eld-mounting-systems#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://iboltmounts.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Solutions",
+          "item": "https://iboltmounts.com/pages"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Fleet and ELD Mounting Systems",
+          "item": "https://iboltmounts.com/pages/fleet-eld-mounting-systems"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://iboltmounts.com/pages/fleet-eld-mounting-systems#webpage",
+      "url": "https://iboltmounts.com/pages/fleet-eld-mounting-systems",
+      "name": "Fleet and ELD Mounting Systems",
+      "description": "Standardize fleet and ELD tablet mounting with suction, drill base, seat rail, locking, phone, and tablet mounts for commercial vehicles.",
+      "isPartOf": {
+        "@id": "https://iboltmounts.com/#website"
+      },
+      "about": [
+        "ELD mount",
+        "fleet mounting solutions",
+        "fleet tablet mount"
+      ],
+      "publisher": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://iboltmounts.com/pages/fleet-eld-mounting-systems#breadcrumb"
+      },
+      "mainEntity": [
+        {
+          "@id": "https://iboltmounts.com/pages/fleet-eld-mounting-systems#faq"
+        },
+        {
+          "@id": "https://iboltmounts.com/pages/fleet-eld-mounting-systems#howto"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://iboltmounts.com/pages/fleet-eld-mounting-systems#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an ELD mount?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An ELD mount holds the tablet or device used for electronic logging and fleet workflows inside a commercial vehicle. It should position the screen where the driver can read it safely without blocking the windshield or controls."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should a fleet use suction, drill base, or seat rail mounts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Suction mounts are useful when vehicles rotate or leases prevent drilling. Drill base and AMPS mounts are better for permanent installs. Seat rail mounts work well when dashboards cannot be modified."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can iBOLT mounts be standardized across a whole fleet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. iBOLT's modular system lets fleet managers standardize holders, arms, and base types by vehicle class while still adapting to different dashboards and cabins."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do fleet tablet mounts need to lock?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Locking mounts are recommended for shared trucks, high-value tablets, and vehicles where devices stay installed overnight or between drivers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are iBOLT fleet mounts compatible with RAM-style hardware?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many iBOLT components use industry-standard ball sizes and AMPS patterns, so they can often integrate with existing commercial mounting hardware when sizes match."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices#product",
+      "name": "iBOLT TabDock IncrediBOLT 360 Suction- Heavy Duty Metal 6 inch Multi-Angle Mount for All 7\" - 10\" Tablets for Commercial Vehicles, Trucks, and ELD Devices",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-tabdock-incredibolt-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices-1050408033.jpg?v=1768904470"
+      ],
+      "url": "https://iboltmounts.com/products/ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+        "priceCurrency": "USD",
+        "price": "74.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount#product",
+      "name": "iBOLT TabDock IncrediBOLT 360 Heavy Duty Triple Suction Cup Mount",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/files/ibolt-mounts-tabdock-ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount-1050446044.jpg?v=1768872852"
+      ],
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+        "priceCurrency": "USD",
+        "price": "89.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount#product",
+      "name": "iBOLT LockPro FlexPro Heavy Duty Locking Tablet Seat Rail Mount",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/files/ibolt-mounts-ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount-1194270682.jpg?v=1768829170"
+      ],
+      "url": "https://iboltmounts.com/products/ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+        "priceCurrency": "USD",
+        "price": "159.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/ibolt-tabdock-flexpro-heavy-duty-seat-rail-gooseneck-tablet-eld-floor-mount-ibbz-33762#product",
+      "name": "iBOLT TabDock Flexpro - Heavy Duty Floor Mount for All 7\" - 10\" Tablets",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-tabdock-flexpro-heavy-duty-floor-mount-for-all-7-10-tablets-1050410119.jpg?v=1768863852"
+      ],
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-flexpro-heavy-duty-seat-rail-gooseneck-tablet-eld-floor-mount-ibbz-33762",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/ibolt-tabdock-flexpro-heavy-duty-seat-rail-gooseneck-tablet-eld-floor-mount-ibbz-33762",
+        "priceCurrency": "USD",
+        "price": "34.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://iboltmounts.com/products/xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931#product",
+      "name": "iBOLT xProDock Bizmount Amps",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-xprodock-bizmount-amps-1050410162.jpg?v=1768868290"
+      ],
+      "url": "https://iboltmounts.com/products/xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+      "brand": {
+        "@id": "https://iboltmounts.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://iboltmounts.com/products/xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+        "priceCurrency": "USD",
+        "price": "39.95",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://iboltmounts.com/pages/fleet-eld-mounting-systems#howto",
+      "name": "How to standardize fleet and ELD mounts",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "List the tablets, phones, ELD devices, scanners, and chargers used in each vehicle class."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Choose approved mount positions that keep screens readable without blocking visibility or controls."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Standardize the base type by vehicle group, such as suction, seat rail, drill base, or AMPS."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Document the parts list so replacements and new vehicle installs use the same hardware."
+        }
+      ]
+    }
+  ]
+}

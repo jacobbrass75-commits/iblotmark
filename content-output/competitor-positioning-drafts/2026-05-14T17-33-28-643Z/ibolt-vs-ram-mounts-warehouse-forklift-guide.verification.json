@@ -1,0 +1,23 @@
+{
+  "brandConsistency": 85,
+  "seoOptimization": 75,
+  "naturalLanguage": 90,
+  "factualAccuracy": 80,
+  "operationalSpecificity": 95,
+  "competitorFairness": 90,
+  "overallScore": 86,
+  "passesQualityGate": true,
+  "issues": [
+    "Missing meta description and structured data for SEO",
+    "Some product claims lack specific supporting data (vibration resistance specs)",
+    "Price claims need verification against current pricing",
+    "Could benefit from more specific technical specifications"
+  ],
+  "suggestions": [
+    "Add meta description targeting 'forklift tablet mounts comparison'",
+    "Include specific vibration resistance ratings or test data",
+    "Add more internal links to related iBOLT products",
+    "Consider adding customer testimonials or case studies",
+    "Include structured data markup for better search visibility"
+  ]
+}

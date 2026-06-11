@@ -1,62 +1,109 @@
-// Shopify Publisher — pushes blog posts and collection content to iboltmounts.myshopify.com
-// Uses Dev Dashboard app (iboltblog) with client credentials grant.
+// Shopify Publisher — pushes company blog posts and collection content to Shopify.
+// The iBolt store remains a demo/default workspace only.
 
-import { eq } from "drizzle-orm";
-import { blogPosts } from "@shared/schema";
+import { and, eq } from "drizzle-orm";
+import { blogPosts, companyIntegrations } from "@shared/schema";
 import { db } from "./db";
 import { renderShopifyHtml } from "./htmlRenderer";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
+import { getCompanyContext, type CompanyContext } from "./companyContext";
+import { decryptSecret } from "./integrationSecrets";
 
 const SHOPIFY_SHOP = process.env.SHOPIFY_SHOP || "iboltmounts";
-const SHOPIFY_CLIENT_ID = process.env.SHOPIFY_CLIENT_ID || "";
-const SHOPIFY_CLIENT_SECRET = process.env.SHOPIFY_CLIENT_SECRET || "";
-const SHOPIFY_API_VERSION = "2025-01";
+const SHOPIFY_API_VERSION = process.env.SHOPIFY_API_VERSION || "2026-04";
 const SHOPIFY_NEWS_BLOG_ID = 104843772196;
 const SHOPIFY_FISH_FINDER_BLOG_ID = 110121517348;
 
-let cachedToken: string | null = null;
-let tokenExpiresAt = 0;
+function asRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+}
 
-export async function getShopifyToken(): Promise<string> {
-  if (cachedToken && Date.now() < tokenExpiresAt - 60000) {
-    return cachedToken;
-  }
-
-  if (!SHOPIFY_CLIENT_ID || !SHOPIFY_CLIENT_SECRET) {
-    throw new Error(
-      "SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET must be set in environment"
-    );
-  }
-
-  const response = await fetch(
-    `https://${SHOPIFY_SHOP}.myshopify.com/admin/oauth/access_token`,
+function getShopifyConfig(companyContext?: CompanyContext | null): {
+  shop: string;
+  defaultBlogId: number;
+  blogTargets: ShopifyBlogTarget[];
+} {
+  const integration = companyContext?.integrations.shopify;
+  const configuredTargets = integration?.blogTargets?.length ? integration.blogTargets : [];
+  const canUseDefaultWorkspaceFallback = !companyContext || companyContext.company.id === DEFAULT_COMPANY_ID;
+  const fallbackTargets = [
     {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        grant_type: "client_credentials",
-        client_id: SHOPIFY_CLIENT_ID,
-        client_secret: SHOPIFY_CLIENT_SECRET,
-      }).toString(),
-    }
-  );
+      id: SHOPIFY_NEWS_BLOG_ID,
+      name: "News",
+      handle: "news",
+    },
+    {
+      id: SHOPIFY_FISH_FINDER_BLOG_ID,
+      name: "Fish Finder",
+      handle: "fish-finder",
+    },
+  ];
 
-  if (!response.ok) {
-    throw new Error(`Shopify token request failed: ${response.status}`);
+  if (companyContext && !integration) {
+    return {
+      shop: "",
+      defaultBlogId: 0,
+      blogTargets: [],
+    };
   }
 
-  const data = await response.json();
-  cachedToken = data.access_token;
-  tokenExpiresAt = Date.now() + (data.expires_in || 86400) * 1000;
-  return cachedToken!;
+  return {
+    shop: integration?.shop || SHOPIFY_SHOP,
+    defaultBlogId: integration?.defaultBlogId || configuredTargets[0]?.id || (canUseDefaultWorkspaceFallback ? SHOPIFY_NEWS_BLOG_ID : 0),
+    blogTargets: configuredTargets.length > 0 ? configuredTargets : canUseDefaultWorkspaceFallback ? fallbackTargets : [],
+  };
+}
+
+async function getStoredAccessToken(companyContext?: CompanyContext | null): Promise<string> {
+  const integrationId = companyContext?.integrations.shopify?.id;
+  if (!integrationId || !companyContext?.company.id) return "";
+
+  const [integration] = await db
+    .select({ config: companyIntegrations.config })
+    .from(companyIntegrations)
+    .where(and(
+      eq(companyIntegrations.companyId, companyContext.company.id),
+      eq(companyIntegrations.id, integrationId),
+      eq(companyIntegrations.type, "shopify"),
+    ))
+    .limit(1);
+
+  const encryptedAccessToken = asRecord(integration?.config).encryptedAccessToken;
+  if (typeof encryptedAccessToken !== "string" || !encryptedAccessToken) return "";
+  return decryptSecret(encryptedAccessToken);
+}
+
+async function getConfiguredAccessToken(companyContext?: CompanyContext | null): Promise<string> {
+  const storedToken = await getStoredAccessToken(companyContext);
+  if (storedToken) return storedToken;
+  return "";
+}
+
+export async function getShopifyToken(companyContext?: CompanyContext | null): Promise<string> {
+  const config = getShopifyConfig(companyContext);
+  if (!config.shop) {
+    throw new Error("Shopify integration is not configured for this company.");
+  }
+
+  const configuredToken = await getConfiguredAccessToken(companyContext);
+  if (configuredToken) {
+    return configuredToken;
+  }
+
+  throw new Error("Shopify access token is not configured for this company. Connect Shopify with OAuth.");
 }
 
 async function shopifyREST(
   method: string,
   endpoint: string,
-  body?: any
+  body?: any,
+  companyContext?: CompanyContext | null,
 ): Promise<any> {
-  const token = await getShopifyToken();
-  const url = `https://${SHOPIFY_SHOP}.myshopify.com/admin/api/${SHOPIFY_API_VERSION}/${endpoint}`;
+  const token = await getShopifyToken(companyContext);
+  const config = getShopifyConfig(companyContext);
+  const url = `https://${config.shop}.myshopify.com/admin/api/${SHOPIFY_API_VERSION}/${endpoint}`;
   const opts: RequestInit = {
     method,
     headers: {
@@ -135,8 +182,13 @@ export async function publishBlogPost(opts: {
   metaDescription?: string;
   published?: boolean;
   blogId?: number;
+  companyContext?: CompanyContext | null;
 }): Promise<{ articleId: number; adminUrl: string }> {
-  const blogId = opts.blogId || SHOPIFY_NEWS_BLOG_ID;
+  const config = getShopifyConfig(opts.companyContext);
+  const blogId = opts.blogId || config.defaultBlogId;
+  if (!blogId) {
+    throw new Error("No Shopify blog target is configured for this company.");
+  }
   const metafields: any[] = [];
 
   if (opts.metaTitle) {
@@ -167,24 +219,27 @@ export async function publishBlogPost(opts: {
         tags: opts.tags || "",
         ...(metafields.length > 0 ? { metafields } : {}),
       },
-    }
+    },
+    opts.companyContext,
   );
 
   const articleId = result.article.id;
   return {
     articleId,
-    adminUrl: `https://admin.shopify.com/store/${SHOPIFY_SHOP}/articles/${articleId}`,
+    adminUrl: `https://admin.shopify.com/store/${config.shop}/articles/${articleId}`,
   };
 }
 
 export async function updateShopifyArticle(
+  blogId: number,
   articleId: number,
   updates: {
     title?: string;
     bodyHtml?: string;
     tags?: string;
     published?: boolean;
-  }
+  },
+  companyContext?: CompanyContext | null,
 ): Promise<void> {
   const article: any = { id: articleId };
   if (updates.title !== undefined) article.title = updates.title;
@@ -192,42 +247,41 @@ export async function updateShopifyArticle(
   if (updates.tags !== undefined) article.tags = updates.tags;
   if (updates.published !== undefined) article.published = updates.published;
 
-  await shopifyREST("PUT", `articles/${articleId}.json`, { article });
+  await shopifyREST("PUT", `blogs/${blogId}/articles/${articleId}.json`, { article }, companyContext);
 }
 
-export async function deleteShopifyArticle(articleId: number): Promise<void> {
-  await shopifyREST("DELETE", `articles/${articleId}.json`);
+export async function deleteShopifyArticle(
+  blogId: number,
+  articleId: number,
+  companyContext?: CompanyContext | null,
+): Promise<void> {
+  await shopifyREST("DELETE", `blogs/${blogId}/articles/${articleId}.json`, undefined, companyContext);
 }
 
 export async function listShopifyArticles(
   blogId?: number,
-  limit = 50
+  limit = 50,
+  companyContext?: CompanyContext | null,
 ): Promise<ShopifyArticle[]> {
-  const id = blogId || SHOPIFY_NEWS_BLOG_ID;
+  const id = blogId || getShopifyConfig(companyContext).defaultBlogId;
+  if (!id) {
+    throw new Error("No Shopify blog target is configured for this company.");
+  }
   const result = await shopifyREST(
     "GET",
-    `blogs/${id}/articles.json?limit=${limit}`
+    `blogs/${id}/articles.json?limit=${limit}`,
+    undefined,
+    companyContext,
   );
   return result.articles;
 }
 
-export function getShopifyBlogTargets(): ShopifyBlogTarget[] {
-  return [
-    {
-      id: SHOPIFY_NEWS_BLOG_ID,
-      name: "News",
-      handle: "news",
-    },
-    {
-      id: SHOPIFY_FISH_FINDER_BLOG_ID,
-      name: "Fish Finder",
-      handle: "fish-finder",
-    },
-  ];
+export function getShopifyBlogTargets(companyContext?: CompanyContext | null): ShopifyBlogTarget[] {
+  return getShopifyConfig(companyContext).blogTargets;
 }
 
-export async function listShopifyBlogs(): Promise<ShopifyBlog[]> {
-  const result = await shopifyREST("GET", "blogs.json?limit=50");
+export async function listShopifyBlogs(companyContext?: CompanyContext | null): Promise<ShopifyBlog[]> {
+  const result = await shopifyREST("GET", "blogs.json?limit=50", undefined, companyContext);
   return (result.blogs || []).map((blog: any) => ({
     id: blog.id,
     title: blog.title,
@@ -237,11 +291,14 @@ export async function listShopifyBlogs(): Promise<ShopifyBlog[]> {
 
 export async function getShopifyArticle(
   blogId: number,
-  articleId: number
+  articleId: number,
+  companyContext?: CompanyContext | null,
 ): Promise<ShopifyArticle> {
   const result = await shopifyREST(
     "GET",
-    `blogs/${blogId}/articles/${articleId}.json`
+    `blogs/${blogId}/articles/${articleId}.json`,
+    undefined,
+    companyContext,
   );
   return result.article;
 }
@@ -249,8 +306,11 @@ export async function getShopifyArticle(
 function buildPostTags(post: {
   verticalId?: string | null;
   slug?: string | null;
-}): string {
-  const tags = ["ibolt-blog"];
+}, companyContext?: CompanyContext | null): string {
+  const companyTag = companyContext?.company.name
+    ? `${companyContext.company.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-blog`
+    : "generated-blog";
+  const tags = [companyTag, "generated-blog"];
   if (post.verticalId) tags.push(post.verticalId);
   if (post.slug) tags.push(post.slug);
   return tags.join(", ");
@@ -258,12 +318,14 @@ function buildPostTags(post: {
 
 export async function syncBlogPostToShopify(
   blogPostId: string,
-  blogId?: number
+  blogId?: number,
+  companyId?: string,
 ): Promise<SyncResult> {
+  const companyContext = await getCompanyContext(companyId || DEFAULT_COMPANY_ID);
   const [post] = await db
     .select()
     .from(blogPosts)
-    .where(eq(blogPosts.id, blogPostId))
+    .where(and(eq(blogPosts.companyId, companyContext.company.id), eq(blogPosts.id, blogPostId)))
     .limit(1);
 
   if (!post) {
@@ -282,17 +344,24 @@ export async function syncBlogPostToShopify(
     };
   }
 
-  const targetBlogId = blogId || post.shopifyBlogId || SHOPIFY_NEWS_BLOG_ID;
-  const html = post.html || (await renderShopifyHtml(post));
+  const targetBlogId = blogId || post.shopifyBlogId || getShopifyConfig(companyContext).defaultBlogId;
+  if (!targetBlogId) {
+    return {
+      success: false,
+      blogPostId,
+      error: "No Shopify blog target is configured for this company.",
+    };
+  }
+  const html = post.html || (await renderShopifyHtml(post, companyContext));
   const syncedAt = new Date().toISOString();
 
   try {
     if (post.shopifyArticleId) {
-      await updateShopifyArticle(post.shopifyArticleId, {
+      await updateShopifyArticle(targetBlogId, post.shopifyArticleId, {
         title: post.title,
         bodyHtml: html,
-        tags: buildPostTags(post),
-      });
+        tags: buildPostTags(post, companyContext),
+      }, companyContext);
 
       await db
         .update(blogPosts)
@@ -302,7 +371,7 @@ export async function syncBlogPostToShopify(
           shopifySyncedAt: syncedAt,
           updatedAt: new Date(),
         })
-        .where(eq(blogPosts.id, blogPostId));
+        .where(and(eq(blogPosts.companyId, companyContext.company.id), eq(blogPosts.id, blogPostId)));
 
       return {
         success: true,
@@ -317,24 +386,25 @@ export async function syncBlogPostToShopify(
     const published = await publishBlogPost({
       title: post.title,
       bodyHtml: html,
-      tags: buildPostTags(post),
+      tags: buildPostTags(post, companyContext),
       metaTitle: post.metaTitle || undefined,
       metaDescription: post.metaDescription || undefined,
       published: false,
       blogId: targetBlogId,
+      companyContext,
     });
 
     await db
       .update(blogPosts)
       .set({
         html,
-        status: "published",
+        status: post.status === "published" ? "published" : "approved",
         shopifyArticleId: published.articleId,
         shopifyBlogId: targetBlogId,
         shopifySyncedAt: syncedAt,
         updatedAt: new Date(),
       })
-      .where(eq(blogPosts.id, blogPostId));
+      .where(and(eq(blogPosts.companyId, companyContext.company.id), eq(blogPosts.id, blogPostId)));
 
     return {
       success: true,
@@ -357,13 +427,14 @@ export async function syncBlogPostToShopify(
 export async function batchSyncToShopify(
   blogPostIds: string[],
   blogId?: number,
-  onProgress?: (progress: BatchSyncProgress) => void
+  onProgress?: (progress: BatchSyncProgress) => void,
+  companyId?: string,
 ): Promise<SyncResult[]> {
   const results: SyncResult[] = [];
 
   for (let index = 0; index < blogPostIds.length; index += 1) {
     const blogPostId = blogPostIds[index];
-    const result = await syncBlogPostToShopify(blogPostId, blogId);
+    const result = await syncBlogPostToShopify(blogPostId, blogId, companyId);
     results.push(result);
 
     onProgress?.({
@@ -385,19 +456,22 @@ export async function batchSyncToShopify(
 
 export async function updateCollectionDescription(
   collectionId: number,
-  bodyHtml: string
+  bodyHtml: string,
+  companyContext?: CompanyContext | null,
 ): Promise<void> {
   await shopifyREST("PUT", `custom_collections/${collectionId}.json`, {
     custom_collection: { id: collectionId, body_html: bodyHtml },
-  });
+  }, companyContext);
 }
 
-export async function listCollections(): Promise<
+export async function listCollections(companyContext?: CompanyContext | null): Promise<
   Array<{ id: number; title: string; handle: string }>
 > {
   const result = await shopifyREST(
     "GET",
-    "custom_collections.json?limit=250"
+    "custom_collections.json?limit=250",
+    undefined,
+    companyContext,
   );
   return result.custom_collections.map((c: any) => ({
     id: c.id,
@@ -410,17 +484,18 @@ export async function listCollections(): Promise<
 
 export async function updatePage(
   pageId: number,
-  bodyHtml: string
+  bodyHtml: string,
+  companyContext?: CompanyContext | null,
 ): Promise<void> {
   await shopifyREST("PUT", `pages/${pageId}.json`, {
     page: { id: pageId, body_html: bodyHtml },
-  });
+  }, companyContext);
 }
 
-export async function listPages(): Promise<
+export async function listPages(companyContext?: CompanyContext | null): Promise<
   Array<{ id: number; title: string; handle: string }>
 > {
-  const result = await shopifyREST("GET", "pages.json?limit=50");
+  const result = await shopifyREST("GET", "pages.json?limit=50", undefined, companyContext);
   return result.pages.map((p: any) => ({
     id: p.id,
     title: p.title,
@@ -430,15 +505,16 @@ export async function listPages(): Promise<
 
 // --- Health Check ---
 
-export async function checkShopifyConnection(): Promise<{
+export async function checkShopifyConnection(companyContext?: CompanyContext | null): Promise<{
   connected: boolean;
   shopName?: string;
   error?: string;
 }> {
   try {
-    const token = await getShopifyToken();
+    const token = await getShopifyToken(companyContext);
+    const config = getShopifyConfig(companyContext);
     const r = await fetch(
-      `https://${SHOPIFY_SHOP}.myshopify.com/admin/api/${SHOPIFY_API_VERSION}/shop.json`,
+      `https://${config.shop}.myshopify.com/admin/api/${SHOPIFY_API_VERSION}/shop.json`,
       { headers: { "X-Shopify-Access-Token": token } }
     );
     if (r.ok) {

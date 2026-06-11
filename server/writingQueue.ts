@@ -4,9 +4,11 @@
 import { runBlogPipeline, type BlogSSEEvent, type BlogGenerationRequest } from "./blogPipeline";
 import { renderShopifyHtml } from "./htmlRenderer";
 import { updateBlogPost } from "./blogPipeline";
+import { getCompanyContext } from "./companyContext";
 
 export interface QueueJob {
   id: string;
+  companyId: string;
   clusterId: string;
   label: string;
   status: "queued" | "running" | "completed" | "failed";
@@ -30,13 +32,15 @@ class WritingQueue {
   private running = 0;
   private listeners: QueueListener[] = [];
 
-  getJobs(): QueueJob[] {
-    return [...this.jobs];
+  getJobs(companyId?: string): QueueJob[] {
+    const jobs = companyId ? this.jobs.filter((job) => job.companyId === companyId) : this.jobs;
+    return [...jobs];
   }
 
-  addJob(clusterId: string, label: string): QueueJob {
+  addJob(clusterId: string, label: string, companyId: string): QueueJob {
     const job: QueueJob = {
       id: `wq-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      companyId,
       clusterId,
       label,
       status: "queued",
@@ -51,24 +55,27 @@ class WritingQueue {
     return job;
   }
 
-  addJobs(items: Array<{ clusterId: string; label: string }>): QueueJob[] {
+  addJobs(items: Array<{ clusterId: string; label: string }>, companyId: string): QueueJob[] {
     const added: QueueJob[] = [];
     for (const item of items) {
-      added.push(this.addJob(item.clusterId, item.label));
+      added.push(this.addJob(item.clusterId, item.label, companyId));
     }
     return added;
   }
 
-  removeJob(jobId: string): void {
-    const idx = this.jobs.findIndex((j) => j.id === jobId);
+  removeJob(jobId: string, companyId?: string): void {
+    const idx = this.jobs.findIndex((j) => j.id === jobId && (!companyId || j.companyId === companyId));
     if (idx >= 0 && this.jobs[idx].status === "queued") {
       this.jobs.splice(idx, 1);
       this.notify();
     }
   }
 
-  clearCompleted(): void {
-    this.jobs = this.jobs.filter((j) => j.status === "queued" || j.status === "running");
+  clearCompleted(companyId?: string): void {
+    this.jobs = this.jobs.filter((j) => {
+      if (companyId && j.companyId !== companyId) return true;
+      return j.status === "queued" || j.status === "running";
+    });
     this.notify();
   }
 
@@ -107,7 +114,7 @@ class WritingQueue {
   private async runJob(job: QueueJob): Promise<void> {
     try {
       const post = await runBlogPipeline(
-        { clusterId: job.clusterId },
+        { clusterId: job.clusterId, companyId: job.companyId },
         (event: BlogSSEEvent) => {
           if (event.phase) job.phase = event.phase;
           if (event.message) job.progress = event.message;
@@ -121,8 +128,8 @@ class WritingQueue {
       );
 
       // Render HTML
-      const html = await renderShopifyHtml(post);
-      await updateBlogPost(post.id, { html });
+      const html = await renderShopifyHtml(post, await getCompanyContext(job.companyId));
+      await updateBlogPost(post.id, { html }, job.companyId);
 
       job.status = "completed";
       job.postId = post.id;

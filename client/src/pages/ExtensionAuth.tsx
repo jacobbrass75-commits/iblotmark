@@ -1,4 +1,4 @@
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth } from "@/lib/auth";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
@@ -17,15 +17,13 @@ interface MeResponse {
 }
 
 export default function ExtensionAuth() {
-  const { isLoaded, isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth();
   const [, setLocation] = useLocation();
   const [state, setState] = useState<AuthState>("connecting");
   const [message, setMessage] = useState("Connecting to extension...");
   const startedRef = useRef(false);
 
   useEffect(() => {
-    if (!isLoaded) return;
-
     if (!isSignedIn) {
       setLocation("/sign-in?redirect=%2Fextension-auth");
       return;
@@ -95,7 +93,7 @@ export default function ExtensionAuth() {
     return () => {
       window.removeEventListener("message", onMessage);
     };
-  }, [isLoaded, isSignedIn, setLocation]);
+  }, [isSignedIn, setLocation]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-background">

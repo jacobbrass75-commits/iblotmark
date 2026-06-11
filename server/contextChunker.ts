@@ -3,7 +3,7 @@
 // Reuses ScholarMark's chunking patterns from chunker.ts and contextCompaction.ts.
 
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 import {
   pipelineContextChunks,
   contextEntries,
@@ -31,29 +31,36 @@ function estimateTokens(text: string): number {
  * Rebuild the pipeline_context_chunks table for a vertical (or all verticals).
  * Call after context entries or products change.
  */
-export async function rebuildContextChunks(verticalId?: string): Promise<number> {
+export async function rebuildContextChunks(companyId: string, verticalId?: string): Promise<number> {
   // Clear existing chunks for the target
   if (verticalId) {
-    await db.delete(pipelineContextChunks).where(eq(pipelineContextChunks.verticalId, verticalId));
+    await db.delete(pipelineContextChunks).where(and(
+      eq(pipelineContextChunks.companyId, companyId),
+      eq(pipelineContextChunks.verticalId, verticalId),
+    ));
   } else {
-    await db.delete(pipelineContextChunks);
+    await db.delete(pipelineContextChunks).where(eq(pipelineContextChunks.companyId, companyId));
   }
 
   let totalChunks = 0;
 
   // Get target verticals
   const verticals = verticalId
-    ? await db.select().from(industryVerticals).where(eq(industryVerticals.id, verticalId))
-    : await db.select().from(industryVerticals);
+    ? await db.select().from(industryVerticals).where(and(eq(industryVerticals.companyId, companyId), eq(industryVerticals.id, verticalId)))
+    : await db.select().from(industryVerticals).where(eq(industryVerticals.companyId, companyId));
 
   for (const vertical of verticals) {
     // Chunk context entries
-    const entries = await db.select().from(contextEntries).where(eq(contextEntries.verticalId, vertical.id));
+    const entries = await db.select().from(contextEntries).where(and(
+      eq(contextEntries.companyId, companyId),
+      eq(contextEntries.verticalId, vertical.id),
+    ));
 
     for (const entry of entries) {
       const chunks = chunkText(entry.content, 500, 50);
       for (let i = 0; i < chunks.length; i++) {
         await db.insert(pipelineContextChunks).values({
+          companyId,
           sourceType: "context_entry",
           sourceId: entry.id,
           chunkIndex: i,
@@ -64,26 +71,26 @@ export async function rebuildContextChunks(verticalId?: string): Promise<number>
         totalChunks++;
       }
     }
+  }
 
-    // Chunk product descriptions for this vertical's products
-    const allProducts = await db.select().from(products);
-    // Filter products that have catalog descriptions (enriched)
-    const enrichedProducts = allProducts.filter((p) => p.catalogDescription);
+  // Chunk product descriptions once per company. Products can be reused across verticals.
+  const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
+  const enrichedProducts = allProducts.filter((p) => p.catalogDescription);
 
-    for (const product of enrichedProducts) {
-      const text = `Product: ${product.title}\n${product.catalogDescription || product.description || ""}`;
-      const chunks = chunkText(text, 500, 50);
-      for (let i = 0; i < chunks.length; i++) {
-        await db.insert(pipelineContextChunks).values({
-          sourceType: "product",
-          sourceId: product.id,
-          chunkIndex: i,
-          chunkText: chunks[i].text,
-          tokenEstimate: estimateTokens(chunks[i].text),
-          verticalId: null, // Products can span verticals
-        });
-        totalChunks++;
-      }
+  for (const product of enrichedProducts) {
+    const text = `Product: ${product.title}\n${product.catalogDescription || product.description || ""}`;
+    const chunks = chunkText(text, 500, 50);
+    for (let i = 0; i < chunks.length; i++) {
+      await db.insert(pipelineContextChunks).values({
+        companyId,
+        sourceType: "product",
+        sourceId: product.id,
+        chunkIndex: i,
+        chunkText: chunks[i].text,
+        tokenEstimate: estimateTokens(chunks[i].text),
+        verticalId: null, // Products can span verticals
+      });
+      totalChunks++;
     }
   }
 
@@ -112,6 +119,7 @@ function scoreChunkRelevance(chunk: string, keywords: string[]): number {
  * Get the most relevant context chunks for a query, staying within a token budget.
  */
 export async function getRelevantChunks(
+  companyId: string,
   keywords: string[],
   verticalId: string | null,
   tokenBudget: number,
@@ -120,13 +128,17 @@ export async function getRelevantChunks(
   let allChunks: PipelineContextChunk[];
   if (verticalId) {
     const verticalChunks = await db.select().from(pipelineContextChunks)
-      .where(eq(pipelineContextChunks.verticalId, verticalId));
+      .where(and(eq(pipelineContextChunks.companyId, companyId), eq(pipelineContextChunks.verticalId, verticalId)));
     // Also get product chunks (verticalId is null)
     const productChunks = await db.select().from(pipelineContextChunks)
-      .where(eq(pipelineContextChunks.sourceType, "product"));
+      .where(and(
+        eq(pipelineContextChunks.companyId, companyId),
+        eq(pipelineContextChunks.sourceType, "product"),
+        isNull(pipelineContextChunks.verticalId),
+      ));
     allChunks = [...verticalChunks, ...productChunks];
   } else {
-    allChunks = await db.select().from(pipelineContextChunks);
+    allChunks = await db.select().from(pipelineContextChunks).where(eq(pipelineContextChunks.companyId, companyId));
   }
 
   if (allChunks.length === 0) return [];
@@ -158,6 +170,7 @@ export async function getRelevantChunks(
  * Uses token budgets to control size.
  */
 export async function buildSectionContext(
+  companyId: string,
   sectionKeywords: string[],
   sectionProductMentions: string[],
   verticalId: string | null,
@@ -166,7 +179,7 @@ export async function buildSectionContext(
   const budget = TOKEN_BUDGETS[phase];
   const allKeywords = [...sectionKeywords, ...sectionProductMentions];
 
-  const chunks = await getRelevantChunks(allKeywords, verticalId, budget);
+  const chunks = await getRelevantChunks(companyId, allKeywords, verticalId, budget);
 
   if (chunks.length === 0) {
     return "No specific context available for this section.";

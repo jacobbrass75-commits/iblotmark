@@ -1,17 +1,34 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { companyScopedUrl, getRequiredCompanyScopedHeaders, useActiveCompanyId } from "@/lib/company";
+
+function invalidateKeywordQueries() {
+  queryClient.invalidateQueries({
+    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/keywords"),
+  });
+  queryClient.invalidateQueries({ queryKey: [companyScopedUrl("/api/blog/company/setup-status")] });
+}
 
 export function useKeywords(status?: string) {
-  const url = status ? `/api/blog/keywords?status=${status}` : "/api/blog/keywords";
-  return useQuery<any[]>({ queryKey: [url] });
+  const activeCompanyId = useActiveCompanyId();
+  const url = companyScopedUrl("/api/blog/keywords", { status });
+  return useQuery<any[]>({ queryKey: [url], enabled: Boolean(activeCompanyId) });
 }
 
 export function useClusters() {
-  return useQuery<any[]>({ queryKey: ["/api/blog/keywords/clusters"] });
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<any[]>({
+    queryKey: [companyScopedUrl("/api/blog/keywords/clusters")],
+    enabled: Boolean(activeCompanyId),
+  });
 }
 
 export function useImports() {
-  return useQuery<any[]>({ queryKey: ["/api/blog/keywords/imports"] });
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<any[]>({
+    queryKey: [companyScopedUrl("/api/blog/keywords/imports")],
+    enabled: Boolean(activeCompanyId),
+  });
 }
 
 export function useImportKeywords() {
@@ -21,6 +38,7 @@ export function useImportKeywords() {
       formData.append("file", file);
       const res = await fetch("/api/blog/keywords/import", {
         method: "POST",
+        headers: getRequiredCompanyScopedHeaders(),
         body: formData,
         credentials: "include",
       });
@@ -28,8 +46,7 @@ export function useImportKeywords() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/keywords"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/keywords/imports"] });
+      invalidateKeywordQueries();
     },
   });
 }
@@ -41,8 +58,7 @@ export function useClusterKeywords() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/keywords"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog/keywords/clusters"] });
+      invalidateKeywordQueries();
     },
   });
 }

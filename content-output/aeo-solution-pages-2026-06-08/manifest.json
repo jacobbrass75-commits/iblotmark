@@ -1,0 +1,381 @@
+{
+  "generatedAt": "2026-06-08T23:44:26.999Z",
+  "outputDir": "/Users/yakub/Desktop/iblotmark/content-output/aeo-solution-pages-2026-06-08",
+  "mode": "review-only",
+  "note": "No Shopify publish or page mutation was performed.",
+  "pages": [
+    {
+      "title": "Restaurant Tablet Mounts and Multi-Tablet Delivery Stations",
+      "slug": "restaurant-tablet-mounts-multi-tablet-delivery-stations",
+      "proposedUrl": "https://iboltmounts.com/pages/restaurant-tablet-mounts-multi-tablet-delivery-stations",
+      "preview": "preview/restaurant-tablet-mounts-multi-tablet-delivery-stations.html",
+      "shopifyBody": "pages/restaurant-tablet-mounts-multi-tablet-delivery-stations.shopify-page.html",
+      "schema": "schema/restaurant-tablet-mounts-multi-tablet-delivery-stations.json",
+      "targetKeywords": [
+        "restaurant tablet mount",
+        "multiple tablet mount",
+        "multiple tablet holder"
+      ],
+      "collectionUrl": "https://iboltmounts.com/collections/point-of-sale-pos-purchase-retail-restaurant-tablet-mounts1",
+      "products": [
+        {
+          "title": "iBOLT Quad Tablet Tower TabDock Stand",
+          "url": "https://iboltmounts.com/products/ibolt-quad-tablet-tower-stand",
+          "price": 149.95,
+          "variantId": 50140503015716
+        },
+        {
+          "title": "iBOLT Tablet Tower- TabDock POS Clamp Mount - with 3 Tablet Holders",
+          "url": "https://iboltmounts.com/products/tablet-tower-multi-tablet-stand-ipad-point-of-sale-purchase-restaurant-triple-ibrt-34700",
+          "price": 79.95,
+          "variantId": 50140722495780
+        },
+        {
+          "title": "iBOLT Tablet Tower- TabDock POS Clamp Mount - with 4 Tablet Holders",
+          "url": "https://iboltmounts.com/products/multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+          "price": 89.95,
+          "variantId": 50140727607588
+        },
+        {
+          "title": "iBOLT Tablet Tower- TabDock POS Clamp Mount - with 5 Tablet Holders",
+          "url": "https://iboltmounts.com/products/multi-tablet-stand-five-holders-restaurant-point-of-sale-purchase-ipad-ibrt-34706",
+          "price": 99.95,
+          "variantId": 50140732719396
+        },
+        {
+          "title": "iBOLT LockPro Drill Base Locking Tablet Stand- Point of Purchase/POS Mount",
+          "url": "https://iboltmounts.com/products/ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+          "price": 139.95,
+          "variantId": 47015317766436
+        }
+      ],
+      "broll": {
+        "src": "https://cdn.shopify.com/s/files/1/0818/5957/6100/articles/f738a99aab4736fb11e7af3f6be8f294_93c1360e-61c9-49b6-a8ef-f13276bf8f56.png?v=1780193005",
+        "alt": "Restaurant counter with multiple tablets organized for POS and delivery apps",
+        "reason": "Shows the operational problem this page solves: several ordering tablets competing for the same restaurant counter space."
+      },
+      "validation": {
+        "slug": "restaurant-tablet-mounts-multi-tablet-delivery-stations",
+        "wordCount": 902,
+        "productLinks": 5,
+        "productCards": 5,
+        "faqCount": 5,
+        "missingKeywords": [],
+        "missingSchemaTypes": [],
+        "bannedPhrases": [],
+        "hasBroll": true,
+        "pass": true
+      }
+    },
+    {
+      "title": "AMPS Mounting System and AMPS Mounting Plates",
+      "slug": "amps-mounting-system-amps-mounting-plates",
+      "proposedUrl": "https://iboltmounts.com/pages/amps-mounting-system-amps-mounting-plates",
+      "preview": "preview/amps-mounting-system-amps-mounting-plates.html",
+      "shopifyBody": "pages/amps-mounting-system-amps-mounting-plates.shopify-page.html",
+      "schema": "schema/amps-mounting-system-amps-mounting-plates.json",
+      "targetKeywords": [
+        "amps mounting plate",
+        "amps mounting system",
+        "AMPS mount"
+      ],
+      "collectionUrl": "https://iboltmounts.com/collections/amps-pattern-mounts-and-adapters2",
+      "products": [
+        {
+          "title": "iBOLT 25mm / 1 inch Metal AMPS Adapter Plate",
+          "url": "https://iboltmounts.com/products/25mm-1-inch-b-size-metal-amps-pattern-adapter-plate-ibpb-33890",
+          "price": 12.95,
+          "variantId": 47014777094436
+        },
+        {
+          "title": "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate",
+          "url": "https://iboltmounts.com/products/ibolt-25mm-1-inch-composite-amps-adapter-plate-dual-ball-socket-mounting-arms",
+          "price": 7.95,
+          "variantId": 47014690455844
+        },
+        {
+          "title": "iBOLT 4 Hole AMPS Pattern Metal Backing Plate",
+          "url": "https://iboltmounts.com/products/industry-standard-amps-packing-plate",
+          "price": 7.95,
+          "variantId": 47014634291492
+        },
+        {
+          "title": "iBOLT AMPS to VESA 75/100 Plate",
+          "url": "https://iboltmounts.com/products/ibolt-amps-to-vesa-75-100-plate",
+          "price": 14.95,
+          "variantId": 51971790897444
+        },
+        {
+          "title": "iBOLT Universal Marine & Electronics Mounting Plate",
+          "url": "https://iboltmounts.com/products/ibolt-universal-marine-electronics-mounting-plate",
+          "price": 12.95,
+          "variantId": 51993823641892
+        },
+        {
+          "title": "iBOLT Clamp Base for 4-Hole AMPS Mounts",
+          "url": "https://iboltmounts.com/products/ibolt-clamp-base-for-4-hole-amps-mounts",
+          "price": 24.95,
+          "variantId": 50983084392740
+        }
+      ],
+      "broll": null,
+      "validation": {
+        "slug": "amps-mounting-system-amps-mounting-plates",
+        "wordCount": 840,
+        "productLinks": 5,
+        "productCards": 6,
+        "faqCount": 5,
+        "missingKeywords": [],
+        "missingSchemaTypes": [],
+        "bannedPhrases": [],
+        "hasBroll": false,
+        "pass": true
+      }
+    },
+    {
+      "title": "Forklift Tablet Mounting Solutions",
+      "slug": "forklift-tablet-mounting-solutions",
+      "proposedUrl": "https://iboltmounts.com/pages/forklift-tablet-mounting-solutions",
+      "preview": "preview/forklift-tablet-mounting-solutions.html",
+      "shopifyBody": "pages/forklift-tablet-mounting-solutions.shopify-page.html",
+      "schema": "schema/forklift-tablet-mounting-solutions.json",
+      "targetKeywords": [
+        "forklift tablet mount",
+        "forklift mount",
+        "warehouse tablet mount"
+      ],
+      "collectionUrl": "https://iboltmounts.com/collections/heavy-duty-forklift-material-handling-tablet-mounts",
+      "products": [
+        {
+          "title": "iBOLT TabDock Bizmount Pillar Mount- Heavy Duty Forklift Tablet Mount for Warehouse Vehicles and 7-10 inch Tablets",
+          "url": "https://iboltmounts.com/products/ibolt-tabdock-bizmount-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+          "price": 74.95,
+          "variantId": 50140522250532
+        },
+        {
+          "title": "iBOLT LockPro IncrediBOLT 360 Pillar Mount- Heavy Duty Forklift Tablet Mount for Warehouse Vehicles and 7-10 inch Tablets",
+          "url": "https://iboltmounts.com/products/ibolt-lockprotm-incredibolttm-360-pillar-mount-heavy-duty-forklift-tablet-mount-for-warehouse-vehicles-and-7-10-inch-tablets",
+          "price": 169.95,
+          "variantId": 47015315243300
+        },
+        {
+          "title": "iBOLT XL Forklift Barcode Scanner Holder 38mm Mount",
+          "url": "https://iboltmounts.com/products/ibolt-xl-forklift-barcode-scanner-holder-38mm-mount",
+          "price": 79.95,
+          "variantId": 52320724222244
+        },
+        {
+          "title": "iBOLT XL Barcode Scanner Forklift Pillar Mount for Warehouse Vehicles, Inventory Management, and Material Handling",
+          "url": "https://iboltmounts.com/products/ibolt-xl-barcode-scanner-forklift-pillar-mount-for-warehouse-vehicles-inventory-management-and-material-handling",
+          "price": 72,
+          "variantId": 49920014057764
+        },
+        {
+          "title": "iBOLT VESA 75x75 mm/ 100x100 mm Monitor Pillar Mount",
+          "url": "https://iboltmounts.com/products/ibolt-vesa-75x75-mm-100x100-mm-monitor-pillar-mount",
+          "price": 69.95,
+          "variantId": 47015282770212
+        }
+      ],
+      "broll": null,
+      "validation": {
+        "slug": "forklift-tablet-mounting-solutions",
+        "wordCount": 855,
+        "productLinks": 5,
+        "productCards": 5,
+        "faqCount": 5,
+        "missingKeywords": [],
+        "missingSchemaTypes": [],
+        "bannedPhrases": [],
+        "hasBroll": false,
+        "pass": true
+      }
+    },
+    {
+      "title": "Fleet and ELD Mounting Systems",
+      "slug": "fleet-eld-mounting-systems",
+      "proposedUrl": "https://iboltmounts.com/pages/fleet-eld-mounting-systems",
+      "preview": "preview/fleet-eld-mounting-systems.html",
+      "shopifyBody": "pages/fleet-eld-mounting-systems.shopify-page.html",
+      "schema": "schema/fleet-eld-mounting-systems.json",
+      "targetKeywords": [
+        "ELD mount",
+        "fleet mounting solutions",
+        "fleet tablet mount"
+      ],
+      "collectionUrl": "https://iboltmounts.com/collections/fleet-heavy-duty-eld-mandate-mounts",
+      "products": [
+        {
+          "title": "iBOLT TabDock IncrediBOLT 360 Suction- Heavy Duty Metal 6 inch Multi-Angle Mount for All 7\" - 10\" Tablets for Commercial Vehicles, Trucks, and ELD Devices",
+          "url": "https://iboltmounts.com/products/ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices",
+          "price": 74.95,
+          "variantId": 50140633268516
+        },
+        {
+          "title": "iBOLT TabDock IncrediBOLT 360 Heavy Duty Triple Suction Cup Mount",
+          "url": "https://iboltmounts.com/products/ibolt-tabdock-incredibolt-360-heavy-duty-triple-suction-cup-mount",
+          "price": 89.95,
+          "variantId": 50140553838884
+        },
+        {
+          "title": "iBOLT LockPro FlexPro Heavy Duty Locking Tablet Seat Rail Mount",
+          "url": "https://iboltmounts.com/products/ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount",
+          "price": 159.95,
+          "variantId": 51110115377444
+        },
+        {
+          "title": "iBOLT TabDock Flexpro - Heavy Duty Floor Mount for All 7\" - 10\" Tablets",
+          "url": "https://iboltmounts.com/products/ibolt-tabdock-flexpro-heavy-duty-seat-rail-gooseneck-tablet-eld-floor-mount-ibbz-33762",
+          "price": 34.95,
+          "variantId": 50141141958948
+        },
+        {
+          "title": "iBOLT xProDock Bizmount Amps",
+          "url": "https://iboltmounts.com/products/xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+          "price": 39.95,
+          "variantId": 47014641402148
+        }
+      ],
+      "broll": {
+        "src": "https://cdn.shopify.com/s/files/1/0818/5957/6100/articles/9f50bafb1e3f048b865b4ae478534469_d4589621-854a-41c4-9a8f-c2bd09e6e8e5.png?v=1780193011",
+        "alt": "Fleet vehicle dashboard with commercial tablet and phone mounting setup",
+        "reason": "Fleet buyers need to see device placement inside commercial vehicles, not only isolated product photos."
+      },
+      "validation": {
+        "slug": "fleet-eld-mounting-systems",
+        "wordCount": 803,
+        "productLinks": 5,
+        "productCards": 5,
+        "faqCount": 5,
+        "missingKeywords": [],
+        "missingSchemaTypes": [],
+        "bannedPhrases": [],
+        "hasBroll": true,
+        "pass": true
+      }
+    },
+    {
+      "title": "Live Streaming Phone and Camera Mounts",
+      "slug": "live-streaming-phone-camera-mounts",
+      "proposedUrl": "https://iboltmounts.com/pages/live-streaming-phone-camera-mounts",
+      "preview": "preview/live-streaming-phone-camera-mounts.html",
+      "shopifyBody": "pages/live-streaming-phone-camera-mounts.shopify-page.html",
+      "schema": "schema/live-streaming-phone-camera-mounts.json",
+      "targetKeywords": [
+        "best phone stand for live streaming",
+        "phone stand for streaming",
+        "table camera mount"
+      ],
+      "collectionUrl": "https://iboltmounts.com/collections/live-streaming-live-streaming-phone-mounts",
+      "products": [
+        {
+          "title": "iBOLT Stream-Cast Creator Custom mount kit with over 60 variations- great for live streaming tutorial videos and photos",
+          "url": "https://iboltmounts.com/products/ibolt-stream-cast-creator-custom-mount-kit-with-over-60-variations-live-streaming-tutorial-videos-ibsc-34615",
+          "price": 139.95,
+          "variantId": 47014797181220
+        },
+        {
+          "title": "iBOLT Stream-Cast IncrediBOLT Stand Adjustable Overhead Phone Mount",
+          "url": "https://iboltmounts.com/products/ibolttm-stream-cast-incredibolttm-stand-adjustable-overhead-phone-mount",
+          "price": 84.95,
+          "variantId": 47015336313124
+        },
+        {
+          "title": "iBOLT Stream-Cast Overhead Camera Rig Desk Mount for DSLR Cameras for Top Down and Front Facing Photography",
+          "url": "https://iboltmounts.com/products/ibolt-stream-cast-overhead-camera-rig-desk-mount-for-dslr-cameras-for-top-down-and-front-facing-photography",
+          "price": 179.95,
+          "variantId": 47015092388132
+        },
+        {
+          "title": "3 Camera Phone & Tablet Slide Bar - 10 inch",
+          "url": "https://iboltmounts.com/products/phone-tablet-slide-bar-camera-screw-tripod-attachment-ibcm-34603",
+          "price": 34.95,
+          "variantId": 47014667092260
+        },
+        {
+          "title": "iBOLT 1/4 20 Camera Screw IncrediBOLT Suction Cup Mount - Secure, Adjustable Mount for Cameras & Accessories",
+          "url": "https://iboltmounts.com/products/ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories",
+          "price": 24.95,
+          "variantId": 50383432810788
+        }
+      ],
+      "broll": null,
+      "validation": {
+        "slug": "live-streaming-phone-camera-mounts",
+        "wordCount": 787,
+        "productLinks": 5,
+        "productCards": 5,
+        "faqCount": 5,
+        "missingKeywords": [],
+        "missingSchemaTypes": [],
+        "bannedPhrases": [],
+        "hasBroll": false,
+        "pass": true
+      }
+    },
+    {
+      "title": "Phone Clamp, Clip, Screw, Ball, and Socket Mount Guide",
+      "slug": "phone-clamp-clip-screw-ball-socket-mount-guide",
+      "proposedUrl": "https://iboltmounts.com/pages/phone-clamp-clip-screw-ball-socket-mount-guide",
+      "preview": "preview/phone-clamp-clip-screw-ball-socket-mount-guide.html",
+      "shopifyBody": "pages/phone-clamp-clip-screw-ball-socket-mount-guide.shopify-page.html",
+      "schema": "schema/phone-clamp-clip-screw-ball-socket-mount-guide.json",
+      "targetKeywords": [
+        "phone clamp",
+        "clamp mount",
+        "clip on phone mount"
+      ],
+      "collectionUrl": "https://iboltmounts.com/collections/phone-c-clamp-mounts",
+      "products": [
+        {
+          "title": "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts",
+          "url": "https://iboltmounts.com/products/ibolt-17mm-clamp-mount-for-handlebars-poles-posts-compatible-with-garmin-gps-systems-and-ibolt-smartphone-holders",
+          "price": 14.95,
+          "variantId": 47014979731748
+        },
+        {
+          "title": "iBOLT 25MM/ 1 INCH/ B SIZE Metal C-Clamp Mount",
+          "url": "https://iboltmounts.com/products/25mm-1-inch-ball-b-size-adjustable-clamp-mount-22174",
+          "price": 15.95,
+          "variantId": 47014638715172
+        },
+        {
+          "title": "iBOLT 25mm/ 1 inch Ball to ¼ 20 Camera Screw Mount Adapter",
+          "url": "https://iboltmounts.com/products/1-inch-25mm-b-size-ball-1-4-20-camera-screw-mount-adapter",
+          "price": 7.95,
+          "variantId": 47014679839012
+        },
+        {
+          "title": "iBOLT sPro2 Grip - Compact Clamp Mount",
+          "url": "https://iboltmounts.com/products/ibolt-spro2-grip-compact-clamp-mount",
+          "price": 21.95,
+          "variantId": 50158939078948
+        },
+        {
+          "title": "iBOLT Moto-Vise IncrediBOLT Heavy Duty Phone Clamp / Handlebar / Rail Mount",
+          "url": "https://iboltmounts.com/products/ibolt-moto-vise-incredibolt-heavy-duty-phone-clamp-handlebar-rail-mount",
+          "price": 64.95,
+          "variantId": 47015187251492
+        }
+      ],
+      "broll": {
+        "localSrc": "../assets/modular-clamp-components-broll.png",
+        "alt": "Workbench with phone clamps, screw bases, ball mounts, and socket arms",
+        "reason": "This guide explains component families, so a neutral workbench b-roll image makes the differences easier to scan before looking at specific SKUs.",
+        "generated": true
+      },
+      "validation": {
+        "slug": "phone-clamp-clip-screw-ball-socket-mount-guide",
+        "wordCount": 800,
+        "productLinks": 5,
+        "productCards": 5,
+        "faqCount": 5,
+        "missingKeywords": [],
+        "missingSchemaTypes": [],
+        "bannedPhrases": [],
+        "hasBroll": true,
+        "pass": true
+      }
+    }
+  ]
+}

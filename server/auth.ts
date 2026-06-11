@@ -5,6 +5,13 @@ import jwt from "jsonwebtoken";
 import type { User } from "@shared/schema";
 import { getOrCreateUser, getUserById } from "./authStorage";
 import { sqlite } from "./db";
+import {
+  TIER_LEVELS,
+  TIER_STORAGE_LIMITS,
+  TIER_TOKEN_LIMITS,
+  normalizeUserTier,
+} from "./authTiers";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 
 // Extend Express Request to include user property (same shape as before)
 declare global {
@@ -16,21 +23,6 @@ declare global {
     }
   }
 }
-
-// ── Tier hierarchy ──────────────────────────────────────────────────
-const TIER_LEVELS: Record<string, number> = { free: 0, pro: 1, max: 2 };
-
-const TIER_TOKEN_LIMITS: Record<string, number> = {
-  free: 50_000,
-  pro: 500_000,
-  max: 2_000_000,
-};
-
-const TIER_STORAGE_LIMITS: Record<string, number> = {
-  free: 52_428_800,       // 50 MB
-  pro: 524_288_000,       // 500 MB
-  max: 5_368_709_120,     // 5 GB
-};
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev-jwt-secret-change-in-production-64chars-long-string-placeholder!!";
 const JWT_EXPIRY = "7d";
@@ -126,9 +118,59 @@ function extractBearerToken(req: Request): string | null {
   return token;
 }
 
+function isEnvEnabled(value: string | undefined): boolean {
+  return ["1", "true", "yes", "on"].includes((value || "").toLowerCase());
+}
+
+function isEnvDisabled(value: string | undefined): boolean {
+  return ["0", "false", "no", "off"].includes((value || "").toLowerCase());
+}
+
+function isLocalRuntime(): boolean {
+  return process.env.NODE_ENV === "development";
+}
+
+function hasClerkKey(): boolean {
+  return Boolean(process.env.CLERK_PUBLISHABLE_KEY || process.env.VITE_CLERK_PUBLISHABLE_KEY);
+}
+
+export function allowUnauthenticatedBlogAccess(): boolean {
+  const explicit = process.env.IBOLT_BLOG_ALLOW_UNAUTHENTICATED;
+  if (isEnvEnabled(explicit)) return isLocalRuntime();
+  if (isEnvDisabled(explicit)) return false;
+  return false;
+}
+
+function allowLocalInternalAuth(): boolean {
+  if (isEnvEnabled(process.env.IBOLT_INTERNAL_AUTH_BYPASS)) return isLocalRuntime();
+  if (isEnvDisabled(process.env.IBOLT_INTERNAL_AUTH_BYPASS)) return false;
+  return isLocalRuntime() && !hasClerkKey();
+}
+
+async function getLocalInternalUser(): Promise<Express.User> {
+  const user = await getOrCreateUser("local", "admin@iboltmounts.com", "max");
+  ensureLocalDefaultCompanyMembership(user.id);
+  return {
+    userId: user.id,
+    email: user.email,
+    tier: user.tier,
+  };
+}
+
+function ensureLocalDefaultCompanyMembership(userId: string): void {
+  try {
+    sqlite.prepare(`
+      INSERT OR IGNORE INTO company_memberships (id, company_id, user_id, role, status, created_at)
+      SELECT ?, ?, ?, 'owner', 'active', ?
+      WHERE EXISTS (SELECT 1 FROM companies WHERE id = ?)
+    `).run("local-default-company-owner", DEFAULT_COMPANY_ID, userId, Date.now(), DEFAULT_COMPANY_ID);
+  } catch {
+    // Local-only convenience. If the demo company is disabled, first-run setup still works.
+  }
+}
+
 function shouldBypassClerk(req: Request): boolean {
-  // iBolt blog generation routes don't need Clerk auth (local tool)
-  if (req.path.startsWith("/api/blog")) {
+  if (req.path.startsWith("/api/blog") && allowUnauthenticatedBlogAccess()) {
     return true;
   }
 
@@ -142,6 +184,18 @@ function shouldBypassClerk(req: Request): boolean {
   }
 
   return isStructuredJwt(token) && verifyToken(token) !== null;
+}
+
+export async function requireBlogAuth(req: Request, res: Response, next: NextFunction): Promise<void> {
+  if (req.path === "/shopify/oauth/callback") {
+    next();
+    return;
+  }
+  if (allowUnauthenticatedBlogAccess()) {
+    next();
+    return;
+  }
+  await requireAuth(req, res, next);
 }
 
 async function resolveApiKeyUser(req: Request): Promise<ApiKeyAuthResult> {
@@ -231,7 +285,7 @@ async function resolveJwtUser(req: Request): Promise<Express.User | null> {
 // ── Install Clerk middleware globally ────────────────────────────────
 export function configureClerk(app: Express): void {
   // Skip Clerk entirely if no publishable key — this is an internal tool
-  if (!process.env.CLERK_PUBLISHABLE_KEY && !process.env.VITE_CLERK_PUBLISHABLE_KEY) {
+  if (!hasClerkKey()) {
     console.log("[auth] No Clerk key found — running without auth");
     app.use((_req: Request, _res: Response, next: NextFunction) => next());
     return;
@@ -249,14 +303,15 @@ export function configureClerk(app: Express): void {
 
 // ── Resolve Clerk user → local DB user, set req.user ────────────────
 async function resolveUser(req: Request): Promise<Express.User | null> {
+  if (!hasClerkKey()) return null;
+
   const auth = getAuth(req);
   if (!auth?.userId) return null;
 
   // Get Clerk user details for email + metadata
   const clerkUser = await clerkClient.users.getUser(auth.userId);
   const email = clerkUser.emailAddresses?.[0]?.emailAddress ?? "";
-  // TODO: revert to "free" default when leaving testing phase
-  const tier = (clerkUser.publicMetadata?.tier as string) || "max";
+  const tier = normalizeUserTier(clerkUser.publicMetadata?.tier);
 
   // Ensure a local DB row exists (for usage tracking)
   await getOrCreateUser(auth.userId, email, tier);
@@ -281,6 +336,12 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     const jwtUser = await resolveJwtUser(req);
     if (jwtUser) {
       req.user = jwtUser;
+      next();
+      return;
+    }
+
+    if (allowLocalInternalAuth()) {
+      req.user = await getLocalInternalUser();
       next();
       return;
     }
@@ -315,6 +376,12 @@ export async function optionalAuth(req: Request, res: Response, next: NextFuncti
       return;
     }
 
+    if (allowLocalInternalAuth()) {
+      req.user = await getLocalInternalUser();
+      next();
+      return;
+    }
+
     const user = await resolveUser(req);
     if (user) {
       req.user = user;
@@ -328,14 +395,15 @@ export async function optionalAuth(req: Request, res: Response, next: NextFuncti
 // ── Middleware: require minimum tier ─────────────────────────────────
 export function requireTier(minTier: string) {
   return (req: Request, res: Response, next: NextFunction): void => {
-    const userTier = req.user?.tier ?? "free";
-    const userLevel = TIER_LEVELS[userTier] ?? 0;
-    const requiredLevel = TIER_LEVELS[minTier] ?? 0;
+    const userTier = normalizeUserTier(req.user?.tier);
+    const requiredTier = normalizeUserTier(minTier);
+    const userLevel = TIER_LEVELS[userTier];
+    const requiredLevel = TIER_LEVELS[requiredTier];
 
     if (userLevel < requiredLevel) {
       res.status(403).json({
-        message: `This feature requires the ${minTier} plan`,
-        requiredTier: minTier,
+        message: `This feature requires the ${requiredTier} plan`,
+        requiredTier,
         currentTier: userTier,
       });
       return;
@@ -352,4 +420,4 @@ export function checkTokenBudget(req: Request, res: Response, next: NextFunction
 }
 
 // ── Helper exports for route handlers ───────────────────────────────
-export { TIER_LEVELS, TIER_TOKEN_LIMITS, TIER_STORAGE_LIMITS };
+export { TIER_LEVELS, TIER_TOKEN_LIMITS, TIER_STORAGE_LIMITS, normalizeUserTier };

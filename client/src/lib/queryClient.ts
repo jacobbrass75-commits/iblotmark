@@ -1,4 +1,5 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { getActiveCompanyId, getCompanyScopedHeaders } from "@/lib/company";
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
@@ -18,14 +19,22 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const headers: Record<string, string> = {};
-  if (data) {
-    headers["Content-Type"] = "application/json";
+  const upperMethod = method.toUpperCase();
+  const isBlogMutation = url.startsWith("/api/blog") && !["GET", "HEAD", "OPTIONS"].includes(upperMethod);
+  const isCompanyBootstrap = upperMethod === "POST" && url === "/api/blog/company";
+  if (isBlogMutation && !isCompanyBootstrap && !getActiveCompanyId()) {
+    throw new Error("Choose or create a company workspace before changing blog data.");
   }
 
+  const headers = new Headers();
+  if (data) {
+    headers.set("Content-Type", "application/json");
+  }
+  const requestHeaders = url.startsWith("/api/blog") ? getCompanyScopedHeaders(headers) : headers;
+
   const res = await fetch(url, {
-    method,
-    headers,
+    method: upperMethod,
+    headers: requestHeaders,
     body: data ? JSON.stringify(data) : undefined,
     credentials: "include",
   });
@@ -40,7 +49,11 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey.join("/") as string, {
+    const url = queryKey.join("/") as string;
+    const headers = url.startsWith("/api/blog") ? getCompanyScopedHeaders() : undefined;
+
+    const res = await fetch(url, {
+      headers,
       credentials: "include",
     });
 

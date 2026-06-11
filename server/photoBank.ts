@@ -2,23 +2,28 @@
 // Uses sharp for thumbnails, gpt-4o for vision analysis.
 
 import { db } from "./db";
-import { eq, isNull } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 import {
+  industryVerticals,
   productPhotos,
   products,
   type ProductPhoto,
-  type InsertProductPhoto,
 } from "@shared/schema";
 import sharp from "sharp";
-import { existsSync, mkdirSync, readdirSync, statSync, copyFileSync } from "fs";
-import { join, basename, extname } from "path";
+import { existsSync, mkdirSync, readdirSync, realpathSync, statSync } from "fs";
+import { extname, join, relative, resolve, sep } from "path";
 import { randomUUID } from "crypto";
 import OpenAI from "openai";
 import { readFile } from "fs/promises";
 import { cachedApiCall, openaiLimiter, TTL } from "./apiCache";
+import { getCompanyContext } from "./companyContext";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 
 const PHOTO_DIR = "./uploads/product-photos";
 const THUMB_DIR = "./uploads/product-photos/thumbs";
+const ASSET_STATUSES = new Set(["needs_review", "approved", "archived"]);
+const RIGHTS_STATUSES = new Set(["unknown", "owned", "licensed", "restricted"]);
+const PHOTO_SOURCE_TYPES = new Set(["upload", "directory", "shopify", "url", "manual"]);
 
 // Ensure directories exist
 if (!existsSync(PHOTO_DIR)) mkdirSync(PHOTO_DIR, { recursive: true });
@@ -36,6 +41,57 @@ export interface PhotoUploadResult {
   productId: string | null;
 }
 
+export interface PhotoMetadataUpdate {
+  productId?: string | null;
+  assetStatus?: "needs_review" | "approved" | "archived";
+  rightsStatus?: "unknown" | "owned" | "licensed" | "restricted";
+  usageRestrictions?: string | null;
+  useCases?: string[] | string | null;
+  altText?: string | null;
+  caption?: string | null;
+  notes?: string | null;
+  sourceType?: "upload" | "directory" | "shopify" | "url" | "manual";
+  sourceUrl?: string | null;
+  angleType?: string | null;
+  contextType?: string | null;
+  settingDescription?: string | null;
+  qualityScore?: number | null;
+  isHero?: boolean;
+  verticalRelevance?: string[] | string | null;
+}
+
+function normalizeStringArray(value: string[] | string | null | undefined): string[] | null {
+  if (value === undefined) return null;
+  if (value === null) return null;
+  const raw = Array.isArray(value) ? value : value.split(",");
+  const normalized = raw.map((item) => item.trim()).filter(Boolean);
+  return normalized.length > 0 ? normalized : null;
+}
+
+function assertKnownValue(value: string | undefined, allowed: Set<string>, fieldName: string): void {
+  if (value !== undefined && !allowed.has(value)) {
+    throw new Error(`${fieldName} must be one of: ${Array.from(allowed).join(", ")}`);
+  }
+}
+
+function normalizeQualityScore(value: number | null | undefined): number | null | undefined {
+  if (value === undefined || value === null) return value;
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric) || numeric < 0 || numeric > 1) {
+    throw new Error("qualityScore must be a number from 0 to 1");
+  }
+  return numeric;
+}
+
+async function assertProductBelongsToCompany(productId: string, companyId: string): Promise<void> {
+  const [product] = await db
+    .select({ id: products.id })
+    .from(products)
+    .where(and(eq(products.companyId, companyId), eq(products.id, productId)))
+    .limit(1);
+  if (!product) throw new Error("Product not found for this company");
+}
+
 /**
  * Store a photo file and create a DB record.
  */
@@ -44,7 +100,17 @@ export async function storePhoto(
   originalFilename: string,
   mimeType: string,
   productId?: string,
+  companyId = DEFAULT_COMPANY_ID,
+  options: { sourceType?: string; sourceUrl?: string } = {},
 ): Promise<PhotoUploadResult> {
+  const normalizedProductId = productId?.trim() || null;
+  if (normalizedProductId) {
+    await assertProductBelongsToCompany(normalizedProductId, companyId);
+  }
+  if (options.sourceType) {
+    assertKnownValue(options.sourceType, PHOTO_SOURCE_TYPES, "sourceType");
+  }
+
   const ext = extname(originalFilename).toLowerCase() || ".jpg";
   const uuid = randomUUID();
   const filename = `${uuid}${ext}`;
@@ -74,7 +140,8 @@ export async function storePhoto(
   }
 
   const [photo] = await db.insert(productPhotos).values({
-    productId: productId || null,
+    companyId,
+    productId: normalizedProductId,
     filename,
     originalFilename,
     mimeType,
@@ -83,14 +150,16 @@ export async function storePhoto(
     thumbnailPath: thumbPath,
     width: metadata?.width || null,
     height: metadata?.height || null,
+    sourceType: options.sourceType || "upload",
+    sourceUrl: options.sourceUrl || null,
   }).returning();
 
   // Update product photo count
-  if (productId) {
-    await updateProductPhotoCount(productId);
+  if (normalizedProductId) {
+    await updateProductPhotoCount(normalizedProductId, companyId);
   }
 
-  return { photoId: photo.id, filename, productId: productId || null };
+  return { photoId: photo.id, filename, productId: normalizedProductId };
 }
 
 /**
@@ -100,9 +169,12 @@ export async function storePhoto(
 export async function importFromDirectory(
   dirPath: string,
   onProgress?: (msg: string) => void,
+  companyId = DEFAULT_COMPANY_ID,
 ): Promise<{ imported: number; skipped: number }> {
   const log = onProgress || ((msg: string) => console.log(`[PhotoBank] ${msg}`));
   const imageExts = new Set([".jpg", ".jpeg", ".png", ".webp", ".heic", ".tiff", ".bmp"]);
+  const rootDir = resolve(dirPath);
+  const rootReal = realpathSync(rootDir);
 
   let imported = 0;
   let skipped = 0;
@@ -118,11 +190,19 @@ export async function importFromDirectory(
 
     for (const entry of entries) {
       const fullPath = join(dir, entry);
+      let resolvedFullPath: string;
       let stat;
-      try { stat = statSync(fullPath); } catch { continue; }
+      try {
+        resolvedFullPath = realpathSync(fullPath);
+        if (resolvedFullPath !== rootReal && !resolvedFullPath.startsWith(`${rootReal}${sep}`)) {
+          skipped++;
+          continue;
+        }
+        stat = statSync(resolvedFullPath);
+      } catch { continue; }
 
       if (stat.isDirectory()) {
-        await processDir(fullPath);
+        await processDir(resolvedFullPath);
         continue;
       }
 
@@ -134,7 +214,7 @@ export async function importFromDirectory(
 
       // Check if already imported (by original filename)
       const existing = await db.select().from(productPhotos)
-        .where(eq(productPhotos.originalFilename, entry)).limit(1);
+        .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.originalFilename, entry))).limit(1);
       if (existing.length > 0) {
         skipped++;
         continue;
@@ -142,9 +222,10 @@ export async function importFromDirectory(
 
       try {
         const fs = await import("fs/promises");
-        const buffer = await fs.readFile(fullPath);
+        const buffer = await fs.readFile(resolvedFullPath);
         const mime = ext === ".png" ? "image/png" : ext === ".webp" ? "image/webp" : "image/jpeg";
-        await storePhoto(buffer, entry, mime);
+        const sourceRef = `directory:${relative(rootReal, resolvedFullPath)}`;
+        await storePhoto(buffer, entry, mime, undefined, companyId, { sourceType: "directory", sourceUrl: sourceRef });
         imported++;
         if (imported % 10 === 0) log(`Imported ${imported} photos...`);
       } catch (err: any) {
@@ -174,11 +255,23 @@ export interface PhotoAnalysis {
 /**
  * Analyze a single photo with gpt-4o vision.
  */
-export async function analyzePhoto(photoId: string): Promise<PhotoAnalysis> {
-  const [photo] = await db.select().from(productPhotos).where(eq(productPhotos.id, photoId)).limit(1);
+export async function analyzePhoto(photoId: string, companyId = DEFAULT_COMPANY_ID): Promise<PhotoAnalysis> {
+  const [photo] = await db
+    .select()
+    .from(productPhotos)
+    .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, photoId)))
+    .limit(1);
   if (!photo) throw new Error("Photo not found");
 
   const openai = getOpenAI();
+  const companyContext = await getCompanyContext(companyId);
+  const verticalRows = await db
+    .select({ slug: industryVerticals.slug, name: industryVerticals.name })
+    .from(industryVerticals)
+    .where(eq(industryVerticals.companyId, companyId));
+  const verticalChoices = verticalRows.length > 0
+    ? verticalRows.map((vertical) => `${vertical.slug} (${vertical.name})`).join(", ")
+    : "none configured; return an empty array";
 
   // Read the image file
   const imageBuffer = await readFile(photo.filePath);
@@ -186,7 +279,7 @@ export async function analyzePhoto(photoId: string): Promise<PhotoAnalysis> {
   const mediaType = photo.mimeType.startsWith("image/") ? photo.mimeType : "image/jpeg";
 
   const analysis = await cachedApiCall<PhotoAnalysis>(
-    `openai:photo:${photoId}`,
+    `openai:photo:${companyId}:${photoId}`,
     async () => {
       const response = await openai.chat.completions.create({
         model: "gpt-4o",
@@ -196,20 +289,22 @@ export async function analyzePhoto(photoId: string): Promise<PhotoAnalysis> {
           content: [
             {
               type: "text",
-              text: `Analyze this product photo for iBolt Mounts (device mounting solutions company).
+              text: `Analyze this product photo for ${companyContext.brandProfile.displayName}.
+
+Brand/product context: ${companyContext.brandProfile.shortDescription || companyContext.brandProfile.positioning || companyContext.company.websiteUrl || "ecommerce products"}.
 
 Return JSON only:
 {
   "identifiedProduct": "best guess at product name based on what you see",
   "angleType": "front|back|side|top|detail|full|in-use",
   "contextType": "studio|in-use|lifestyle|packaging|technical",
-  "settingDescription": "brief description of the setting (e.g., 'mounted on truck dashboard', 'white background studio shot')",
+  "settingDescription": "brief description of the setting (e.g., 'product in use on a workbench', 'white background studio shot')",
   "qualityScore": 0.0-1.0,
   "verticalRelevance": ["matching-vertical-slugs"],
   "isHeroCandidate": true/false
 }
 
-Vertical slugs to choose from: fishing-boating, forklifts-warehousing, trucking-fleet, offroading-jeep, restaurants-food-delivery, education-schools, content-creation-streaming, agriculture-farming, kitchen-home, road-trips-travel, mountain-biking-cycling, general-mounting`,
+Vertical slugs to choose from: ${verticalChoices}`,
             },
             {
               type: "image_url",
@@ -237,7 +332,7 @@ Vertical slugs to choose from: fishing-boating, forklifts-warehousing, trucking-
     verticalRelevance: analysis.verticalRelevance,
     aiAnalysis: analysis as any,
     analyzedAt: new Date(),
-  }).where(eq(productPhotos.id, photoId));
+    }).where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, photoId)));
 
   return analysis;
 }
@@ -248,10 +343,11 @@ Vertical slugs to choose from: fishing-boating, forklifts-warehousing, trucking-
 export async function batchAnalyzePhotos(
   limit = 20,
   onProgress?: (msg: string) => void,
+  companyId = DEFAULT_COMPANY_ID,
 ): Promise<{ analyzed: number; failed: number }> {
   const log = onProgress || ((msg: string) => console.log(`[PhotoBank] ${msg}`));
   const unanalyzed = await db.select().from(productPhotos)
-    .where(isNull(productPhotos.analyzedAt))
+    .where(and(eq(productPhotos.companyId, companyId), isNull(productPhotos.analyzedAt)))
     .limit(limit);
 
   let analyzed = 0;
@@ -259,7 +355,7 @@ export async function batchAnalyzePhotos(
 
   for (const photo of unanalyzed) {
     try {
-      await analyzePhoto(photo.id);
+      await analyzePhoto(photo.id, companyId);
       analyzed++;
       if (analyzed % 5 === 0) log(`Analyzed ${analyzed}/${unanalyzed.length}`);
     } catch (err: any) {
@@ -275,9 +371,12 @@ export async function batchAnalyzePhotos(
 /**
  * Auto-associate unassigned photos to products based on filename + AI analysis.
  */
-export async function autoAssociatePhotos(): Promise<{ associated: number }> {
-  const unassigned = await db.select().from(productPhotos).where(isNull(productPhotos.productId));
-  const allProducts = await db.select().from(products);
+export async function autoAssociatePhotos(companyId = DEFAULT_COMPANY_ID): Promise<{ associated: number }> {
+  const unassigned = await db
+    .select()
+    .from(productPhotos)
+    .where(and(eq(productPhotos.companyId, companyId), isNull(productPhotos.productId)));
+  const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
   let associated = 0;
 
   for (const photo of unassigned) {
@@ -314,8 +413,11 @@ export async function autoAssociatePhotos(): Promise<{ associated: number }> {
     }
 
     if (bestMatch && bestScore >= 0.3) {
-      await db.update(productPhotos).set({ productId: bestMatch.id }).where(eq(productPhotos.id, photo.id));
-      await updateProductPhotoCount(bestMatch.id);
+      await db
+        .update(productPhotos)
+        .set({ productId: bestMatch.id })
+        .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, photo.id)));
+      await updateProductPhotoCount(bestMatch.id, companyId);
       associated++;
     }
   }
@@ -325,47 +427,128 @@ export async function autoAssociatePhotos(): Promise<{ associated: number }> {
 
 // --- Helpers ---
 
-async function updateProductPhotoCount(productId: string): Promise<void> {
-  const photos = await db.select().from(productPhotos).where(eq(productPhotos.productId, productId));
+async function updateProductPhotoCount(productId: string, companyId = DEFAULT_COMPANY_ID): Promise<void> {
+  const photos = await db
+    .select()
+    .from(productPhotos)
+    .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.productId, productId)));
   await db.update(products).set({
     hasPhotos: photos.length > 0,
     photoCount: photos.length,
     updatedAt: new Date(),
-  }).where(eq(products.id, productId));
+  }).where(and(eq(products.companyId, companyId), eq(products.id, productId)));
 }
 
 // --- Queries ---
 
-export async function getPhotos(productId?: string): Promise<ProductPhoto[]> {
+export async function getPhotos(productId?: string, companyId = DEFAULT_COMPANY_ID): Promise<ProductPhoto[]> {
   if (productId) {
-    return db.select().from(productPhotos).where(eq(productPhotos.productId, productId));
+    return db.select().from(productPhotos).where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.productId, productId)));
   }
-  return db.select().from(productPhotos);
+  return db.select().from(productPhotos).where(eq(productPhotos.companyId, companyId));
 }
 
-export async function getPhoto(id: string): Promise<ProductPhoto | undefined> {
-  const [photo] = await db.select().from(productPhotos).where(eq(productPhotos.id, id)).limit(1);
+export async function getPhoto(id: string, companyId = DEFAULT_COMPANY_ID): Promise<ProductPhoto | undefined> {
+  const [photo] = await db
+    .select()
+    .from(productPhotos)
+    .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, id)))
+    .limit(1);
   return photo;
 }
 
-export async function getPhotoStats(): Promise<{ total: number; analyzed: number; unanalyzed: number; unassigned: number }> {
-  const all = await db.select().from(productPhotos);
+export async function getPhotoStats(companyId = DEFAULT_COMPANY_ID): Promise<{
+  total: number;
+  analyzed: number;
+  unanalyzed: number;
+  unassigned: number;
+  approved: number;
+  needsReview: number;
+  restricted: number;
+}> {
+  const all = await db.select().from(productPhotos).where(eq(productPhotos.companyId, companyId));
   return {
     total: all.length,
     analyzed: all.filter((p) => p.analyzedAt).length,
     unanalyzed: all.filter((p) => !p.analyzedAt).length,
     unassigned: all.filter((p) => !p.productId).length,
+    approved: all.filter((p) => p.assetStatus === "approved").length,
+    needsReview: all.filter((p) => p.assetStatus === "needs_review").length,
+    restricted: all.filter((p) => p.rightsStatus === "restricted").length,
   };
 }
 
-export async function deletePhoto(id: string): Promise<void> {
-  const [photo] = await db.select().from(productPhotos).where(eq(productPhotos.id, id)).limit(1);
+export async function updatePhotoMetadata(
+  id: string,
+  updates: PhotoMetadataUpdate,
+  companyId = DEFAULT_COMPANY_ID,
+): Promise<ProductPhoto> {
+  const [existing] = await db
+    .select()
+    .from(productPhotos)
+    .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, id)))
+    .limit(1);
+  if (!existing) throw new Error("Photo not found");
+
+  assertKnownValue(updates.assetStatus, ASSET_STATUSES, "assetStatus");
+  assertKnownValue(updates.rightsStatus, RIGHTS_STATUSES, "rightsStatus");
+  assertKnownValue(updates.sourceType, PHOTO_SOURCE_TYPES, "sourceType");
+
+  const values: Partial<typeof productPhotos.$inferInsert> = {};
+
+  if (Object.prototype.hasOwnProperty.call(updates, "productId")) {
+    const nextProductId = updates.productId?.trim() || null;
+    if (nextProductId) {
+      await assertProductBelongsToCompany(nextProductId, companyId);
+    }
+    values.productId = nextProductId;
+  }
+
+  if (updates.assetStatus !== undefined) values.assetStatus = updates.assetStatus;
+  if (updates.rightsStatus !== undefined) values.rightsStatus = updates.rightsStatus;
+  if (updates.usageRestrictions !== undefined) values.usageRestrictions = updates.usageRestrictions?.trim() || null;
+  if (updates.useCases !== undefined) values.useCases = normalizeStringArray(updates.useCases);
+  if (updates.altText !== undefined) values.altText = updates.altText?.trim() || null;
+  if (updates.caption !== undefined) values.caption = updates.caption?.trim() || null;
+  if (updates.notes !== undefined) values.notes = updates.notes?.trim() || null;
+  if (updates.sourceType !== undefined) values.sourceType = updates.sourceType;
+  if (updates.sourceUrl !== undefined) values.sourceUrl = updates.sourceUrl?.trim() || null;
+  if (updates.angleType !== undefined) values.angleType = updates.angleType?.trim() || null;
+  if (updates.contextType !== undefined) values.contextType = updates.contextType?.trim() || null;
+  if (updates.settingDescription !== undefined) values.settingDescription = updates.settingDescription?.trim() || null;
+  if (updates.qualityScore !== undefined) values.qualityScore = normalizeQualityScore(updates.qualityScore);
+  if (updates.isHero !== undefined) values.isHero = updates.isHero;
+  if (updates.verticalRelevance !== undefined) values.verticalRelevance = normalizeStringArray(updates.verticalRelevance);
+
+  if (Object.keys(values).length > 0) {
+    await db
+      .update(productPhotos)
+      .set(values)
+      .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, id)));
+  }
+
+  if (Object.prototype.hasOwnProperty.call(values, "productId") && values.productId !== existing.productId) {
+    if (existing.productId) await updateProductPhotoCount(existing.productId, companyId);
+    if (values.productId) await updateProductPhotoCount(values.productId, companyId);
+  }
+
+  const updated = await getPhoto(id, companyId);
+  if (!updated) throw new Error("Photo not found after update");
+  return updated;
+}
+
+export async function deletePhoto(id: string, companyId = DEFAULT_COMPANY_ID): Promise<void> {
+  const [photo] = await db
+    .select()
+    .from(productPhotos)
+    .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, id)))
+    .limit(1);
   if (photo) {
     // Try to delete files
     const fs = await import("fs/promises");
     try { await fs.unlink(photo.filePath); } catch {}
     try { if (photo.thumbnailPath) await fs.unlink(photo.thumbnailPath); } catch {}
-    await db.delete(productPhotos).where(eq(productPhotos.id, id));
-    if (photo.productId) await updateProductPhotoCount(photo.productId);
+    await db.delete(productPhotos).where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, id)));
+    if (photo.productId) await updateProductPhotoCount(photo.productId, companyId);
   }
 }

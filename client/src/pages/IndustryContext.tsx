@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { useVerticals, useContextEntries, useVerifyEntry, useDeleteEntry, useAddContextEntry, useResearchJobs } from "@/hooks/useVerticals";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { companyScopedUrl, getRequiredCompanyScopedHeaders } from "@/lib/company";
 
 export default function IndustryContext() {
   const [, setLocation] = useLocation();
@@ -50,8 +51,10 @@ export default function IndustryContext() {
     try {
       const res = await fetch(`/api/blog/context/research/vertical/${verticalId}`, {
         method: "POST",
+        headers: getRequiredCompanyScopedHeaders(),
         credentials: "include",
       });
+      if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
       const reader = res.body?.getReader();
       if (!reader) return;
       const decoder = new TextDecoder();
@@ -84,7 +87,12 @@ export default function IndustryContext() {
     setResearchRunning(true);
     setResearchStatus("Launching Reddit agents for all verticals...");
     try {
-      const res = await fetch("/api/blog/context/research/reddit", { method: "POST", credentials: "include" });
+      const res = await fetch("/api/blog/context/research/reddit", {
+        method: "POST",
+        headers: getRequiredCompanyScopedHeaders(),
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
       const reader = res.body?.getReader();
       if (!reader) return;
       const decoder = new TextDecoder();
@@ -157,7 +165,10 @@ export default function IndustryContext() {
                   toast({ title: "Vertical Created", description: `"${vertical.name}" with context entries seeded` });
                   setCreatorInput("");
                   setShowCreator(false);
-                  queryClient.invalidateQueries({ queryKey: ["/api/blog/context/verticals"] });
+                  queryClient.invalidateQueries({
+                    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/context"),
+                  });
+                  queryClient.invalidateQueries({ queryKey: [companyScopedUrl("/api/blog/company/setup-status")] });
                 } catch (err: any) {
                   toast({ title: "Error", description: err.message, variant: "destructive" });
                 }

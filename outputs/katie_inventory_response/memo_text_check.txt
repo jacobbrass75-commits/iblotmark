@@ -1,0 +1,77 @@
+Inventory Bin Count Automation
+Plain-English recommendation and next-quarter pilot plan
+Prepared for: Katie Hobbs
+Prepared by: Jacob / iBolt team
+Date: May 14, 2026
+Purpose: Respond to the request for a faster, lower-error inventory bin counting process using barcodes, weight, and simple automation.
+Recommendation: Yes, this is worth piloting. Start with a simple barcode + spreadsheet workflow first, then add direct scale integration only after the team proves the process works on real bins.
+
+What This Would Do
+The system would remove most manual lookup and calculator work from inventory counts. Each bin would have a barcode. When someone scans the bin, the system identifies the SKU, product name, unit weight, and empty bin weight. The user then enters the gross weight from the scale, and the sheet or app calculates the bin quantity.
+The counting formula stays exactly the same as the current process, but it is handled automatically:
+Formula: (Total bin weight in oz - empty bin weight in oz) / individual part weight in oz = calculated quantity.
+
+Recommended Workflow
+Label the bin: Print a barcode label for each bin. The label should show the bin ID, SKU, product name, and a scannable Code 128 barcode.
+Scan the bin: The scanner enters the bin ID automatically, like a keyboard. No typing the SKU by hand.
+Weigh the bin: Put the bin on the scale and enter the total weight in pounds.
+Review the result: The system calculates quantity, rounds to the nearest whole unit, and flags rows that need a reweigh or manual check.
+Export counts: After review, export the counted quantities to the inventory system or final count workbook.
+What To Buy
+Item
+Buy Now?
+Budget
+Reason
+USB 2D barcode scanner
+Yes
+$160-$250 each
+Reliable scanning; works as keyboard input with spreadsheets or a simple app.
+Label printer
+Yes
+$250-$1,100
+Needed to print readable bin labels with barcode plus human-readable text.
+Thermal labels
+Yes
+$20-$80 per roll
+Use 2x1, 3x1, or 4x2 labels depending on bin size and viewing distance.
+New scale
+Not first
+$0 initially
+Use the existing scale for the pilot. Buy an integrated USB/RS-232 scale only if the pilot works.
+Scale integration
+Phase 2
+$450-$700+ scale, plus setup
+Direct scale capture is useful, but not required to prove the workflow.
+Important Accuracy Notes
+This should be treated as a counting aid, not a magic count. It will be very useful when each bin contains one SKU and the unit weight is trustworthy. The biggest accuracy risks are small hardware, mixed-SKU bins, inconsistent packaging, and scale resolution.
+For small parts, verify unit weight by weighing 50 or 100 pieces, then dividing by the sample count.
+Keep the default empty bin weight at 56 oz, but record actual bin tare if some bins are meaningfully different.
+Rows with unusual fractional results should be flagged for reweigh or manual count.
+Do not rely on AI to do the math. AI can help with setup and review, but the count should be deterministic and formula-based.
+Pilot Plan
+Timing
+Task
+Outcome
+Week 1
+Confirm SKU list, unit weights, bin IDs, and current scale readability.
+Clean source data before labels are printed.
+Week 2
+Print labels and load the spreadsheet or simple app with SKU/bin data.
+Ready-to-test counting station.
+Week 3
+Pilot 25-50 bins across light, medium, and heavy parts.
+Measure speed, accuracy, and operator friction.
+Week 4
+Fix issues and decide whether to keep spreadsheet MVP or build a small app.
+Clear go/no-go decision before broader rollout.
+Decision
+The best next step is a low-cost pilot, not a large software purchase. A barcode scanner, labels, and the prototype workbook are enough to validate whether this saves time and reduces errors. If the pilot is successful, the next version can be a small web app with direct scale capture, audit logs, and export back to the inventory system.
+Files Included In The Packet
+File
+Purpose
+Inventory Bin Count Automation - Recommendation and Pilot Plan.docx
+This plain-English memo.
+inventory_bin_count_template.xlsx
+Spreadsheet prototype that demonstrates the count logic.
+Reply Email Draft.md
+Copy/paste response email to Katie.

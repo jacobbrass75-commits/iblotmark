@@ -4,7 +4,7 @@
 import { PDFParse } from "pdf-parse";
 import Anthropic from "@anthropic-ai/sdk";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import {
   productCatalogImports,
   productCatalogExtractions,
@@ -13,6 +13,8 @@ import {
   type CatalogExtraction,
   type Product,
 } from "@shared/schema";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
+import { getCompanyContext } from "./companyContext";
 
 function getClient(): Anthropic {
   return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -43,14 +45,15 @@ async function extractProductsFromChunk(
   client: Anthropic,
   chunk: string,
   chunkIndex: number,
+  companyName: string,
 ): Promise<ExtractedProduct[]> {
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4096,
     messages: [{
       role: "user",
-      content: `Extract all distinct products from this product catalog excerpt. For each product, extract:
-- name: The full product name (e.g., "iBOLT TabDock Bizmount AMPS w/ Screw in Connection")
+      content: `Extract all distinct products from this ${companyName} product catalog excerpt. For each product, extract:
+- name: The full product name exactly as shown in the catalog
 - description: A 1-2 sentence summary of what the product does and its key features
 - pageRef: The page reference if visible (e.g., "-- 1 of 334 --")
 
@@ -121,10 +124,10 @@ function levenshteinSimilarity(a: string, b: string): number {
   return intersection.length / union.size;
 }
 
-async function matchExtractions(importId: string): Promise<{ matched: number; unmatched: number }> {
+async function matchExtractions(importId: string, companyId = DEFAULT_COMPANY_ID): Promise<{ matched: number; unmatched: number }> {
   const extractions = await db.select().from(productCatalogExtractions)
-    .where(eq(productCatalogExtractions.importId, importId));
-  const allProducts = await db.select().from(products);
+    .where(and(eq(productCatalogExtractions.companyId, companyId), eq(productCatalogExtractions.importId, importId)));
+  const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
 
   let matched = 0;
   let unmatched = 0;
@@ -147,21 +150,21 @@ async function matchExtractions(importId: string): Promise<{ matched: number; un
         matchedProductId: bestMatch.id,
         matchStatus: "matched",
         confidence: bestScore,
-      }).where(eq(productCatalogExtractions.id, extraction.id));
+      }).where(and(eq(productCatalogExtractions.companyId, companyId), eq(productCatalogExtractions.id, extraction.id)));
 
       // Enrich product with catalog description
       await db.update(products).set({
         catalogDescription: extraction.extractedDescription,
         catalogPageRef: extraction.pageNumber ? `p.${extraction.pageNumber}` : null,
         updatedAt: new Date(),
-      }).where(eq(products.id, bestMatch.id));
+      }).where(and(eq(products.companyId, companyId), eq(products.id, bestMatch.id)));
 
       matched++;
     } else {
       await db.update(productCatalogExtractions).set({
         matchStatus: "new",
         confidence: bestScore,
-      }).where(eq(productCatalogExtractions.id, extraction.id));
+      }).where(and(eq(productCatalogExtractions.companyId, companyId), eq(productCatalogExtractions.id, extraction.id)));
       unmatched++;
     }
   }
@@ -191,11 +194,14 @@ export async function importCatalog(
   buffer: Buffer,
   filename: string,
   onProgress?: (msg: string) => void,
+  companyId = DEFAULT_COMPANY_ID,
 ): Promise<CatalogImportResult> {
   const log = onProgress || ((msg: string) => console.log(`[Catalog] ${msg}`));
+  const companyContext = await getCompanyContext(companyId);
 
   // Create import record
   const [importRecord] = await db.insert(productCatalogImports).values({
+    companyId,
     filename,
     status: "extracting",
   }).returning();
@@ -204,7 +210,7 @@ export async function importCatalog(
     // Step 1: Extract text
     log("Extracting text from PDF...");
     const { text, pages } = await extractPdfText(buffer);
-    await db.update(productCatalogImports).set({ totalPages: pages }).where(eq(productCatalogImports.id, importRecord.id));
+    await db.update(productCatalogImports).set({ totalPages: pages }).where(and(eq(productCatalogImports.companyId, companyId), eq(productCatalogImports.id, importRecord.id)));
     log(`Extracted ${text.length} chars from ${pages} pages`);
 
     // Step 2: Chunk
@@ -212,14 +218,14 @@ export async function importCatalog(
     log(`Split into ${chunks.length} chunks`);
 
     // Step 3: AI extraction
-    await db.update(productCatalogImports).set({ status: "extracting" }).where(eq(productCatalogImports.id, importRecord.id));
+    await db.update(productCatalogImports).set({ status: "extracting" }).where(and(eq(productCatalogImports.companyId, companyId), eq(productCatalogImports.id, importRecord.id)));
 
     const client = getClient();
     let totalExtracted = 0;
 
     for (let i = 0; i < chunks.length; i++) {
       log(`Processing chunk ${i + 1}/${chunks.length}...`);
-      const extracted = await extractProductsFromChunk(client, chunks[i], i);
+      const extracted = await extractProductsFromChunk(client, chunks[i], i, companyContext.brandProfile.displayName);
 
       for (const product of extracted) {
         // Parse page number from pageRef
@@ -227,6 +233,7 @@ export async function importCatalog(
         const pageNumber = pageMatch ? parseInt(pageMatch[1]) : null;
 
         await db.insert(productCatalogExtractions).values({
+          companyId,
           importId: importRecord.id,
           extractedName: product.name,
           extractedDescription: product.description,
@@ -240,18 +247,18 @@ export async function importCatalog(
     await db.update(productCatalogImports).set({
       extractedProducts: totalExtracted,
       status: "matching",
-    }).where(eq(productCatalogImports.id, importRecord.id));
+    }).where(and(eq(productCatalogImports.companyId, companyId), eq(productCatalogImports.id, importRecord.id)));
     log(`Extracted ${totalExtracted} products, starting matching...`);
 
     // Step 4: Match
-    const { matched, unmatched } = await matchExtractions(importRecord.id);
+    const { matched, unmatched } = await matchExtractions(importRecord.id, companyId);
 
     await db.update(productCatalogImports).set({
       matchedProducts: matched,
       newProducts: unmatched,
       status: "completed",
       completedAt: new Date(),
-    }).where(eq(productCatalogImports.id, importRecord.id));
+    }).where(and(eq(productCatalogImports.companyId, companyId), eq(productCatalogImports.id, importRecord.id)));
 
     log(`Complete: ${matched} matched, ${unmatched} new/unmatched`);
 
@@ -267,17 +274,20 @@ export async function importCatalog(
     await db.update(productCatalogImports).set({
       status: "failed",
       error: err.message,
-    }).where(eq(productCatalogImports.id, importRecord.id));
+    }).where(and(eq(productCatalogImports.companyId, companyId), eq(productCatalogImports.id, importRecord.id)));
     throw err;
   }
 }
 
 // --- Queries ---
 
-export async function getCatalogImports(): Promise<CatalogImport[]> {
-  return db.select().from(productCatalogImports);
+export async function getCatalogImports(companyId = DEFAULT_COMPANY_ID): Promise<CatalogImport[]> {
+  return db.select().from(productCatalogImports).where(eq(productCatalogImports.companyId, companyId));
 }
 
-export async function getCatalogExtractions(importId: string): Promise<CatalogExtraction[]> {
-  return db.select().from(productCatalogExtractions).where(eq(productCatalogExtractions.importId, importId));
+export async function getCatalogExtractions(importId: string, companyId = DEFAULT_COMPANY_ID): Promise<CatalogExtraction[]> {
+  return db
+    .select()
+    .from(productCatalogExtractions)
+    .where(and(eq(productCatalogExtractions.companyId, companyId), eq(productCatalogExtractions.importId, importId)));
 }

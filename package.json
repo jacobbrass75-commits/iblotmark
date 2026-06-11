@@ -1,5 +1,5 @@
 {
-  "name": "source-annotator",
+  "name": "standalone-blog-writer",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
@@ -8,6 +8,8 @@
     "build": "tsx scripts/build.ts",
     "start": "cross-env NODE_ENV=production node dist/index.cjs",
     "check": "tsc",
+    "preflight:standalone": "tsx scripts/standalone-preflight.ts",
+    "smoke:onboarding": "tsx scripts/standalone-onboarding-smoke.ts",
     "test": "node scripts/run-vitest-sequential.mjs",
     "test:coverage": "node scripts/run-vitest-coverage-sequential.mjs",
     "db:push": "drizzle-kit push",

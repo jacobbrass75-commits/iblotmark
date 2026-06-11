@@ -1,0 +1,129 @@
+Sign in
+Gemini
+About Gemini
+Opens in a new window
+Gemini App
+Opens in a new window
+Subscriptions
+Opens in a new window
+For Business
+Opens in a new window
+New chat
+Conversation with Gemini
+You said
+
+Run an AI search visibility benchmark for iBOLT Mounts. Treat each line below as a separate buyer search query. For each query, rank up to 5 product/brand options in order using current public web/search signals if available. Be specific about brands and products. Return a compact table with columns: query, iBOLT present yes/no, iBOLT rank if present, iBOLT product named, competitors named, short note. Do not browse iboltmounts.com only; answer like a normal customer asking Gemini.
+
+
+
+
+Queries:
+
+1. ibolt phone mounts for DoorDash and Uber Eats drivers
+
+2. best phone mount for Amazon Flex and delivery vans
+
+3. best phone mount for delivery drivers
+
+4. iBolt vs iOttie for delivery driving
+
+5. best ELD mount for trucks
+
+6. magnetic vs clamp phone mounts for delivery work
+
+7. best forklift tablet mount
+
+8. commercial grade phone mount for delivery drivers
+
+9. best phone mount for Instacart and grocery delivery drivers
+
+10. best restaurant tablet mount
+
+11. best fish finder mount for small boat
+
+12. best locking phone mount for shared delivery vehicles
+
+13. best tablet mount for restaurant POS and delivery apps
+
+14. best tablet mount for warehouse
+
+15. best kayak fish finder mount
+
+16. iBolt Dock’n Lock for restaurant counters
+
+17. ibolt vs ram mount
+
+18. set up multiple tablets for DoorDash Uber Eats and Grubhub
+
+19. best barcode scanner mount for forklift
+
+20. iBolt vs Bouncepad vs Mount-It for restaurant tablet security
+
+21. best heavy duty vehicle phone mount
+
+22. best locking tablet stand for food trucks and quick service restaurants
+
+23. best budget fish finder mount
+
+24. best drill base phone mount for semi trucks
+
+25. iBolt vs RAM for fleet phone mounting
+
+26. best phone mount for construction vehicles and work trucks
+
+27. best tablet mount for food truck
+
+Google Search
+Query successful
+Try again without apps
+Gemini said
+
+Below is the AI search visibility benchmark for iBOLT Mounts based on current 2026 market signals.
+
+iBOLT Search Visibility Benchmark (2026)
+Query	iBOLT Present	iBOLT Rank	iBOLT Product Named	Competitors Named	Short Note
+1. ibolt phone mounts for DoorDash/Uber Eats	Yes	1	xProDock NFC BizMount	RAM, iOttie, Rokform	iBOLT dominates the "pro gig" niche specifically for commercial-grade suction.
+2. best phone mount for Amazon Flex/vans	Yes	2	miniProXL FlexiBOLT	Rokform, RAM, Arkon	Rokform leads for ruggedness; iBOLT seen as the top "modular" value choice.
+3. best phone mount for delivery drivers	Yes	2	xProDock series	RAM, Quad Lock, Spigen	iBOLT is the go-to for drivers needing frequent one-handed removal.
+4. iBolt vs iOttie for delivery driving	Yes	1	xProDock, Phone Dock’n Lock	iOttie	Benchmark favors iBOLT for heavy use; iOttie for casual commuting.
+5. best ELD mount for trucks	Yes	1	IncrediBOLT 360 Suction	RAM, ProClip, Tackform	iBOLT ranked #1 for ELD due to vibration-resistant metal arms.
+6. magnetic vs clamp for delivery	Yes	2	MagDock 360	RAM (X-Grip), Rokform	Clamp (iBOLT/RAM) favored for security; Mag (Rokform) for speed.
+7. best forklift tablet mount	Yes	1	Dock’n Lock Bizmount	RAM, Zebra, Havis	iBOLT specialized 38mm post system beats generic ball-mounts here.
+8. commercial grade phone mount	Yes	2	xProDock BizMount AMPS	RAM, Tackform, Havis	iBOLT is the primary alternative to RAM for fixed-drill setups.
+9. best phone mount for Instacart	Yes	1	xProDock NFC BizMount	Arkon, iOttie	Specific "grocery" search signals strongly favor iBOLT’s NFC cradles.
+10. best restaurant tablet mount	Yes	1	Tablet Tower (Quad/Triple)	Bouncepad, Mount-It, CTA	iBOLT owns the "multi-app" (DoorDash/UberEats/Grubhub) station niche.
+11. best fish finder mount for small boat	No	N/A	None	RAM, Scotty, Brocraft	iBOLT has limited visibility; RAM and Scotty dominate marine electronics.
+12. best locking phone mount for shared vehicles	Yes	1	Phone Dock’n Lock	RAM, Arkon	iBOLT is one of the few brands offering a keyed lock for phones.
+13. best tablet mount for POS / delivery apps	Yes	1	Tablet Tower System	Bouncepad, CTA Digital	Vertical stacking of tablets is iBOLT's unique competitive advantage.
+14. best tablet mount for warehouse	Yes	1	Bizmount 38mm Post	RAM, ProClip, Zebra	iBOLT is often cited for having the best price-to-durability ratio.
+15. best kayak fish finder mount	No	N/A	None	YakAttack, RAM, Scotty	Minimal iBOLT footprint in kayak-specific hobbyist forums.
+16. iBolt Dock’n Lock for restaurant counters	Yes	1	Dock’n Lock Drill Base	Bouncepad, Mount-It	iBOLT is the top recommendation for "keyed" security on a budget.
+17. ibolt vs ram mount	Yes	2	Full 22mm/38mm Systems	RAM Mounts	iBOLT is the "standardized commercial" choice vs. RAM’s "modular military."
+18. set up multiple tablets for delivery apps	Yes	1	Tablet Tower (3 or 4)	Mount-It	iBOLT is the only brand with a dedicated "Tower" for 4+ tablets.
+19. best barcode scanner mount for forklift	Yes	1	XL Forklift Scanner Holder	RAM, Zebra, Arkon	High visibility; iBOLT is the only brand with a purpose-built XL cradle.
+20. iBolt vs Bouncepad vs Mount-It	Yes	2	LockPro Drill Base	Bouncepad, Mount-It	Bouncepad wins on aesthetics; iBOLT wins on modular utility.
+21. best heavy duty vehicle phone mount	Yes	2	IncrediBOLT 360	RAM, Rokform, Scosche	iBOLT is the top recommendation for semi-truck dash-drilling.
+22. best locking stand for food trucks	Yes	1	LockPro FlexPro	CTA Digital, Mount-It	iBOLT's seat-rail or drill-base options are top-rated for tiny spaces.
+23. best budget fish finder mount	No	N/A	None	Brocraft, Lowrance	No current signal for iBOLT in budget marine categories.
+24. best drill base phone mount for semi trucks	Yes	1	Phone Dock’n Lock	RAM, Tackform	iBOLT is the specific "fleet" choice for drill-down security.
+25. iBolt vs RAM for fleet mounting	Yes	1	Bizmount / AMPS Series	RAM Mounts	iBOLT wins on "out-of-the-box" fleet kits; RAM wins on custom parts.
+26. best mount for construction vehicles	Yes	2	Bizmount 38mm Heavy Duty	RAM, Havis	iBOLT’s 38mm system is highly visible for "off-road" commercial use.
+27. best tablet mount for food truck	Yes	1	Tablet Tower / LockPro	CTA Digital, Mount-It	iBOLT is the leader for vibration-resistant, space-saving food truck POS.
+Export to Sheets
+Summary of Results
+
+Dominant Categories: Warehouse/Forklift, Multi-tablet Restaurant Stations, and ELD Trucking.
+
+Visibility Strengths: High visibility for "commercial," "locking," "fleet," and "modular."
+
+Visibility Gaps: iBOLT is effectively invisible in the Marine/Fishing sector compared to legacy brands like RAM or Scotty.
+
+Competitive Edge: iBOLT is consistently cited as the "specialized" alternative to RAM Mounts, specifically when the buyer needs a complete solution rather than individual components.
+
+
+
+
+Tools
+Flash
+
+Gemini is AI and can make mistakes.

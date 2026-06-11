@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-06-10T03:43:30.810Z",
+  "checks": [
+    {
+      "url": "https://iboltmounts.com/",
+      "result": "loaded via independent web fetch",
+      "evidence": "Homepage returned live iBOLT navigation/content rather than Shopify verification page."
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "result": "loaded via independent web fetch",
+      "evidence": "Article showed product links, add-to-cart actions, related resources, and visible FAQ section."
+    },
+    {
+      "url": "https://iboltmounts.com/collections/fleet-heavy-duty-eld-mandate-mounts",
+      "result": "loaded via independent web fetch",
+      "evidence": "Fleet collection returned live collection page content."
+    },
+    {
+      "url": "https://iboltmounts.com/pages/restaurant-tablet-mounts-multi-tablet-delivery-stations",
+      "result": "not verified via independent web fetch",
+      "evidence": "Separate web fetch returned an internal error for this specific request; shell fetch was blocked by Shopify 429 verification."
+    },
+    {
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921",
+      "result": "not verified via independent web fetch",
+      "evidence": "Separate web fetch returned an internal error for this specific request; shell fetch was blocked by Shopify 429 verification."
+    }
+  ]
+}

@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_DIR="${APP_DIR:-/opt/app}"
+APP_DIR="${APP_DIR:-/opt/standalone-blog-writer}"
 APP_REF="${APP_REF:-origin/master}"
-MCP_DIR="${MCP_DIR:-/opt/app/mcp-server}"
+PM2_APP_NAME="${PM2_APP_NAME:-standalone-blog-writer}"
+PORT="${PORT:-5001}"
+DATABASE_PATH="${DATABASE_PATH:-data/standalone-blog-writer.db}"
 
 cd "$APP_DIR"
 
@@ -12,29 +14,40 @@ git fetch origin
 git reset --hard "$APP_REF"
 
 echo "[deploy] installing app deps"
-npm install
+npm ci
+
+if [[ ! -f "$DATABASE_PATH" && -f data/sourceannotator.db ]]; then
+  DATABASE_PATH="data/sourceannotator.db"
+fi
+
+if [[ -f "$DATABASE_PATH" ]]; then
+  echo "[deploy] backing up database"
+  mkdir -p data/backups
+  db_name="$(basename "$DATABASE_PATH" .db)"
+  cp "$DATABASE_PATH" "data/backups/${db_name}.$(date +%Y%m%d%H%M%S).db"
+fi
 
 echo "[deploy] bootstrapping database schema"
-npx tsx scripts/bootstrap-db.ts
+NODE_ENV=production BLOG_SEED_IBOLT_DEMO=false npx tsx scripts/bootstrap-db.ts
+
+echo "[deploy] typechecking"
+npm run check
 
 echo "[deploy] building app"
 npm run build
 
-echo "[deploy] replacing web app with built production process"
-pm2 delete sourceannotator >/dev/null 2>&1 || true
-NODE_ENV=production PORT=5001 MCP_RESOURCE_URL=https://mcp.scholarmark.ai/mcp pm2 start dist/index.cjs --name sourceannotator --cwd "$APP_DIR" --interpreter /usr/bin/node
+echo "[deploy] running standalone preflight"
+npm run preflight:standalone
 
-if [[ -d "$MCP_DIR" ]]; then
-  echo "[deploy] ensuring MCP deps"
-  cd "$MCP_DIR"
-  npm install
-  pm2 delete scholarmark-mcp >/dev/null 2>&1 || true
-  MCP_SERVER_PORT=5002 \
-  SCHOLARMARK_BACKEND_URL=http://127.0.0.1:5001 \
-  MCP_AUTHORIZATION_SERVER=https://app.scholarmark.ai \
-  MCP_RESOURCE_URL=https://mcp.scholarmark.ai \
-  pm2 start server.mjs --name scholarmark-mcp --cwd "$MCP_DIR" --interpreter /usr/bin/node
-fi
+echo "[deploy] running onboarding smoke"
+npm run smoke:onboarding
+
+echo "[deploy] replacing web app with built production process"
+pm2 delete "$PM2_APP_NAME" >/dev/null 2>&1 || true
+PORT="$PORT" DATABASE_PATH="$DATABASE_PATH" pm2 start deploy/ecosystem.config.js --only "$PM2_APP_NAME"
+
+echo "[deploy] checking standalone health"
+curl -fsS "http://127.0.0.1:${PORT}/api/blog/health"
 
 echo "[deploy] saving PM2 process list"
 pm2 save

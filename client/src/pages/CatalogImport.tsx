@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { useCatalogImports, useCatalogExtractions } from "@/hooks/useCatalogImport";
+import { getRequiredCompanyScopedHeaders } from "@/lib/company";
 
 export default function CatalogImport() {
   const [, setLocation] = useLocation();
@@ -30,10 +31,12 @@ export default function CatalogImport() {
 
       const res = await fetch("/api/blog/catalog/import", {
         method: "POST",
+        headers: getRequiredCompanyScopedHeaders(),
         body: formData,
         credentials: "include",
       });
 
+      if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
       const reader = res.body?.getReader();
       if (!reader) throw new Error("No response body");
       const decoder = new TextDecoder();

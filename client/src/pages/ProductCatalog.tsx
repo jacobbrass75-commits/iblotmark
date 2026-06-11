@@ -4,7 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { useProducts, useProductStats, useScrapeProducts, useMapVerticals } from "@/hooks/useProducts";
+import {
+  useProducts,
+  useProductStats,
+  useScrapeProducts,
+  useMapVerticals,
+  useImportProductsCsv,
+  useImportProductUrl,
+} from "@/hooks/useProducts";
 import { useVerticals } from "@/hooks/useVerticals";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
@@ -17,9 +24,13 @@ export default function ProductCatalog() {
   const { data: stats } = useProductStats();
   const scrapeMutation = useScrapeProducts();
   const mapMutation = useMapVerticals();
+  const csvImportMutation = useImportProductsCsv();
+  const urlImportMutation = useImportProductUrl();
   const [search, setSearch] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
-  const [newProduct, setNewProduct] = useState({ title: "", handle: "", description: "", productType: "", price: "", url: "", imageUrl: "" });
+  const [showImportPanel, setShowImportPanel] = useState(false);
+  const [productUrl, setProductUrl] = useState("");
+  const [newProduct, setNewProduct] = useState({ title: "", handle: "", description: "", productType: "", sku: "", price: "", url: "", imageUrl: "" });
   const [addingProduct, setAddingProduct] = useState(false);
 
   const handleScrape = async () => {
@@ -40,6 +51,26 @@ export default function ProductCatalog() {
     }
   };
 
+  const handleCsvImport = async (file: File | null) => {
+    if (!file) return;
+    try {
+      const result = await csvImportMutation.mutateAsync(file);
+      toast({ title: "CSV Import Complete", description: result.message });
+    } catch (err: any) {
+      toast({ title: "CSV Import Failed", description: err.message, variant: "destructive" });
+    }
+  };
+
+  const handleUrlImport = async () => {
+    try {
+      const result = await urlImportMutation.mutateAsync(productUrl);
+      setProductUrl("");
+      toast({ title: result.created ? "Product imported" : "Product updated", description: result.product?.title });
+    } catch (err: any) {
+      toast({ title: "URL Import Failed", description: err.message, variant: "destructive" });
+    }
+  };
+
   const filtered = search
     ? products.filter((p: any) => p.title.toLowerCase().includes(search.toLowerCase()) || p.handle.toLowerCase().includes(search.toLowerCase()))
     : products;
@@ -57,6 +88,9 @@ export default function ProductCatalog() {
             <Button variant="outline" size="sm" onClick={() => setShowAddForm(!showAddForm)}>
               {showAddForm ? "Cancel" : "+ Add Product"}
             </Button>
+            <Button variant="outline" size="sm" onClick={() => setShowImportPanel(!showImportPanel)}>
+              {showImportPanel ? "Hide Import" : "Import Products"}
+            </Button>
             <Button variant="outline" size="sm" onClick={handleScrape} disabled={scrapeMutation.isPending}>
               {scrapeMutation.isPending ? "Scraping..." : "Scrape Products"}
             </Button>
@@ -68,6 +102,39 @@ export default function ProductCatalog() {
       </header>
 
       <main className="flex-1 container mx-auto px-4 py-6 space-y-4">
+        {showImportPanel && (
+          <Card className="border-primary/30">
+            <CardContent className="pt-4 space-y-4">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <div className="text-sm font-medium">CSV product import</div>
+                  <input
+                    type="file"
+                    accept=".csv,text/csv"
+                    className="block w-full text-sm"
+                    disabled={csvImportMutation.isPending}
+                    onChange={(event) => handleCsvImport(event.target.files?.[0] || null)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <div className="text-sm font-medium">Public product URL</div>
+                  <div className="flex gap-2">
+                    <input
+                      className="min-w-0 flex-1 text-sm border rounded px-3 py-1.5 bg-transparent"
+                      placeholder="https://brand.com/products/example"
+                      value={productUrl}
+                      onChange={(event) => setProductUrl(event.target.value)}
+                    />
+                    <Button size="sm" disabled={urlImportMutation.isPending || !productUrl} onClick={handleUrlImport}>
+                      {urlImportMutation.isPending ? "Importing..." : "Import URL"}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Manual product add form */}
         {showAddForm && (
           <Card className="border-primary/50">
@@ -76,6 +143,7 @@ export default function ProductCatalog() {
                 <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Product title *" value={newProduct.title} onChange={(e) => setNewProduct({ ...newProduct, title: e.target.value })} />
                 <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Handle (auto from title)" value={newProduct.handle} onChange={(e) => setNewProduct({ ...newProduct, handle: e.target.value })} />
                 <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Product type" value={newProduct.productType} onChange={(e) => setNewProduct({ ...newProduct, productType: e.target.value })} />
+                <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="SKU / model" value={newProduct.sku} onChange={(e) => setNewProduct({ ...newProduct, sku: e.target.value })} />
                 <input className="text-sm border rounded px-3 py-1.5 bg-transparent" placeholder="Price" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} />
                 <input className="text-sm border rounded px-3 py-1.5 bg-transparent col-span-2" placeholder="Product URL" value={newProduct.url} onChange={(e) => setNewProduct({ ...newProduct, url: e.target.value })} />
                 <input className="text-sm border rounded px-3 py-1.5 bg-transparent col-span-2" placeholder="Image URL" value={newProduct.imageUrl} onChange={(e) => setNewProduct({ ...newProduct, imageUrl: e.target.value })} />
@@ -86,9 +154,14 @@ export default function ProductCatalog() {
                 try {
                   await apiRequest("POST", "/api/blog/products", newProduct);
                   toast({ title: "Product added" });
-                  setNewProduct({ title: "", handle: "", description: "", productType: "", price: "", url: "", imageUrl: "" });
+                  setNewProduct({ title: "", handle: "", description: "", productType: "", sku: "", price: "", url: "", imageUrl: "" });
                   setShowAddForm(false);
-                  queryClient.invalidateQueries({ queryKey: ["/api/blog/products"] });
+                  queryClient.invalidateQueries({
+                    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/products"),
+                  });
+                  queryClient.invalidateQueries({
+                    predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/company/setup-status"),
+                  });
                 } catch (err: any) {
                   toast({ title: "Error", description: err.message, variant: "destructive" });
                 }
@@ -133,7 +206,7 @@ export default function ProductCatalog() {
           <div className="text-center text-muted-foreground py-12">Loading...</div>
         ) : filtered.length === 0 ? (
           <div className="text-center text-muted-foreground py-12">
-            No products found. {stats?.count === 0 && "Click 'Scrape Products' to fetch from iboltmounts.com."}
+            No products found. {stats?.count === 0 && "Click 'Scrape Products' to fetch from the configured store."}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -150,7 +223,9 @@ export default function ProductCatalog() {
                       <div className="flex items-center gap-2 mt-1">
                         {product.price && <span className="text-sm font-medium">${product.price}</span>}
                         {product.productType && <Badge variant="outline" className="text-xs">{product.productType}</Badge>}
+                        {product.sourceType && <Badge variant="outline" className="text-xs">{product.sourceType}</Badge>}
                       </div>
+                      {product.sku && <p className="mt-1 text-xs text-muted-foreground">SKU: {product.sku}</p>}
                     </div>
                   </div>
                   {product.tags?.length > 0 && (

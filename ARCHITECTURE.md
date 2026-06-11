@@ -1,533 +1,600 @@
-# iBolt Blog Generator — Architecture Reference
-
-Last verified against the live codebase on 2026-04-06 (Phase 5 complete, 24 AI Search Optimization posts with product photos published as Shopify drafts. Stdio MCP server added for Claude Code integration).
-
-## Overview
-
-Fork of **ScholarMark** (academic annotation platform) extended with an autonomous SEO blog generation system for **iBolt Mounts** (iboltmounts.com). Generates 800-1400 word, SEO-optimized blog posts targeting 12 industry verticals through a 4-phase AI pipeline: Planner → Section Writer → Stitcher → Verifier.
-
-**Stack**: Express + TypeScript + SQLite/Drizzle ORM + React 18/Vite + Anthropic SDK
-**Port**: 5001 (main app), 5002 (MCP server)
-**Auth**: Disabled (internal tool, Clerk removed)
-**Production**: Hetzner cx23 (89.167.10.34), PM2, https://app.scholarmark.ai
-
----
-
-## Project Structure
-
-```
-iblotmark/
-├── server/                     # Express backend (55+ files, 22,079 lines)
-│   ├── index.ts                # App bootstrap, CORS, middleware chain
-│   ├── routes.ts               # Route registration → sub-routers (877 lines)
-│   ├── db.ts                   # SQLite + Drizzle init, table creation, seeding (464 lines)
-│   ├── auth.ts                 # Clerk + API key + JWT auth (disabled)
-│   │
-│   ├── # ── ScholarMark (Original) ──
-│   ├── storage.ts              # Document CRUD
-│   ├── projectStorage.ts       # Project/folder CRUD
-│   ├── projectRoutes.ts        # /api/projects/*
-│   ├── projectSearch.ts        # Semantic search across annotations
-│   ├── chatRoutes.ts           # /api/chat/* (SSE streaming, 60KB)
-│   ├── chatStorage.ts          # Conversation persistence
-│   ├── writingPipeline.ts      # 3-phase: Planner → Writer → Stitcher (18KB)
-│   ├── writingRoutes.ts        # /api/write (SSE)
-│   ├── humanizer.ts            # Post-write voice transformation (Gemini/Anthropic)
-│   ├── humanizerRoutes.ts      # /api/humanize (SSE)
-│   ├── pipelineV2.ts           # Annotation pipeline: Generator → Verifier → Refiner (32KB)
-│   ├── citationGenerator.ts    # Chicago/MLA/APA formatting (28KB)
-│   ├── sourceRoles.ts          # Source classification
-│   ├── webClipRoutes.ts        # /api/web-clips (browser extension)
-│   ├── ocrProcessor.ts         # PDF/image OCR (43KB)
-│   ├── ocrQueue.ts             # Persistent OCR job queue with retry
-│   ├── openai.ts               # OpenAI embeddings + legacy AI helpers (27KB)
-│   ├── contextGenerator.ts     # ScholarMark context utilities
-│   ├── contextCompaction.ts    # Context window optimization
-│   ├── evidenceClipboard.ts    # Evidence copy/paste for chat
-│   ├── analyticsLogger.ts      # Usage analytics
-│   ├── analyticsRoutes.ts      # /api/admin/analytics/*
-│   ├── oauthRoutes.ts          # MCP OAuth flow (32KB)
-│   ├── oauthStorage.ts         # OAuth state persistence
-│   ├── extensionRoutes.ts      # Chrome extension API
-│   ├── static.ts               # Production static file serving
-│   ├── vite.ts                 # Dev server Vite integration
-│   │
-│   ├── # ── iBolt Blog Generation ──
-│   ├── brandVoice.ts           # Brand voice constants + 4 prompt builders (9.5KB)
-│   ├── seoStrategy.ts          # SEO positioning, focus areas, competitor specs
-│   ├── contextBanks.ts         # Context entry CRUD + formatContextForPrompt() (4.8KB)
-│   ├── contextSeeds.ts         # 12 vertical seed data, 48 initial entries (26KB)
-│   ├── contextRoutes.ts        # /api/blog/context/* with SSE streaming (9.3KB)
-│   ├── contextChunker.ts       # Smart context retrieval + token budgets (7.4KB)
-│   ├── keywordManager.ts       # CSV import, opportunity scoring, LLM clustering (9.9KB)
-│   ├── keywordRoutes.ts        # /api/blog/keywords/*
-│   ├── iboltResearchAgent.ts   # Reddit/YouTube/web research orchestrator (18KB)
-│   ├── blogPipeline.ts         # 4-phase: Planner → Writer → Stitcher → Verifier (18KB)
-│   ├── blogRoutes.ts           # /api/blog/generate, /posts, /export, /queue (15KB)
-│   ├── htmlRenderer.ts         # Markdown → Shopify HTML + FAQ schema + auto-links (10KB)
-│   ├── productScraper.ts       # iboltmounts.com/products.json scraper + mapping (7.3KB)
-│   ├── productRoutes.ts        # /api/blog/products/*
-│   ├── photoBank.ts            # Photo storage, thumbnails, GPT-4V analysis (12KB)
-│   ├── photoSelector.ts        # Deterministic photo scoring for posts (5.9KB)
-│   ├── photoRoutes.ts          # /api/blog/photos/*
-│   ├── catalogImporter.ts      # PDF catalog → product enrichment, 3-tier matching (8.5KB)
-│   ├── catalogRoutes.ts        # /api/blog/catalog/*
-│   ├── competitorScraper.ts    # Competitor URL analysis + auto-queue (7.6KB)
-│   ├── verticalCreator.ts      # AI-generate verticals from description
-│   ├── writingQueue.ts         # Queue management (max 3 concurrent, SSE)
-│   ├── scheduler.ts            # Autonomous batch: research/sync/generate/photos/chunks
-│   └── schedulerRoutes.ts      # /api/blog/scheduler/* (start/stop/trigger/config)
-│
-├── client/src/                 # React 18 frontend
-│   ├── App.tsx                 # wouter router + lazy routes
-│   ├── main.tsx                # React DOM render
-│   ├── index.css               # Tailwind + Eva theme (dual light/dark)
-│   ├── pages/                  # 21 route pages
-│   │   ├── Home.tsx            # Dashboard
-│   │   ├── BlogDashboard.tsx   # /blog — stats, recent posts, quick actions
-│   │   ├── KeywordManager.tsx  # /blog/keywords — CSV import, table, clustering
-│   │   ├── BatchGenerator.tsx  # /blog/generate — cluster queue, SSE progress, competitor scraper
-│   │   ├── PostReview.tsx      # /blog/posts/:id — editor, scores, HTML export
-│   │   ├── IndustryContext.tsx  # /blog/context — vertical browser, research triggers
-│   │   ├── ProductCatalog.tsx  # /blog/products — product grid, scrape, vertical mapping
-│   │   ├── CatalogImport.tsx   # /blog/catalog — PDF catalog upload
-│   │   ├── PhotoBank.tsx       # /blog/photos — photo management, vision analysis
-│   │   ├── Chat.tsx            # Multi-conversation chat
-│   │   ├── WritingPage.tsx     # Academic writing workspace
-│   │   ├── Projects.tsx        # Project list
-│   │   ├── ProjectWorkspace.tsx # Project hub (51KB)
-│   │   ├── ProjectDocument.tsx # Document annotator (42KB)
-│   │   ├── WebClips.tsx        # Web clip manager
-│   │   ├── AdminAnalytics.tsx  # Analytics dashboard
-│   │   └── [Login, Register, Pricing, ExtensionAuth, not-found]
-│   ├── components/
-│   │   ├── ui/                 # 50 shadcn/ui primitives (Radix UI + Tailwind)
-│   │   ├── chat/               # Chat sub-components
-│   │   ├── analytics/          # Admin dashboard charts (Recharts)
-│   │   ├── WritingChat.tsx     # AI writing interface with SSE
-│   │   ├── BootSequence.tsx    # NERV-style animated boot
-│   │   ├── ThemeToggle.tsx     # Eva/Darling theme switcher
-│   │   └── [19 more custom components]
-│   ├── hooks/                  # 18 React hooks
-│   │   ├── useBlogPipeline.ts  # SSE streaming for 4-phase generation
-│   │   ├── useBlogPosts.ts     # Blog post CRUD queries
-│   │   ├── useKeywords.ts      # Keyword/cluster/import queries + mutations
-│   │   ├── useVerticals.ts     # Vertical/context entry queries + mutations
-│   │   ├── useProducts.ts      # Product queries + scrape/map mutations
-│   │   ├── usePhotoBank.ts     # Photo management
-│   │   ├── useCatalogImport.ts # Catalog upload
-│   │   └── [11 ScholarMark hooks]
-│   └── lib/
-│       ├── queryClient.ts      # TanStack React Query (staleTime: 5min)
-│       ├── markdownConfig.tsx   # Markdown rendering config
-│       └── [export utils, clipboard, auth]
-│
-├── shared/
-│   ├── schema.ts               # All 31 database tables + Zod validation (1,222 lines)
-│   └── annotationLinks.ts      # Quote fingerprinting utilities
-│
-├── mcp-server/                 # MCP server (port 5002)
-│   ├── server.mjs              # StreamableHTTP + SSE transports
-│   ├── dist/mcp-tools.js       # 10 tools (projects, sources, conversations, compile)
-│   ├── deploy/                 # nginx + PM2 configs
-│   └── README.md               # Live at https://mcp.scholarmark.ai
-│
-├── chrome-extension/           # Web clipper browser extension
-├── content-output/             # 24 generated blog posts (4 phases)
-├── scripts/                    # Build, migrate, test utilities
-├── .claude/                    # Claude Code skills, commands, hooks
-├── .claude-docs/               # Internal documentation (10 files)
-├── changelog/                  # MARCH-2026.md development history
-├── tests/                      # Vitest test suite
-├── prompts/                    # Prompt templates
-└── deploy/                     # Production deployment scripts
-```
-
----
-
-## Database Schema (31 Tables)
-
-**SQLite via Drizzle ORM** — File: `./data/sourceannotator.db`
-
-### iBolt Blog Tables
-
-| Table | Purpose | Key Fields |
-|-------|---------|------------|
-| `industry_verticals` | 12 industry categories | name, slug, terminology[], painPoints[], useCases[], regulations[], seasonalRelevance, compatibleDevices[] |
-| `context_entries` | Industry knowledge bank | vertical_id, category (terminology/use_case/pain_point/regulation/trend/competitor/user_language), content, source_type, confidence, is_verified |
-| `keywords` | From Ubersuggest CSV | keyword, volume, difficulty, cpc, opportunity_score, status, cluster_id |
-| `keyword_imports` | CSV upload batch tracking | filename, total_keywords, new_keywords, duplicate_keywords |
-| `keyword_clusters` | Grouped keywords for posts | name, primary_keyword, vertical_id, total_volume, avg_difficulty, priority, status |
-| `ibolt_products` | Scraped from iboltmounts.com | shopify_id, title, handle, description, product_type, vendor, tags, image_url, price, url, catalog_description |
-| `product_verticals` | Product ↔ vertical mapping | product_id, vertical_id, relevance_score |
-| `blog_posts` | Generated posts | title, slug, meta_title, meta_description, markdown, html, status, word_count, verification scores (brand/seo/language/accuracy/overall), batch_id |
-| `blog_post_products` | Products mentioned in posts | blog_post_id, product_id, mention_context |
-| `generation_batches` | Batch job tracking | name, total_posts, completed_posts, failed_posts, status |
-| `research_jobs` | Research agent tracking | vertical_id, source_type (reddit/youtube/web), query, status, entries_found, error |
-
-### Photo & Catalog Tables
-
-| Table | Purpose | Key Fields |
-|-------|---------|------------|
-| `product_photos` | Product images + AI analysis | product_id, filename, file_path, thumbnail_path, angle_type, context_type, setting_description, quality_score, is_hero, vertical_relevance, ai_analysis |
-| `blog_post_photos` | Photos selected for posts | blog_post_id, photo_id, section_index, placement (inline/product-spotlight/hero), alt_text, caption, selection_reason |
-| `product_catalog_imports` | PDF catalog import tracking | filename, total_pages, extracted_products, matched_products, status |
-| `product_catalog_extractions` | AI-extracted from PDFs | import_id, extracted_name, extracted_description, page_number, confidence, matched_product_id, match_status |
-| `pipeline_context_chunks` | Pre-chunked context for retrieval | source_type, source_id, chunk_text, token_estimate, vertical_id |
-
-### ScholarMark Tables
-
-| Table | Purpose |
-|-------|---------|
-| `documents` | Uploaded PDFs/text with fullText, summary, embeddings |
-| `text_chunks` | Document segments with embedding vectors |
-| `annotations` | AI-generated highlights (category, confidence, multi-prompt) |
-| `users` | Auth + usage tracking (tier-based) |
-| `projects` | Workspaces with thesis, scope, context |
-| `folders` | Nested project folder hierarchy |
-| `project_documents` | Document ↔ project links with sourceRole |
-| `project_annotations` | Project-scoped annotations |
-| `prompt_templates` | Saved multi-prompt sets |
-| `conversations` | Chat threads |
-| `messages` | Chat messages with token tracking |
-| `web_clips` | Browser extension clips |
-
-### Infrastructure Tables
-
-| Table | Purpose |
-|-------|---------|
-| `api_keys` | API key management |
-| `mcp_oauth_clients` / `mcp_auth_codes` / `mcp_tokens` | MCP OAuth flow |
-| `analytics_tool_calls` / `analytics_context_snapshots` | Usage analytics |
-| `ocr_jobs` / `ocr_page_results` | OCR processing queue |
-
----
-
-## Blog Generation Pipeline (4 Phases)
-
-**Entry point**: `server/blogPipeline.ts` → `runBlogPipeline()`
-**LLM Model**: `claude-sonnet-4-20250514`
-**Streaming**: SSE events (status, plan, section, stitched, verified, complete, error)
-
-### Phase 1: Planner
-- **Input**: Keyword cluster + industry context + product catalog
-- **Output**: JSON outline with SEO meta tags, sections[], keyword distribution, productMentions[]
-- **Prompt**: `buildPlannerPrompt()` from `brandVoice.ts`
-- **Context**: Top-K relevant chunks from `contextChunker.ts` (budget: 3000 tokens)
-
-### Phase 2: Section Writer
-- **Input**: Plan outline + per-section context
-- **Output**: Individual section markdown with product mentions
-- **Prompt**: `buildSectionWriterPrompt()` with brand voice baked in
-- **Context**: Section-specific chunks (budget: 1500 tokens per section)
-- **Photos**: `photoSelector.ts` scores and selects 1 photo per section
-
-### Phase 3: Stitcher
-- **Input**: All sections + photo placements + plan metadata
-- **Output**: Complete markdown document with smooth transitions
-- **Prompt**: `buildStitcherPrompt()` ensures voice consistency
-- **Context**: Compact overview (budget: 800 tokens)
-
-### Phase 4: Verifier
-- **Input**: Final markdown + original plan + keyword targets
-- **Output**: Quality scores (0-100 each):
-  - `brandConsistency` — matches iBolt voice guidelines
-  - `seoOptimization` — keyword placement, meta tags, structure
-  - `naturalLanguage` — reads like human expert, no AI patterns
-  - `factualAccuracy` — product specs, claims, pricing correct
-  - `overall` — weighted average
-- **Action**: If overall < 70, re-runs Stitcher with verifier feedback
-- **Non-fatal**: Pipeline continues even if verifier fails
-
-### Post-Pipeline Processing
-- `htmlRenderer.ts` → Markdown to Shopify-ready HTML
-  - `autoLinkProducts()` — links product mentions to Shopify URLs
-  - `extractFaqSchema()` — generates JSON-LD FAQ structured data
-  - `renderShopifyHtml()` — full HTML with meta tags + schema markup
-- Status set to "draft" → ready for human review
-
----
-
-## Brand Voice System
-
-**File**: `server/brandVoice.ts` (9.5KB)
-
-**BRAND_VOICE constant** injected into ALL 4 pipeline phases:
-- **Tone**: Conversational expertise — friendly but credible
-- **Approach**: Education-first, sales-second
-- **Word count**: 800-1400 words
-- **Key messaging**: 300+ modular parts, industry-standard ball sizes (17mm/20mm/25mm/38mm/57mm), cross-compatible with RAM, industrial-grade materials, 24hr shipping, 2-yr warranty
-- **Unique products**: Tablet Tower (restaurants), XL Barcode Scanner Mount, LockPro security, Mount Configurator
-
-**Banned phrases**: "game-changer", "seamless", "cutting-edge", "next-level", "empower", "revolutionize"
-**No em dashes / en dashes** — use commas or periods instead
-
----
-
-## SEO Strategy
-
-**File**: `server/seoStrategy.ts`
-
-**Repositioning**:
-- OLD: "iBOLT = cheaper/easier alternative to RAM"
-- NEW: "iBOLT = modular, industrial-grade, purpose-built for warehouses, forklifts, restaurants, commercial fleets"
-
-**5 Priority Focus Areas**:
-1. Restaurant Mounts (Tablet Tower angle)
-2. Forklift Mounts (industrial vs car adaptation)
-3. Modularity / Build-Your-Own
-4. Barcode Scanner Holders
-5. Truck / ELD Mounts
-
-**Comparison posts** planned vs RAM, Arkon, Heckler Design
-
----
-
-## Research Agent System
-
-**File**: `server/iboltResearchAgent.ts` (18KB)
-
-Ruflo-inspired parallel agent system that auto-populates context banks:
-
-| Agent | Source | Method |
-|-------|--------|--------|
-| RedditAgent | `/r/{subreddit}/search.json` | Public JSON API, no auth. Pre-configured subreddit lists per vertical |
-| YouTubeAgent | YouTube Data API v3 | Search + `youtube-transcript` for transcript extraction |
-| WebAgent | Web fetch | URL scraping + Claude extraction |
-
-**Orchestrator**: Up to 50 concurrent agents, reports progress via SSE callbacks
-**Extraction**: Claude extracts terminology, pain_points, user_language, trends from raw content
-**Output**: `contextEntries` with `isVerified: false` for human review
-
----
-
-## Product Management
-
-### Product Scraper (`server/productScraper.ts`)
-- Hits `iboltmounts.com/products.json` (public Shopify endpoint, paginated 250/page)
-- Strips HTML, deduplicates, upserts to DB
-- `mapProductsToVerticals()` — Claude assigns products to verticals with relevance scores
-
-### Catalog Importer (`server/catalogImporter.ts`)
-- PDF upload → `pdf-parse` text extraction
-- Smart chunking on page boundaries
-- Claude extracts product names/descriptions per chunk
-- 3-tier matching: exact title → fuzzy match → LLM similarity
-
-### Photo Bank (`server/photoBank.ts`)
-- File upload with `sharp` normalization + thumbnail generation
-- Batch import from directory, auto-associates via filename
-- GPT-4V analysis: angle_type, context_type, quality_score, vertical_relevance
-
-### Photo Selector (`server/photoSelector.ts`)
-- **Deterministic scoring** (no AI, reproducible):
-  - Product mention in section: +3
-  - Context type match: +0.5 to +2
-  - Vertical relevance: +2
-  - Quality score: +0 to +1
-  - Diversity penalty: -2 (avoid repeats)
-- Selects 1 photo per section + hero photo
-
----
-
-## Context Banking
-
-### Context Seeds (`server/contextSeeds.ts`)
-12 pre-seeded verticals with 48 initial entries covering terminology, pain points, use cases, regulations, seasonal relevance, compatible devices.
-
-### Context Chunker (`server/contextChunker.ts`)
-Token budget management for prompt injection:
-
-| Phase | Budget |
-|-------|--------|
-| Planner | 3,000 tokens |
-| Section Writer | 1,500 tokens |
-| Stitcher | 800 tokens |
-| Verifier | 500 tokens |
-
-- `rebuildContextChunks()` — pre-chunks context entries and product descriptions
-- `getRelevantChunks()` — scores by keyword relevance, returns top-K within budget
-- `compactContext()` — truncates preserving sentence boundaries
-
----
-
-## Keyword System
-
-**File**: `server/keywordManager.ts`
-
-1. **Import**: Parse Ubersuggest/SEMrush CSV → deduplicate → store
-2. **Score**: `opportunityScore = volume(0.4) + difficulty(0.3) + position(0.3)`
-3. **Cluster**: Claude groups keywords semantically (batch 10 at a time)
-4. **Map**: `autoMapKeywordsToVerticals()` assigns to best-matching vertical
-5. **Status flow**: `new → clustered → draft → published`
-
----
-
-## API Routes
-
-### Blog Routes (`/api/blog/*`)
-
-| Method | Endpoint | Purpose |
-|--------|----------|---------|
-| POST | `/blog/generate` | Single post generation (SSE streaming) |
-| POST | `/blog/generate/batch` | Batch generation from cluster IDs |
-| GET | `/blog/posts` | List posts (filter: status, verticalId, limit) |
-| GET | `/blog/posts/:id` | Single post with all metadata |
-| PATCH | `/blog/posts/:id` | Update post (status, markdown) |
-| DELETE | `/blog/posts/:id` | Delete post |
-| POST | `/blog/posts/:id/publish` | Mark as published |
-| GET | `/blog/batches` | Generation batch history |
-| POST | `/blog/keywords/import` | CSV file upload |
-| POST | `/blog/keywords/cluster` | Run AI clustering |
-| GET | `/blog/keywords` | List keywords (filter: status) |
-| GET | `/blog/keywords/clusters` | List clusters with counts |
-| GET/POST | `/blog/context/verticals` | CRUD verticals |
-| GET/POST | `/blog/context/entries/:verticalId` | CRUD context entries |
-| POST | `/blog/context/research` | Trigger research orchestrator (SSE) |
-| POST | `/blog/products/scrape` | Scrape iboltmounts.com |
-| POST | `/blog/products/map-verticals` | AI vertical mapping |
-| GET | `/blog/products` | List products (filter: verticalId) |
-| POST | `/blog/photos/upload` | Batch photo upload |
-| POST | `/blog/photos/batch-analyze` | GPT-4V analysis (SSE) |
-| POST | `/blog/catalog/import` | PDF catalog upload (SSE) |
-| GET/POST | `/blog/scheduler/*` | Autonomous scheduler control |
-
-### ScholarMark Routes (Legacy, intact)
-
-| Prefix | Purpose |
-|--------|---------|
-| `/api/projects/*` | Project/folder/document CRUD |
-| `/api/chat/*` | Conversation streaming |
-| `/api/write` | Academic writing pipeline |
-| `/api/humanize` | Post-write humanization |
-| `/api/web-clips` | Browser extension clips |
-| `/api/admin/analytics/*` | Usage analytics |
-
----
-
-## AI Model Configuration
-
-| Use Case | Model |
-|----------|-------|
-| Blog pipeline (plan, write, stitch, verify) | `claude-sonnet-4-20250514` |
-| Keyword clustering, product mapping | `claude-sonnet-4-20250514` |
-| Research extraction | `claude-sonnet-4-20250514` |
-| Chat/Compile/Verify (precision) | `claude-opus-4-6` |
-| Context optimization | `claude-haiku-4-5-20251001` |
-| Photo analysis | `gpt-4o` (OpenAI) |
-| Document embeddings | `text-embedding-3-small` (OpenAI) |
-| Humanizer fallback | Gemini |
-
----
-
-## MCP Servers
-
-### Remote MCP Server (ScholarMark)
-
-**Location**: `/mcp-server/server.mjs`
-**Live**: https://mcp.scholarmark.ai (port 5002)
-**Transports**: StreamableHTTPServerTransport + SSEServerTransport (legacy)
-
-**11 Tools**:
-- `get_projects`, `get_project_sources`, `get_source_summary`, `get_source_annotations`, `get_source_chunks`
-- `get_web_clips`
-- `start_conversation`, `get_conversations`, `send_message`
-- `compile_paper`, `verify_paper`
-
-### Stdio MCP Server (iBolt Blog Generator)
-
-**Location**: `/mcp-server/ibolt-stdio.mjs`
-**Transport**: StdioServerTransport (for Claude Code local integration)
-**Backend**: Proxies to main app at `http://127.0.0.1:5001`
-**Requires**: Main app running (`npm run dev` in repo root)
-
-**25 Tools** across 7 domains:
-
-| Domain | Tools |
-|--------|-------|
-| Blog Posts | `list_blog_posts`, `get_blog_post`, `get_blog_post_html`, `update_blog_post`, `generate_blog_post` |
-| Keywords | `list_keywords`, `list_keyword_clusters`, `import_keywords`, `cluster_keywords` |
-| Industry Context | `list_verticals`, `get_context_entries`, `add_context_entry`, `run_research` |
-| Products | `list_products`, `scrape_products` |
-| Queue | `get_queue`, `add_to_queue`, `add_batch_to_queue` |
-| Shopify | `publish_to_shopify`, `shopify_status`, `list_shopify_articles` |
-| Scheduler | `scheduler_status`, `start_scheduler`, `stop_scheduler`, `trigger_scheduler_action` |
-| Competitor | `analyze_competitor` |
-
-**Configuration**: Registered in `.claude/settings.json` for automatic loading in Claude Code sessions within this project.
-
----
-
-## Environment Variables
-
-```
-ANTHROPIC_API_KEY          # Required — Claude API key
-OPENAI_API_KEY             # Required — GPT-4V photo analysis + embeddings
-YOUTUBE_API_KEY            # Optional — research agent video search
-PORT                       # Default 5001
-NODE_ENV                   # production or development
-ALLOWED_ORIGINS            # Comma-separated CORS whitelist
+# Standalone Blog Writer Architecture
+
+Last reviewed: 2026-05-25
+
+This repo is still the ScholarMark/iBolt fork, but the blog system is now a real working subsystem rather than a blank plan. The next architecture step is not "build the blog writer from scratch." It is to extract the iBolt-specific implementation into a company-configurable product that other brands can onboard into.
+
+## Executive Summary
+
+The current app can ingest keywords, maintain industry context, scrape the iBolt Shopify catalog, import catalog PDFs, store and analyze product photos, generate blog posts through a 4-phase AI pipeline, render Shopify-ready HTML, publish to Shopify, run scheduled jobs, and track AI-search visibility.
+
+The main blocker to making this a standalone feature is that the implementation is still iBolt-shaped at the data, prompt, route, UI, and integration layers. There is no tenant or company boundary, no reusable brand profile model, no general Shopify OAuth/install flow, no cross-company product source abstraction, and no guided onboarding flow.
+
+The recommended direction is to productize the existing blog subsystem in place first, then fork or rename the repo once the company abstraction is stable.
+
+## Product Target
+
+The standalone feature should be a multi-company content intelligence and blog generation product for ecommerce brands.
+
+Core user flow:
+
+1. Create a company workspace.
+2. Connect product data from Shopify, CSV, PDF catalog, manual entry, or public product URLs.
+3. Upload product and brand photos in bulk.
+4. Annotate photos and products with use cases, verticals, claims, specs, and restrictions.
+5. Enter brand guidelines, forbidden phrases, positioning, competitors, CTAs, and tone examples.
+6. Import keyword data or create AI-search benchmark queries.
+7. Generate, review, edit, and approve posts.
+8. Publish drafts to Shopify.
+9. Track how the brand appears in AI-search answers over time and feed those gaps back into content planning.
+
+## Current Codebase Status
+
+### Already Implemented
+
+Backend modules are registered under `/api/blog` from `server/routes.ts`.
+
+| Area | Status | Main files |
+| --- | --- | --- |
+| Blog pipeline | Real 4-phase pipeline: planner, section writer, stitcher, verifier | `server/blogPipeline.ts`, `server/brandVoice.ts` |
+| HTML output | Shopify-ready HTML, FAQ schema, product auto-links, previews | `server/htmlRenderer.ts` |
+| Keywords | CSV import, scoring, clustering, vertical mapping | `server/keywordManager.ts`, `server/keywordRoutes.ts` |
+| Context banks | Verticals, entries, seeds, research ingestion | `server/contextBanks.ts`, `server/contextRoutes.ts`, `server/contextSeeds.ts` |
+| Product catalog | Shopify product scrape, product CRUD, vertical mapping | `server/productScraper.ts`, `server/productRoutes.ts` |
+| Catalog PDFs | PDF import, AI extraction, product matching | `server/catalogImporter.ts`, `server/catalogRoutes.ts` |
+| Photo bank | Upload, directory import, thumbnails, vision analysis, auto-association | `server/photoBank.ts`, `server/photoRoutes.ts`, `server/photoSelector.ts` |
+| Shopify publishing | Article create/update/list/delete and collection updates | `server/shopifyPublisher.ts`, `server/shopifyRoutes.ts` |
+| AI benchmark | Provider runs, query/result tables, content-plan generation | `server/aiBenchmark.ts`, `server/benchmarkRoutes.ts` |
+| Scheduling | Research, product sync, auto-generation, photo analysis, benchmark runs | `server/scheduler.ts`, `server/schedulerRoutes.ts` |
+| Competitor scraping | Blog/sitemap analysis for content ideas | `server/competitorScraper.ts` |
+
+Frontend blog routes are also real pages, not placeholders.
+
+| Route | Page | Current use |
+| --- | --- | --- |
+| `/blog` | `client/src/pages/BlogDashboard.tsx` | Stats, recent posts, quick actions |
+| `/blog/keywords` | `client/src/pages/KeywordManager.tsx` | CSV import, keyword tables, clustering |
+| `/blog/generate` | `client/src/pages/BatchGenerator.tsx` | Queue, SSE generation, competitor URLs |
+| `/blog/posts/:id` | `client/src/pages/PostReview.tsx` | Markdown editor, scores, preview, Shopify publish |
+| `/blog/context` | `client/src/pages/IndustryContext.tsx` | Verticals, context entries, research triggers |
+| `/blog/products` | `client/src/pages/ProductCatalog.tsx` | Product grid, scrape, mapping, manual add |
+| `/blog/catalog` | `client/src/pages/CatalogImport.tsx` | Catalog PDF import and extraction review |
+| `/blog/photos` | `client/src/pages/PhotoBank.tsx` | Photo upload, analysis, association, delete |
+| `/blog/benchmark` | `client/src/pages/AiBenchmark.tsx` | AI-search benchmark runs and content plans |
+
+### Database Tables Already Present
+
+Core blog tables exist in `shared/schema.ts` and are also created in `server/db.ts`.
+
+| Table group | Tables |
+| --- | --- |
+| Context | `industry_verticals`, `context_entries`, `pipeline_context_chunks` |
+| Keywords | `keyword_imports`, `keyword_clusters`, `keywords` |
+| Products | `ibolt_products`, `product_verticals`, `product_feed_audits` |
+| Blog generation | `generation_batches`, `blog_posts`, `blog_post_products` |
+| Research | `research_jobs` |
+| Catalog | `product_catalog_imports`, `product_catalog_extractions` |
+| Photos | `product_photos`, `blog_post_photos` |
+| AI benchmark | `ai_benchmark_queries`, `ai_benchmark_runs`, `ai_benchmark_results` |
+
+ScholarMark tables still exist and are outside the standalone blog product path unless we intentionally reuse document upload, OCR, annotation, or project features.
+
+## Current Blocking Gaps
+
+### 1. No Company Or Tenant Model
+
+There is no `companies`, `workspaces`, `brands`, `company_id`, or equivalent tenant boundary. Most blog tables are global. This prevents multiple brands from using the system safely.
+
+Needed:
+
+- `companies`
+- `company_memberships`
+- `brand_profiles`
+- `company_integrations`
+- `company_settings`
+- `company_usage_events`
+- `company_id` on blog, product, keyword, context, photo, catalog, benchmark, scheduler, and integration tables
+
+### 2. iBolt-Specific Hardcoding
+
+The system is hard-coded to iBolt in prompts, URLs, product scraping, Shopify publishing, benchmark scoring, seeds, UI copy, and defaults.
+
+Examples:
+
+- `server/brandVoice.ts` contains the iBolt voice as a constant.
+- `server/productScraper.ts` scrapes `https://iboltmounts.com/products.json`.
+- `server/htmlRenderer.ts` links products to `https://iboltmounts.com/products/...`.
+- `server/shopifyPublisher.ts` defaults to `iboltmounts` and fixed blog IDs.
+- `server/aiBenchmark.ts` has iBolt-specific fields and scoring such as `iboltAngle`, `brandMentioned`, and `iboltCited`.
+- UI pages say "iBolt Blog Generator" and use iBolt-specific labels.
+
+Needed:
+
+- Move all brand facts into database-backed `brand_profiles`.
+- Pass a `CompanyContext` through every pipeline, renderer, scraper, publisher, benchmark, and scheduler call.
+- Keep iBolt as a seeded demo/customer workspace rather than the application identity.
+
+### 3. No Guided Onboarding
+
+The app has working operational screens, but no path for a new company to set itself up.
+
+Needed onboarding steps:
+
+1. Company basics: name, website, logo, primary market, ecommerce platform.
+2. Brand voice: tone, banned phrases, CTA style, writing examples, claims rules.
+3. Product source: Shopify OAuth, public Shopify JSON, CSV, manual products, catalog PDF.
+4. Photo source: bulk upload, directory import, Shopify media sync, manual product mapping.
+5. SEO source: keyword CSV, seed topics, competitors, AI-search benchmark prompts.
+6. Publishing target: Shopify store, blog target, default draft/live setting.
+7. Review policy: required scores, human approval, auto-publish rules.
+
+### 4. Photo Bank Is Useful But Not Productized
+
+The photo bank already supports upload, thumbnails, analysis, auto-association, and deletion. It needs to become a first-class asset system for non-technical users.
+
+Needed:
+
+- Bulk upload with product picker and drag/drop.
+- Manual annotation and edit modal for each photo.
+- Product, use-case, vertical, angle, quality, rights, and hero flags.
+- Import from Shopify product media.
+- Photo selection preview in post review.
+- Reusable asset library across posts.
+- Company-level storage limits and cleanup tools.
+
+### 5. Product Catalog Needs Source Abstraction
+
+The product catalog currently assumes iBolt and Shopify-style product data.
+
+Needed product source model:
+
+- Shopify OAuth store sync.
+- Public Shopify `/products.json` sync for unauthenticated catalogs.
+- CSV import.
+- Manual entry.
+- PDF catalog extraction.
+- Product URL scrape.
+- Future: WooCommerce, BigCommerce, Webflow, custom API.
+
+Product records need richer fields:
+
+- SKU and variant data.
+- Specs and dimensions.
+- Claims and disclaimers.
+- Compatibility.
+- Inventory and availability.
+- Product media.
+- Source provenance.
+- Last synced state.
+
+### 6. Shopify Publishing Is Partly Duplicated
+
+Two publish paths exist:
+
+- Newer sync path in `server/shopifyRoutes.ts` and `server/shopifyPublisher.ts` persists article IDs and sync metadata.
+- Older path in `server/blogRoutes.ts` marks status as published but does not persist the Shopify article ID.
+
+Needed:
+
+- Keep one publishing service.
+- Route all UI and API publish actions through the sync path.
+- Store per-company Shopify credentials and blog targets.
+- Support OAuth/install rather than static env vars.
+- Store publish events and external URLs.
+
+### 7. AI Benchmark Is Valuable But iBolt-Specific
+
+The benchmark system already tracks prompts, providers, results, brand mentions, citations, competitor mentions, and content gaps. This is exactly the "how do we appear in AI search over time" feature.
+
+Needed:
+
+- Rename iBolt-specific fields to generic fields.
+- Track target brand, target domains, target products, known competitors, and desired positioning from `brand_profiles`.
+- Store benchmark runs per company.
+- Add trend charts, gap detection, and recommended content actions.
+- Let benchmark gaps create keyword clusters or generation jobs.
+
+Suggested generic schema renames:
+
+| Current | Generic |
+| --- | --- |
+| `iboltAngle` | `brandAngle` |
+| `iboltCited` | `targetDomainCited` |
+| `brandMentioned` | `targetBrandMentioned` |
+| `ibolt_products` | `products` |
+| `iBolt Blog Generator` | company-configured product name or neutral app name |
+
+### 8. UI Needs A Standalone App Shell
+
+The blog pages work, but the app still inherits a ScholarMark/EVA shell and page-by-page navigation.
+
+Needed:
+
+- Blog-first app shell with persistent sidebar.
+- Company switcher.
+- Setup checklist.
+- Settings section.
+- Connections section.
+- Asset, product, content, benchmark, and publish navigation.
+- Dashboard links for existing catalog and photo pages.
+- Remove or hide ScholarMark routes for standalone deployments.
+- Replace internal/admin styling with a calmer SaaS workflow UI.
+
+### 9. Security And Multi-User Readiness
+
+Blog routes are currently easy to access in local/dev mode, and the frontend blog routes are not wrapped with `ProtectedRoute`.
+
+Needed:
+
+- Protect blog routes consistently in frontend and backend.
+- Add roles: owner, admin, editor, reviewer, viewer.
+- Scope all queries by company.
+- Encrypt integration tokens.
+- Add audit logs for publish, delete, benchmark, and scheduler actions.
+
+### 10. Ruflo Is Not Integrated
+
+The scheduler and research agent are Ruflo-inspired, but there is no actual Ruflo integration in this repo.
+
+Needed:
+
+- Decide whether Ruflo is required or whether the current scheduler is enough.
+- If required, integrate Ruflo behind the scheduler/orchestration boundary.
+- Keep blog generation independent of a specific agent framework so jobs can run locally, through Ruflo, or through another queue later.
+
+## Proposed Standalone Architecture
+
+### Core Domain Model
+
+```mermaid
+erDiagram
+  companies ||--o{ company_memberships : has
+  companies ||--|| brand_profiles : owns
+  companies ||--o{ company_integrations : connects
+  companies ||--o{ products : owns
+  companies ||--o{ product_assets : owns
+  companies ||--o{ content_verticals : defines
+  companies ||--o{ context_entries : stores
+  companies ||--o{ keyword_imports : imports
+  companies ||--o{ keyword_clusters : groups
+  companies ||--o{ blog_posts : generates
+  companies ||--o{ ai_benchmark_queries : monitors
+  companies ||--o{ ai_benchmark_runs : runs
+
+  products ||--o{ product_assets : has
+  products ||--o{ product_verticals : maps
+  blog_posts ||--o{ blog_post_products : mentions
+  blog_posts ||--o{ blog_post_assets : uses
+  keyword_clusters ||--o{ keywords : contains
 ```
 
----
+### Runtime Flow
 
-## Build & Development
+```mermaid
+flowchart LR
+  Onboarding["Company onboarding"] --> Brand["Brand profile"]
+  Onboarding --> Catalog["Product catalog"]
+  Onboarding --> Assets["Photo and asset bank"]
+  Onboarding --> SEO["Keywords and AI benchmark queries"]
 
-| Command | Purpose |
-|---------|---------|
-| `npm run dev` | Start Express + Vite dev server (HMR) |
-| `npm run build` | Production build → `dist/index.cjs` + `dist/public/` |
-| `npm run start` | Run production bundle |
-| `npm run check` | TypeScript strict check |
-| `npm run test` | Sequential vitest (SQLite limitation) |
-| `npm run db:push` | Drizzle schema push to SQLite |
-| `npm run db:generate` | Generate Drizzle migrations |
-| `npm run setup` | `npm install && npm run db:push` |
+  Brand --> Pipeline["Blog pipeline"]
+  Catalog --> Pipeline
+  Assets --> Pipeline
+  SEO --> Pipeline
+  Context["Context banks and research"] --> Pipeline
 
----
+  Pipeline --> Review["Human review"]
+  Review --> Shopify["Shopify publish"]
+  Benchmark["AI-search benchmark"] --> Plan["Content plan"]
+  Plan --> Pipeline
+```
 
-## Content Output (24 Posts)
+### CompanyContext Contract
 
-Generated and stored in `/content-output/`:
+Every backend service that currently assumes iBolt should accept a `CompanyContext`.
 
-| Phase | Posts | Focus |
-|-------|-------|-------|
-| Phase 1 | 5 collection pages | Barcode Scanner, Forklift, Restaurant POS, Truck Fleet, Modularity |
-| Phase 2 | 6 comparison posts | Best-of lists, iBolt vs RAM, modular systems |
-| Phase 3 | 3 updated guides | Forklift pillar, modular system, restaurant tablet |
-| Phase 4 | 10 brand posts | Specific products, events (NRA 2026), use cases |
+```ts
+interface CompanyContext {
+  company: {
+    id: string;
+    name: string;
+    websiteUrl: string;
+    primaryDomain: string;
+  };
+  brandProfile: {
+    displayName: string;
+    positioning: string;
+    toneTraits: string[];
+    bannedPhrases: string[];
+    preferredCtas: string[];
+    requiredClaims: string[];
+    forbiddenClaims: string[];
+    writingSamples: string[];
+  };
+  integrations: {
+    shopify?: {
+      shop: string;
+      accessTokenRef: string;
+      defaultBlogId?: number;
+    };
+  };
+  competitors: Array<{
+    name: string;
+    domains: string[];
+  }>;
+}
+```
 
-All 24 include: Markdown + HTML, Shopify CDN product photos (84 total), FAQ schema, JSON-LD, meta tags.
+### Generalized Services
 
-**Shopify Status**: 19 posts published as drafts to News blog (April 1, 2026).
+| Current service | Standalone target |
+| --- | --- |
+| `brandVoice.ts` | `brandProfiles.ts` plus prompt builders that consume `CompanyContext` |
+| `productScraper.ts` | `catalogSources/shopifyPublic.ts`, `catalogSources/shopifyAdmin.ts`, `catalogSources/csv.ts` |
+| `shopifyPublisher.ts` | `publishing/shopifyPublisher.ts` using company integration credentials |
+| `htmlRenderer.ts` | `renderers/shopifyRenderer.ts` with company domain/product URL config |
+| `iboltResearchAgent.ts` | `researchAgent.ts` with company verticals and competitors |
+| `aiBenchmark.ts` | `visibilityBenchmark.ts` with generic target brand/domain scoring |
+| `contextSeeds.ts` | demo seed packs plus user-generated verticals |
+| `scheduler.ts` | company-scoped job scheduler and job history |
 
----
+## Standalone Feature Areas
 
-## Architectural Patterns
+### 1. Setup And Onboarding
 
-1. **SSE Streaming** — All long-running operations stream real-time progress
-2. **Token Budgeting** — Context injection sized per pipeline phase
-3. **Deterministic Photo Selection** — Scoring function (no AI) for reproducibility
-4. **Database-Centric** — All state persisted; re-runnable at any pipeline step
-5. **Vertical Context Banking** — Research agents auto-populate; humans verify
-6. **Product Enrichment** — PDF catalogs + Shopify scraping → extended descriptions
-7. **Brand Voice Injection** — Baked into ALL prompts (no separate humanizer pass)
-8. **Ruflo-Inspired Agents** — Parallel concurrent research (up to 50 agents)
-9. **Lazy Route Loading** — Client pages loaded on-demand via React.lazy()
-10. **TanStack React Query** — Server state with 5-minute stale time
-11. **Dual MCP Transports** — Remote HTTP/SSE for web clients + local stdio for Claude Code
+Build a `/setup` or `/blog/setup` flow. This should be the first screen for a new company.
 
----
+Minimum MVP:
 
-## Claude Code Integration
+- Company profile form.
+- Brand voice form.
+- Shopify connection or public product URL.
+- Keyword CSV import.
+- Photo upload.
+- Generate first 3 topic ideas.
 
-### Skills
+### 2. Brand Theme And Guidelines
 
-**Blog Writer** (`.claude/skills/blog-writer/SKILL.md`):
-One-shot blog post generation from a topic idea. Uses ibolt MCP tools to pull industry context, products, and photos, then generates a complete Shopify-ready blog post following brand voice guidelines. Invoked via `/blog-writer` or naturally when asking to write a blog post.
+The "theme" should mean more than colors. It should be the company writing and publishing profile.
 
-### Agents
-34 reusable agents in `.claude/agents/` covering code review, testing, debugging, SEO, design, and more.
+Fields:
 
-### Commands
-23 slash commands in `.claude/commands/` for workflows like multi-review, issue resolution, PR management, and session handoffs.
+- Brand name and short description.
+- Website and product URL pattern.
+- Audience/personas.
+- Positioning and differentiators.
+- Tone traits.
+- Banned phrases.
+- Required terms.
+- Claims requiring verification.
+- Competitors.
+- CTA style.
+- Example posts or writing samples.
+- Shopify HTML style preferences.
+
+### 3. Product Catalog
+
+For a standalone system, product catalog ingestion is a feature, not a script.
+
+MVP sources:
+
+- Shopify Admin OAuth.
+- Public Shopify product JSON.
+- CSV upload.
+- Manual products.
+- PDF catalog extraction.
+
+Future sources:
+
+- WooCommerce.
+- BigCommerce.
+- Product feed XML.
+- Google Merchant Center.
+- Custom API.
+
+### 4. Photo And Asset Bank
+
+This is the area the user guessed correctly: a reusable image bank is required.
+
+MVP:
+
+- Bulk import.
+- Thumbnail gallery.
+- AI analysis.
+- Manual annotation.
+- Product association.
+- Use-case and vertical tagging.
+- Rights/status fields.
+- Hero and inline image flags.
+
+Post generation should consume this bank and show selected images during review.
+
+### 5. Content Generation
+
+The 4-phase pipeline remains the right core.
+
+Generalized inputs:
+
+- Keyword cluster or AI benchmark gap.
+- Company brand profile.
+- Product catalog.
+- Product assets.
+- Context bank.
+- Competitor context.
+- Publishing target.
+
+Quality gate:
+
+- Brand consistency.
+- SEO optimization.
+- Natural language.
+- Factual accuracy.
+- Product accuracy.
+- Claims compliance.
+- Publishing readiness.
+
+### 6. Shopify Publishing
+
+MVP:
+
+- OAuth install.
+- Select target blog.
+- Publish as draft by default.
+- Store external article ID.
+- Update existing article rather than duplicate.
+- Show sync state in post review and dashboard.
+
+Later:
+
+- Collections and pages.
+- Theme-aware article templates.
+- Product media publishing.
+- Bulk publish queue.
+
+### 7. AI Search Visibility Benchmark
+
+This should become a core differentiator.
+
+MVP:
+
+- Query library per company.
+- Providers: ChatGPT, Claude, Gemini, Gemini with search where configured.
+- Run history.
+- Mention/citation/rank/sentiment/competitor extraction.
+- Gap list.
+- "Generate content for this gap" action.
+
+Metrics:
+
+- Target brand mention rate.
+- Target domain citation rate.
+- Top-3 recommendation rate.
+- Average coverage score.
+- Competitor share of answer.
+- Query-level trend over time.
+
+### 8. Orchestration
+
+The current scheduler is enough for the first standalone version if it becomes company-scoped.
+
+Jobs:
+
+- Product sync.
+- Photo analysis.
+- Research.
+- Context chunk rebuild.
+- AI benchmark.
+- Blog generation.
+- Shopify publish.
+
+Ruflo can be integrated later behind this job boundary if the current scheduler becomes too limited.
+
+## Implementation Plan
+
+### Phase A: Productization Foundation
+
+Goal: Make iBolt one company record instead of the whole app.
+
+Tasks:
+
+- Add `companies`, `company_memberships`, `brand_profiles`, `company_integrations`.
+- Add `company_id` to all blog-related tables.
+- Create an iBolt seed company and migrate current global data into it.
+- Add a `CompanyContext` loader.
+- Scope blog APIs by active company.
+- Protect frontend blog routes.
+
+### Phase B: Generalize iBolt Services
+
+Goal: Remove hard-coded iBolt assumptions from runtime logic.
+
+Tasks:
+
+- Replace `BRAND_VOICE` constant usage with company `brandProfile`.
+- Generalize product URLs and product linking.
+- Generalize Shopify shop/blog IDs into `company_integrations`.
+- Rename or alias iBolt-specific benchmark fields.
+- Convert iBolt vertical seeds into a demo seed pack.
+- Keep existing iBolt behavior as the first configured workspace.
+
+### Phase C: Standalone Onboarding UI
+
+Goal: Let another company set itself up without touching code.
+
+Tasks:
+
+- Add setup wizard.
+- Add company settings pages.
+- Add brand profile editor.
+- Add integrations page.
+- Add dashboard setup checklist.
+- Build a persistent blog app shell with navigation.
+
+### Phase D: Asset And Catalog Workflow
+
+Goal: Make product data and photos editable, reviewable, and reusable.
+
+Tasks:
+
+- Add product source abstraction.
+- Add Shopify OAuth/public Shopify import option.
+- Add CSV product import.
+- Improve catalog extraction review actions.
+- Add photo detail/edit modal.
+- Add manual product/photo association.
+- Add post image selection preview.
+
+### Phase E: Visibility Benchmark Product
+
+Goal: Turn AI benchmark into a repeatable company feature.
+
+Tasks:
+
+- Generalize target brand/domain scoring.
+- Add historical trend UI.
+- Add competitor answer share.
+- Add content gap queue.
+- Let users materialize a benchmark gap into a keyword cluster or blog draft.
+
+### Phase F: Publishing And Review Polish
+
+Goal: Make publish safe and predictable.
+
+Tasks:
+
+- Consolidate duplicate Shopify publish routes.
+- Add publish history.
+- Add approval workflow.
+- Add bulk publish UI.
+- Add sync error handling and retry.
+- Add generated HTML visual QA.
+
+### Phase G: Fork/Rename
+
+Goal: Split into a clean standalone repo only after product boundaries are stable.
+
+Tasks:
+
+- Rename package and app.
+- Hide or remove ScholarMark routes.
+- Move legacy ScholarMark code behind feature flags or delete it.
+- Add `.env.example`.
+- Add setup docs.
+- Add deployment docs.
+
+## Immediate Next Tasks
+
+The best next work is narrow and high leverage:
+
+1. Add a `companies` and `brand_profiles` schema, seed iBolt into it, and add a `CompanyContext` loader.
+2. Convert `server/brandVoice.ts` prompt builders to accept a brand profile while keeping iBolt as the default.
+3. Wrap frontend blog routes in `ProtectedRoute` and add a blog app shell/sidebar.
+4. Add dashboard links to existing `/blog/catalog` and `/blog/photos` pages.
+5. Consolidate Shopify publishing onto the newer sync route.
+6. Rename/genericize AI benchmark concepts in the UI and schema adapter layer.
+7. Add a setup checklist page that collects company, brand, catalog, photos, keywords, and Shopify status.
+
+## Verification Notes
+
+Subagent backend review reported `npm run check` passing on 2026-05-25. This architecture update itself is documentation-only and does not change runtime behavior.
+
