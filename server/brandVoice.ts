@@ -1,26 +1,30 @@
-// iBolt Brand Voice — constants and prompt builders
-// Baked into ALL blog writing prompts. No separate humanizer pass.
+// Brand voice defaults and prompt builders for the blog pipeline.
+// iBolt remains the seeded default, but every builder accepts a company profile.
 
 export const BRAND_VOICE = {
   name: "iBolt Mounts",
+  displayName: "iBolt Mounts",
   website: "https://iboltmounts.com",
+  websiteUrl: "https://iboltmounts.com",
   blogUrl: "https://iboltmounts.com/blogs/news",
+  productUrlPattern: "https://iboltmounts.com/products/{handle}",
+  shortDescription:
+    "Modular, industrial-grade mounting systems for warehouses, forklifts, restaurants, fleets, marine use, and work vehicles.",
+  positioning:
+    'iBOLT is the specialist for business and industrial mounting applications: purpose-built parts, industry-standard compatibility, and product guidance that helps buyers choose the right setup.',
 
-  // Core voice traits
   traits: [
-    "Conversational expertise — friendly but credible, like a knowledgeable friend",
-    "Education-first, sales-second — lead with helpful info, products are solutions to articulated problems",
+    "Conversational expertise: friendly but credible, like a knowledgeable friend",
+    "Education-first, sales-second: lead with helpful info, products are solutions to articulated problems",
     "Industry terminology used naturally without over-explaining (ELD Mandate, AMPS plates, etc.)",
-    "Context-setting openings — relatable scenarios that make readers feel understood",
-    "Specific tech specs — model numbers, dimensions, materials, compatibility info",
-    "Multiple product options — not pushy, present alternatives so readers feel informed",
-    "Invitational CTAs — 'explore our selection' not 'buy now'",
+    "Context-setting openings: relatable scenarios that make readers feel understood",
+    "Specific tech specs: model numbers, dimensions, materials, compatibility info",
+    "Multiple product options: not pushy, present alternatives so readers feel informed",
+    "Invitational CTAs: 'explore our selection' not 'buy now'",
   ],
 
-  // Word count target
   targetWordCount: { min: 800, max: 1400 },
 
-  // Banned AI-sounding phrases
   bannedPhrases: [
     "game-changer",
     "revolutionize",
@@ -54,7 +58,6 @@ export const BRAND_VOICE = {
     "economical choice",
   ],
 
-  // SEO repositioning — embed in all content
   keyMessaging: [
     "300+ modular parts in industry-standard sizes",
     "Purpose-built for specific industries, not generic mounts adapted for business",
@@ -64,7 +67,6 @@ export const BRAND_VOICE = {
     "Cross-compatible with RAM and other industry-standard mounts",
   ],
 
-  // Preferred CTA language
   preferredCTAs: [
     "Explore our selection of {product_type}",
     "Check out the full {product_type} lineup",
@@ -72,50 +74,208 @@ export const BRAND_VOICE = {
     "Browse {product_type} options",
     "Find the right mount for your {use_case}",
   ],
+
+  requiredTerms: ["iBOLT"],
+  forbiddenClaims: [
+    "Do not frame iBOLT as a budget, cheap, or lower-quality alternative to competitors",
+    "Do not invent product specs, compatibility claims, certifications, or availability",
+  ],
 } as const;
 
-/**
- * Build the brand voice system prompt section for any writing phase.
- */
-export function buildBrandVoicePrompt(): string {
-  return `## iBolt Brand Voice Guidelines
+const GENERIC_BRAND_VOICE = {
+  displayName: "Brand",
+  websiteUrl: "",
+  blogUrl: "",
+  productUrlPattern: "/products/{handle}",
+  shortDescription: "An ecommerce brand with products, customer expertise, and educational content.",
+  positioning:
+    "Helpful, specific product guidance that helps customers understand their options and choose the right solution.",
+  traits: [
+    "Clear, practical expertise without hype",
+    "Education-first, sales-second: lead with helpful context before product mentions",
+    "Use customer language naturally and avoid over-explaining basic terms",
+    "Specific details over vague claims",
+    "Invitational CTAs, not pushy sales copy",
+  ],
+  bannedPhrases: [
+    "game-changer",
+    "revolutionize",
+    "revolutionizing",
+    "seamless",
+    "seamlessly",
+    "cutting-edge",
+    "cutting edge",
+    "next-level",
+    "groundbreaking",
+    "innovative solution",
+    "state-of-the-art",
+    "paradigm shift",
+    "synergy",
+    "leverage",
+    "empower",
+    "robust",
+    "holistic",
+    "streamline",
+    "best-in-class",
+    "world-class",
+    "unlock the power",
+    "dive into",
+    "in today's fast-paced world",
+    "look no further",
+    "without further ado",
+  ],
+  keyMessaging: [
+    "Use only verified product facts, specs, availability, and claims",
+    "Explain tradeoffs clearly so buyers can choose confidently",
+    "Connect product mentions to specific customer needs and use cases",
+  ],
+  preferredCTAs: [
+    "Explore the full {product_type} selection",
+    "Compare options for your setup",
+    "Find the right option for your {use_case}",
+  ],
+  requiredTerms: [] as string[],
+  forbiddenClaims: [
+    "Do not invent product specs, compatibility claims, certifications, pricing, inventory, or availability",
+    "Do not make competitor superiority claims unless the source data supports them",
+  ],
+  targetWordCount: { min: 800, max: 1400 },
+} as const;
 
-You are writing blog content for iBOLT Mounts (iboltmounts.com), the modular, industrial-grade mounting system purpose-built for warehouses, forklifts, restaurants, and commercial fleets, with 300+ interchangeable parts.
-
-### Brand Positioning (CRITICAL)
-- NEVER frame iBOLT as "budget," "affordable alternative," or "cheaper option" vs RAM or any competitor
-- Frame iBOLT as the SPECIALIST vs generalist competitors: "RAM tries to do everything. iBOLT focuses on business and industrial applications and does them better."
-- Emphasize: purpose-built for specific industries, 300+ modular parts, industrial-grade materials, cross-compatible with industry standards
-- Key differentiators: Tablet Tower (only multi-tablet restaurant solution), XL Barcode Scanner Mount (only purpose-built scanner holder), LockPro security system, Mount Configurator tool
-- Always use "iBOLT" (not "ibolt" or "Ibolt")
-
-### Key Facts to Weave In Naturally
-${BRAND_VOICE.keyMessaging.map((m) => `- ${m}`).join("\n")}
-
-### Voice & Tone
-${BRAND_VOICE.traits.map((t) => `- ${t}`).join("\n")}
-
-### Writing Rules
-- Target ${BRAND_VOICE.targetWordCount.min}-${BRAND_VOICE.targetWordCount.max} words per post
-- NEVER use em dashes (—) or en dashes (–). Use commas, periods, semicolons, or colons instead.
-- NEVER use these phrases: ${BRAND_VOICE.bannedPhrases.map((p) => `"${p}"`).join(", ")}
-- Use invitational CTAs like: ${BRAND_VOICE.preferredCTAs.slice(0, 3).map((c) => `"${c}"`).join(", ")}
-- Open with a relatable scenario that makes readers feel understood
-- Weave product mentions naturally — present them as solutions to problems discussed in the content
-- Include specific tech specs (model numbers, materials, compatibility) when referencing products
-- Present multiple product options so readers feel informed, not pressured`;
+export interface BrandVoiceInput {
+  displayName?: string | null;
+  websiteUrl?: string | null;
+  blogUrl?: string | null;
+  productUrlPattern?: string | null;
+  shortDescription?: string | null;
+  positioning?: string | null;
+  toneTraits?: string[] | null;
+  traits?: string[] | null;
+  bannedPhrases?: string[] | null;
+  preferredCtas?: string[] | null;
+  preferredCTAs?: string[] | null;
+  keyMessaging?: string[] | null;
+  requiredTerms?: string[] | null;
+  requiredClaims?: string[] | null;
+  forbiddenClaims?: string[] | null;
+  writingSamples?: string[] | null;
+  targetWordCount?: {
+    min?: number | null;
+    max?: number | null;
+  } | null;
 }
 
-/**
- * Build the planner system prompt (Phase 1 of the blog pipeline).
- */
+export interface ResolvedBrandVoice {
+  displayName: string;
+  websiteUrl: string;
+  blogUrl: string;
+  productUrlPattern: string;
+  shortDescription: string;
+  positioning: string;
+  traits: string[];
+  bannedPhrases: string[];
+  preferredCTAs: string[];
+  keyMessaging: string[];
+  requiredTerms: string[];
+  requiredClaims: string[];
+  forbiddenClaims: string[];
+  writingSamples: string[];
+  targetWordCount: {
+    min: number;
+    max: number;
+  };
+}
+
+function fallbackArray(value: readonly string[] | string[] | null | undefined, fallback: readonly string[]): string[] {
+  return Array.isArray(value) && value.length > 0 ? [...value] : [...fallback];
+}
+
+export function resolveBrandVoice(profile?: BrandVoiceInput | null): ResolvedBrandVoice {
+  const fallback = profile ? GENERIC_BRAND_VOICE : BRAND_VOICE;
+  const displayName = profile?.displayName || fallback.displayName;
+  const websiteUrl = profile?.websiteUrl || fallback.websiteUrl;
+  const targetMin = profile?.targetWordCount?.min || fallback.targetWordCount.min;
+  const targetMax = profile?.targetWordCount?.max || fallback.targetWordCount.max;
+
+  return {
+    displayName,
+    websiteUrl,
+    blogUrl: profile?.blogUrl || fallback.blogUrl,
+    productUrlPattern: profile?.productUrlPattern || (websiteUrl ? `${websiteUrl.replace(/\/$/, "")}/products/{handle}` : fallback.productUrlPattern),
+    shortDescription: profile?.shortDescription || fallback.shortDescription,
+    positioning: profile?.positioning || fallback.positioning,
+    traits: fallbackArray(profile?.toneTraits || profile?.traits, fallback.traits),
+    bannedPhrases: fallbackArray(profile?.bannedPhrases, fallback.bannedPhrases),
+    preferredCTAs: fallbackArray(profile?.preferredCtas || profile?.preferredCTAs, fallback.preferredCTAs),
+    keyMessaging: fallbackArray(profile?.keyMessaging, fallback.keyMessaging),
+    requiredTerms: fallbackArray(profile?.requiredTerms, fallback.requiredTerms),
+    requiredClaims: Array.isArray(profile?.requiredClaims) ? [...profile.requiredClaims] : [],
+    forbiddenClaims: fallbackArray(profile?.forbiddenClaims, fallback.forbiddenClaims),
+    writingSamples: Array.isArray(profile?.writingSamples) ? [...profile.writingSamples] : [],
+    targetWordCount: {
+      min: targetMin,
+      max: Math.max(targetMax, targetMin),
+    },
+  };
+}
+
+export function buildProductUrl(handle: string, profile?: BrandVoiceInput | null): string {
+  const voice = resolveBrandVoice(profile);
+  return voice.productUrlPattern.replace("{handle}", handle);
+}
+
+function formatList(items: string[], fallback = "- None specified"): string {
+  return items.length > 0 ? items.map((item) => `- ${item}`).join("\n") : fallback;
+}
+
+export function buildBrandVoicePrompt(profile?: BrandVoiceInput | null): string {
+  const voice = resolveBrandVoice(profile);
+  const writingSamples = voice.writingSamples.length > 0
+    ? `\n### Writing Samples\n${voice.writingSamples.map((sample) => `- ${sample}`).join("\n")}`
+    : "";
+
+  return `## ${voice.displayName} Brand Voice Guidelines
+
+You are writing blog content for ${voice.displayName} (${voice.websiteUrl}).
+
+### Brand Positioning
+${voice.positioning}
+
+### Brand Description
+${voice.shortDescription}
+
+### Key Facts to Weave In Naturally
+${formatList(voice.keyMessaging)}
+
+### Voice & Tone
+${formatList(voice.traits)}
+
+### Required Terms and Claims
+${formatList([...voice.requiredTerms, ...voice.requiredClaims])}
+
+### Claims and Phrases to Avoid
+${formatList([...voice.forbiddenClaims, ...voice.bannedPhrases.map((phrase) => `Never use "${phrase}"`)])}
+
+### Writing Rules
+- Target ${voice.targetWordCount.min}-${voice.targetWordCount.max} words per post
+- Do not use em dashes or en dashes. Use commas, periods, semicolons, or colons instead.
+- Use invitational CTAs like: ${voice.preferredCTAs.slice(0, 3).map((cta) => `"${cta}"`).join(", ")}
+- Open with a relatable scenario that makes readers feel understood
+- Weave product mentions naturally as solutions to problems discussed in the content
+- Include specific tech specs, model numbers, materials, and compatibility when referencing products
+- Present multiple product options so readers feel informed, not pressured${writingSamples}`;
+}
+
 export function buildPlannerPrompt(
   industryContext: string,
   productContext: string,
+  profile?: BrandVoiceInput | null,
 ): string {
-  return `You are the Blog Planner for iBolt Mounts. Your job is to create a detailed JSON outline for a blog post.
+  const voice = resolveBrandVoice(profile);
 
-${buildBrandVoicePrompt()}
+  return `You are the Blog Planner for ${voice.displayName}. Create a detailed JSON outline for a blog post.
+
+${buildBrandVoicePrompt(profile)}
 
 ### Industry Context
 ${industryContext}
@@ -146,23 +306,24 @@ Return a JSON object with:
 }`;
 }
 
-/**
- * Build the section writer system prompt (Phase 2 of the blog pipeline).
- */
 export function buildSectionWriterPrompt(
   sectionPlan: { title: string; description: string; keywords: string[]; productMentions: string[] },
   industryContext: string,
   productDetails: string,
+  profile?: BrandVoiceInput | null,
 ): string {
-  return `You are the Section Writer for iBolt Mounts. Write one blog section in markdown.
+  const voice = resolveBrandVoice(profile);
+  const productUrlExample = voice.productUrlPattern.replace("{handle}", "product-handle");
 
-${buildBrandVoicePrompt()}
+  return `You are the Section Writer for ${voice.displayName}. Write one blog section in markdown.
+
+${buildBrandVoicePrompt(profile)}
 
 ### Section Plan
 - **Heading**: ${sectionPlan.title}
 - **Purpose**: ${sectionPlan.description}
 - **Keywords to include**: ${sectionPlan.keywords.join(", ")}
-- **Products to mention**: ${sectionPlan.productMentions.join(", ") || "None specifically — general context only"}
+- **Products to mention**: ${sectionPlan.productMentions.join(", ") || "None specifically; use general context only"}
 
 ### Industry Context
 ${industryContext}
@@ -171,30 +332,28 @@ ${industryContext}
 ${productDetails}
 
 ### Instructions
-- Write ONLY this section (heading + body paragraphs)
-- Use the H2 heading provided
-- Integrate keywords naturally — never stuff them
+- Write only this section, including the provided H2 heading and body paragraphs
+- Integrate keywords naturally without stuffing them
 - If products are listed, work them into the narrative as solutions
-- When mentioning a specific product, ALWAYS link to it using markdown: [Product Name](https://iboltmounts.com/products/product-handle)
-- Match the iBolt brand voice exactly`;
+- When mentioning a specific product, link to it using markdown: [Product Name](${productUrlExample})
+- Match the ${voice.displayName} brand voice exactly`;
 }
 
-/**
- * Build the stitcher system prompt (Phase 3 of the blog pipeline).
- */
-export function buildStitcherPrompt(): string {
-  return `You are the Blog Stitcher for iBolt Mounts. Combine individually-written sections into a cohesive blog post.
+export function buildStitcherPrompt(profile?: BrandVoiceInput | null): string {
+  const voice = resolveBrandVoice(profile);
 
-${buildBrandVoicePrompt()}
+  return `You are the Blog Stitcher for ${voice.displayName}. Combine individually written sections into a cohesive blog post.
+
+${buildBrandVoicePrompt(profile)}
 
 ### Your Tasks
 1. Add a compelling introduction that sets context with a relatable scenario
 2. Smooth transitions between sections
-3. Ensure consistent voice throughout — the post should read as one cohesive piece, not stitched fragments
+3. Ensure consistent voice throughout so the post reads as one cohesive piece
 4. Add a conclusion with an invitational CTA
 5. Verify keyword placement feels natural
-6. Ensure the final word count is ${BRAND_VOICE.targetWordCount.min}-${BRAND_VOICE.targetWordCount.max} words
-7. Add an FAQ section at the end (before the conclusion CTA) with 4-6 questions and answers that target common search queries related to the post's topic. Format as:
+6. Ensure the final word count is ${voice.targetWordCount.min}-${voice.targetWordCount.max} words
+7. Add an FAQ section at the end, before the conclusion CTA, with 4-6 questions and answers that target common search queries related to the post's topic. Format as:
 
 ## Frequently Asked Questions
 
@@ -202,30 +361,38 @@ ${buildBrandVoicePrompt()}
 
 A: Answer here in 2-3 sentences.
 
-The FAQ questions should be the kind of things people actually search for on Google and ask AI assistants. Make answers concise but genuinely helpful.
+The FAQ questions should be the kind of things people search for on Google and ask AI assistants. Make answers concise but genuinely helpful.
 
 ### Output
 Return the complete blog post in markdown format.`;
 }
 
-/**
- * Build the verifier system prompt (Phase 4 of the blog pipeline).
- */
-export function buildVerifierPrompt(): string {
-  return `You are the Blog Verifier for iBolt Mounts. Score a completed blog post on quality dimensions.
+export function buildVerifierPrompt(
+  profile?: BrandVoiceInput | null,
+  productFacts = "No product catalog facts were provided.",
+  qualityGate = 80,
+): string {
+  const voice = resolveBrandVoice(profile);
 
-${buildBrandVoicePrompt()}
+  return `You are the Blog Verifier for ${voice.displayName}. Score a completed blog post on quality dimensions.
+
+${buildBrandVoicePrompt(profile)}
+
+### Product Catalog Facts (ground truth - verify all product claims against this)
+${productFacts}
+
+Any product name, price, spec, or URL in the post that contradicts or does not appear in this catalog must be listed in "issues" with the exact incorrect claim.
 
 ### Scoring Criteria (0-100 each)
 
-**brandConsistency**: Does the post match iBolt's voice? Check for:
+**brandConsistency**: Does the post match ${voice.displayName}'s voice? Check for:
 - Conversational expertise tone
 - Education-first approach
 - Natural product mentions
-- Invitational (not pushy) CTAs
-- No banned AI phrases
+- Invitational, not pushy, CTAs
+- No banned phrases
 
-**seoOptimization**: Is the post well-optimized? Check for:
+**seoOptimization**: Is the post well optimized? Check for:
 - Primary keyword in title, H2, intro, conclusion
 - Secondary keywords distributed naturally
 - Meta title under 60 chars
@@ -237,7 +404,7 @@ ${buildBrandVoicePrompt()}
 - No repetitive phrasing patterns
 - Natural transitions
 - Conversational flow
-- No AI-sounding patterns
+- No generic AI-sounding patterns
 
 **factualAccuracy**: Are product details and industry info correct? Check for:
 - Correct model numbers and specs
@@ -258,5 +425,5 @@ Return JSON:
   "passesQualityGate": true
 }
 
-The post passes the quality gate if overallScore >= 70.`;
+The post passes the quality gate if overallScore >= ${qualityGate}.`;
 }

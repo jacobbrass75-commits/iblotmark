@@ -102,6 +102,7 @@ type GenerationRecorder = (metadata: GenerationMetadata) => void;
 
 const ANTHROPIC_MODEL = process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
 const OPENAI_MODEL = process.env.BLOG_OPENAI_MODEL || "gpt-4.1-mini";
+const QUALITY_GATE = Number(process.env.BLOG_QUALITY_GATE || 80);
 
 let anthropicClient: Anthropic | null = null;
 let openaiClient: OpenAI | null = null;
@@ -385,6 +386,22 @@ function formatLintErrorsForPrompt(report: LintReport): string {
   }).join("\n");
 }
 
+function buildProductFactsForVerifier(relevantProducts: Product[], brandProfile?: BrandVoiceInput | null): string {
+  if (relevantProducts.length === 0) {
+    return "No relevant products were selected for this post.";
+  }
+
+  const lines = relevantProducts.slice(0, 30).map((product) => {
+    const price = product.price ? `$${product.price}` : "price unavailable";
+    const productType = product.productType || "type unavailable";
+    const url = product.url || buildProductUrl(product.handle, brandProfile);
+    return `${product.title} | ${product.handle} | ${price} | ${productType} | ${url}`;
+  });
+
+  const facts = lines.join("\n");
+  return facts.length > 4000 ? `${facts.slice(0, 3997)}...` : facts;
+}
+
 // --- Phase 1: PLANNER ---
 
 async function runPlanner(
@@ -483,10 +500,11 @@ async function runStitcher(
 async function runVerifier(
   plan: BlogPlan,
   markdown: string,
+  productFacts: string,
   brandProfile?: BrandVoiceInput | null,
   recordGeneration?: GenerationRecorder,
 ): Promise<VerificationResult> {
-  const systemPrompt = buildVerifierPrompt(brandProfile);
+  const systemPrompt = buildVerifierPrompt(brandProfile, productFacts, QUALITY_GATE);
 
   const parsed = await generateJson<VerificationResult>(
     systemPrompt,
@@ -503,7 +521,7 @@ async function runVerifier(
       (parsed.brandConsistency + parsed.seoOptimization + parsed.naturalLanguage + parsed.factualAccuracy) / 4
     );
   }
-  parsed.passesQualityGate = parsed.overallScore >= 70;
+  parsed.passesQualityGate = parsed.overallScore >= QUALITY_GATE;
 
   return parsed;
 }
@@ -543,6 +561,7 @@ export async function runBlogPipeline(
     ? await formatContextForPrompt(vertical.id, companyContext.company.id)
     : `${brandProfile.shortDescription || brandProfile.positioning || companyContext.company.primaryMarket || "General brand and customer context."}`;
   const productContext = formatProductsForPrompt(relevantProducts, brandProfile);
+  const productFacts = buildProductFactsForVerifier(relevantProducts, brandProfile);
   const lintProducts = productsForLint(await db.select().from(products).where(eq(products.companyId, companyContext.company.id)));
   let plan: BlogPlan;
   let markdown = "";
@@ -692,7 +711,7 @@ export async function runBlogPipeline(
 
   let verification: VerificationResult;
   try {
-    verification = await runVerifier(plan, markdown, brandProfile, recordGeneration);
+    verification = await runVerifier(plan, markdown, productFacts, brandProfile, recordGeneration);
     onEvent({ type: "verified", phase: "verifier", verification, message: `Score: ${verification.overallScore}/100 (${verification.passesQualityGate ? "PASS" : "FAIL"})` });
   } catch (err: any) {
     // Verification failure is non-fatal — save with no scores
@@ -732,7 +751,7 @@ export async function runBlogPipeline(
       lintReport = await runLintPass(!lintCorrectionUsed);
 
       // Re-verify
-      const revisedVerification = await runVerifier(plan, markdown, brandProfile, recordGeneration);
+      const revisedVerification = await runVerifier(plan, markdown, productFacts, brandProfile, recordGeneration);
       if (revisedVerification.overallScore < originalVerification.overallScore) {
         markdown = originalMarkdown;
         verification = originalVerification;
