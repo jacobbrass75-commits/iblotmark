@@ -1,4 +1,4 @@
-// iBolt Research Agent Orchestrator
+// Research Agent Orchestrator
 // Ruflo-inspired parallel agent system that populates context banks
 // from Reddit, YouTube transcripts, and web sources.
 //
@@ -10,7 +10,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { cachedApiCall, redditLimiter, youtubeLimiter, anthropicLimiter, TTL } from "./apiCache";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import {
   contextEntries,
   researchJobs,
@@ -19,6 +19,9 @@ import {
   type IndustryVertical,
   type ResearchJob,
 } from "@shared/schema";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
+import { getCompanyContext } from "./companyContext";
+import { readResponseTextLimited, safeFetch } from "./safeFetch";
 
 function getAnthropicClient(): Anthropic {
   return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -27,9 +30,16 @@ function getAnthropicClient(): Anthropic {
 // --- Types ---
 
 export interface AgentTask {
+  companyId: string;
+  companyName: string;
+  companyDescription: string;
   verticalId: string;
   verticalName: string;
   verticalSlug: string;
+  researchSubreddits: string[];
+  researchYoutubeQueries: string[];
+  researchWebQueries: string[];
+  searchTerms: string[];
   sourceType: "reddit" | "youtube" | "web";
   query: string;
 }
@@ -68,6 +78,119 @@ const REDDIT_SUBREDDITS: Record<string, string[]> = {
   "general-mounting": ["gadgets", "DIY", "CarAV", "techsupport"],
 };
 
+function stringArray(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.map((item) => String(item).trim()).filter(Boolean)
+    : [];
+}
+
+function validateSubreddits(value: unknown): string[] {
+  return stringArray(value).filter((name) => /^[A-Za-z0-9_]{2,21}$/.test(name)).slice(0, 8);
+}
+
+function fallbackResearchSources(vertical: IndustryVertical): {
+  subreddits: string[];
+  youtubeQueries: string[];
+  webQueries: string[];
+} {
+  const baseQueries = [
+    `${vertical.name} mounting problems`,
+    `${vertical.name} device mount setup`,
+    `${vertical.name} equipment workflow`,
+    `${vertical.name} buying guide`,
+  ];
+
+  return {
+    subreddits: REDDIT_SUBREDDITS[vertical.slug] || ["smallbusiness", "Entrepreneur", "ecommerce", "BuyItForLife"],
+    youtubeQueries: baseQueries,
+    webQueries: [
+      `${vertical.name} device mounting guide`,
+      `${vertical.name} equipment mounting pain points`,
+      `${vertical.name} product workflow`,
+      `${vertical.name} buyer questions`,
+    ],
+  };
+}
+
+async function discoverResearchSources(
+  vertical: IndustryVertical,
+  companyDescription: string,
+): Promise<{ subreddits: string[]; youtubeQueries: string[]; webQueries: string[] }> {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return fallbackResearchSources(vertical);
+  }
+
+  const client = getAnthropicClient();
+  await anthropicLimiter.acquire();
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-20250514",
+    max_tokens: 2048,
+    messages: [{
+      role: "user",
+      content: `For the industry vertical "${vertical.name}" (${vertical.description || companyDescription}), propose research sources for discovering how real customers talk about device/equipment mounting needs. Return JSON: { "subreddits": ["5-8 real, active subreddit names without r/"], "youtubeQueries": ["4-6 search queries"], "webQueries": ["4-6 search queries"] }`,
+    }],
+  });
+
+  const text = response.content.find((item) => item.type === "text")?.text || "";
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) return fallbackResearchSources(vertical);
+  try {
+    const parsed = JSON.parse(jsonMatch[0]) as {
+      subreddits?: unknown;
+      youtubeQueries?: unknown;
+      webQueries?: unknown;
+    };
+    const fallback = fallbackResearchSources(vertical);
+    const subreddits = validateSubreddits(parsed.subreddits);
+    const youtubeQueries = stringArray(parsed.youtubeQueries).slice(0, 6);
+    const webQueries = stringArray(parsed.webQueries).slice(0, 6);
+    return {
+      subreddits: subreddits.length > 0 ? subreddits : fallback.subreddits,
+      youtubeQueries: youtubeQueries.length > 0 ? youtubeQueries : fallback.youtubeQueries,
+      webQueries: webQueries.length > 0 ? webQueries : fallback.webQueries,
+    };
+  } catch {
+    return fallbackResearchSources(vertical);
+  }
+}
+
+async function ensureResearchSources(
+  vertical: IndustryVertical,
+  companyDescription: string,
+): Promise<IndustryVertical> {
+  const researchSubreddits = validateSubreddits(vertical.researchSubreddits);
+  const researchYoutubeQueries = stringArray(vertical.researchYoutubeQueries);
+  const researchWebQueries = stringArray(vertical.researchWebQueries);
+
+  if (researchSubreddits.length > 0) {
+    return {
+      ...vertical,
+      researchSubreddits,
+      researchYoutubeQueries,
+      researchWebQueries,
+    };
+  }
+
+  const discovered = await discoverResearchSources(vertical, companyDescription);
+  const [updated] = await db
+    .update(industryVerticals)
+    .set({
+      researchSubreddits: discovered.subreddits,
+      researchYoutubeQueries: discovered.youtubeQueries,
+      researchWebQueries: discovered.webQueries,
+      updatedAt: new Date(),
+    })
+    .where(and(eq(industryVerticals.companyId, vertical.companyId), eq(industryVerticals.id, vertical.id)))
+    .returning();
+
+  return updated || {
+    ...vertical,
+    researchSubreddits: discovered.subreddits,
+    researchYoutubeQueries: discovered.youtubeQueries,
+    researchWebQueries: discovered.webQueries,
+  };
+}
+
 async function fetchReddit(subreddit: string, query: string): Promise<string[]> {
   const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${encodeURIComponent(query)}&restrict_sr=1&sort=relevance&t=year&limit=25`;
 
@@ -75,14 +198,15 @@ async function fetchReddit(subreddit: string, query: string): Promise<string[]> 
     const data = await cachedApiCall<any>(
       `reddit:${subreddit}:${query}`,
       async () => {
-        const response = await fetch(url, {
-          headers: { "User-Agent": "iBoltResearchBot/1.0" },
+        const response = await safeFetch(url, {
+          headers: { "User-Agent": "StandaloneBlogWriterResearch/1.0" },
+          signal: AbortSignal.timeout(10000),
         });
         if (!response.ok) {
           console.log(`[Reddit] ${subreddit} returned ${response.status}`);
           return { data: { children: [] } };
         }
-        return response.json();
+        return JSON.parse(await readResponseTextLimited(response, 1_000_000));
       },
       { ttlMs: TTL.RESEARCH_REDDIT, limiter: redditLimiter },
     );
@@ -111,17 +235,48 @@ async function fetchReddit(subreddit: string, query: string): Promise<string[]> 
   }
 }
 
+function buildResearchQueries(task: AgentTask): string[] {
+  return Array.from(new Set([
+    task.query,
+    `${task.query} problems`,
+    `${task.verticalName.toLowerCase()} buying guide`,
+    `${task.verticalName.toLowerCase()} recommendations`,
+    ...task.searchTerms.slice(0, 4),
+  ].map((query) => query.trim()).filter(Boolean)));
+}
+
+function getResearchSubreddits(task: AgentTask): string[] {
+  if (task.researchSubreddits.length > 0) {
+    return task.researchSubreddits;
+  }
+
+  return fallbackResearchSources({
+    id: task.verticalId,
+    companyId: task.companyId,
+    name: task.verticalName,
+    slug: task.verticalSlug,
+    description: null,
+    terminology: [],
+    painPoints: [],
+    useCases: [],
+    regulations: [],
+    seasonalRelevance: null,
+    compatibleDevices: [],
+    researchSubreddits: [],
+    researchYoutubeQueries: [],
+    researchWebQueries: [],
+    lastResearchedAt: null,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }).subreddits;
+}
+
 async function runRedditAgent(task: AgentTask): Promise<InsertContextEntry[]> {
-  const subreddits = REDDIT_SUBREDDITS[task.verticalSlug] || ["gadgets", "DIY"];
+  const subreddits = getResearchSubreddits(task);
   const allPosts: string[] = [];
 
   // Fetch from multiple subreddits in parallel
-  const searchQueries = [
-    task.query,
-    `${task.query} mount`,
-    `${task.query} holder`,
-    `phone tablet mount ${task.verticalName.toLowerCase()}`,
-  ];
+  const searchQueries = buildResearchQueries(task);
 
   const fetches = subreddits.flatMap((sub) =>
     searchQueries.slice(0, 2).map((q) => fetchReddit(sub, q))
@@ -159,9 +314,9 @@ async function fetchYouTubeSearch(query: string): Promise<Array<{ title: string;
     const data = await cachedApiCall<any>(
       `youtube:${query}`,
       async () => {
-        const response = await fetch(url);
+        const response = await safeFetch(url, { signal: AbortSignal.timeout(10000) });
         if (!response.ok) return { items: [] };
-        return response.json();
+        return JSON.parse(await readResponseTextLimited(response, 1_000_000));
       },
       { ttlMs: TTL.RESEARCH_YOUTUBE, limiter: youtubeLimiter },
     );
@@ -190,11 +345,9 @@ async function fetchYouTubeTranscript(videoId: string): Promise<string> {
 }
 
 async function runYouTubeAgent(task: AgentTask): Promise<InsertContextEntry[]> {
-  const searchQueries = [
-    `${task.verticalName} mount phone tablet`,
-    `best ${task.query} mount setup`,
-    `${task.verticalName.toLowerCase()} device mounting review`,
-  ];
+  const searchQueries = (task.researchYoutubeQueries.length > 0
+    ? task.researchYoutubeQueries
+    : buildResearchQueries(task)).slice(0, 3);
 
   const allContent: string[] = [];
 
@@ -234,12 +387,12 @@ async function fetchWebPage(url: string): Promise<string> {
     return await cachedApiCall<string>(
       `web:${url}`,
       async () => {
-        const response = await fetch(url, {
-          headers: { "User-Agent": "Mozilla/5.0 (compatible; iBoltResearchBot/1.0)" },
+        const response = await safeFetch(url, {
+          headers: { "User-Agent": "Mozilla/5.0 (compatible; StandaloneBlogWriterResearch/1.0)" },
           signal: AbortSignal.timeout(10000),
         });
         if (!response.ok) return "";
-        const html = await response.text();
+        const html = await readResponseTextLimited(response, 2_000_000);
         // Strip HTML tags for a rough text extraction
         const text = html
           .replace(/<script[\s\S]*?<\/script>/gi, "")
@@ -313,10 +466,17 @@ const WEB_SOURCES: Record<string, string[]> = {
 };
 
 async function runWebAgent(task: AgentTask): Promise<InsertContextEntry[]> {
-  const sources = WEB_SOURCES[task.verticalSlug] || [];
+  const sources = task.researchWebQueries.length > 0
+    ? task.researchWebQueries
+    : task.companyId === DEFAULT_COMPANY_ID ? (WEB_SOURCES[task.verticalSlug] || []) : buildResearchQueries(task).slice(0, 3);
   const allContent: string[] = [];
 
-  const webFetches = sources.map((url) => fetchWebPage(url));
+  const webFetches = sources.slice(0, 6).map((source) => {
+    const target = /^https?:\/\//i.test(source)
+      ? source
+      : `https://www.google.com/search?q=${encodeURIComponent(source)}`;
+    return fetchWebPage(target);
+  });
   const results = await Promise.allSettled(webFetches);
 
   for (const result of results) {
@@ -356,7 +516,7 @@ async function extractContextFromContent(
     messages: [
       {
         role: "user",
-        content: `You are a research analyst for iBolt Mounts, extracting industry context from ${sourceLabel}.
+        content: `You are a research analyst for ${task.companyName}, extracting industry context from ${sourceLabel}.
 
 Industry Vertical: ${task.verticalName}
 Research Query: ${task.query}
@@ -366,22 +526,25 @@ Raw content from ${sourceLabel}:
 ${rawContent.slice(0, 12000)}
 ---
 
+Company context:
+${task.companyDescription}
+
 Extract valuable context entries for our content knowledge bank. Focus on:
 1. **user_language** — How real people talk about these problems (exact phrases, slang, complaints)
-2. **pain_point** — Specific frustrations with device mounting in this industry
-3. **use_case** — Real-world scenarios where people need mounting solutions
+2. **pain_point** — Specific frustrations, objections, constraints, or unmet needs in this industry
+3. **use_case** — Real-world scenarios where people evaluate, buy, use, maintain, or replace relevant products
 4. **terminology** — Industry-specific terms and jargon used naturally
 5. **trend** — Emerging patterns, new technologies, or shifting behaviors
-6. **competitor** — Mentions of competing products or solutions (RAM Mount, ProClip, etc.)
+6. **competitor** — Mentions of competing products, brands, or alternative solutions
 7. **buyer_question** — Purchase questions or evaluation criteria buyers repeatedly ask
-8. **install_constraint** — Physical install blockers: vibration, space limits, drill/no-drill, glare, theft, weather
-9. **device_pattern** — Specific devices, models, screen sizes, or workflows repeatedly referenced
-10. **specification** — Measurements, materials, mounts, or fit details writers should preserve accurately
+8. **usage_constraint** — Practical blockers such as setup, fit, sizing, workflow, environment, compliance, care, storage, durability, or adoption
+9. **product_pattern** — Specific products, models, sizes, bundles, accessories, workflows, or compatibility patterns repeatedly referenced
+10. **specification** — Measurements, materials, ingredients, dimensions, fit details, certifications, or other facts writers should preserve accurately
 
 Return JSON array. Each entry should be a self-contained insight that helps us write authentic blog content:
 [
   {
-    "category": "user_language|pain_point|use_case|terminology|trend|competitor|buyer_question|install_constraint|device_pattern|specification",
+    "category": "user_language|pain_point|use_case|terminology|trend|competitor|buyer_question|usage_constraint|product_pattern|specification",
     "content": "Specific, detailed insight written as a reference note. Include direct quotes when available.",
     "confidence": 0.0-1.0
   }
@@ -409,6 +572,7 @@ Rules:
   }>;
 
   return extracted.map((e) => ({
+    companyId: task.companyId,
     verticalId: task.verticalId,
     category: e.category,
     content: e.content,
@@ -444,10 +608,18 @@ export class ResearchOrchestrator {
    * If verticalIds is empty, runs for ALL verticals.
    */
   async runResearch(options: {
+    companyId?: string;
     verticalIds?: string[];
     sourceTypes?: Array<"reddit" | "youtube" | "web">;
     customQueries?: string[];
   }): Promise<OrchestratorProgress> {
+    const companyId = options.companyId || DEFAULT_COMPANY_ID;
+    const companyContext = await getCompanyContext(companyId);
+    const companyName = companyContext.brandProfile.displayName || companyContext.company.name;
+    const companyDescription = companyContext.brandProfile.positioning
+      || companyContext.brandProfile.shortDescription
+      || companyContext.company.primaryMarket
+      || "No company positioning configured yet.";
     const sourceTypes = options.sourceTypes || ["reddit", "youtube", "web"];
 
     // Get target verticals
@@ -455,28 +627,45 @@ export class ResearchOrchestrator {
     if (options.verticalIds && options.verticalIds.length > 0) {
       verticals = [];
       for (const id of options.verticalIds) {
-        const [v] = await db.select().from(industryVerticals).where(eq(industryVerticals.id, id)).limit(1);
+        const [v] = await db
+          .select()
+          .from(industryVerticals)
+          .where(and(eq(industryVerticals.companyId, companyId), eq(industryVerticals.id, id)))
+          .limit(1);
         if (v) verticals.push(v);
       }
     } else {
-      verticals = await db.select().from(industryVerticals);
+      verticals = await db.select().from(industryVerticals).where(eq(industryVerticals.companyId, companyId));
     }
+    verticals = await Promise.all(verticals.map((vertical) => ensureResearchSources(vertical, companyDescription)));
 
     // Build agent tasks
     const tasks: AgentTask[] = [];
     for (const vertical of verticals) {
       for (const sourceType of sourceTypes) {
+        const searchTerms = Array.from(new Set([
+          ...(Array.isArray(vertical.terminology) ? vertical.terminology : []),
+          ...(Array.isArray(vertical.painPoints) ? vertical.painPoints : []),
+          ...(Array.isArray(vertical.useCases) ? vertical.useCases : []),
+          ...(Array.isArray(vertical.compatibleDevices) ? vertical.compatibleDevices : []),
+        ].map((item) => String(item).trim()).filter(Boolean)));
         const queries = options.customQueries || [
           vertical.name.toLowerCase(),
-          `${vertical.name.toLowerCase()} mount`,
-          `${vertical.name.toLowerCase()} phone holder`,
+          ...searchTerms.slice(0, 3),
         ];
 
         for (const query of queries.slice(0, 2)) {
           tasks.push({
+            companyId,
+            companyName,
+            companyDescription,
             verticalId: vertical.id,
             verticalName: vertical.name,
             verticalSlug: vertical.slug,
+            researchSubreddits: validateSubreddits(vertical.researchSubreddits),
+            researchYoutubeQueries: stringArray(vertical.researchYoutubeQueries),
+            researchWebQueries: stringArray(vertical.researchWebQueries),
+            searchTerms,
             sourceType,
             query,
           });
@@ -534,6 +723,14 @@ export class ResearchOrchestrator {
 
     console.log(`[Research] Complete: ${progress.completed} succeeded, ${progress.failed} failed, ${progress.results.reduce((s, r) => s + r.entriesFound, 0)} entries found`);
 
+    const researchedAt = new Date();
+    for (const vertical of verticals) {
+      await db
+        .update(industryVerticals)
+        .set({ lastResearchedAt: researchedAt, updatedAt: researchedAt })
+        .where(and(eq(industryVerticals.companyId, companyId), eq(industryVerticals.id, vertical.id)));
+    }
+
     return progress;
   }
 
@@ -542,6 +739,7 @@ export class ResearchOrchestrator {
     const [job] = await db
       .insert(researchJobs)
       .values({
+        companyId: task.companyId,
         verticalId: task.verticalId,
         sourceType: task.sourceType,
         query: task.query,
@@ -610,6 +808,7 @@ export class ResearchOrchestrator {
  * Quick-launch: run research for all verticals with Reddit (no API key needed).
  */
 export async function runFullRedditResearch(
+  companyId = DEFAULT_COMPANY_ID,
   onProgress?: (p: OrchestratorProgress) => void,
 ): Promise<OrchestratorProgress> {
   const orchestrator = new ResearchOrchestrator({
@@ -617,7 +816,7 @@ export async function runFullRedditResearch(
     onProgress,
   });
 
-  return orchestrator.runResearch({ sourceTypes: ["reddit"] });
+  return orchestrator.runResearch({ companyId, sourceTypes: ["reddit"] });
 }
 
 /**
@@ -625,22 +824,24 @@ export async function runFullRedditResearch(
  */
 export async function runVerticalResearch(
   verticalId: string,
+  companyId = DEFAULT_COMPANY_ID,
   onProgress?: (p: OrchestratorProgress) => void,
+  sourceTypes?: Array<"reddit" | "youtube" | "web">,
 ): Promise<OrchestratorProgress> {
   const orchestrator = new ResearchOrchestrator({
     concurrency: 5,
     onProgress,
   });
 
-  return orchestrator.runResearch({ verticalIds: [verticalId] });
+  return orchestrator.runResearch({ companyId, verticalIds: [verticalId], sourceTypes });
 }
 
 /**
  * Get research job history.
  */
-export async function getResearchJobs(verticalId?: string): Promise<ResearchJob[]> {
+export async function getResearchJobs(companyId = DEFAULT_COMPANY_ID, verticalId?: string): Promise<ResearchJob[]> {
   if (verticalId) {
-    return db.select().from(researchJobs).where(eq(researchJobs.verticalId, verticalId));
+    return db.select().from(researchJobs).where(and(eq(researchJobs.companyId, companyId), eq(researchJobs.verticalId, verticalId)));
   }
-  return db.select().from(researchJobs);
+  return db.select().from(researchJobs).where(eq(researchJobs.companyId, companyId));
 }

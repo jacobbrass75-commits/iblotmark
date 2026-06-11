@@ -4,6 +4,8 @@
 import { db } from "./db";
 import { industryVerticals, contextEntries } from "@shared/schema";
 import type { InsertContextEntry } from "@shared/schema";
+import { and, eq } from "drizzle-orm";
+import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 
 export interface VerticalSeed {
   name: string;
@@ -15,7 +17,67 @@ export interface VerticalSeed {
   regulations: string[];
   seasonalRelevance: string;
   compatibleDevices: string[];
+  researchSubreddits?: string[];
+  researchYoutubeQueries?: string[];
+  researchWebQueries?: string[];
   contextEntries: Array<{ category: string; content: string }>;
+}
+
+const RESEARCH_SUBREDDIT_SEEDS: Record<string, string[]> = {
+  "fishing-boating": ["fishing", "kayakfishing", "boating", "bassfishing", "Fishfinder"],
+  "forklifts-warehousing": ["warehouse", "forklift", "logistics", "supplychain"],
+  "trucking-fleet": ["Truckers", "trucking", "FreightBrokers", "Trucking"],
+  "offroading-jeep": ["Jeep", "4x4", "overlanding", "Wrangler", "offroad"],
+  "restaurants-food-delivery": ["KitchenConfidential", "doordash_drivers", "UberEATS", "restaurateur"],
+  "education-schools": ["Teachers", "edtech", "k12sysadmin", "education"],
+  "content-creation-streaming": ["Twitch", "NewTubers", "videography", "streaming"],
+  "agriculture-farming": ["farming", "agriculture", "tractors", "homestead"],
+  "kitchen-home": ["Cooking", "HomeImprovement", "homeautomation", "SmartHome"],
+  "road-trips-travel": ["roadtrip", "CarHacks", "uberdrivers", "GoRVing"],
+  "mountain-biking-cycling": ["MTB", "cycling", "ebikes", "bikepacking"],
+  "general-mounting": ["gadgets", "DIY", "CarAV", "techsupport"],
+};
+
+function nonEmptyStringArray(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.map((item) => String(item).trim()).filter(Boolean)
+    : [];
+}
+
+function defaultResearchYoutubeQueries(seed: VerticalSeed): string[] {
+  return [
+    `${seed.name} mounting problems`,
+    `${seed.name} device mount setup`,
+    `${seed.name} product workflow`,
+    `${seed.name} buying guide`,
+  ];
+}
+
+function defaultResearchWebQueries(seed: VerticalSeed): string[] {
+  return [
+    `${seed.name} device mounting guide`,
+    `${seed.name} equipment mounting pain points`,
+    `${seed.name} technology workflow`,
+    `${seed.name} buyer questions`,
+  ];
+}
+
+function researchSourcePayload(seed: VerticalSeed, existing?: Partial<typeof industryVerticals.$inferSelect> | null) {
+  const existingSubreddits = nonEmptyStringArray(existing?.researchSubreddits);
+  const existingYoutube = nonEmptyStringArray(existing?.researchYoutubeQueries);
+  const existingWeb = nonEmptyStringArray(existing?.researchWebQueries);
+
+  return {
+    researchSubreddits: existingSubreddits.length > 0
+      ? existingSubreddits
+      : (seed.researchSubreddits || RESEARCH_SUBREDDIT_SEEDS[seed.slug] || []),
+    researchYoutubeQueries: existingYoutube.length > 0
+      ? existingYoutube
+      : (seed.researchYoutubeQueries || defaultResearchYoutubeQueries(seed)),
+    researchWebQueries: existingWeb.length > 0
+      ? existingWeb
+      : (seed.researchWebQueries || defaultResearchWebQueries(seed)),
+  };
 }
 
 export const VERTICAL_SEEDS: VerticalSeed[] = [
@@ -382,47 +444,96 @@ export const VERTICAL_SEEDS: VerticalSeed[] = [
 ];
 
 /**
- * Seed verticals and context entries if the industry_verticals table is empty.
- * Returns the number of verticals seeded (0 if already populated).
+ * Idempotently seed/repair the 12 required verticals and their starter context.
+ * Returns the number of new vertical rows inserted.
  */
-export async function seedVerticals(): Promise<number> {
-  const existing = await db.select().from(industryVerticals).limit(1);
-  if (existing.length > 0) {
-    return 0;
-  }
-
+export async function seedVerticals(companyId = DEFAULT_COMPANY_ID): Promise<number> {
   let seeded = 0;
+  const existingVerticals = await db.select().from(industryVerticals).where(eq(industryVerticals.companyId, companyId));
+  const verticalBySlug = new Map(existingVerticals.map((vertical) => [vertical.slug, vertical]));
+  const fallbackSuffix = companyId === DEFAULT_COMPANY_ID ? "" : `-${companyId.slice(0, 8)}`;
 
   for (const seed of VERTICAL_SEEDS) {
-    const [vertical] = await db
-      .insert(industryVerticals)
-      .values({
-        name: seed.name,
-        slug: seed.slug,
-        description: seed.description,
-        terminology: seed.terminology,
-        painPoints: seed.painPoints,
-        useCases: seed.useCases,
-        regulations: seed.regulations,
-        seasonalRelevance: seed.seasonalRelevance,
-        compatibleDevices: seed.compatibleDevices,
-      })
-      .returning();
+    let vertical = verticalBySlug.get(seed.slug);
+    let verticalPayload = {
+      companyId,
+      name: seed.name,
+      slug: seed.slug,
+      description: seed.description,
+      terminology: seed.terminology,
+      painPoints: seed.painPoints,
+      useCases: seed.useCases,
+      regulations: seed.regulations,
+      seasonalRelevance: seed.seasonalRelevance,
+      compatibleDevices: seed.compatibleDevices,
+      ...researchSourcePayload(seed, vertical),
+      updatedAt: new Date(),
+    };
 
-    if (seed.contextEntries.length > 0) {
-      const entries: InsertContextEntry[] = seed.contextEntries.map((ce) => ({
-        verticalId: vertical.id,
-        category: ce.category,
-        content: ce.content,
-        sourceType: "seed",
-        confidence: 1.0,
-        isVerified: true,
-      }));
+    if (vertical) {
+      [vertical] = await db
+        .update(industryVerticals)
+        .set(verticalPayload)
+        .where(and(eq(industryVerticals.companyId, companyId), eq(industryVerticals.slug, seed.slug)))
+        .returning();
+    } else {
+      try {
+        [vertical] = await db
+          .insert(industryVerticals)
+          .values({
+            ...verticalPayload,
+          })
+          .returning();
+      } catch (error: any) {
+        if (!fallbackSuffix || !String(error?.message || "").includes("UNIQUE constraint failed")) {
+          throw error;
+        }
 
-      await db.insert(contextEntries).values(entries);
+        verticalPayload = {
+          ...verticalPayload,
+          name: `${seed.name} (${companyId.slice(0, 8)})`,
+          slug: `${seed.slug}${fallbackSuffix}`,
+        };
+        [vertical] = await db
+          .insert(industryVerticals)
+          .values({
+            ...verticalPayload,
+          })
+          .returning();
+      }
+      verticalBySlug.set(seed.slug, vertical);
+      seeded++;
     }
 
-    seeded++;
+    if (seed.contextEntries.length > 0) {
+      const existingEntries = await db
+        .select({
+          category: contextEntries.category,
+          content: contextEntries.content,
+        })
+        .from(contextEntries)
+        .where(and(eq(contextEntries.companyId, companyId), eq(contextEntries.verticalId, vertical.id)));
+
+      const existingEntryKeys = new Set(
+        existingEntries.map((entry) => `${entry.category}::${entry.content}`),
+      );
+
+      const entries: InsertContextEntry[] = seed.contextEntries
+        .filter((ce) => !existingEntryKeys.has(`${ce.category}::${ce.content}`))
+        .map((ce) => ({
+          companyId,
+          verticalId: vertical.id,
+          category: ce.category,
+          content: ce.content,
+          sourceType: "seed",
+          confidence: 1.0,
+          isVerified: true,
+        }));
+
+      if (entries.length > 0) {
+        await db.insert(contextEntries).values(entries);
+      }
+    }
   }
 
   return seeded;

@@ -557,6 +557,10 @@ CREATE TABLE IF NOT EXISTS industry_verticals (
   regulations TEXT,
   seasonal_relevance TEXT,
   compatible_devices TEXT,
+  research_subreddits TEXT,
+  research_youtube_queries TEXT,
+  research_web_queries TEXT,
+  last_researched_at INTEGER,
   created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
   updated_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000)
 );
@@ -1099,6 +1103,10 @@ ensureColumn("blog_posts", "shopify_blog_id", "shopify_blog_id INTEGER");
 ensureColumn("blog_posts", "shopify_synced_at", "shopify_synced_at TEXT");
 ensureColumn("blog_posts", "generation_provider", "generation_provider TEXT");
 ensureColumn("blog_posts", "generation_model", "generation_model TEXT");
+ensureColumn("industry_verticals", "research_subreddits", "research_subreddits TEXT");
+ensureColumn("industry_verticals", "research_youtube_queries", "research_youtube_queries TEXT");
+ensureColumn("industry_verticals", "research_web_queries", "research_web_queries TEXT");
+ensureColumn("industry_verticals", "last_researched_at", "last_researched_at INTEGER");
 
 // Extend products table with catalog enrichment columns
 ensureColumn("ibolt_products", "catalog_description", "catalog_description TEXT");

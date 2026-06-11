@@ -17,7 +17,8 @@ import { generationBatches, blogPosts, products as productTable } from "@shared/
 import JSZip from "jszip";
 import { writingQueue } from "./writingQueue";
 import { processCompetitorUrls, fetchCompetitorSitemap } from "./competitorScraper";
-import { createVerticalFromDescription, autoMapKeywordsToVerticals } from "./verticalCreator";
+import { createVerticalFromDescription, autoMapKeywordsToVerticals, suggestMissingVerticals } from "./verticalCreator";
+import { getResearchCoverage } from "./researchCoverage";
 import { importLegacyContentOutput } from "./legacyContent";
 import { getCompanyContext, getCompanyIdFromRequest, requireBlogMutationRole } from "./companyContext";
 import {
@@ -429,6 +430,15 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
     }
   });
 
+  // GET /api/blog/research/coverage — Research coverage by vertical
+  router.get("/research/coverage", async (req: Request, res: Response) => {
+    try {
+      res.json(await getResearchCoverage(getCompanyIdFromRequest(req)));
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // === WRITING QUEUE ===
 
   // GET /api/blog/queue — Get current queue state
@@ -539,6 +549,27 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       if (!description) return res.status(400).json({ error: "description required" });
       const vertical = await createVerticalFromDescription(description, getCompanyIdFromRequest(req));
       res.json(vertical);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/verticals/create — AI generates a full vertical from a short description
+  router.post("/verticals/create", async (req: Request, res: Response) => {
+    try {
+      const { description } = req.body || {};
+      if (!description) return res.status(400).json({ error: "description required" });
+      const vertical = await createVerticalFromDescription(description, getCompanyIdFromRequest(req));
+      res.json(vertical);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/verticals/suggest — Suggest missing verticals from unmapped demand
+  router.post("/verticals/suggest", async (req: Request, res: Response) => {
+    try {
+      res.json(await suggestMissingVerticals(getCompanyIdFromRequest(req)));
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

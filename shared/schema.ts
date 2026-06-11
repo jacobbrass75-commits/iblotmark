@@ -993,6 +993,10 @@ export const industryVerticals = sqliteTable("industry_verticals", {
   regulations: text("regulations", { mode: "json" }).$type<string[]>(),
   seasonalRelevance: text("seasonal_relevance"),
   compatibleDevices: text("compatible_devices", { mode: "json" }).$type<string[]>(),
+  researchSubreddits: text("research_subreddits", { mode: "json" }).$type<string[]>(),
+  researchYoutubeQueries: text("research_youtube_queries", { mode: "json" }).$type<string[]>(),
+  researchWebQueries: text("research_web_queries", { mode: "json" }).$type<string[]>(),
+  lastResearchedAt: integer("last_researched_at", { mode: "timestamp" }),
   createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
 }, (table) => [

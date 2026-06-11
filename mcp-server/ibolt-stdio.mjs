@@ -340,13 +340,51 @@ server.tool(
       let path, body;
       if (verticalId) {
         path = `/api/blog/context/research/vertical/${encodeURIComponent(verticalId)}`;
-        body = sources ? { sources } : {};
+        body = sources ? { sourceTypes: sources } : {};
       } else {
         path = "/api/blog/context/research/run";
-        body = sources ? { sources } : {};
+        body = sources ? { sourceTypes: sources } : {};
       }
       const result = await apiSSE("POST", path, body, 600_000);
       return ok(result.text || "Research complete");
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "get_research_coverage",
+  "Show research coverage per industry vertical: entry counts, staleness, missing research sources. Use to decide where to run research.",
+  {},
+  async () => {
+    try {
+      const data = await api("GET", "/api/blog/research/coverage");
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "suggest_verticals",
+  "Analyze unmapped keywords and benchmark queries to detect new product categories that need a vertical.",
+  {},
+  async () => {
+    try {
+      const data = await api("POST", "/api/blog/verticals/suggest", {});
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "create_vertical",
+  "Create a complete new industry vertical (terminology, pain points, use cases, research sources) from a short description. Use when entering a new product category.",
+  {
+    description: z.string().describe("Short description of the new product category or customer vertical"),
+  },
+  async ({ description }) => {
+    try {
+      const data = await api("POST", "/api/blog/verticals/create", { description });
+      return ok(data);
     } catch (e) { return err(e.message); }
   }
 );

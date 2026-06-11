@@ -34,16 +34,16 @@ Autonomous SEO blog generator for **iBolt Mounts** (iboltmounts.com), forked fro
 - Extracts FAQ sections into JSON-LD FAQPage schema
 - Converts local `/api/blog/photos/serve/` URLs to `PUBLIC_BASE_URL` for Shopify
 
-## MCP Server — 33 Tools (`mcp-server/ibolt-stdio.mjs`)
+## MCP Server — 37 Tools (`mcp-server/ibolt-stdio.mjs`)
 
 ### Blog Posts
-`list_blog_posts`, `get_blog_post`, `get_blog_post_html`, `update_blog_post`, `generate_blog_post`
+`list_blog_posts`, `get_blog_post`, `get_blog_post_html`, `update_blog_post`, `generate_blog_post`, `lint_content`
 
 ### Keywords
 `list_keywords`, `list_keyword_clusters`, `import_keywords`, `cluster_keywords`
 
-### Industry Context (12 verticals)
-`list_verticals`, `get_context_entries`, `add_context_entry`, `run_research`
+### Industry Context (company-configurable verticals)
+`list_verticals`, `get_context_entries`, `add_context_entry`, `run_research`, `get_research_coverage`, `suggest_verticals`, `create_vertical`
 
 ### Products
 `list_products`, `scrape_products`
@@ -77,7 +77,7 @@ Autonomous SEO blog generator for **iBolt Mounts** (iboltmounts.com), forked fro
 | `server/keywordManager.ts` | CSV parsing, scoring, AI clustering |
 | `server/iboltResearchAgent.ts` | Reddit/YouTube/web → context banks |
 | `shared/schema.ts` | 31 Drizzle ORM tables |
-| `mcp-server/ibolt-stdio.mjs` | MCP stdio server (33 tools) |
+| `mcp-server/ibolt-stdio.mjs` | MCP stdio server (37 tools) |
 
 ## Brand Voice (baked into all generation prompts)
 
