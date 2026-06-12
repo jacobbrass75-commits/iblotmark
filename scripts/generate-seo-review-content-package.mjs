@@ -691,9 +691,16 @@ function cartUrl(product) {
   return `${SITE}/cart/add?id=${product.variantId}&quantity=1`;
 }
 
+const ACTION_LINK_BASE_STYLE =
+  "display:inline-block; padding:9px 13px; border-radius:5px; text-decoration:none; font-weight:700; font-size:14px; background-image:none; box-shadow:none;";
+const VIEW_PRODUCT_LINK_STYLE =
+  `${ACTION_LINK_BASE_STYLE} border:1px solid #101828; color:#101828; background:#fff;`;
+const ADD_TO_CART_LINK_STYLE =
+  `${ACTION_LINK_BASE_STYLE} background:#101828; color:#fff;`;
+
 function productCard(product) {
   const cart = product.variantId
-    ? `<a style="display:inline-block; padding:9px 13px; border-radius:5px; background:#101828; color:#fff; text-decoration:none; font-weight:700; font-size:14px;" href="${cartUrl(product)}">Add to Cart</a>`
+    ? `<a style="${ADD_TO_CART_LINK_STYLE}" href="${cartUrl(product)}">Add to Cart</a>`
     : `<span class="note">Variant ID needs verification before adding cart link.</span>`;
 
   return `<div style="display:grid; grid-template-columns:160px 1fr; gap:18px; border:1px solid #d9dee7; border-radius:8px; padding:14px; margin:18px 0; align-items:center;">
@@ -701,7 +708,7 @@ function productCard(product) {
   <div>
     <h3 style="margin:0 0 6px; font-size:18px;">${escapeHtml(product.title)}</h3>
     <p><strong>$${product.price}</strong> | ${escapeHtml(product.type)}</p>
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;"><a style="display:inline-block; padding:9px 13px; border-radius:5px; border:1px solid #101828; color:#101828; text-decoration:none; font-weight:700; font-size:14px;" href="${product.url}">View Product</a>${cart}</div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;"><a style="${VIEW_PRODUCT_LINK_STYLE}" href="${product.url}">View Product</a>${cart}</div>
   </div>
 </div>`;
 }

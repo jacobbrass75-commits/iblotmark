@@ -825,8 +825,8 @@ function productCard(product) {
   <h3><a href="${product.url}">${escapeHtml(product.title)}</a></h3>
   ${price ? `<p class="price">${price}</p>` : ""}
   <div class="aeo-card-actions">
-    <a class="button secondary" href="${product.url}">View Product</a>
-    ${product.variantId ? `<a class="button" href="${cartUrl(product)}">Add to Cart</a>` : ""}
+    <a class="aeo-product-link aeo-product-link-secondary" href="${product.url}">View Product</a>
+    ${product.variantId ? `<a class="aeo-product-link aeo-product-link-primary" href="${cartUrl(product)}">Add to Cart</a>` : ""}
   </div>
 </div>`;
 }
@@ -893,12 +893,14 @@ function styleBlock() {
 .aeo-product-card h3 { font-size: 1rem; min-height: 3.8em; margin-top: 0; }
 .aeo-product-card .price { font-weight: 700; margin-bottom: 0.75rem; }
 .aeo-card-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-.aeo-card-actions .button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px; border-radius: 6px; background: #101827; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem; }
-.aeo-card-actions .button.secondary { background: #eef0f2; color: #111; }
+.aeo-card-actions .aeo-product-link { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px; border-radius: 6px; border: 1px solid #101827; background: #101827; background-image: none !important; box-shadow: none !important; color: #fff !important; text-decoration: none !important; font-weight: 700; font-size: 0.92rem; line-height: 1.2; position: relative; }
+.aeo-card-actions .aeo-product-link::before,
+.aeo-card-actions .aeo-product-link::after { content: none !important; display: none !important; }
+.aeo-card-actions .aeo-product-link-secondary { background: #fff !important; color: #111 !important; }
 .aeo-steps { padding-left: 1.25rem; }
 .aeo-steps li { margin-bottom: 0.6rem; }
 @media (max-width: 640px) {
-  .aeo-card-actions .button { width: 100%; }
+  .aeo-card-actions .aeo-product-link { width: 100%; }
   .aeo-product-card h3 { min-height: 0; }
 }
 </style>`;

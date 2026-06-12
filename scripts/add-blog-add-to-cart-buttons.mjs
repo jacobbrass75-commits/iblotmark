@@ -210,7 +210,7 @@ function buttonGroup(handles, productMap, compact = false) {
     .map((product) => {
       const label = compact ? "Add to Cart" : `Add ${escapeHtml(product.shortTitle)} to Cart`;
       const aria = `Add ${escapeHtml(product.title)} to cart`;
-      return `<a data-ibolt-add-to-cart="${escapeHtml(product.handle)}" href="${STORE_ORIGIN}/cart/add?id=${product.variantId}&quantity=1" aria-label="${aria}" style="display:inline-block; padding:10px 16px; border-radius:4px; background:#111827; color:#ffffff; text-decoration:none; font-weight:700; font-size:14px; line-height:1.2;">${label}</a>`;
+      return `<a data-ibolt-add-to-cart="${escapeHtml(product.handle)}" href="${STORE_ORIGIN}/cart/add?id=${product.variantId}&quantity=1" aria-label="${aria}" style="display:inline-block; padding:10px 16px; border-radius:4px; background:#111827; background-image:none; box-shadow:none; color:#ffffff; text-decoration:none; font-weight:700; font-size:14px; line-height:1.2;">${label}</a>`;
     });
 
   if (!buttons.length) return "";
