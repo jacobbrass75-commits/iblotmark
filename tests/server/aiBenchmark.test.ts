@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { computeSimilarity } from "../../server/aiBenchmarkUtils";
+import { computeSimilarity, deriveBrandAliasVariants } from "../../server/aiBenchmarkUtils";
 
 describe("aiBenchmark", () => {
   it("scores overlapping long-tail queries as similar", () => {
@@ -18,5 +18,12 @@ describe("aiBenchmark", () => {
     );
 
     expect(score).toBeLessThan(0.25);
+  });
+
+  it("derives short aliases from brand names and domains", () => {
+    expect(deriveBrandAliasVariants("iBolt Mounts")).toEqual(
+      expect.arrayContaining(["iBolt Mounts", "iBoltMounts", "iBolt"]),
+    );
+    expect(deriveBrandAliasVariants("iboltmounts")).toContain("ibolt");
   });
 });

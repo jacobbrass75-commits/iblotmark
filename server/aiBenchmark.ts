@@ -17,7 +17,7 @@ import {
   type AiBenchmarkRun,
   type InsertAiBenchmarkQuery,
 } from "@shared/schema";
-import { computeSimilarity, toTitleCase } from "./aiBenchmarkUtils";
+import { computeSimilarity, deriveBrandAliasVariants, toTitleCase } from "./aiBenchmarkUtils";
 import { writingQueue } from "./writingQueue";
 import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 import { getCompanyContext, type CompanyContext } from "./companyContext";
@@ -202,6 +202,12 @@ export interface MaterializeContentPlanOptions {
 const OPENAI_DEFAULT_MODEL = process.env.AI_BENCHMARK_OPENAI_MODEL || "gpt-4.1";
 const ANTHROPIC_DEFAULT_MODEL = process.env.AI_BENCHMARK_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
 const GEMINI_DEFAULT_MODEL = process.env.AI_BENCHMARK_GEMINI_MODEL || "gemini-2.5-flash";
+const OPENROUTER_CHATGPT_MODEL = process.env.AI_BENCHMARK_OPENROUTER_CHATGPT_MODEL || "openai/gpt-4o";
+const OPENROUTER_CLAUDE_MODEL = process.env.AI_BENCHMARK_OPENROUTER_CLAUDE_MODEL || "anthropic/claude-sonnet-4";
+const OPENROUTER_GEMINI_MODEL = process.env.AI_BENCHMARK_OPENROUTER_GEMINI_MODEL || "google/gemini-2.5-flash";
+const OPENROUTER_SITE_URL = process.env.OPENROUTER_SITE_URL || process.env.PUBLIC_BASE_URL || "https://iboltmounts.com";
+const OPENROUTER_APP_TITLE = process.env.OPENROUTER_APP_TITLE || "iBOLT AI Visibility Benchmark";
+const FORCE_OPENROUTER = ["1", "true", "yes", "on"].includes((process.env.AI_BENCHMARK_FORCE_OPENROUTER || "").toLowerCase());
 const QUERY_PRODUCT_STOP_WORDS = new Set([
   "best",
   "for",
@@ -358,10 +364,11 @@ function buildBenchmarkBaselineSnapshot(
 function isProviderConfigured(provider: BenchmarkProvider): boolean {
   switch (provider) {
     case "chatgpt":
-      return Boolean(process.env.OPENAI_API_KEY);
+      return Boolean(process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY);
     case "claude":
-      return Boolean(process.env.ANTHROPIC_API_KEY);
+      return Boolean(process.env.ANTHROPIC_API_KEY || process.env.OPENROUTER_API_KEY);
     case "gemini_plain":
+      return Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_AI_API_KEY || process.env.OPENROUTER_API_KEY);
     case "gemini_google_search":
       return Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_AI_API_KEY);
   }
@@ -466,6 +473,24 @@ function extractGeminiText(response: any): string {
     .trim();
 }
 
+function extractOpenRouterText(response: any): string {
+  const content = response?.choices?.[0]?.message?.content;
+  if (typeof content === "string") return content.trim();
+  if (Array.isArray(content)) {
+    return content
+      .map((part) => {
+        if (typeof part === "string") return part;
+        if (typeof part?.text === "string") return part.text;
+        if (typeof part?.content === "string") return part.content;
+        return "";
+      })
+      .filter(Boolean)
+      .join("\n\n")
+      .trim();
+  }
+  return "";
+}
+
 function extractGeminiGroundingUrls(response: any): string[] {
   const chunks = response?.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
   const urls = chunks.map((chunk: any) => chunk?.web?.uri).filter(Boolean);
@@ -480,12 +505,9 @@ function getBrandAliases(companyContext: CompanyContext): string[] {
   const aliases = [
     companyContext.brandProfile.displayName,
     companyContext.company.name,
+    ...getTargetDomains(companyContext).map((domain) => domain.split(".")[0]),
   ].filter(Boolean);
-  return dedupeStrings(aliases.flatMap((alias) => [
-    alias,
-    alias.replace(/[\s-]+/g, ""),
-    alias.replace(/[\s-]+/g, " "),
-  ]).filter((alias) => alias.length >= 3));
+  return dedupeStrings(aliases.flatMap((alias) => deriveBrandAliasVariants(alias)));
 }
 
 function hasTargetBrandMention(text: string, companyContext: CompanyContext): boolean {
@@ -658,7 +680,14 @@ function analyzeResponse(
 }
 
 async function runOpenAiProvider(prompt: string): Promise<ProviderExecution> {
+  if (FORCE_OPENROUTER && process.env.OPENROUTER_API_KEY) {
+    return runOpenRouterProvider(prompt, OPENROUTER_CHATGPT_MODEL);
+  }
+
   if (!process.env.OPENAI_API_KEY) {
+    if (process.env.OPENROUTER_API_KEY) {
+      return runOpenRouterProvider(prompt, OPENROUTER_CHATGPT_MODEL);
+    }
     return {
       status: "skipped",
       model: OPENAI_DEFAULT_MODEL,
@@ -707,8 +736,66 @@ async function runOpenAiProvider(prompt: string): Promise<ProviderExecution> {
   }
 }
 
+async function runOpenRouterProvider(prompt: string, model: string): Promise<ProviderExecution> {
+  if (!process.env.OPENROUTER_API_KEY) {
+    return {
+      status: "skipped",
+      model,
+      prompt,
+      error: "OPENROUTER_API_KEY is not configured.",
+    };
+  }
+
+  try {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": OPENROUTER_SITE_URL,
+        "X-Title": OPENROUTER_APP_TITLE,
+      },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.2,
+        max_tokens: 1100,
+      }),
+      signal: AbortSignal.timeout(75000),
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`OpenRouter API returned ${response.status}: ${body}`);
+    }
+
+    const json = await response.json();
+    return {
+      status: "completed",
+      model,
+      prompt,
+      responseText: extractOpenRouterText(json),
+      sourceUrls: collectUrls(json),
+    };
+  } catch (error: any) {
+    return {
+      status: "failed",
+      model,
+      prompt,
+      error: error.message || "OpenRouter benchmark call failed.",
+    };
+  }
+}
+
 async function runAnthropicProvider(prompt: string): Promise<ProviderExecution> {
+  if (FORCE_OPENROUTER && process.env.OPENROUTER_API_KEY) {
+    return runOpenRouterProvider(prompt, OPENROUTER_CLAUDE_MODEL);
+  }
+
   if (!process.env.ANTHROPIC_API_KEY) {
+    if (process.env.OPENROUTER_API_KEY) {
+      return runOpenRouterProvider(prompt, OPENROUTER_CLAUDE_MODEL);
+    }
     return {
       status: "skipped",
       model: ANTHROPIC_DEFAULT_MODEL,
@@ -761,6 +848,13 @@ async function runAnthropicProvider(prompt: string): Promise<ProviderExecution> 
 async function runGeminiProvider(prompt: string, grounded: boolean): Promise<ProviderExecution> {
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_AI_API_KEY;
   const models = dedupeStrings([GEMINI_DEFAULT_MODEL, "gemini-2.5-flash-lite"]);
+  if (FORCE_OPENROUTER && !grounded && process.env.OPENROUTER_API_KEY) {
+    return runOpenRouterProvider(prompt, OPENROUTER_GEMINI_MODEL);
+  }
+
+  if (!grounded && !apiKey && process.env.OPENROUTER_API_KEY) {
+    return runOpenRouterProvider(prompt, OPENROUTER_GEMINI_MODEL);
+  }
   if (!apiKey) {
     return {
       status: "skipped",
@@ -1061,6 +1155,74 @@ export async function getLatestBenchmarkRunSummary(companyId = DEFAULT_COMPANY_I
   const fallbackRun = runs[0];
   if (!usableRun && !fallbackRun) return null;
   return getBenchmarkRunSummary((usableRun || fallbackRun).id, companyId);
+}
+
+export async function reanalyzeBenchmarkRun(runId: string, companyId = DEFAULT_COMPANY_ID): Promise<BenchmarkRunSummary | null> {
+  const [run] = await db
+    .select()
+    .from(aiBenchmarkRuns)
+    .where(and(eq(aiBenchmarkRuns.companyId, companyId), eq(aiBenchmarkRuns.id, runId)))
+    .limit(1);
+  if (!run) return null;
+
+  const results = await db
+    .select()
+    .from(aiBenchmarkResults)
+    .where(and(eq(aiBenchmarkResults.companyId, companyId), eq(aiBenchmarkResults.runId, runId)));
+  const queryIds = dedupeStrings(results.map((result) => result.queryId));
+  const queries = queryIds.length > 0
+    ? await db
+      .select()
+      .from(aiBenchmarkQueries)
+      .where(and(eq(aiBenchmarkQueries.companyId, companyId), inArray(aiBenchmarkQueries.id, queryIds)))
+    : [];
+  const queryById = new Map(queries.map((query) => [query.id, query]));
+  const productRows = await db
+    .select({ title: products.title, handle: products.handle })
+    .from(products)
+    .where(eq(products.companyId, companyId));
+  const companyContext = await getCompanyContext(companyId);
+
+  for (const result of results) {
+    if (result.status !== "completed" || !result.rawResponse) continue;
+    const query = queryById.get(result.queryId);
+    if (!query) continue;
+    const analysis = analyzeResponse(
+      query,
+      result.rawResponse,
+      result.sourceUrls || [],
+      productRows,
+      companyContext,
+    );
+    await db
+      .update(aiBenchmarkResults)
+      .set(analysis)
+      .where(and(eq(aiBenchmarkResults.companyId, companyId), eq(aiBenchmarkResults.id, result.id)));
+  }
+
+  const updatedResults = await db
+    .select()
+    .from(aiBenchmarkResults)
+    .where(and(eq(aiBenchmarkResults.companyId, companyId), eq(aiBenchmarkResults.runId, runId)));
+  const fullSummary = buildRunSummary(run, queries, updatedResults);
+
+  const [updatedRun] = await db
+    .update(aiBenchmarkRuns)
+    .set({
+      resultCount: updatedResults.filter((result) => result.status === "completed").length,
+      summary: {
+        providerSummaries: fullSummary.providerSummaries,
+        biggestGaps: fullSummary.biggestGaps,
+        topWins: fullSummary.topWins,
+      },
+    })
+    .where(and(eq(aiBenchmarkRuns.companyId, companyId), eq(aiBenchmarkRuns.id, runId)))
+    .returning();
+
+  return {
+    ...fullSummary,
+    run: updatedRun || run,
+  };
 }
 
 function getClosestExistingContent(
