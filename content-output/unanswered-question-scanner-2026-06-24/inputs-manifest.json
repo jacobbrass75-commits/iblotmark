@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-06-25T02:35:18.545Z",
+  "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-46-34",
+  "actionDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-action-control-sheet",
+  "shopifyDir": "/Users/yakub/Desktop/iblotmark/content-output/shopify-blog-inventory-refresh-2026-06-23",
+  "contextDir": "/Users/yakub/Desktop/iblotmark/content-output/category-bank-enrichment-2026-06-22",
+  "subjectDir": "/Users/yakub/Desktop/iblotmark/content-output/blog-topic-subject-audit-2026-06-23",
+  "benchmarkRows": 204,
+  "actionRows": 142,
+  "inventoryRows": 211,
+  "buyerQuestionRows": 49,
+  "subjectRows": 21,
+  "analyticsStatus": "analytics not supplied; Shopify API/UI access required for sessions, add-to-cart, checkout, and revenue"
+}

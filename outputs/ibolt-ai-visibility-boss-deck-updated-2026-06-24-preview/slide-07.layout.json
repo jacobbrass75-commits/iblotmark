@@ -1,0 +1,875 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/oofsms",
+    "id": "oofsms",
+    "slide": 7,
+    "layoutId": "09fd7dd7-7433-4b5f-9a5b-e3c21a00f672",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "ebba4137-6326-48e0-b70c-9627d3111d27",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "09fd7dd7-7433-4b5f-9a5b-e3c21a00f672",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "ebba4137-6326-48e0-b70c-9627d3111d27",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "ebba4137-6326-48e0-b70c-9627d3111d27",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hk3q5o7q",
+      "id": "1",
+      "bbox": [
+        64,
+        34,
+        520,
+        24
+      ],
+      "geometry": "rect",
+      "text": "IBOLT AI VISIBILITY PROGRAM",
+      "textPreview": "IBOLT AI VISIBILITY PROGRAM",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#2563EB",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IBOLT AI VISIBILITY PROGRAM"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IBOLT AI VISIBILITY PROGRAM",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#2563EB",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IBOLT AI VISIBILITY PROGRAM",
+              "fontSize": 12,
+              "color": "#2563EB",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6xkf6dcb",
+      "id": "2",
+      "bbox": [
+        64,
+        68,
+        980,
+        70
+      ],
+      "geometry": "rect",
+      "text": "Top 10 pages to refresh first",
+      "textPreview": "Top 10 pages to refresh first",
+      "resolvedFontSize": 34,
+      "resolvedTextStyle": {
+        "fontSize": 34,
+        "typeface": "+mn-lt",
+        "color": "#111827",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Top 10 pages to refresh first"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Top 10 pages to refresh first",
+          "resolvedTextStyle": {
+            "fontSize": 34,
+            "color": "#111827",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Top 10 pages to refresh first",
+              "fontSize": 34,
+              "color": "#111827",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zed8v6ps",
+      "id": "3",
+      "bbox": [
+        64,
+        138,
+        1152,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#E2E8F0",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/obm58z25",
+      "id": "4",
+      "bbox": [
+        64,
+        170,
+        544,
+        318
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hwfyxobm",
+      "id": "5",
+      "bbox": [
+        672,
+        170,
+        544,
+        318
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/65wjudg7",
+      "id": "6",
+      "bbox": [
+        92,
+        198,
+        420,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Highest current priority",
+      "textPreview": "Highest current priority",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#2563EB",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Highest current priority"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Highest current priority",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#2563EB",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Highest current priority",
+              "fontSize": 22,
+              "color": "#2563EB",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zqtcj6to",
+      "id": "7",
+      "bbox": [
+        92,
+        246,
+        464,
+        184
+      ],
+      "geometry": "rect",
+      "text": "- 1. Restaurant Tablet Mount 2026\n- 2. Construction Vehicles and Work Trucks\n- 3. Garmin Fish Finder Mount\n- 4. Tablet Mount for Restaurant POS\n- 5. Locking Tablet Stand for Food Trucks",
+      "textPreview": "- 1. Restaurant Tablet Mount 2026 | - 2. Construction Vehicles and Work Trucks | - 3. Garmin Fish Finder Mount | - 4. Tablet Mount for Re...",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#111827",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "- 1. Restaurant Tablet Mount 2026"
+          },
+          {
+            "index": 2,
+            "text": "- 2. Construction Vehicles and Work Trucks"
+          },
+          {
+            "index": 3,
+            "text": "- 3. Garmin Fish Finder Mount"
+          },
+          {
+            "index": 4,
+            "text": "- 4. Tablet Mount for Restaurant POS"
+          },
+          {
+            "index": 5,
+            "text": "- 5. Locking Tablet Stand for Food Trucks"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "- 1. Restaurant Tablet Mount 2026",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 1. Restaurant Tablet Mount 2026",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "- 2. Construction Vehicles and Work Trucks",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 2. Construction Vehicles and Work Trucks",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "- 3. Garmin Fish Finder Mount",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 3. Garmin Fish Finder Mount",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "- 4. Tablet Mount for Restaurant POS",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 4. Tablet Mount for Restaurant POS",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "- 5. Locking Tablet Stand for Food Trucks",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 5. Locking Tablet Stand for Food Trucks",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sfil0rqd",
+      "id": "8",
+      "bbox": [
+        700,
+        198,
+        420,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Next priority",
+      "textPreview": "Next priority",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#059669",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Next priority"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Next priority",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#059669",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Next priority",
+              "fontSize": 22,
+              "color": "#059669",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h0fepkzu",
+      "id": "9",
+      "bbox": [
+        700,
+        246,
+        464,
+        184
+      ],
+      "geometry": "rect",
+      "text": "- 6. Amazon Flex and Delivery Vans\n- 7. Commercial-Grade Delivery Mounts\n- 8. Locking Phone Mount for Shared Vehicles\n- 9. Instacart and Grocery Delivery Drivers\n- 10. Fish Finder Mount for Pontoon Rails",
+      "textPreview": "- 6. Amazon Flex and Delivery Vans | - 7. Commercial-Grade Delivery Mounts | - 8. Locking Phone Mount for Shared Vehicles | - 9. Instacar...",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#111827",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "- 6. Amazon Flex and Delivery Vans"
+          },
+          {
+            "index": 2,
+            "text": "- 7. Commercial-Grade Delivery Mounts"
+          },
+          {
+            "index": 3,
+            "text": "- 8. Locking Phone Mount for Shared Vehicles"
+          },
+          {
+            "index": 4,
+            "text": "- 9. Instacart and Grocery Delivery Drivers"
+          },
+          {
+            "index": 5,
+            "text": "- 10. Fish Finder Mount for Pontoon Rails"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "- 6. Amazon Flex and Delivery Vans",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 6. Amazon Flex and Delivery Vans",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "- 7. Commercial-Grade Delivery Mounts",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 7. Commercial-Grade Delivery Mounts",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "- 8. Locking Phone Mount for Shared Vehicles",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 8. Locking Phone Mount for Shared Vehicles",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "- 9. Instacart and Grocery Delivery Drivers",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 9. Instacart and Grocery Delivery Drivers",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "- 10. Fish Finder Mount for Pontoon Rails",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#111827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "- 10. Fish Finder Mount for Pontoon Rails",
+              "fontSize": 16,
+              "color": "#111827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjudg7a",
+      "id": "10",
+      "bbox": [
+        64,
+        536,
+        1152,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#ECFDF5",
+      "lineColor": "#BBF7D0",
+      "lineWidth": 1
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbq1oryt",
+      "id": "11",
+      "bbox": [
+        92,
+        558,
+        1080,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Refresh recipe: quick-answer block near the top, comparison table, product fit table, FAQ schema, cleaner CTA density, internal links, and one citation/outreach target per page.",
+      "textPreview": "Refresh recipe: quick-answer block near the top, comparison table, product fit table, FAQ schema, cleaner CTA density, internal links, an...",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#059669",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Refresh recipe: quick-answer block near the top, comparison table, product fit table, FAQ schema, cleaner CTA density, internal links, and"
+          },
+          {
+            "index": 2,
+            "text": "one citation/outreach target per page."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Refresh recipe: quick-answer block near the top, comparison table, product fit table, FAQ schema, cleaner CTA density, internal links, and one citation/outreach target per page.",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#059669",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Refresh recipe: quick-answer block near the top, comparison table, product fit table, FAQ schema, cleaner CTA density, internal links, and one citation/outreach target per page.",
+              "fontSize": 17,
+              "color": "#059669",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nuxc3ylc",
+      "id": "12",
+      "bbox": [
+        64,
+        686,
+        930,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Top 10 from unanswered-question scanner and blog action control sheet.",
+      "textPreview": "Top 10 from unanswered-question scanner and blog action control sheet.",
+      "resolvedFontSize": 9,
+      "resolvedTextStyle": {
+        "fontSize": 9,
+        "typeface": "+mn-lt",
+        "color": "#64748B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Top 10 from unanswered-question scanner and blog action control sheet."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Top 10 from unanswered-question scanner and blog action control sheet.",
+          "resolvedTextStyle": {
+            "fontSize": 9,
+            "color": "#64748B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Top 10 from unanswered-question scanner and blog action control sheet.",
+              "fontSize": 9,
+              "color": "#64748B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y90je9cv",
+      "id": "13",
+      "bbox": [
+        1048,
+        686,
+        168,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Updated June 24, 2026",
+      "textPreview": "Updated June 24, 2026",
+      "resolvedFontSize": 9,
+      "resolvedTextStyle": {
+        "fontSize": 9,
+        "typeface": "+mn-lt",
+        "color": "#64748B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Updated June 24, 2026"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Updated June 24, 2026",
+          "resolvedTextStyle": {
+            "fontSize": 9,
+            "color": "#64748B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Updated June 24, 2026",
+              "fontSize": 9,
+              "color": "#64748B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
