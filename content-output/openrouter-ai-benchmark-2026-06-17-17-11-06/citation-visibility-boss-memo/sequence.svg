@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="300" viewBox="0 0 920 300" role="img" aria-label="AI visibility sequence">
+    <rect width="920" height="300" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Correct sequence: inclusion, recommendation, citation</text>
+    <g>
+      <text x="22" y="80" font-size="14" font-weight="900" fill="#111827">1. Get included</text>
+      <rect x="296" y="62" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="296" y="62" width="103" height="24" rx="12" fill="#0f766e"/>
+      <line x1="447" x2="447" y1="57" y2="93" stroke="#111827" stroke-width="3"/>
+      <text x="750" y="79" font-size="13" font-weight="900" fill="#111827">22/93</text>
+    </g><g>
+      <text x="22" y="134" font-size="14" font-weight="900" fill="#111827">2. Get recommended</text>
+      <rect x="296" y="116" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="296" y="116" width="69" height="24" rx="12" fill="#2563eb"/>
+      <line x1="404" x2="404" y1="111" y2="147" stroke="#111827" stroke-width="3"/>
+      <text x="750" y="133" font-size="13" font-weight="900" fill="#111827">15/93</text>
+    </g><g>
+      <text x="22" y="188" font-size="14" font-weight="900" fill="#111827">3. Get cited</text>
+      <rect x="296" y="170" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="296" y="170" width="0" height="24" rx="12" fill="#f97316"/>
+      <line x1="330" x2="330" y1="165" y2="201" stroke="#111827" stroke-width="3"/>
+      <text x="750" y="187" font-size="13" font-weight="900" fill="#111827">0/93</text>
+    </g><g>
+      <text x="22" y="242" font-size="14" font-weight="900" fill="#111827">4. Reduce competitor-only</text>
+      <rect x="296" y="224" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="296" y="224" width="116" height="24" rx="12" fill="#7c3aed"/>
+      <line x1="490" x2="490" y1="219" y2="255" stroke="#111827" stroke-width="3"/>
+      <text x="750" y="241" font-size="13" font-weight="900" fill="#111827">68 competitor-only</text>
+    </g>
+  </svg>

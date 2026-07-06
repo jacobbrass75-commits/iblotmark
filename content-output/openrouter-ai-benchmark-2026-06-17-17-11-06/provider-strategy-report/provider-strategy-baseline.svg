@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="390" viewBox="0 0 940 390">
+  <rect width="940" height="390" fill="#fff"/>
+  <text x="28" y="34" font-size="24" font-weight="900" fill="#0f172a">Provider Strategy Baseline</text>
+  <text x="28" y="58" font-size="14" fill="#64748b">Answer outcomes by model, used to choose model-specific page edits.</text>
+  <line x1="70" y1="310" x2="880" y2="310" stroke="#cbd5e1"/>
+  
+        <rect x="110" y="301" width="34" height="9" rx="5" fill="#16a34a"/>
+        <text x="127" y="293" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">1</text>
+      
+        <rect x="158" y="226" width="34" height="84" rx="5" fill="#84cc16"/>
+        <text x="175" y="218" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">9</text>
+      
+        <rect x="206" y="123" width="34" height="187" rx="5" fill="#dc2626"/>
+        <text x="223" y="115" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">20</text>
+      
+        <rect x="254" y="301" width="34" height="9" rx="5" fill="#94a3b8"/>
+        <text x="271" y="293" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">1</text>
+      <text x="197" y="348" text-anchor="middle" font-size="16" font-weight="900" fill="#0f172a">ChatGPT</text>
+        <rect x="360" y="291" width="34" height="19" rx="5" fill="#16a34a"/>
+        <text x="377" y="283" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">2</text>
+      
+        <rect x="408" y="273" width="34" height="37" rx="5" fill="#84cc16"/>
+        <text x="425" y="265" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">4</text>
+      
+        <rect x="456" y="76" width="34" height="234" rx="5" fill="#dc2626"/>
+        <text x="473" y="68" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">25</text>
+      
+        <rect x="504" y="310" width="34" height="0" rx="5" fill="#94a3b8"/>
+        <text x="521" y="302" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">0</text>
+      <text x="447" y="348" text-anchor="middle" font-size="16" font-weight="900" fill="#0f172a">Claude</text>
+        <rect x="610" y="301" width="34" height="9" rx="5" fill="#16a34a"/>
+        <text x="627" y="293" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">1</text>
+      
+        <rect x="658" y="263" width="34" height="47" rx="5" fill="#84cc16"/>
+        <text x="675" y="255" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">5</text>
+      
+        <rect x="706" y="85" width="34" height="225" rx="5" fill="#dc2626"/>
+        <text x="723" y="77" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">24</text>
+      
+        <rect x="754" y="301" width="34" height="9" rx="5" fill="#94a3b8"/>
+        <text x="771" y="293" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">1</text>
+      <text x="697" y="348" text-anchor="middle" font-size="16" font-weight="900" fill="#0f172a">Gemini</text>
+  <rect x="82" y="364" width="12" height="12" rx="3" fill="#16a34a"/><text x="100" y="375" font-size="12" fill="#475569">Clean</text><rect x="242" y="364" width="12" height="12" rx="3" fill="#84cc16"/><text x="260" y="375" font-size="12" fill="#475569">Co-mentioned</text><rect x="402" y="364" width="12" height="12" rx="3" fill="#dc2626"/><text x="420" y="375" font-size="12" fill="#475569">Replacement</text><rect x="562" y="364" width="12" height="12" rx="3" fill="#94a3b8"/><text x="580" y="375" font-size="12" fill="#475569">No signal</text>
+</svg>

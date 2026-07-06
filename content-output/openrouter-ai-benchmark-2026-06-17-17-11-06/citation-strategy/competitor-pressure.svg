@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="546" viewBox="0 0 1160 546" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1160" height="546"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="498" rx="14"/>
+    <text class="title" x="54" y="64">Competitor Pressure In AI Answers</text>
+    <text class="subtitle" x="54" y="88">Raw answer text counts across the saved benchmark run.</text>
+    
+      <text class="label" x="54" y="122">RAM Mounts</text>
+      <rect x="420" y="108" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="108" width="594" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="125">63</text>
+      <text class="small" x="420" y="150"></text>
+    
+
+      <text class="label" x="54" y="170">Arkon</text>
+      <rect x="420" y="156" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="156" width="283" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="173">30</text>
+      <text class="small" x="420" y="198"></text>
+    
+
+      <text class="label" x="54" y="218">iOttie</text>
+      <rect x="420" y="204" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="204" width="170" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="221">18</text>
+      <text class="small" x="420" y="246"></text>
+    
+
+      <text class="label" x="54" y="266">CTA Digital</text>
+      <rect x="420" y="252" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="252" width="160" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="269">17</text>
+      <text class="small" x="420" y="294"></text>
+    
+
+      <text class="label" x="54" y="314">ProClip</text>
+      <rect x="420" y="300" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="300" width="123" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="317">13</text>
+      <text class="small" x="420" y="342"></text>
+    
+
+      <text class="label" x="54" y="362">Humminbird</text>
+      <rect x="420" y="348" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="348" width="113" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="365">12</text>
+      <text class="small" x="420" y="390"></text>
+    
+
+      <text class="label" x="54" y="410">Mount-It</text>
+      <rect x="420" y="396" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="396" width="104" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="413">11</text>
+      <text class="small" x="420" y="438"></text>
+    
+
+      <text class="label" x="54" y="458">Scosche</text>
+      <rect x="420" y="444" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="444" width="85" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="461">9</text>
+      <text class="small" x="420" y="486"></text>
+    
+  
+</svg>

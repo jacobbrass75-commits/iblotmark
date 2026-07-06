@@ -1,0 +1,2960 @@
+{
+  "generatedAt": "2026-06-18T16:12:33.092Z",
+  "summary": {
+    "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+    "totalAnswers": 93,
+    "iBOLTMentionRate": 24,
+    "nonBrandedMentionRate": 5,
+    "citationRate": 0,
+    "iboltMentionRows": 22,
+    "lostAnswerRows": 71,
+    "competitorRows": 24,
+    "queryRows": 25,
+    "themeRows": 8,
+    "copyActionRows": 8,
+    "topThemeGaps": [
+      "Rugged durability: 85 pts",
+      "Install clarity: 82 pts",
+      "Stability and grip: 80 pts",
+      "Compatibility: 61 pts",
+      "Adjustability: 58 pts"
+    ],
+    "topCompetitors": [
+      "RAM Mounts: 58 lost rows",
+      "Arkon: 25 lost rows",
+      "iOttie: 15 lost rows",
+      "Humminbird: 12 lost rows",
+      "CTA Digital: 14 lost rows",
+      "ProClip: 12 lost rows",
+      "Scosche: 9 lost rows",
+      "Scotty: 8 lost rows"
+    ],
+    "brandSafety": "Do not reposition iBOLT as budget, cheap, affordable alternative, or cheaper than RAM. Use value language around right-fit kits, modular reuse, 24-business-hour shipping, and warranty."
+  },
+  "themeRows": [
+    {
+      "theme": "rugged/durable",
+      "label": "Rugged durability",
+      "iboltRows": 3,
+      "iboltRate": 14,
+      "lostRows": 70,
+      "lostRate": 99,
+      "competitorContextCount": 208,
+      "gapPoints": 85,
+      "topCompetitors": [
+        "RAM Mounts 57",
+        "Arkon 24",
+        "iOttie 15",
+        "CTA Digital 14",
+        "Humminbird 12",
+        "ProClip 12"
+      ],
+      "topCategories": [
+        "restaurant 16",
+        "delivery 15",
+        "fishing 15",
+        "fleet 14",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "topProviders": [
+        "Gemini 25",
+        "Claude 24",
+        "ChatGPT 21"
+      ],
+      "sampleQueries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best ELD mount for trucks 3",
+        "best fish finder 3",
+        "best fish finder in water 3",
+        "best fish finder mount for small boat 3"
+      ],
+      "pageCopy": "Add material, vibration, heat, moisture, or jobsite stress proof before the first product recommendation.",
+      "schemaFix": "Add Product or ItemList-style product modules with material, warranty, and mounting-method fields visible on page.",
+      "proofPoints": "heavy-gauge steel, aluminum, powder coating, vibration-resistant placement, 2-year warranty",
+      "doNotSay": ""
+    },
+    {
+      "theme": "easy install",
+      "label": "Install clarity",
+      "iboltRows": 4,
+      "iboltRate": 18,
+      "lostRows": 71,
+      "lostRate": 100,
+      "competitorContextCount": 210,
+      "gapPoints": 82,
+      "topCompetitors": [
+        "RAM Mounts 58",
+        "Arkon 25",
+        "iOttie 15",
+        "CTA Digital 14",
+        "Humminbird 12",
+        "ProClip 12"
+      ],
+      "topCategories": [
+        "restaurant 17",
+        "delivery 15",
+        "fishing 15",
+        "fleet 14",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "topProviders": [
+        "Claude 25",
+        "Gemini 25",
+        "ChatGPT 21"
+      ],
+      "sampleQueries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best ELD mount for trucks 3",
+        "best fish finder 3",
+        "best fish finder in water 3",
+        "best fish finder mount for small boat 3"
+      ],
+      "pageCopy": "Add a simple mounting-method selector that compares clamp, drill base, suction, magnetic, wall, and console installs.",
+      "schemaFix": "Use HowTo schema only on pages with real setup steps and keep steps visible in the page body.",
+      "proofPoints": "clamp, drill base, suction, magnetic, wall mount, console mount, no-drill options",
+      "doNotSay": ""
+    },
+    {
+      "theme": "stability/grip",
+      "label": "Stability and grip",
+      "iboltRows": 2,
+      "iboltRate": 9,
+      "lostRows": 63,
+      "lostRate": 89,
+      "competitorContextCount": 185,
+      "gapPoints": 80,
+      "topCompetitors": [
+        "RAM Mounts 56",
+        "Arkon 25",
+        "iOttie 15",
+        "CTA Digital 12",
+        "ProClip 12",
+        "Scosche 9"
+      ],
+      "topCategories": [
+        "delivery 15",
+        "restaurant 15",
+        "fleet 14",
+        "fishing 9",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "topProviders": [
+        "Gemini 23",
+        "Claude 22",
+        "ChatGPT 18"
+      ],
+      "sampleQueries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best ELD mount for trucks 3",
+        "best fish finder mount for small boat 3",
+        "best heavy duty vehicle phone mount 3",
+        "best kayak fish finder mount 3"
+      ],
+      "pageCopy": "Answer how the mount stays stable during stops, vibration, rough water, forklift movement, or shared-vehicle use.",
+      "schemaFix": "Add FAQ questions that directly answer stability, vibration, clamp, drill-base, suction, and magnetic hold concerns.",
+      "proofPoints": "drill bases, clamps, locking holders, AMPS plates, ball sizes, rough-road or rough-water setup guidance",
+      "doNotSay": ""
+    },
+    {
+      "theme": "compatibility",
+      "label": "Compatibility",
+      "iboltRows": 7,
+      "iboltRate": 32,
+      "lostRows": 66,
+      "lostRate": 93,
+      "competitorContextCount": 192,
+      "gapPoints": 61,
+      "topCompetitors": [
+        "RAM Mounts 54",
+        "Arkon 22",
+        "iOttie 14",
+        "CTA Digital 13",
+        "Humminbird 11",
+        "ProClip 10"
+      ],
+      "topCategories": [
+        "restaurant 17",
+        "delivery 15",
+        "fishing 14",
+        "fleet 12",
+        "warehouse 7",
+        "tablet 1"
+      ],
+      "topProviders": [
+        "Gemini 25",
+        "Claude 22",
+        "ChatGPT 19"
+      ],
+      "sampleQueries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best ELD mount for trucks 3",
+        "best fish finder in water 3",
+        "best fish finder mount for small boat 3",
+        "best kayak fish finder mount 3"
+      ],
+      "pageCopy": "Add compatibility tables for device size, mounting pattern, vehicle/equipment type, AMPS pattern, and ball size.",
+      "schemaFix": "Use exact product titles, product handles, image alt text, and visible compatibility fields.",
+      "proofPoints": "17mm, 20mm, 25mm/B size, 38mm/C size, 57mm, AMPS, VESA, RAM-compatible components",
+      "doNotSay": ""
+    },
+    {
+      "theme": "adjustable/flexible",
+      "label": "Adjustability",
+      "iboltRows": 1,
+      "iboltRate": 5,
+      "lostRows": 45,
+      "lostRate": 63,
+      "competitorContextCount": 132,
+      "gapPoints": 58,
+      "topCompetitors": [
+        "RAM Mounts 37",
+        "Arkon 17",
+        "CTA Digital 12",
+        "Humminbird 7",
+        "Scotty 7",
+        "iOttie 6"
+      ],
+      "topCategories": [
+        "restaurant 15",
+        "fishing 10",
+        "delivery 6",
+        "fleet 6",
+        "warehouse 5",
+        "tablet 3"
+      ],
+      "topProviders": [
+        "Gemini 16",
+        "Claude 15",
+        "ChatGPT 14"
+      ],
+      "sampleQueries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best fish finder mount for small boat 3",
+        "best multi tablet mount 3",
+        "best restaurant tablet mount 3",
+        "best tablet mount 3"
+      ],
+      "pageCopy": "Explain how modular arms, ball sizes, plates, and holders can be combined or changed as the operation changes.",
+      "schemaFix": "Add internal links to AMPS/modular guide and product modules that show the exact holder, arm, and base relationship.",
+      "proofPoints": "300+ modular parts, interchangeable holders, ball mounts, AMPS plates, Mount Configurator",
+      "doNotSay": ""
+    },
+    {
+      "theme": "commercial/pro",
+      "label": "Commercial/pro use",
+      "iboltRows": 13,
+      "iboltRate": 59,
+      "lostRows": 70,
+      "lostRate": 99,
+      "competitorContextCount": 207,
+      "gapPoints": 40,
+      "topCompetitors": [
+        "RAM Mounts 57",
+        "Arkon 25",
+        "CTA Digital 14",
+        "iOttie 14",
+        "Humminbird 12",
+        "ProClip 12"
+      ],
+      "topCategories": [
+        "restaurant 17",
+        "fishing 15",
+        "delivery 14",
+        "fleet 14",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "topProviders": [
+        "Claude 25",
+        "Gemini 25",
+        "ChatGPT 20"
+      ],
+      "sampleQueries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best ELD mount for trucks 3",
+        "best fish finder 3",
+        "best fish finder in water 3",
+        "best fish finder mount for small boat 3"
+      ],
+      "pageCopy": "Add a short commercial-use block that names the work setting, the device being mounted, and why iBOLT is purpose-built for that workflow.",
+      "schemaFix": "Use FAQPage or HowTo schema where the page explains business setup, installation, or selection steps.",
+      "proofPoints": "commercial fleets, restaurants, warehouses, delivery vehicles, 300+ modular parts, business-ready mounting kits",
+      "doNotSay": ""
+    },
+    {
+      "theme": "budget/value",
+      "label": "Value without budget positioning",
+      "iboltRows": 13,
+      "iboltRate": 59,
+      "lostRows": 59,
+      "lostRate": 83,
+      "competitorContextCount": 165,
+      "gapPoints": 24,
+      "topCompetitors": [
+        "RAM Mounts 51",
+        "Arkon 17",
+        "Humminbird 11",
+        "iOttie 11",
+        "ProClip 11",
+        "CTA Digital 9"
+      ],
+      "topCategories": [
+        "fishing 14",
+        "restaurant 13",
+        "fleet 12",
+        "delivery 11",
+        "warehouse 7",
+        "tablet 2"
+      ],
+      "topProviders": [
+        "Claude 25",
+        "Gemini 23",
+        "ChatGPT 11"
+      ],
+      "sampleQueries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best fish finder 3",
+        "best fish finder in water 3",
+        "best fish finder mount for small boat 3",
+        "best phone mount for Amazon Flex and delivery vans 3"
+      ],
+      "pageCopy": "Answer value intent without calling iBOLT cheap. Focus on getting the right kit, reducing wrong-part purchases, reuse, warranty, and quick shipping.",
+      "schemaFix": "Use offer/product data where available, but keep the page copy framed around fit and lifetime usefulness.",
+      "proofPoints": "right-fit kits, reusable modular parts, ships within 24 business hours, 2-year warranty",
+      "doNotSay": "Do not call iBOLT budget, cheap, affordable alternative, or cheaper than RAM."
+    },
+    {
+      "theme": "secure/locking",
+      "label": "Security and locking",
+      "iboltRows": 17,
+      "iboltRate": 77,
+      "lostRows": 57,
+      "lostRate": 80,
+      "competitorContextCount": 174,
+      "gapPoints": 3,
+      "topCompetitors": [
+        "RAM Mounts 50",
+        "Arkon 21",
+        "iOttie 15",
+        "CTA Digital 14",
+        "ProClip 10",
+        "Scosche 9"
+      ],
+      "topCategories": [
+        "restaurant 15",
+        "delivery 14",
+        "fleet 13",
+        "fishing 8",
+        "warehouse 5",
+        "tablet 2"
+      ],
+      "topProviders": [
+        "Gemini 22",
+        "ChatGPT 18",
+        "Claude 17"
+      ],
+      "sampleQueries": [
+        "best ELD mount for trucks 3",
+        "best fish finder mount for small boat 3",
+        "best kayak fish finder mount 3",
+        "best locking phone mount for shared delivery vehicles 3",
+        "best locking tablet stand for food trucks and quick service restaurants 3",
+        "best multi tablet mount 3"
+      ],
+      "pageCopy": "Add theft, shared-vehicle, customer-facing, restaurant counter, or fleet-control language where locking matters.",
+      "schemaFix": "Add FAQ and product modules for LockPro, Dock'n Lock, keyed holders, and shared-station use cases.",
+      "proofPoints": "LockPro, Dock'n Lock, keyed holders, drill-base installs, restaurant counters, shared delivery vehicles",
+      "doNotSay": ""
+    }
+  ],
+  "competitorRows": [
+    {
+      "brand": "RAM Mounts",
+      "pressureScore": 58,
+      "lostRows": 58,
+      "rawAppearances": 63,
+      "coMentionRows": 13,
+      "categories": [
+        "delivery 14",
+        "fleet 14",
+        "fishing 10",
+        "restaurant 10",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "providers": [
+        "Gemini 23",
+        "Claude 21",
+        "ChatGPT 14"
+      ],
+      "queries": [
+        "best barcode scanner mount for forklift 3",
+        "best budget fish finder mount 3",
+        "best ELD mount for trucks 3",
+        "best fish finder mount for small boat 3",
+        "best heavy duty vehicle phone mount 3",
+        "best kayak fish finder mount 3",
+        "best locking phone mount for shared delivery vehicles 3",
+        "best phone mount for Amazon Flex and delivery vans 3"
+      ],
+      "themes": [
+        "easy install 58",
+        "commercial/pro 57",
+        "rugged/durable 57",
+        "stability/grip 56",
+        "compatibility 54",
+        "budget/value 51",
+        "secure/locking 50",
+        "adjustable/flexible 37"
+      ],
+      "counterPositioning": "Position iBOLT as the specialist for exact business workflows, with modular parts that remain cross-compatible with industry-standard balls and AMPS patterns.",
+      "sample": "best barcode scanner mount for forklift Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, ProClip, Havis, Zebra Product signals: Catalog product aliases: Raw Answer When selecting a barcode scanner mount for a forklift, it's important"
+    },
+    {
+      "brand": "Arkon",
+      "pressureScore": 28,
+      "lostRows": 25,
+      "rawAppearances": 30,
+      "coMentionRows": 5,
+      "categories": [
+        "fleet 10",
+        "delivery 6",
+        "restaurant 6",
+        "tablet 2",
+        "warehouse 1"
+      ],
+      "providers": [
+        "Claude 10",
+        "ChatGPT 8",
+        "Gemini 7"
+      ],
+      "queries": [
+        "best ELD mount for trucks 3",
+        "best heavy duty vehicle phone mount 3",
+        "best locking phone mount for shared delivery vehicles 3",
+        "best drill base phone mount for semi trucks 2",
+        "best phone mount for construction vehicles and work trucks 2",
+        "best tablet mount 2",
+        "best tablet mount for food truck 2",
+        "commercial grade phone mount for delivery drivers 2"
+      ],
+      "themes": [
+        "commercial/pro 25",
+        "easy install 25",
+        "stability/grip 25",
+        "rugged/durable 24",
+        "compatibility 22",
+        "secure/locking 21",
+        "adjustable/flexible 17",
+        "budget/value 17"
+      ],
+      "counterPositioning": "Position iBOLT around commercial durability, locked tablet workflows, restaurant stations, forklift mounts, and fleet-specific fit.",
+      "sample": "best drill base phone mount for semi trucks Provider: Claude Model: anthropic/claude-sonnet-4 Category: fleet Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Arkon, ProClip Product signals: Catalog product aliases: Raw Answer Based on current market options, here are the top drill base phon"
+    },
+    {
+      "brand": "iOttie",
+      "pressureScore": 20,
+      "lostRows": 15,
+      "rawAppearances": 18,
+      "coMentionRows": 3,
+      "categories": [
+        "delivery 9",
+        "fleet 5",
+        "tablet 1"
+      ],
+      "providers": [
+        "ChatGPT 8",
+        "Claude 4",
+        "Gemini 3"
+      ],
+      "queries": [
+        "best phone mount for delivery drivers 3",
+        "best phone mount for Instacart and grocery delivery drivers 3",
+        "best phone mount for Amazon Flex and delivery vans 2",
+        "magnetic vs clamp phone mounts for delivery work 2",
+        "best heavy duty vehicle phone mount 1",
+        "best locking phone mount for shared delivery vehicles 1",
+        "best phone mount for construction vehicles and work trucks 1",
+        "best tablet mount 1"
+      ],
+      "themes": [
+        "easy install 15",
+        "rugged/durable 15",
+        "secure/locking 15",
+        "stability/grip 15",
+        "commercial/pro 14",
+        "compatibility 14",
+        "budget/value 11",
+        "adjustable/flexible 6"
+      ],
+      "counterPositioning": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories.",
+      "sample": "best heavy duty vehicle phone mount Provider: ChatGPT Model: openai/gpt-4o Category: fleet Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Arkon, iOttie, Scosche, Tackform Product signals: Catalog product aliases: Raw Answer When selecting a heavy-duty vehicle phone mount, especially for co"
+    },
+    {
+      "brand": "Humminbird",
+      "pressureScore": 20,
+      "lostRows": 12,
+      "rawAppearances": 12,
+      "coMentionRows": 0,
+      "categories": [
+        "fishing 12"
+      ],
+      "providers": [
+        "ChatGPT 4",
+        "Claude 4",
+        "Gemini 4"
+      ],
+      "queries": [
+        "best fish finder 3",
+        "best fish finder in water 3",
+        "best fish finder mount for small boat 3",
+        "best kayak fish finder mount 2",
+        "best budget fish finder mount 1"
+      ],
+      "themes": [
+        "commercial/pro 12",
+        "easy install 12",
+        "rugged/durable 12",
+        "budget/value 11",
+        "compatibility 11",
+        "adjustable/flexible 7",
+        "secure/locking 6",
+        "stability/grip 6"
+      ],
+      "counterPositioning": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem.",
+      "sample": "best budget fish finder mount Provider: ChatGPT Model: openai/gpt-4o Category: fishing Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Humminbird, Scotty, YakAttack Product signals: Catalog product aliases: Raw Answer When looking for a budget fish finder mount, it's important to consider f"
+    },
+    {
+      "brand": "CTA Digital",
+      "pressureScore": 19,
+      "lostRows": 14,
+      "rawAppearances": 17,
+      "coMentionRows": 3,
+      "categories": [
+        "restaurant 12",
+        "tablet 2"
+      ],
+      "providers": [
+        "ChatGPT 5",
+        "Claude 5",
+        "Gemini 4"
+      ],
+      "queries": [
+        "best locking tablet stand for food trucks and quick service restaurants 3",
+        "best multi tablet mount 3",
+        "best restaurant tablet mount 3",
+        "best tablet mount 2",
+        "best tablet mount for restaurant POS and delivery apps 2",
+        "best tablet mount for food truck 1"
+      ],
+      "themes": [
+        "commercial/pro 14",
+        "easy install 14",
+        "rugged/durable 14",
+        "secure/locking 14",
+        "compatibility 13",
+        "adjustable/flexible 12",
+        "stability/grip 12",
+        "budget/value 9"
+      ],
+      "counterPositioning": "iBOLT should emphasize multi-tablet restaurant operations, delivery app stations, locking holders, and POS mounting flexibility.",
+      "sample": "best locking tablet stand for food trucks and quick service restaurants Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: Mount-It, CTA Digital, Kensington, Heckler Product signals: Catalog product aliases: Raw Answer When selecting a locking ta"
+    },
+    {
+      "brand": "ProClip",
+      "pressureScore": 19,
+      "lostRows": 12,
+      "rawAppearances": 13,
+      "coMentionRows": 1,
+      "categories": [
+        "fleet 6",
+        "delivery 4",
+        "warehouse 2"
+      ],
+      "providers": [
+        "Claude 7",
+        "Gemini 3",
+        "ChatGPT 2"
+      ],
+      "queries": [
+        "best ELD mount for trucks 2",
+        "commercial grade phone mount for delivery drivers 2",
+        "best barcode scanner mount for forklift 1",
+        "best drill base phone mount for semi trucks 1",
+        "best forklift tablet mount 1",
+        "best heavy duty vehicle phone mount 1",
+        "best locking phone mount for shared delivery vehicles 1",
+        "best phone mount for Amazon Flex and delivery vans 1"
+      ],
+      "themes": [
+        "commercial/pro 12",
+        "easy install 12",
+        "rugged/durable 12",
+        "stability/grip 12",
+        "budget/value 11",
+        "compatibility 10",
+        "secure/locking 10",
+        "adjustable/flexible 6"
+      ],
+      "counterPositioning": "Position iBOLT around modular fleet deployment, universal device changes, drill bases, AMPS plates, and rugged shared-vehicle use.",
+      "sample": "best barcode scanner mount for forklift Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, ProClip, Havis, Zebra Product signals: Catalog product aliases: Raw Answer When selecting a barcode scanner mount for a forklift, it's important"
+    },
+    {
+      "brand": "Scosche",
+      "pressureScore": 17,
+      "lostRows": 9,
+      "rawAppearances": 9,
+      "coMentionRows": 0,
+      "categories": [
+        "delivery 5",
+        "fleet 4"
+      ],
+      "providers": [
+        "ChatGPT 9"
+      ],
+      "queries": [
+        "best ELD mount for trucks 1",
+        "best heavy duty vehicle phone mount 1",
+        "best locking phone mount for shared delivery vehicles 1",
+        "best phone mount for Amazon Flex and delivery vans 1",
+        "best phone mount for construction vehicles and work trucks 1",
+        "best phone mount for delivery drivers 1",
+        "best phone mount for Instacart and grocery delivery drivers 1",
+        "commercial grade phone mount for delivery drivers 1"
+      ],
+      "themes": [
+        "compatibility 9",
+        "easy install 9",
+        "rugged/durable 9",
+        "secure/locking 9",
+        "stability/grip 9",
+        "commercial/pro 8",
+        "adjustable/flexible 4",
+        "budget/value 4"
+      ],
+      "counterPositioning": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories.",
+      "sample": "best ELD mount for trucks Provider: ChatGPT Model: openai/gpt-4o Category: fleet Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Arkon, ProClip, Scosche Product signals: Catalog product aliases: Raw Answer When selecting the best Electronic Logging Device (ELD) mount for trucks, it's import"
+    },
+    {
+      "brand": "Scotty",
+      "pressureScore": 16,
+      "lostRows": 8,
+      "rawAppearances": 8,
+      "coMentionRows": 0,
+      "categories": [
+        "fishing 8"
+      ],
+      "providers": [
+        "ChatGPT 3",
+        "Claude 3",
+        "Gemini 2"
+      ],
+      "queries": [
+        "best budget fish finder mount 3",
+        "best fish finder mount for small boat 3",
+        "best kayak fish finder mount 2"
+      ],
+      "themes": [
+        "budget/value 8",
+        "commercial/pro 8",
+        "compatibility 8",
+        "easy install 8",
+        "rugged/durable 8",
+        "stability/grip 8",
+        "adjustable/flexible 7",
+        "secure/locking 7"
+      ],
+      "counterPositioning": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem.",
+      "sample": "best budget fish finder mount Provider: ChatGPT Model: openai/gpt-4o Category: fishing Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Humminbird, Scotty, YakAttack Product signals: Catalog product aliases: Raw Answer When looking for a budget fish finder mount, it's important to consider f"
+    },
+    {
+      "brand": "Garmin",
+      "pressureScore": 16,
+      "lostRows": 8,
+      "rawAppearances": 8,
+      "coMentionRows": 0,
+      "categories": [
+        "fishing 8"
+      ],
+      "providers": [
+        "Gemini 4",
+        "ChatGPT 2",
+        "Claude 2"
+      ],
+      "queries": [
+        "best fish finder 3",
+        "best fish finder in water 3",
+        "best fish finder mount for small boat 1",
+        "best kayak fish finder mount 1"
+      ],
+      "themes": [
+        "commercial/pro 8",
+        "easy install 8",
+        "rugged/durable 8",
+        "budget/value 7",
+        "compatibility 7",
+        "adjustable/flexible 4",
+        "secure/locking 2",
+        "stability/grip 2"
+      ],
+      "counterPositioning": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem.",
+      "sample": "best fish finder Provider: ChatGPT Model: openai/gpt-4o Category: fishing Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: Humminbird, Garmin, Lowrance Product signals: Garmin Striker Catalog product aliases: Raw Answer When selecting the best fish finder, it's important to consider factors such as disp"
+    },
+    {
+      "brand": "YakAttack",
+      "pressureScore": 15,
+      "lostRows": 7,
+      "rawAppearances": 7,
+      "coMentionRows": 0,
+      "categories": [
+        "fishing 7"
+      ],
+      "providers": [
+        "ChatGPT 3",
+        "Claude 2",
+        "Gemini 2"
+      ],
+      "queries": [
+        "best kayak fish finder mount 3",
+        "best budget fish finder mount 2",
+        "best fish finder mount for small boat 2"
+      ],
+      "themes": [
+        "commercial/pro 7",
+        "compatibility 7",
+        "easy install 7",
+        "rugged/durable 7",
+        "secure/locking 7",
+        "stability/grip 7",
+        "adjustable/flexible 6",
+        "budget/value 6"
+      ],
+      "counterPositioning": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem.",
+      "sample": "best budget fish finder mount Provider: ChatGPT Model: openai/gpt-4o Category: fishing Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Humminbird, Scotty, YakAttack Product signals: Catalog product aliases: Raw Answer When looking for a budget fish finder mount, it's important to consider f"
+    },
+    {
+      "brand": "Lowrance",
+      "pressureScore": 15,
+      "lostRows": 7,
+      "rawAppearances": 7,
+      "coMentionRows": 0,
+      "categories": [
+        "fishing 7"
+      ],
+      "providers": [
+        "Claude 3",
+        "ChatGPT 2",
+        "Gemini 2"
+      ],
+      "queries": [
+        "best fish finder 2",
+        "best fish finder in water 2",
+        "best fish finder mount for small boat 2",
+        "best kayak fish finder mount 1"
+      ],
+      "themes": [
+        "commercial/pro 7",
+        "easy install 7",
+        "rugged/durable 7",
+        "budget/value 6",
+        "compatibility 6",
+        "adjustable/flexible 5",
+        "secure/locking 3",
+        "stability/grip 3"
+      ],
+      "counterPositioning": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem.",
+      "sample": "best fish finder Provider: ChatGPT Model: openai/gpt-4o Category: fishing Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: Humminbird, Garmin, Lowrance Product signals: Garmin Striker Catalog product aliases: Raw Answer When selecting the best fish finder, it's important to consider factors such as disp"
+    },
+    {
+      "brand": "Havis",
+      "pressureScore": 13,
+      "lostRows": 5,
+      "rawAppearances": 5,
+      "coMentionRows": 0,
+      "categories": [
+        "warehouse 5"
+      ],
+      "providers": [
+        "Claude 2",
+        "Gemini 2",
+        "ChatGPT 1"
+      ],
+      "queries": [
+        "best barcode scanner mount for forklift 3",
+        "best forklift tablet mount 1",
+        "best tablet mount for warehouse 1"
+      ],
+      "themes": [
+        "budget/value 5",
+        "commercial/pro 5",
+        "compatibility 5",
+        "easy install 5",
+        "rugged/durable 5",
+        "stability/grip 5",
+        "adjustable/flexible 4",
+        "secure/locking 3"
+      ],
+      "counterPositioning": "iBOLT should emphasize warehouse-specific scanner holders, forklift mounting, VESA compatibility, and device access under vibration.",
+      "sample": "best barcode scanner mount for forklift Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, ProClip, Havis, Zebra Product signals: Catalog product aliases: Raw Answer When selecting a barcode scanner mount for a forklift, it's important"
+    },
+    {
+      "brand": "Mount-It",
+      "pressureScore": 11,
+      "lostRows": 7,
+      "rawAppearances": 11,
+      "coMentionRows": 4,
+      "categories": [
+        "restaurant 7"
+      ],
+      "providers": [
+        "ChatGPT 4",
+        "Claude 2",
+        "Gemini 1"
+      ],
+      "queries": [
+        "best multi tablet mount 3",
+        "best restaurant tablet mount 2",
+        "best locking tablet stand for food trucks and quick service restaurants 1",
+        "best tablet mount for restaurant POS and delivery apps 1"
+      ],
+      "themes": [
+        "commercial/pro 7",
+        "compatibility 7",
+        "easy install 7",
+        "rugged/durable 7",
+        "secure/locking 7",
+        "adjustable/flexible 6",
+        "stability/grip 5",
+        "budget/value 3"
+      ],
+      "counterPositioning": "Position iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS mounting.",
+      "sample": "best locking tablet stand for food trucks and quick service restaurants Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: Mount-It, CTA Digital, Kensington, Heckler Product signals: Catalog product aliases: Raw Answer When selecting a locking ta"
+    },
+    {
+      "brand": "Zebra",
+      "pressureScore": 11,
+      "lostRows": 3,
+      "rawAppearances": 3,
+      "coMentionRows": 0,
+      "categories": [
+        "warehouse 3"
+      ],
+      "providers": [
+        "Claude 2",
+        "ChatGPT 1"
+      ],
+      "queries": [
+        "best barcode scanner mount for forklift 2",
+        "best forklift tablet mount 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "stability/grip 3",
+        "adjustable/flexible 2",
+        "secure/locking 1"
+      ],
+      "counterPositioning": "iBOLT should emphasize warehouse-specific scanner holders, forklift mounting, VESA compatibility, and device access under vibration.",
+      "sample": "best barcode scanner mount for forklift Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, ProClip, Havis, Zebra Product signals: Catalog product aliases: Raw Answer When selecting a barcode scanner mount for a forklift, it's important"
+    },
+    {
+      "brand": "Heckler",
+      "pressureScore": 11,
+      "lostRows": 3,
+      "rawAppearances": 3,
+      "coMentionRows": 0,
+      "categories": [
+        "restaurant 3"
+      ],
+      "providers": [
+        "ChatGPT 2",
+        "Gemini 1"
+      ],
+      "queries": [
+        "best tablet mount for restaurant POS and delivery apps 2",
+        "best locking tablet stand for food trucks and quick service restaurants 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "adjustable/flexible 2",
+        "stability/grip 2",
+        "budget/value 1"
+      ],
+      "counterPositioning": "iBOLT should emphasize multi-tablet restaurant operations, delivery app stations, locking holders, and POS mounting flexibility.",
+      "sample": "best locking tablet stand for food trucks and quick service restaurants Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: Mount-It, CTA Digital, Kensington, Heckler Product signals: Catalog product aliases: Raw Answer When selecting a locking ta"
+    },
+    {
+      "brand": "Belkin",
+      "pressureScore": 11,
+      "lostRows": 3,
+      "rawAppearances": 3,
+      "coMentionRows": 0,
+      "categories": [
+        "delivery 2",
+        "fleet 1"
+      ],
+      "providers": [
+        "ChatGPT 2",
+        "Claude 1"
+      ],
+      "queries": [
+        "best phone mount for Amazon Flex and delivery vans 1",
+        "best phone mount for delivery drivers 1",
+        "magnetic vs clamp phone mounts for delivery work 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 1"
+      ],
+      "counterPositioning": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories.",
+      "sample": "best phone mount for Amazon Flex and delivery vans Provider: ChatGPT Model: openai/gpt-4o Category: delivery Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, iOttie, Scosche, Belkin Product signals: Catalog product aliases: Raw Answer When selecting a phone mount for Amazon Flex and delivery"
+    },
+    {
+      "brand": "Square",
+      "pressureScore": 11,
+      "lostRows": 3,
+      "rawAppearances": 3,
+      "coMentionRows": 0,
+      "categories": [
+        "restaurant 2",
+        "warehouse 1"
+      ],
+      "providers": [
+        "Claude 2",
+        "Gemini 1"
+      ],
+      "queries": [
+        "best barcode scanner mount for forklift 1",
+        "best tablet mount for food truck 1",
+        "best tablet mount for restaurant POS and delivery apps 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 2"
+      ],
+      "counterPositioning": "Position iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS mounting.",
+      "sample": "best tablet mount for food truck Provider: Claude Model: anthropic/claude-sonnet-4 Category: restaurant Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Arkon, CTA Digital, Square Product signals: Catalog product aliases: Raw Answer Best Tablet Mounts for Food Trucks For food truck operation"
+    },
+    {
+      "brand": "Lamicall",
+      "pressureScore": 10,
+      "lostRows": 2,
+      "rawAppearances": 2,
+      "coMentionRows": 0,
+      "categories": [
+        "tablet 2"
+      ],
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1"
+      ],
+      "queries": [
+        "best tablet mount 2"
+      ],
+      "themes": [
+        "adjustable/flexible 2",
+        "commercial/pro 2",
+        "easy install 2",
+        "rugged/durable 2",
+        "stability/grip 2",
+        "budget/value 1",
+        "secure/locking 1"
+      ],
+      "counterPositioning": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories.",
+      "sample": "best tablet mount Provider: ChatGPT Model: openai/gpt-4o Category: tablet Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Arkon, Tackform, CTA Digital, Lamicall Product signals: Catalog product aliases: Raw Answer When selecting the best tablet mount, it's important to consider factors such"
+    },
+    {
+      "brand": "Tackform",
+      "pressureScore": 9,
+      "lostRows": 4,
+      "rawAppearances": 7,
+      "coMentionRows": 3,
+      "categories": [
+        "fleet 2",
+        "delivery 1",
+        "tablet 1"
+      ],
+      "providers": [
+        "ChatGPT 4"
+      ],
+      "queries": [
+        "best heavy duty vehicle phone mount 1",
+        "best locking phone mount for shared delivery vehicles 1",
+        "best phone mount for construction vehicles and work trucks 1",
+        "best tablet mount 1"
+      ],
+      "themes": [
+        "commercial/pro 4",
+        "easy install 4",
+        "rugged/durable 4",
+        "secure/locking 4",
+        "stability/grip 4",
+        "compatibility 3",
+        "adjustable/flexible 1",
+        "budget/value 1"
+      ],
+      "counterPositioning": "Position iBOLT around fleet and warehouse-specific SKUs, barcode scanner support, locking workflows, and exact vertical pages.",
+      "sample": "best heavy duty vehicle phone mount Provider: ChatGPT Model: openai/gpt-4o Category: fleet Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, Arkon, iOttie, Scosche, Tackform Product signals: Catalog product aliases: Raw Answer When selecting a heavy-duty vehicle phone mount, especially for co"
+    },
+    {
+      "brand": "LISEN",
+      "pressureScore": 9,
+      "lostRows": 1,
+      "rawAppearances": 0,
+      "coMentionRows": 0,
+      "categories": [
+        "fleet 1"
+      ],
+      "providers": [
+        "Claude 1"
+      ],
+      "queries": [
+        "best phone mount for delivery drivers 1"
+      ],
+      "themes": [
+        "budget/value 1",
+        "commercial/pro 1",
+        "easy install 1",
+        "rugged/durable 1",
+        "secure/locking 1",
+        "stability/grip 1"
+      ],
+      "counterPositioning": "",
+      "sample": "best phone mount for delivery drivers Provider: Claude Model: anthropic/claude-sonnet-4 Category: fleet Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, iOttie, ProClip Product signals: Catalog product aliases: Raw Answer Best Phone Mounts for Delivery Drivers (2024) Here are the top phone m"
+    },
+    {
+      "brand": "Peak Design",
+      "pressureScore": 9,
+      "lostRows": 1,
+      "rawAppearances": 1,
+      "coMentionRows": 0,
+      "categories": [
+        "delivery 1"
+      ],
+      "providers": [
+        "Gemini 1"
+      ],
+      "queries": [
+        "best phone mount for Instacart and grocery delivery drivers 1"
+      ],
+      "themes": [
+        "budget/value 1",
+        "commercial/pro 1",
+        "compatibility 1",
+        "easy install 1",
+        "rugged/durable 1",
+        "secure/locking 1",
+        "stability/grip 1"
+      ],
+      "counterPositioning": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories.",
+      "sample": "best phone mount for Instacart and grocery delivery drivers Provider: Gemini Model: google/gemini-2.5-flash Category: delivery Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, iOttie, Peak Design Product signals: Catalog product aliases: Raw Answer For Instacart and grocery delivery drivers,"
+    },
+    {
+      "brand": "Quad Lock",
+      "pressureScore": 9,
+      "lostRows": 1,
+      "rawAppearances": 1,
+      "coMentionRows": 0,
+      "categories": [
+        "delivery 1"
+      ],
+      "providers": [
+        "Claude 1"
+      ],
+      "queries": [
+        "magnetic vs clamp phone mounts for delivery work 1"
+      ],
+      "themes": [
+        "budget/value 1",
+        "commercial/pro 1",
+        "compatibility 1",
+        "easy install 1",
+        "rugged/durable 1",
+        "secure/locking 1",
+        "stability/grip 1"
+      ],
+      "counterPositioning": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories.",
+      "sample": "magnetic vs clamp phone mounts for delivery work Provider: Claude Model: anthropic/claude-sonnet-4 Category: delivery Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: RAM Mounts, iOttie, Belkin, Quad Lock Product signals: Catalog product aliases: Raw Answer Magnetic vs Clamp Phone Mounts for Delivery Wo"
+    },
+    {
+      "brand": "Kensington",
+      "pressureScore": 8,
+      "lostRows": 1,
+      "rawAppearances": 2,
+      "coMentionRows": 1,
+      "categories": [
+        "restaurant 1"
+      ],
+      "providers": [
+        "ChatGPT 1"
+      ],
+      "queries": [
+        "best locking tablet stand for food trucks and quick service restaurants 1"
+      ],
+      "themes": [
+        "commercial/pro 1",
+        "compatibility 1",
+        "easy install 1",
+        "rugged/durable 1",
+        "secure/locking 1"
+      ],
+      "counterPositioning": "iBOLT should emphasize multi-tablet restaurant operations, delivery app stations, locking holders, and POS mounting flexibility.",
+      "sample": "best locking tablet stand for food trucks and quick service restaurants Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 0 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: Mount-It, CTA Digital, Kensington, Heckler Product signals: Catalog product aliases: Raw Answer When selecting a locking ta"
+    },
+    {
+      "brand": "Bouncepad",
+      "pressureScore": 6,
+      "lostRows": 1,
+      "rawAppearances": 4,
+      "coMentionRows": 3,
+      "categories": [
+        "restaurant 1"
+      ],
+      "providers": [
+        "Claude 1"
+      ],
+      "queries": [
+        "best restaurant tablet mount 1"
+      ],
+      "themes": [
+        "adjustable/flexible 1",
+        "budget/value 1",
+        "commercial/pro 1",
+        "compatibility 1",
+        "easy install 1",
+        "rugged/durable 1",
+        "secure/locking 1"
+      ],
+      "counterPositioning": "Position iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS mounting.",
+      "sample": "best restaurant tablet mount Provider: Claude Model: anthropic/claude-sonnet-4 Category: restaurant Coverage score: 10 Brand mentioned: false Target domain cited: false Top pick rank: Competitors detected: Mount-It, Bouncepad, CTA Digital Product signals: VESA Catalog product aliases: Raw Answer Best Restaurant Tablet Mounts for Commercial Use Based on curre"
+    }
+  ],
+  "queryRows": [
+    {
+      "query": "best fish finder",
+      "category": "fishing",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "Garmin 3",
+        "Humminbird 3",
+        "Lowrance 2"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "compatibility 2"
+      ],
+      "recommendedAngles": [
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against Humminbird, Garmin, Lowrance.",
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against Humminbird, Garmin."
+      ]
+    },
+    {
+      "query": "best fish finder in water",
+      "category": "fishing",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "Garmin 3",
+        "Humminbird 3",
+        "Lowrance 2",
+        "RAM Mounts 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "adjustable/flexible 2"
+      ],
+      "recommendedAngles": [
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against Humminbird, Garmin, Lowrance.",
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against Humminbird, Garmin, RAM Mounts."
+      ]
+    },
+    {
+      "query": "best fish finder mount for small boat",
+      "category": "fishing",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "Humminbird 3",
+        "RAM Mounts 3",
+        "Scotty 3",
+        "Lowrance 2",
+        "YakAttack 2",
+        "Garmin 1"
+      ],
+      "themes": [
+        "adjustable/flexible 3",
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3"
+      ],
+      "recommendedAngles": [
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Humminbird, Scotty.",
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Humminbird, Garmin."
+      ]
+    },
+    {
+      "query": "best phone mount for delivery drivers",
+      "category": "fleet",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "iOttie 3",
+        "RAM Mounts 3",
+        "Belkin 1",
+        "LISEN 1",
+        "ProClip 1",
+        "Scosche 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "compatibility 2",
+        "adjustable/flexible 1"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, Scosche by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "iOttie 3",
+        "RAM Mounts 3",
+        "Peak Design 1",
+        "Scosche 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 1"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, Scosche by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, Peak Design by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best tablet mount",
+      "category": "tablet",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "CTA Digital 2",
+        "Lamicall 2",
+        "iOttie 1",
+        "Tackform 1"
+      ],
+      "themes": [
+        "adjustable/flexible 3",
+        "commercial/pro 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "stability/grip 3",
+        "budget/value 2",
+        "secure/locking 2",
+        "compatibility 1"
+      ],
+      "recommendedAngles": [
+        "Put iBOLT beside RAM Mounts, Arkon, Tackform in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts, Arkon, Lamicall in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts, iOttie, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows."
+      ]
+    },
+    {
+      "query": "commercial grade phone mount for delivery drivers",
+      "category": "delivery",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "ProClip 2",
+        "iOttie 1",
+        "Scosche 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "stability/grip 3",
+        "adjustable/flexible 2",
+        "budget/value 2",
+        "secure/locking 2"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, iOttie by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "magnetic vs clamp phone mounts for delivery work",
+      "category": "delivery",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "iOttie 2",
+        "RAM Mounts 2",
+        "Belkin 1",
+        "Quad Lock 1",
+        "Scosche 1"
+      ],
+      "themes": [
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 2",
+        "commercial/pro 2",
+        "budget/value 1"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, Scosche by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, Belkin by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like the default competitors by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best budget fish finder mount",
+      "category": "fishing",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "RAM Mounts 3",
+        "Scotty 3",
+        "YakAttack 2",
+        "Humminbird 1"
+      ],
+      "themes": [
+        "adjustable/flexible 3",
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "stability/grip 3",
+        "secure/locking 2"
+      ],
+      "recommendedAngles": [
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Humminbird, Scotty.",
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Scotty.",
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Scotty, YakAttack."
+      ]
+    },
+    {
+      "query": "best ELD mount for trucks",
+      "category": "fleet",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "ProClip 2",
+        "Scosche 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "budget/value 2",
+        "adjustable/flexible 1"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best kayak fish finder mount",
+      "category": "fishing",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "RAM Mounts 3",
+        "YakAttack 3",
+        "Humminbird 2",
+        "Scotty 2",
+        "Garmin 1",
+        "Lowrance 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 2",
+        "budget/value 2"
+      ],
+      "recommendedAngles": [
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Scotty, YakAttack.",
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Humminbird, Scotty.",
+        "Clarify that iBOLT solves the mounting side of fish finder setups and compare placement, AMPS plates, rails, vibration, and Garmin/Humminbird/Lowrance compatibility against RAM Mounts, Humminbird, Garmin."
+      ]
+    },
+    {
+      "query": "best locking phone mount for shared delivery vehicles",
+      "category": "delivery",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "iOttie 1",
+        "ProClip 1",
+        "Scosche 1",
+        "Tackform 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "budget/value 2"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, iOttie by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best locking tablet stand for food trucks and quick service restaurants",
+      "category": "restaurant",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "CTA Digital 3",
+        "Heckler 1",
+        "Kensington 1",
+        "Mount-It 1",
+        "RAM Mounts 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "adjustable/flexible 2",
+        "budget/value 2",
+        "stability/grip 2"
+      ],
+      "recommendedAngles": [
+        "Put iBOLT beside Mount-It, CTA Digital, Kensington in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside CTA Digital, RAM Mounts in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows."
+      ]
+    },
+    {
+      "query": "best multi tablet mount",
+      "category": "restaurant",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "CTA Digital 3",
+        "Mount-It 3",
+        "RAM Mounts 2",
+        "Arkon 1"
+      ],
+      "themes": [
+        "adjustable/flexible 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "budget/value 2"
+      ],
+      "recommendedAngles": [
+        "Put iBOLT beside Arkon, Mount-It, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside Mount-It, CTA Digital, RAM Mounts in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts, Mount-It, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows."
+      ]
+    },
+    {
+      "query": "best phone mount for construction vehicles and work trucks",
+      "category": "fleet",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "iOttie 1",
+        "ProClip 1",
+        "Scosche 1",
+        "Tackform 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 1"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, Scosche by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "set up multiple tablets for DoorDash Uber Eats and Grubhub",
+      "category": "restaurant",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 3,
+      "competitors": [
+        "RAM Mounts 2",
+        "Arkon 1"
+      ],
+      "themes": [
+        "adjustable/flexible 3",
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "stability/grip 3",
+        "rugged/durable 2",
+        "secure/locking 1"
+      ],
+      "recommendedAngles": [
+        "Put iBOLT beside the default competitors in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts, Arkon in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows."
+      ]
+    },
+    {
+      "query": "best barcode scanner mount for forklift",
+      "category": "warehouse",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 7,
+      "competitors": [
+        "Havis 3",
+        "RAM Mounts 3",
+        "Zebra 2",
+        "Arkon 1",
+        "ProClip 1",
+        "Square 1"
+      ],
+      "themes": [
+        "adjustable/flexible 3",
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "stability/grip 3",
+        "secure/locking 2"
+      ],
+      "recommendedAngles": [
+        "Compare iBOLT against RAM Mounts, ProClip, Havis for forklift, barcode scanner, Zebra/Honeywell style device handling, vibration, and no-drill or secure warehouse installs.",
+        "Compare iBOLT against RAM Mounts, Havis, Zebra for forklift, barcode scanner, Zebra/Honeywell style device handling, vibration, and no-drill or secure warehouse installs.",
+        "Compare iBOLT against RAM Mounts, Arkon, Havis for forklift, barcode scanner, Zebra/Honeywell style device handling, vibration, and no-drill or secure warehouse installs."
+      ]
+    },
+    {
+      "query": "best heavy duty vehicle phone mount",
+      "category": "fleet",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 7,
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "iOttie 1",
+        "ProClip 1",
+        "Scosche 1",
+        "Tackform 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "stability/grip 3",
+        "budget/value 2",
+        "compatibility 2",
+        "secure/locking 2",
+        "adjustable/flexible 1"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, iOttie by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best phone mount for Amazon Flex and delivery vans",
+      "category": "delivery",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 7,
+      "competitors": [
+        "RAM Mounts 3",
+        "iOttie 2",
+        "Arkon 1",
+        "Belkin 1",
+        "ProClip 1",
+        "Scosche 1"
+      ],
+      "themes": [
+        "budget/value 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 1"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, iOttie, Scosche by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, iOttie by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best restaurant tablet mount",
+      "category": "restaurant",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 7,
+      "competitors": [
+        "CTA Digital 3",
+        "Mount-It 2",
+        "RAM Mounts 2",
+        "Arkon 1",
+        "Bouncepad 1"
+      ],
+      "themes": [
+        "adjustable/flexible 3",
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "budget/value 2",
+        "stability/grip 2"
+      ],
+      "recommendedAngles": [
+        "Put iBOLT beside Arkon, Mount-It, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside Mount-It, Bouncepad, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows."
+      ]
+    },
+    {
+      "query": "best tablet mount for restaurant POS and delivery apps",
+      "category": "restaurant",
+      "lostProviderCount": 3,
+      "lostProviders": [
+        "ChatGPT",
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 7,
+      "competitors": [
+        "CTA Digital 2",
+        "Heckler 2",
+        "Arkon 1",
+        "Mount-It 1",
+        "RAM Mounts 1",
+        "Square 1"
+      ],
+      "themes": [
+        "commercial/pro 3",
+        "compatibility 3",
+        "easy install 3",
+        "rugged/durable 3",
+        "secure/locking 3",
+        "stability/grip 3",
+        "adjustable/flexible 2",
+        "budget/value 2"
+      ],
+      "recommendedAngles": [
+        "Put iBOLT beside Arkon, Mount-It, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside CTA Digital, Square in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts, Heckler in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows."
+      ]
+    },
+    {
+      "query": "best tablet mount for food truck",
+      "category": "restaurant",
+      "lostProviderCount": 2,
+      "lostProviders": [
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 0,
+      "competitors": [
+        "Arkon 2",
+        "RAM Mounts 2",
+        "CTA Digital 1",
+        "Square 1"
+      ],
+      "themes": [
+        "adjustable/flexible 2",
+        "budget/value 2",
+        "commercial/pro 2",
+        "compatibility 2",
+        "easy install 2",
+        "rugged/durable 2",
+        "secure/locking 2",
+        "stability/grip 2"
+      ],
+      "recommendedAngles": [
+        "Put iBOLT beside RAM Mounts, Arkon, CTA Digital in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows.",
+        "Put iBOLT beside RAM Mounts, Arkon in restaurant tablet and POS comparison sections, then emphasize multi-tablet stations, locking holders, and delivery app workflows."
+      ]
+    },
+    {
+      "query": "best drill base phone mount for semi trucks",
+      "category": "fleet",
+      "lostProviderCount": 2,
+      "lostProviders": [
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 5,
+      "competitors": [
+        "Arkon 2",
+        "RAM Mounts 2",
+        "ProClip 1"
+      ],
+      "themes": [
+        "adjustable/flexible 2",
+        "budget/value 2",
+        "commercial/pro 2",
+        "compatibility 2",
+        "easy install 2",
+        "rugged/durable 2",
+        "secure/locking 2",
+        "stability/grip 2"
+      ],
+      "recommendedAngles": [
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon, ProClip by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows.",
+        "Separate iBOLT from consumer car mounts like RAM Mounts, Arkon by emphasizing commercial retention, shared vehicles, drill bases, AMPS compatibility, and daily driver workflows."
+      ]
+    },
+    {
+      "query": "best forklift tablet mount",
+      "category": "warehouse",
+      "lostProviderCount": 2,
+      "lostProviders": [
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 10,
+      "competitors": [
+        "RAM Mounts 2",
+        "Havis 1",
+        "ProClip 1",
+        "Zebra 1"
+      ],
+      "themes": [
+        "budget/value 2",
+        "commercial/pro 2",
+        "compatibility 2",
+        "easy install 2",
+        "rugged/durable 2",
+        "stability/grip 2",
+        "adjustable/flexible 1",
+        "secure/locking 1"
+      ],
+      "recommendedAngles": [
+        "Compare iBOLT against RAM Mounts, Havis, Zebra for forklift, barcode scanner, Zebra/Honeywell style device handling, vibration, and no-drill or secure warehouse installs.",
+        "Compare iBOLT against RAM Mounts, ProClip for forklift, barcode scanner, Zebra/Honeywell style device handling, vibration, and no-drill or secure warehouse installs."
+      ]
+    },
+    {
+      "query": "best tablet mount for warehouse",
+      "category": "warehouse",
+      "lostProviderCount": 2,
+      "lostProviders": [
+        "Claude",
+        "Gemini"
+      ],
+      "avgCoverage": 10,
+      "competitors": [
+        "RAM Mounts 2",
+        "Havis 1"
+      ],
+      "themes": [
+        "budget/value 2",
+        "commercial/pro 2",
+        "compatibility 2",
+        "easy install 2",
+        "rugged/durable 2",
+        "secure/locking 2",
+        "stability/grip 2",
+        "adjustable/flexible 1"
+      ],
+      "recommendedAngles": [
+        "Compare iBOLT against RAM Mounts for forklift, barcode scanner, Zebra/Honeywell style device handling, vibration, and no-drill or secure warehouse installs.",
+        "Compare iBOLT against RAM Mounts, Havis for forklift, barcode scanner, Zebra/Honeywell style device handling, vibration, and no-drill or secure warehouse installs."
+      ]
+    }
+  ],
+  "iboltMentionRows": [
+    {
+      "provider": "Claude",
+      "query": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "coverageScore": 70,
+      "mentionQualityScore": 96,
+      "topPickRank": "1",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability"
+      ],
+      "languagePatterns": [],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "ibolt phone mounts for DoorDash and Uber Eats drivers Provider: Claude Model: anthropic/claude-sonnet-4 Category: delivery Coverage score: 70 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Product signals: TabDock, BizMount Catalog product alia..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "coverageScore": 70,
+      "mentionQualityScore": 86,
+      "topPickRank": "1",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "Dock'n Lock / Dock’n Lock",
+        "xProDock",
+        "TabDock"
+      ],
+      "catalogProducts": [
+        "iBOLT™ Dock'n Lock - Composite Locking Tablet Holder- AMPS Pattern Connection"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "commercial/pro"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "iBolt Dock’n Lock for restaurant counters Provider: Claude Model: anthropic/claude-sonnet-4 Category: restaurant Coverage score: 70 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Product signals: Dock'n Lock / Dock’n Lock, xProDock, TabDock Cat..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "coverageScore": 63,
+      "mentionQualityScore": 83,
+      "topPickRank": "3",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "Mount-It",
+        "Bouncepad"
+      ],
+      "productSignals": [
+        "VESA"
+      ],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "commercial/pro",
+        "budget/value"
+      ],
+      "action": "add exact product names and links to source page; make the page citable with visible specs and schema",
+      "snippet": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security Provider: Claude Model: anthropic/claude-sonnet-4 Category: restaurant Coverage score: 63 Brand mentioned: true Target domain cited: false Top pick rank: 3 Competitors detected: Mount-It, Bouncepad Product signals: VESA Cat..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "coverageScore": 60,
+      "mentionQualityScore": 83,
+      "topPickRank": "1",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "Arkon",
+        "Mount-It",
+        "CTA Digital"
+      ],
+      "productSignals": [
+        "Dock'n Lock / Dock’n Lock"
+      ],
+      "catalogProducts": [
+        "iBOLT™ Dock'n Lock - Composite Locking Tablet Holder- AMPS Pattern Connection"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "commercial/pro"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "iBolt Dock’n Lock for restaurant counters Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 60 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Arkon, Mount-It, CTA Digital Product signals: Dock'n Lock / Dock’n Lock Cata..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best forklift tablet mount",
+      "category": "warehouse",
+      "coverageScore": 53,
+      "mentionQualityScore": 81,
+      "topPickRank": "3",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "languagePatterns": [
+        "rugged/durable",
+        "secure/locking",
+        "easy install",
+        "compatibility",
+        "commercial/pro"
+      ],
+      "action": "make the page citable with visible specs and schema",
+      "snippet": "...rklift tablet mount Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 53 Brand mentioned: true Target domain cited: false Top pick rank: 3 Competitors detected: RAM Mounts, Arkon, Tackform Product signals: TabDock, BizMount, AMPS Catalog product aliases: iBOLT™ TabDock™ Bizmount™ AMPs Raw Answer When selecting a forklift tablet mo"
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "coverageScore": 60,
+      "mentionQualityScore": 79,
+      "topPickRank": "1",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "Kensington",
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "Dock'n Lock / Dock’n Lock",
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ Dock'n Lock - Composite Locking Tablet Holder- AMPS Pattern Connection",
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "commercial/pro"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "iBolt Dock’n Lock for restaurant counters Provider: Gemini Model: google/gemini-2.5-flash Category: restaurant Coverage score: 60 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Kensington Product signals: Dock'n Lock / Dock’n Lock, TabDock, Biz..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "coverageScore": 60,
+      "mentionQualityScore": 78,
+      "topPickRank": "1",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "xProDock",
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "compatibility"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "ibolt phone mounts for DoorDash and Uber Eats drivers Provider: ChatGPT Model: openai/gpt-4o Category: delivery Coverage score: 60 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Product signals: xProDock, TabDock, BizMount, AMPS Catalog product..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "coverageScore": 53,
+      "mentionQualityScore": 77,
+      "topPickRank": "2",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "iOttie"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "budget/value"
+      ],
+      "action": "make the page citable with visible specs and schema",
+      "snippet": "iBolt vs iOttie for delivery driving Provider: Claude Model: anthropic/claude-sonnet-4 Category: delivery Coverage score: 53 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: iOttie Product signals: TabDock, BizMount Catalog product aliases: Raw A..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "ibolt vs ram mount",
+      "category": "comparison",
+      "coverageScore": 45,
+      "mentionQualityScore": 73,
+      "topPickRank": "2",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps",
+        "iBOLT Quad Tablet Tower TabDock™ Stand"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "budget/value"
+      ],
+      "action": "make the page citable with visible specs and schema",
+      "snippet": "ibolt vs ram mount Provider: ChatGPT Model: openai/gpt-4o Category: comparison Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: TabDock, BizMount Catalog product aliases: Raw Answer When comparing iB..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "coverageScore": 45,
+      "mentionQualityScore": 73,
+      "topPickRank": "2",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "languagePatterns": [
+        "commercial/pro",
+        "budget/value"
+      ],
+      "action": "make the page citable with visible specs and schema",
+      "snippet": "iBolt vs RAM for fleet phone mounting Provider: ChatGPT Model: openai/gpt-4o Category: fleet Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: BizMount Catalog product aliases: Raw Answer When compari..."
+    },
+    {
+      "provider": "Claude",
+      "query": "ibolt vs ram mount",
+      "category": "comparison",
+      "coverageScore": 45,
+      "mentionQualityScore": 68,
+      "topPickRank": "2",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "budget/value"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "ibolt vs ram mount Provider: Claude Model: anthropic/claude-sonnet-4 Category: comparison Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: TabDock, BizMount Catalog product aliases: Raw Answer iBOLT..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "coverageScore": 45,
+      "mentionQualityScore": 68,
+      "topPickRank": "2",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "TabDock"
+      ],
+      "catalogProducts": [
+        "iBOLT TabDock MagDock 360 Magnetic Tablet Mount – Heavy-Duty Forklift & Warehouse Holder"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "languagePatterns": [
+        "commercial/pro",
+        "budget/value"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "iBolt vs RAM for fleet phone mounting Provider: Claude Model: anthropic/claude-sonnet-4 Category: fleet Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: TabDock Catalog product aliases: Raw Answer iB..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "coverageScore": 45,
+      "mentionQualityScore": 63,
+      "topPickRank": "2",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "iOttie"
+      ],
+      "productSignals": [
+        "xProDock",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "compatibility",
+        "budget/value"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema",
+      "snippet": "iBolt vs iOttie for delivery driving Provider: ChatGPT Model: openai/gpt-4o Category: delivery Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: iOttie Product signals: xProDock, AMPS Catalog product aliases: Raw Answer When com..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "coverageScore": 45,
+      "mentionQualityScore": 61,
+      "topPickRank": "3",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "Mount-It",
+        "Bouncepad"
+      ],
+      "productSignals": [],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "durability",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "commercial/pro",
+        "budget/value"
+      ],
+      "action": "add exact product names and links to source page; make the page citable with visible specs and schema",
+      "snippet": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 3 Competitors detected: Mount-It, Bouncepad Product signals: Catalog product ali..."
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "coverageScore": 45,
+      "mentionQualityScore": 61,
+      "topPickRank": "2",
+      "sentiment": "strong",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "languagePatterns": [
+        "commercial/pro",
+        "budget/value"
+      ],
+      "action": "add exact product names and links to source page; make the page citable with visible specs and schema",
+      "snippet": "iBolt vs RAM for fleet phone mounting Provider: Gemini Model: google/gemini-2.5-flash Category: fleet Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: Catalog product aliases: Raw Answer For fleet ph..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best tablet mount for food truck",
+      "category": "restaurant",
+      "coverageScore": 45,
+      "mentionQualityScore": 61,
+      "topPickRank": "5",
+      "sentiment": "mixed",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "CTA Digital"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "easy install",
+        "compatibility",
+        "commercial/pro",
+        "stability/grip"
+      ],
+      "action": "make the page citable with visible specs and schema",
+      "snippet": "...truck Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 5 Competitors detected: RAM Mounts, Arkon, Tackform, CTA Digital Product signals: TabDock, BizMount, AMPS Catalog product aliases: iBOLT™ TabDock™ Bizmount™ AMPs Raw Answer When selecting a tablet mount for a"
+    },
+    {
+      "provider": "Gemini",
+      "query": "ibolt vs ram mount",
+      "category": "comparison",
+      "coverageScore": 45,
+      "mentionQualityScore": 57,
+      "topPickRank": "",
+      "sentiment": "specialist",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "languagePatterns": [
+        "budget/value"
+      ],
+      "action": "add exact product names and links to source page; make the page citable with visible specs and schema; strengthen recommendation framing",
+      "snippet": "ibolt vs ram mount Provider: Gemini Model: google/gemini-2.5-flash Category: comparison Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: RAM Mounts Product signals: Catalog product aliases: Raw Answer You're looking to choose bet..."
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "coverageScore": 45,
+      "mentionQualityScore": 57,
+      "topPickRank": "",
+      "sentiment": "specialist",
+      "coMentionedCompetitors": [
+        "Mount-It",
+        "Bouncepad",
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "VESA"
+      ],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "commercial/pro",
+        "budget/value"
+      ],
+      "action": "add exact product names and links to source page; make the page citable with visible specs and schema; strengthen recommendation framing",
+      "snippet": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security Provider: Gemini Model: google/gemini-2.5-flash Category: restaurant Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: Mount-It, Bouncepad Product signals: VESA Catalog..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best tablet mount for warehouse",
+      "category": "warehouse",
+      "coverageScore": 37,
+      "mentionQualityScore": 53,
+      "topPickRank": "5",
+      "sentiment": "budget",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "CTA Digital"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "rugged/durable",
+        "secure/locking",
+        "easy install",
+        "compatibility",
+        "commercial/pro",
+        "budget/value"
+      ],
+      "action": "make the page citable with visible specs and schema",
+      "snippet": "...ehouse Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 37 Brand mentioned: true Target domain cited: false Top pick rank: 5 Competitors detected: RAM Mounts, Arkon, Tackform, CTA Digital Product signals: TabDock, BizMount, AMPS Catalog product aliases: iBOLT™ TabDock™ Bizmount™ AMPs Raw Answer When selecting a tablet mount for a"
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best drill base phone mount for semi trucks",
+      "category": "fleet",
+      "coverageScore": 37,
+      "mentionQualityScore": 53,
+      "topPickRank": "4",
+      "sentiment": "budget",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip"
+      ],
+      "productSignals": [
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "languagePatterns": [
+        "rugged/durable",
+        "secure/locking",
+        "easy install",
+        "adjustable/flexible",
+        "compatibility",
+        "commercial/pro",
+        "budget/value",
+        "stability/grip"
+      ],
+      "action": "make the page citable with visible specs and schema",
+      "snippet": "...ty and can handle the demands of daily trucking. - Installation style : Drill base installation ensures a secure fit, and the mount is adjustable to accommodate different phone sizes. - Tradeoffs : While durable, it may not offer the same level of adjustability as RAM Mounts. 4. iBOLT BizMount AMPS - Why it's recommended : This mount is designed for comme"
+    },
+    {
+      "provider": "Gemini",
+      "query": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "coverageScore": 45,
+      "mentionQualityScore": 49,
+      "topPickRank": "",
+      "sentiment": "specialist",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking",
+        "compatibility"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema; strengthen recommendation framing",
+      "snippet": "ibolt phone mounts for DoorDash and Uber Eats drivers Provider: Gemini Model: google/gemini-2.5-flash Category: delivery Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: Product signals: TabDock, BizMount, AMPS Catalog product al..."
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "coverageScore": 35,
+      "mentionQualityScore": 46,
+      "topPickRank": "",
+      "sentiment": "mixed",
+      "coMentionedCompetitors": [
+        "iOttie",
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "xProDock",
+        "TabDock"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps",
+        "iBOLT Quad Tablet Tower TabDock™ Stand"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "security"
+      ],
+      "languagePatterns": [
+        "secure/locking"
+      ],
+      "action": "validate or correct AI-visible product naming; make the page citable with visible specs and schema; strengthen recommendation framing",
+      "snippet": "iBolt vs iOttie for delivery driving Provider: Gemini Model: google/gemini-2.5-flash Category: delivery Coverage score: 35 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: iOttie Product signals: xProDock, TabDock Catalog product aliases: Raw Answe..."
+    }
+  ],
+  "copyActionRows": [
+    {
+      "priority": 1,
+      "theme": "Rugged durability",
+      "gapPoints": 85,
+      "iBOLTCurrentRate": "14%",
+      "lostAnswerRate": "99%",
+      "mainCompetitors": [
+        "RAM Mounts 57",
+        "Arkon 24",
+        "iOttie 15",
+        "CTA Digital 14",
+        "Humminbird 12",
+        "ProClip 12"
+      ],
+      "affectedCategories": [
+        "restaurant 16",
+        "delivery 15",
+        "fishing 15",
+        "fleet 14",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "pageCopy": "Add material, vibration, heat, moisture, or jobsite stress proof before the first product recommendation.",
+      "schemaFix": "Add Product or ItemList-style product modules with material, warranty, and mounting-method fields visible on page.",
+      "proofPoints": "heavy-gauge steel, aluminum, powder coating, vibration-resistant placement, 2-year warranty",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": ""
+    },
+    {
+      "priority": 2,
+      "theme": "Install clarity",
+      "gapPoints": 82,
+      "iBOLTCurrentRate": "18%",
+      "lostAnswerRate": "100%",
+      "mainCompetitors": [
+        "RAM Mounts 58",
+        "Arkon 25",
+        "iOttie 15",
+        "CTA Digital 14",
+        "Humminbird 12",
+        "ProClip 12"
+      ],
+      "affectedCategories": [
+        "restaurant 17",
+        "delivery 15",
+        "fishing 15",
+        "fleet 14",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "pageCopy": "Add a simple mounting-method selector that compares clamp, drill base, suction, magnetic, wall, and console installs.",
+      "schemaFix": "Use HowTo schema only on pages with real setup steps and keep steps visible in the page body.",
+      "proofPoints": "clamp, drill base, suction, magnetic, wall mount, console mount, no-drill options",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": ""
+    },
+    {
+      "priority": 3,
+      "theme": "Stability and grip",
+      "gapPoints": 80,
+      "iBOLTCurrentRate": "9%",
+      "lostAnswerRate": "89%",
+      "mainCompetitors": [
+        "RAM Mounts 56",
+        "Arkon 25",
+        "iOttie 15",
+        "CTA Digital 12",
+        "ProClip 12",
+        "Scosche 9"
+      ],
+      "affectedCategories": [
+        "delivery 15",
+        "restaurant 15",
+        "fleet 14",
+        "fishing 9",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "pageCopy": "Answer how the mount stays stable during stops, vibration, rough water, forklift movement, or shared-vehicle use.",
+      "schemaFix": "Add FAQ questions that directly answer stability, vibration, clamp, drill-base, suction, and magnetic hold concerns.",
+      "proofPoints": "drill bases, clamps, locking holders, AMPS plates, ball sizes, rough-road or rough-water setup guidance",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": ""
+    },
+    {
+      "priority": 4,
+      "theme": "Compatibility",
+      "gapPoints": 61,
+      "iBOLTCurrentRate": "32%",
+      "lostAnswerRate": "93%",
+      "mainCompetitors": [
+        "RAM Mounts 54",
+        "Arkon 22",
+        "iOttie 14",
+        "CTA Digital 13",
+        "Humminbird 11",
+        "ProClip 10"
+      ],
+      "affectedCategories": [
+        "restaurant 17",
+        "delivery 15",
+        "fishing 14",
+        "fleet 12",
+        "warehouse 7",
+        "tablet 1"
+      ],
+      "pageCopy": "Add compatibility tables for device size, mounting pattern, vehicle/equipment type, AMPS pattern, and ball size.",
+      "schemaFix": "Use exact product titles, product handles, image alt text, and visible compatibility fields.",
+      "proofPoints": "17mm, 20mm, 25mm/B size, 38mm/C size, 57mm, AMPS, VESA, RAM-compatible components",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": ""
+    },
+    {
+      "priority": 5,
+      "theme": "Adjustability",
+      "gapPoints": 58,
+      "iBOLTCurrentRate": "5%",
+      "lostAnswerRate": "63%",
+      "mainCompetitors": [
+        "RAM Mounts 37",
+        "Arkon 17",
+        "CTA Digital 12",
+        "Humminbird 7",
+        "Scotty 7",
+        "iOttie 6"
+      ],
+      "affectedCategories": [
+        "restaurant 15",
+        "fishing 10",
+        "delivery 6",
+        "fleet 6",
+        "warehouse 5",
+        "tablet 3"
+      ],
+      "pageCopy": "Explain how modular arms, ball sizes, plates, and holders can be combined or changed as the operation changes.",
+      "schemaFix": "Add internal links to AMPS/modular guide and product modules that show the exact holder, arm, and base relationship.",
+      "proofPoints": "300+ modular parts, interchangeable holders, ball mounts, AMPS plates, Mount Configurator",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": ""
+    },
+    {
+      "priority": 6,
+      "theme": "Commercial/pro use",
+      "gapPoints": 40,
+      "iBOLTCurrentRate": "59%",
+      "lostAnswerRate": "99%",
+      "mainCompetitors": [
+        "RAM Mounts 57",
+        "Arkon 25",
+        "CTA Digital 14",
+        "iOttie 14",
+        "Humminbird 12",
+        "ProClip 12"
+      ],
+      "affectedCategories": [
+        "restaurant 17",
+        "fishing 15",
+        "delivery 14",
+        "fleet 14",
+        "warehouse 7",
+        "tablet 3"
+      ],
+      "pageCopy": "Add a short commercial-use block that names the work setting, the device being mounted, and why iBOLT is purpose-built for that workflow.",
+      "schemaFix": "Use FAQPage or HowTo schema where the page explains business setup, installation, or selection steps.",
+      "proofPoints": "commercial fleets, restaurants, warehouses, delivery vehicles, 300+ modular parts, business-ready mounting kits",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": ""
+    },
+    {
+      "priority": 7,
+      "theme": "Value without budget positioning",
+      "gapPoints": 24,
+      "iBOLTCurrentRate": "59%",
+      "lostAnswerRate": "83%",
+      "mainCompetitors": [
+        "RAM Mounts 51",
+        "Arkon 17",
+        "Humminbird 11",
+        "iOttie 11",
+        "ProClip 11",
+        "CTA Digital 9"
+      ],
+      "affectedCategories": [
+        "fishing 14",
+        "restaurant 13",
+        "fleet 12",
+        "delivery 11",
+        "warehouse 7",
+        "tablet 2"
+      ],
+      "pageCopy": "Answer value intent without calling iBOLT cheap. Focus on getting the right kit, reducing wrong-part purchases, reuse, warranty, and quick shipping.",
+      "schemaFix": "Use offer/product data where available, but keep the page copy framed around fit and lifetime usefulness.",
+      "proofPoints": "right-fit kits, reusable modular parts, ships within 24 business hours, 2-year warranty",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": "Do not call iBOLT budget, cheap, affordable alternative, or cheaper than RAM."
+    },
+    {
+      "priority": 8,
+      "theme": "Security and locking",
+      "gapPoints": 3,
+      "iBOLTCurrentRate": "77%",
+      "lostAnswerRate": "80%",
+      "mainCompetitors": [
+        "RAM Mounts 50",
+        "Arkon 21",
+        "iOttie 15",
+        "CTA Digital 14",
+        "ProClip 10",
+        "Scosche 9"
+      ],
+      "affectedCategories": [
+        "restaurant 15",
+        "delivery 14",
+        "fleet 13",
+        "fishing 8",
+        "warehouse 5",
+        "tablet 2"
+      ],
+      "pageCopy": "Add theft, shared-vehicle, customer-facing, restaurant counter, or fleet-control language where locking matters.",
+      "schemaFix": "Add FAQ and product modules for LockPro, Dock'n Lock, keyed holders, and shared-station use cases.",
+      "proofPoints": "LockPro, Dock'n Lock, keyed holders, drill-base installs, restaurant counters, shared delivery vehicles",
+      "offSiteAsk": "Ask SEO contractor for third-party references that use this language around iBOLT in buyer guides, industry roundups, partner pages, and comparison articles.",
+      "doNotSay": ""
+    }
+  ],
+  "iboltThemeRows": [
+    {
+      "theme": "secure/locking",
+      "count": 17,
+      "rate": 77
+    },
+    {
+      "theme": "budget/value",
+      "count": 13,
+      "rate": 59
+    },
+    {
+      "theme": "commercial/pro",
+      "count": 13,
+      "rate": 59
+    },
+    {
+      "theme": "compatibility",
+      "count": 7,
+      "rate": 32
+    },
+    {
+      "theme": "easy install",
+      "count": 4,
+      "rate": 18
+    },
+    {
+      "theme": "rugged/durable",
+      "count": 3,
+      "rate": 14
+    },
+    {
+      "theme": "stability/grip",
+      "count": 2,
+      "rate": 9
+    },
+    {
+      "theme": "adjustable/flexible",
+      "count": 1,
+      "rate": 5
+    }
+  ],
+  "lostThemeRows": [
+    {
+      "theme": "easy install",
+      "count": 71,
+      "rate": 100
+    },
+    {
+      "theme": "commercial/pro",
+      "count": 70,
+      "rate": 99
+    },
+    {
+      "theme": "rugged/durable",
+      "count": 70,
+      "rate": 99
+    },
+    {
+      "theme": "compatibility",
+      "count": 66,
+      "rate": 93
+    },
+    {
+      "theme": "stability/grip",
+      "count": 63,
+      "rate": 89
+    },
+    {
+      "theme": "budget/value",
+      "count": 59,
+      "rate": 83
+    },
+    {
+      "theme": "secure/locking",
+      "count": 57,
+      "rate": 80
+    },
+    {
+      "theme": "adjustable/flexible",
+      "count": 45,
+      "rate": 63
+    }
+  ]
+}

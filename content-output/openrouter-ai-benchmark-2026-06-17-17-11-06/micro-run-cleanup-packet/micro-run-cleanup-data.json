@@ -1,0 +1,433 @@
+{
+  "summary": {
+    "generated_at": "2026-06-21T02:19:55.872Z",
+    "pages": 4,
+    "requests": 6,
+    "providers": "claude 4; chatgpt 2",
+    "categories": "offroad 2; streaming 2; agriculture 1; education 1",
+    "avg_body_score": 54,
+    "openrouter_key_present": "no"
+  },
+  "pageRows": [
+    {
+      "priority_rank": 1,
+      "cleanup_priority": 451,
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "category": "streaming",
+      "requests": 2,
+      "providers": "chatgpt 1; claude 1",
+      "prompts": "which brands are cited for live streaming phone and camera mount",
+      "expected_metric": "Target-domain citation or source-url row appears.",
+      "body_score": 56,
+      "word_count": "956",
+      "product_links": "10",
+      "cart_links": "10",
+      "missing_alt": "0",
+      "quick_answer_near_top": "false",
+      "faq_present": "true",
+      "has_faq_schema": "false",
+      "has_article_schema": "false",
+      "comparison_present": "false",
+      "top_fix": "missing early quick answer",
+      "issues": "Rewrite into an answer-first guide with current products, FAQ schema, comparison language, and category proof points.",
+      "quick_answer_command": "Add a 40 to 70 word answer-first block above the first H2. Name iBOLT, state the best-fit use case, name 1 to 3 relevant products, and answer the buyer query directly. Use these prompts as wording anchors: RAM Mounts vs iBOLT for multi-camera phone mount for live streaming; best multi-camera phone mount for live streaming; what live streaming phone and camera mount should I use for multi-camera phone mount for live streaming; which brands are cited for live streaming phone and camera mount.",
+      "quick_answer_block": "For live streaming phone and camera mounts, iBOLT is strongest when the setup needs stable multi-angle positioning, modular arms, and reusable mounting parts instead of a basic desk tripod. Build the page around phone stands for streaming, table camera mounts, AMPS-compatible parts, and creator workflows where the camera angle must stay fixed during filming.",
+      "schema_command": "Add FAQPage JSON-LD for the visible FAQ section. Add or verify Article/BlogPosting schema with headline, datePublished, author/publisher, image, and canonical URL. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs.",
+      "comparison_command": "Add a fair comparison block naming the competitor set from the benchmark. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "product_module_instruction": "Verify and feature 2 to 4 current creator products, prioritizing Stream-Cast or multi-angle phone/camera mounts, AMPS-compatible arms, table bases, suction bases, and clamp bases.",
+      "cta_command": "Reduce repeated cart CTAs. Use View Product as the primary button in article body and reserve Add to Cart for one lower product module if needed.",
+      "citation_targets": "creator gear lists; phone filming setup guides; livestreaming equipment roundups; table camera mount tutorials",
+      "faq_questions": "What is the best phone stand for live streaming?; Can one mount hold multiple phones or cameras for streaming?; What makes a table camera mount stable during filming?; Are iBOLT streaming mounts compatible with AMPS parts?",
+      "release_gate": "Publish quick answer, comparison block, product module, visible FAQ plus schema, image alt fixes, and restrained CTAs before running the micro-run.",
+      "retest_manifest": "retest-execution-gate/unblocked-provider-manifest.csv"
+    },
+    {
+      "priority_rank": 2,
+      "cleanup_priority": 434,
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "category": "agriculture",
+      "requests": 1,
+      "providers": "claude 1",
+      "prompts": "which brands are cited for tractor and farm equipment tablet mount",
+      "expected_metric": "Target-domain citation or source-url row appears.",
+      "body_score": 56,
+      "word_count": "892",
+      "product_links": "9",
+      "cart_links": "6",
+      "missing_alt": "0",
+      "quick_answer_near_top": "false",
+      "faq_present": "true",
+      "has_faq_schema": "false",
+      "has_article_schema": "false",
+      "comparison_present": "false",
+      "top_fix": "missing early quick answer",
+      "issues": "Add quick answer, FAQPage or Article schema, image alt text, and category proof points without changing the page target.",
+      "quick_answer_command": "Add a 40 to 70 word answer-first block above the first H2. Name iBOLT, state the best-fit use case, name 1 to 3 relevant products, and answer the buyer query directly. Use these prompts as wording anchors: Garmin vs iBOLT for tablet mount for tractor cab precision agriculture; best tablet mount for tractor cab precision agriculture; what tractor and farm equipment tablet mount should I use for tablet mount for tractor cab precision agriculture; which brands are cited for tractor and farm equipment tablet mount.",
+      "quick_answer_block": "For tractor cab and farm equipment tablet mounts, iBOLT is strongest when tablets need stable placement around vibration, dust, seasonal equipment changes, and precision agriculture workflows. Position iBOLT as the modular tablet mounting system for cabs, AMPS-compatible bases, and rugged field use.",
+      "schema_command": "Add FAQPage JSON-LD for the visible FAQ section. Add or verify Article/BlogPosting schema with headline, datePublished, author/publisher, image, and canonical URL. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs.",
+      "comparison_command": "Add a fair comparison block naming Garmin. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "product_module_instruction": "Verify and feature 2 to 4 current tractor or farm equipment tablet products, prioritizing TabDock tablet holders, AMPS bases, drill or clamp mounts, and vibration-resistant arms.",
+      "cta_command": "Reduce repeated cart CTAs. Use View Product as the primary button in article body and reserve Add to Cart for one lower product module if needed.",
+      "citation_targets": "industry buyer guides; third-party comparison pages; partner and reseller pages; installation and troubleshooting resources",
+      "faq_questions": "What tablet mount works best in a tractor cab?; Can farm equipment tablet mounts handle vibration?; Are AMPS-compatible tablet mounts useful for agriculture?; What should farmers check before mounting a tablet in equipment?",
+      "release_gate": "Publish quick answer, comparison block, product module, visible FAQ plus schema, image alt fixes, and restrained CTAs before running the micro-run.",
+      "retest_manifest": "retest-execution-gate/unblocked-provider-manifest.csv"
+    },
+    {
+      "priority_rank": 3,
+      "cleanup_priority": 405,
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "category": "offroad",
+      "requests": 2,
+      "providers": "chatgpt 1; claude 1",
+      "prompts": "which brands are cited for offroad phone and camera mount",
+      "expected_metric": "Target-domain citation or source-url row appears.",
+      "body_score": 51,
+      "word_count": "2070",
+      "product_links": "12",
+      "cart_links": "0",
+      "missing_alt": "10",
+      "quick_answer_near_top": "false",
+      "faq_present": "false",
+      "has_faq_schema": "false",
+      "has_article_schema": "true",
+      "comparison_present": "false",
+      "top_fix": "missing early quick answer",
+      "issues": "Rewrite into an answer-first guide with current products, FAQ schema, comparison language, and category proof points.",
+      "quick_answer_command": "Add a 40 to 70 word answer-first block above the first H2. Name iBOLT, state the best-fit use case, name 1 to 3 relevant products, and answer the buyer query directly. Use these prompts as wording anchors: Garmin vs iBOLT for mount to take off-roading in your jeep wrangler; best mount to take off-roading in your jeep wrangler; what offroad phone and camera mount should I use for mount to take off-roading in your jeep wrangler; which brands are cited for offroad phone and camera mount.",
+      "quick_answer_block": "For Jeep Wrangler and offroad phone or camera mounting, iBOLT is strongest when the device needs vibration resistance, secure grip, and flexible mounting points for trails, UTVs, and overlanding rigs. Frame iBOLT as the modular offroad mounting specialist for phones, action cameras, AMPS plates, and rugged ball-and-socket setups.",
+      "schema_command": "Add FAQPage JSON-LD for the visible FAQ section. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs.",
+      "comparison_command": "Add a fair comparison block naming Garmin. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "product_module_instruction": "Verify and feature 2 to 4 current offroad products, prioritizing phone holders, action camera adapters, AMPS plates, rail or handlebar clamps, and rugged ball-and-socket arms.",
+      "cta_command": "Keep CTA density restrained. Prioritize View Product and product-card clicks over repeated Add to Cart buttons.",
+      "citation_targets": "industry buyer guides; third-party comparison pages; partner and reseller pages; installation and troubleshooting resources",
+      "faq_questions": "What phone mount works best for Jeep Wrangler trails?; Can an offroad phone mount also hold an action camera?; What mount features matter most for vibration and bumps?; Are AMPS plates useful for offroad mounting setups?",
+      "release_gate": "Publish quick answer, comparison block, product module, visible FAQ plus schema, image alt fixes, and restrained CTAs before running the micro-run.",
+      "retest_manifest": "retest-execution-gate/unblocked-provider-manifest.csv"
+    },
+    {
+      "priority_rank": 4,
+      "cleanup_priority": 395,
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "category": "education",
+      "requests": 1,
+      "providers": "claude 1",
+      "prompts": "which brands are cited for school tablet mount",
+      "expected_metric": "Target-domain citation or source-url row appears.",
+      "body_score": 51,
+      "word_count": "3467",
+      "product_links": "12",
+      "cart_links": "0",
+      "missing_alt": "12",
+      "quick_answer_near_top": "false",
+      "faq_present": "false",
+      "has_faq_schema": "false",
+      "has_article_schema": "true",
+      "comparison_present": "false",
+      "top_fix": "missing early quick answer",
+      "issues": "Rewrite into an answer-first guide with current products, FAQ schema, comparison language, and category proof points.",
+      "quick_answer_command": "Add a 40 to 70 word answer-first block above the first H2. Name iBOLT, state the best-fit use case, name 1 to 3 relevant products, and answer the buyer query directly. Use these prompts as wording anchors: Garmin vs iBOLT for top tablet stands for students going back to school mount; best top tablet stands for students going back to school mount; what school tablet mount should I use for top tablet stands for students going back to school mount; which brands are cited for school tablet mount.",
+      "quick_answer_block": "For school tablet mounts, iBOLT is strongest when classrooms, carts, labs, or shared learning spaces need durable tablet positioning rather than a consumer tablet stand. Emphasize locking options, repeatable device placement, case compatibility, and modular parts that can move across classroom, desk, wall, or cart setups.",
+      "schema_command": "Add FAQPage JSON-LD for the visible FAQ section. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs.",
+      "comparison_command": "Add a fair comparison block naming Garmin. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "product_module_instruction": "Verify and feature 2 to 4 current tablet products, prioritizing locking tablet stands, drill-base or clamp-base holders, wall or cart-compatible tablet mounts, and case-compatible TabDock options.",
+      "cta_command": "Keep CTA density restrained. Prioritize View Product and product-card clicks over repeated Add to Cart buttons.",
+      "citation_targets": "industry buyer guides; third-party comparison pages; partner and reseller pages; installation and troubleshooting resources",
+      "faq_questions": "What tablet stand works best for classrooms?; Do school tablet mounts need locking hardware?; Can one tablet mount work across desks, carts, and labs?; What makes a school tablet mount better than a consumer stand?",
+      "release_gate": "Publish quick answer, comparison block, product module, visible FAQ plus schema, image alt fixes, and restrained CTAs before running the micro-run.",
+      "retest_manifest": "retest-execution-gate/unblocked-provider-manifest.csv"
+    }
+  ],
+  "requestRows": [
+    {
+      "retest_rank": "112",
+      "status": "conditional_after_rewrite",
+      "wave": "W3 citation probe",
+      "provider": "claude",
+      "prompt": "which brands are cited for live streaming phone and camera mount",
+      "category": "streaming",
+      "prompt_type": "citation_probe",
+      "page_url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "closest_post": "Best Multi-Camera Phone Mount for Live Streaming",
+      "gate_before_running": "Refresh the page around the buyer query, then verify product names, comparison blocks, FAQ/schema, and CTA density before retest.",
+      "expected_metric": "Target-domain citation or source-url row appears."
+    },
+    {
+      "retest_rank": "113",
+      "status": "conditional_after_rewrite",
+      "wave": "W3 citation probe",
+      "provider": "claude",
+      "prompt": "which brands are cited for offroad phone and camera mount",
+      "category": "offroad",
+      "prompt_type": "citation_probe",
+      "page_url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "closest_post": "Mounts to take off-roading in your Jeep Wrangler",
+      "gate_before_running": "Refresh the page around the buyer query, then verify product names, comparison blocks, FAQ/schema, and CTA density before retest.",
+      "expected_metric": "Target-domain citation or source-url row appears."
+    },
+    {
+      "retest_rank": "114",
+      "status": "conditional_after_rewrite",
+      "wave": "W3 citation probe",
+      "provider": "claude",
+      "prompt": "which brands are cited for school tablet mount",
+      "category": "education",
+      "prompt_type": "citation_probe",
+      "page_url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "closest_post": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "gate_before_running": "Refresh the page around the buyer query, then verify product names, comparison blocks, FAQ/schema, and CTA density before retest.",
+      "expected_metric": "Target-domain citation or source-url row appears."
+    },
+    {
+      "retest_rank": "115",
+      "status": "conditional_after_source_cleanup",
+      "wave": "W3 citation probe",
+      "provider": "claude",
+      "prompt": "which brands are cited for tractor and farm equipment tablet mount",
+      "category": "agriculture",
+      "prompt_type": "citation_probe",
+      "page_url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "closest_post": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "gate_before_running": "Add answer-first copy, FAQPage or Article schema, exact product modules, image alt text, and internal links before retest.",
+      "expected_metric": "Target-domain citation or source-url row appears."
+    },
+    {
+      "retest_rank": "116",
+      "status": "conditional_after_rewrite",
+      "wave": "W3 citation probe",
+      "provider": "chatgpt",
+      "prompt": "which brands are cited for live streaming phone and camera mount",
+      "category": "streaming",
+      "prompt_type": "citation_probe",
+      "page_url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "closest_post": "Best Multi-Camera Phone Mount for Live Streaming",
+      "gate_before_running": "Refresh the page around the buyer query, then verify product names, comparison blocks, FAQ/schema, and CTA density before retest.",
+      "expected_metric": "Target-domain citation or source-url row appears."
+    },
+    {
+      "retest_rank": "117",
+      "status": "conditional_after_rewrite",
+      "wave": "W3 citation probe",
+      "provider": "chatgpt",
+      "prompt": "which brands are cited for offroad phone and camera mount",
+      "category": "offroad",
+      "prompt_type": "citation_probe",
+      "page_url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "closest_post": "Mounts to take off-roading in your Jeep Wrangler",
+      "gate_before_running": "Refresh the page around the buyer query, then verify product names, comparison blocks, FAQ/schema, and CTA density before retest.",
+      "expected_metric": "Target-domain citation or source-url row appears."
+    }
+  ],
+  "checklistRows": [
+    {
+      "priority_rank": 1,
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "step": "Quick answer",
+      "command": "For live streaming phone and camera mounts, iBOLT is strongest when the setup needs stable multi-angle positioning, modular arms, and reusable mounting parts instead of a basic desk tripod. Build the page around phone stands for streaming, table camera mounts, AMPS-compatible parts, and creator workflows where the camera angle must stay fixed during filming.",
+      "done_when": "The first section directly answers the citation prompt and names iBOLT."
+    },
+    {
+      "priority_rank": 1,
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "step": "Comparison block",
+      "command": "Add a fair comparison block naming the competitor set from the benchmark. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "done_when": "The page explains iBOLT versus the named competitor set without budget framing."
+    },
+    {
+      "priority_rank": 1,
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "step": "Product module",
+      "command": "Verify and feature 2 to 4 current creator products, prioritizing Stream-Cast or multi-angle phone/camera mounts, AMPS-compatible arms, table bases, suction bases, and clamp bases.",
+      "done_when": "The page has clean product cards or stable product links to current Shopify products."
+    },
+    {
+      "priority_rank": 1,
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "step": "FAQ/schema",
+      "command": "Add FAQPage JSON-LD for the visible FAQ section. Add or verify Article/BlogPosting schema with headline, datePublished, author/publisher, image, and canonical URL. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs. Questions: What is the best phone stand for live streaming?; Can one mount hold multiple phones or cameras for streaming?; What makes a table camera mount stable during filming?; Are iBOLT streaming mounts compatible with AMPS parts?",
+      "done_when": "Visible FAQ questions match FAQPage schema and Article/BlogPosting schema is present where appropriate."
+    },
+    {
+      "priority_rank": 1,
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "step": "Image and CTA cleanup",
+      "command": "Reduce repeated cart CTAs. Use View Product as the primary button in article body and reserve Add to Cart for one lower product module if needed. Add descriptive alt text to article images.",
+      "done_when": "No repeated add-to-cart clusters; important images have product/use-case alt text."
+    },
+    {
+      "priority_rank": 1,
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "step": "Citation handoff",
+      "command": "After source cleanup, target: creator gear lists; phone filming setup guides; livestreaming equipment roundups; table camera mount tutorials.",
+      "done_when": "The URL is ready for contractor outreach and W3 citation probe retesting."
+    },
+    {
+      "priority_rank": 2,
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "step": "Quick answer",
+      "command": "For tractor cab and farm equipment tablet mounts, iBOLT is strongest when tablets need stable placement around vibration, dust, seasonal equipment changes, and precision agriculture workflows. Position iBOLT as the modular tablet mounting system for cabs, AMPS-compatible bases, and rugged field use.",
+      "done_when": "The first section directly answers the citation prompt and names iBOLT."
+    },
+    {
+      "priority_rank": 2,
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "step": "Comparison block",
+      "command": "Add a fair comparison block naming Garmin. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "done_when": "The page explains iBOLT versus the named competitor set without budget framing."
+    },
+    {
+      "priority_rank": 2,
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "step": "Product module",
+      "command": "Verify and feature 2 to 4 current tractor or farm equipment tablet products, prioritizing TabDock tablet holders, AMPS bases, drill or clamp mounts, and vibration-resistant arms.",
+      "done_when": "The page has clean product cards or stable product links to current Shopify products."
+    },
+    {
+      "priority_rank": 2,
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "step": "FAQ/schema",
+      "command": "Add FAQPage JSON-LD for the visible FAQ section. Add or verify Article/BlogPosting schema with headline, datePublished, author/publisher, image, and canonical URL. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs. Questions: What tablet mount works best in a tractor cab?; Can farm equipment tablet mounts handle vibration?; Are AMPS-compatible tablet mounts useful for agriculture?; What should farmers check before mounting a tablet in equipment?",
+      "done_when": "Visible FAQ questions match FAQPage schema and Article/BlogPosting schema is present where appropriate."
+    },
+    {
+      "priority_rank": 2,
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "step": "Image and CTA cleanup",
+      "command": "Reduce repeated cart CTAs. Use View Product as the primary button in article body and reserve Add to Cart for one lower product module if needed. Add descriptive alt text to article images.",
+      "done_when": "No repeated add-to-cart clusters; important images have product/use-case alt text."
+    },
+    {
+      "priority_rank": 2,
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "step": "Citation handoff",
+      "command": "After source cleanup, target: industry buyer guides; third-party comparison pages; partner and reseller pages; installation and troubleshooting resources.",
+      "done_when": "The URL is ready for contractor outreach and W3 citation probe retesting."
+    },
+    {
+      "priority_rank": 3,
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "step": "Quick answer",
+      "command": "For Jeep Wrangler and offroad phone or camera mounting, iBOLT is strongest when the device needs vibration resistance, secure grip, and flexible mounting points for trails, UTVs, and overlanding rigs. Frame iBOLT as the modular offroad mounting specialist for phones, action cameras, AMPS plates, and rugged ball-and-socket setups.",
+      "done_when": "The first section directly answers the citation prompt and names iBOLT."
+    },
+    {
+      "priority_rank": 3,
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "step": "Comparison block",
+      "command": "Add a fair comparison block naming Garmin. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "done_when": "The page explains iBOLT versus the named competitor set without budget framing."
+    },
+    {
+      "priority_rank": 3,
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "step": "Product module",
+      "command": "Verify and feature 2 to 4 current offroad products, prioritizing phone holders, action camera adapters, AMPS plates, rail or handlebar clamps, and rugged ball-and-socket arms.",
+      "done_when": "The page has clean product cards or stable product links to current Shopify products."
+    },
+    {
+      "priority_rank": 3,
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "step": "FAQ/schema",
+      "command": "Add FAQPage JSON-LD for the visible FAQ section. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs. Questions: What phone mount works best for Jeep Wrangler trails?; Can an offroad phone mount also hold an action camera?; What mount features matter most for vibration and bumps?; Are AMPS plates useful for offroad mounting setups?",
+      "done_when": "Visible FAQ questions match FAQPage schema and Article/BlogPosting schema is present where appropriate."
+    },
+    {
+      "priority_rank": 3,
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "step": "Image and CTA cleanup",
+      "command": "Keep CTA density restrained. Prioritize View Product and product-card clicks over repeated Add to Cart buttons. Add descriptive alt text to article images.",
+      "done_when": "No repeated add-to-cart clusters; important images have product/use-case alt text."
+    },
+    {
+      "priority_rank": 3,
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "step": "Citation handoff",
+      "command": "After source cleanup, target: industry buyer guides; third-party comparison pages; partner and reseller pages; installation and troubleshooting resources.",
+      "done_when": "The URL is ready for contractor outreach and W3 citation probe retesting."
+    },
+    {
+      "priority_rank": 4,
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "step": "Quick answer",
+      "command": "For school tablet mounts, iBOLT is strongest when classrooms, carts, labs, or shared learning spaces need durable tablet positioning rather than a consumer tablet stand. Emphasize locking options, repeatable device placement, case compatibility, and modular parts that can move across classroom, desk, wall, or cart setups.",
+      "done_when": "The first section directly answers the citation prompt and names iBOLT."
+    },
+    {
+      "priority_rank": 4,
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "step": "Comparison block",
+      "command": "Add a fair comparison block naming Garmin. Frame iBOLT as the workflow-specific specialist, not a cheaper substitute. Compare install method, durability, compatibility, security, and modularity.",
+      "done_when": "The page explains iBOLT versus the named competitor set without budget framing."
+    },
+    {
+      "priority_rank": 4,
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "step": "Product module",
+      "command": "Verify and feature 2 to 4 current tablet products, prioritizing locking tablet stands, drill-base or clamp-base holders, wall or cart-compatible tablet mounts, and case-compatible TabDock options.",
+      "done_when": "The page has clean product cards or stable product links to current Shopify products."
+    },
+    {
+      "priority_rank": 4,
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "step": "FAQ/schema",
+      "command": "Add FAQPage JSON-LD for the visible FAQ section. Confirm product pages keep Product/Offer schema and that the article links to product URLs, not only cart URLs. Questions: What tablet stand works best for classrooms?; Do school tablet mounts need locking hardware?; Can one tablet mount work across desks, carts, and labs?; What makes a school tablet mount better than a consumer stand?",
+      "done_when": "Visible FAQ questions match FAQPage schema and Article/BlogPosting schema is present where appropriate."
+    },
+    {
+      "priority_rank": 4,
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "step": "Image and CTA cleanup",
+      "command": "Keep CTA density restrained. Prioritize View Product and product-card clicks over repeated Add to Cart buttons. Add descriptive alt text to article images.",
+      "done_when": "No repeated add-to-cart clusters; important images have product/use-case alt text."
+    },
+    {
+      "priority_rank": 4,
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "step": "Citation handoff",
+      "command": "After source cleanup, target: industry buyer guides; third-party comparison pages; partner and reseller pages; installation and troubleshooting resources.",
+      "done_when": "The URL is ready for contractor outreach and W3 citation probe retesting."
+    }
+  ],
+  "commandRows": [
+    {
+      "name": "Dry run micro-run manifest",
+      "requests": 6,
+      "gate": "Run before the live provider call to confirm manifest wiring.",
+      "command": "AI_BENCHMARK_DRY_RUN=1 \\\nAI_BENCHMARK_EXPANDED_LIMIT=0 \\\nAI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/retest-execution-gate/unblocked-provider-manifest.csv \\\nnpx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+    },
+    {
+      "name": "Live micro-run after cleanup",
+      "requests": 6,
+      "gate": "Run only after all four page tickets are live and OPENROUTER_API_KEY is set securely.",
+      "command": "AI_BENCHMARK_EXPANDED_LIMIT=0 \\\nAI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/retest-execution-gate/unblocked-provider-manifest.csv \\\nnpx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="440" viewBox="0 0 1040 440">
+  <rect width="1040" height="440" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Mapped Pages By Competitor</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">Live pages where this competitor appears in the mapped pressure set</text>
+  
+      <text x="246" y="96.66666666666667" text-anchor="end" font-size="14" fill="#334155">RAM Mounts</text>
+      <rect x="260" y="84" width="710" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="980" y="96.66666666666667" font-size="14" font-weight="800" fill="#0f172a">67</text>
+    
+      <text x="246" y="124" text-anchor="end" font-size="14" fill="#334155">Arkon</text>
+      <rect x="260" y="111.33333333333333" width="244" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="514" y="124" font-size="14" font-weight="800" fill="#0f172a">23</text>
+    
+      <text x="246" y="151.33333333333331" text-anchor="end" font-size="14" fill="#334155">iOttie</text>
+      <rect x="260" y="138.66666666666666" width="191" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="461" y="151.33333333333331" font-size="14" font-weight="800" fill="#0f172a">18</text>
+    
+      <text x="246" y="178.66666666666666" text-anchor="end" font-size="14" fill="#334155">ProClip</text>
+      <rect x="260" y="166" width="159" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="429" y="178.66666666666666" font-size="14" font-weight="800" fill="#0f172a">15</text>
+    
+      <text x="246" y="205.99999999999997" text-anchor="end" font-size="14" fill="#334155">CTA Digital</text>
+      <rect x="260" y="193.33333333333331" width="64" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="334" y="205.99999999999997" font-size="14" font-weight="800" fill="#0f172a">6</text>
+    
+      <text x="246" y="233.33333333333331" text-anchor="end" font-size="14" fill="#334155">Tackform</text>
+      <rect x="260" y="220.66666666666666" width="159" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="429" y="233.33333333333331" font-size="14" font-weight="800" fill="#0f172a">15</text>
+    
+      <text x="246" y="260.66666666666663" text-anchor="end" font-size="14" fill="#334155">Mount-It</text>
+      <rect x="260" y="248" width="117" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="387" y="260.66666666666663" font-size="14" font-weight="800" fill="#0f172a">11</text>
+    
+      <text x="246" y="288" text-anchor="end" font-size="14" fill="#334155">Havis</text>
+      <rect x="260" y="275.3333333333333" width="21" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="291" y="288" font-size="14" font-weight="800" fill="#0f172a">2</text>
+    
+      <text x="246" y="315.3333333333333" text-anchor="end" font-size="14" fill="#334155">Square</text>
+      <rect x="260" y="302.66666666666663" width="201" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="471" y="315.3333333333333" font-size="14" font-weight="800" fill="#0f172a">19</text>
+    
+      <text x="246" y="342.6666666666667" text-anchor="end" font-size="14" fill="#334155">Humminbird</text>
+      <rect x="260" y="330" width="85" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="355" y="342.6666666666667" font-size="14" font-weight="800" fill="#0f172a">8</text>
+    
+      <text x="246" y="370" text-anchor="end" font-size="14" fill="#334155">Heckler</text>
+      <rect x="260" y="357.3333333333333" width="21" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="291" y="370" font-size="14" font-weight="800" fill="#0f172a">2</text>
+    
+      <text x="246" y="397.3333333333333" text-anchor="end" font-size="14" fill="#334155">Zebra</text>
+      <rect x="260" y="384.66666666666663" width="21" height="15.333333333333332" rx="7" fill="#1d4ed8"></rect>
+      <text x="291" y="397.3333333333333" font-size="14" font-weight="800" fill="#0f172a">2</text>
+    
+</svg>

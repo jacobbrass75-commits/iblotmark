@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="214" viewBox="0 0 980 214">
+<rect width="980" height="214" fill="#ffffff"></rect>
+<text x="24" y="30" font-size="22" font-weight="700" fill="#0f172a">AI Visibility Funnel</text>
+<text x="228" y="67" text-anchor="end" font-size="13" fill="#334155">AI answers tested</text>
+<rect x="240" y="53" width="660.0" height="20" rx="4" fill="#111827"></rect>
+<text x="908" y="67" font-size="13" fill="#0f172a">93</text>
+<text x="228" y="101" text-anchor="end" font-size="13" fill="#334155">iBOLT mentioned</text>
+<rect x="240" y="87" width="156.1" height="20" rx="4" fill="#111827"></rect>
+<text x="404.1290322580645" y="101" font-size="13" fill="#0f172a">22</text>
+<text x="228" y="135" text-anchor="end" font-size="13" fill="#334155">Top-3 recommendation</text>
+<rect x="240" y="121" width="106.5" height="20" rx="4" fill="#111827"></rect>
+<text x="354.4516129032258" y="135" font-size="13" fill="#0f172a">15</text>
+<text x="228" y="169" text-anchor="end" font-size="13" fill="#334155">Target-domain citation</text>
+<rect x="240" y="155" width="2.0" height="20" rx="4" fill="#111827"></rect>
+<text x="250" y="169" font-size="13" fill="#0f172a">0</text>
+</svg>

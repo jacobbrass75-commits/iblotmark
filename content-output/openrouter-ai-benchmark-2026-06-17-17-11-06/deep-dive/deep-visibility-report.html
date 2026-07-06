@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT AI Visibility Deep Dive</title>
+  <style>
+    body{margin:0;background:#f8fafc;color:#111827;font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1220px;margin:0 auto;padding:34px 26px 60px}
+    h1{font-size:34px;margin:0 0 8px} h2{font-size:22px;margin:34px 0 14px}
+    p{color:#334155;line-height:1.55;max-width:960px}.meta{color:#64748b;font-size:14px}
+    .cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:24px 0}
+    .card{background:#fff;border:1px solid #d7dee8;border-radius:12px;padding:16px}.k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:700}.v{font-size:31px;font-weight:800;margin-top:8px}.s{font-size:13px;color:#64748b}
+    figure{background:#fff;border:1px solid #d7dee8;border-radius:14px;margin:14px 0;padding:10px;overflow:auto}figure img{display:block;width:100%;height:auto}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #d7dee8;border-radius:12px;overflow:hidden}th,td{font-size:14px;text-align:left;vertical-align:top;padding:11px 12px;border-bottom:1px solid #edf2f7}th{background:#f1f5f9;color:#475569;text-transform:uppercase;font-size:12px;letter-spacing:.04em}
+    .takeaway{border-left:6px solid #2563eb;background:#fff;border-radius:10px;padding:16px 18px;border-top:1px solid #d7dee8;border-right:1px solid #d7dee8;border-bottom:1px solid #d7dee8}
+    @media print{body{background:#fff}.cards{grid-template-columns:repeat(5,1fr)}figure,.card,table{break-inside:avoid}}
+  </style>
+</head>
+<body><main>
+  <div class="meta">Run ID: 3417c271-1943-4ce1-a7e3-846b1019f8cf | Public sitemap URLs: 144</div>
+  <h1>iBOLT AI Visibility Deep Dive</h1>
+  <p class="takeaway"><strong>Readout:</strong> iBOLT has a meaningful content base, but broad AI answers still mostly omit it. Competitors and adjacent brands appear without iBOLT in 66 answers, which shows where we need stronger pages, schema, comparisons, and external corroboration.</p>
+  <section class="cards">
+    <div class="card"><div class="k">AI answers</div><div class="v">93</div><div class="s">raw responses analyzed</div></div>
+    <div class="card"><div class="k">iBOLT mentions</div><div class="v">24%</div><div class="s">22/93 answers</div></div>
+    <div class="card"><div class="k">Competitor-only</div><div class="v">66</div><div class="s">answers had others but not iBOLT</div></div>
+    <div class="card"><div class="k">Local posts</div><div class="v">106</div><div class="s">published in local DB</div></div>
+    <div class="card"><div class="k">Coverage map</div><div class="v">25/31</div><div class="s">strong prompt-to-post matches</div></div>
+    <div class="card"><div class="k">Next prompts</div><div class="v">207</div><div class="s">expanded benchmark backlog</div></div>
+  </section>
+  <h2>Charts</h2>
+  <figure><img src="competitor-mentions.svg" alt="Competitor mentions"/></figure>
+  <figure><img src="competitor-only.svg" alt="Competitor-only answers"/></figure>
+  <figure><img src="blog-topic-inventory.svg" alt="Blog topic inventory"/></figure>
+  <figure><img src="query-content-coverage.svg" alt="Query content coverage"/></figure>
+  <h2>Who We Are Mentioned Next To</h2>
+  <table><thead><tr><th>Brand</th><th>Type</th><th>Answers</th><th>With iBOLT</th><th>Without iBOLT</th><th>Categories</th></tr></thead><tbody>
+    <tr><td>RAM Mounts</td><td>mount competitor</td><td>63</td><td>10</td><td>53</td><td>fleet 18; delivery 14; warehouse 9; fishing 9; restaurant 7; comparison 3; tablet 3</td></tr>
+  
+    <tr><td>Arkon</td><td>mount competitor</td><td>30</td><td>5</td><td>25</td><td>fleet 11; restaurant 8; delivery 6; warehouse 3; tablet 2</td></tr>
+  
+    <tr><td>iOttie</td><td>consumer mount competitor</td><td>18</td><td>3</td><td>15</td><td>delivery 12; fleet 5; tablet 1</td></tr>
+  
+    <tr><td>ProClip</td><td>mount competitor</td><td>13</td><td>1</td><td>12</td><td>fleet 7; delivery 4; warehouse 2</td></tr>
+  
+    <tr><td>Humminbird</td><td>adjacent device brand</td><td>12</td><td>0</td><td>12</td><td>fishing 12</td></tr>
+  
+    <tr><td>Mount-It</td><td>commercial stand competitor</td><td>11</td><td>4</td><td>7</td><td>restaurant 11</td></tr>
+  
+    <tr><td>Scosche</td><td>consumer mount competitor</td><td>9</td><td>0</td><td>9</td><td>delivery 5; fleet 4</td></tr>
+  
+    <tr><td>Scotty</td><td>marine competitor</td><td>8</td><td>0</td><td>8</td><td>fishing 8</td></tr>
+  
+    <tr><td>Garmin</td><td>adjacent device brand</td><td>8</td><td>0</td><td>8</td><td>fishing 8</td></tr>
+  
+    <tr><td>YakAttack</td><td>marine competitor</td><td>7</td><td>0</td><td>7</td><td>fishing 7</td></tr>
+  
+    <tr><td>Lowrance</td><td>adjacent device brand</td><td>7</td><td>0</td><td>7</td><td>fishing 7</td></tr>
+  
+    <tr><td>Tackform</td><td>mount competitor</td><td>7</td><td>3</td><td>4</td><td>warehouse 2; fleet 2; delivery 1; tablet 1; restaurant 1</td></tr>
+  </tbody></table>
+  <h2>Prompts Versus Existing Blog Coverage</h2>
+  <table><thead><tr><th>Prompt</th><th>AI score</th><th>Mention</th><th>Coverage</th><th>Closest local post</th></tr></thead><tbody>
+    <tr><td>best phone mount for delivery drivers</td><td>0</td><td>0%</td><td>strong</td><td>Best Phone Mount for Delivery Drivers</td></tr>
+  
+    <tr><td>magnetic vs clamp phone mounts for delivery work</td><td>0</td><td>0%</td><td>strong</td><td>Magnetic vs Clamp Phone Mounts for Delivery Work</td></tr>
+  
+    <tr><td>commercial grade phone mount for delivery drivers</td><td>0</td><td>0%</td><td>strong</td><td>Commercial-Grade Phone Mounts for Delivery Drivers</td></tr>
+  
+    <tr><td>best phone mount for Instacart and grocery delivery drivers</td><td>0</td><td>0%</td><td>strong</td><td>Best Phone Mount for Instacart and Grocery Delivery Drivers</td></tr>
+  
+    <tr><td>best fish finder mount for small boat</td><td>0</td><td>0%</td><td>strong</td><td>Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide</td></tr>
+  
+    <tr><td>best tablet mount</td><td>0</td><td>0%</td><td>partial</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td></tr>
+  
+    <tr><td>best fish finder</td><td>0</td><td>0%</td><td>strong</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td></tr>
+  
+    <tr><td>best fish finder in water</td><td>0</td><td>0%</td><td>strong</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td></tr>
+  
+    <tr><td>best ELD mount for trucks</td><td>3</td><td>0%</td><td>strong</td><td>Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</td></tr>
+  
+    <tr><td>best locking phone mount for shared delivery vehicles</td><td>3</td><td>0%</td><td>strong</td><td>Best Locking Phone Mount for Shared Delivery Vehicles</td></tr>
+  
+    <tr><td>best kayak fish finder mount</td><td>3</td><td>0%</td><td>strong</td><td>Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing</td></tr>
+  
+    <tr><td>set up multiple tablets for DoorDash Uber Eats and Grubhub</td><td>3</td><td>0%</td><td>strong</td><td>How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</td></tr>
+  
+    <tr><td>best multi tablet mount</td><td>3</td><td>0%</td><td>partial</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td></tr>
+  
+    <tr><td>best locking tablet stand for food trucks and quick service restaurants</td><td>3</td><td>0%</td><td>strong</td><td>Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</td></tr>
+  
+    <tr><td>best budget fish finder mount</td><td>3</td><td>0%</td><td>strong</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td></tr>
+  
+    <tr><td>best phone mount for construction vehicles and work trucks</td><td>3</td><td>0%</td><td>strong</td><td>Best Phone Mount for Construction Vehicles and Work Trucks</td></tr>
+  
+    <tr><td>best phone mount for Amazon Flex and delivery vans</td><td>7</td><td>0%</td><td>partial</td><td>Best Phone Mount for Amazon Flex and Delivery Vans</td></tr>
+  
+    <tr><td>best restaurant tablet mount</td><td>7</td><td>0%</td><td>strong</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td></tr>
+  
+    <tr><td>best tablet mount for restaurant POS and delivery apps</td><td>7</td><td>0%</td><td>strong</td><td>Best Tablet Mount for Restaurant POS and Delivery Apps</td></tr>
+  
+    <tr><td>best barcode scanner mount for forklift</td><td>7</td><td>0%</td><td>strong</td><td>Barcode Scanner Mounts</td></tr>
+  </tbody></table>
+  <h2>Priority Action Plan</h2>
+  <table><thead><tr><th>Prompt</th><th>Recommended action</th><th>Closest post</th><th>Competitor angle</th></tr></thead><tbody>
+    <tr><td>best phone mount for delivery drivers</td><td>Refresh existing page for AI visibility</td><td>Best Phone Mount for Delivery Drivers</td><td>RAM Mounts, iOttie, Scosche, Belkin</td></tr>
+  
+    <tr><td>magnetic vs clamp phone mounts for delivery work</td><td>Refresh existing page for AI visibility</td><td>Magnetic vs Clamp Phone Mounts for Delivery Work</td><td>RAM Mounts, iOttie, Scosche, Quad Lock</td></tr>
+  
+    <tr><td>commercial grade phone mount for delivery drivers</td><td>Refresh existing page for AI visibility</td><td>Commercial-Grade Phone Mounts for Delivery Drivers</td><td>RAM Mounts, Arkon, iOttie, Scosche</td></tr>
+  
+    <tr><td>best phone mount for Instacart and grocery delivery drivers</td><td>Refresh existing page for AI visibility</td><td>Best Phone Mount for Instacart and Grocery Delivery Drivers</td><td>RAM Mounts, iOttie, Scosche, Peak Design</td></tr>
+  
+    <tr><td>best fish finder mount for small boat</td><td>Refresh existing page for AI visibility</td><td>Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide</td><td>RAM Mounts, YakAttack, Scotty, Humminbird</td></tr>
+  
+    <tr><td>best fish finder</td><td>Refresh existing page for AI visibility</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>Garmin, Lowrance, Humminbird</td></tr>
+  
+    <tr><td>best fish finder in water</td><td>Refresh existing page for AI visibility</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>Garmin, Lowrance, Humminbird</td></tr>
+  
+    <tr><td>best ELD mount for trucks</td><td>Refresh existing page for AI visibility</td><td>Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</td><td>RAM Mounts, ProClip, Arkon, Scosche</td></tr>
+  
+    <tr><td>best locking phone mount for shared delivery vehicles</td><td>Refresh existing page for AI visibility</td><td>Best Locking Phone Mount for Shared Delivery Vehicles</td><td>RAM Mounts, Arkon, Tackform, iOttie</td></tr>
+  
+    <tr><td>best kayak fish finder mount</td><td>Refresh existing page for AI visibility</td><td>Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing</td><td>RAM Mounts, YakAttack, Garmin, Lowrance</td></tr>
+  
+    <tr><td>set up multiple tablets for DoorDash Uber Eats and Grubhub</td><td>Refresh existing page for AI visibility</td><td>How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</td><td>RAM Mounts, Arkon</td></tr>
+  
+    <tr><td>best locking tablet stand for food trucks and quick service restaurants</td><td>Refresh existing page for AI visibility</td><td>Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</td><td>Mount-It</td></tr>
+  
+    <tr><td>best budget fish finder mount</td><td>Refresh existing page for AI visibility</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>RAM Mounts, YakAttack, Scotty, Humminbird</td></tr>
+  
+    <tr><td>best phone mount for construction vehicles and work trucks</td><td>Refresh existing page for AI visibility</td><td>Best Phone Mount for Construction Vehicles and Work Trucks</td><td>RAM Mounts, ProClip, Arkon, Tackform</td></tr>
+  
+    <tr><td>best restaurant tablet mount</td><td>Refresh existing page for AI visibility</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td><td>RAM Mounts, Mount-It, Bouncepad, Arkon</td></tr>
+  
+    <tr><td>best tablet mount for restaurant POS and delivery apps</td><td>Refresh existing page for AI visibility</td><td>Best Tablet Mount for Restaurant POS and Delivery Apps</td><td>RAM Mounts, Square, Arkon, Mount-It</td></tr>
+  
+    <tr><td>best barcode scanner mount for forklift</td><td>Refresh existing page for AI visibility</td><td>Barcode Scanner Mounts</td><td>RAM Mounts, Arkon, Square, ProClip</td></tr>
+  
+    <tr><td>best tablet mount for food truck</td><td>Refresh existing page for AI visibility</td><td>Best Tablet Mount for Utility Truck Crews</td><td>RAM Mounts, Arkon, Square</td></tr>
+  </tbody></table>
+  <h2>Blog Inventory</h2>
+  <table><thead><tr><th>Topic</th><th>Local posts</th><th>Shopify article IDs</th><th>Avg score</th></tr></thead><tbody>
+    <tr><td>fleet</td><td>26</td><td>26</td><td>67</td></tr>
+  
+    <tr><td>fishing</td><td>16</td><td>16</td><td>86</td></tr>
+  
+    <tr><td>restaurant</td><td>15</td><td>15</td><td>47</td></tr>
+  
+    <tr><td>delivery</td><td>12</td><td>12</td><td>81</td></tr>
+  
+    <tr><td>warehouse</td><td>10</td><td>10</td><td>34</td></tr>
+  
+    <tr><td>amps/modular</td><td>10</td><td>10</td><td>52</td></tr>
+  
+    <tr><td>streaming</td><td>8</td><td>8</td><td>86</td></tr>
+  
+    <tr><td>offroad</td><td>4</td><td>4</td><td>85</td></tr>
+  
+    <tr><td>education</td><td>2</td><td>2</td><td>84</td></tr>
+  
+    <tr><td>agriculture</td><td>1</td><td>1</td><td>84</td></tr>
+  
+    <tr><td>travel</td><td>1</td><td>1</td><td>84</td></tr>
+  
+    <tr><td>cycling</td><td>1</td><td>1</td><td>84</td></tr>
+  </tbody></table>
+</main></body></html>

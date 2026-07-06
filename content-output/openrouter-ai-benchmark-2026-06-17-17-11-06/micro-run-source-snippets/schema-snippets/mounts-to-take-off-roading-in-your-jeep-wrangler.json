@@ -1,0 +1,62 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Mounts to take off-roading in your Jeep Wrangler",
+      "mainEntityOfPage": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "publisher": {
+        "@type": "Organization",
+        "name": "iBOLT Mounts",
+        "url": "https://iboltmounts.com"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "iBOLT Mounts"
+      },
+      "about": [
+        "iBOLT Mounts",
+        "offroad",
+        "device mounting systems",
+        "AMPS-compatible mounting"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What phone mount works best for Jeep Wrangler trails?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use a phone mount that resists vibration, holds the device tightly, and can be positioned without blocking controls or visibility. Modular iBOLT parts are useful when the same Jeep setup needs to support phones, action cameras, or AMPS-compatible accessories."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can an offroad phone mount also hold an action camera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, if the system has compatible adapters and enough mounting strength for the camera angle. Look for 1/4-20 camera screw adapters, action camera adapters, and arms that match the device weight."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What mount features matter most for vibration and bumps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prioritize a secure base, a holder with firm device retention, and arm joints that stay tight after repeated trail impacts. The mount should also keep charging cables and controls accessible."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are AMPS plates useful for offroad mounting setups?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. AMPS plates help connect holders, arms, and bases in a repeatable pattern, which is useful when a Jeep or UTV needs a custom mount layout."
+          }
+        }
+      ]
+    }
+  ]
+}

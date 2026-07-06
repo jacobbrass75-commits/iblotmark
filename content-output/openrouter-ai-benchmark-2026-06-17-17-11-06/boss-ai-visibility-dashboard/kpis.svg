@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="388" viewBox="0 0 900 388" role="img" aria-label="Current AI visibility KPIs versus target">
+    <rect width="900" height="388" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Current AI visibility versus next target</text>
+    <g>
+      <text x="22" y="77" font-size="14" font-weight="800" fill="#111827">Mention rate</text>
+      <rect x="255" y="58" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="58" width="172" height="24" rx="12" fill="#0f766e"/>
+      <line x1="406" x2="406" y1="53" y2="88" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="75" font-size="13" font-weight="800" fill="#111827">40% now</text>
+      <text x="806" y="75" font-size="13" font-weight="800" fill="#f97316">35% target</text>
+    </g><g>
+      <text x="22" y="129" font-size="14" font-weight="800" fill="#111827">Non-branded mention rate</text>
+      <rect x="255" y="110" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="110" width="13" height="24" rx="12" fill="#0f766e"/>
+      <line x1="320" x2="320" y1="105" y2="140" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="127" font-size="13" font-weight="800" fill="#111827">3% now</text>
+      <text x="806" y="127" font-size="13" font-weight="800" fill="#f97316">15% target</text>
+    </g><g>
+      <text x="22" y="181" font-size="14" font-weight="800" fill="#111827">Top-3 recommendation rate</text>
+      <rect x="255" y="162" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="162" width="125" height="24" rx="12" fill="#0f766e"/>
+      <line x1="363" x2="363" y1="157" y2="192" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="179" font-size="13" font-weight="800" fill="#111827">29% now</text>
+      <text x="806" y="179" font-size="13" font-weight="800" fill="#f97316">25% target</text>
+    </g><g>
+      <text x="22" y="233" font-size="14" font-weight="800" fill="#111827">Citation rate</text>
+      <rect x="255" y="214" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="214" width="0" height="24" rx="12" fill="#0f766e"/>
+      <line x1="289" x2="289" y1="209" y2="244" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="231" font-size="13" font-weight="800" fill="#111827">0% now</text>
+      <text x="806" y="231" font-size="13" font-weight="800" fill="#f97316">8% target</text>
+    </g><g>
+      <text x="22" y="285" font-size="14" font-weight="800" fill="#111827">Competitor-only answer rate</text>
+      <rect x="255" y="266" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="266" width="245" height="24" rx="12" fill="#0f766e"/>
+      <line x1="500" x2="500" y1="261" y2="296" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="283" font-size="13" font-weight="800" fill="#111827">57% now</text>
+      <text x="806" y="283" font-size="13" font-weight="800" fill="#f97316">57% target</text>
+    </g><g>
+      <text x="22" y="337" font-size="14" font-weight="800" fill="#111827">Product entity rows</text>
+      <rect x="255" y="318" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="318" width="0" height="24" rx="12" fill="#0f766e"/>
+      <line x1="449" x2="449" y1="313" y2="348" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="335" font-size="13" font-weight="800" fill="#111827">0% now</text>
+      <text x="806" y="335" font-size="13" font-weight="800" fill="#f97316">45% target</text>
+    </g>
+  </svg>

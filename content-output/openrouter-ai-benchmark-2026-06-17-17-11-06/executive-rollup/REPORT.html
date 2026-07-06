@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT AI Visibility Executive Rollup</title>
+  <style>
+    :root{--ink:#111827;--muted:#64748b;--border:#d7dee8;--bg:#f8fafc;--panel:#fff}
+    body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+    main{max-width:1260px;margin:0 auto;padding:34px 26px 64px}h1{font-size:34px;margin:0 0 10px}h2{font-size:22px;margin:34px 0 14px}p{font-size:16px;line-height:1.55;color:#334155;max-width:980px}.meta{font-size:14px;color:var(--muted)}
+    .takeaway{background:#fff;border:1px solid var(--border);border-left:6px solid #2563eb;border-radius:10px;padding:16px 18px}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px}.k{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:700}.v{font-size:30px;font-weight:800;margin-top:8px}.s,td span{font-size:13px;color:var(--muted)}
+    figure{background:#fff;border:1px solid var(--border);border-radius:14px;margin:14px 0;padding:10px;overflow:auto}figure img{display:block;width:100%;height:auto}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:22px}th,td{text-align:left;vertical-align:top;padding:11px 12px;border-bottom:1px solid #edf2f7;font-size:14px}th{background:#f1f5f9;color:#475569;font-size:12px;letter-spacing:.04em;text-transform:uppercase}a{color:#0f3f91}
+    @media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media print{body{background:#fff}main{max-width:none;padding:18px}.grid{grid-template-columns:repeat(4,1fr)}figure,.card,table{break-inside:avoid}}
+  </style>
+</head><body><main>
+  <div class="meta">Generated from benchmark, competitor matrix, live page audit, and blog/product inventory audit</div>
+  <h1>iBOLT AI Visibility Executive Rollup</h1>
+  <p class="takeaway"><strong>Decision:</strong> the next work should focus on making existing high-intent pages citable and competitor-aware. iBOLT already has a meaningful content base, but broad buyer prompts still mention competitors without iBOLT, and most audited pages are missing FAQ schema or quick-answer blocks.</p>
+  <section class="grid">
+    <div class="card"><div class="k">AI answers</div><div class="v">93</div><div class="s">consumer-model benchmark</div></div>
+  
+    <div class="card"><div class="k">Mention rate</div><div class="v">24%</div><div class="s">22/93 answers</div></div>
+  
+    <div class="card"><div class="k">Non-branded mention</div><div class="v">5%</div><div class="s">4/75 answers</div></div>
+  
+    <div class="card"><div class="k">Top-3 rate</div><div class="v">16%</div><div class="s">15/93 answers</div></div>
+  
+    <div class="card"><div class="k">Citation rate</div><div class="v">0%</div><div class="s">0/93 answers</div></div>
+  
+    <div class="card"><div class="k">Blog pages audited</div><div class="v">142</div><div class="s">75/100 avg score</div></div>
+  
+    <div class="card"><div class="k">Local posts</div><div class="v">106</div><div class="s">89 matched to audit</div></div>
+  
+    <div class="card"><div class="k">Products linked</div><div class="v">156/343</div><div class="s">55% unlinked</div></div>
+  </section>
+  <h2>Charts</h2>
+  <figure><img src="visibility-funnel.svg" alt="Visibility funnel"/></figure>
+  <figure><img src="workstream-priority.svg" alt="Workstream priority"/></figure>
+  <figure><img src="competitor-gap.svg" alt="Competitor gap"/></figure>
+  <figure><img src="site-readiness-gap.svg" alt="Site readiness gap"/></figure>
+  <h2>Priority Workstreams</h2>
+  <table><thead><tr><th>Priority</th><th>Workstream</th><th>Action</th><th>Evidence files</th></tr></thead><tbody>
+    <tr><td>1</td><td><b>Refresh high-intent pages for AI answers</b><br><span>8 top query gaps, led by best tablet mount; best multi tablet mount; best heavy duty vehicle phone mount</span></td><td>Add query-exact quick answers, FAQ schema, product-specific comparison blocks, and clearer recommended product sections.</td><td>query-opportunity-matrix.csv; page-refresh-queue.csv</td></tr>
+  
+    <tr><td>2</td><td><b>Build competitor displacement sections</b><br><span>RAM Mounts appears without iBOLT 53 times; top six competitors account for 126 competitor-only answer appearances.</span></td><td>Add honest comparison/tradeoff blocks against RAM, Arkon, iOttie, ProClip, Mount-It, and marine brands on matching pages.</td><td>competitor-battlecards.csv</td></tr>
+  
+    <tr><td>3</td><td><b>Fix schema and citation structure at scale</b><br><span>99/142 audited pages missing FAQ schema; 113 missing quick answers; 55 missing comparison signals.</span></td><td>Patch generated HTML/template output and refresh existing pages in batches.</td><td>live-blog-page-audit.merged.csv</td></tr>
+  
+    <tr><td>4</td><td><b>Clean blog inventory and product spread</b><br><span>187/343 catalog products are not linked from detected blog content; 55 posts have zero DB-tracked product rows.</span></td><td>Use product-spread.csv to rotate underused products into relevant posts and backfill blog_post_products rows.</td><td>product-spread.csv; unlinked-product-opportunities.csv</td></tr>
+  
+    <tr><td>5</td><td><b>Resolve matching, duplicate, and vertical mapping issues</b><br><span>17 local posts did not match public audit cleanly; 18 possible duplicate/cannibalized pairs; 1 duplicate local slug.</span></td><td>Verify Shopify handles, assign missing verticals, merge/redirect overlapping pages, and update local slug/article mappings.</td><td>post-inventory.csv; possible-duplicate-pages.csv</td></tr>
+  
+    <tr><td>6</td><td><b>Run expanded benchmark once credentials are available</b><br><span>Expanded benchmark backlog already contains 207 one-at-a-time prompts, but no benchmark key is available in the current process.</span></td><td>Set OPENROUTER_API_KEY in the environment and run scripts/run-expanded-openrouter-ai-benchmark.ts.</td><td>expanded-benchmark-prompts.csv</td></tr>
+  </tbody></table>
+  <h2>Top Query Gaps</h2>
+  <table><thead><tr><th>Opp.</th><th>Prompt</th><th>Topic</th><th>AI score</th><th>Mention</th><th>Page score</th><th>Competitors</th></tr></thead><tbody>
+    <tr><td>97</td><td>best tablet mount</td><td>tablet</td><td>0</td><td>0%</td><td>84</td><td>RAM Mounts, Arkon, Tackform, Lamicall</td></tr>
+  
+    <tr><td>96</td><td>best multi tablet mount</td><td>restaurant</td><td>3</td><td>0%</td><td>84</td><td>RAM Mounts, Mount-It, Arkon</td></tr>
+  
+    <tr><td>96</td><td>best heavy duty vehicle phone mount</td><td>fleet</td><td>7</td><td>0%</td><td>76</td><td>RAM Mounts, Arkon, ProClip, Tackform</td></tr>
+  
+    <tr><td>94</td><td>best phone mount for Amazon Flex and delivery vans</td><td>delivery</td><td>7</td><td>0%</td><td>84</td><td>RAM Mounts, ProClip, Arkon, iOttie</td></tr>
+  
+    <tr><td>89</td><td>best phone mount for Instacart and grocery delivery drivers</td><td>delivery</td><td>0</td><td>0%</td><td>76</td><td>RAM Mounts, iOttie, Scosche, Peak Design</td></tr>
+  
+    <tr><td>88</td><td>best phone mount for construction vehicles and work trucks</td><td>fleet</td><td>3</td><td>0%</td><td>76</td><td>RAM Mounts, ProClip, Arkon, Tackform</td></tr>
+  
+    <tr><td>87</td><td>best phone mount for delivery drivers</td><td>fleet</td><td>0</td><td>0%</td><td>83</td><td>RAM Mounts, iOttie, Scosche, Belkin</td></tr>
+  
+    <tr><td>87</td><td>commercial grade phone mount for delivery drivers</td><td>delivery</td><td>0</td><td>0%</td><td>83</td><td>RAM Mounts, Arkon, iOttie, Scosche</td></tr>
+  
+    <tr><td>87</td><td>best fish finder mount for small boat</td><td>fishing</td><td>0</td><td>0%</td><td>84</td><td>RAM Mounts, YakAttack, Scotty, Humminbird</td></tr>
+  
+    <tr><td>87</td><td>best fish finder</td><td>fishing</td><td>0</td><td>0%</td><td>84</td><td>Garmin, Lowrance, Humminbird</td></tr>
+  
+    <tr><td>87</td><td>best fish finder in water</td><td>fishing</td><td>0</td><td>0%</td><td>84</td><td>Garmin, Lowrance, Humminbird</td></tr>
+  
+    <tr><td>86</td><td>best kayak fish finder mount</td><td>fishing</td><td>3</td><td>0%</td><td>83</td><td>RAM Mounts, YakAttack, Garmin, Lowrance</td></tr>
+  </tbody></table>
+  <h2>Top Page Refreshes</h2>
+  <table><thead><tr><th>Priority</th><th>Page</th><th>Topic</th><th>Score</th><th>Fixes</th></tr></thead><tbody>
+    <tr><td>77</td><td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop">Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</a></td><td>fleet</td><td>76</td><td>quick answer, comparison block, image alt text</td></tr>
+  
+    <tr><td>74</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td><td>delivery</td><td>76</td><td>FAQ schema, quick answer, comparison block, image alt text</td></tr>
+  
+    <tr><td>74</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks">Best Phone Mount for Construction Vehicles and Work Trucks</a></td><td>fleet</td><td>76</td><td>FAQ schema, quick answer, comparison block, image alt text</td></tr>
+  
+    <tr><td>73</td><td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td><td>tablet</td><td>84</td><td>quick answer, image alt text</td></tr>
+  
+    <tr><td>73</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans">Best Phone Mount for Amazon Flex and Delivery Vans</a></td><td>delivery</td><td>84</td><td>FAQ schema, quick answer, image alt text</td></tr>
+  
+    <tr><td>72</td><td><a href="https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps">Best Tablet Mount for Restaurant POS and Delivery Apps</a></td><td>restaurant</td><td>76</td><td>FAQ schema, quick answer, comparison block, image alt text</td></tr>
+  
+    <tr><td>68</td><td><a href="https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails">Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide</a></td><td>fishing</td><td>84</td><td>FAQ schema, quick answer, image alt text</td></tr>
+  
+    <tr><td>67</td><td><a href="https://iboltmounts.com/blogs/news/how-to-set-up-multiple-tablets-for-doordash-uber-eats-and-grubhub">How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</a></td><td>restaurant</td><td>76</td><td>FAQ schema, quick answer, comparison block, image alt text</td></tr>
+  
+    <tr><td>66</td><td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td><td>fishing</td><td>84</td><td>quick answer, image alt text</td></tr>
+  
+    <tr><td>66</td><td><a href="https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026">Barcode Scanner Mounts</a></td><td>warehouse</td><td>84</td><td>FAQ schema, quick answer, image alt text</td></tr>
+  
+    <tr><td>65</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td><td>fleet</td><td>83</td><td>Article/BlogPosting schema</td></tr>
+  
+    <tr><td>65</td><td><a href="https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh">Commercial-Grade Phone Mounts for Delivery Drivers</a></td><td>delivery</td><td>83</td><td>Article/BlogPosting schema</td></tr>
+  </tbody></table>
+</main></body></html>

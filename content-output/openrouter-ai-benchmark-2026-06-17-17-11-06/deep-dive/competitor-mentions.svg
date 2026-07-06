@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="744" viewBox="0 0 1120 744" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1120" height="744"/>
+  
+    <rect class="panel" x="28" y="24" width="1064" height="696" rx="14"/>
+    <text class="title" x="52" y="64">Brands Mentioned In AI Answers</text>
+    <text class="subtitle" x="52" y="87">Answer-level frequency across ChatGPT, Gemini, and Claude raw responses.</text>
+    
+      <text class="label" x="52" y="120">RAM Mounts</text>
+      <text class="small" x="52" y="138">mount competitor</text>
+      <rect x="390" y="104" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="104" width="600" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="121">63</text>
+    
+
+      <text class="label" x="52" y="162">Arkon</text>
+      <text class="small" x="52" y="180">mount competitor</text>
+      <rect x="390" y="146" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="146" width="286" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="163">30</text>
+    
+
+      <text class="label" x="52" y="204">iOttie</text>
+      <text class="small" x="52" y="222">consumer mount competitor</text>
+      <rect x="390" y="188" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="188" width="171" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="205">18</text>
+    
+
+      <text class="label" x="52" y="246">ProClip</text>
+      <text class="small" x="52" y="264">mount competitor</text>
+      <rect x="390" y="230" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="230" width="124" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="247">13</text>
+    
+
+      <text class="label" x="52" y="288">Humminbird</text>
+      <text class="small" x="52" y="306">adjacent device brand</text>
+      <rect x="390" y="272" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="272" width="114" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="289">12</text>
+    
+
+      <text class="label" x="52" y="330">Mount-It</text>
+      <text class="small" x="52" y="348">commercial stand competitor</text>
+      <rect x="390" y="314" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="314" width="105" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="331">11</text>
+    
+
+      <text class="label" x="52" y="372">Scosche</text>
+      <text class="small" x="52" y="390">consumer mount competitor</text>
+      <rect x="390" y="356" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="356" width="86" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="373">9</text>
+    
+
+      <text class="label" x="52" y="414">Scotty</text>
+      <text class="small" x="52" y="432">marine competitor</text>
+      <rect x="390" y="398" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="398" width="76" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="415">8</text>
+    
+
+      <text class="label" x="52" y="456">Garmin</text>
+      <text class="small" x="52" y="474">adjacent device brand</text>
+      <rect x="390" y="440" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="440" width="76" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="457">8</text>
+    
+
+      <text class="label" x="52" y="498">YakAttack</text>
+      <text class="small" x="52" y="516">marine competitor</text>
+      <rect x="390" y="482" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="482" width="67" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="499">7</text>
+    
+
+      <text class="label" x="52" y="540">Lowrance</text>
+      <text class="small" x="52" y="558">adjacent device brand</text>
+      <rect x="390" y="524" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="524" width="67" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="541">7</text>
+    
+
+      <text class="label" x="52" y="582">Tackform</text>
+      <text class="small" x="52" y="600">mount competitor</text>
+      <rect x="390" y="566" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="566" width="67" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="583">7</text>
+    
+
+      <text class="label" x="52" y="624">Bouncepad</text>
+      <text class="small" x="52" y="642">commercial stand competitor</text>
+      <rect x="390" y="608" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="608" width="38" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="625">4</text>
+    
+
+      <text class="label" x="52" y="666">Belkin</text>
+      <text class="small" x="52" y="684">stand competitor</text>
+      <rect x="390" y="650" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="650" width="29" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1004" y="667">3</text>
+    
+  
+</svg>

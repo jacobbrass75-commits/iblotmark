@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="848" viewBox="0 0 1160 848">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="848"/>
+  <rect class="panel" x="28" y="24" width="1104" height="800" rx="14"/>
+  <text class="title" x="52" y="64">Lowest AI-Citability Scores</text>
+  <text class="subtitle" x="52" y="87">Pages most in need of answer/schema/product-link refreshes.</text>
+  
+      <text class="label" x="52" y="123">iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution</text>
+      <text class="small" x="52" y="141">fleet</text>
+      <rect x="470" y="108" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="108" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="125">45</text>
+    
+
+      <text class="label" x="52" y="166">iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026</text>
+      <text class="small" x="52" y="184">restaurant</text>
+      <rect x="470" y="151" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="151" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="168">45</text>
+    
+
+      <text class="label" x="52" y="209">iBOLT Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series</text>
+      <text class="small" x="52" y="227">fleet</text>
+      <rect x="470" y="194" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="194" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="211">45</text>
+    
+
+      <text class="label" x="52" y="252">iBOLT Mounts and Toast POS: Powering Modern Restaurant Technology</text>
+      <text class="small" x="52" y="270">restaurant</text>
+      <rect x="470" y="237" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="237" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="254">45</text>
+    
+
+      <text class="label" x="52" y="295">iBOLT Launches Next-Generation Industrial Forklift Mounting System</text>
+      <text class="small" x="52" y="313">warehouse</text>
+      <rect x="470" y="280" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="280" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="297">45</text>
+    
+
+      <text class="label" x="52" y="338">iBOLT Confirms Universal Mounting Solutions for Apple iPad 10th Generation and iPad Air M2</text>
+      <text class="small" x="52" y="356">restaurant</text>
+      <rect x="470" y="323" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="323" width="487" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="340">53</text>
+    
+
+      <text class="label" x="52" y="381">iBOLT Mounting Solutions for Delivery Fleets: From DoorDash Drivers to Amazon DSP</text>
+      <text class="small" x="52" y="399">delivery</text>
+      <rect x="470" y="366" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="366" width="466" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="383">55</text>
+    
+
+      <text class="label" x="52" y="424">Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</text>
+      <text class="small" x="52" y="442">restaurant</text>
+      <rect x="470" y="409" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="409" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="426">57</text>
+    
+
+      <text class="label" x="52" y="467">Best Phone Mount for Construction Vehicles and Work Trucks</text>
+      <text class="small" x="52" y="485">fleet</text>
+      <rect x="470" y="452" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="452" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="469">57</text>
+    
+
+      <text class="label" x="52" y="510">Best Phone Mount for Instacart and Grocery Delivery Drivers</text>
+      <text class="small" x="52" y="528">delivery</text>
+      <rect x="470" y="495" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="495" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="512">57</text>
+    
+
+      <text class="label" x="52" y="553">Best Tablet Mount for Restaurant POS and Delivery Apps</text>
+      <text class="small" x="52" y="571">restaurant</text>
+      <rect x="470" y="538" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="538" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="555">57</text>
+    
+
+      <text class="label" x="52" y="596">How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</text>
+      <text class="small" x="52" y="614">delivery</text>
+      <rect x="470" y="581" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="581" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="598">57</text>
+    
+
+      <text class="label" x="52" y="639">Best Locking Tablet Mount for Classrooms</text>
+      <text class="small" x="52" y="657">education</text>
+      <rect x="470" y="624" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="624" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="641">57</text>
+    
+
+      <text class="label" x="52" y="682">Best Marine Electronics AMPS Mounting Plate</text>
+      <text class="small" x="52" y="700">fishing</text>
+      <rect x="470" y="667" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="667" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="684">57</text>
+    
+
+      <text class="label" x="52" y="725">Best Multi-Camera Phone Mount for Live Streaming</text>
+      <text class="small" x="52" y="743">streaming</text>
+      <rect x="470" y="710" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="710" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="727">57</text>
+    
+
+      <text class="label" x="52" y="768">Best Nintendo Switch Headrest Mount for Road Trips</text>
+      <text class="small" x="52" y="786">amps/modular</text>
+      <rect x="470" y="753" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="753" width="446" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="770">57</text>
+    
+</svg>

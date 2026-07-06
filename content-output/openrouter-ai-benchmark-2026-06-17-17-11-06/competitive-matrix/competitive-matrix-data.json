@@ -1,0 +1,3209 @@
+{
+  "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+  "auditDir": "/Users/yakub/Desktop/iblotmark/content-output/live-blog-ai-citability-merged-2026-06-18T03-54-14-604Z",
+  "stats": {
+    "total": 93,
+    "mentions": 22,
+    "citations": 0,
+    "topThree": 15,
+    "nonBranded": 75,
+    "nonBrandedMentions": 4,
+    "rawCompetitorOnly": 68,
+    "matrixCompetitorOnly": 66
+  },
+  "queryMatrix": [
+    {
+      "prompt": "best tablet mount",
+      "category": "tablet",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "partial",
+      "closestPost": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "closestSlug": "best-restaurant-tablet-mount",
+      "closestScore": 48,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "Lamicall",
+        "iOttie"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 97,
+      "priority": 88,
+      "recommendedAction": "Expand existing page or convert to stronger solution page"
+    },
+    {
+      "prompt": "best multi tablet mount",
+      "category": "restaurant",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "claude",
+        "gemini_plain"
+      ],
+      "contentCoverage": "partial",
+      "closestPost": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "closestSlug": "best-restaurant-tablet-mount",
+      "closestScore": 48,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Mount-It",
+        "Arkon"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 96,
+      "priority": 89,
+      "recommendedAction": "Expand existing page or convert to stronger solution page"
+    },
+    {
+      "prompt": "best heavy duty vehicle phone mount",
+      "category": "fleet",
+      "averageScore": 7,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "partial",
+      "closestPost": "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+      "closestSlug": "rough-water-phone-mount-for-boat",
+      "closestScore": 47,
+      "pageUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop",
+      "pageScore": 76,
+      "pageSource": "public",
+      "structuralIssues": [
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip",
+        "Tackform",
+        "iOttie",
+        "Scosche"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 96,
+      "priority": 88,
+      "recommendedAction": "Expand existing page or convert to stronger solution page"
+    },
+    {
+      "prompt": "best phone mount for Amazon Flex and delivery vans",
+      "category": "delivery",
+      "averageScore": 7,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "partial",
+      "closestPost": "Best Phone Mount for Amazon Flex and Delivery Vans",
+      "closestSlug": "best-phone-mount-for-amazon-flex-and-delivery-vans",
+      "closestScore": 51,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip",
+        "Arkon",
+        "iOttie",
+        "Scosche",
+        "Belkin"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 94,
+      "priority": 98,
+      "recommendedAction": "Expand existing page or convert to stronger solution page"
+    },
+    {
+      "prompt": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "closestSlug": "best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "closestScore": 58,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "pageScore": 76,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Peak Design"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 89,
+      "priority": 94,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best phone mount for construction vehicles and work trucks",
+      "category": "fleet",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Phone Mount for Construction Vehicles and Work Trucks",
+      "closestSlug": "best-phone-mount-for-construction-vehicles-and-work-trucks",
+      "closestScore": 58,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks",
+      "pageScore": 76,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip",
+        "Arkon",
+        "Tackform",
+        "iOttie",
+        "Scosche"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 88,
+      "priority": 85,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best phone mount for delivery drivers",
+      "category": "fleet",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Phone Mount for Delivery Drivers",
+      "closestSlug": "best-phone-mount-delivery-drivers-aeo-refresh",
+      "closestScore": 87,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "pageScore": 83,
+      "pageSource": "local_db_fallback",
+      "structuralIssues": [
+        "Article/BlogPosting schema"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Belkin",
+        "ProClip",
+        "LISEN"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 87,
+      "priority": 98,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "commercial grade phone mount for delivery drivers",
+      "category": "delivery",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "closestSlug": "commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "closestScore": 60,
+      "pageUrl": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "pageScore": 83,
+      "pageSource": "local_db_fallback",
+      "structuralIssues": [
+        "Article/BlogPosting schema"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "iOttie",
+        "Scosche",
+        "ProClip"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 87,
+      "priority": 95,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best fish finder mount for small boat",
+      "category": "fishing",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+      "closestSlug": "best-fish-finder-mount-small-boat-comparison-guide",
+      "closestScore": 85,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "YakAttack",
+        "Scotty",
+        "Humminbird",
+        "Garmin",
+        "Lowrance"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 87,
+      "priority": 93,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best fish finder",
+      "category": "fishing",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+      "closestSlug": "best-garmin-fish-finder-mount",
+      "closestScore": 63,
+      "pageUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "Garmin",
+        "Lowrance",
+        "Humminbird"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 87,
+      "priority": 86,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best fish finder in water",
+      "category": "fishing",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+      "closestSlug": "best-garmin-fish-finder-mount",
+      "closestScore": 63,
+      "pageUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "Garmin",
+        "Lowrance",
+        "Humminbird"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 87,
+      "priority": 82,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best kayak fish finder mount",
+      "category": "fishing",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "claude",
+        "gemini_plain"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing",
+      "closestSlug": "best-kayak-fish-finder-mount",
+      "closestScore": 95,
+      "pageUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+      "pageScore": 83,
+      "pageSource": "local_db_fallback",
+      "structuralIssues": [
+        "Article/BlogPosting schema"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "YakAttack",
+        "Garmin",
+        "Lowrance",
+        "Humminbird",
+        "Scotty"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 86,
+      "priority": 91,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best budget fish finder mount",
+      "category": "fishing",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+      "closestSlug": "best-garmin-fish-finder-mount",
+      "closestScore": 63,
+      "pageUrl": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "YakAttack",
+        "Scotty",
+        "Humminbird"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 86,
+      "priority": 87,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best tablet mount for restaurant POS and delivery apps",
+      "category": "restaurant",
+      "averageScore": 7,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Tablet Mount for Restaurant POS and Delivery Apps",
+      "closestSlug": "best-tablet-mount-for-restaurant-pos-and-delivery-apps",
+      "closestScore": 56,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps",
+      "pageScore": 76,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Square",
+        "Arkon",
+        "Mount-It"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 86,
+      "priority": 92,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best restaurant tablet mount",
+      "category": "restaurant",
+      "averageScore": 7,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "closestSlug": "best-restaurant-tablet-mount",
+      "closestScore": 95,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Mount-It",
+        "Bouncepad",
+        "Arkon"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 84,
+      "priority": 94,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best barcode scanner mount for forklift",
+      "category": "warehouse",
+      "averageScore": 7,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Barcode Scanner Mounts",
+      "closestSlug": "barcode-scanner-mounts",
+      "closestScore": 82,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Square",
+        "ProClip"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 84,
+      "priority": 89,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best ELD mount for trucks",
+      "category": "fleet",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)",
+      "closestSlug": "best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+      "closestScore": 58,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+      "pageScore": 94,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip",
+        "Arkon",
+        "Scosche"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 83,
+      "priority": 96,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best locking phone mount for shared delivery vehicles",
+      "category": "delivery",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "claude",
+        "gemini_plain"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Locking Phone Mount for Shared Delivery Vehicles",
+      "closestSlug": "best-locking-phone-mount-for-shared-delivery-vehicles",
+      "closestScore": 58,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles",
+      "pageScore": 94,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "iOttie",
+        "Scosche",
+        "ProClip"
+      ],
+      "competitorOnlyCount": 3,
+      "opportunityScore": 83,
+      "priority": 93,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "magnetic vs clamp phone mounts for delivery work",
+      "category": "delivery",
+      "averageScore": 0,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+      "closestSlug": "magnetic-vs-clamp-phone-mounts-for-delivery-work",
+      "closestScore": 56,
+      "pageUrl": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Quad Lock",
+        "Belkin"
+      ],
+      "competitorOnlyCount": 2,
+      "opportunityScore": 82,
+      "priority": 96,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "set up multiple tablets for DoorDash Uber Eats and Grubhub",
+      "category": "restaurant",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "claude",
+        "gemini_plain"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub",
+      "closestSlug": "how-to-set-up-multiple-tablets-for-doordash-uber-eats-and-grubhub",
+      "closestScore": 58,
+      "pageUrl": "https://iboltmounts.com/blogs/news/how-to-set-up-multiple-tablets-for-doordash-uber-eats-and-grubhub",
+      "pageScore": 76,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon"
+      ],
+      "competitorOnlyCount": 1,
+      "opportunityScore": 78,
+      "priority": 90,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best locking tablet stand for food trucks and quick service restaurants",
+      "category": "restaurant",
+      "averageScore": 3,
+      "mentionRate": 0,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants",
+      "closestSlug": "best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants",
+      "closestScore": 67,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "Mount-It"
+      ],
+      "competitorOnlyCount": 1,
+      "opportunityScore": 76,
+      "priority": 88,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best tablet mount for food truck",
+      "category": "restaurant",
+      "averageScore": 15,
+      "mentionRate": 33,
+      "weakestProviders": [
+        "gemini_plain",
+        "claude",
+        "chatgpt"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Tablet Mount for Utility Truck Crews",
+      "closestSlug": "best-tablet-mount-for-utility-truck-crews",
+      "closestScore": 58,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-utility-truck-crews",
+      "pageScore": 76,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Square"
+      ],
+      "competitorOnlyCount": 2,
+      "opportunityScore": 70,
+      "priority": 84,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best drill base phone mount for semi trucks",
+      "category": "fleet",
+      "averageScore": 16,
+      "mentionRate": 33,
+      "weakestProviders": [
+        "claude",
+        "gemini_plain",
+        "chatgpt"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Best Drill-Base Phone Mount for Semi Trucks",
+      "closestSlug": "best-drill-base-phone-mount-for-semi-trucks",
+      "closestScore": 56,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-drill-base-phone-mount-for-semi-trucks",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip"
+      ],
+      "competitorOnlyCount": 2,
+      "opportunityScore": 68,
+      "priority": 87,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best tablet mount for warehouse",
+      "category": "warehouse",
+      "averageScore": 19,
+      "mentionRate": 33,
+      "weakestProviders": [
+        "gemini_plain",
+        "claude",
+        "chatgpt"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Forklift & Warehouse Tablet Mounts",
+      "closestSlug": "forklift-and-warehouse-tablet-mounts",
+      "closestScore": 82,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison",
+      "pageScore": 94,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts"
+      ],
+      "competitorOnlyCount": 2,
+      "opportunityScore": 65,
+      "priority": 92,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "best forklift tablet mount",
+      "category": "warehouse",
+      "averageScore": 24,
+      "mentionRate": 33,
+      "weakestProviders": [
+        "gemini_plain",
+        "claude",
+        "chatgpt"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "Forklift & Warehouse Tablet Mounts",
+      "closestSlug": "forklift-and-warehouse-tablet-mounts",
+      "closestScore": 82,
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison",
+      "pageScore": 94,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "image alt text"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip"
+      ],
+      "competitorOnlyCount": 2,
+      "opportunityScore": 63,
+      "priority": 95,
+      "recommendedAction": "Refresh existing page for AI visibility"
+    },
+    {
+      "prompt": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "averageScore": 44,
+      "mentionRate": 100,
+      "weakestProviders": [
+        "gemini_plain",
+        "chatgpt",
+        "claude"
+      ],
+      "contentCoverage": "partial",
+      "closestPost": "iBOLT vs iOttie for Delivery Driving",
+      "closestSlug": "ibolt-vs-iottie-for-delivery-driving",
+      "closestScore": 49,
+      "pageUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-iottie-for-delivery-driving",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [],
+      "competitorOnlyCount": 0,
+      "opportunityScore": 42,
+      "priority": 97,
+      "recommendedAction": "Monitor"
+    },
+    {
+      "prompt": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "averageScore": 63,
+      "mentionRate": 100,
+      "weakestProviders": [],
+      "contentCoverage": "partial",
+      "closestPost": "iBOLT Dock'n Lock for Restaurant Counters",
+      "closestSlug": "ibolt-dock-n-lock-for-restaurant-counters",
+      "closestScore": 53,
+      "pageUrl": "https://iboltmounts.com/blogs/news/ibolt-dockn-lock-for-restaurant-counters",
+      "pageScore": 76,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "competitors": [],
+      "competitorOnlyCount": 0,
+      "opportunityScore": 37,
+      "priority": 91,
+      "recommendedAction": "Monitor"
+    },
+    {
+      "prompt": "ibolt vs ram mount",
+      "category": "comparison",
+      "averageScore": 45,
+      "mentionRate": 100,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "iBOLT vs RAM for Fleet Mounts",
+      "closestSlug": "ibolt-vs-ram-fleet-mounts-aeo-refresh",
+      "closestScore": 82,
+      "pageUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-fleet-mounts-aeo-refresh",
+      "pageScore": 83,
+      "pageSource": "local_db_fallback",
+      "structuralIssues": [
+        "Article/BlogPosting schema"
+      ],
+      "competitors": [],
+      "competitorOnlyCount": 0,
+      "opportunityScore": 32,
+      "priority": 90,
+      "recommendedAction": "Monitor"
+    },
+    {
+      "prompt": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "averageScore": 45,
+      "mentionRate": 100,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain",
+        "claude"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "iBOLT vs RAM for Fleet Phone Mounting",
+      "closestSlug": "ibolt-vs-ram-for-fleet-phone-mounting",
+      "closestScore": 58,
+      "pageUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-for-fleet-phone-mounting",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [],
+      "competitorOnlyCount": 0,
+      "opportunityScore": 32,
+      "priority": 86,
+      "recommendedAction": "Monitor"
+    },
+    {
+      "prompt": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "averageScore": 51,
+      "mentionRate": 100,
+      "weakestProviders": [
+        "chatgpt",
+        "gemini_plain"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "iBOLT vs Bouncepad vs Mount-It for Restaurant Tablet Security",
+      "closestSlug": "ibolt-vs-bouncepad-vs-mount-it-for-restaurant-tablet-security",
+      "closestScore": 60,
+      "pageUrl": "https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-vs-mount-it-for-restaurant-tablet-security",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [],
+      "competitorOnlyCount": 0,
+      "opportunityScore": 29,
+      "priority": 89,
+      "recommendedAction": "Monitor"
+    },
+    {
+      "prompt": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "averageScore": 58,
+      "mentionRate": 100,
+      "weakestProviders": [
+        "gemini_plain"
+      ],
+      "contentCoverage": "strong",
+      "closestPost": "iBOLT Phone Mounts for DoorDash and Uber Eats Drivers",
+      "closestSlug": "ibolt-phone-mounts-for-doordash-and-uber-eats-drivers",
+      "closestScore": 61,
+      "pageUrl": "https://iboltmounts.com/blogs/news/ibolt-phone-mounts-for-doordash-and-uber-eats-drivers",
+      "pageScore": 84,
+      "pageSource": "public",
+      "structuralIssues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "competitors": [],
+      "competitorOnlyCount": 0,
+      "opportunityScore": 27,
+      "priority": 99,
+      "recommendedAction": "Monitor"
+    }
+  ],
+  "battlecards": [
+    {
+      "brand": "RAM Mounts",
+      "type": "mount competitor",
+      "answerCount": 63,
+      "withIbolt": 10,
+      "withoutIbolt": 53,
+      "coMentionRate": 16,
+      "categories": "fleet 18; delivery 14; warehouse 9; fishing 9; restaurant 7; comparison 3; tablet 3",
+      "providers": "Gemini 22; Claude 21; ChatGPT 20",
+      "lostPrompts": [
+        "best phone mount for Amazon Flex and delivery vans",
+        "best phone mount for delivery drivers",
+        "best ELD mount for trucks",
+        "magnetic vs clamp phone mounts for delivery work",
+        "best forklift tablet mount",
+        "commercial grade phone mount for delivery drivers",
+        "best phone mount for Instacart and grocery delivery drivers",
+        "best restaurant tablet mount"
+      ],
+      "pagesToRefresh": [
+        "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+        "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+        "Best Phone Mount for Amazon Flex and Delivery Vans",
+        "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+        "Best Phone Mount for Construction Vehicles and Work Trucks",
+        "Best Phone Mount for Delivery Drivers"
+      ],
+      "positioningAngle": "Position iBOLT as the specialist for exact business workflows, with modular parts that remain cross-compatible with industry-standard balls and AMPS patterns."
+    },
+    {
+      "brand": "Arkon",
+      "type": "mount competitor",
+      "answerCount": 30,
+      "withIbolt": 5,
+      "withoutIbolt": 25,
+      "coMentionRate": 17,
+      "categories": "fleet 11; restaurant 8; delivery 6; warehouse 3; tablet 2",
+      "providers": "ChatGPT 13; Claude 10; Gemini 7",
+      "lostPrompts": [
+        "best phone mount for Amazon Flex and delivery vans",
+        "best ELD mount for trucks",
+        "commercial grade phone mount for delivery drivers",
+        "best restaurant tablet mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best tablet mount for restaurant POS and delivery apps",
+        "set up multiple tablets for DoorDash Uber Eats and Grubhub",
+        "best barcode scanner mount for forklift"
+      ],
+      "pagesToRefresh": [
+        "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+        "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+        "Best Phone Mount for Amazon Flex and Delivery Vans",
+        "Best Phone Mount for Construction Vehicles and Work Trucks",
+        "Commercial-Grade Phone Mounts for Delivery Drivers",
+        "Best Tablet Mount for Restaurant POS and Delivery Apps"
+      ],
+      "positioningAngle": "Position iBOLT around commercial durability, locked tablet workflows, restaurant stations, forklift mounts, and fleet-specific fit."
+    },
+    {
+      "brand": "iOttie",
+      "type": "consumer mount competitor",
+      "answerCount": 18,
+      "withIbolt": 3,
+      "withoutIbolt": 15,
+      "coMentionRate": 17,
+      "categories": "delivery 12; fleet 5; tablet 1",
+      "providers": "ChatGPT 9; Claude 5; Gemini 4",
+      "lostPrompts": [
+        "best phone mount for Amazon Flex and delivery vans",
+        "best phone mount for delivery drivers",
+        "magnetic vs clamp phone mounts for delivery work",
+        "commercial grade phone mount for delivery drivers",
+        "best phone mount for Instacart and grocery delivery drivers",
+        "best locking phone mount for shared delivery vehicles",
+        "best heavy duty vehicle phone mount",
+        "best tablet mount"
+      ],
+      "pagesToRefresh": [
+        "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+        "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+        "Best Phone Mount for Amazon Flex and Delivery Vans",
+        "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+        "Best Phone Mount for Construction Vehicles and Work Trucks",
+        "Best Phone Mount for Delivery Drivers"
+      ],
+      "positioningAngle": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories."
+    },
+    {
+      "brand": "ProClip",
+      "type": "mount competitor",
+      "answerCount": 13,
+      "withIbolt": 1,
+      "withoutIbolt": 12,
+      "coMentionRate": 8,
+      "categories": "fleet 7; delivery 4; warehouse 2",
+      "providers": "Claude 7; Gemini 3; ChatGPT 3",
+      "lostPrompts": [
+        "best phone mount for Amazon Flex and delivery vans",
+        "best phone mount for delivery drivers",
+        "best ELD mount for trucks",
+        "best forklift tablet mount",
+        "commercial grade phone mount for delivery drivers",
+        "best locking phone mount for shared delivery vehicles",
+        "best barcode scanner mount for forklift",
+        "best heavy duty vehicle phone mount"
+      ],
+      "pagesToRefresh": [
+        "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+        "Best Phone Mount for Amazon Flex and Delivery Vans",
+        "Best Phone Mount for Construction Vehicles and Work Trucks",
+        "Best Phone Mount for Delivery Drivers",
+        "Commercial-Grade Phone Mounts for Delivery Drivers",
+        "Barcode Scanner Mounts"
+      ],
+      "positioningAngle": "Position iBOLT around modular fleet deployment, universal device changes, drill bases, AMPS plates, and rugged shared-vehicle use."
+    },
+    {
+      "brand": "Humminbird",
+      "type": "adjacent device brand",
+      "answerCount": 12,
+      "withIbolt": 0,
+      "withoutIbolt": 12,
+      "coMentionRate": 0,
+      "categories": "fishing 12",
+      "providers": "ChatGPT 4; Gemini 4; Claude 4",
+      "lostPrompts": [
+        "best fish finder mount for small boat",
+        "best kayak fish finder mount",
+        "best budget fish finder mount",
+        "best fish finder",
+        "best fish finder in water"
+      ],
+      "pagesToRefresh": [
+        "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+        "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+        "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing"
+      ],
+      "positioningAngle": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem."
+    },
+    {
+      "brand": "Scosche",
+      "type": "consumer mount competitor",
+      "answerCount": 9,
+      "withIbolt": 0,
+      "withoutIbolt": 9,
+      "coMentionRate": 0,
+      "categories": "delivery 5; fleet 4",
+      "providers": "ChatGPT 9",
+      "lostPrompts": [
+        "best phone mount for Amazon Flex and delivery vans",
+        "best phone mount for delivery drivers",
+        "best ELD mount for trucks",
+        "magnetic vs clamp phone mounts for delivery work",
+        "commercial grade phone mount for delivery drivers",
+        "best phone mount for Instacart and grocery delivery drivers",
+        "best locking phone mount for shared delivery vehicles",
+        "best heavy duty vehicle phone mount"
+      ],
+      "pagesToRefresh": [
+        "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+        "Best Phone Mount for Amazon Flex and Delivery Vans",
+        "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+        "Best Phone Mount for Construction Vehicles and Work Trucks",
+        "Best Phone Mount for Delivery Drivers",
+        "Commercial-Grade Phone Mounts for Delivery Drivers"
+      ],
+      "positioningAngle": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories."
+    },
+    {
+      "brand": "Scotty",
+      "type": "marine competitor",
+      "answerCount": 8,
+      "withIbolt": 0,
+      "withoutIbolt": 8,
+      "coMentionRate": 0,
+      "categories": "fishing 8",
+      "providers": "ChatGPT 3; Claude 3; Gemini 2",
+      "lostPrompts": [
+        "best fish finder mount for small boat",
+        "best kayak fish finder mount",
+        "best budget fish finder mount"
+      ],
+      "pagesToRefresh": [
+        "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+        "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing",
+        "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak"
+      ],
+      "positioningAngle": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem."
+    },
+    {
+      "brand": "Garmin",
+      "type": "adjacent device brand",
+      "answerCount": 8,
+      "withIbolt": 0,
+      "withoutIbolt": 8,
+      "coMentionRate": 0,
+      "categories": "fishing 8",
+      "providers": "Gemini 4; ChatGPT 2; Claude 2",
+      "lostPrompts": [
+        "best fish finder mount for small boat",
+        "best kayak fish finder mount",
+        "best fish finder",
+        "best fish finder in water"
+      ],
+      "pagesToRefresh": [
+        "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+        "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+        "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing"
+      ],
+      "positioningAngle": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem."
+    },
+    {
+      "brand": "Mount-It",
+      "type": "commercial stand competitor",
+      "answerCount": 11,
+      "withIbolt": 4,
+      "withoutIbolt": 7,
+      "coMentionRate": 36,
+      "categories": "restaurant 11",
+      "providers": "ChatGPT 6; Claude 3; Gemini 2",
+      "lostPrompts": [
+        "best restaurant tablet mount",
+        "best tablet mount for restaurant POS and delivery apps",
+        "best multi tablet mount",
+        "best locking tablet stand for food trucks and quick service restaurants"
+      ],
+      "pagesToRefresh": [
+        "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+        "Best Tablet Mount for Restaurant POS and Delivery Apps",
+        "Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants"
+      ],
+      "positioningAngle": "Position iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS mounting."
+    },
+    {
+      "brand": "YakAttack",
+      "type": "marine competitor",
+      "answerCount": 7,
+      "withIbolt": 0,
+      "withoutIbolt": 7,
+      "coMentionRate": 0,
+      "categories": "fishing 7",
+      "providers": "ChatGPT 3; Gemini 2; Claude 2",
+      "lostPrompts": [
+        "best fish finder mount for small boat",
+        "best kayak fish finder mount",
+        "best budget fish finder mount"
+      ],
+      "pagesToRefresh": [
+        "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+        "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing",
+        "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak"
+      ],
+      "positioningAngle": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem."
+    },
+    {
+      "brand": "Lowrance",
+      "type": "adjacent device brand",
+      "answerCount": 7,
+      "withIbolt": 0,
+      "withoutIbolt": 7,
+      "coMentionRate": 0,
+      "categories": "fishing 7",
+      "providers": "Claude 3; Gemini 2; ChatGPT 2",
+      "lostPrompts": [
+        "best fish finder mount for small boat",
+        "best kayak fish finder mount",
+        "best fish finder",
+        "best fish finder in water"
+      ],
+      "pagesToRefresh": [
+        "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+        "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+        "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing"
+      ],
+      "positioningAngle": "Clarify that iBOLT complements fish finders and marine electronics by solving the mounting, vibration, and placement problem."
+    },
+    {
+      "brand": "Tackform",
+      "type": "mount competitor",
+      "answerCount": 7,
+      "withIbolt": 3,
+      "withoutIbolt": 4,
+      "coMentionRate": 43,
+      "categories": "warehouse 2; fleet 2; delivery 1; tablet 1; restaurant 1",
+      "providers": "ChatGPT 7",
+      "lostPrompts": [
+        "best locking phone mount for shared delivery vehicles",
+        "best heavy duty vehicle phone mount",
+        "best tablet mount",
+        "best phone mount for construction vehicles and work trucks"
+      ],
+      "pagesToRefresh": [
+        "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+        "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+        "Best Phone Mount for Construction Vehicles and Work Trucks",
+        "Best Locking Phone Mount for Shared Delivery Vehicles"
+      ],
+      "positioningAngle": "Position iBOLT around fleet and warehouse-specific SKUs, barcode scanner support, locking workflows, and exact vertical pages."
+    },
+    {
+      "brand": "Belkin",
+      "type": "stand competitor",
+      "answerCount": 3,
+      "withIbolt": 0,
+      "withoutIbolt": 3,
+      "coMentionRate": 0,
+      "categories": "delivery 2; fleet 1",
+      "providers": "ChatGPT 2; Claude 1",
+      "lostPrompts": [
+        "best phone mount for Amazon Flex and delivery vans",
+        "best phone mount for delivery drivers",
+        "magnetic vs clamp phone mounts for delivery work"
+      ],
+      "pagesToRefresh": [
+        "Best Phone Mount for Amazon Flex and Delivery Vans",
+        "Best Phone Mount for Delivery Drivers",
+        "Magnetic vs Clamp Phone Mounts for Delivery Work"
+      ],
+      "positioningAngle": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories."
+    },
+    {
+      "brand": "Square",
+      "type": "pos ecosystem",
+      "answerCount": 3,
+      "withIbolt": 0,
+      "withoutIbolt": 3,
+      "coMentionRate": 0,
+      "categories": "restaurant 2; warehouse 1",
+      "providers": "Claude 2; Gemini 1",
+      "lostPrompts": [
+        "best tablet mount for restaurant POS and delivery apps",
+        "best barcode scanner mount for forklift",
+        "best tablet mount for food truck"
+      ],
+      "pagesToRefresh": [
+        "Best Tablet Mount for Restaurant POS and Delivery Apps",
+        "Barcode Scanner Mounts",
+        "Best Tablet Mount for Utility Truck Crews"
+      ],
+      "positioningAngle": "Position iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS mounting."
+    },
+    {
+      "brand": "Lamicall",
+      "type": "stand competitor",
+      "answerCount": 2,
+      "withIbolt": 0,
+      "withoutIbolt": 2,
+      "coMentionRate": 0,
+      "categories": "tablet 2",
+      "providers": "ChatGPT 1; Claude 1",
+      "lostPrompts": [
+        "best tablet mount"
+      ],
+      "pagesToRefresh": [
+        "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared"
+      ],
+      "positioningAngle": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories."
+    },
+    {
+      "brand": "Bouncepad",
+      "type": "commercial stand competitor",
+      "answerCount": 4,
+      "withIbolt": 3,
+      "withoutIbolt": 1,
+      "coMentionRate": 75,
+      "categories": "restaurant 4",
+      "providers": "Claude 2; ChatGPT 1; Gemini 1",
+      "lostPrompts": [
+        "best restaurant tablet mount"
+      ],
+      "pagesToRefresh": [
+        "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared"
+      ],
+      "positioningAngle": "Position iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS mounting."
+    },
+    {
+      "brand": "LISEN",
+      "type": "stand competitor",
+      "answerCount": 1,
+      "withIbolt": 0,
+      "withoutIbolt": 1,
+      "coMentionRate": 0,
+      "categories": "fleet 1",
+      "providers": "Claude 1",
+      "lostPrompts": [
+        "best phone mount for delivery drivers"
+      ],
+      "pagesToRefresh": [
+        "Best Phone Mount for Delivery Drivers"
+      ],
+      "positioningAngle": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories."
+    },
+    {
+      "brand": "Quad Lock",
+      "type": "consumer mount competitor",
+      "answerCount": 1,
+      "withIbolt": 0,
+      "withoutIbolt": 1,
+      "coMentionRate": 0,
+      "categories": "delivery 1",
+      "providers": "Claude 1",
+      "lostPrompts": [
+        "magnetic vs clamp phone mounts for delivery work"
+      ],
+      "pagesToRefresh": [
+        "Magnetic vs Clamp Phone Mounts for Delivery Work"
+      ],
+      "positioningAngle": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories."
+    },
+    {
+      "brand": "Peak Design",
+      "type": "consumer mount competitor",
+      "answerCount": 1,
+      "withIbolt": 0,
+      "withoutIbolt": 1,
+      "coMentionRate": 0,
+      "categories": "delivery 1",
+      "providers": "Gemini 1",
+      "lostPrompts": [
+        "best phone mount for Instacart and grocery delivery drivers"
+      ],
+      "pagesToRefresh": [
+        "Best Phone Mount for Instacart and Grocery Delivery Drivers"
+      ],
+      "positioningAngle": "Position iBOLT as commercial-grade equipment rather than consumer phone accessories."
+    }
+  ],
+  "topicMatrix": [
+    {
+      "topic": "fishing",
+      "promptCount": 5,
+      "zeroMentionPrompts": 5,
+      "avgAiScore": 1,
+      "avgMention": 0,
+      "competitorOnly": 15,
+      "auditedPages": 17,
+      "avgPageScore": 78,
+      "riskScore": 85,
+      "topCompetitors": [
+        "Humminbird",
+        "RAM Mounts",
+        "Garmin",
+        "Scotty",
+        "Lowrance",
+        "YakAttack"
+      ]
+    },
+    {
+      "topic": "tablet",
+      "promptCount": 1,
+      "zeroMentionPrompts": 1,
+      "avgAiScore": 0,
+      "avgMention": 0,
+      "competitorOnly": 3,
+      "auditedPages": 0,
+      "avgPageScore": null,
+      "riskScore": 72,
+      "topCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Lamicall",
+        "Tackform",
+        "iOttie"
+      ]
+    },
+    {
+      "topic": "restaurant",
+      "promptCount": 8,
+      "zeroMentionPrompts": 5,
+      "avgAiScore": 19,
+      "avgMention": 29,
+      "competitorOnly": 13,
+      "auditedPages": 17,
+      "avgPageScore": 78,
+      "riskScore": 72,
+      "topCompetitors": [
+        "RAM Mounts",
+        "Mount-It",
+        "Arkon",
+        "Square",
+        "Bouncepad"
+      ]
+    },
+    {
+      "topic": "delivery",
+      "promptCount": 7,
+      "zeroMentionPrompts": 5,
+      "avgAiScore": 16,
+      "avgMention": 29,
+      "competitorOnly": 14,
+      "auditedPages": 11,
+      "avgPageScore": 82,
+      "riskScore": 72,
+      "topCompetitors": [
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Arkon",
+        "ProClip",
+        "Belkin"
+      ]
+    },
+    {
+      "topic": "fleet",
+      "promptCount": 6,
+      "zeroMentionPrompts": 4,
+      "avgAiScore": 12,
+      "avgMention": 22,
+      "competitorOnly": 14,
+      "auditedPages": 25,
+      "avgPageScore": 80,
+      "riskScore": 71,
+      "topCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip",
+        "iOttie",
+        "Scosche",
+        "Tackform"
+      ]
+    },
+    {
+      "topic": "warehouse",
+      "promptCount": 3,
+      "zeroMentionPrompts": 1,
+      "avgAiScore": 17,
+      "avgMention": 22,
+      "competitorOnly": 7,
+      "auditedPages": 17,
+      "avgPageScore": 78,
+      "riskScore": 58,
+      "topCompetitors": [
+        "RAM Mounts",
+        "ProClip",
+        "Arkon",
+        "Square"
+      ]
+    },
+    {
+      "topic": "comparison",
+      "promptCount": 1,
+      "zeroMentionPrompts": 0,
+      "avgAiScore": 45,
+      "avgMention": 100,
+      "competitorOnly": 0,
+      "auditedPages": 0,
+      "avgPageScore": null,
+      "riskScore": 27,
+      "topCompetitors": []
+    }
+  ],
+  "pageQueue": [
+    {
+      "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop",
+      "title": "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+      "category": "fleet",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [
+        "best heavy duty vehicle phone mount"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip",
+        "Tackform",
+        "iOttie",
+        "Scosche"
+      ],
+      "issues": [
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 96,
+      "refreshPriority": 77
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "category": "delivery",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [
+        "best phone mount for Instacart and grocery delivery drivers"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Peak Design"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 89,
+      "refreshPriority": 74
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks",
+      "title": "Best Phone Mount for Construction Vehicles and Work Trucks",
+      "category": "fleet",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [
+        "best phone mount for construction vehicles and work trucks"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip",
+        "Arkon",
+        "Tackform",
+        "iOttie",
+        "Scosche"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 88,
+      "refreshPriority": 74
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "title": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "category": "tablet",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "best tablet mount",
+        "best multi tablet mount",
+        "best restaurant tablet mount"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "Lamicall",
+        "iOttie",
+        "Mount-It",
+        "Bouncepad"
+      ],
+      "issues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 97,
+      "refreshPriority": 73
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+      "title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+      "category": "delivery",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "best phone mount for Amazon Flex and delivery vans"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip",
+        "Arkon",
+        "iOttie",
+        "Scosche",
+        "Belkin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 94,
+      "refreshPriority": 73
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps",
+      "title": "Best Tablet Mount for Restaurant POS and Delivery Apps",
+      "category": "restaurant",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [
+        "best tablet mount for restaurant POS and delivery apps"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Square",
+        "Arkon",
+        "Mount-It"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 86,
+      "refreshPriority": 72
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+      "title": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+      "category": "fishing",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "best fish finder mount for small boat"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "YakAttack",
+        "Scotty",
+        "Humminbird",
+        "Garmin",
+        "Lowrance"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 87,
+      "refreshPriority": 68
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-set-up-multiple-tablets-for-doordash-uber-eats-and-grubhub",
+      "title": "How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub",
+      "category": "restaurant",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [
+        "set up multiple tablets for DoorDash Uber Eats and Grubhub"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 78,
+      "refreshPriority": 67
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+      "title": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+      "category": "fishing",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "best fish finder",
+        "best fish finder in water",
+        "best budget fish finder mount"
+      ],
+      "competitors": [
+        "Garmin",
+        "Lowrance",
+        "Humminbird",
+        "RAM Mounts",
+        "YakAttack",
+        "Scotty"
+      ],
+      "issues": [
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 87,
+      "refreshPriority": 66
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026",
+      "title": "Barcode Scanner Mounts",
+      "category": "warehouse",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "best barcode scanner mount for forklift"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Square",
+        "ProClip"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 84,
+      "refreshPriority": 66
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "title": "Best Phone Mount for Delivery Drivers",
+      "category": "fleet",
+      "pageScore": 83,
+      "source": "local_db_fallback",
+      "prompts": [
+        "best phone mount for delivery drivers"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Belkin",
+        "ProClip",
+        "LISEN"
+      ],
+      "issues": [
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 87,
+      "refreshPriority": 65
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "title": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "category": "delivery",
+      "pageScore": 83,
+      "source": "local_db_fallback",
+      "prompts": [
+        "commercial grade phone mount for delivery drivers"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "iOttie",
+        "Scosche",
+        "ProClip"
+      ],
+      "issues": [
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 87,
+      "refreshPriority": 65
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work",
+      "title": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+      "category": "delivery",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "magnetic vs clamp phone mounts for delivery work"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Quad Lock",
+        "Belkin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 82,
+      "refreshPriority": 65
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+      "title": "Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing",
+      "category": "fishing",
+      "pageScore": 83,
+      "source": "local_db_fallback",
+      "prompts": [
+        "best kayak fish finder mount"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "YakAttack",
+        "Garmin",
+        "Lowrance",
+        "Humminbird",
+        "Scotty"
+      ],
+      "issues": [
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 86,
+      "refreshPriority": 64
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-utility-truck-crews",
+      "title": "Best Tablet Mount for Utility Truck Crews",
+      "category": "restaurant",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [
+        "best tablet mount for food truck"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Square"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 70,
+      "refreshPriority": 62
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants",
+      "title": "Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants",
+      "category": "restaurant",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "best locking tablet stand for food trucks and quick service restaurants"
+      ],
+      "competitors": [
+        "Mount-It"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 76,
+      "refreshPriority": 61
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+      "title": "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)",
+      "category": "fleet",
+      "pageScore": 94,
+      "source": "public",
+      "prompts": [
+        "best ELD mount for trucks"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip",
+        "Arkon",
+        "Scosche"
+      ],
+      "issues": [
+        "FAQ schema",
+        "image alt text"
+      ],
+      "maxOpportunity": 83,
+      "refreshPriority": 60
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles",
+      "title": "Best Locking Phone Mount for Shared Delivery Vehicles",
+      "category": "delivery",
+      "pageScore": 94,
+      "source": "public",
+      "prompts": [
+        "best locking phone mount for shared delivery vehicles"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "iOttie",
+        "Scosche",
+        "ProClip"
+      ],
+      "issues": [
+        "FAQ schema",
+        "image alt text"
+      ],
+      "maxOpportunity": 83,
+      "refreshPriority": 60
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-drill-base-phone-mount-for-semi-trucks",
+      "title": "Best Drill-Base Phone Mount for Semi Trucks",
+      "category": "fleet",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "best drill base phone mount for semi trucks"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 68,
+      "refreshPriority": 56
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison",
+      "title": "Forklift & Warehouse Tablet Mounts",
+      "category": "warehouse",
+      "pageScore": 94,
+      "source": "public",
+      "prompts": [
+        "best tablet mount for warehouse",
+        "best forklift tablet mount"
+      ],
+      "competitors": [
+        "RAM Mounts",
+        "ProClip"
+      ],
+      "issues": [
+        "FAQ schema",
+        "image alt text"
+      ],
+      "maxOpportunity": 65,
+      "refreshPriority": 48
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-dockn-lock-for-restaurant-counters",
+      "title": "iBOLT Dock'n Lock for Restaurant Counters",
+      "category": "restaurant",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [
+        "iBolt Dock’n Lock for restaurant counters"
+      ],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 37,
+      "refreshPriority": 40
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-vs-iottie-for-delivery-driving",
+      "title": "iBOLT vs iOttie for Delivery Driving",
+      "category": "delivery",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "iBolt vs iOttie for delivery driving"
+      ],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 42,
+      "refreshPriority": 39
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-for-fleet-phone-mounting",
+      "title": "iBOLT vs RAM for Fleet Phone Mounting",
+      "category": "fleet",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "iBolt vs RAM for fleet phone mounting"
+      ],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 32,
+      "refreshPriority": 32
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-vs-mount-it-for-restaurant-tablet-security",
+      "title": "iBOLT vs Bouncepad vs Mount-It for Restaurant Tablet Security",
+      "category": "restaurant",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "iBolt vs Bouncepad vs Mount-It for restaurant tablet security"
+      ],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 29,
+      "refreshPriority": 30
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-fleet-mounts-aeo-refresh",
+      "title": "iBOLT vs RAM for Fleet Mounts",
+      "category": "comparison",
+      "pageScore": 83,
+      "source": "local_db_fallback",
+      "prompts": [
+        "ibolt vs ram mount"
+      ],
+      "competitors": [],
+      "issues": [
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 32,
+      "refreshPriority": 29
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-phone-mounts-for-doordash-and-uber-eats-drivers",
+      "title": "iBOLT Phone Mounts for DoorDash and Uber Eats Drivers",
+      "category": "delivery",
+      "pageScore": 84,
+      "source": "public",
+      "prompts": [
+        "ibolt phone mounts for DoorDash and Uber Eats drivers"
+      ],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text"
+      ],
+      "maxOpportunity": 27,
+      "refreshPriority": 29
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/5-ways-to-increase-your-youtube-audience-with-an-action-camera-using-ibolt-mounts",
+      "title": "5 Ways To Increase Your YouTube Audience With An Action Camera using iBOLT Mounts",
+      "category": "streaming",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/customizable-mounting-solutions-for-every-need",
+      "title": "Unmatched Adaptability: Explore iBOLT's Modular Tablet Mount Solutions",
+      "category": "amps/modular",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "title": "HOW TO MOUNT A FISH FINDER TO YOUR BOAT USING IBOLT MOUNTS",
+      "category": "fishing",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin",
+        "Lowrance"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts-1",
+      "title": "How to mount a Fish Finder to your boat using iBOLT Mounts",
+      "category": "fishing",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin",
+        "Lowrance"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-spot-imitation-ibolt-products-on-amazon",
+      "title": "How to spot imitation iBOLT products on Amazon",
+      "category": "amps/modular",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-for-back-to-school",
+      "title": "IBOLT MOUNTS FOR BACK-TO-SCHOOL",
+      "category": "education",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-for-road-trips",
+      "title": "iBOLT Mounts for Road Trips",
+      "category": "amps/modular",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "title": "Mounts to take off-roading in your Jeep Wrangler",
+      "category": "offroad",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/the-benefits-of-going-paperless-in-schools",
+      "title": "THE BENEFITS OF GOING PAPERLESS IN SCHOOLS",
+      "category": "education",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "category": "education",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-4-locking-tablet-mounts-to-keep-your-device-safe",
+      "title": "Top 4 Locking Tablet Mounts to Keep Your Device Safe",
+      "category": "amps/modular",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-5-mounts-for-the-samsung-galaxy-a7-lite-tablet",
+      "title": "TOP 5 MOUNTS FOR THE SAMSUNG GALAXY A7 LITE TABLET",
+      "category": "amps/modular",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-5-mounts-for-the-samsung-galaxy-a7-lite-tablet-1",
+      "title": "Top 5 Mounts for the Samsung Galaxy A7 Lite Tablet",
+      "category": "amps/modular",
+      "pageScore": 51,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 27
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/4-ibolt-products-for-new-streamers",
+      "title": "4 iBOLT Products for New Streamers",
+      "category": "streaming",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/5-useful-tablet-mounts-for-your-kitchen",
+      "title": "5 USEFUL TABLET MOUNTS FOR YOUR KITCHEN",
+      "category": "amps/modular",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-ibolt-mountain-bike-phone-and-action-camera-mounts",
+      "title": "BEST IBOLT MOUNTAIN BIKE PHONE AND ACTION CAMERA MOUNTS",
+      "category": "streaming",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/do-farmers-use-tablet-mounts-what-tech-is-used-on-a-farm-the-newest-and-coolest-farm-tool",
+      "title": "DO FARMERS USE TABLET MOUNTS? - WHAT TECH IS USED ON A FARM?- THE NEWEST AND COOLEST FARM TOOL",
+      "category": "agriculture",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/embarking-on-a-fishing-adventure-choosing-the-right-mount-for-your-fish-finder",
+      "title": "EMBARKING ON A FISHING ADVENTURE: CHOOSING THE RIGHT MOUNT FOR YOUR FISH FINDER",
+      "category": "fishing",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin",
+        "Lowrance"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/empowering-content-creators-with-the-ibolt-stream-cast-creator-kit",
+      "title": "Empowering content creators with the iBOLT Stream-Cast Creator kit",
+      "category": "streaming",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-mount-a-tablet-to-a-forklift-pillar-using-ibolt",
+      "title": "HOW TO MOUNT A TABLET TO A FORKLIFT PILLAR USING IBOLT",
+      "category": "warehouse",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-use-ibolt-s-modular-mounting-system",
+      "title": "HOW TO USE IBOLT’S MODULAR MOUNTING SYSTEM",
+      "category": "amps/modular",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip",
+        "Tackform",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-for-outdoor-recreation",
+      "title": "iBOLT Mounts for Outdoor Recreation",
+      "category": "amps/modular",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-5-best-tablet-mounts-to-get-you-organized-in-your-restaurant",
+      "title": "Top 5 Best Tablet Mounts to get you Organized in your Restaurant",
+      "category": "restaurant",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-5-heavy-duty-phone-mounts-for-truck-drivers",
+      "title": "Top 5 Heavy Duty Phone Mounts for Truck Drivers",
+      "category": "fleet",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-5-ibolt-tablet-wall-mounts",
+      "title": "TOP 5 TABLET WALL MOUNTS",
+      "category": "amps/modular",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-5-tablet-mounts-for-truck-drivers",
+      "title": "TOP 5 TABLET MOUNTS FOR TRUCK DRIVERS",
+      "category": "fleet",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/using-ibolt-s-stream-cast-creator-custom-mount-kit-for-multiple-angle-shots",
+      "title": "USING IBOLT’S STREAM-CAST CREATOR CUSTOM MOUNT KIT FOR MULTIPLE ANGLE SHOTS",
+      "category": "streaming",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/what-do-i-need-for-an-overhead-livestream-setup",
+      "title": "What Do I need for an Overhead Livestream Setup?",
+      "category": "streaming",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 24
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "title": "Best Multi-Camera Phone Mount for Live Streaming",
+      "category": "streaming",
+      "pageScore": 57,
+      "source": "local_db_fallback",
+      "prompts": [],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 23
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ball-mounts-explained-complete-guide-to-20mm-25mm-and-universal-mounting-solutions",
+      "title": "Ball Mounts Explained: Complete Guide to 20mm, 25mm, and Universal Mounting Solutions",
+      "category": "amps/modular",
+      "pageScore": 59,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Tackform",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 22
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-confirms-barcode-scanner-mounting-solutions-compatible-with-honeywell-zebra-and-symbol-scanners",
+      "title": "iBOLT Confirms Barcode Scanner Mounting Solutions Compatible with Honeywell, Zebra, and Symbol Scanners",
+      "category": "warehouse",
+      "pageScore": 64,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 21
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-confirms-universal-mounting-solutions-for-samsung-galaxy-tab-a9-and-s9-series",
+      "title": "iBOLT Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series",
+      "category": "warehouse",
+      "pageScore": 64,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 21
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-introduces-mount-configurator-2-0-build-your-perfect-custom-mounting-solution",
+      "title": "iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution",
+      "category": "amps/modular",
+      "pageScore": 64,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 21
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-launches-next-generation-industrial-forklift-mounting-system",
+      "title": "iBOLT Launches Next-Generation Industrial Forklift Mounting System",
+      "category": "warehouse",
+      "pageScore": 64,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 21
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-and-toast-pos-powering-modern-restaurant-technology",
+      "title": "iBOLT Mounts and Toast POS: Powering Modern Restaurant Technology",
+      "category": "restaurant",
+      "pageScore": 64,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 21
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets",
+      "title": "iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets",
+      "category": "fleet",
+      "pageScore": 64,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 21
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-tablet-tower-system-featured-at-national-restaurant-association-show-2026",
+      "title": "iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026",
+      "category": "restaurant",
+      "pageScore": 64,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts",
+        "Square",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 21
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/create-a-custom-ibolt-mounting-solution-now-on-amazon-com",
+      "title": "Create a Custom iBOLT Mounting Solution- now on Amazon.com",
+      "category": "amps/modular",
+      "pageScore": 67,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Square",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 20
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/restaurant-tablet-holder-and-tablet-towers-for-food-delivery-service-apps",
+      "title": "RESTAURANT TABLET HOLDER AND TABLET TOWERS FOR FOOD DELIVERY SERVICE APPS",
+      "category": "restaurant",
+      "pageScore": 67,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 20
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/tips-for-creating-unboxing-videos-with-your-phone",
+      "title": "Tips for Creating Unboxing Videos with Your Phone",
+      "category": "amps/modular",
+      "pageScore": 67,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 20
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/what-size-is-the-ball-mount-on-a-garmin-gps-and-how-do-i-find-a-compatible-mount",
+      "title": "WHAT SIZE IS THE BALL MOUNT ON A GARMIN GPS AND HOW DO I FIND A COMPATIBLE MOUNT?",
+      "category": "amps/modular",
+      "pageScore": 67,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 20
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/forklift-mount-solutions-supporting-efficiency-and-safety-in-modern-warehouse-operations",
+      "title": "Forklift Mount Solutions: Supporting Efficiency and Safety in Modern Warehouse Operations",
+      "category": "warehouse",
+      "pageScore": 71,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 20
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-jeep-wrangler-off-road-trails",
+      "title": "Best Phone Mount for Jeep Wrangler Off-Road Trails",
+      "category": "amps/modular",
+      "pageScore": 65,
+      "source": "local_db_fallback",
+      "prompts": [],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 18
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-school-bus-and-transportation-fleets",
+      "title": "Best Tablet Mount for School Bus and Transportation Fleets",
+      "category": "fleet",
+      "pageScore": 65,
+      "source": "local_db_fallback",
+      "prompts": [],
+      "competitors": [],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 18
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-wheelchair-tablet-mount-for-communication-devices",
+      "title": "Best Wheelchair Tablet Mount for Communication Devices",
+      "category": "amps/modular",
+      "pageScore": 65,
+      "source": "local_db_fallback",
+      "prompts": [],
+      "competitors": [
+        "RAM Mounts"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "Article/BlogPosting schema"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 18
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/great-places-to-use-clamping-tablet-and-phone-mounts",
+      "title": "Where to Use Clamp Phone and Tablet Mounts",
+      "category": "amps/modular",
+      "pageScore": 71,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "quick answer",
+        "comparison block",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 18
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-marine-electronics-amps-mounting-plate",
+      "title": "Best Marine Electronics AMPS Mounting Plate",
+      "category": "amps/modular",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Square",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 16
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-nintendo-switch-headrest-mount-for-road-trips",
+      "title": "Best Nintendo Switch Headrest Mount for Road Trips",
+      "category": "amps/modular",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 16
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-rugged-tablet-mount-for-field-service-vans",
+      "title": "Best Rugged Tablet Mount for Field Service Vans",
+      "category": "fleet",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 16
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "title": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "category": "agriculture",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 16
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/choosing-the-right-phone-holder-for-streaming-a-complete-guide",
+      "title": "Choosing the Right Phone Holder for Streaming: A Complete Guide",
+      "category": "streaming",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 16
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/eld-mounts-explained-a-practical-guide-to-electronic-logging-device-mounting-solutions",
+      "title": "ELD Mounts Explained: A Practical Guide to Electronic Logging Device Mounting Solutions",
+      "category": "fleet",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 16
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/understanding-phone-clamp-mounts-a-practical-guide-to-secure-device-positioning",
+      "title": "Understanding Phone Clamp Mounts: A Practical Guide to Secure Device Positioning",
+      "category": "amps/modular",
+      "pageScore": 76,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "comparison block",
+        "image alt text"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 16
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/ibolt-vs-arkon-business-tablet-mount-guide",
+      "title": "iBOLT vs Arkon: Operations Manager's Guide to Business Tablet Mounting Systems",
+      "category": "amps/modular",
+      "pageScore": 79,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Arkon",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 15
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/professional-grade-mounting-solutions-a-complete-guide-to-choosing-the-right-mount-for-every-environment",
+      "title": "Professional-Grade Mounting Solutions: A Complete Guide to Choosing the Right Mount for Every Environment",
+      "category": "warehouse",
+      "pageScore": 79,
+      "source": "public",
+      "prompts": [],
+      "competitors": [
+        "Bouncepad",
+        "Garmin"
+      ],
+      "issues": [
+        "FAQ schema",
+        "quick answer",
+        "image alt text",
+        "meta description"
+      ],
+      "maxOpportunity": 0,
+      "refreshPriority": 15
+    }
+  ]
+}

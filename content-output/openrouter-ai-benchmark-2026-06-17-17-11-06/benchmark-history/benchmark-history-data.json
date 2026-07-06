@@ -1,0 +1,353 @@
+{
+  "summary": {
+    "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+    "completedRunRows": 3,
+    "manualGoogleRows": 27,
+    "manualGoogleMentionRate": 59,
+    "manualGoogleCitationRate": 63,
+    "latestProviders": "chatgpt; gemini_plain; claude",
+    "latestQueryCount": 31,
+    "latestResultCount": 93,
+    "latestMentionRate": 24,
+    "latestCitationRate": 0,
+    "latestTopThreeRate": 16,
+    "liveAuditSnapshots": 5,
+    "latestLiveAuditAvgScore": 75,
+    "latestLiveAuditPages": 142,
+    "latestExpandedPrompts": 78,
+    "latestExpandedProviderRequests": 204
+  },
+  "runRows": [
+    {
+      "date": "2026-05-22",
+      "kind": "Manual Google AI Mode",
+      "source_file": "/Users/yakub/Desktop/iblotmark/benchmark-output/manual-google-ai-mode-2026-05-22.jsonl",
+      "provider_surface": "google_ai_mode_browser",
+      "query_count": 27,
+      "result_count": 27,
+      "completed_results": 27,
+      "avg_score": "",
+      "mention_rate": 59,
+      "citation_rate": 63,
+      "top_three_rate": "",
+      "comparison_available": "no",
+      "previous_avg_score": "",
+      "comparable": "search-connected only",
+      "note": "Manual browser capture. iBOLT mentioned 16/27 and cited 17/27. Top competitors: RAM 17; RAM Mounts 10; Tackform 8; Arkon 6; Square 4; iOttie 3; CTA Digital 3; Garmin 3."
+    },
+    {
+      "date": "2026-06-11",
+      "kind": "App benchmark",
+      "source_file": "/Users/yakub/Desktop/iblotmark/content-output/ai-benchmark-2026-06-11-12-35-36/summary.json",
+      "provider_surface": "claude",
+      "query_count": 27,
+      "result_count": 27,
+      "completed_results": 27,
+      "avg_score": 19,
+      "mention_rate": 7,
+      "citation_rate": 70,
+      "top_three_rate": 4,
+      "comparison_available": "yes",
+      "previous_avg_score": 14,
+      "comparable": "single-provider historical",
+      "note": "Older app benchmark. Citation definitions differ from OpenRouter run, so use directionally."
+    },
+    {
+      "date": "2026-06-17",
+      "kind": "OpenRouter API",
+      "source_file": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/summary.json",
+      "provider_surface": "chatgpt; gemini_plain; claude",
+      "query_count": 31,
+      "result_count": 93,
+      "completed_results": 93,
+      "avg_score": 14,
+      "mention_rate": 24,
+      "citation_rate": 0,
+      "top_three_rate": 16,
+      "comparison_available": "no",
+      "previous_avg_score": "",
+      "comparable": "current baseline",
+      "note": "Comparable across ChatGPT, Claude, and Gemini API-style consumer models; citation rate is weak because these runs did not use search-connected source retrieval."
+    }
+  ],
+  "manualCategoryRows": [
+    {
+      "category": "delivery",
+      "queries": 7,
+      "mention_rate": 57,
+      "citation_rate": 71,
+      "top_competitors": "RAM 4; ProClip 2; ProClip USA 2; iOttie 2; RAM Mounts 1; Quad Lock 1; Arkon 1; Tackform 1"
+    },
+    {
+      "category": "restaurant",
+      "queries": 7,
+      "mention_rate": 71,
+      "citation_rate": 71,
+      "top_competitors": "RAM 2; Bouncepad 2; Square 1; CTA Digital 1; Arkon 1; Mount-It 1; Tackform 1"
+    },
+    {
+      "category": "fleet",
+      "queries": 6,
+      "mention_rate": 50,
+      "citation_rate": 67,
+      "top_competitors": "RAM 5; RAM Mounts 5; Tackform 4; iOttie 1; ROKFORM 1; Rokform 1; Arkon 1; Quad Lock 1"
+    },
+    {
+      "category": "fishing",
+      "queries": 3,
+      "mention_rate": 0,
+      "citation_rate": 0,
+      "top_competitors": "RAM 3; Garmin 3; Lowrance 3; YakAttack 2; Railblaza 1; Humminbird 1; RAM Mounts 1; Square 1"
+    },
+    {
+      "category": "warehouse",
+      "queries": 3,
+      "mention_rate": 100,
+      "citation_rate": 67,
+      "top_competitors": "Arkon 3; RAM 2; RAM Mounts 2; Square 2; Tackform 2; CTA Digital 2"
+    },
+    {
+      "category": "comparison",
+      "queries": 1,
+      "mention_rate": 100,
+      "citation_rate": 100,
+      "top_competitors": "RAM 1; RAM Mounts 1"
+    }
+  ],
+  "auditRows": [
+    {
+      "snapshot": "2026-06-18T00-34-43-343Z",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/live-blog-ai-citability-merged-2026-06-18T00-34-43-343Z",
+      "total_pages": 142,
+      "ok_pages": 113,
+      "failed_pages": 29,
+      "avg_score": 73,
+      "public_fetched": 93,
+      "local_fallback": 20,
+      "missing_faq_schema": 95,
+      "missing_article_schema": 20,
+      "missing_quick_answer": 88,
+      "missing_comparison_signals": 52
+    },
+    {
+      "snapshot": "2026-06-18T02-05-49-531Z",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/live-blog-ai-citability-merged-2026-06-18T02-05-49-531Z",
+      "total_pages": 142,
+      "ok_pages": 113,
+      "failed_pages": 29,
+      "avg_score": 73,
+      "public_fetched": 94,
+      "local_fallback": 19,
+      "missing_faq_schema": 95,
+      "missing_article_schema": 19,
+      "missing_quick_answer": 88,
+      "missing_comparison_signals": 52
+    },
+    {
+      "snapshot": "2026-06-18T03-51-44-273Z",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/live-blog-ai-citability-merged-2026-06-18T03-51-44-273Z",
+      "total_pages": 142,
+      "ok_pages": 113,
+      "failed_pages": 29,
+      "avg_score": 73,
+      "public_fetched": 94,
+      "local_fallback": 19,
+      "missing_faq_schema": 95,
+      "missing_article_schema": 19,
+      "missing_quick_answer": 88,
+      "missing_comparison_signals": 52
+    },
+    {
+      "snapshot": "2026-06-18T03-53-47-265Z",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/live-blog-ai-citability-merged-2026-06-18T03-53-47-265Z",
+      "total_pages": 142,
+      "ok_pages": 142,
+      "failed_pages": 0,
+      "avg_score": 75,
+      "public_fetched": 123,
+      "local_fallback": 19,
+      "missing_faq_schema": 99,
+      "missing_article_schema": 19,
+      "missing_quick_answer": 113,
+      "missing_comparison_signals": 55
+    },
+    {
+      "snapshot": "2026-06-18T03-54-14-604Z",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/live-blog-ai-citability-merged-2026-06-18T03-54-14-604Z",
+      "total_pages": 142,
+      "ok_pages": 142,
+      "failed_pages": 0,
+      "avg_score": 75,
+      "public_fetched": 123,
+      "local_fallback": 19,
+      "missing_faq_schema": 99,
+      "missing_article_schema": 19,
+      "missing_quick_answer": 113,
+      "missing_comparison_signals": 55
+    }
+  ],
+  "expandedRows": [
+    {
+      "snapshot": "2026-06-17-17-30-56",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-17-17-30-56",
+      "selected_prompts": 24,
+      "provider_requests": 72,
+      "status": "dry run only",
+      "top_categories": "fleet 6; restaurant 6; fishing 5; delivery 5; warehouse 1; tablet 1",
+      "prompt_sources": "current_visibility_gap 21; unbranded_existing_topic 3"
+    },
+    {
+      "snapshot": "2026-06-17-18-26-27",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-17-18-26-27",
+      "selected_prompts": 36,
+      "provider_requests": 108,
+      "status": "dry run only",
+      "top_categories": "fleet 10; restaurant 10; fishing 7; delivery 7; warehouse 1; tablet 1",
+      "prompt_sources": "current_visibility_gap 21; unbranded_existing_topic 11; consumer_buyer_prompt 4"
+    },
+    {
+      "snapshot": "2026-06-17-18-27-01",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-17-18-27-01",
+      "selected_prompts": 207,
+      "provider_requests": 621,
+      "status": "dry run only",
+      "top_categories": "fleet 42; fishing 36; restaurant 31; delivery 23; warehouse 15; amps/modular 13; streaming 11; offroad 8",
+      "prompt_sources": "blog_inventory_title 56; consumer_buyer_prompt 37; curated_vertical_gap 35; current_visibility_gap 21; conversational_gap_variant 21; unbranded_existing_topic 13; competitor_displacement 12; head_to_head_comparison 12"
+    },
+    {
+      "snapshot": "2026-06-18-14-17-11",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-14-17-11",
+      "selected_prompts": 36,
+      "provider_requests": 108,
+      "status": "dry run only",
+      "top_categories": "fishing 12; restaurant 11; delivery 5; warehouse 4; fleet 4",
+      "prompt_sources": "mapped_existing_prompt 20; competitor_comparison_prompt 8; product_entity_prompt 2; page_title_nonbranded 2; buyer_problem_prompt 2; citation_probe_prompt 2"
+    },
+    {
+      "snapshot": "2026-06-18-14-17-39",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-14-17-39",
+      "selected_prompts": 459,
+      "provider_requests": 1377,
+      "status": "dry run only",
+      "top_categories": "amps/modular 82; fleet 79; restaurant 60; fishing 57; warehouse 57; streaming 49; delivery 42; education 13",
+      "prompt_sources": "competitor_comparison_prompt 135; buyer_problem_prompt 133; page_title_nonbranded 124; mapped_existing_prompt 31; product_entity_prompt 26; citation_probe_prompt 10"
+    },
+    {
+      "snapshot": "2026-06-18-15-00-29",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-15-00-29",
+      "selected_prompts": 78,
+      "provider_requests": 234,
+      "status": "dry run only",
+      "top_categories": "fishing 21; restaurant 17; delivery 12; warehouse 12; fleet 11; amps/modular 1; streaming 1; offroad 1",
+      "prompt_sources": "mapped_existing_prompt 21; competitor_comparison_prompt 14; product_entity_prompt 14; page_title_nonbranded 10; citation_probe_prompt 10; buyer_problem_prompt 9"
+    },
+    {
+      "snapshot": "2026-06-18-15-08-05",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-15-08-05",
+      "selected_prompts": 78,
+      "provider_requests": 204,
+      "status": "dry run only",
+      "top_categories": "fishing 21; restaurant 17; delivery 12; warehouse 12; fleet 11; amps/modular 1; streaming 1; offroad 1",
+      "prompt_sources": "mapped_existing_prompt 21; competitor_comparison_prompt 14; product_entity_prompt 14; page_title_nonbranded 10; citation_probe_prompt 10; buyer_problem_prompt 9"
+    },
+    {
+      "snapshot": "2026-06-18-15-20-02",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-15-20-02",
+      "selected_prompts": 78,
+      "provider_requests": 204,
+      "status": "dry run only",
+      "top_categories": "fishing 21; restaurant 17; delivery 12; warehouse 12; fleet 11; amps/modular 1; streaming 1; offroad 1",
+      "prompt_sources": "mapped_existing_prompt 21; competitor_comparison_prompt 14; product_entity_prompt 14; page_title_nonbranded 10; citation_probe_prompt 10; buyer_problem_prompt 9"
+    },
+    {
+      "snapshot": "2026-06-18-17-56-14",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-17-56-14",
+      "selected_prompts": 483,
+      "provider_requests": 1449,
+      "status": "dry run only",
+      "top_categories": "amps/modular 90; fleet 87; restaurant 64; fishing 61; warehouse 57; streaming 49; delivery 42; education 13",
+      "prompt_sources": "competitor_comparison_prompt 135; buyer_problem_prompt 133; page_title_nonbranded 124; mapped_existing_prompt 31; product_entity_prompt 26; all_blog_prompt_gap_addendum 24; citation_probe_prompt 10"
+    },
+    {
+      "snapshot": "2026-06-20-18-39-04",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-39-04",
+      "selected_prompts": 9,
+      "provider_requests": 27,
+      "status": "dry run only",
+      "top_categories": "fleet 3; restaurant 3; delivery 3",
+      "prompt_sources": "mapped_existing_prompt 3; competitor_comparison_prompt 3; product_entity_prompt 3"
+    },
+    {
+      "snapshot": "2026-06-20-18-40-06",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-06",
+      "selected_prompts": 19,
+      "provider_requests": 54,
+      "status": "dry run only",
+      "top_categories": "fishing 6; restaurant 5; warehouse 4; fleet 3; delivery 1",
+      "prompt_sources": "page_title_nonbranded 10; buyer_problem_prompt 9"
+    },
+    {
+      "snapshot": "2026-06-20-18-40-22",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-22",
+      "selected_prompts": 29,
+      "provider_requests": 66,
+      "status": "dry run only",
+      "top_categories": "fishing 10; restaurant 6; warehouse 5; delivery 5; fleet 3",
+      "prompt_sources": "mapped_existing_prompt 18; competitor_comparison_prompt 11"
+    },
+    {
+      "snapshot": "2026-06-20-18-40-31",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-31",
+      "selected_prompts": 10,
+      "provider_requests": 24,
+      "status": "dry run only",
+      "top_categories": "restaurant 1; fishing 1; fleet 1; delivery 1; warehouse 1; amps/modular 1; streaming 1; offroad 1",
+      "prompt_sources": "citation_probe_prompt 10"
+    },
+    {
+      "snapshot": "2026-06-20-18-40-37",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-37",
+      "selected_prompts": 11,
+      "provider_requests": 33,
+      "status": "dry run only",
+      "top_categories": "fishing 4; restaurant 2; warehouse 2; delivery 2; fleet 1",
+      "prompt_sources": "product_entity_prompt 11"
+    },
+    {
+      "snapshot": "2026-06-20-18-40-43",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-43",
+      "selected_prompts": 19,
+      "provider_requests": 54,
+      "status": "dry run only",
+      "top_categories": "fishing 6; restaurant 5; warehouse 4; fleet 3; delivery 1",
+      "prompt_sources": "page_title_nonbranded 10; buyer_problem_prompt 9"
+    },
+    {
+      "snapshot": "2026-06-21-18-43-01",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-43-01",
+      "selected_prompts": 4,
+      "provider_requests": 6,
+      "status": "dry run only",
+      "top_categories": "streaming 1; offroad 1; education 1; agriculture 1",
+      "prompt_sources": "citation_probe_prompt 4"
+    },
+    {
+      "snapshot": "2026-06-21-18-43-26",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-43-26",
+      "selected_prompts": 4,
+      "provider_requests": 6,
+      "status": "dry run only",
+      "top_categories": "streaming 1; offroad 1; education 1; agriculture 1",
+      "prompt_sources": "citation_probe_prompt 4"
+    },
+    {
+      "snapshot": "2026-06-21-18-46-34",
+      "source_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-46-34",
+      "selected_prompts": 78,
+      "provider_requests": 204,
+      "status": "dry run only",
+      "top_categories": "fishing 21; restaurant 17; delivery 12; warehouse 12; fleet 11; amps/modular 1; streaming 1; offroad 1",
+      "prompt_sources": "mapped_existing_prompt 21; competitor_comparison_prompt 14; product_entity_prompt 14; page_title_nonbranded 10; citation_probe_prompt 10; buyer_problem_prompt 9"
+    }
+  ]
+}

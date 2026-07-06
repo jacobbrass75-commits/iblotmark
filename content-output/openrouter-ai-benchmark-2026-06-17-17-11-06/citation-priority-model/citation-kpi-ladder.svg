@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="344" viewBox="0 0 900 344" role="img" aria-label="Citation priority KPI ladder">
+    <rect width="900" height="344" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Citation matters after inclusion improves</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="800" fill="#111827">Mention rate</text>
+      <rect x="235" y="56" width="430" height="20" rx="10" fill="#e5e7eb"/>
+      <rect x="235" y="56" width="151" height="20" rx="10" fill="#fed7aa"/>
+      <rect x="235" y="56" width="103" height="20" rx="10" fill="#0f766e"/>
+      <text x="690" y="71" font-size="12" font-weight="800" fill="#111827">24% now</text>
+      <text x="790" y="71" font-size="12" font-weight="800" fill="#f97316">35% target</text>
+    </g><g>
+      <text x="22" y="128" font-size="13" font-weight="800" fill="#111827">Non-branded mention</text>
+      <rect x="235" y="110" width="430" height="20" rx="10" fill="#e5e7eb"/>
+      <rect x="235" y="110" width="65" height="20" rx="10" fill="#fed7aa"/>
+      <rect x="235" y="110" width="22" height="20" rx="10" fill="#0f766e"/>
+      <text x="690" y="125" font-size="12" font-weight="800" fill="#111827">5% now</text>
+      <text x="790" y="125" font-size="12" font-weight="800" fill="#f97316">15% target</text>
+    </g><g>
+      <text x="22" y="182" font-size="13" font-weight="800" fill="#111827">Top-3 recommendation</text>
+      <rect x="235" y="164" width="430" height="20" rx="10" fill="#e5e7eb"/>
+      <rect x="235" y="164" width="108" height="20" rx="10" fill="#fed7aa"/>
+      <rect x="235" y="164" width="69" height="20" rx="10" fill="#0f766e"/>
+      <text x="690" y="179" font-size="12" font-weight="800" fill="#111827">16% now</text>
+      <text x="790" y="179" font-size="12" font-weight="800" fill="#f97316">25% target</text>
+    </g><g>
+      <text x="22" y="236" font-size="13" font-weight="800" fill="#111827">Citation rate</text>
+      <rect x="235" y="218" width="430" height="20" rx="10" fill="#e5e7eb"/>
+      <rect x="235" y="218" width="34" height="20" rx="10" fill="#fed7aa"/>
+      <rect x="235" y="218" width="0" height="20" rx="10" fill="#dc2626"/>
+      <text x="690" y="233" font-size="12" font-weight="800" fill="#111827">0% now</text>
+      <text x="790" y="233" font-size="12" font-weight="800" fill="#f97316">8% target</text>
+    </g><g>
+      <text x="22" y="290" font-size="13" font-weight="800" fill="#111827">Competitor-only answer rate</text>
+      <rect x="235" y="272" width="430" height="20" rx="10" fill="#e5e7eb"/>
+      <rect x="235" y="272" width="237" height="20" rx="10" fill="#fed7aa"/>
+      <rect x="235" y="272" width="314" height="20" rx="10" fill="#0f766e"/>
+      <text x="690" y="287" font-size="12" font-weight="800" fill="#111827">73% now</text>
+      <text x="790" y="287" font-size="12" font-weight="800" fill="#f97316">55% target</text>
+    </g>
+  </svg>

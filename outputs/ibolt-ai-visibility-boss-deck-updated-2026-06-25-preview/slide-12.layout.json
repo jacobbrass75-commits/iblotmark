@@ -1,0 +1,2007 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/1ljflm",
+    "id": "1ljflm",
+    "slide": 12,
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Calibri Light",
+        "eastAsianTypeface": "Calibri Light",
+        "complexScriptTypeface": "Calibri Light"
+      },
+      "minorFont": {
+        "latinTypeface": "Calibri",
+        "eastAsianTypeface": "Calibri",
+        "complexScriptTypeface": "Calibri"
+      }
+    },
+    "typefaces": [
+      "Calibri",
+      "Calibri Light"
+    ]
+  },
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/svu9knih",
+      "id": "1",
+      "bbox": [
+        64,
+        34,
+        520,
+        24
+      ],
+      "geometry": "rect",
+      "text": "IBOLT AI VISIBILITY PROGRAM",
+      "textPreview": "IBOLT AI VISIBILITY PROGRAM",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "Calibri",
+        "color": "#155DFC",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IBOLT AI VISIBILITY PROGRAM"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IBOLT AI VISIBILITY PROGRAM",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#155DFC",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IBOLT AI VISIBILITY PROGRAM",
+              "fontSize": 12,
+              "color": "#155DFC",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/za1gvy90",
+      "id": "2",
+      "bbox": [
+        64,
+        72,
+        1040,
+        68
+      ],
+      "geometry": "rect",
+      "text": "Did ChatGPT revenue go up after the blog push?",
+      "textPreview": "Did ChatGPT revenue go up after the blog push?",
+      "resolvedFontSize": 35,
+      "resolvedTextStyle": {
+        "fontSize": 35,
+        "typeface": "Calibri",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Did ChatGPT revenue go up after the blog push?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Did ChatGPT revenue go up after the blog push?",
+          "resolvedTextStyle": {
+            "fontSize": 35,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Did ChatGPT revenue go up after the blog push?",
+              "fontSize": 35,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ap4r65wj",
+      "id": "3",
+      "bbox": [
+        64,
+        150,
+        1152,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#E2E8F0",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hoza1gvy",
+      "id": "4",
+      "bbox": [
+        64,
+        196,
+        330,
+        162
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "5",
+      "bbox": [
+        88,
+        222,
+        282,
+        48
+      ],
+      "geometry": "rect",
+      "text": "$547.90",
+      "textPreview": "$547.90",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Calibri",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$547.90"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$547.90",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$547.90",
+              "fontSize": 32,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zidonyd0",
+      "id": "6",
+      "bbox": [
+        88,
+        278,
+        282,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Before blog push",
+      "textPreview": "Before blog push",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Before blog push"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Before blog push",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Before blog push",
+              "fontSize": 17,
+              "color": "#314158",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a1gvy90j",
+      "id": "7",
+      "bbox": [
+        88,
+        310,
+        282,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Apr 1-May 14: 9 ChatGPT last-click orders, about $12.45/day.",
+      "textPreview": "Apr 1-May 14: 9 ChatGPT last-click orders, about $12.45/day.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Apr 1-May 14: 9 ChatGPT last-click"
+          },
+          {
+            "index": 2,
+            "text": "orders, about $12.45/day."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Apr 1-May 14: 9 ChatGPT last-click orders, about $12.45/day.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Apr 1-May 14: 9 ChatGPT last-click orders, about $12.45/day.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lszqtcj6",
+      "id": "8",
+      "bbox": [
+        474,
+        196,
+        330,
+        162
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s72x4nap",
+      "id": "9",
+      "bbox": [
+        498,
+        222,
+        282,
+        48
+      ],
+      "geometry": "rect",
+      "text": "$560.07",
+      "textPreview": "$560.07",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Calibri",
+        "color": "#007A55",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$560.07"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$560.07",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "color": "#007A55",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$560.07",
+              "fontSize": 32,
+              "color": "#007A55",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/idonyd0z",
+      "id": "10",
+      "bbox": [
+        498,
+        278,
+        282,
+        26
+      ],
+      "geometry": "rect",
+      "text": "After blog push",
+      "textPreview": "After blog push",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "After blog push"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "After blog push",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "After blog push",
+              "fontSize": 17,
+              "color": "#314158",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/byhgn29g",
+      "id": "11",
+      "bbox": [
+        498,
+        310,
+        282,
+        38
+      ],
+      "geometry": "rect",
+      "text": "May 15-Jun 24: 9 ChatGPT last-click orders, about $13.66/day.",
+      "textPreview": "May 15-Jun 24: 9 ChatGPT last-click orders, about $13.66/day.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "May 15-Jun 24: 9 ChatGPT last-click"
+          },
+          {
+            "index": 2,
+            "text": "orders, about $13.66/day."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "May 15-Jun 24: 9 ChatGPT last-click orders, about $13.66/day.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "May 15-Jun 24: 9 ChatGPT last-click orders, about $13.66/day.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0je9cvix",
+      "id": "12",
+      "bbox": [
+        884,
+        196,
+        330,
+        162
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#ECFDF5",
+      "lineColor": "#A4F4CF",
+      "lineWidth": 1
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t47y1kre",
+      "id": "13",
+      "bbox": [
+        908,
+        222,
+        282,
+        48
+      ],
+      "geometry": "rect",
+      "text": "+10%",
+      "textPreview": "+10%",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Calibri",
+        "color": "#006045",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "+10%"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "+10%",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "color": "#006045",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "+10%",
+              "fontSize": 32,
+              "color": "#006045",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/il0rqd4v",
+      "id": "14",
+      "bbox": [
+        908,
+        278,
+        282,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Daily revenue lift",
+      "textPreview": "Daily revenue lift",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Daily revenue lift"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Daily revenue lift",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Daily revenue lift",
+              "fontSize": 17,
+              "color": "#314158",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b6xkf6dc",
+      "id": "15",
+      "bbox": [
+        908,
+        310,
+        282,
+        42
+      ],
+      "geometry": "rect",
+      "text": "Early positive signal, but not enough to prove blog causation by itself.",
+      "textPreview": "Early positive signal, but not enough to prove blog causation by itself.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Early positive signal, but not enough to"
+          },
+          {
+            "index": 2,
+            "text": "prove blog causation by itself."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Early positive signal, but not enough to prove blog causation by itself.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Early positive signal, but not enough to prove blog causation by itself.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0rqd4vmt",
+      "id": "16",
+      "bbox": [
+        64,
+        406,
+        650,
+        166
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tcj6tova",
+      "id": "17",
+      "bbox": [
+        92,
+        428,
+        400,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Monthly ChatGPT sales trend",
+      "textPreview": "Monthly ChatGPT sales trend",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "Calibri",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Monthly ChatGPT sales trend"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Monthly ChatGPT sales trend",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Monthly ChatGPT sales trend",
+              "fontSize": 20,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ixczed8v",
+      "id": "18",
+      "bbox": [
+        96,
+        513.1,
+        58,
+        22.9
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B7FFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bi9s36hc",
+      "id": "19",
+      "bbox": [
+        88,
+        544,
+        74,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Jan",
+      "textPreview": "Jan",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Jan"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Jan",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#45556C",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Jan",
+              "fontSize": 11,
+              "color": "#45556C",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zidonyd0",
+      "id": "20",
+      "bbox": [
+        86,
+        493.1,
+        78,
+        18
+      ],
+      "geometry": "rect",
+      "text": "$257",
+      "textPreview": "$257",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$257"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$257",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#314158",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$257",
+              "fontSize": 11,
+              "color": "#314158",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a1gvy90j",
+      "id": "21",
+      "bbox": [
+        190,
+        506.51,
+        58,
+        29.49
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B7FFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hoza1gvy",
+      "id": "22",
+      "bbox": [
+        182,
+        544,
+        74,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Feb",
+      "textPreview": "Feb",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Feb"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Feb",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#45556C",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Feb",
+              "fontSize": 11,
+              "color": "#45556C",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "23",
+      "bbox": [
+        180,
+        486.51,
+        78,
+        18
+      ],
+      "geometry": "rect",
+      "text": "$331",
+      "textPreview": "$331",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$331"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$331",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#314158",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$331",
+              "fontSize": 11,
+              "color": "#314158",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/za1gvy90",
+      "id": "24",
+      "bbox": [
+        284,
+        494.2,
+        58,
+        41.8
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B7FFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ap4r65wj",
+      "id": "25",
+      "bbox": [
+        276,
+        544,
+        74,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Mar",
+      "textPreview": "Mar",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Mar"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Mar",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#45556C",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Mar",
+              "fontSize": 11,
+              "color": "#45556C",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hgn29gr2",
+      "id": "26",
+      "bbox": [
+        274,
+        474.2,
+        78,
+        18
+      ],
+      "geometry": "rect",
+      "text": "$470",
+      "textPreview": "$470",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$470"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$470",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#314158",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$470",
+              "fontSize": 11,
+              "color": "#314158",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/svu9knih",
+      "id": "27",
+      "bbox": [
+        378,
+        514.67,
+        58,
+        21.33
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B7FFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3ylc7u54",
+      "id": "28",
+      "bbox": [
+        370,
+        544,
+        74,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Apr",
+      "textPreview": "Apr",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Apr"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Apr",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#45556C",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Apr",
+              "fontSize": 11,
+              "color": "#45556C",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/adsji5sn",
+      "id": "29",
+      "bbox": [
+        368,
+        494.67,
+        78,
+        18
+      ],
+      "geometry": "rect",
+      "text": "$240",
+      "textPreview": "$240",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$240"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$240",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#314158",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$240",
+              "fontSize": 11,
+              "color": "#314158",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kf6dcbul",
+      "id": "30",
+      "bbox": [
+        472,
+        464,
+        58,
+        72
+      ],
+      "geometry": "rect",
+      "fillColor": "#009966",
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d0z61032",
+      "id": "31",
+      "bbox": [
+        464,
+        544,
+        74,
+        18
+      ],
+      "geometry": "rect",
+      "text": "May",
+      "textPreview": "May",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "May"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "May",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#45556C",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "May",
+              "fontSize": 11,
+              "color": "#45556C",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/29gr2p8n",
+      "id": "32",
+      "bbox": [
+        462,
+        444,
+        78,
+        18
+      ],
+      "geometry": "rect",
+      "text": "$809",
+      "textPreview": "$809",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$809"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$809",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#314158",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$809",
+              "fontSize": 11,
+              "color": "#314158",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vu9knih4",
+      "id": "33",
+      "bbox": [
+        566,
+        530,
+        58,
+        6
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B7FFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/knih4byh",
+      "id": "34",
+      "bbox": [
+        558,
+        544,
+        74,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Jun MTD",
+      "textPreview": "Jun MTD",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#45556C",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Jun MTD"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Jun MTD",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#45556C",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Jun MTD",
+              "fontSize": 11,
+              "color": "#45556C",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 35,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d8bat47y",
+      "id": "35",
+      "bbox": [
+        556,
+        510,
+        78,
+        18
+      ],
+      "geometry": "rect",
+      "text": "$59",
+      "textPreview": "$59",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$59"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$59",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#314158",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$59",
+              "fontSize": 11,
+              "color": "#314158",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 36,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2lszqtcj",
+      "id": "36",
+      "bbox": [
+        764,
+        406,
+        452,
+        166
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EFF6FF",
+      "lineColor": "#BEDBFF",
+      "lineWidth": 1
+    },
+    {
+      "order": 37,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6psfil0",
+      "id": "37",
+      "bbox": [
+        792,
+        430,
+        340,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Answer for Katie",
+      "textPreview": "Answer for Katie",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "Calibri",
+        "color": "#193CB8",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Answer for Katie"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Answer for Katie",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#193CB8",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Answer for Katie",
+              "fontSize": 20,
+              "color": "#193CB8",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 38,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kre1w7mp",
+      "id": "38",
+      "bbox": [
+        792,
+        468,
+        374,
+        78
+      ],
+      "geometry": "rect",
+      "text": "Yes, ChatGPT revenue is up slightly after the blog push on a daily basis, and May was the standout month. But the evidence says this is correlation, not proof. To prove blog contribution, we need blog-to-product click tracking and assisted conversion reporting.",
+      "textPreview": "Yes, ChatGPT revenue is up slightly after the blog push on a daily basis, and May was the standout month. But the evidence says this is c...",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#314158",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 6,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Yes, ChatGPT revenue is up slightly after the blog"
+          },
+          {
+            "index": 2,
+            "text": "push on a daily basis, and May was the standout"
+          },
+          {
+            "index": 3,
+            "text": "month. But the evidence says this is correlation,"
+          },
+          {
+            "index": 4,
+            "text": "not proof. To prove blog contribution, we need"
+          },
+          {
+            "index": 5,
+            "text": "blog-to-product click tracking and assisted"
+          },
+          {
+            "index": 6,
+            "text": "conversion reporting."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Yes, ChatGPT revenue is up slightly after the blog push on a daily basis, and May was the standout month. But the evidence says this is correlation, not proof. To prove blog contribution, we need blog-to-product click tracking and assisted conversion reporting.",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#314158"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Yes, ChatGPT revenue is up slightly after the blog push on a daily basis, and May was the standout month. But the evidence says this is correlation, not proof. To prove blog contribution, we need blog-to-product click tracking and assisted conversion reporting.",
+              "fontSize": 16,
+              "color": "#314158"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 39,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dcbulwva",
+      "id": "39",
+      "bbox": [
+        64,
+        636,
+        930,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Hard data source: ShopifyQL last-click sales reports. Cutoff uses May 15, 2026 as the first visible new blog batch.",
+      "textPreview": "Hard data source: ShopifyQL last-click sales reports. Cutoff uses May 15, 2026 as the first visible new blog batch.",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "Calibri",
+        "color": "#62748E",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Hard data source: ShopifyQL last-click sales reports. Cutoff uses May 15, 2026 as the first visible new blog batch."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Hard data source: ShopifyQL last-click sales reports. Cutoff uses May 15, 2026 as the first visible new blog batch.",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Hard data source: ShopifyQL last-click sales reports. Cutoff uses May 15, 2026 as the first visible new blog batch.",
+              "fontSize": 12,
+              "color": "#62748E"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 40,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p4r65wju",
+      "id": "40",
+      "bbox": [
+        1048,
+        636,
+        168,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Updated June 25, 2026",
+      "textPreview": "Updated June 25, 2026",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "Calibri",
+        "color": "#62748E",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Updated June 25, 2026"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Updated June 25, 2026",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Updated June 25, 2026",
+              "fontSize": 12,
+              "color": "#62748E"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

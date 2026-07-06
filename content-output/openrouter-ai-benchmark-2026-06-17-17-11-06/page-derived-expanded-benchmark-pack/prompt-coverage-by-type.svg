@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="430" viewBox="0 0 1040 430">
+  <rect width="1040" height="430" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Prompt Coverage By Type</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">The expanded run tests buyer discovery, comparison, product recall, and citation behavior</text>
+  
+      <text x="246" y="109.5" text-anchor="end" font-size="14" fill="#334155">comparison</text>
+      <rect x="260" y="84" width="710" height="41" rx="7" fill="#0f766e"></rect>
+      <text x="980" y="109.5" font-size="14" font-weight="800" fill="#0f172a">135</text>
+    
+      <text x="246" y="162.5" text-anchor="end" font-size="14" fill="#334155">buyer_problem</text>
+      <rect x="260" y="137" width="699" height="41" rx="7" fill="#0f766e"></rect>
+      <text x="969" y="162.5" font-size="14" font-weight="800" fill="#0f172a">133</text>
+    
+      <text x="246" y="215.5" text-anchor="end" font-size="14" fill="#334155">non_branded_best</text>
+      <rect x="260" y="190" width="652" height="41" rx="7" fill="#0f766e"></rect>
+      <text x="922" y="215.5" font-size="14" font-weight="800" fill="#0f172a">124</text>
+    
+      <text x="246" y="268.5" text-anchor="end" font-size="14" fill="#334155">mapped</text>
+      <rect x="260" y="243" width="163" height="41" rx="7" fill="#0f766e"></rect>
+      <text x="433" y="268.5" font-size="14" font-weight="800" fill="#0f172a">31</text>
+    
+      <text x="246" y="321.5" text-anchor="end" font-size="14" fill="#334155">product_entity</text>
+      <rect x="260" y="296" width="137" height="41" rx="7" fill="#0f766e"></rect>
+      <text x="407" y="321.5" font-size="14" font-weight="800" fill="#0f172a">26</text>
+    
+      <text x="246" y="374.5" text-anchor="end" font-size="14" fill="#334155">citation_probe</text>
+      <rect x="260" y="349" width="53" height="41" rx="7" fill="#0f766e"></rect>
+      <text x="323" y="374.5" font-size="14" font-weight="800" fill="#0f172a">10</text>
+    
+</svg>

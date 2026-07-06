@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="461" viewBox="0 0 1160 461">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="461"/>
+  <rect class="panel" x="28" y="24" width="1104" height="413" rx="14"/>
+  <text class="title" x="52" y="64">Live Blog Topic Inventory</text>
+  <text class="subtitle" x="52" y="87">Page count by inferred topic; number labels show average AI-citability score.</text>
+  
+      <text class="label" x="52" y="123">fishing</text>
+      <text class="small" x="52" y="141">8 pages</text>
+      <rect x="470" y="108" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="108" width="570" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1054" y="125">83</text>
+    
+
+      <text class="label" x="52" y="166">streaming</text>
+      <text class="small" x="52" y="184">6 pages</text>
+      <rect x="470" y="151" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="151" width="428" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1054" y="168">83</text>
+    
+
+      <text class="label" x="52" y="209">fleet</text>
+      <text class="small" x="52" y="227">4 pages</text>
+      <rect x="470" y="194" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="194" width="285" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1054" y="211">87</text>
+    
+
+      <text class="label" x="52" y="252">restaurant</text>
+      <text class="small" x="52" y="270">4 pages</text>
+      <rect x="470" y="237" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="237" width="285" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1054" y="254">85</text>
+    
+
+      <text class="label" x="52" y="295">warehouse</text>
+      <text class="small" x="52" y="313">4 pages</text>
+      <rect x="470" y="280" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="280" width="285" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1054" y="297">78</text>
+    
+
+      <text class="label" x="52" y="338">amps/modular</text>
+      <text class="small" x="52" y="356">2 pages</text>
+      <rect x="470" y="323" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="323" width="143" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1054" y="340">89</text>
+    
+
+      <text class="label" x="52" y="381">offroad</text>
+      <text class="small" x="52" y="399">1 pages</text>
+      <rect x="470" y="366" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="366" width="71" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1054" y="383">84</text>
+    
+</svg>

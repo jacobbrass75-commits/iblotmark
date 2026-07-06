@@ -1,0 +1,1244 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/re1w7mp0",
+    "id": "re1w7mp0",
+    "slide": 11,
+    "layoutId": "/ppt/slideLayouts/slideLayout1.xml",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Calibri Light",
+        "eastAsianTypeface": "Calibri Light",
+        "complexScriptTypeface": "Calibri Light"
+      },
+      "minorFont": {
+        "latinTypeface": "Calibri",
+        "eastAsianTypeface": "Calibri",
+        "complexScriptTypeface": "Calibri"
+      }
+    },
+    "typefaces": [
+      "Calibri",
+      "Calibri Light"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout1.xml",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dg7adsji",
+      "id": "1",
+      "bbox": [
+        64,
+        34,
+        520,
+        24
+      ],
+      "geometry": "rect",
+      "text": "IBOLT AI VISIBILITY PROGRAM",
+      "textPreview": "IBOLT AI VISIBILITY PROGRAM",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IBOLT AI VISIBILITY PROGRAM"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IBOLT AI VISIBILITY PROGRAM",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#155DFC",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IBOLT AI VISIBILITY PROGRAM",
+              "fontSize": 12,
+              "color": "#155DFC",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6tovahoz",
+      "id": "2",
+      "bbox": [
+        64,
+        72,
+        1040,
+        68
+      ],
+      "geometry": "rect",
+      "text": "How much did blogs contribute to ChatGPT sales?",
+      "textPreview": "How much did blogs contribute to ChatGPT sales?",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "How much did blogs contribute to ChatGPT sales?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "How much did blogs contribute to ChatGPT sales?",
+          "resolvedTextStyle": {
+            "fontSize": 35,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "How much did blogs contribute to ChatGPT sales?",
+              "fontSize": 35,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vahoza1g",
+      "id": "3",
+      "bbox": [
+        64,
+        150,
+        1152,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#E2E8F0",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/onyd0z61",
+      "id": "4",
+      "bbox": [
+        64,
+        200,
+        340,
+        174
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d8v6psfi",
+      "id": "5",
+      "bbox": [
+        88,
+        226,
+        292,
+        50
+      ],
+      "geometry": "rect",
+      "text": "$1,107.97",
+      "textPreview": "$1,107.97",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$1,107.97"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$1,107.97",
+          "resolvedTextStyle": {
+            "fontSize": 34,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$1,107.97",
+              "fontSize": 34,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6hcrmhk3",
+      "id": "6",
+      "bbox": [
+        88,
+        282,
+        292,
+        26
+      ],
+      "geometry": "rect",
+      "text": "ChatGPT sales since Apr 1",
+      "textPreview": "ChatGPT sales since Apr 1",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ChatGPT sales since Apr 1"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ChatGPT sales since Apr 1",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ChatGPT sales since Apr 1",
+              "fontSize": 17,
+              "color": "#314158",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/z25kb6xk",
+      "id": "7",
+      "bbox": [
+        88,
+        314,
+        292,
+        42
+      ],
+      "geometry": "rect",
+      "text": "18 last-click orders attributed to chatgpt.com in Shopify.",
+      "textPreview": "18 last-click orders attributed to chatgpt.com in Shopify.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "18 last-click orders attributed to"
+          },
+          {
+            "index": 2,
+            "text": "chatgpt.com in Shopify."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "18 last-click orders attributed to chatgpt.com in Shopify.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "18 last-click orders attributed to chatgpt.com in Shopify.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/oj2t83it",
+      "id": "8",
+      "bbox": [
+        470,
+        200,
+        340,
+        174
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d4vmtwra",
+      "id": "9",
+      "bbox": [
+        494,
+        226,
+        292,
+        50
+      ],
+      "geometry": "rect",
+      "text": "$0 direct",
+      "textPreview": "$0 direct",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "$0 direct"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "$0 direct",
+          "resolvedTextStyle": {
+            "fontSize": 34,
+            "color": "#C70036",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "$0 direct",
+              "fontSize": 34,
+              "color": "#C70036",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h4byhgn2",
+      "id": "10",
+      "bbox": [
+        494,
+        282,
+        292,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Direct blog landing sales",
+      "textPreview": "Direct blog landing sales",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Direct blog landing sales"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Direct blog landing sales",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Direct blog landing sales",
+              "fontSize": 17,
+              "color": "#314158",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sji5snel",
+      "id": "11",
+      "bbox": [
+        494,
+        314,
+        292,
+        48
+      ],
+      "geometry": "rect",
+      "text": "27 ChatGPT sessions landed on blog pages; 0 cart adds, 0 checkouts, 0% conversion.",
+      "textPreview": "27 ChatGPT sessions landed on blog pages; 0 cart adds, 0 checkouts, 0% conversion.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "27 ChatGPT sessions landed on blog"
+          },
+          {
+            "index": 2,
+            "text": "pages; 0 cart adds, 0 checkouts, 0%"
+          },
+          {
+            "index": 3,
+            "text": "conversion."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "27 ChatGPT sessions landed on blog pages; 0 cart adds, 0 checkouts, 0% conversion.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "27 ChatGPT sessions landed on blog pages; 0 cart adds, 0 checkouts, 0% conversion.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3ylc7u54",
+      "id": "12",
+      "bbox": [
+        876,
+        200,
+        340,
+        174
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/adsji5sn",
+      "id": "13",
+      "bbox": [
+        900,
+        226,
+        292,
+        50
+      ],
+      "geometry": "rect",
+      "text": "10-25%",
+      "textPreview": "10-25%",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "10-25%"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "10-25%",
+          "resolvedTextStyle": {
+            "fontSize": 34,
+            "color": "#007A55",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "10-25%",
+              "fontSize": 34,
+              "color": "#007A55",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lszqtcj6",
+      "id": "14",
+      "bbox": [
+        900,
+        282,
+        292,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Likely assisted influence",
+      "textPreview": "Likely assisted influence",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Likely assisted influence"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Likely assisted influence",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Likely assisted influence",
+              "fontSize": 17,
+              "color": "#314158",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s72x4nap",
+      "id": "15",
+      "bbox": [
+        900,
+        314,
+        292,
+        52
+      ],
+      "geometry": "rect",
+      "text": "Directional estimate only: blogs help AI understand iBOLT, but Shopify does not prove them as direct closers yet.",
+      "textPreview": "Directional estimate only: blogs help AI understand iBOLT, but Shopify does not prove them as direct closers yet.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Directional estimate only: blogs help AI"
+          },
+          {
+            "index": 2,
+            "text": "understand iBOLT, but Shopify does not"
+          },
+          {
+            "index": 3,
+            "text": "prove them as direct closers yet."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Directional estimate only: blogs help AI understand iBOLT, but Shopify does not prove them as direct closers yet.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Directional estimate only: blogs help AI understand iBOLT, but Shopify does not prove them as direct closers yet.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3m94fu18",
+      "id": "16",
+      "bbox": [
+        64,
+        420,
+        720,
+        148
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a5gbq1or",
+      "id": "17",
+      "bbox": [
+        92,
+        444,
+        240,
+        28
+      ],
+      "geometry": "rect",
+      "text": "What this means",
+      "textPreview": "What this means",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "What this means"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "What this means",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "What this means",
+              "fontSize": 20,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hoza1gvy",
+      "id": "18",
+      "bbox": [
+        92,
+        482,
+        650,
+        64
+      ],
+      "geometry": "rect",
+      "text": "The current revenue is mostly product/category-page traffic from ChatGPT, not direct blog landings. The blog engine still matters because it builds the language, comparisons, FAQs, and internal links that help AI systems decide what iBOLT is relevant for.",
+      "textPreview": "The current revenue is mostly product/category-page traffic from ChatGPT, not direct blog landings. The blog engine still matters because...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The current revenue is mostly product/category-page traffic from ChatGPT, not direct"
+          },
+          {
+            "index": 2,
+            "text": "blog landings. The blog engine still matters because it builds the language,"
+          },
+          {
+            "index": 3,
+            "text": "comparisons, FAQs, and internal links that help AI systems decide what iBOLT is"
+          },
+          {
+            "index": 4,
+            "text": "relevant for."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The current revenue is mostly product/category-page traffic from ChatGPT, not direct blog landings. The blog engine still matters because it builds the language, comparisons, FAQs, and internal links that help AI systems decide what iBOLT is relevant for.",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#314158"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The current revenue is mostly product/category-page traffic from ChatGPT, not direct blog landings. The blog engine still matters because it builds the language, comparisons, FAQs, and internal links that help AI systems decide what iBOLT is relevant for.",
+              "fontSize": 16,
+              "color": "#314158"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "19",
+      "bbox": [
+        824,
+        420,
+        392,
+        148
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EFF6FF",
+      "lineColor": "#BEDBFF",
+      "lineWidth": 1
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4zidonyd",
+      "id": "20",
+      "bbox": [
+        852,
+        444,
+        320,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Next measurement step",
+      "textPreview": "Next measurement step",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Next measurement step"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Next measurement step",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#193CB8",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Next measurement step",
+              "fontSize": 20,
+              "color": "#193CB8",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xkf6dcbu",
+      "id": "21",
+      "bbox": [
+        852,
+        482,
+        320,
+        62
+      ],
+      "geometry": "rect",
+      "text": "Track blog-assisted paths: blog -> product click -> cart/checkout, plus AI source sessions by hub/product page every week.",
+      "textPreview": "Track blog-assisted paths: blog -> product click -> cart/checkout, plus AI source sessions by hub/product page every week.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Track blog-assisted paths: blog ->"
+          },
+          {
+            "index": 2,
+            "text": "product click -> cart/checkout, plus AI"
+          },
+          {
+            "index": 3,
+            "text": "source sessions by hub/product page"
+          },
+          {
+            "index": 4,
+            "text": "every week."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Track blog-assisted paths: blog -> product click -> cart/checkout, plus AI source sessions by hub/product page every week.",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#314158"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Track blog-assisted paths: blog -> product click -> cart/checkout, plus AI source sessions by hub/product page every week.",
+              "fontSize": 16,
+              "color": "#314158"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mtwra5gb",
+      "id": "22",
+      "bbox": [
+        64,
+        636,
+        930,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Hard data source: ShopifyQL reports captured Apr 1-Jun 24, 2026. Blog direct attribution = ChatGPT source + /blogs/ landing page filter.",
+      "textPreview": "Hard data source: ShopifyQL reports captured Apr 1-Jun 24, 2026. Blog direct attribution = ChatGPT source + /blogs/ landing page filter.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Hard data source: ShopifyQL reports captured Apr 1-Jun 24, 2026. Blog direct attribution = ChatGPT source + /blogs/ landing page filter."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Hard data source: ShopifyQL reports captured Apr 1-Jun 24, 2026. Blog direct attribution = ChatGPT source + /blogs/ landing page filter.",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Hard data source: ShopifyQL reports captured Apr 1-Jun 24, 2026. Blog direct attribution = ChatGPT source + /blogs/ landing page filter.",
+              "fontSize": 12,
+              "color": "#62748E"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fepkzupw",
+      "id": "23",
+      "bbox": [
+        1048,
+        636,
+        168,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Updated June 25, 2026",
+      "textPreview": "Updated June 25, 2026",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Updated June 25, 2026"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Updated June 25, 2026",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Updated June 25, 2026",
+              "fontSize": 12,
+              "color": "#62748E"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

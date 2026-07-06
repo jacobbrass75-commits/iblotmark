@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="450" viewBox="0 0 1160 450" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1160" height="450"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="402" rx="14"/>
+    <text class="title" x="54" y="64">Requirement Coverage</text>
+    <text class="subtitle" x="54" y="88">How much of the requested analysis is currently proven by artifacts.</text>
+    
+      <text class="label" x="54" y="122">How iBOLT is getting mentioned</text>
+      <rect x="430" y="108" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="580" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1024" y="125">Covered</text>
+      <text class="small" x="430" y="150"></text>
+    
+
+      <text class="label" x="54" y="170">Who iBOLT is mentioned next to</text>
+      <rect x="430" y="156" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="156" width="580" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1024" y="173">Covered</text>
+      <text class="small" x="430" y="198"></text>
+    
+
+      <text class="label" x="54" y="218">How iBOLT compares to competitors</text>
+      <rect x="430" y="204" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="204" width="580" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1024" y="221">Covered</text>
+      <text class="small" x="430" y="246"></text>
+    
+
+      <text class="label" x="54" y="266">Test more areas</text>
+      <rect x="430" y="252" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="252" width="377" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1024" y="269">Partial, key needed</text>
+      <text class="small" x="430" y="294"></text>
+    
+
+      <text class="label" x="54" y="314">Look at all blog posts and dig in</text>
+      <rect x="430" y="300" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="300" width="580" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1024" y="317">Covered</text>
+      <text class="small" x="430" y="342"></text>
+    
+
+      <text class="label" x="54" y="362">Decide whether citation rate matters</text>
+      <rect x="430" y="348" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="348" width="580" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1024" y="365">Covered</text>
+      <text class="small" x="430" y="390"></text>
+    
+  
+</svg>

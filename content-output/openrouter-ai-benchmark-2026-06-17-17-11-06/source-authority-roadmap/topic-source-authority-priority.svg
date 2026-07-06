@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="468" viewBox="0 0 980 468">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="22" y="36" fill="#0f172a" font-size="22" font-weight="800">Topic Source Authority Priority</text>
+<text x="22" y="77" fill="#0f172a" font-size="13">delivery</text>
+<rect x="360" y="60" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="60" width="450" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="76" fill="#0f172a" font-size="13" font-weight="700">742</text>
+<text x="22" y="115" fill="#0f172a" font-size="13">fleet</text>
+<rect x="360" y="98" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="98" width="444" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="114" fill="#0f172a" font-size="13" font-weight="700">732</text>
+<text x="22" y="153" fill="#0f172a" font-size="13">restaurant</text>
+<rect x="360" y="136" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="136" width="401" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="152" fill="#0f172a" font-size="13" font-weight="700">662</text>
+<text x="22" y="191" fill="#0f172a" font-size="13">fishing</text>
+<rect x="360" y="174" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="174" width="313" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="190" fill="#0f172a" font-size="13" font-weight="700">516</text>
+<text x="22" y="229" fill="#0f172a" font-size="13">warehouse</text>
+<rect x="360" y="212" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="212" width="147" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="228" fill="#0f172a" font-size="13" font-weight="700">242</text>
+<text x="22" y="267" fill="#0f172a" font-size="13">amps/modular</text>
+<rect x="360" y="250" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="250" width="72" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="266" fill="#0f172a" font-size="13" font-weight="700">118</text>
+<text x="22" y="305" fill="#0f172a" font-size="13">education</text>
+<rect x="360" y="288" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="288" width="42" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="304" fill="#0f172a" font-size="13" font-weight="700">69</text>
+<text x="22" y="343" fill="#0f172a" font-size="13">agriculture</text>
+<rect x="360" y="326" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="326" width="25" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="342" fill="#0f172a" font-size="13" font-weight="700">42</text>
+<text x="22" y="381" fill="#0f172a" font-size="13">streaming</text>
+<rect x="360" y="364" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="364" width="18" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="380" fill="#0f172a" font-size="13" font-weight="700">30</text>
+<text x="22" y="419" fill="#0f172a" font-size="13">offroad</text>
+<rect x="360" y="402" width="450" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="360" y="402" width="11" height="22" rx="4" fill="#ea580c"/>
+<text x="822" y="418" fill="#0f172a" font-size="13" font-weight="700">18</text>
+</svg>

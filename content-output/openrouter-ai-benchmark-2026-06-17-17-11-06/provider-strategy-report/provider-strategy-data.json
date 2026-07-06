@@ -1,0 +1,662 @@
+{
+  "summary": {
+    "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+    "providerCount": 3,
+    "totalAnswers": 93,
+    "totalCompetitorReplacements": 69,
+    "totalCoMentions": 18,
+    "totalCleanMentions": 4,
+    "harshestProvider": "Claude",
+    "mostRecoverableProvider": "ChatGPT",
+    "topWorkQueueRows": 18
+  },
+  "providerRows": [
+    {
+      "provider": "ChatGPT",
+      "totalAnswers": 31,
+      "cleanMentions": 1,
+      "coMentions": 9,
+      "competitorReplacements": 20,
+      "noSignal": 1,
+      "avgCoverageScore": 15,
+      "topCompetitors": [
+        {
+          "name": "RAM Mounts",
+          "value": 20
+        },
+        {
+          "name": "Arkon",
+          "value": 13
+        },
+        {
+          "name": "iOttie",
+          "value": 9
+        },
+        {
+          "name": "Scosche",
+          "value": 9
+        },
+        {
+          "name": "CTA Digital",
+          "value": 8
+        },
+        {
+          "name": "Tackform",
+          "value": 7
+        }
+      ],
+      "topCategories": [
+        {
+          "name": "restaurant",
+          "value": 35
+        },
+        {
+          "name": "delivery",
+          "value": 33
+        },
+        {
+          "name": "fishing",
+          "value": 30
+        },
+        {
+          "name": "fleet",
+          "value": 29
+        },
+        {
+          "name": "warehouse",
+          "value": 12
+        },
+        {
+          "name": "tablet",
+          "value": 6
+        }
+      ],
+      "topPages": [
+        {
+          "name": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+          "value": 18
+        },
+        {
+          "name": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+          "value": 18
+        },
+        {
+          "name": "Barcode Scanner Mounts",
+          "value": 6
+        },
+        {
+          "name": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+          "value": 6
+        },
+        {
+          "name": "Best Locking Phone Mount for Shared Delivery Vehicles",
+          "value": 6
+        }
+      ],
+      "advice": {
+        "diagnosis": "ChatGPT is the easiest model to move because it already includes more iBOLT co-mentions than the others, but it still defaults to competitor lists on broad buyer prompts.",
+        "pageMove": "Add query-exact quick answers and fair comparison blocks that put iBOLT directly beside RAM Mounts, especially on restaurant pages.",
+        "citationMove": "Make pages easier to cite with concise answer-first paragraphs, FAQ schema, product specs, and visible source sections.",
+        "retestMove": "Retest broad commercial prompts first, then direct comparison prompts."
+      }
+    },
+    {
+      "provider": "Claude",
+      "totalAnswers": 31,
+      "cleanMentions": 2,
+      "coMentions": 4,
+      "competitorReplacements": 25,
+      "noSignal": 0,
+      "avgCoverageScore": 15,
+      "topCompetitors": [
+        {
+          "name": "RAM Mounts",
+          "value": 21
+        },
+        {
+          "name": "Arkon",
+          "value": 10
+        },
+        {
+          "name": "ProClip",
+          "value": 7
+        },
+        {
+          "name": "CTA Digital",
+          "value": 5
+        },
+        {
+          "name": "iOttie",
+          "value": 5
+        },
+        {
+          "name": "Humminbird",
+          "value": 4
+        }
+      ],
+      "topCategories": [
+        {
+          "name": "restaurant",
+          "value": 33
+        },
+        {
+          "name": "delivery",
+          "value": 32
+        },
+        {
+          "name": "fishing",
+          "value": 29
+        },
+        {
+          "name": "fleet",
+          "value": 29
+        },
+        {
+          "name": "warehouse",
+          "value": 15
+        },
+        {
+          "name": "tablet",
+          "value": 6
+        }
+      ],
+      "topPages": [
+        {
+          "name": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+          "value": 17
+        },
+        {
+          "name": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+          "value": 17
+        },
+        {
+          "name": "Forklift & Warehouse Tablet Mounts",
+          "value": 10
+        },
+        {
+          "name": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+          "value": 6
+        },
+        {
+          "name": "Best Locking Phone Mount for Shared Delivery Vehicles",
+          "value": 6
+        }
+      ],
+      "advice": {
+        "diagnosis": "Claude is the harshest replacement model in this benchmark. It often gives confident ranked lists without iBOLT unless the prompt is branded or very close to an existing iBOLT entity.",
+        "pageMove": "Strengthen exact product/entity naming and use-case proof. Claude needs clear reasons to rank iBOLT over RAM Mounts, not just category coverage.",
+        "citationMove": "Give Claude structured proof blocks: materials, compatibility, mount pattern, install style, ideal buyer, and specific product names.",
+        "retestMove": "Retest after product entity modules are live, with one prompt per use case."
+      }
+    },
+    {
+      "provider": "Gemini",
+      "totalAnswers": 31,
+      "cleanMentions": 1,
+      "coMentions": 5,
+      "competitorReplacements": 24,
+      "noSignal": 1,
+      "avgCoverageScore": 13,
+      "topCompetitors": [
+        {
+          "name": "RAM Mounts",
+          "value": 22
+        },
+        {
+          "name": "Arkon",
+          "value": 7
+        },
+        {
+          "name": "CTA Digital",
+          "value": 4
+        },
+        {
+          "name": "Garmin",
+          "value": 4
+        },
+        {
+          "name": "Humminbird",
+          "value": 4
+        },
+        {
+          "name": "iOttie",
+          "value": 4
+        }
+      ],
+      "topCategories": [
+        {
+          "name": "restaurant",
+          "value": 35
+        },
+        {
+          "name": "delivery",
+          "value": 31
+        },
+        {
+          "name": "fleet",
+          "value": 31
+        },
+        {
+          "name": "fishing",
+          "value": 29
+        },
+        {
+          "name": "warehouse",
+          "value": 15
+        },
+        {
+          "name": "tablet",
+          "value": 6
+        }
+      ],
+      "topPages": [
+        {
+          "name": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+          "value": 18
+        },
+        {
+          "name": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+          "value": 17
+        },
+        {
+          "name": "Forklift & Warehouse Tablet Mounts",
+          "value": 10
+        },
+        {
+          "name": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+          "value": 6
+        },
+        {
+          "name": "Best Phone Mount for Amazon Flex and Delivery Vans",
+          "value": 6
+        }
+      ],
+      "advice": {
+        "diagnosis": "Gemini behaves like a source and entity recognition test. It misses iBOLT often when the page does not clearly map the entity, category, and product source together.",
+        "pageMove": "Prioritize source-ready pages and clean schema for restaurant, with explicit iBOLT product names near the category term and competitor context.",
+        "citationMove": "Improve structured data and external corroboration. Gemini should benefit most from Organization, Article, FAQ, Product, and third-party citation work.",
+        "retestMove": "Retest search-style prompts after schema cleanup and external citation work."
+      }
+    }
+  ],
+  "topWorkQueue": [
+    {
+      "priority": "280",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "best phone mount for Amazon Flex and delivery vans",
+      "category": "delivery",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM; iOttie",
+      "sentiment": "absent",
+      "page_title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+      "page_url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+      "page_score": "84",
+      "structural_issues": "FAQ schema; quick answer; image alt text",
+      "product_module": "iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT™ xProDock™ Bizmount™ Wedge; iBOLT™ xProDock™ Bizmount™ Amps; iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT 20mm Metal Ball to Headrest Mounting Bracket; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; add FAQ schema; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM, iOttie. Benchmark goal: Win delivery van and Amazon Flex phone mount queries before competitors own them."
+    },
+    {
+      "priority": "278",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "best multi tablet mount",
+      "category": "restaurant",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "Mount-It!; Arkon; CTA Digital",
+      "sentiment": "absent",
+      "page_title": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "page_url": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "page_score": "84",
+      "structural_issues": "quick answer; image alt text",
+      "product_module": "iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT™ 20mm to 4 Prong Composite Ball Adapter; iBOLT Dock'n Lock IncrediBOLT™ 360 AMPS Locking Tablet Mount; iBOLT Dock’n Lock IncrediBOLT™ AMPS w/ 2” Single Socket Arm Locking Tablet Drill Base Mount; iBOLT TabDock IncrediBOLT 360 Heavy Duty Dual Suction Cup Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: Mount-It!, Arkon, CTA Digital. Benchmark goal: Win multi-tablet station recommendations for restaurants and delivery app workflows."
+    },
+    {
+      "priority": "278",
+      "provider": "Claude",
+      "provider_key": "claude",
+      "stage": "not mentioned",
+      "query": "best multi tablet mount",
+      "category": "restaurant",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM; Mount-It!; CTA Digital",
+      "sentiment": "absent",
+      "page_title": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "page_url": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "page_score": "84",
+      "structural_issues": "quick answer; image alt text",
+      "product_module": "iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT™ 20mm to 4 Prong Composite Ball Adapter; iBOLT Dock'n Lock IncrediBOLT™ 360 AMPS Locking Tablet Mount; iBOLT Dock’n Lock IncrediBOLT™ AMPS w/ 2” Single Socket Arm Locking Tablet Drill Base Mount; iBOLT TabDock IncrediBOLT 360 Heavy Duty Dual Suction Cup Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM, Mount-It!, CTA Digital. Benchmark goal: Win multi-tablet station recommendations for restaurants and delivery app workflows."
+    },
+    {
+      "priority": "278",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "best tablet mount",
+      "category": "tablet",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; Arkon; Tackform; CTA Digital",
+      "sentiment": "absent",
+      "page_title": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "page_url": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "page_score": "84",
+      "structural_issues": "quick answer; image alt text",
+      "product_module": "iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT™ 20mm to 4 Prong Composite Ball Adapter; iBOLT Dock'n Lock IncrediBOLT™ 360 AMPS Locking Tablet Mount; iBOLT Dock’n Lock IncrediBOLT™ AMPS w/ 2” Single Socket Arm Locking Tablet Drill Base Mount; iBOLT TabDock IncrediBOLT 360 Heavy Duty Dual Suction Cup Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Arkon, Tackform, CTA Digital. Benchmark goal: Measure broad tablet mount answer sets across consumer AI assistants."
+    },
+    {
+      "priority": "278",
+      "provider": "Gemini",
+      "provider_key": "gemini_plain",
+      "stage": "not mentioned",
+      "query": "best tablet mount",
+      "category": "tablet",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; iOttie; CTA Digital",
+      "sentiment": "absent",
+      "page_title": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "page_url": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "page_score": "84",
+      "structural_issues": "quick answer; image alt text",
+      "product_module": "iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT™ 20mm to 4 Prong Composite Ball Adapter; iBOLT Dock'n Lock IncrediBOLT™ 360 AMPS Locking Tablet Mount; iBOLT Dock’n Lock IncrediBOLT™ AMPS w/ 2” Single Socket Arm Locking Tablet Drill Base Mount; iBOLT TabDock IncrediBOLT 360 Heavy Duty Dual Suction Cup Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, iOttie, CTA Digital. Benchmark goal: Measure broad tablet mount answer sets across consumer AI assistants."
+    },
+    {
+      "priority": "278",
+      "provider": "Claude",
+      "provider_key": "claude",
+      "stage": "not mentioned",
+      "query": "best tablet mount",
+      "category": "tablet",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; Arkon",
+      "sentiment": "absent",
+      "page_title": "Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared",
+      "page_url": "https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared",
+      "page_score": "84",
+      "structural_issues": "quick answer; image alt text",
+      "product_module": "iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT™ 20mm to 4 Prong Composite Ball Adapter; iBOLT Dock'n Lock IncrediBOLT™ 360 AMPS Locking Tablet Mount; iBOLT Dock’n Lock IncrediBOLT™ AMPS w/ 2” Single Socket Arm Locking Tablet Drill Base Mount; iBOLT TabDock IncrediBOLT 360 Heavy Duty Dual Suction Cup Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Arkon. Benchmark goal: Measure broad tablet mount answer sets across consumer AI assistants."
+    },
+    {
+      "priority": "277",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "best heavy duty vehicle phone mount",
+      "category": "fleet",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon; Tackform",
+      "sentiment": "absent",
+      "page_title": "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop",
+      "page_url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop",
+      "page_score": "76",
+      "structural_issues": "quick answer; comparison block; image alt text",
+      "product_module": "iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders; iBOLT™ 17mm Clamp Mount for Handlebars; Poles; Posts; iBOLT 17mm Dual Ball Clamp Mount for Handlebars; +7 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; add fair competitor comparison block; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, iOttie, Arkon, Tackform. Benchmark goal: Expand iBOLT into heavy-duty phone mount consideration sets."
+    },
+    {
+      "priority": "276",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "best phone mount for delivery drivers",
+      "category": "fleet",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM; iOttie",
+      "sentiment": "absent",
+      "page_title": "Best Phone Mount for Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "page_score": "83",
+      "structural_issues": "Article/BlogPosting schema",
+      "product_module": "iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT™ xProDock™ Bizmount™ Wedge; iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount; iBOLT Dock’n Lock POS Phone Stand; iBOLT Dock’n Lock POS Tablet Stand; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM, iOttie. Benchmark goal: Break into the delivery driver phone mount category with direct product mentions."
+    },
+    {
+      "priority": "276",
+      "provider": "Gemini",
+      "provider_key": "gemini_plain",
+      "stage": "not mentioned",
+      "query": "best phone mount for delivery drivers",
+      "category": "fleet",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; iOttie",
+      "sentiment": "absent",
+      "page_title": "Best Phone Mount for Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "page_score": "83",
+      "structural_issues": "Article/BlogPosting schema",
+      "product_module": "iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT™ xProDock™ Bizmount™ Wedge; iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount; iBOLT Dock’n Lock POS Phone Stand; iBOLT Dock’n Lock POS Tablet Stand; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, iOttie. Benchmark goal: Break into the delivery driver phone mount category with direct product mentions."
+    },
+    {
+      "priority": "276",
+      "provider": "Claude",
+      "provider_key": "claude",
+      "stage": "not mentioned",
+      "query": "best phone mount for delivery drivers",
+      "category": "fleet",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; iOttie; ProClip",
+      "sentiment": "absent",
+      "page_title": "Best Phone Mount for Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh",
+      "page_score": "83",
+      "structural_issues": "Article/BlogPosting schema",
+      "product_module": "iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT™ xProDock™ Bizmount™ Wedge; iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount; iBOLT Dock’n Lock POS Phone Stand; iBOLT Dock’n Lock POS Tablet Stand; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, iOttie, ProClip. Benchmark goal: Break into the delivery driver phone mount category with direct product mentions."
+    },
+    {
+      "priority": "276",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM; iOttie",
+      "sentiment": "absent",
+      "page_title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "page_score": "76",
+      "structural_issues": "FAQ schema; quick answer; comparison block; image alt text",
+      "product_module": "iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount; iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount; iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount; iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount; iBOLT Moto-Vise™ IncrediBOLT™ 360 Heavy Duty Phone Clamp / Handlebar / Rail Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; add FAQ schema; add fair competitor comparison block; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM, iOttie. Benchmark goal: Expand delivery coverage beyond restaurant delivery apps into grocery delivery."
+    },
+    {
+      "priority": "276",
+      "provider": "Gemini",
+      "provider_key": "gemini_plain",
+      "stage": "not mentioned",
+      "query": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; iOttie; Peak Design",
+      "sentiment": "absent",
+      "page_title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "page_score": "76",
+      "structural_issues": "FAQ schema; quick answer; comparison block; image alt text",
+      "product_module": "iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount; iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount; iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount; iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount; iBOLT Moto-Vise™ IncrediBOLT™ 360 Heavy Duty Phone Clamp / Handlebar / Rail Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; add FAQ schema; add fair competitor comparison block; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, iOttie, Peak Design. Benchmark goal: Expand delivery coverage beyond restaurant delivery apps into grocery delivery."
+    },
+    {
+      "priority": "276",
+      "provider": "Claude",
+      "provider_key": "claude",
+      "stage": "not mentioned",
+      "query": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; iOttie",
+      "sentiment": "absent",
+      "page_title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+      "page_score": "76",
+      "structural_issues": "FAQ schema; quick answer; comparison block; image alt text",
+      "product_module": "iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount; iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount; iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount; iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount; iBOLT Moto-Vise™ IncrediBOLT™ 360 Heavy Duty Phone Clamp / Handlebar / Rail Mount; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; add FAQ schema; add fair competitor comparison block; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, iOttie. Benchmark goal: Expand delivery coverage beyond restaurant delivery apps into grocery delivery."
+    },
+    {
+      "priority": "275",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "commercial grade phone mount for delivery drivers",
+      "category": "delivery",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon",
+      "sentiment": "absent",
+      "page_title": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "page_score": "83",
+      "structural_issues": "Article/BlogPosting schema",
+      "product_module": "iBOLT™ xProDock™ Bizmount™ Amps; iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones; iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT 20mm Metal Ball to Headrest Mounting Bracket; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, iOttie, Arkon. Benchmark goal: Convert the cheap-mount-failed pain point into iBOLT consideration."
+    },
+    {
+      "priority": "275",
+      "provider": "Gemini",
+      "provider_key": "gemini_plain",
+      "stage": "not mentioned",
+      "query": "commercial grade phone mount for delivery drivers",
+      "category": "delivery",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; ProClip",
+      "sentiment": "absent",
+      "page_title": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "page_score": "83",
+      "structural_issues": "Article/BlogPosting schema",
+      "product_module": "iBOLT™ xProDock™ Bizmount™ Amps; iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones; iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT 20mm Metal Ball to Headrest Mounting Bracket; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, ProClip. Benchmark goal: Convert the cheap-mount-failed pain point into iBOLT consideration."
+    },
+    {
+      "priority": "275",
+      "provider": "Claude",
+      "provider_key": "claude",
+      "stage": "not mentioned",
+      "query": "commercial grade phone mount for delivery drivers",
+      "category": "delivery",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM; Arkon; ProClip",
+      "sentiment": "absent",
+      "page_title": "Commercial-Grade Phone Mounts for Delivery Drivers",
+      "page_url": "https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh",
+      "page_score": "83",
+      "structural_issues": "Article/BlogPosting schema",
+      "product_module": "iBOLT™ xProDock™ Bizmount™ Amps; iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones; iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT™ 20mm Metal Ball Suction Cup Base; iBOLT 20mm Metal Ball to Headrest Mounting Bracket; +1 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Arkon, ProClip. Benchmark goal: Convert the cheap-mount-failed pain point into iBOLT consideration."
+    },
+    {
+      "priority": "275",
+      "provider": "ChatGPT",
+      "provider_key": "chatgpt",
+      "stage": "not mentioned",
+      "query": "best fish finder mount for small boat",
+      "category": "fishing",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM",
+      "sentiment": "absent",
+      "page_title": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+      "page_url": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+      "page_score": "84",
+      "structural_issues": "FAQ schema; quick answer; image alt text",
+      "product_module": "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount; iBOLT Garmin Striker 4 / Fish Finder IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount; iBOLT Garmin Striker 4 / Fish Finder Handlebar; Rail Mount; iBOLT Garmin Striker 4 / Fish Finder Dual Arm Handlebar; +3 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; add FAQ schema; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM. Benchmark goal: Establish an early moat in small-boat fish finder mounting."
+    },
+    {
+      "priority": "275",
+      "provider": "Gemini",
+      "provider_key": "gemini_plain",
+      "stage": "not mentioned",
+      "query": "best fish finder mount for small boat",
+      "category": "fishing",
+      "score": "0",
+      "brand_mentioned": "false",
+      "top_pick_rank": "",
+      "domain_cited": "false",
+      "competitors": "RAM Mounts; RAM",
+      "sentiment": "absent",
+      "page_title": "Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide",
+      "page_url": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+      "page_score": "84",
+      "structural_issues": "FAQ schema; quick answer; image alt text",
+      "product_module": "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount; iBOLT Garmin Striker 4 / Fish Finder IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount; iBOLT Garmin Striker 4 / Fish Finder Handlebar; Rail Mount; iBOLT Garmin Striker 4 / Fish Finder Dual Arm Handlebar; +3 more",
+      "fix": "add query-exact quick answer that names iBOLT and 2-4 exact products; add recommendation language that makes iBOLT a top specialist option; make page source-ready with FAQ/Article/Product schema and visible specs; add FAQ schema; fix product image alt text",
+      "analysis_notes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM. Benchmark goal: Establish an early moat in small-boat fish finder mounting."
+    }
+  ]
+}

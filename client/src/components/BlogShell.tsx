@@ -5,7 +5,9 @@ import {
   BarChart3,
   BookOpenText,
   Boxes,
+  Briefcase,
   Camera,
+  Calculator,
   FileText,
   Home,
   Layers3,
@@ -28,10 +30,12 @@ const navItems = [
   { href: "/blog/keywords", label: "Keywords", icon: Search },
   { href: "/blog/posts", label: "Posts", icon: FileText },
   { href: "/blog/products", label: "Products", icon: Boxes },
+  { href: "/blog/inventory", label: "Inventory", icon: Calculator },
   { href: "/blog/catalog", label: "Catalog", icon: BookOpenText },
   { href: "/blog/photos", label: "Assets", icon: Camera },
   { href: "/blog/context", label: "Context", icon: Layers3 },
   { href: "/blog/benchmark", label: "Visibility", icon: BarChart3 },
+  { href: "/blog/service-ops", label: "Service Ops", icon: Briefcase },
 ];
 
 function isActive(pathname: string, href: string) {

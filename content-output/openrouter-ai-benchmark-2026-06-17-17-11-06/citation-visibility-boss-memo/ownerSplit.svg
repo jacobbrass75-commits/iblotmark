@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="184" viewBox="0 0 900 184" role="img" aria-label="Who owns the citation lift work">
+    <rect width="900" height="184" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Who owns the citation lift work</text>
+    <g>
+      <text x="22" y="75" font-size="13" font-weight="800" fill="#111827">Jacob/app</text>
+      <rect x="285" y="58" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="58" width="540" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="74" text-anchor="end" font-size="13" font-weight="900" fill="#111827">11</text>
+    </g><g>
+      <text x="22" y="111" font-size="13" font-weight="800" fill="#111827">SEO contractor</text>
+      <rect x="285" y="94" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="94" width="442" height="22" rx="11" fill="#2563eb"/>
+      <text x="866" y="110" text-anchor="end" font-size="13" font-weight="900" fill="#111827">9</text>
+    </g><g>
+      <text x="22" y="147" font-size="13" font-weight="800" fill="#111827">Joint</text>
+      <rect x="285" y="130" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="130" width="49" height="22" rx="11" fill="#f97316"/>
+      <text x="866" y="146" text-anchor="end" font-size="13" font-weight="900" fill="#111827">1</text>
+    </g>
+  </svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="300" viewBox="0 0 1040 300">
+  <rect width="1040" height="300" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Priority Requests By Provider</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">The packet keeps ChatGPT, Gemini, and Claude represented.</text>
+  
+      <text x="286" y="114.33333333333333" text-anchor="end" font-size="14" fill="#334155">claude</text>
+      <rect x="300" y="84" width="670" height="50.666666666666664" rx="6" fill="#2563eb"></rect>
+      <text x="980" y="114.33333333333333" font-size="14" font-weight="800" fill="#0f172a">78</text>
+    
+      <text x="286" y="177" text-anchor="end" font-size="14" fill="#334155">chatgpt</text>
+      <rect x="300" y="146.66666666666666" width="558" height="50.666666666666664" rx="6" fill="#2563eb"></rect>
+      <text x="868" y="177" font-size="14" font-weight="800" fill="#0f172a">65</text>
+    
+      <text x="286" y="239.66666666666666" text-anchor="end" font-size="14" fill="#334155">gemini_plain</text>
+      <rect x="300" y="209.33333333333331" width="524" height="50.666666666666664" rx="6" fill="#2563eb"></rect>
+      <text x="834" y="239.66666666666666" font-size="14" font-weight="800" fill="#0f172a">61</text>
+    
+</svg>

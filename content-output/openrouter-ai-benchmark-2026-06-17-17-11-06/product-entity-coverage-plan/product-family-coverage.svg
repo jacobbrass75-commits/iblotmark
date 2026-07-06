@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="352" viewBox="0 0 940 352">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="22" y="34" fill="#0f172a" font-size="22" font-weight="800">Product Families With Unlinked Inventory</text>
+<text x="22" y="72" fill="#0f172a" font-size="13">AMPS, adapters, balls, and bases</text>
+<rect x="390" y="56" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="56" width="390" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="71" fill="#0f172a" font-size="13" font-weight="700">39</text>
+<text x="22" y="106" fill="#0f172a" font-size="13">Creator, camera, and streaming mounts</text>
+<rect x="390" y="90" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="90" width="260" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="105" fill="#0f172a" font-size="13" font-weight="700">26</text>
+<text x="22" y="140" fill="#0f172a" font-size="13">Fleet, delivery, and vehicle phone mounts</text>
+<rect x="390" y="124" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="124" width="110" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="139" fill="#0f172a" font-size="13" font-weight="700">11</text>
+<text x="22" y="174" fill="#0f172a" font-size="13">Forklift and warehouse mounts</text>
+<rect x="390" y="158" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="158" width="80" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="173" fill="#0f172a" font-size="13" font-weight="700">8</text>
+<text x="22" y="208" fill="#0f172a" font-size="13">Restaurant POS and tablet security</text>
+<rect x="390" y="192" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="192" width="70" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="207" fill="#0f172a" font-size="13" font-weight="700">7</text>
+<text x="22" y="242" fill="#0f172a" font-size="13">Charging and magnetic phone docks</text>
+<rect x="390" y="226" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="226" width="50" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="241" fill="#0f172a" font-size="13" font-weight="700">5</text>
+<text x="22" y="276" fill="#0f172a" font-size="13">Barcode scanner and warehouse scanning</text>
+<rect x="390" y="260" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="260" width="80" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="275" fill="#0f172a" font-size="13" font-weight="700">8</text>
+<text x="22" y="310" fill="#0f172a" font-size="13">Cycling, motorcycle, and powersports</text>
+<rect x="390" y="294" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="294" width="80" height="20" rx="4" fill="#0f766e"/>
+<text x="792" y="309" fill="#0f172a" font-size="13" font-weight="700">8</text>
+</svg>

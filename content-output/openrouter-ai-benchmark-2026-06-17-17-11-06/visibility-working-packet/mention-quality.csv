@@ -1,0 +1,6 @@
+"role","answers","action"
+"Clean iBOLT answer","4","Preserve these entity patterns and add source/citation support after page cleanup."
+"iBOLT leads or co-mentioned","18","Turn co-mentions into top-3 recommendations with clearer product and use-case proof."
+"iBOLT trails competitors","0","Add comparison modules that explain when iBOLT is the specialist choice."
+"Competitor replacement","64","Highest priority: build query-exact answer blocks and retest."
+"No useful signal","7","Use only after competitor-heavy pages are handled."

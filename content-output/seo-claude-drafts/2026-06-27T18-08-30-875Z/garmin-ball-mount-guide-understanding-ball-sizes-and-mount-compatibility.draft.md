@@ -1,0 +1,87 @@
+# Garmin Ball Mount Sizes: Find the Right Base Before You Buy
+
+> Problem proposition: Garmin owners often buy the wrong base or adapter because they do not know their device's ball size upfront, so this article walks through 17mm, 20mm, and AMPS standards to help them choose the correct mount the first time.
+
+Featured product links: [iBOLT 17mm Dual Ball to AMPs Drill Base Mount compatible w/ Garmin GPS and iBOLT Phone Holders](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders), [iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders)
+
+Garmin Ball Mount Sizes: Find the Right Base Before You Buy 
+
+You already own a Garmin GPS. Now you need a new base, a replacement arm, or a way to move the whole setup to a different vehicle. The problem is that ball mounts are not universal. Buy the wrong socket size and the connection will be loose, wobbly, or simply impossible to lock down. This guide explains the most common Garmin ball sizes, how the AMPS adapter standard fits into the picture, and which iBOLT bases work with 17mm Garmin setups so you can stop guessing and start mounting.
+
+## Why Ball Size Is the First Thing to Confirm
+
+A ball-and-socket mounting system works because the ball locks into a matching socket. When the diameters do not match, the connection either rattles or refuses to seat at all. Garmin uses a few different ball sizes across its product line, and even a millimeter or two of difference changes everything. Before you look at arms, suction cups, or drill bases, confirm your device's ball diameter. The three sizes you will encounter most often in the Garmin ecosystem are 17mm, a larger format sometimes listed near 20mm to 22mm on bigger navigation units, and the AMPS plate standard for devices that skip the ball entirely on the back of the cradle.
+
+If you want a broader breakdown of how 17mm, 20mm, 25mm, 38mm, AMPS, VESA, and 1/4-20 standards all relate to each other, the [iBOLT mounting standards guide](https://iboltmounts.com/blogs/news/amps-vesa-ball-mount-sizes-complete-guide-to-device-mounting-standards) covers every format in plain language.
+
+## The 17mm Ball: The Most Common Garmin Standard
+
+The 17mm ball is the format you will find on a wide range of Garmin drive, dezl, zumo, and Overlander models. It is also an industry-standard size, which means third-party arms, bases, and adapters are widely available. The ball attaches to a cradle that holds the GPS unit, and the socket lives on whatever base or arm you choose. Because 17mm is so common, it is the size that iBOLT has built its Garmin-compatible base lineup around.
+
+One practical note: the 17mm measurement refers to the ball diameter, not the thread or the arm length. When you are shopping for a compatible socket arm or base, look specifically for 17mm dual-ball compatibility rather than a generic "ball mount" listing.
+
+## AMPS Adapters: When Your Garmin Does Not Use a Ball on the Cradle
+
+Some Garmin devices, particularly larger handhelds and mapping units in the GPSMAP and Montana lines, use an AMPS mounting pattern on the back of the cradle instead of a ball socket. AMPS is a four-hole rectangular plate layout that is widely used across vehicle, marine, and industrial mounting systems. If the back of your Garmin cradle has four holes arranged in a rectangle rather than a ball socket, you are working with AMPS.
+
+The good news is that AMPS and ball-mount systems are bridgeable. Adapter plates let you connect an AMPS cradle to a ball-socket arm, or vice versa. Before combining parts, measure the hole spacing on your cradle and confirm the weight of your device so the adapter plate you choose is rated for the load. The [iBOLT Garmin ball size article](https://iboltmounts.com/blogs/news/what-size-is-the-ball-mount-on-a-garmin-gps-and-how-do-i-find-a-compatible-mount) goes deeper on identifying your specific cradle type.
+
+## Choosing Between a Drill Base and a Suction Cup Base
+
+Once you know your ball size, the next decision is how the base attaches to your vehicle. The two most practical options for most Garmin users are a permanent drill-mount base and a suction cup base. Each has a clear use case.
+
+A drill base is the right call when you want a fixed, vibration-resistant installation in a truck cab, an RV dash, or a boat console. The [iBOLT 17mm Dual Ball to AMPs Drill Base Mount](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders) is built for exactly this situation. It uses a 17mm dual-ball connection and an AMPS-pattern base plate, so it works with Garmin GPS cradles and iBOLT phone holders. At $19.95, it gives you a solid permanent anchor point without requiring a proprietary arm or a specific Garmin accessory.
+
+ 
+  [
+    ![iBOLT 17mm Dual Ball to AMPs Drill Base Mount compatible w/ Garmin GPS and iBOLT Phone Holders from iBOLT Mounts](https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-17mm-dual-ball-to-amps-drill-base-mount-compatible-w-garmin-gps-and-ibolt-phone-holders-1050406724.jpg?v=1768920010)
+  ](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders)
+  
+
+**[iBOLT 17mm Dual Ball to AMPs Drill Base Mount compatible w/ Garmin GPS and iBOLT Phone Holders](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders)** - $19.95
+
+ 
+
+A suction cup base makes more sense when you move the GPS between vehicles, when you rent or lease and cannot drill, or when you want to reposition the device quickly. The [iBOLT 17mm Dual Ball "Sticky" Suction Cup Mount Base](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders) uses the same 17mm dual-ball standard and attaches to windshields or smooth dash surfaces without permanent modification. It is priced at $18.95 and is compatible with the same 17mm Garmin cradles and iBOLT holders as the drill base.
+
+ 
+  [
+    ![iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders from iBOLT Mounts](https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders-1050406779.jpg?v=1768838349)
+  ](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders)
+  
+
+**[iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders](https://iboltmounts.com/products/ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders)** - $18.95
+
+ 
+
+Both bases output the same 17mm dual-ball connection, which means the arm and holder you pair with either one will be interchangeable. That modularity matters if you ever want to move your setup from a car to a truck or add a second installation point.
+
+## What to Measure Before You Order
+
+Buying the wrong part is easy to avoid if you check five things before placing an order. First, measure the ball diameter on your existing cradle or arm. Second, check the hole spacing if your cradle uses an AMPS plate. Third, note the weight of your GPS unit, especially for larger screens. Fourth, identify the surface type where the base will mount, glass, textured plastic, or a drilled panel. Fifth, estimate the arm length you need to position the screen at a comfortable viewing angle without blocking vents or controls.
+
+For a full checklist of what to confirm before combining mounting parts, the [iBOLT ball mounts explained guide](https://iboltmounts.com/blogs/news/ball-mounts-explained-complete-guide-to-20mm-25mm-and-universal-mounting-solutions-1) walks through each measurement in detail.
+
+## Reusing Your Base Across Vehicles and Applications
+
+One underappreciated advantage of standardized ball sizes is that your base investment carries over. If you install the iBOLT drill base in your work truck today, you can pair it with a different 17mm arm or holder later without replacing the base. The same logic applies to the suction cup base: move it to a rental car, a boat windshield, or a second vehicle without buying a new mounting system from scratch.
+
+iBOLT's modular approach means the 17mm dual-ball standard connects to a wide range of arms, extension poles, and adapter plates across the catalog. If your needs change, the base you already own stays useful. For a look at how modular mounting configurations work across different environments, the [iBOLT modular mounting system guide](https://iboltmounts.com/blogs/news/ibolt-modular-mounting-system-300-parts-unlimited-configurations-2026-guide) covers the full picture.
+
+## Frequently Asked Questions
+
+ 
+   **What ball size do most Garmin GPS devices use?** 
+   Most consumer Garmin drive and navigation units use a 17mm ball. Larger units designed for trucks and RVs may use a bigger format closer to 20mm to 22mm. Check your device's existing cradle or manual to confirm before buying a base. 
+
+   **What is an AMPS adapter and do I need one?** 
+   AMPS is a four-hole rectangular mounting pattern used on the back of some Garmin cradles and many vehicle mounting surfaces. If your GPS cradle has an AMPS plate rather than a ball socket, you need an AMPS-to-ball adapter to connect it to a standard ball-mount arm. The iBOLT 17mm Dual Ball to AMPs Drill Base Mount includes an AMPS plate on the base side, making it compatible with both Garmin cradles and AMPS-pattern surfaces. 
+
+   **Can I use the same iBOLT base in multiple vehicles?** 
+   Yes. The suction cup base is designed to move between vehicles. The drill base is a permanent installation, but the 17mm dual-ball output means any compatible arm or holder will work with it regardless of which vehicle it is installed in. 
+
+   **Will a 17mm iBOLT base work with my iBOLT phone holder too?** 
+   Yes. Both the drill base and the suction cup base are explicitly compatible with iBOLT phone holders that use the 17mm dual-ball standard, so you can swap between a Garmin cradle and a phone holder on the same base. 
+
+   **How do I know if my Garmin uses a 17mm ball or an AMPS plate?** 
+   Look at the back of the cradle that came with your device. A round protrusion or socket indicates a ball mount. Four holes in a rectangular pattern indicate AMPS. If you are unsure, the iBOLT Garmin ball size article linked above has photos and model-specific guidance.

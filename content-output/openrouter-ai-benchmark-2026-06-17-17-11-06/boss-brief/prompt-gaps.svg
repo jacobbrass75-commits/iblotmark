@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="682" viewBox="0 0 1100 682" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.axis{stroke:#94a3b8;stroke-width:1}.grid{stroke:#e2e8f0;stroke-width:1}.title{font:700 24px Arial, sans-serif;fill:#111827}.subtitle{font:400 14px Arial, sans-serif;fill:#64748b}.label{font:700 13px Arial, sans-serif;fill:#111827}.small{font:400 12px Arial, sans-serif;fill:#475569}.value{font:700 13px Arial, sans-serif;fill:#0f172a}.white{font:700 13px Arial, sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1100" height="682" rx="0"/>
+  
+    <rect class="panel" x="28" y="24" width="1044" height="634" rx="14"/>
+    <text class="title" x="56" y="65">Biggest Prompt Gaps</text>
+    <text class="subtitle" x="56" y="88">Prompts with the weakest average score across ChatGPT, Gemini, and Claude.</text>
+    
+      <text class="label" x="56" y="123">best phone mount for delivery drivers</text>
+      <rect x="420" y="108" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="108" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="125">100</text>
+      <text class="small" x="420" y="147">fleet; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="166">magnetic vs clamp phone mounts for delivery</text>
+<text class="small" x="56" y="181">work</text>
+      <rect x="420" y="151" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="151" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="168">100</text>
+      <text class="small" x="420" y="190">delivery; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="209">commercial grade phone mount for delivery</text>
+<text class="small" x="56" y="224">drivers</text>
+      <rect x="420" y="194" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="194" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="211">100</text>
+      <text class="small" x="420" y="233">delivery; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="252">best phone mount for Instacart and grocery</text>
+<text class="small" x="56" y="267">delivery drivers</text>
+      <rect x="420" y="237" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="237" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="254">100</text>
+      <text class="small" x="420" y="276">delivery; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="295">best fish finder mount for small boat</text>
+      <rect x="420" y="280" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="280" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="297">100</text>
+      <text class="small" x="420" y="319">fishing; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="338">best tablet mount</text>
+      <rect x="420" y="323" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="323" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="340">100</text>
+      <text class="small" x="420" y="362">tablet; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="381">best fish finder</text>
+      <rect x="420" y="366" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="366" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="383">100</text>
+      <text class="small" x="420" y="405">fishing; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="424">best fish finder in water</text>
+      <rect x="420" y="409" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="409" width="560" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="426">100</text>
+      <text class="small" x="420" y="448">fishing; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="467">best ELD mount for trucks</text>
+      <rect x="420" y="452" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="452" width="543.1999999999999" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="469">97</text>
+      <text class="small" x="420" y="491">fleet; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="510">best locking phone mount for shared delivery</text>
+<text class="small" x="56" y="525">vehicles</text>
+      <rect x="420" y="495" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="495" width="543.1999999999999" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="512">97</text>
+      <text class="small" x="420" y="534">delivery; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="553">best kayak fish finder mount</text>
+      <rect x="420" y="538" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="538" width="543.1999999999999" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="555">97</text>
+      <text class="small" x="420" y="577">fishing; mention rate 0%</text>
+    
+
+      <text class="label" x="56" y="596">set up multiple tablets for DoorDash Uber Eats</text>
+<text class="small" x="56" y="611">and Grubhub</text>
+      <rect x="420" y="581" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="581" width="543.1999999999999" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="994" y="598">97</text>
+      <text class="small" x="420" y="620">restaurant; mention rate 0%</text>
+    
+  
+</svg>

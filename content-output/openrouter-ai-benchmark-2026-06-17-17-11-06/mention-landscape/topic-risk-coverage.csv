@@ -1,0 +1,8 @@
+"topic","risk_score","results","avg_score","mention_rate","competitor_only_rate","zero_mention_prompts","audited_pages","avg_page_score","local_posts","unique_products","top_competitors"
+"fishing","85","15","1","0","67","5","17","78","18","30","RAM Mounts 10"
+"tablet","72","3","0","0","100","1","0","","","","RAM Mounts 3; Arkon 2; CTA Digital 2; iOttie 1; Tackform 1"
+"delivery","72","21","16","29","67","5","11","82","","","RAM Mounts 15; iOttie 12; Arkon 6; ProClip 4; Peak Design 1; Tackform 1"
+"restaurant","72","24","19","29","67","5","17","78","18","38","CTA Digital 14; RAM Mounts 13; Mount-It 10; Arkon 8; Bouncepad 4; Heckler 3; Kensington 2"
+"fleet","71","18","12","22","78","4","25","80","16","34","RAM Mounts 18; Arkon 11; ProClip 7; iOttie 5; Tackform 2"
+"warehouse","58","9","17","22","78","1","17","78","4","16","RAM Mounts 9; Havis 5; Arkon 3; Zebra 3; ProClip 2; Tackform 2; CTA Digital 1"
+"comparison","27","3","45","100","0","0","0","","","","RAM Mounts 3"

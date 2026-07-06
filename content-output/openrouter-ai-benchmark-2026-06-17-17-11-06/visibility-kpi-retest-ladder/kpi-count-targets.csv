@@ -1,0 +1,6 @@
+"metric","current_rate","current_count","denominator","target_rate","target_count","lift_needed","why_it_matters"
+"Mention rate","24","22","93","35","33","11","Baseline inclusion. AI cannot cite or recommend iBOLT if it does not mention iBOLT first."
+"Non-branded mention","5","4","75","15","12","8","New-customer visibility. These are buyer questions that do not already name iBOLT."
+"Top-3 recommendation","16","15","93","25","24","9","Recommendation strength. Mentioned at the bottom is weaker than included in the recommendation set."
+"Citation rate","0","0","93","8","8","8","Source trust for search-connected AI, AI Overviews, Perplexity, Gemini with search, and shopping assistants."
+"Competitor-only answer rate","73","68","93","55","52","16","Displacement. This should go down as mention and top-3 rates rise."

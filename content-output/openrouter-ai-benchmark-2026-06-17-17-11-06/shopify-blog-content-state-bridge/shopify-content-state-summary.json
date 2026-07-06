@@ -1,0 +1,23 @@
+{
+  "shop": "iboltmounts",
+  "apiVersion": "2026-04",
+  "total": 211,
+  "published": 142,
+  "draftOrUnpublished": 69,
+  "mappedToVisibilityRows": 142,
+  "draftMappedToVisibilityRows": 0,
+  "draftHighIntentRows": 29,
+  "productLinks": 1723,
+  "addToCartLinks": 1285,
+  "imageCount": 783,
+  "articlesWithNoProductLinks": 46,
+  "analyticsAccess": {
+    "scopes_status": 200,
+    "shopifyql_status": 200,
+    "scopes": "read_content; write_content",
+    "has_read_reports": "no",
+    "has_read_analytics": "no",
+    "shopifyql_available": "no",
+    "shopifyql_errors": "Access denied for shopifyqlQuery field. Required access: `read_reports` access scope. Also: Level 2 access to Customer data including name, address, phone, and email fields. Please refer to protected customer data [requirements](https://shopify.dev/docs/apps/launch/protected-customer-data)."
+  }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="282" viewBox="0 0 1120 282" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1120" height="282"/>
+  
+    <rect class="panel" x="28" y="24" width="1064" height="234" rx="14"/>
+    <text class="title" x="52" y="64">Benchmark Prompt Coverage In Current Blog Inventory</text>
+    <text class="subtitle" x="52" y="87">Strong content matches do not yet guarantee AI visibility.</text>
+    
+      <text class="label" x="52" y="120">strong</text>
+      <text class="small" x="52" y="138">benchmark prompts mapped to closest local blog content</text>
+      <rect x="390" y="104" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="104" width="484" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1004" y="121">25</text>
+    
+
+      <text class="label" x="52" y="162">partial</text>
+      <text class="small" x="52" y="180">benchmark prompts mapped to closest local blog content</text>
+      <rect x="390" y="146" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="146" width="116" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1004" y="163">6</text>
+    
+
+      <text class="label" x="52" y="204">missing</text>
+      <text class="small" x="52" y="222">benchmark prompts mapped to closest local blog content</text>
+      <rect x="390" y="188" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="188" width="3" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1004" y="205">0</text>
+    
+  
+</svg>

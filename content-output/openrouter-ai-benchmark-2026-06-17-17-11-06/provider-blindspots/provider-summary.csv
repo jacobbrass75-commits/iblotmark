@@ -1,0 +1,4 @@
+"provider","provider_key","results","avg_score","mention_count","mention_rate","top_three_count","top_three_rate","citation_count","citation_rate","competitor_only_count","competitor_only_rate","top_competitors"
+"ChatGPT","chatgpt","31","15","10","32","7","23","0","0","18","58","RAM 20; RAM Mounts 16; Arkon 13; iOttie 9; CTA Digital 8; Tackform 7; Mount-It! 5; ProClip 3"
+"Claude","claude","31","15","6","19","6","19","0","0","23","74","RAM 23; RAM Mounts 20; Arkon 10; ProClip 7; CTA Digital 5; iOttie 5; Mount-It! 3; Bouncepad 2"
+"Gemini","gemini_plain","31","13","6","19","2","6","0","0","23","74","RAM 28; RAM Mounts 22; Arkon 7; CTA Digital 4; iOttie 4; ProClip 3; Havis 2; Mount-It! 2"

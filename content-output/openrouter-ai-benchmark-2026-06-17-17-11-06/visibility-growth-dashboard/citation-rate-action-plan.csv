@@ -1,0 +1,6 @@
+"issue","pages_affected","impact","fix","success_check"
+"Images missing alt text","123","Medium","Use descriptive alt text with exact product name, use case, and mounting context.","No article images have blank or generic alt text."
+"No quick-answer block","113","High","Add a 40-70 word direct answer immediately below the intro or first H2.","The page answers the target buyer question before long narrative copy."
+"No FAQ schema","99","High","Add visible FAQ plus FAQPage JSON-LD with 4-6 real buyer questions.","FAQ schema validates and matches visible page content."
+"No comparison/tradeoff signals","55","High","Add fair comparison blocks for RAM Mounts, Arkon, iOttie, CTA Digital, ProClip, or topic-specific competitors.","The page states when each option fits and when iBOLT is the specialist choice."
+"No Article/BlogPosting schema","19","Medium","Add Article or BlogPosting JSON-LD with headline, date, author, image, and publisher.","Rich Results or schema validation recognizes the article entity."

@@ -1,0 +1,7 @@
+"owner","workstream","why","success_metric"
+"Jacob/app","Mention-rate foundation","Only 4/75 non-branded answers mention iBOLT.","Move non-branded mention rate from 5% toward 15% on comparable retest prompts."
+"Jacob/app","Source-ready page cleanup","119/142 pages lack answer-first openings, 93 lack FAQPage schema, and 62 need comparison/tradeoff language.","Quick-answer blocks, FAQ schema, Article schema, comparison blocks, and clean product paths present on priority pages."
+"Jacob/app","Competitor comparison blocks","68/93 answers still replace iBOLT with competitors.","Competitor-only rows decline and top-3 iBOLT recommendations rise."
+"SEO contractor","External citation authority","Target-domain citation rate is 0% while AI systems cite or recommend competitors in the same categories.","Reach 3% to 5% citation rate first, then push toward the 8% planning target."
+"SEO contractor","Competitor adjacency mentions","RAM Mounts, Arkon, iOttie, CTA Digital, ProClip, Mount-It are the main replacement set.","Earn third-party mentions that place iBOLT beside those brands in neutral category resources."
+"Jacob/app + SEO contractor","Retest loop","16 priority retest prompts are mapped to pages and competitor pressure.","Rerun one prompt at a time after on-site edits and external mentions are live."

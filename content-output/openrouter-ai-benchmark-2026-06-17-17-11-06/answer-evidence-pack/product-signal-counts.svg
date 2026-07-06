@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="546" viewBox="0 0 1160 546" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="546"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="498" rx="14"/>
+    <text class="title" x="54" y="64">Product and Category Signals in AI Answers</text>
+    <text class="subtitle" x="54" y="88">Manual signal detection over raw answer text, broader than exact product-title extraction.</text>
+    
+      <text class="label" x="54" y="122">TabDock</text>
+      <rect x="360" y="108" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="108" width="660" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="125">13</text>
+      <text class="small" x="360" y="149"></text>
+    
+
+      <text class="label" x="54" y="170">BizMount</text>
+      <rect x="360" y="156" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="156" width="609" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="173">12</text>
+      <text class="small" x="360" y="197"></text>
+    
+
+      <text class="label" x="54" y="218">AMPS</text>
+      <rect x="360" y="204" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="204" width="558" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="221">11</text>
+      <text class="small" x="360" y="245"></text>
+    
+
+      <text class="label" x="54" y="266">VESA</text>
+      <rect x="360" y="252" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="252" width="406" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="269">8</text>
+      <text class="small" x="360" y="293"></text>
+    
+
+      <text class="label" x="54" y="314">xProDock</text>
+      <rect x="360" y="300" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="300" width="203" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="317">4</text>
+      <text class="small" x="360" y="341"></text>
+    
+
+      <text class="label" x="54" y="362">Dock'n Lock / Dock’n Lock</text>
+      <rect x="360" y="348" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="348" width="152" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="365">3</text>
+      <text class="small" x="360" y="389"></text>
+    
+
+      <text class="label" x="54" y="410">Garmin Striker</text>
+      <rect x="360" y="396" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="396" width="102" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="413">2</text>
+      <text class="small" x="360" y="437"></text>
+    
+
+      <text class="label" x="54" y="458">Universal Marine Mounting Plate</text>
+      <rect x="360" y="444" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="444" width="51" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1034" y="461">1</text>
+      <text class="small" x="360" y="485"></text>
+    
+  
+</svg>

@@ -1,0 +1,4 @@
+"decision","requests","pages","providers","waves","readiness","success_metric"
+"Consolidate first","198","17","claude 74; chatgpt 63; gemini_plain 61","W2 top-page mention recovery 66; W5 non-branded buyer coverage 54; W4 product entity recognition 33; W1 Sprint 1 edit validation 27; W3 citation probe 18","Not ready until survivor URL is confirmed and merged","Competitor-only answer becomes iBOLT-included or top-3 iBOLT.; Exact iBOLT product/entity is named without hallucinated aliases.; Target-domain citation or source-url row appears."
+"Rewrite or refresh","5","3","claude 3; chatgpt 2","W3 citation probe 5","Ready after refreshed answer block, product modules, comparison language, and FAQ/schema are live","Target-domain citation or source-url row appears."
+"Source cleanup first","1","1","claude 1","W3 citation probe 1","Ready after schema, FAQ, quick answer, image alt, and product proof are live","Target-domain citation or source-url row appears."

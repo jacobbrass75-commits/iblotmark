@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="486" viewBox="0 0 1220 486" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1220" height="486"/>
+  
+    <rect class="panel" x="28" y="24" width="1164" height="438" rx="14"/>
+    <text class="title" x="54" y="64">Topic Risk and Content Coverage</text>
+    <text class="subtitle" x="54" y="88">Green is iBOLT mention rate. Red is competitor-only answer rate. Inventory counts come from local blog/product audit.</text>
+    
+      <text class="label" x="54" y="125">fishing</text>
+      <rect x="250" y="108" width="720" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="250" y="108" width="0" height="24" rx="8" fill="#16a34a"/>
+      <rect x="250" y="108" width="482" height="24" rx="8" fill="#dc2626" opacity=".82"/>
+      <text class="value" x="984" y="125">0% / 67%</text>
+      <text class="small" x="250" y="149">risk 85; posts 18; products 30</text>
+    
+
+      <text class="label" x="54" y="171">tablet</text>
+      <rect x="250" y="154" width="720" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="250" y="154" width="0" height="24" rx="8" fill="#16a34a"/>
+      <rect x="250" y="154" width="720" height="24" rx="8" fill="#dc2626" opacity=".82"/>
+      <text class="value" x="984" y="171">0% / 100%</text>
+      <text class="small" x="250" y="195">risk 72; posts n/a; products n/a</text>
+    
+
+      <text class="label" x="54" y="217">delivery</text>
+      <rect x="250" y="200" width="720" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="250" y="200" width="209" height="24" rx="8" fill="#16a34a"/>
+      <rect x="459" y="200" width="482" height="24" rx="8" fill="#dc2626" opacity=".82"/>
+      <text class="value" x="984" y="217">29% / 67%</text>
+      <text class="small" x="250" y="241">risk 72; posts n/a; products n/a</text>
+    
+
+      <text class="label" x="54" y="263">restaurant</text>
+      <rect x="250" y="246" width="720" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="250" y="246" width="209" height="24" rx="8" fill="#16a34a"/>
+      <rect x="459" y="246" width="482" height="24" rx="8" fill="#dc2626" opacity=".82"/>
+      <text class="value" x="984" y="263">29% / 67%</text>
+      <text class="small" x="250" y="287">risk 72; posts 18; products 38</text>
+    
+
+      <text class="label" x="54" y="309">fleet</text>
+      <rect x="250" y="292" width="720" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="250" y="292" width="158" height="24" rx="8" fill="#16a34a"/>
+      <rect x="408" y="292" width="562" height="24" rx="8" fill="#dc2626" opacity=".82"/>
+      <text class="value" x="984" y="309">22% / 78%</text>
+      <text class="small" x="250" y="333">risk 71; posts 16; products 34</text>
+    
+
+      <text class="label" x="54" y="355">warehouse</text>
+      <rect x="250" y="338" width="720" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="250" y="338" width="158" height="24" rx="8" fill="#16a34a"/>
+      <rect x="408" y="338" width="562" height="24" rx="8" fill="#dc2626" opacity=".82"/>
+      <text class="value" x="984" y="355">22% / 78%</text>
+      <text class="small" x="250" y="379">risk 58; posts 4; products 16</text>
+    
+
+      <text class="label" x="54" y="401">comparison</text>
+      <rect x="250" y="384" width="720" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="250" y="384" width="720" height="24" rx="8" fill="#16a34a"/>
+      <rect x="970" y="384" width="0" height="24" rx="8" fill="#dc2626" opacity=".82"/>
+      <text class="value" x="984" y="401">100% / 0%</text>
+      <text class="small" x="250" y="425">risk 27; posts n/a; products n/a</text>
+    
+  
+</svg>

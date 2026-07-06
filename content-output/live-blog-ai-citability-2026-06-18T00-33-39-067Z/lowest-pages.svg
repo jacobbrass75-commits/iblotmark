@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="504" viewBox="0 0 1160 504">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="504"/>
+  <rect class="panel" x="28" y="24" width="1104" height="456" rx="14"/>
+  <text class="title" x="52" y="64">Lowest AI-Citability Scores</text>
+  <text class="subtitle" x="52" y="87">Pages most in need of answer/schema/product-link refreshes.</text>
+  
+      <text class="label" x="52" y="123">TOP 5 MOUNTS FOR THE SAMSUNG GALAXY A7 LITE TABLET</text>
+      <text class="small" x="52" y="141">amps/modular</text>
+      <rect x="470" y="108" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="108" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="125">51</text>
+    
+
+      <text class="label" x="52" y="166">HOW TO MOUNT A FISH FINDER TO YOUR BOAT USING IBOLT MOUNTS</text>
+      <text class="small" x="52" y="184">fishing</text>
+      <rect x="470" y="151" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="151" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="168">51</text>
+    
+
+      <text class="label" x="52" y="209">TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL</text>
+      <text class="small" x="52" y="227">education</text>
+      <rect x="470" y="194" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="194" width="570" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="211">51</text>
+    
+
+      <text class="label" x="52" y="252">EMBARKING ON A FISHING ADVENTURE: CHOOSING THE RIGHT MOUNT FOR YOUR FISH FINDER</text>
+      <text class="small" x="52" y="270">fishing</text>
+      <rect x="470" y="237" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="237" width="477" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="254">59</text>
+    
+
+      <text class="label" x="52" y="295">USING IBOLT’S STREAM-CAST CREATOR CUSTOM MOUNT KIT FOR MULTIPLE ANGLE SHOTS</text>
+      <text class="small" x="52" y="313">streaming</text>
+      <rect x="470" y="280" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="280" width="477" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="297">59</text>
+    
+
+      <text class="label" x="52" y="338">HOW TO USE IBOLT’S MODULAR MOUNTING SYSTEM</text>
+      <text class="small" x="52" y="356">amps/modular</text>
+      <rect x="470" y="323" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="323" width="477" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="340">59</text>
+    
+
+      <text class="label" x="52" y="381">HOW TO MOUNT A TABLET TO A FORKLIFT PILLAR USING IBOLT</text>
+      <text class="small" x="52" y="399">warehouse</text>
+      <rect x="470" y="366" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="366" width="477" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="383">59</text>
+    
+
+      <text class="label" x="52" y="424">WHAT SIZE IS THE BALL MOUNT ON A GARMIN GPS AND HOW DO I FIND A COMPATIBLE MOUNT?</text>
+      <text class="small" x="52" y="442">amps/modular</text>
+      <rect x="470" y="409" width="570" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="409" width="384" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1054" y="426">67</text>
+    
+</svg>

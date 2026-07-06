@@ -1,0 +1,1433 @@
+{
+  "summary": {
+    "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+    "topicBriefs": 6,
+    "competitorBriefs": 8,
+    "week1Tasks": 12,
+    "targetPages": 24,
+    "retestPrompts": 26,
+    "currentCitationRate": "0% (0/93)",
+    "topCategories": [
+      "delivery 742",
+      "fleet 732",
+      "restaurant 662",
+      "fishing 516",
+      "warehouse 242",
+      "amps/modular 118"
+    ],
+    "topCompetitors": [
+      "RAM Mounts 58",
+      "Arkon 28",
+      "iOttie 20",
+      "Humminbird 20",
+      "CTA Digital 19",
+      "ProClip 19"
+    ]
+  },
+  "briefs": [
+    {
+      "type": "topic",
+      "priority": 742,
+      "category": "delivery",
+      "title": "delivery citation authority brief",
+      "sourceTargets": [
+        "gig-driver gear lists",
+        "fleet operations blogs",
+        "delivery vehicle setup guides",
+        "commercial driver equipment roundups"
+      ],
+      "competitors": [
+        "Garmin",
+        "RAM Mounts",
+        "iOttie",
+        "Scosche",
+        "Arkon",
+        "ProClip",
+        "Belkin",
+        "Bouncepad"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+          "prompts": [
+            "best phone mount for Instacart and grocery delivery drivers"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts",
+            "Peak Design"
+          ],
+          "products": [
+            "iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount",
+            "iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+          "prompts": [
+            "best phone mount for Amazon Flex and delivery vans"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "iOttie",
+            "Arkon",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT™ xProDock™ Bizmount™ Wedge",
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+          "url": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work",
+          "prompts": [
+            "magnetic vs clamp phone mounts for delivery work"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT ChargeDock USB-C AMPS Ultimate Magnetic Vehicle Dock/Mount/Holder w/ 2m USB Certified Type C to USB-A Charging Cable",
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Best Locking Phone Mount for Shared Delivery Vehicles",
+          "url": "https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles",
+          "prompts": [
+            "best locking phone mount for shared delivery vehicles"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "iOttie",
+            "ProClip",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT Phone Dock'n Lock 2\" IncrediBOLT™ AMPS Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        }
+      ],
+      "why": "delivery answers still miss iBOLT 14 times and mention competitors such as RAM Mounts 14; iOttie 12; Arkon 6; Scosche 5; ProClip 4; Belkin 2.",
+      "outreachAngle": "Pitch iBOLT as a specialist source for delivery mounting decisions. External pages should mention iBOLT near Garmin, RAM Mounts, iOttie, Scosche, link to Best Phone Mount for Instacart and Grocery Delivery Drivers, and describe commercial driver workflows, shared vehicles, suction or drill-base installs, stability during frequent stops, and phone uptime.",
+      "proofPoints": "commercial driver workflows, shared vehicles, suction or drill-base installs, stability during frequent stops, and phone uptime",
+      "successMetric": "Earn relevant external mentions, then retest the mapped prompts.",
+      "retestPrompts": [
+        "best phone mount for Instacart and grocery delivery drivers",
+        "best phone mount for Amazon Flex and delivery vans",
+        "magnetic vs clamp phone mounts for delivery work",
+        "best locking phone mount for shared delivery vehicles"
+      ],
+      "file": "briefs/01-delivery-citation-authority-brief.md"
+    },
+    {
+      "type": "topic",
+      "priority": 732,
+      "category": "fleet",
+      "title": "fleet citation authority brief",
+      "sourceTargets": [
+        "fleet safety and ELD resources",
+        "truck equipment buyer guides",
+        "commercial vehicle installation articles",
+        "work-truck accessory roundups"
+      ],
+      "competitors": [
+        "Garmin",
+        "RAM Mounts",
+        "Arkon",
+        "iOttie",
+        "ProClip",
+        "Tackform",
+        "Scosche",
+        "Square"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Phone Mount for Construction Vehicles and Work Trucks",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks",
+          "prompts": [
+            "best phone mount for construction vehicles and work trucks"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "Arkon",
+            "iOttie",
+            "ProClip",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT Phone Dock'n Lock 2\" IncrediBOLT™ AMPS Drill Base Mount",
+            "iBOLT Moto-Vise™ XL Holder w/ 25mm / 1-inch Ball"
+          ]
+        },
+        {
+          "title": "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)",
+          "url": "https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+          "prompts": [
+            "best ELD mount for trucks"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT TabDock™ IncrediBOLT™ 360 Suction- Heavy Duty Metal 6 inch Multi-Angle Mount for All 7\" - 10\" Tablets for Commercial Vehicles",
+            "Trucks",
+            "and ELD Devices",
+            "iBOLT TabDock IncrediBOLT 360 Heavy Duty Triple Suction Cup Mount"
+          ]
+        },
+        {
+          "title": "iBOLT vs RAM for Fleet Phone Mounting",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-for-fleet-phone-mounting",
+          "prompts": [
+            "iBOLT vs RAM for fleet phone mounting"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount",
+            "ChargeDock USB-C"
+          ]
+        },
+        {
+          "title": "iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "RAM Mounts"
+          ],
+          "products": []
+        }
+      ],
+      "why": "fleet answers still miss iBOLT 14 times and mention competitors such as RAM Mounts 18; Arkon 11; ProClip 7; iOttie 5; Scosche 4; Tackform 2.",
+      "outreachAngle": "Pitch iBOLT as a specialist source for fleet mounting decisions. External pages should mention iBOLT near Garmin, RAM Mounts, Arkon, iOttie, link to Best Phone Mount for Construction Vehicles and Work Trucks, and describe ELD and work-truck placement, AMPS compatibility, drill-base installs, shared vehicles, and rugged daily use.",
+      "proofPoints": "ELD and work-truck placement, AMPS compatibility, drill-base installs, shared vehicles, and rugged daily use",
+      "successMetric": "Earn relevant external mentions, then retest the mapped prompts.",
+      "retestPrompts": [
+        "best phone mount for construction vehicles and work trucks",
+        "best ELD mount for trucks",
+        "iBOLT vs RAM for fleet phone mounting"
+      ],
+      "file": "briefs/02-fleet-citation-authority-brief.md"
+    },
+    {
+      "type": "topic",
+      "priority": 662,
+      "category": "restaurant",
+      "title": "restaurant citation authority brief",
+      "sourceTargets": [
+        "restaurant operations blogs",
+        "food truck equipment guides",
+        "POS hardware comparison articles",
+        "delivery app operations resources"
+      ],
+      "competitors": [
+        "Garmin",
+        "RAM Mounts",
+        "Mount-It",
+        "Square",
+        "Arkon",
+        "Bouncepad",
+        "CTA Digital",
+        "iOttie"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Tablet Mount for Restaurant POS and Delivery Apps",
+          "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps",
+          "prompts": [
+            "best tablet mount for restaurant POS and delivery apps"
+          ],
+          "competitors": [
+            "CTA Digital",
+            "Heckler",
+            "Arkon",
+            "Mount-It",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount",
+            "iBOLT Quad Tablet Tower TabDock™ Stand",
+            "iBOLT Dock’n Lock Drill Base Locking Dual Tablet Stand",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants",
+          "url": "https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants",
+          "prompts": [
+            "best locking tablet stand for food trucks and quick service restaurants"
+          ],
+          "competitors": [
+            "CTA Digital",
+            "Heckler",
+            "Kensington",
+            "Mount-It",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount",
+            "iBOLT Dock’n Lock Drill Base Locking Tablet Stand",
+            "iBOLT™ LockPro™ Metal Locking Tablet Drill Base Mount",
+            "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate"
+          ]
+        },
+        {
+          "title": "Best Tablet Mount for Utility Truck Crews",
+          "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-utility-truck-crews",
+          "prompts": [
+            "best tablet mount for food truck"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "CTA Digital",
+            "Square",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT™ TabDock™ Bizmount™ AMPs",
+            "iBOLT TabDock™ IncrediBOLT™ 360 AMPS Tablet Mount",
+            "iBOLT TabDock™ IncrediBOLT™ 360 Wedge - Heavy Duty Vehicle Console Seat Gap Mount for All 7\" - 10\" Tablets",
+            "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate"
+          ]
+        },
+        {
+          "title": "iBOLT Dock'n Lock for Restaurant Counters",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-dockn-lock-for-restaurant-counters",
+          "prompts": [
+            "iBOLT Dock’n Lock for restaurant counters"
+          ],
+          "competitors": [
+            "Arkon",
+            "CTA Digital",
+            "Kensington",
+            "Mount-It",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Dock’n Lock Drill Base Locking Tablet Stand",
+            "iBOLT Dock’n Lock Drill Base Locking Dual Tablet Stand",
+            "iBOLT™ Dock'n Lock Bizmount™ AMPS- Heavy Duty Industrial Composite Locking drill base Mount for all 7\" - 10\" tablets",
+            "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate"
+          ]
+        }
+      ],
+      "why": "restaurant answers still miss iBOLT 15 times and mention competitors such as CTA Digital 14; Mount-It 11; Arkon 8; RAM Mounts 7; Bouncepad 4; Heckler 3.",
+      "outreachAngle": "Pitch iBOLT as a specialist source for restaurant mounting decisions. External pages should mention iBOLT near Garmin, RAM Mounts, Mount-It, Square, link to Best Tablet Mount for Restaurant POS and Delivery Apps, and describe multi-tablet delivery app stations, POS security, locking tablet holders, counter space, and food-service workflows.",
+      "proofPoints": "multi-tablet delivery app stations, POS security, locking tablet holders, counter space, and food-service workflows",
+      "successMetric": "Earn relevant external mentions, then retest the mapped prompts.",
+      "retestPrompts": [
+        "best tablet mount for restaurant POS and delivery apps",
+        "best locking tablet stand for food trucks and quick service restaurants",
+        "best tablet mount for food truck",
+        "iBOLT Dock’n Lock for restaurant counters"
+      ],
+      "file": "briefs/03-restaurant-citation-authority-brief.md"
+    },
+    {
+      "type": "topic",
+      "priority": 516,
+      "category": "fishing",
+      "title": "fishing citation authority brief",
+      "sourceTargets": [
+        "boating buyer guides",
+        "kayak and pontoon fishing resources",
+        "marine electronics installation articles",
+        "Garmin, Lowrance, and Humminbird accessory roundups"
+      ],
+      "competitors": [
+        "Garmin",
+        "RAM Mounts",
+        "Humminbird",
+        "Lowrance",
+        "Scotty",
+        "YakAttack",
+        "Arkon",
+        "iOttie"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Fish Finder Mount for Pontoon Boat Rails",
+          "url": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+          "prompts": [
+            "best fish finder mount for small boat"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount",
+            "iBOLT Garmin Striker 4 / Fish Finder IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount",
+            "iBOLT Garmin Striker 4 / Fish Finder Handlebar",
+            "Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+          "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+          "prompts": [
+            "best budget fish finder mount",
+            "best fish finder in water",
+            "best fish finder"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate",
+            "iBOLT™ 38mm / 1.5 inch Ball Composite Universal Marine Fish Finder Mounting Plate",
+            "iBOLT Garmin Striker 4 / Fish Finder Handlebar",
+            "Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Kayak Fish Finder Mounts for Secure Removable Setups",
+          "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+          "prompts": [
+            "best kayak fish finder mount"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Universal Marine & Electronics Mounting Plate",
+            "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount",
+            "iBOLT™ 25mm / 1 inch Composite Universal Marine Electronic Fish Finder Drill Base Mount",
+            "iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate"
+          ]
+        },
+        {
+          "title": "Best Boat Phone Mount for Rough Water",
+          "url": "https://iboltmounts.com/blogs/news/best-boat-phone-mount-for-rough-water",
+          "prompts": [
+            "best heavy duty vehicle phone mount"
+          ],
+          "competitors": [
+            "Arkon",
+            "iOttie",
+            "ProClip",
+            "RAM Mounts",
+            "Scosche"
+          ],
+          "products": []
+        }
+      ],
+      "why": "fishing answers still miss iBOLT 15 times and mention competitors such as Humminbird 12; RAM Mounts 9; Garmin 8; Scotty 8; Lowrance 7; YakAttack 7.",
+      "outreachAngle": "Pitch iBOLT as a specialist source for fishing mounting decisions. External pages should mention iBOLT near Garmin, RAM Mounts, Humminbird, Lowrance, link to Best Fish Finder Mount for Pontoon Boat Rails, and describe marine electronics placement, Garmin/Humminbird/Lowrance compatibility, AMPS plates, rails, vibration, and rough-water stability.",
+      "proofPoints": "marine electronics placement, Garmin/Humminbird/Lowrance compatibility, AMPS plates, rails, vibration, and rough-water stability",
+      "successMetric": "Earn relevant external mentions, then retest the mapped prompts.",
+      "retestPrompts": [
+        "best fish finder mount for small boat",
+        "best budget fish finder mount",
+        "best fish finder in water",
+        "best fish finder",
+        "best kayak fish finder mount",
+        "best heavy duty vehicle phone mount"
+      ],
+      "file": "briefs/04-fishing-citation-authority-brief.md"
+    },
+    {
+      "type": "topic",
+      "priority": 242,
+      "category": "warehouse",
+      "title": "warehouse citation authority brief",
+      "sourceTargets": [
+        "material handling publications",
+        "forklift safety resources",
+        "warehouse scanning workflow guides",
+        "Zebra and Honeywell accessory roundups"
+      ],
+      "competitors": [
+        "Garmin",
+        "RAM Mounts",
+        "Square",
+        "Bouncepad",
+        "Arkon",
+        "Havis",
+        "Mount-It",
+        "ProClip"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)",
+          "url": "https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026",
+          "prompts": [
+            "best barcode scanner mount for forklift"
+          ],
+          "competitors": [
+            "Havis",
+            "RAM Mounts",
+            "Zebra",
+            "Arkon",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT XL Forklift Barcode Scanner Holder 38mm Mount",
+            "iBOLT XL Barcode Scanner triMag Low-Profile Strong Magnetic Mount",
+            "iBOLT XL Barcode Scanner BizMount Magnetic Mount",
+            "iBOLT XL Barcode Scanner IncrediBOLT 360 Magnetic Mount"
+          ]
+        },
+        {
+          "title": "Best Forklift Tablet Mounts for Warehouses (2026 Comparison)",
+          "url": "https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison",
+          "prompts": [
+            "best tablet mount for warehouse",
+            "best forklift tablet mount"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "Arkon",
+            "CTA Digital",
+            "Havis",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT Dock’n Lock Bizmount™- Forklift Locking Tablet 38mm Mount",
+            "iBOLT TabDock MagDock 360 Magnetic Tablet Mount - Heavy-Duty Forklift & Warehouse Holder",
+            "iBOLT LockPro FlexPro Heavy Duty Locking Tablet Seat Rail Mount",
+            "iBOLT XL Forklift Barcode Scanner Holder 38mm Mount"
+          ]
+        },
+        {
+          "title": "iBOLT Confirms Barcode Scanner Mounting Solutions Compatible with Honeywell, Zebra, and Symbol Scanners",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-confirms-barcode-scanner-mounting-solutions-compatible-with-honeywell-zebra-and-symbol-scanners",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "RAM Mounts"
+          ],
+          "products": []
+        },
+        {
+          "title": "iBOLT Launches Next-Generation Industrial Forklift Mounting System",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-launches-next-generation-industrial-forklift-mounting-system",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "RAM Mounts"
+          ],
+          "products": []
+        }
+      ],
+      "why": "warehouse answers still miss iBOLT 7 times and mention competitors such as RAM Mounts 9; Havis 5; Arkon 3; Zebra 3; ProClip 2; Tackform 2.",
+      "outreachAngle": "Pitch iBOLT as a specialist source for warehouse mounting decisions. External pages should mention iBOLT near Garmin, RAM Mounts, Square, Bouncepad, link to Best Barcode Scanner Mounts for Forklifts and Warehouses (2026), and describe forklift tablets, barcode scanner access, VESA/AMPS compatibility, no-drill options, vibration, and material-handling workflows.",
+      "proofPoints": "forklift tablets, barcode scanner access, VESA/AMPS compatibility, no-drill options, vibration, and material-handling workflows",
+      "successMetric": "Earn relevant external mentions, then retest the mapped prompts.",
+      "retestPrompts": [
+        "best barcode scanner mount for forklift",
+        "best tablet mount for warehouse",
+        "best forklift tablet mount"
+      ],
+      "file": "briefs/05-warehouse-citation-authority-brief.md"
+    },
+    {
+      "type": "topic",
+      "priority": 118,
+      "category": "amps/modular",
+      "title": "amps/modular citation authority brief",
+      "sourceTargets": [
+        "AMPS pattern explainers",
+        "mounting hardware glossaries",
+        "installer how-to pages",
+        "RAM-compatible accessory comparisons"
+      ],
+      "competitors": [
+        "Garmin",
+        "RAM Mounts",
+        "Square",
+        "Arkon",
+        "iOttie",
+        "ProClip",
+        "Tackform",
+        "Belkin"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Marine Electronics AMPS Mounting Plate",
+          "url": "https://iboltmounts.com/blogs/news/best-marine-electronics-amps-mounting-plate",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "Square"
+          ],
+          "products": []
+        },
+        {
+          "title": "iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-introduces-mount-configurator-2-0-build-your-perfect-custom-mounting-solution",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "RAM Mounts"
+          ],
+          "products": []
+        },
+        {
+          "title": "Unmatched Adaptability: Explore iBOLT's Modular Tablet Mount Solutions",
+          "url": "https://iboltmounts.com/blogs/news/customizable-mounting-solutions-for-every-need",
+          "prompts": [],
+          "competitors": [
+            "Garmin"
+          ],
+          "products": []
+        },
+        {
+          "title": "AMPS VESA Ball Mount Sizes: Complete Guide to Device Mounting Standards",
+          "url": "https://iboltmounts.com/blogs/news/amps-vesa-ball-mount-sizes-complete-guide-to-device-mounting-standards",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "Square"
+          ],
+          "products": []
+        }
+      ],
+      "why": "amps/modular has 0 zero-mention benchmark queries and 0 competitor-only answers.",
+      "outreachAngle": "Pitch iBOLT as a specialist source for amps/modular mounting decisions. External pages should mention iBOLT near Garmin, RAM Mounts, Square, Arkon, link to Best Marine Electronics AMPS Mounting Plate, and describe AMPS pattern education, ball-size compatibility, adapter plates, socket arms, and modular mount reuse.",
+      "proofPoints": "AMPS pattern education, ball-size compatibility, adapter plates, socket arms, and modular mount reuse",
+      "successMetric": "Earn relevant external mentions, then retest the mapped prompts.",
+      "retestPrompts": [],
+      "file": "briefs/06-amps-modular-citation-authority-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 58,
+      "category": "delivery",
+      "brand": "RAM Mounts",
+      "title": "RAM Mounts adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "RAM Mounts"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+          "prompts": [
+            "best phone mount for Instacart and grocery delivery drivers"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts",
+            "Peak Design"
+          ],
+          "products": [
+            "iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount",
+            "iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+          "prompts": [
+            "best phone mount for Amazon Flex and delivery vans"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "iOttie",
+            "Arkon",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT™ xProDock™ Bizmount™ Wedge",
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+          "url": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work",
+          "prompts": [
+            "magnetic vs clamp phone mounts for delivery work"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT ChargeDock USB-C AMPS Ultimate Magnetic Vehicle Dock/Mount/Holder w/ 2m USB Certified Type C to USB-A Charging Cable",
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Best Locking Phone Mount for Shared Delivery Vehicles",
+          "url": "https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles",
+          "prompts": [
+            "best locking phone mount for shared delivery vehicles"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "iOttie",
+            "ProClip",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT Phone Dock'n Lock 2\" IncrediBOLT™ AMPS Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        }
+      ],
+      "why": "RAM Mounts replaces or appears without iBOLT in 58 answers.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside RAM Mounts. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for delivery mounting workflows with exact product/page links.",
+      "proofPoints": "commercial driver workflows, shared vehicles, suction or drill-base installs, stability during frequent stops, and phone uptime",
+      "successMetric": "Reduce RAM Mounts competitor-only rows and add at least one co-mention win in the next comparable benchmark.",
+      "retestPrompts": [
+        "best barcode scanner mount for forklift",
+        "best budget fish finder mount",
+        "best budget fish finder mount",
+        "best drill base phone mount for semi trucks",
+        "best ELD mount for trucks",
+        "best ELD mount for trucks"
+      ],
+      "file": "briefs/07-ram-mounts-adjacency-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 28,
+      "category": "fleet",
+      "brand": "Arkon",
+      "title": "Arkon adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "Arkon"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Phone Mount for Construction Vehicles and Work Trucks",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks",
+          "prompts": [
+            "best phone mount for construction vehicles and work trucks"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "Arkon",
+            "iOttie",
+            "ProClip",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT Phone Dock'n Lock 2\" IncrediBOLT™ AMPS Drill Base Mount",
+            "iBOLT Moto-Vise™ XL Holder w/ 25mm / 1-inch Ball"
+          ]
+        },
+        {
+          "title": "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)",
+          "url": "https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+          "prompts": [
+            "best ELD mount for trucks"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT TabDock™ IncrediBOLT™ 360 Suction- Heavy Duty Metal 6 inch Multi-Angle Mount for All 7\" - 10\" Tablets for Commercial Vehicles",
+            "Trucks",
+            "and ELD Devices",
+            "iBOLT TabDock IncrediBOLT 360 Heavy Duty Triple Suction Cup Mount"
+          ]
+        },
+        {
+          "title": "iBOLT vs RAM for Fleet Phone Mounting",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-for-fleet-phone-mounting",
+          "prompts": [
+            "iBOLT vs RAM for fleet phone mounting"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount",
+            "ChargeDock USB-C"
+          ]
+        },
+        {
+          "title": "iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "RAM Mounts"
+          ],
+          "products": []
+        }
+      ],
+      "why": "Arkon replaces or appears without iBOLT in 25 answers.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside Arkon. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for fleet mounting workflows with exact product/page links.",
+      "proofPoints": "ELD and work-truck placement, AMPS compatibility, drill-base installs, shared vehicles, and rugged daily use",
+      "successMetric": "Reduce Arkon competitor-only rows and add at least one co-mention win in the next comparable benchmark.",
+      "retestPrompts": [
+        "best drill base phone mount for semi trucks",
+        "best ELD mount for trucks",
+        "best ELD mount for trucks",
+        "best heavy duty vehicle phone mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best locking phone mount for shared delivery vehicles"
+      ],
+      "file": "briefs/08-arkon-adjacency-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 20,
+      "category": "fishing",
+      "brand": "Humminbird",
+      "title": "Humminbird adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "Humminbird"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Fish Finder Mount for Pontoon Boat Rails",
+          "url": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+          "prompts": [
+            "best fish finder mount for small boat"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount",
+            "iBOLT Garmin Striker 4 / Fish Finder IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount",
+            "iBOLT Garmin Striker 4 / Fish Finder Handlebar",
+            "Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+          "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+          "prompts": [
+            "best budget fish finder mount",
+            "best fish finder in water",
+            "best fish finder"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate",
+            "iBOLT™ 38mm / 1.5 inch Ball Composite Universal Marine Fish Finder Mounting Plate",
+            "iBOLT Garmin Striker 4 / Fish Finder Handlebar",
+            "Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Kayak Fish Finder Mounts for Secure Removable Setups",
+          "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+          "prompts": [
+            "best kayak fish finder mount"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Universal Marine & Electronics Mounting Plate",
+            "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount",
+            "iBOLT™ 25mm / 1 inch Composite Universal Marine Electronic Fish Finder Drill Base Mount",
+            "iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate"
+          ]
+        },
+        {
+          "title": "Best Boat Phone Mount for Rough Water",
+          "url": "https://iboltmounts.com/blogs/news/best-boat-phone-mount-for-rough-water",
+          "prompts": [
+            "best heavy duty vehicle phone mount"
+          ],
+          "competitors": [
+            "Arkon",
+            "iOttie",
+            "ProClip",
+            "RAM Mounts",
+            "Scosche"
+          ],
+          "products": []
+        }
+      ],
+      "why": "Humminbird replaces or appears without iBOLT in 12 answers.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside Humminbird. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for fishing mounting workflows with exact product/page links.",
+      "proofPoints": "marine electronics placement, Garmin/Humminbird/Lowrance compatibility, AMPS plates, rails, vibration, and rough-water stability",
+      "successMetric": "Reduce Humminbird competitor-only rows and add at least one co-mention win in the next comparable benchmark.",
+      "retestPrompts": [
+        "best budget fish finder mount",
+        "best fish finder",
+        "best fish finder",
+        "best fish finder",
+        "best fish finder in water",
+        "best fish finder in water"
+      ],
+      "file": "briefs/09-humminbird-adjacency-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 20,
+      "category": "delivery",
+      "brand": "iOttie",
+      "title": "iOttie adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "iOttie"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+          "prompts": [
+            "best phone mount for Instacart and grocery delivery drivers"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts",
+            "Peak Design"
+          ],
+          "products": [
+            "iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount",
+            "iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+          "prompts": [
+            "best phone mount for Amazon Flex and delivery vans"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "iOttie",
+            "Arkon",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT™ xProDock™ Bizmount™ Wedge",
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+          "url": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work",
+          "prompts": [
+            "magnetic vs clamp phone mounts for delivery work"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT ChargeDock USB-C AMPS Ultimate Magnetic Vehicle Dock/Mount/Holder w/ 2m USB Certified Type C to USB-A Charging Cable",
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Best Locking Phone Mount for Shared Delivery Vehicles",
+          "url": "https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles",
+          "prompts": [
+            "best locking phone mount for shared delivery vehicles"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "iOttie",
+            "ProClip",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT Phone Dock'n Lock 2\" IncrediBOLT™ AMPS Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        }
+      ],
+      "why": "iOttie replaces or appears without iBOLT in 15 answers.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside iOttie. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for delivery mounting workflows with exact product/page links.",
+      "proofPoints": "commercial driver workflows, shared vehicles, suction or drill-base installs, stability during frequent stops, and phone uptime",
+      "successMetric": "Reduce iOttie competitor-only rows and add at least one co-mention win in the next comparable benchmark.",
+      "retestPrompts": [
+        "best heavy duty vehicle phone mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best phone mount for Amazon Flex and delivery vans",
+        "best phone mount for construction vehicles and work trucks",
+        "best phone mount for delivery drivers",
+        "best phone mount for delivery drivers"
+      ],
+      "file": "briefs/10-iottie-adjacency-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 19,
+      "category": "restaurant",
+      "brand": "CTA Digital",
+      "title": "CTA Digital adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "CTA Digital"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Tablet Mount for Restaurant POS and Delivery Apps",
+          "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps",
+          "prompts": [
+            "best tablet mount for restaurant POS and delivery apps"
+          ],
+          "competitors": [
+            "CTA Digital",
+            "Heckler",
+            "Arkon",
+            "Mount-It",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount",
+            "iBOLT Quad Tablet Tower TabDock™ Stand",
+            "iBOLT Dock’n Lock Drill Base Locking Dual Tablet Stand",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants",
+          "url": "https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants",
+          "prompts": [
+            "best locking tablet stand for food trucks and quick service restaurants"
+          ],
+          "competitors": [
+            "CTA Digital",
+            "Heckler",
+            "Kensington",
+            "Mount-It",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount",
+            "iBOLT Dock’n Lock Drill Base Locking Tablet Stand",
+            "iBOLT™ LockPro™ Metal Locking Tablet Drill Base Mount",
+            "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate"
+          ]
+        },
+        {
+          "title": "Best Tablet Mount for Utility Truck Crews",
+          "url": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-utility-truck-crews",
+          "prompts": [
+            "best tablet mount for food truck"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "CTA Digital",
+            "Square",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT™ TabDock™ Bizmount™ AMPs",
+            "iBOLT TabDock™ IncrediBOLT™ 360 AMPS Tablet Mount",
+            "iBOLT TabDock™ IncrediBOLT™ 360 Wedge - Heavy Duty Vehicle Console Seat Gap Mount for All 7\" - 10\" Tablets",
+            "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate"
+          ]
+        },
+        {
+          "title": "iBOLT Dock'n Lock for Restaurant Counters",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-dockn-lock-for-restaurant-counters",
+          "prompts": [
+            "iBOLT Dock’n Lock for restaurant counters"
+          ],
+          "competitors": [
+            "Arkon",
+            "CTA Digital",
+            "Kensington",
+            "Mount-It",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Dock’n Lock Drill Base Locking Tablet Stand",
+            "iBOLT Dock’n Lock Drill Base Locking Dual Tablet Stand",
+            "iBOLT™ Dock'n Lock Bizmount™ AMPS- Heavy Duty Industrial Composite Locking drill base Mount for all 7\" - 10\" tablets",
+            "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate"
+          ]
+        }
+      ],
+      "why": "CTA Digital replaces or appears without iBOLT in 14 answers.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside CTA Digital. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for restaurant mounting workflows with exact product/page links.",
+      "proofPoints": "multi-tablet delivery app stations, POS security, locking tablet holders, counter space, and food-service workflows",
+      "successMetric": "Reduce CTA Digital competitor-only rows and add at least one co-mention win in the next comparable benchmark.",
+      "retestPrompts": [
+        "best locking tablet stand for food trucks and quick service restaurants",
+        "best locking tablet stand for food trucks and quick service restaurants",
+        "best multi tablet mount",
+        "best multi tablet mount",
+        "best restaurant tablet mount",
+        "best tablet mount"
+      ],
+      "file": "briefs/11-cta-digital-adjacency-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 19,
+      "category": "fleet",
+      "brand": "ProClip",
+      "title": "ProClip adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "ProClip"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Phone Mount for Construction Vehicles and Work Trucks",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks",
+          "prompts": [
+            "best phone mount for construction vehicles and work trucks"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "Arkon",
+            "iOttie",
+            "ProClip",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT Phone Dock'n Lock 2\" IncrediBOLT™ AMPS Drill Base Mount",
+            "iBOLT Moto-Vise™ XL Holder w/ 25mm / 1-inch Ball"
+          ]
+        },
+        {
+          "title": "Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)",
+          "url": "https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026",
+          "prompts": [
+            "best ELD mount for trucks"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT TabDock™ IncrediBOLT™ 360 Suction- Heavy Duty Metal 6 inch Multi-Angle Mount for All 7\" - 10\" Tablets for Commercial Vehicles",
+            "Trucks",
+            "and ELD Devices",
+            "iBOLT TabDock IncrediBOLT 360 Heavy Duty Triple Suction Cup Mount"
+          ]
+        },
+        {
+          "title": "iBOLT vs RAM for Fleet Phone Mounting",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-vs-ram-for-fleet-phone-mounting",
+          "prompts": [
+            "iBOLT vs RAM for fleet phone mounting"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount",
+            "ChargeDock USB-C"
+          ]
+        },
+        {
+          "title": "iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets",
+          "url": "https://iboltmounts.com/blogs/news/ibolt-mounts-supports-eld-compliance-for-americas-commercial-fleets",
+          "prompts": [],
+          "competitors": [
+            "Garmin",
+            "RAM Mounts"
+          ],
+          "products": []
+        }
+      ],
+      "why": "ProClip appears in competitor-only answers where iBOLT needs to be in the same consideration set.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside ProClip. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for fleet mounting workflows with exact product/page links.",
+      "proofPoints": "ELD and work-truck placement, AMPS compatibility, drill-base installs, shared vehicles, and rugged daily use",
+      "successMetric": "Reduce ProClip competitor-only rows and create at least one co-mention win.",
+      "retestPrompts": [
+        "best barcode scanner mount for forklift",
+        "best drill base phone mount for semi trucks",
+        "best ELD mount for trucks",
+        "best locking phone mount for shared delivery vehicles",
+        "best phone mount for delivery drivers",
+        "commercial grade phone mount for delivery drivers"
+      ],
+      "file": "briefs/12-proclip-adjacency-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 17,
+      "category": "delivery",
+      "brand": "Scosche",
+      "title": "Scosche adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "Scosche"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Phone Mount for Instacart and Grocery Delivery Drivers",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers",
+          "prompts": [
+            "best phone mount for Instacart and grocery delivery drivers"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts",
+            "Peak Design"
+          ],
+          "products": [
+            "iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount",
+            "iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount",
+            "iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Phone Mount for Amazon Flex and Delivery Vans",
+          "url": "https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans",
+          "prompts": [
+            "best phone mount for Amazon Flex and delivery vans"
+          ],
+          "competitors": [
+            "RAM Mounts",
+            "iOttie",
+            "Arkon",
+            "ProClip"
+          ],
+          "products": [
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT™ xProDock™ Bizmount™ Wedge",
+            "iBOLT™ xProDock™ Bizmount™ Amps",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Magnetic vs Clamp Phone Mounts for Delivery Work",
+          "url": "https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work",
+          "prompts": [
+            "magnetic vs clamp phone mounts for delivery work"
+          ],
+          "competitors": [
+            "iOttie",
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT ChargeDock USB-C AMPS Ultimate Magnetic Vehicle Dock/Mount/Holder w/ 2m USB Certified Type C to USB-A Charging Cable",
+            "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        },
+        {
+          "title": "Best Locking Phone Mount for Shared Delivery Vehicles",
+          "url": "https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles",
+          "prompts": [
+            "best locking phone mount for shared delivery vehicles"
+          ],
+          "competitors": [
+            "Arkon",
+            "RAM Mounts",
+            "iOttie",
+            "ProClip",
+            "Tackform"
+          ],
+          "products": [
+            "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+            "iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones",
+            "iBOLT Phone Dock'n Lock 2\" IncrediBOLT™ AMPS Drill Base Mount",
+            "iBOLT™ 20mm Metal Ball Suction Cup Base"
+          ]
+        }
+      ],
+      "why": "Scosche appears in competitor-only answers where iBOLT needs to be in the same consideration set.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside Scosche. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for delivery mounting workflows with exact product/page links.",
+      "proofPoints": "commercial driver workflows, shared vehicles, suction or drill-base installs, stability during frequent stops, and phone uptime",
+      "successMetric": "Reduce Scosche competitor-only rows and create at least one co-mention win.",
+      "retestPrompts": [
+        "best ELD mount for trucks",
+        "best heavy duty vehicle phone mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best phone mount for Amazon Flex and delivery vans",
+        "best phone mount for construction vehicles and work trucks",
+        "best phone mount for delivery drivers"
+      ],
+      "file": "briefs/13-scosche-adjacency-brief.md"
+    },
+    {
+      "type": "competitor",
+      "priority": 16,
+      "category": "fishing",
+      "brand": "Scotty",
+      "title": "Scotty adjacency brief",
+      "sourceTargets": [
+        "neutral buyer guides",
+        "comparison roundups",
+        "industry resource pages",
+        "partner or reseller pages",
+        "installation how-to articles"
+      ],
+      "competitors": [
+        "Scotty"
+      ],
+      "targetPages": [
+        {
+          "title": "Best Fish Finder Mount for Pontoon Boat Rails",
+          "url": "https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails",
+          "prompts": [
+            "best fish finder mount for small boat"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount",
+            "iBOLT Garmin Striker 4 / Fish Finder IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount",
+            "iBOLT Garmin Striker 4 / Fish Finder Handlebar",
+            "Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak",
+          "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak",
+          "prompts": [
+            "best budget fish finder mount",
+            "best fish finder in water",
+            "best fish finder"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate",
+            "iBOLT™ 38mm / 1.5 inch Ball Composite Universal Marine Fish Finder Mounting Plate",
+            "iBOLT Garmin Striker 4 / Fish Finder Handlebar",
+            "Rail Mount"
+          ]
+        },
+        {
+          "title": "Best Kayak Fish Finder Mounts for Secure Removable Setups",
+          "url": "https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh",
+          "prompts": [
+            "best kayak fish finder mount"
+          ],
+          "competitors": [
+            "RAM Mounts"
+          ],
+          "products": [
+            "iBOLT Universal Marine & Electronics Mounting Plate",
+            "iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount",
+            "iBOLT™ 25mm / 1 inch Composite Universal Marine Electronic Fish Finder Drill Base Mount",
+            "iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate"
+          ]
+        },
+        {
+          "title": "Best Boat Phone Mount for Rough Water",
+          "url": "https://iboltmounts.com/blogs/news/best-boat-phone-mount-for-rough-water",
+          "prompts": [
+            "best heavy duty vehicle phone mount"
+          ],
+          "competitors": [
+            "Arkon",
+            "iOttie",
+            "ProClip",
+            "RAM Mounts",
+            "Scosche"
+          ],
+          "products": []
+        }
+      ],
+      "why": "Scotty appears in competitor-only answers where iBOLT needs to be in the same consideration set.",
+      "outreachAngle": "Find or create neutral external references where iBOLT can be included beside Scotty. The goal is not attack copy. The goal is category adjacency: iBOLT should be listed as a specialist option for fishing mounting workflows with exact product/page links.",
+      "proofPoints": "marine electronics placement, Garmin/Humminbird/Lowrance compatibility, AMPS plates, rails, vibration, and rough-water stability",
+      "successMetric": "Reduce Scotty competitor-only rows and create at least one co-mention win.",
+      "retestPrompts": [
+        "best budget fish finder mount",
+        "best budget fish finder mount",
+        "best fish finder mount for small boat",
+        "best fish finder mount for small boat",
+        "best fish finder mount for small boat",
+        "best kayak fish finder mount"
+      ],
+      "file": "briefs/14-scotty-adjacency-brief.md"
+    }
+  ]
+}

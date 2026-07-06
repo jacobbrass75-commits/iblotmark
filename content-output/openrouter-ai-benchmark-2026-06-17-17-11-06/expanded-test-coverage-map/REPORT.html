@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Expanded AI Benchmark Coverage Map</title>
+<style>
+body{margin:0;background:#f8fafc;color:#111827;font-family:Arial,Helvetica,sans-serif}main{max-width:1240px;margin:0 auto;padding:34px 26px 60px}h1{font-size:34px;margin:0 0 8px}h2{font-size:22px;margin:34px 0 14px}p{color:#334155;line-height:1.55}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}.card{background:#fff;border:1px solid #d7dee8;border-radius:12px;padding:16px}.k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:700}.v{font-size:30px;font-weight:800;margin-top:8px}.chart{background:#fff;border:1px solid #d7dee8;border-radius:12px;padding:12px;margin:14px 0;overflow:auto}table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #d7dee8;border-radius:12px;overflow:hidden}th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid #edf2f7;font-size:13px}th{background:#f1f5f9;color:#475569;text-transform:uppercase;font-size:11px;letter-spacing:.04em}.note{border-left:6px solid #f97316;background:#fff;border-radius:10px;padding:16px 18px;border-top:1px solid #d7dee8;border-right:1px solid #d7dee8;border-bottom:1px solid #d7dee8}
+</style></head><body><main>
+<h1>Expanded AI Benchmark Coverage Map</h1>
+<p class="note"><strong>Status:</strong> This is a complete dry-run coverage map. The live run still needs <code>OPENROUTER_API_KEY</code> set in the shell.</p>
+<section class="cards"><div class="card"><div class="k">Prompts</div><div class="v">207</div><p>Expanded dry-run prompt count</p></div><div class="card"><div class="k">Provider requests</div><div class="v">621</div><p>One-at-a-time requests</p></div><div class="card"><div class="k">Providers</div><div class="v">3</div><p>ChatGPT, Gemini, Claude</p></div><div class="card"><div class="k">Batches</div><div class="v">11</div><p>Run groups</p></div><div class="card"><div class="k">Refresh prompts</div><div class="v">37</div><p>Mapped page work first</p></div><div class="card"><div class="k">Canonical prompts</div><div class="v">26</div><p>Survivor decision first</p></div><div class="card"><div class="k">No mapped page</div><div class="v">59</div><p>Content/solution gaps</p></div><div class="card"><div class="k">Lower-priority mapped</div><div class="v">85</div><p>Long-tail retests</p></div><div class="card"><div class="k">API key</div><div class="v">missing</div><p>Live run gate</p></div></section>
+<h2>Prompts By Category</h2><div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="552" viewBox="0 0 900 552" role="img" aria-label="Expanded prompts by category">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31" font-size="20" font-weight="800" fill="#0f172a">Expanded prompts by category</text>
+<text x="16" y="75" font-size="13" fill="#334155">fleet</text>
+<rect x="190" y="58" width="662" height="24" fill="#1d4ed8" rx="4"/>
+<text x="860" y="75" font-size="13" fill="#111827" font-weight="700">42</text>
+<text x="16" y="108" font-size="13" fill="#334155">fishing</text>
+<rect x="190" y="91" width="567" height="24" fill="#1d4ed8" rx="4"/>
+<text x="765" y="108" font-size="13" fill="#111827" font-weight="700">36</text>
+<text x="16" y="141" font-size="13" fill="#334155">restaurant</text>
+<rect x="190" y="124" width="489" height="24" fill="#1d4ed8" rx="4"/>
+<text x="687" y="141" font-size="13" fill="#111827" font-weight="700">31</text>
+<text x="16" y="174" font-size="13" fill="#334155">delivery</text>
+<rect x="190" y="157" width="363" height="24" fill="#1d4ed8" rx="4"/>
+<text x="561" y="174" font-size="13" fill="#111827" font-weight="700">23</text>
+<text x="16" y="207" font-size="13" fill="#334155">warehouse</text>
+<rect x="190" y="190" width="236" height="24" fill="#1d4ed8" rx="4"/>
+<text x="434" y="207" font-size="13" fill="#111827" font-weight="700">15</text>
+<text x="16" y="240" font-size="13" fill="#334155">amps/modular</text>
+<rect x="190" y="223" width="205" height="24" fill="#1d4ed8" rx="4"/>
+<text x="403" y="240" font-size="13" fill="#111827" font-weight="700">13</text>
+<text x="16" y="273" font-size="13" fill="#334155">streaming</text>
+<rect x="190" y="256" width="173" height="24" fill="#1d4ed8" rx="4"/>
+<text x="371" y="273" font-size="13" fill="#111827" font-weight="700">11</text>
+<text x="16" y="306" font-size="13" fill="#334155">offroad</text>
+<rect x="190" y="289" width="126" height="24" fill="#1d4ed8" rx="4"/>
+<text x="324" y="306" font-size="13" fill="#111827" font-weight="700">8</text>
+<text x="16" y="339" font-size="13" fill="#334155">cycling</text>
+<rect x="190" y="322" width="95" height="24" fill="#1d4ed8" rx="4"/>
+<text x="293" y="339" font-size="13" fill="#111827" font-weight="700">6</text>
+<text x="16" y="372" font-size="13" fill="#334155">education</text>
+<rect x="190" y="355" width="95" height="24" fill="#1d4ed8" rx="4"/>
+<text x="293" y="372" font-size="13" fill="#111827" font-weight="700">6</text>
+<text x="16" y="405" font-size="13" fill="#334155">kitchen/home</text>
+<rect x="190" y="388" width="79" height="24" fill="#1d4ed8" rx="4"/>
+<text x="277" y="405" font-size="13" fill="#111827" font-weight="700">5</text>
+<text x="16" y="438" font-size="13" fill="#334155">travel</text>
+<rect x="190" y="421" width="79" height="24" fill="#1d4ed8" rx="4"/>
+<text x="277" y="438" font-size="13" fill="#111827" font-weight="700">5</text>
+<text x="16" y="471" font-size="13" fill="#334155">agriculture</text>
+<rect x="190" y="454" width="63" height="24" fill="#1d4ed8" rx="4"/>
+<text x="261" y="471" font-size="13" fill="#111827" font-weight="700">4</text>
+<text x="16" y="504" font-size="13" fill="#334155">tablet</text>
+<rect x="190" y="487" width="32" height="24" fill="#1d4ed8" rx="4"/>
+<text x="230" y="504" font-size="13" fill="#111827" font-weight="700">2</text>
+</svg></div>
+<h2>Readiness State</h2><div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="390" viewBox="0 0 900 390" role="img" aria-label="Expanded prompts by readiness state">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31" font-size="20" font-weight="800" fill="#0f172a">Expanded prompts by readiness state</text>
+<text x="16" y="75" font-size="13" fill="#334155">mapped lower-priority retest</text>
+<rect x="190" y="58" width="662" height="24" fill="#0f766e" rx="4"/>
+<text x="860" y="75" font-size="13" fill="#111827" font-weight="700">85</text>
+<text x="16" y="108" font-size="13" fill="#334155">new content or solution page needed</text>
+<rect x="190" y="91" width="460" height="24" fill="#0f766e" rx="4"/>
+<text x="658" y="108" font-size="13" fill="#111827" font-weight="700">59</text>
+<text x="16" y="141" font-size="13" fill="#334155">refresh then retest</text>
+<rect x="190" y="124" width="288" height="24" fill="#0f766e" rx="4"/>
+<text x="486" y="141" font-size="13" fill="#111827" font-weight="700">37</text>
+<text x="16" y="174" font-size="13" fill="#334155">canonical review before retest</text>
+<rect x="190" y="157" width="202" height="24" fill="#0f766e" rx="4"/>
+<text x="400" y="174" font-size="13" fill="#111827" font-weight="700">26</text>
+</svg></div>
+<h2>Prompt Source Mix</h2><div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="390" viewBox="0 0 900 390" role="img" aria-label="Expanded prompts by source">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31" font-size="20" font-weight="800" fill="#0f172a">Expanded prompts by source</text>
+<text x="16" y="75" font-size="13" fill="#334155">blog_inventory_title</text>
+<rect x="190" y="58" width="662" height="24" fill="#7c3aed" rx="4"/>
+<text x="860" y="75" font-size="13" fill="#111827" font-weight="700">56</text>
+<text x="16" y="108" font-size="13" fill="#334155">consumer_buyer_prompt</text>
+<rect x="190" y="91" width="437" height="24" fill="#7c3aed" rx="4"/>
+<text x="635" y="108" font-size="13" fill="#111827" font-weight="700">37</text>
+<text x="16" y="141" font-size="13" fill="#334155">curated_vertical_gap</text>
+<rect x="190" y="124" width="414" height="24" fill="#7c3aed" rx="4"/>
+<text x="612" y="141" font-size="13" fill="#111827" font-weight="700">35</text>
+<text x="16" y="174" font-size="13" fill="#334155">conversational_gap_variant</text>
+<rect x="190" y="157" width="248" height="24" fill="#7c3aed" rx="4"/>
+<text x="446" y="174" font-size="13" fill="#111827" font-weight="700">21</text>
+<text x="16" y="207" font-size="13" fill="#334155">current_visibility_gap</text>
+<rect x="190" y="190" width="248" height="24" fill="#7c3aed" rx="4"/>
+<text x="446" y="207" font-size="13" fill="#111827" font-weight="700">21</text>
+<text x="16" y="240" font-size="13" fill="#334155">unbranded_existing_topic</text>
+<rect x="190" y="223" width="154" height="24" fill="#7c3aed" rx="4"/>
+<text x="352" y="240" font-size="13" fill="#111827" font-weight="700">13</text>
+<text x="16" y="273" font-size="13" fill="#334155">competitor_displacement</text>
+<rect x="190" y="256" width="142" height="24" fill="#7c3aed" rx="4"/>
+<text x="340" y="273" font-size="13" fill="#111827" font-weight="700">12</text>
+<text x="16" y="306" font-size="13" fill="#334155">head_to_head_comparison</text>
+<rect x="190" y="289" width="142" height="24" fill="#7c3aed" rx="4"/>
+<text x="340" y="306" font-size="13" fill="#111827" font-weight="700">12</text>
+</svg></div>
+<h2>Top Prompt Ledger</h2>
+<table><thead><tr><th>Priority</th><th>Prompt</th><th>Category</th><th>Source</th><th>State</th><th>Batch</th><th>Mapped page</th><th>Competitors</th><th>Action</th></tr></thead><tbody><tr>
+<td>96</td><td>best barcode scanner mount for forklift</td><td>warehouse</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B02</td><td>Barcode Scanner Mounts</td><td>Havis; RAM Mounts; Zebra; Arkon; ProClip; Square</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best budget fish finder mount</td><td>fishing</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>RAM Mounts</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best ELD mount for trucks</td><td>fleet</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</td><td>Arkon; RAM Mounts; ProClip</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best fish finder</td><td>fishing</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td></td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best fish finder in water</td><td>fishing</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>RAM Mounts</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best fish finder mount for small boat</td><td>fishing</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide</td><td>RAM Mounts</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>best heavy duty vehicle phone mount</td><td>fleet</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</td><td>Arkon; RAM Mounts; iOttie; ProClip; Tackform</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best kayak fish finder mount</td><td>fishing</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing</td><td>RAM Mounts</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best locking phone mount for shared delivery vehicles</td><td>delivery</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Locking Phone Mount for Shared Delivery Vehicles</td><td>Arkon; RAM Mounts; iOttie; ProClip; Tackform</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>best locking tablet stand for food trucks and quick service restaurants</td><td>restaurant</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</td><td>CTA Digital; Heckler; Kensington; Mount-It; RAM Mounts</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>best multi tablet mount</td><td>restaurant</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td><td>CTA Digital; Mount-It; RAM Mounts; Arkon</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best phone mount for Amazon Flex and delivery vans</td><td>delivery</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Phone Mount for Amazon Flex and Delivery Vans</td><td>RAM Mounts; iOttie; Arkon; ProClip</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>best phone mount for construction vehicles and work trucks</td><td>fleet</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Phone Mount for Construction Vehicles and Work Trucks</td><td>RAM Mounts; Arkon; iOttie; ProClip; Tackform</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>best phone mount for delivery drivers</td><td>fleet</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Phone Mount for Delivery Drivers</td><td>iOttie; RAM Mounts; ProClip</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>best phone mount for Instacart and grocery delivery drivers</td><td>delivery</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Phone Mount for Instacart and Grocery Delivery Drivers</td><td>iOttie; RAM Mounts; Peak Design</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>best restaurant tablet mount</td><td>restaurant</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td><td>CTA Digital; Mount-It; RAM Mounts; Arkon; Bouncepad</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best tablet mount</td><td>tablet</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td><td>RAM Mounts; Arkon; CTA Digital; iOttie; Tackform</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>96</td><td>best tablet mount for restaurant POS and delivery apps</td><td>restaurant</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Best Tablet Mount for Restaurant POS and Delivery Apps</td><td>CTA Digital; Heckler; Arkon; Mount-It; RAM Mounts; Square</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>commercial grade phone mount for delivery drivers</td><td>delivery</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Commercial-Grade Phone Mounts for Delivery Drivers</td><td>RAM Mounts; Arkon; ProClip; iOttie</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>magnetic vs clamp phone mounts for delivery work</td><td>delivery</td><td>current_visibility_gap</td><td>canonical review before retest</td><td>B01</td><td>Magnetic vs Clamp Phone Mounts for Delivery Work</td><td>iOttie; RAM Mounts</td><td>Resolve canonical/duplicate risk before rewriting.</td>
+</tr><tr>
+<td>96</td><td>set up multiple tablets for DoorDash Uber Eats and Grubhub</td><td>restaurant</td><td>current_visibility_gap</td><td>refresh then retest</td><td>B01</td><td>How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</td><td>RAM Mounts; Arkon</td><td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+</tr><tr>
+<td>94</td><td>Confirms Barcode Scanner Mounting Solutions Compatible with Honeywell, Zebra, and Symbol Scanners</td><td>fleet</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Confirms Barcode Scanner Mounting Solutions Compatible with Honeywell, Zebra, and Symbol Scanners</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>Confirms Universal Mounting Solutions for Apple iPad 10th Generation and iPad Air M2</td><td>restaurant</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Confirms Universal Mounting Solutions for Apple iPad 10th Generation and iPad Air M2</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series</td><td>fleet</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>Dock'n Lock for Restaurant Counters</td><td>restaurant</td><td>unbranded_existing_topic</td><td>refresh then retest</td><td>B02</td><td>iBOLT Dock'n Lock for Restaurant Counters</td><td></td><td>Refresh mapped page before retest.</td>
+</tr><tr>
+<td>94</td><td>Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution</td><td>fleet</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>LockPro Series: Industrial-Grade Security for Unattended Tablets in Warehouses and Retail</td><td>restaurant</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT LockPro Series: Industrial-Grade Security for Unattended Tablets in Warehouses and Retail</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>Mounting Solutions for Delivery Fleets: From DoorDash Drivers to Amazon DSP</td><td>delivery</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Mounting Solutions for Delivery Fleets: From DoorDash Drivers to Amazon DSP</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>Mounts and Toast POS: Powering Modern Restaurant Technology</td><td>restaurant</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Mounts and Toast POS: Powering Modern Restaurant Technology</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>Mounts Supports ELD Compliance for America's Commercial Fleets</td><td>fleet</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>94</td><td>Phone Mounts for DoorDash and Uber Eats Drivers</td><td>delivery</td><td>unbranded_existing_topic</td><td>refresh then retest</td><td>B02</td><td>iBOLT Phone Mounts for DoorDash and Uber Eats Drivers</td><td></td><td>Refresh mapped page before retest.</td>
+</tr><tr>
+<td>94</td><td>Tablet Tower System Featured at National Restaurant Association Show 2026</td><td>restaurant</td><td>unbranded_existing_topic</td><td>mapped lower-priority retest</td><td>B02</td><td>iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>92</td><td>best boat phone mount for rough water</td><td>fishing</td><td>consumer_buyer_prompt</td><td>mapped lower-priority retest</td><td>B02</td><td>Best Boat Phone Mount for Rough Water</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>92</td><td>best boat phone mount for rough water: how to keep your phone secure on the chop</td><td>fishing</td><td>consumer_buyer_prompt</td><td>mapped lower-priority retest</td><td>B02</td><td>Best Boat Phone Mount for Rough Water: How to Keep Your Phone Secure on the Chop</td><td></td><td>Add citable quick-answer block, FAQ schema, Article/BlogPosting schema, comparison context, product cards, and image alt text.</td>
+</tr><tr>
+<td>92</td><td>best drill base phone mount for construction vehicles and work trucks</td><td>fleet</td><td>consumer_buyer_prompt</td><td>mapped lower-priority retest</td><td>B03</td><td>Best Drill Base Phone Mount for Construction Vehicles and Work Trucks</td><td></td><td>Add citable quick-answer block, FAQ schema, Article/BlogPosting schema, comparison context, product cards, and image alt text.</td>
+</tr><tr>
+<td>92</td><td>best drill-base phone mount for semi trucks</td><td>fleet</td><td>consumer_buyer_prompt</td><td>refresh then retest</td><td>B03</td><td>Best Drill-Base Phone Mount for Semi Trucks</td><td></td><td>Refresh mapped page before retest.</td>
+</tr><tr>
+<td>92</td><td>best fish finder mount for pontoon boat rails</td><td>fishing</td><td>consumer_buyer_prompt</td><td>mapped lower-priority retest</td><td>B03</td><td>Best Fish Finder Mount for Pontoon Boat Rails</td><td></td><td>Run after Sprint 1 and Sprint 2 page fixes to measure long-tail recall.</td>
+</tr><tr>
+<td>92</td><td>best fish finder mount for small boats: comparison and buyer's guide</td><td>fishing</td><td>consumer_buyer_prompt</td><td>canonical review before retest</td><td>B03</td><td>Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide</td><td></td><td>Refresh mapped page before retest.</td>
+</tr><tr>
+<td>92</td><td>best fish finder mounts that stay put and do not bounce loose</td><td>fishing</td><td>consumer_buyer_prompt</td><td>mapped lower-priority retest</td><td>B03</td><td>Best Fish Finder Mounts That Stay Put and Do Not Bounce Loose</td><td></td><td>Add citable quick-answer block, FAQ schema, Article/BlogPosting schema, comparison context, product cards, and image alt text.</td>
+</tr><tr>
+<td>92</td><td>best garmin fish finder mount: how to choose the right setup for your boat or kayak</td><td>fishing</td><td>consumer_buyer_prompt</td><td>refresh then retest</td><td>B03</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td></td><td>Refresh mapped page before retest.</td>
+</tr></tbody></table>
+</main></body></html>

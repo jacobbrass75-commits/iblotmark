@@ -1,0 +1,4 @@
+check,status,result,note
+installed_scopes,"read_content, write_content",missing_read_reports,ShopifyQL analytics requires read_reports. Current token should not expose secrets in this report.
+shopifyql_sessions_probe,blocked,access_denied_or_no_data,"Access denied for shopifyqlQuery field. Required access: `read_reports` access scope. Also: Level 2 access to Customer data including name, address, phone, and email fields. Please refer to protected customer data [requirements](https://shopify.dev/docs/apps/launch/protected-customer-data)."
+content_inventory,allowed,"2 blogs, 211 articles readable","read_content allows article metadata and HTML inspection, but not sessions, page views, add-to-cart rate, or conversion analytics."

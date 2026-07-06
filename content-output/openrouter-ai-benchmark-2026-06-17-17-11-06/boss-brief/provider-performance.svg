@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.axis{stroke:#94a3b8;stroke-width:1}.grid{stroke:#e2e8f0;stroke-width:1}.title{font:700 24px Arial, sans-serif;fill:#111827}.subtitle{font:400 14px Arial, sans-serif;fill:#64748b}.label{font:700 13px Arial, sans-serif;fill:#111827}.small{font:400 12px Arial, sans-serif;fill:#475569}.value{font:700 13px Arial, sans-serif;fill:#0f172a}.white{font:700 13px Arial, sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="980" height="560" rx="0"/>
+  
+    <rect class="panel" x="36" y="28" width="908" height="500" rx="14"/>
+    <text class="title" x="70" y="68">AI Visibility by Provider</text>
+    <text class="subtitle" x="70" y="91">Scores are out of 100. Citations are the biggest current weakness.</text>
+    <line class="grid" x1="90" y1="424" x2="910" y2="424"/><text class="small" x="76" y="428" text-anchor="end">0</text>
+<line class="grid" x1="90" y1="344" x2="910" y2="344"/><text class="small" x="76" y="348" text-anchor="end">25</text>
+<line class="grid" x1="90" y1="264" x2="910" y2="264"/><text class="small" x="76" y="268" text-anchor="end">50</text>
+<line class="grid" x1="90" y1="184" x2="910" y2="184"/><text class="small" x="76" y="188" text-anchor="end">75</text>
+<line class="grid" x1="90" y1="104" x2="910" y2="104"/><text class="small" x="76" y="108" text-anchor="end">100</text>
+    <line class="axis" x1="90" y1="424" x2="910" y2="424"/>
+    <line class="axis" x1="90" y1="104" x2="90" y2="424"/>
+    <rect x="149.66666666666666" y="376" width="34" height="48" rx="5" fill="#2563eb"/><text class="value" x="166.66666666666666" y="369" text-anchor="middle">15</text>
+<rect x="189.66666666666666" y="321.6" width="34" height="102.4" rx="5" fill="#16a34a"/><text class="value" x="206.66666666666666" y="314.6" text-anchor="middle">32</text>
+<rect x="229.66666666666666" y="350.4" width="34" height="73.60000000000001" rx="5" fill="#f97316"/><text class="value" x="246.66666666666666" y="343.4" text-anchor="middle">23</text>
+<rect x="269.66666666666663" y="424" width="34" height="0" rx="5" fill="#dc2626"/><text class="value" x="286.66666666666663" y="417" text-anchor="middle">0</text><text class="label" x="226.66666666666666" y="462" text-anchor="middle">ChatGPT</text>
+<rect x="423" y="382.4" width="34" height="41.6" rx="5" fill="#2563eb"/><text class="value" x="440" y="375.4" text-anchor="middle">13</text>
+<rect x="463" y="363.2" width="34" height="60.8" rx="5" fill="#16a34a"/><text class="value" x="480" y="356.2" text-anchor="middle">19</text>
+<rect x="503" y="404.8" width="34" height="19.2" rx="5" fill="#f97316"/><text class="value" x="520" y="397.8" text-anchor="middle">6</text>
+<rect x="543" y="424" width="34" height="0" rx="5" fill="#dc2626"/><text class="value" x="560" y="417" text-anchor="middle">0</text><text class="label" x="500" y="462" text-anchor="middle">Gemini</text>
+<rect x="696.3333333333333" y="376" width="34" height="48" rx="5" fill="#2563eb"/><text class="value" x="713.3333333333333" y="369" text-anchor="middle">15</text>
+<rect x="736.3333333333333" y="363.2" width="34" height="60.8" rx="5" fill="#16a34a"/><text class="value" x="753.3333333333333" y="356.2" text-anchor="middle">19</text>
+<rect x="776.3333333333333" y="363.2" width="34" height="60.8" rx="5" fill="#f97316"/><text class="value" x="793.3333333333333" y="356.2" text-anchor="middle">19</text>
+<rect x="816.3333333333333" y="424" width="34" height="0" rx="5" fill="#dc2626"/><text class="value" x="833.3333333333333" y="417" text-anchor="middle">0</text><text class="label" x="773.3333333333333" y="462" text-anchor="middle">Claude</text>
+    <rect x="142" y="486" width="16" height="16" rx="4" fill="#2563eb"/><text class="small" x="166" y="499">Avg score</text>
+<rect x="320" y="486" width="16" height="16" rx="4" fill="#16a34a"/><text class="small" x="344" y="499">Mention</text>
+<rect x="498" y="486" width="16" height="16" rx="4" fill="#f97316"/><text class="small" x="522" y="499">Top 3</text>
+<rect x="676" y="486" width="16" height="16" rx="4" fill="#dc2626"/><text class="small" x="700" y="499">Citation</text>
+  
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="364" viewBox="0 0 940 364" role="img" aria-label="Intent Priority Score">
+    <rect width="940" height="364" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" fill="#111827" font-size="20" font-weight="900">Intent Priority Score</text>
+    <g>
+      <text x="22" y="75" fill="#111827" font-size="13" font-weight="800">best/recommendation</text>
+      <rect x="326" y="58" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="58" width="520" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="74" fill="#111827" font-size="13" font-weight="900" text-anchor="end">2621</text>
+    </g>
+<g>
+      <text x="22" y="111" fill="#111827" font-size="13" font-weight="800">category discovery</text>
+      <rect x="326" y="94" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="94" width="51" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="110" fill="#111827" font-size="13" font-weight="900" text-anchor="end">255</text>
+    </g>
+<g>
+      <text x="22" y="147" fill="#111827" font-size="13" font-weight="800">setup/how-to</text>
+      <rect x="326" y="130" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="130" width="47" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="146" fill="#111827" font-size="13" font-weight="900" text-anchor="end">238</text>
+    </g>
+<g>
+      <text x="22" y="183" fill="#111827" font-size="13" font-weight="800">competitor comparison</text>
+      <rect x="326" y="166" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="166" width="42" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="182" fill="#111827" font-size="13" font-weight="900" text-anchor="end">212</text>
+    </g>
+<g>
+      <text x="22" y="219" fill="#111827" font-size="13" font-weight="800">product recall</text>
+      <rect x="326" y="202" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="202" width="17" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="218" fill="#111827" font-size="13" font-weight="900" text-anchor="end">84</text>
+    </g>
+<g>
+      <text x="22" y="255" fill="#111827" font-size="13" font-weight="800">citation/source</text>
+      <rect x="326" y="238" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="238" width="10" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="254" fill="#111827" font-size="13" font-weight="900" text-anchor="end">48</text>
+    </g>
+<g>
+      <text x="22" y="291" fill="#111827" font-size="13" font-weight="800">shopping advice</text>
+      <rect x="326" y="274" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="274" width="9" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="290" fill="#111827" font-size="13" font-weight="900" text-anchor="end">44</text>
+    </g>
+<g>
+      <text x="22" y="327" fill="#111827" font-size="13" font-weight="800">brand/direct</text>
+      <rect x="326" y="310" width="520" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="326" y="310" width="2" height="22" rx="11" fill="#2563eb"/>
+      <text x="906" y="326" fill="#111827" font-size="13" font-weight="900" text-anchor="end">0</text>
+    </g>
+  </svg>

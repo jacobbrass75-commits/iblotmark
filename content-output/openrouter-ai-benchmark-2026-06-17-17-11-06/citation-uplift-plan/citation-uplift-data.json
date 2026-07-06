@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-06-18T11:41:07.157Z",
+  "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+  "funnel": {
+    "totalAnswers": 93,
+    "mentionCount": 22,
+    "mentionRate": 24,
+    "nonBrandedMentionCount": 4,
+    "nonBrandedMentionRate": 5,
+    "topThreeCount": 15,
+    "topThreeRate": 16,
+    "citationCount": 0,
+    "citationRate": 0,
+    "competitorOnlyAnswers": 68,
+    "competitorOnlyRate": 73
+  },
+  "onsiteGaps": {
+    "Missing quick answers": 113,
+    "Missing FAQ schema": 99,
+    "Images missing alt text": 123,
+    "Missing comparisons": 55,
+    "Missing Article/BlogPosting": 19
+  },
+  "pageQueueCount": 12,
+  "queryGapCount": 10,
+  "lostAnswerCount": 71,
+  "firstTargets": {
+    "nonBrandedMentionRate": 15,
+    "topThreeRecommendationRate": 25,
+    "citationRate": 5,
+    "livePageCitabilityScore": 82
+  },
+  "brandSafetyNote": "Do not copy budget/value positioning from competitor answers. Use it only as buyer intent context; keep iBOLT positioned as specialist, modular, and industrial-grade."
+}

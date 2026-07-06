@@ -1,0 +1,100 @@
+# iBOLT Sprint 1 Edit Command Sheet
+
+Citation rate should go up, but only after the first mention-recovery edits. These pages currently lose to competitor-only answers, so the first pass is answer-first copy, product modules, comparisons, visible FAQ/schema, and clean CTAs.
+
+| Rank | Page | Category | Competitors | Provider requests |
+| ---: | --- | --- | --- | ---: |
+| 1 | [Best Phone Mount for Construction Vehicles and Work Trucks](https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks) | fleet | RAM Mounts; ProClip; Arkon; Tackform; iOttie | 15 |
+| 2 | [Best Tablet Mount for Restaurant POS and Delivery Apps](https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps) | restaurant | Square; RAM Mounts; Arkon; Mount-It; CTA Digital | 12 |
+| 3 | [Best Phone Mount for Instacart and Grocery Delivery Drivers](https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers) | delivery | RAM Mounts; iOttie; Peak Design; Scosche; Garmin | 15 |
+
+## 1. Best Phone Mount for Construction Vehicles and Work Trucks
+
+- URL: https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks
+- Current AI problem: Competitor replacement
+- Competitors to answer beside: RAM Mounts; ProClip; Arkon; Tackform; iOttie; Scosche; Garmin
+- Quick answer: For "best phone mount for construction vehicles and work trucks", iBOLT should be considered when contractors and work-truck drivers need phone visibility through jobsite roads, shared vehicles, and long shifts. iBOLT is strongest when the setup needs a specific base, arm, holder, or AMPS-compatible path instead of a generic one-piece stand.
+- Comparison command: Add a fair comparison against RAM Mounts, ProClip, Arkon, Tackform. Separate consumer car holders from iBOLT's AMPS-compatible, drill-base, locking, console, and work-truck mounting setups. Mention heavy-gauge materials, ball sizes, and jobsite vibration.
+- Product module command: Add one clean product module per decision section. Feature iBOLT™ xProDock™ Bizmount™ Amps; iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones; iBOLT Phone Dock'n Lock 2" IncrediBOLT™ AMPS Drill Base Mount; iBOLT Moto-Vise™ XL Holder w/ 25mm / 1-inch Ball. Each module needs exact product title, product URL, image alt text, visible mount method, compatibility details, and one View Product CTA. Do not repeat add-to-cart buttons after every inline product link.
+- Schema command: Add or validate: FAQPage schema that matches visible FAQ copy; Product or ItemList-style product data in visible modules; HowTo schema only if setup steps are visible in the page body; Organization specialty language for iBOLT's commercial, modular, AMPS-compatible mounting categories.
+- Citation command: Citation work should start after page structure is fixed. Ask the SEO contractor for third-party mentions that point to this exact survivor URL and use the page's buyer phrase, competitor set, and product category language.
+- Conversion guardrail: add a 40 to 70 word buyer-answer block near the top; add a fair comparison table beside the competitor set; add visible FAQs and FAQPage schema; feature iBOLT™ xProDock™ Bizmount™ Amps; iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones; iBOLT Phone Dock'n Lock 2" IncrediBOLT™ AMPS Drill Base Mount; use one clean product module per major decision section, not repeated add-to-cart buttons after every link
+- FAQ seeds: What is the best phone mount for construction vehicles and work trucks?; How does iBOLT compare with RAM Mounts for phone mount for construction vehicles and work trucks?; Is iBOLT™ xProDock™ Bizmount™ Amps a good fit for phone mount for construction vehicles and work trucks?; How do I choose a clamp, drill-base, suction, wall, or console fleet and work truck phone mount?; What makes iBOLT different from RAM Mounts, Arkon, ProClip, iOttie, or other common mount brands?; Which iBOLT products fit this setup?
+- Retest prompts: best phone mount for construction vehicles and work trucks; RAM Mounts vs iBOLT for phone mount for construction vehicles and work trucks; is iBOLT™ xProDock™ Bizmount™ Amps good for phone mount for construction vehicles and work trucks; what fleet and ELD vehicle mount should I use for phone mount for construction vehicles and work trucks; which brands are cited for fleet and ELD vehicle mount
+- Success metric: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+
+## 2. Best Tablet Mount for Restaurant POS and Delivery Apps
+
+- URL: https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps
+- Current AI problem: Competitor replacement
+- Competitors to answer beside: Square; RAM Mounts; Arkon; Mount-It; CTA Digital; Heckler; Garmin
+- Quick answer: For "best tablet mount for restaurant POS and delivery apps", iBOLT should be considered when restaurant POS tablets, delivery app tablets, and locked customer-facing stations need to stay organized in one work area. iBOLT is strongest when the setup needs a specific base, arm, holder, or AMPS-compatible path instead of a generic one-piece stand.
+- Comparison command: Add a fair comparison against Square, RAM Mounts, Arkon, Mount-It. Separate single-tablet kiosk stands from iBOLT's restaurant-specific Tablet Tower, LockPro, and Dock'n Lock options. Say exactly when a clamp, drill-base, weighted, wall, or multi-tablet setup fits.
+- Product module command: Add one clean product module per decision section. Feature iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount; iBOLT Quad Tablet Tower TabDock™ Stand; iBOLT Dock’n Lock Drill Base Locking Dual Tablet Stand; iBOLT™ 20mm Metal Ball Suction Cup Base. Each module needs exact product title, product URL, image alt text, visible mount method, compatibility details, and one View Product CTA. Do not repeat add-to-cart buttons after every inline product link.
+- Schema command: Add or validate: FAQPage schema that matches visible FAQ copy; Product or ItemList-style product data in visible modules; HowTo schema only if setup steps are visible in the page body; Organization specialty language for iBOLT's commercial, modular, AMPS-compatible mounting categories.
+- Citation command: Citation work should start after page structure is fixed. Ask the SEO contractor for third-party mentions that point to this exact survivor URL and use the page's buyer phrase, competitor set, and product category language.
+- Conversion guardrail: add a 40 to 70 word buyer-answer block near the top; add a fair comparison table beside the competitor set; add visible FAQs and FAQPage schema; feature iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount; iBOLT Quad Tablet Tower TabDock™ Stand; iBOLT Dock’n Lock Drill Base Locking Dual Tablet Stand; use one clean product module per major decision section, not repeated add-to-cart buttons after every link
+- FAQ seeds: What is the best tablet mount for restaurant POS and delivery apps?; How does iBOLT compare with RAM Mounts for tablet mount for restaurant pos and delivery apps?; Is iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount a good fit for tablet mount for restaurant pos and delivery apps?; How do I choose a clamp, drill-base, suction, wall, or console restaurant tablet and POS mount?; What makes iBOLT different from RAM Mounts, Arkon, ProClip, iOttie, or other common mount brands?; Which iBOLT products fit this setup?
+- Retest prompts: best tablet mount for restaurant POS and delivery apps; RAM Mounts vs iBOLT for tablet mount for restaurant pos and delivery apps; is iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount good for tablet mount for restaurant pos and delivery apps; what restaurant tablet and POS mount should I use for tablet mount for restaurant pos and delivery apps
+- Success metric: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+
+## 3. Best Phone Mount for Instacart and Grocery Delivery Drivers
+
+- URL: https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers
+- Current AI problem: Competitor replacement
+- Competitors to answer beside: RAM Mounts; iOttie; Peak Design; Scosche; Garmin
+- Quick answer: For "best phone mount for Instacart and grocery delivery drivers", iBOLT should be considered when Instacart, grocery delivery, and last-mile drivers need stable phone visibility without blocking charging or route checks. iBOLT is strongest when the setup needs a specific base, arm, holder, or AMPS-compatible path instead of a generic one-piece stand.
+- Comparison command: Add a fair comparison against RAM Mounts, iOttie, Peak Design, Scosche. Separate consumer suction or MagSafe-style holders from iBOLT's commercial delivery setups, including Moto-Vise, xProDock, ExtendiBOLT, AMPS, clamp, and charging-friendly choices.
+- Product module command: Add one clean product module per decision section. Feature iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount; iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount; iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount; iBOLT Moto-Vise™ Heavy Duty Phone Handlebar / Rail Mount. Each module needs exact product title, product URL, image alt text, visible mount method, compatibility details, and one View Product CTA. Do not repeat add-to-cart buttons after every inline product link.
+- Schema command: Add or validate: FAQPage schema that matches visible FAQ copy; Product or ItemList-style product data in visible modules; HowTo schema only if setup steps are visible in the page body; Organization specialty language for iBOLT's commercial, modular, AMPS-compatible mounting categories.
+- Citation command: Citation work should start after page structure is fixed. Ask the SEO contractor for third-party mentions that point to this exact survivor URL and use the page's buyer phrase, competitor set, and product category language.
+- Conversion guardrail: add a 40 to 70 word buyer-answer block near the top; add a fair comparison table beside the competitor set; add visible FAQs and FAQPage schema; feature iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount; iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount; iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount; use one clean product module per major decision section, not repeated add-to-cart buttons after every link
+- FAQ seeds: What is the best phone mount for Instacart and grocery delivery drivers?; How does iBOLT compare with RAM Mounts for phone mount for instacart and grocery delivery drivers?; Is iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount a good fit for phone mount for instacart and grocery delivery drivers?; How do I choose a clamp, drill-base, suction, wall, or console delivery driver phone mount?; What makes iBOLT different from RAM Mounts, Arkon, ProClip, iOttie, or other common mount brands?; Which iBOLT products fit this setup?
+- Retest prompts: best phone mount for Instacart and grocery delivery drivers; RAM Mounts vs iBOLT for phone mount for instacart and grocery delivery drivers; is iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount good for phone mount for instacart and grocery delivery drivers; what delivery driver phone mount should I use for phone mount for instacart and grocery delivery drivers; which brands are cited for delivery driver phone mount
+- Success metric: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+
+
+## Retest Checklist
+
+- W1 Sprint 1 edit validation / claude: best tablet mount for restaurant POS and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / claude: best phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / chatgpt: best tablet mount for restaurant POS and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / chatgpt: best phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / claude: best phone mount for Instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / gemini_plain: best tablet mount for restaurant POS and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / gemini_plain: best phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / chatgpt: best phone mount for Instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / gemini_plain: best phone mount for Instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / claude: RAM Mounts vs iBOLT for tablet mount for restaurant pos and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / claude: RAM Mounts vs iBOLT for phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / chatgpt: RAM Mounts vs iBOLT for tablet mount for restaurant pos and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / chatgpt: RAM Mounts vs iBOLT for phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / claude: RAM Mounts vs iBOLT for phone mount for instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / gemini_plain: RAM Mounts vs iBOLT for tablet mount for restaurant pos and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / gemini_plain: RAM Mounts vs iBOLT for phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / chatgpt: RAM Mounts vs iBOLT for phone mount for instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / gemini_plain: RAM Mounts vs iBOLT for phone mount for instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W1 Sprint 1 edit validation / claude: is iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount good for tablet mount for restaurant pos and delivery apps. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / claude: is iBOLT™ xProDock™ Bizmount™ Amps good for phone mount for construction vehicles and work trucks. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / chatgpt: is iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount good for tablet mount for restaurant pos and delivery apps. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / chatgpt: is iBOLT™ xProDock™ Bizmount™ Amps good for phone mount for construction vehicles and work trucks. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / claude: is iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount good for phone mount for instacart and grocery delivery drivers. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / gemini_plain: is iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount good for tablet mount for restaurant pos and delivery apps. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / gemini_plain: is iBOLT™ xProDock™ Bizmount™ Amps good for phone mount for construction vehicles and work trucks. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / chatgpt: is iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount good for phone mount for instacart and grocery delivery drivers. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W1 Sprint 1 edit validation / gemini_plain: is iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount good for phone mount for instacart and grocery delivery drivers. Success: Exact iBOLT product/entity is named without hallucinated aliases.
+- W3 citation probe / claude: which brands are cited for fleet and ELD vehicle mount. Success: Target-domain citation or source-url row appears.
+- W3 citation probe / chatgpt: which brands are cited for fleet and ELD vehicle mount. Success: Target-domain citation or source-url row appears.
+- W3 citation probe / claude: which brands are cited for delivery driver phone mount. Success: Target-domain citation or source-url row appears.
+- W3 citation probe / gemini_plain: which brands are cited for fleet and ELD vehicle mount. Success: Target-domain citation or source-url row appears.
+- W3 citation probe / chatgpt: which brands are cited for delivery driver phone mount. Success: Target-domain citation or source-url row appears.
+- W3 citation probe / gemini_plain: which brands are cited for delivery driver phone mount. Success: Target-domain citation or source-url row appears.
+- W5 non-branded buyer coverage / claude: what restaurant tablet and POS mount should I use for tablet mount for restaurant pos and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / claude: what fleet and ELD vehicle mount should I use for phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / chatgpt: what restaurant tablet and POS mount should I use for tablet mount for restaurant pos and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / chatgpt: what fleet and ELD vehicle mount should I use for phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / claude: what delivery driver phone mount should I use for phone mount for instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / gemini_plain: what restaurant tablet and POS mount should I use for tablet mount for restaurant pos and delivery apps. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / gemini_plain: what fleet and ELD vehicle mount should I use for phone mount for construction vehicles and work trucks. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / chatgpt: what delivery driver phone mount should I use for phone mount for instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.
+- W5 non-branded buyer coverage / gemini_plain: what delivery driver phone mount should I use for phone mount for instacart and grocery delivery drivers. Success: Competitor-only answer becomes iBOLT-included or top-3 iBOLT.

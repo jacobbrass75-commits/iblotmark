@@ -1,0 +1,304 @@
+{
+  "summary": {
+    "generated_at": "2026-06-22T02:21:32.073Z",
+    "benchmark_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+    "report_html_count": 112,
+    "report_md_count": 112,
+    "csv_count": 427,
+    "json_count": 83,
+    "svg_count": 192,
+    "broken_issue_count": 0,
+    "broken_file_count": 0,
+    "covered_goal_areas": 26,
+    "partial_goal_areas": 0,
+    "missing_goal_areas": 0,
+    "mention_rate": "40%",
+    "non_branded_mention_rate": "",
+    "top_three_rate": "",
+    "citation_rate": "0%",
+    "competitor_only_rate": "57%",
+    "priority_requests": 204,
+    "priority_prompts": 78,
+    "dry_run_validated_waves": 5,
+    "completed_expanded_runs": 2,
+    "post_run_status": "completed_run_found",
+    "status": "evidence_packet_clean_pending_live_retest"
+  },
+  "coverageRows": [
+    {
+      "area": "How iBOLT is mentioned",
+      "status": "covered",
+      "report": "answer-language-evidence/REPORT.html",
+      "missing": "",
+      "proves": "Shows mention quality, product-name drift, budget/value risk, snippets, and per-row action commands."
+    },
+    {
+      "area": "Mention narrative drilldown",
+      "status": "covered",
+      "report": "mention-narrative-drilldown/REPORT.html",
+      "missing": "",
+      "proves": "Consolidates how AI describes iBOLT, adjacent competitors, competitor-owned language, provider/category narrative risk, and example answer snippets."
+    },
+    {
+      "area": "Answer review examples",
+      "status": "covered",
+      "report": "answer-review-packet/REPORT.html",
+      "missing": "",
+      "proves": "Packages concrete answer snippets with outcome, competitors, target page, and page-language/schema/citation commands for human review."
+    },
+    {
+      "area": "Who iBOLT is mentioned next to",
+      "status": "covered",
+      "report": "entity-adjacency-report/REPORT.html",
+      "missing": "",
+      "proves": "Maps clean mentions, co-mentions, answer roles, and competitor adjacency."
+    },
+    {
+      "area": "How iBOLT compares to competitors",
+      "status": "covered",
+      "report": "competitor-comparison-dossier/REPORT.html",
+      "missing": "",
+      "proves": "Ranks competitor displacement, co-mentions, pressure pockets, counter-positioning, page targets, and success metrics."
+    },
+    {
+      "area": "Competitor action deck",
+      "status": "covered",
+      "report": "competitor-action-deck/REPORT.html",
+      "missing": "",
+      "proves": "Turns competitor replacement and co-mention pressure into ranked page, prompt, and off-site citation actions."
+    },
+    {
+      "area": "Competitor page counterplan",
+      "status": "covered",
+      "report": "competitor-page-counterplan/REPORT.html",
+      "missing": "",
+      "proves": "Maps replacement brands to exact page edits, prompts, comparison sections, and retest targets."
+    },
+    {
+      "area": "All blog post inspection",
+      "status": "covered",
+      "report": "blog-body-inspection/REPORT.html",
+      "missing": "",
+      "proves": "Inspects live or locally fetched blog bodies for quick answers, schema, FAQs, CTAs, image alt text, and old AEO leftovers."
+    },
+    {
+      "area": "All blog answer gap drilldown",
+      "status": "covered",
+      "report": "all-blog-answer-gap-drilldown/REPORT.html",
+      "missing": "",
+      "proves": "Joins all blog pages to answer losses, page body issues, canonical gates, product-family pressure, retest prompts, and edit sequencing."
+    },
+    {
+      "area": "All blog page prioritization",
+      "status": "covered",
+      "report": "all-blog-action-control-sheet/REPORT.html",
+      "missing": "",
+      "proves": "Turns all blog/page evidence into an ordered edit queue with language, schema, citation, product, CTA, and retest commands."
+    },
+    {
+      "area": "Product family visibility",
+      "status": "covered",
+      "report": "product-family-visibility-board/REPORT.html",
+      "missing": "",
+      "proves": "Maps AI visibility losses to iBOLT product-family entity gaps, exact product modules, product-name risks, page actions, and retest prompts."
+    },
+    {
+      "area": "Shopify blog content state",
+      "status": "covered",
+      "report": "shopify-blog-content-state-bridge/REPORT.html",
+      "missing": "",
+      "proves": "Fetches live Shopify article inventory, separates published versus draft/unpublished posts, tests ShopifyQL analytics access, and identifies high-intent draft pages that cannot be crawled or cited until published."
+    },
+    {
+      "area": "Survivor URL decisions",
+      "status": "covered",
+      "report": "survivor-url-decision-workbook/REPORT.html",
+      "missing": "",
+      "proves": "Maps consolidation-gated retest requests to survivor URL decisions, merge-from hold lists, preserved prompts, product modules, and release gates."
+    },
+    {
+      "area": "Blog test coverage",
+      "status": "covered",
+      "report": "all-blog-test-coverage-report/REPORT.html",
+      "missing": "",
+      "proves": "Shows which live blog posts have baseline/expanded/priority prompt coverage and adds prompt rows for uncovered pages."
+    },
+    {
+      "area": "Low coverage prompt expansion",
+      "status": "covered",
+      "report": "low-coverage-prompt-expansion-pack/REPORT.html",
+      "missing": "",
+      "proves": "Creates focused one-question-at-a-time provider prompts for low/no benchmark coverage pages across buyer, competitor, product-entity, and citation-probe intents."
+    },
+    {
+      "area": "Expanded test areas",
+      "status": "covered",
+      "report": "test-area-expansion-map/REPORT.html",
+      "missing": "",
+      "proves": "Confirms broader category/provider/prompt coverage for all-blog retesting."
+    },
+    {
+      "area": "Priority retest readiness",
+      "status": "covered",
+      "report": "next-benchmark-runbook/REPORT.html",
+      "missing": "",
+      "proves": "Provides W1-W5 run commands and dry-run proof for the next provider retest."
+    },
+    {
+      "area": "Prompt loss decision board",
+      "status": "covered",
+      "report": "prompt-loss-decision-board/REPORT.html",
+      "missing": "",
+      "proves": "Maps exact losing buyer prompts to provider misses, competitor displacement, target pages, content actions, product modules, and citation timing."
+    },
+    {
+      "area": "Completion control",
+      "status": "covered",
+      "report": "visibility-completion-control-report/REPORT.html",
+      "missing": "",
+      "proves": "Makes the remaining live-provider proof gate explicit and prevents claiming post-edit lift before a completed retest exists."
+    },
+    {
+      "area": "Retest execution gates",
+      "status": "covered",
+      "report": "retest-execution-gate/REPORT.html",
+      "missing": "",
+      "proves": "Separates blocked survivor-consolidation requests from conditional micro-run rows and provides gated run commands."
+    },
+    {
+      "area": "Micro-run cleanup readiness",
+      "status": "covered",
+      "report": "micro-run-cleanup-packet/REPORT.html",
+      "missing": "",
+      "proves": "Turns the six conditional citation-probe rows into four page-level cleanup tickets and editor checklists before the micro-run."
+    },
+    {
+      "area": "Micro-run source snippets",
+      "status": "covered",
+      "report": "micro-run-source-snippets/REPORT.html",
+      "missing": "",
+      "proves": "Provides review-ready Shopify HTML snippets, FAQ copy, comparison blocks, and JSON-LD schema drafts for the four micro-run pages."
+    },
+    {
+      "area": "Citation strategy",
+      "status": "covered",
+      "report": "citation-visibility-executive-brief/REPORT.html",
+      "missing": "",
+      "proves": "Separates mention recovery, source cleanup, and off-site citation work so citation rate can rise after page cleanup."
+    },
+    {
+      "area": "Citation boss memo",
+      "status": "covered",
+      "report": "citation-visibility-boss-memo/REPORT.html",
+      "missing": "",
+      "proves": "Gives leadership a compact answer on whether citation rate is necessary, how current visibility is performing, owner split, platform priority, and first actions."
+    },
+    {
+      "area": "Source and citation closure board",
+      "status": "covered",
+      "report": "source-citation-closure-board/REPORT.html",
+      "missing": "",
+      "proves": "Converts page, body, citation, and source-readiness evidence into strict canonical-first, source-cleanup, mention-recovery, and citation-outreach lanes."
+    },
+    {
+      "area": "Boss-facing rollup",
+      "status": "covered",
+      "report": "boss-ai-visibility-dashboard/REPORT.html",
+      "missing": "",
+      "proves": "Gives leadership the KPI story, links to supporting artifacts, and keeps the analysis navigable."
+    }
+  ],
+  "brokenRows": [],
+  "expandedRuns": [
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-17-17-30-56",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-17-17-30-56",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-17-18-26-27",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-17-18-26-27",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-17-18-27-01",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-17-18-27-01",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-18-14-17-11",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-14-17-11",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-18-14-17-39",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-14-17-39",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-18-15-00-29",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-15-00-29",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-18-15-08-05",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-15-08-05",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-18-15-20-02",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-15-20-02",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-18-17-56-14",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-18-17-56-14",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-20-18-39-04",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-39-04",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-20-18-40-06",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-06",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-20-18-40-22",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-22",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-20-18-40-31",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-31",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-20-18-40-37",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-37",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-20-18-40-43",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-43",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-21-18-43-01",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-43-01",
+      "rows": 0
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-21-18-43-26",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-43-26",
+      "rows": 6
+    },
+    {
+      "name": "openrouter-expanded-ai-benchmark-2026-06-21-18-46-34",
+      "path": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-46-34",
+      "rows": 204
+    }
+  ]
+}

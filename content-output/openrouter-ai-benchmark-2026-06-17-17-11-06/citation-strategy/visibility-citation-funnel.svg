@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="520" viewBox="0 0 1080 520" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1080" height="520"/>
+  
+    <rect class="panel" x="34" y="24" width="1012" height="472" rx="14"/>
+    <text class="title" x="70" y="64">Visibility And Citation Funnel</text>
+    <text class="subtitle" x="70" y="88">Citations are the smallest current layer, while generic recommendation visibility is the larger problem.</text>
+    
+      <text class="label" x="70" y="140">AI answers tested</text>
+      <rect x="370" y="112" width="570" height="42" rx="12" fill="#0f172a" stroke="none"/>
+      <text class="white" x="655" y="139" text-anchor="middle">93 (100%)</text>
+    
+
+      <text class="label" x="70" y="210">iBOLT mentioned</text>
+      <rect x="370" y="182" width="135" height="42" rx="12" fill="#16a34a" stroke="none"/>
+      <text class="white" x="437.5" y="209" text-anchor="middle">22 (24%)</text>
+    
+
+      <text class="label" x="70" y="280">Non-branded iBOLT mentions</text>
+      <rect x="370" y="252" width="28" height="42" rx="12" fill="#0891b2" stroke="none"/>
+      <text class="value" x="412" y="279" text-anchor="start">4 (5%)</text>
+    
+
+      <text class="label" x="70" y="350">iBOLT top-3 recommendations</text>
+      <rect x="370" y="322" width="92" height="42" rx="12" fill="#f97316" stroke="none"/>
+      <text class="value" x="476" y="349" text-anchor="start">15 (16%)</text>
+    
+
+      <text class="label" x="70" y="420">iboltmounts.com citations</text>
+      <rect x="370" y="392" width="18" height="42" rx="12" fill="#fee2e2" stroke="#dc2626"/>
+      <text class="value" x="402" y="419" text-anchor="start">0 (0%)</text>
+    
+  
+</svg>

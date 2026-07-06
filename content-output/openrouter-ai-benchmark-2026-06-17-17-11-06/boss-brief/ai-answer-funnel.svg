@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.axis{stroke:#94a3b8;stroke-width:1}.grid{stroke:#e2e8f0;stroke-width:1}.title{font:700 24px Arial, sans-serif;fill:#111827}.subtitle{font:400 14px Arial, sans-serif;fill:#64748b}.label{font:700 13px Arial, sans-serif;fill:#111827}.small{font:400 12px Arial, sans-serif;fill:#475569}.value{font:700 13px Arial, sans-serif;fill:#0f172a}.white{font:700 13px Arial, sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="980" height="520" rx="0"/>
+  
+    <rect class="panel" x="36" y="28" width="908" height="458" rx="14"/>
+    <text class="title" x="70" y="68">AI Answer Funnel</text>
+    <text class="subtitle" x="70" y="91">The task is moving from mentions to citations and recommended placements.</text>
+    
+      <rect x="330" y="116" width="520" height="46" rx="12" fill="#0f172a" stroke="none"/>
+      <text class="white" x="590" y="145" text-anchor="middle">93 (100%)</text>
+      <text class="label" x="70" y="146">AI answers tested</text>
+    
+
+      <rect x="330" y="198" width="123" height="46" rx="12" fill="#16a34a" stroke="none"/>
+      <text class="white" x="391.5" y="227" text-anchor="middle">22 (24%)</text>
+      <text class="label" x="70" y="228">Mentioned iBOLT</text>
+    
+
+      <rect x="330" y="280" width="84" height="46" rx="12" fill="#f97316" stroke="none"/>
+      <text class="value" x="428" y="309" text-anchor="start">15 (16%)</text>
+      <text class="label" x="70" y="310">Ranked iBOLT in top 3</text>
+    
+
+      <rect x="330" y="362" width="18" height="46" rx="12" fill="#fee2e2" stroke="#dc2626"/>
+      <text class="value" x="362" y="391" text-anchor="start">0 (0%)</text>
+      <text class="label" x="70" y="392">Cited iboltmounts.com</text>
+    
+  
+</svg>

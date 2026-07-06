@@ -1,0 +1,877 @@
+{
+  "summary": {
+    "generated_at": "2026-06-22T02:18:06.095Z",
+    "benchmark_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-11-06",
+    "completed_expanded_run_dir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-46-34",
+    "completed_results_csv": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-46-34/results.csv",
+    "status": "completed_run_found",
+    "status_note": "Compared baseline against content-output/openrouter-expanded-ai-benchmark-2026-06-21-18-46-34 with 204 result rows.",
+    "baseline": {
+      "answers": 93,
+      "mentions": 22,
+      "mentionRate": 24,
+      "nonBrandedAnswers": 75,
+      "nonBrandedMentions": 4,
+      "nonBrandedMentionRate": 5,
+      "topThree": 15,
+      "topThreeRate": 16,
+      "citations": 0,
+      "citationRate": 0,
+      "competitorOnly": 68,
+      "competitorOnlyRate": 73,
+      "productEntityRows": 30,
+      "productEntityRate": 32
+    },
+    "current": {
+      "answers": 204,
+      "nonBrandedAnswers": 126,
+      "mentions": 82,
+      "mentionRate": 40,
+      "nonBrandedMentions": 4,
+      "nonBrandedMentionRate": 3,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 60,
+      "topThreeRate": 29,
+      "competitorOnly": 117,
+      "competitorOnlyRate": 57,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    "targets": {
+      "mentionRate": 35,
+      "nonBrandedMentionRate": 15,
+      "topThreeRate": 25,
+      "citationRate": 8,
+      "competitorOnlyRate": 57,
+      "productEntityRate": 45
+    }
+  },
+  "kpiRows": [
+    {
+      "metric": "Mention rate",
+      "baseline": 24,
+      "current": 40,
+      "target": 35,
+      "direction": "up",
+      "proof": "82/204",
+      "delta": 16,
+      "status": "target_hit"
+    },
+    {
+      "metric": "Non-branded mention rate",
+      "baseline": 5,
+      "current": 3,
+      "target": 15,
+      "direction": "up",
+      "proof": "4/126",
+      "delta": -2,
+      "status": "not_improved"
+    },
+    {
+      "metric": "Top-3 recommendation rate",
+      "baseline": 16,
+      "current": 29,
+      "target": 25,
+      "direction": "up",
+      "proof": "60/204",
+      "delta": 13,
+      "status": "target_hit"
+    },
+    {
+      "metric": "Citation rate",
+      "baseline": 0,
+      "current": 0,
+      "target": 8,
+      "direction": "up",
+      "proof": "0/204",
+      "delta": 0,
+      "status": "not_improved"
+    },
+    {
+      "metric": "Competitor-only answer rate",
+      "baseline": 73,
+      "current": 57,
+      "target": 57,
+      "direction": "down",
+      "proof": "117/204",
+      "delta": -16,
+      "status": "target_hit"
+    },
+    {
+      "metric": "Product entity rows",
+      "baseline": 32,
+      "current": 0,
+      "target": 45,
+      "direction": "up",
+      "proof": "0/204",
+      "delta": -32,
+      "status": "not_improved"
+    }
+  ],
+  "providerRows": [
+    {
+      "name": "claude",
+      "answers": 78,
+      "nonBrandedAnswers": 50,
+      "mentions": 28,
+      "mentionRate": 36,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 20,
+      "topThreeRate": 26,
+      "competitorOnly": 48,
+      "competitorOnlyRate": 62,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "chatgpt",
+      "answers": 65,
+      "nonBrandedAnswers": 40,
+      "mentions": 28,
+      "mentionRate": 43,
+      "nonBrandedMentions": 3,
+      "nonBrandedMentionRate": 8,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 23,
+      "topThreeRate": 35,
+      "competitorOnly": 36,
+      "competitorOnlyRate": 55,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "gemini_plain",
+      "answers": 61,
+      "nonBrandedAnswers": 36,
+      "mentions": 26,
+      "mentionRate": 43,
+      "nonBrandedMentions": 1,
+      "nonBrandedMentionRate": 3,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 17,
+      "topThreeRate": 28,
+      "competitorOnly": 33,
+      "competitorOnlyRate": 54,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    }
+  ],
+  "categoryRows": [
+    {
+      "name": "fishing",
+      "answers": 53,
+      "nonBrandedAnswers": 33,
+      "mentions": 20,
+      "mentionRate": 38,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 15,
+      "topThreeRate": 28,
+      "competitorOnly": 29,
+      "competitorOnlyRate": 55,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "restaurant",
+      "answers": 43,
+      "nonBrandedAnswers": 25,
+      "mentions": 18,
+      "mentionRate": 42,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 16,
+      "topThreeRate": 37,
+      "competitorOnly": 25,
+      "competitorOnlyRate": 58,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "delivery",
+      "answers": 34,
+      "nonBrandedAnswers": 18,
+      "mentions": 16,
+      "mentionRate": 47,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 9,
+      "topThreeRate": 26,
+      "competitorOnly": 18,
+      "competitorOnlyRate": 53,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "warehouse",
+      "answers": 33,
+      "nonBrandedAnswers": 21,
+      "mentions": 14,
+      "mentionRate": 42,
+      "nonBrandedMentions": 2,
+      "nonBrandedMentionRate": 10,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 10,
+      "topThreeRate": 30,
+      "competitorOnly": 19,
+      "competitorOnlyRate": 58,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "fleet",
+      "answers": 32,
+      "nonBrandedAnswers": 20,
+      "mentions": 14,
+      "mentionRate": 44,
+      "nonBrandedMentions": 2,
+      "nonBrandedMentionRate": 10,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 10,
+      "topThreeRate": 31,
+      "competitorOnly": 18,
+      "competitorOnlyRate": 56,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "amps/modular",
+      "answers": 3,
+      "nonBrandedAnswers": 3,
+      "mentions": 0,
+      "mentionRate": 0,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 0,
+      "topThreeRate": 0,
+      "competitorOnly": 3,
+      "competitorOnlyRate": 100,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "streaming",
+      "answers": 2,
+      "nonBrandedAnswers": 2,
+      "mentions": 0,
+      "mentionRate": 0,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 0,
+      "topThreeRate": 0,
+      "competitorOnly": 1,
+      "competitorOnlyRate": 50,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "offroad",
+      "answers": 2,
+      "nonBrandedAnswers": 2,
+      "mentions": 0,
+      "mentionRate": 0,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 0,
+      "topThreeRate": 0,
+      "competitorOnly": 2,
+      "competitorOnlyRate": 100,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "education",
+      "answers": 1,
+      "nonBrandedAnswers": 1,
+      "mentions": 0,
+      "mentionRate": 0,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 0,
+      "topThreeRate": 0,
+      "competitorOnly": 1,
+      "competitorOnlyRate": 100,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    },
+    {
+      "name": "agriculture",
+      "answers": 1,
+      "nonBrandedAnswers": 1,
+      "mentions": 0,
+      "mentionRate": 0,
+      "nonBrandedMentions": 0,
+      "nonBrandedMentionRate": 0,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 0,
+      "topThreeRate": 0,
+      "competitorOnly": 1,
+      "competitorOnlyRate": 100,
+      "productEntityRows": 0,
+      "productEntityRate": 0
+    }
+  ],
+  "gapRows": [
+    {
+      "provider": "claude",
+      "query": "best fish finder",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best fish finder in water",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best value fish finder mount",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "which brands are cited for restaurant tablet and POS mount",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Arkon; CTA Digital",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "what restaurant tablet and POS mount should I use for restaurant tablet mount in pos st...",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Arkon; CTA Digital",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best garmin fish finder mount choose the right setup for your boat or kayak",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "which brands are cited for fish finder and boat phone mount",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "what fish finder and boat phone mount should I use for garmin fish finder mount choose ...",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best forklift tablet mount",
+      "category": "warehouse",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Havis; Bracketron",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best phone mount for Amazon Flex and delivery vans",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; MobNetic; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "commercial grade phone mount for delivery drivers",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Arkon; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best phone mount for delivery drivers",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best locking phone mount for shared delivery vehicles",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Arkon; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "what restaurant tablet and POS mount should I use for tablet mount for restaurant pos a...",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Arkon; CTA Digital; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "which brands are cited for delivery driver phone mount",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "what delivery driver phone mount should I use for phone mount for instacart and grocery...",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "best commercial-grade phone mount for delivery drivers",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "what forklift tablet and barcode scanner mount should I use for forklift tablet mount f...",
+      "category": "warehouse",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Havis; Zebra",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "what fish finder and boat phone mount should I use for rough water phone mount for boat...",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "which brands are cited for AMPS mounting plate and modular mounting system",
+      "category": "amps/modular",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Havis; Arkon; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "which brands are cited for live streaming phone and camera mount",
+      "category": "streaming",
+      "coverage_score": "0",
+      "competitors": "Peak Design",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "claude",
+      "query": "which brands are cited for offroad phone and camera mount",
+      "category": "offroad",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Peak Design",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best restaurant tablet mount in pos stands delivery app stations and multi-tablet solut...",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "Mount-It!; CTA Digital; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "which brands are cited for restaurant tablet and POS mount",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "Mount-It!; Square; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what restaurant tablet and POS mount should I use for restaurant tablet mount in pos st...",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "Mount-It!; CTA Digital; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best garmin fish finder mount choose the right setup for your boat or kayak",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best phone mount for construction vehicles and work trucks",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Tackform",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best tablet mount for restaurant POS and delivery apps",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "Mount-It!; Arkon; CTA Digital; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "which brands are cited for fish finder and boat phone mount",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM; iOttie",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what fish finder and boat phone mount should I use for garmin fish finder mount choose ...",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best heavy duty vehicle phone mount",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon; Tackform",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best locking tablet stand for food trucks and quick service restaurants",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "CTA Digital; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best phone mount for Amazon Flex and delivery vans",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM; iOttie",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "commercial grade phone mount for delivery drivers",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon; Tackform",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best fish finder mount for small boat",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best kayak fish finder mount",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best phone mount for delivery drivers",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM; iOttie",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best locking phone mount for shared delivery vehicles",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "which brands are cited for fleet and ELD vehicle mount",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Arkon; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what fleet and ELD vehicle mount should I use for phone mount for construction vehicles...",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what restaurant tablet and POS mount should I use for tablet mount for restaurant pos a...",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "Mount-It!; CTA Digital; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "which brands are cited for delivery driver phone mount",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what delivery driver phone mount should I use for phone mount for instacart and grocery...",
+      "category": "delivery",
+      "coverage_score": "0",
+      "competitors": "RAM; iOttie",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best barcode scanner mount for forklifts and warehouses",
+      "category": "warehouse",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Zebra; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best rough water phone mount for boat heavy-duty solutions that handle the chop",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Arkon; Tackform",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best locking tablet stand for food trucks and quick-service restaurants mount",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "Mount-It!; CTA Digital",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best commercial-grade phone mount for delivery drivers",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "which brands are cited for forklift tablet and barcode scanner mount",
+      "category": "warehouse",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Havis; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best fish finder mount for pontoon boat rails",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best kayak fish finder mount for secure removable setups",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what forklift tablet and barcode scanner mount should I use for forklift tablet mount f...",
+      "category": "warehouse",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Havis; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what forklift tablet and barcode scanner mount should I use for barcode scanner mount f...",
+      "category": "warehouse",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Havis; Arkon; ProClip",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "what fish finder and boat phone mount should I use for rough water phone mount for boat...",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "best tablet and phone mount for trucks and eld compliance",
+      "category": "fleet",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; iOttie; Arkon",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "which brands are cited for live streaming phone and camera mount",
+      "category": "streaming",
+      "coverage_score": "0",
+      "competitors": "",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "chatgpt",
+      "query": "which brands are cited for offroad phone and camera mount",
+      "category": "offroad",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; Peak Design",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "gemini_plain",
+      "query": "what restaurant tablet and POS mount should I use for restaurant tablet mount in pos st...",
+      "category": "restaurant",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM; CTA Digital; Heckler",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    },
+    {
+      "provider": "gemini_plain",
+      "query": "best garmin fish finder mount choose the right setup for your boat or kayak",
+      "category": "fishing",
+      "coverage_score": "0",
+      "competitors": "RAM Mounts; RAM",
+      "action": "Add/strengthen answer-first page language and comparison blocks."
+    }
+  ],
+  "dryRunRows": [
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-43",
+      "selected_prompts": "19",
+      "provider_requests": "54",
+      "providers": "claude, chatgpt, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv"
+    },
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-37",
+      "selected_prompts": "11",
+      "provider_requests": "33",
+      "providers": "claude, chatgpt, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv"
+    },
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-31",
+      "selected_prompts": "10",
+      "provider_requests": "24",
+      "providers": "claude, chatgpt, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv"
+    },
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-22",
+      "selected_prompts": "29",
+      "provider_requests": "66",
+      "providers": "claude, chatgpt, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv"
+    },
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-06",
+      "selected_prompts": "19",
+      "provider_requests": "54",
+      "providers": "claude, chatgpt, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv"
+    },
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-39-04",
+      "selected_prompts": "9",
+      "provider_requests": "27",
+      "providers": "claude, chatgpt, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv"
+    },
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-18-17-56-14",
+      "selected_prompts": "483",
+      "provider_requests": "1449",
+      "providers": "chatgpt, claude, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-prompt-gap-addendum/all-blog-complete-provider-manifest.csv"
+    },
+    {
+      "output_dir": "content-output/openrouter-expanded-ai-benchmark-2026-06-18-15-20-02",
+      "selected_prompts": "78",
+      "provider_requests": "204",
+      "providers": "claude, chatgpt, gemini_plain",
+      "prompt_file": "content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/priority-retest-packet/priority-provider-request-manifest.csv"
+    }
+  ]
+}

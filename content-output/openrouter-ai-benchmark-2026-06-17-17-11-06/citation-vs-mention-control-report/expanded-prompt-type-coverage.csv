@@ -1,0 +1,7 @@
+"prompt_type","unique_prompts","provider_requests","pages_covered","top_categories"
+"comparison","135","405","135","amps/modular 81; fleet 66; warehouse 51; restaurant 48; fishing 48"
+"buyer_problem","133","399","133","amps/modular 78; fleet 69; warehouse 51; restaurant 48; streaming 48"
+"non_branded_best","124","372","124","amps/modular 78; fleet 57; warehouse 51; streaming 48; restaurant 45"
+"mapped","31","93","26","restaurant 21; fleet 21; delivery 21; fishing 18; warehouse 9"
+"product_entity","26","78","26","delivery 21; fleet 21; restaurant 15; fishing 12; warehouse 6"
+"citation_probe","10","30","10","restaurant 3; fishing 3; warehouse 3; delivery 3; fleet 3"

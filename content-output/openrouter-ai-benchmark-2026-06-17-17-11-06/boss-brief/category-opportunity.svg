@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="467" viewBox="0 0 1100 467" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.axis{stroke:#94a3b8;stroke-width:1}.grid{stroke:#e2e8f0;stroke-width:1}.title{font:700 24px Arial, sans-serif;fill:#111827}.subtitle{font:400 14px Arial, sans-serif;fill:#64748b}.label{font:700 13px Arial, sans-serif;fill:#111827}.small{font:400 12px Arial, sans-serif;fill:#475569}.value{font:700 13px Arial, sans-serif;fill:#0f172a}.white{font:700 13px Arial, sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1100" height="467" rx="0"/>
+  
+    <rect class="panel" x="28" y="24" width="1044" height="419" rx="14"/>
+    <text class="title" x="56" y="65">Opportunity by Category</text>
+    <text class="subtitle" x="56" y="88">Higher bars mean lower current AI visibility and more room to win.</text>
+    
+      <text class="label" x="56" y="123">tablet</text>
+      <rect x="420" y="108" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="108" width="560" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="994" y="125">100</text>
+      <text class="small" x="420" y="147">1 prompts, 1 with no iBOLT mention</text>
+    
+
+      <text class="label" x="56" y="166">fishing</text>
+      <rect x="420" y="151" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="151" width="554.4" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="994" y="168">99</text>
+      <text class="small" x="420" y="190">5 prompts, 5 with no iBOLT mention</text>
+    
+
+      <text class="label" x="56" y="209">fleet</text>
+      <rect x="420" y="194" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="194" width="492.8" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="994" y="211">88</text>
+      <text class="small" x="420" y="233">6 prompts, 4 with no iBOLT mention</text>
+    
+
+      <text class="label" x="56" y="252">delivery</text>
+      <rect x="420" y="237" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="237" width="470.4" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="994" y="254">84</text>
+      <text class="small" x="420" y="276">7 prompts, 5 with no iBOLT mention</text>
+    
+
+      <text class="label" x="56" y="295">warehouse</text>
+      <rect x="420" y="280" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="280" width="464.79999999999995" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="994" y="297">83</text>
+      <text class="small" x="420" y="319">3 prompts, 1 with no iBOLT mention</text>
+    
+
+      <text class="label" x="56" y="338">restaurant</text>
+      <rect x="420" y="323" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="323" width="453.6" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="994" y="340">81</text>
+      <text class="small" x="420" y="362">8 prompts, 5 with no iBOLT mention</text>
+    
+
+      <text class="label" x="56" y="381">comparison</text>
+      <rect x="420" y="366" width="560" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="366" width="308" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="994" y="383">55</text>
+      <text class="small" x="420" y="405">1 prompts, 0 with no iBOLT mention</text>
+    
+  
+</svg>

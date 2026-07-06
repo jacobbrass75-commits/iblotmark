@@ -1,0 +1,4 @@
+"provider","answers","mention_rate","non_branded_mention_rate","top_three_rate","citation_rate","competitor_only_rate","product_entity_rate"
+"claude","78","36","0","26","0","62","0"
+"chatgpt","65","43","8","35","0","55","0"
+"gemini_plain","61","43","3","28","0","54","0"

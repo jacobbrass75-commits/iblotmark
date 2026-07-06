@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT AI Visibility Boss Dashboard</title>
+  <style>
+    body{margin:0;background:#f5f7fb;color:#111827;font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1180px;margin:0 auto;padding:34px 24px 60px}
+    h1{font-size:36px;margin:0 0 8px;letter-spacing:0}
+    h2{font-size:22px;margin:34px 0 12px}
+    h3{font-size:17px;margin:18px 0 8px}
+    p,li{line-height:1.55;color:#334155;font-size:15px}
+    .note{background:#fff;border-left:6px solid #0f766e;border-radius:12px;padding:16px 18px;margin:20px 0;border-top:1px solid #dbe3ef;border-right:1px solid #dbe3ef;border-bottom:1px solid #dbe3ef}
+    .warn{border-left-color:#f97316}
+    .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}
+    .card{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:16px}
+    .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:800}
+    .value{font-size:30px;font-weight:900;margin:8px 0;color:#0f172a}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .chart{background:#fff;border:1px solid #dbe3ef;border-radius:18px;padding:10px;overflow:auto}
+    .chart svg{width:100%;height:auto;display:block}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ef;border-radius:12px;overflow:hidden}
+    th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #edf2f7;font-size:13px}
+    th{background:#eef2f7;color:#475569;text-transform:uppercase;font-size:11px;letter-spacing:.04em}
+    code{background:#e2e8f0;border-radius:5px;padding:2px 5px}
+    a{color:#0f766e}
+    @media(max-width:900px){.cards,.grid{grid-template-columns:1fr}h1{font-size:30px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>iBOLT AI Visibility Dashboard</h1>
+  <p>Generated from the saved OpenRouter benchmark, live blog audit, and page execution reports. This is a boss-facing readout, not a claim of post-edit lift.</p>
+
+  <div class="note">
+    <strong>Bottom line:</strong> iBOLT is visible, but not yet consistently recommended on broad buyer prompts. Citation rate should be improved, but first we need more answers to include iBOLT at all. The current target-domain citation rate is 0%, while competitor-only answers are 57%.
+  </div>
+
+  <section class="cards">
+    <div class="card"><div class="label">Mention rate</div><div class="value">40%</div><p>82/204 tested answers mention iBOLT.</p></div>
+    <div class="card"><div class="label">Non-branded mention</div><div class="value">3%</div><p>4/126 generic buyer answers mention iBOLT.</p></div>
+    <div class="card"><div class="label">Top-3 recommendation</div><div class="value">29%</div><p>60/204 answers put iBOLT in the recommendation set.</p></div>
+    <div class="card"><div class="label">Citation rate</div><div class="value">0%</div><p>0/204 answers cite iboltmounts.com.</p></div>
+  </section>
+
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="388" viewBox="0 0 900 388" role="img" aria-label="Current AI visibility KPIs versus target">
+    <rect width="900" height="388" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Current AI visibility versus next target</text>
+    <g>
+      <text x="22" y="77" font-size="14" font-weight="800" fill="#111827">Mention rate</text>
+      <rect x="255" y="58" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="58" width="172" height="24" rx="12" fill="#0f766e"/>
+      <line x1="406" x2="406" y1="53" y2="88" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="75" font-size="13" font-weight="800" fill="#111827">40% now</text>
+      <text x="806" y="75" font-size="13" font-weight="800" fill="#f97316">35% target</text>
+    </g><g>
+      <text x="22" y="129" font-size="14" font-weight="800" fill="#111827">Non-branded mention rate</text>
+      <rect x="255" y="110" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="110" width="13" height="24" rx="12" fill="#0f766e"/>
+      <line x1="320" x2="320" y1="105" y2="140" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="127" font-size="13" font-weight="800" fill="#111827">3% now</text>
+      <text x="806" y="127" font-size="13" font-weight="800" fill="#f97316">15% target</text>
+    </g><g>
+      <text x="22" y="181" font-size="14" font-weight="800" fill="#111827">Top-3 recommendation rate</text>
+      <rect x="255" y="162" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="162" width="125" height="24" rx="12" fill="#0f766e"/>
+      <line x1="363" x2="363" y1="157" y2="192" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="179" font-size="13" font-weight="800" fill="#111827">29% now</text>
+      <text x="806" y="179" font-size="13" font-weight="800" fill="#f97316">25% target</text>
+    </g><g>
+      <text x="22" y="233" font-size="14" font-weight="800" fill="#111827">Citation rate</text>
+      <rect x="255" y="214" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="214" width="0" height="24" rx="12" fill="#0f766e"/>
+      <line x1="289" x2="289" y1="209" y2="244" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="231" font-size="13" font-weight="800" fill="#111827">0% now</text>
+      <text x="806" y="231" font-size="13" font-weight="800" fill="#f97316">8% target</text>
+    </g><g>
+      <text x="22" y="285" font-size="14" font-weight="800" fill="#111827">Competitor-only answer rate</text>
+      <rect x="255" y="266" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="266" width="245" height="24" rx="12" fill="#0f766e"/>
+      <line x1="500" x2="500" y1="261" y2="296" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="283" font-size="13" font-weight="800" fill="#111827">57% now</text>
+      <text x="806" y="283" font-size="13" font-weight="800" fill="#f97316">57% target</text>
+    </g><g>
+      <text x="22" y="337" font-size="14" font-weight="800" fill="#111827">Product entity rows</text>
+      <rect x="255" y="318" width="430" height="24" rx="12" fill="#e5e7eb"/>
+      <rect x="255" y="318" width="0" height="24" rx="12" fill="#0f766e"/>
+      <line x1="449" x2="449" y1="313" y2="348" stroke="#f97316" stroke-width="3"/>
+      <text x="708" y="335" font-size="13" font-weight="800" fill="#111827">0% now</text>
+      <text x="806" y="335" font-size="13" font-weight="800" fill="#f97316">45% target</text>
+    </g>
+  </svg></div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="860" height="244" viewBox="0 0 860 244" role="img" aria-label="Visibility funnel from tested AI answers">
+    <rect width="860" height="244" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Visibility funnel from tested AI answers</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="700" fill="#111827">All tested AI answers</text>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#334155"/>
+      <text x="816" y="72" font-size="13" font-weight="800" text-anchor="end" fill="#111827">204</text>
+    </g><g>
+      <text x="22" y="108" font-size="13" font-weight="700" fill="#111827">iBOLT mentioned</text>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="90" width="219" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="106" font-size="13" font-weight="800" text-anchor="end" fill="#111827">82</text>
+    </g><g>
+      <text x="22" y="142" font-size="13" font-weight="700" fill="#111827">iBOLT top-3 recommended</text>
+      <rect x="255" y="124" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="124" width="160" height="21" rx="10" fill="#2563eb"/>
+      <text x="816" y="140" font-size="13" font-weight="800" text-anchor="end" fill="#111827">60</text>
+    </g><g>
+      <text x="22" y="176" font-size="13" font-weight="700" fill="#111827">iboltmounts.com cited</text>
+      <rect x="255" y="158" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="158" width="0" height="21" rx="10" fill="#f97316"/>
+      <text x="816" y="174" font-size="13" font-weight="800" text-anchor="end" fill="#111827">0</text>
+    </g><g>
+      <text x="22" y="210" font-size="13" font-weight="700" fill="#111827">Non-branded answers mentioning iBOLT</text>
+      <rect x="255" y="192" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="192" width="11" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="208" font-size="13" font-weight="800" text-anchor="end" fill="#111827">4</text>
+    </g>
+  </svg></div>
+  </section>
+
+  <h2>Should We Push Citation Rate?</h2>
+  <div class="note warn">
+    <strong>Yes, but sequence it correctly.</strong> Citation rate matters because it proves AI systems trust iboltmounts.com as a source. But current data shows a larger first-order issue: broad prompts often recommend competitors without mentioning iBOLT. The practical sequence is: win inclusion, strengthen top-3 recommendation, then push citations with schema, source-ready pages, and third-party authority.
+  </div>
+
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="860" height="346" viewBox="0 0 860 346" role="img" aria-label="Competitor replacement pressure">
+    <rect width="860" height="346" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Competitor replacement pressure</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="700" fill="#111827">RAM Mounts</text>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="72" font-size="13" font-weight="800" text-anchor="end" fill="#111827">58</text>
+    </g><g>
+      <text x="22" y="108" font-size="13" font-weight="700" fill="#111827">Arkon</text>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="90" width="235" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="106" font-size="13" font-weight="800" text-anchor="end" fill="#111827">25</text>
+    </g><g>
+      <text x="22" y="142" font-size="13" font-weight="700" fill="#111827">iOttie</text>
+      <rect x="255" y="124" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="124" width="141" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="140" font-size="13" font-weight="800" text-anchor="end" fill="#111827">15</text>
+    </g><g>
+      <text x="22" y="176" font-size="13" font-weight="700" fill="#111827">CTA Digital</text>
+      <rect x="255" y="158" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="158" width="132" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="174" font-size="13" font-weight="800" text-anchor="end" fill="#111827">14</text>
+    </g><g>
+      <text x="22" y="210" font-size="13" font-weight="700" fill="#111827">ProClip</text>
+      <rect x="255" y="192" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="192" width="113" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="208" font-size="13" font-weight="800" text-anchor="end" fill="#111827">12</text>
+    </g><g>
+      <text x="22" y="244" font-size="13" font-weight="700" fill="#111827">Mount-It</text>
+      <rect x="255" y="226" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="226" width="66" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="242" font-size="13" font-weight="800" text-anchor="end" fill="#111827">7</text>
+    </g><g>
+      <text x="22" y="278" font-size="13" font-weight="700" fill="#111827">Havis</text>
+      <rect x="255" y="260" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="260" width="47" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="276" font-size="13" font-weight="800" text-anchor="end" fill="#111827">5</text>
+    </g><g>
+      <text x="22" y="312" font-size="13" font-weight="700" fill="#111827">Tackform</text>
+      <rect x="255" y="294" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="294" width="38" height="21" rx="10" fill="#b91c1c"/>
+      <text x="816" y="310" font-size="13" font-weight="800" text-anchor="end" fill="#111827">4</text>
+    </g>
+  </svg></div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="860" height="176" viewBox="0 0 860 176" role="img" aria-label="Competitor replacements by provider">
+    <rect width="860" height="176" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Competitor replacements by provider</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="700" fill="#111827">ChatGPT</text>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="56" width="436" height="21" rx="10" fill="#2563eb"/>
+      <text x="816" y="72" font-size="13" font-weight="800" text-anchor="end" fill="#111827">20</text>
+    </g><g>
+      <text x="22" y="108" font-size="13" font-weight="700" fill="#111827">Claude</text>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#2563eb"/>
+      <text x="816" y="106" font-size="13" font-weight="800" text-anchor="end" fill="#111827">25</text>
+    </g><g>
+      <text x="22" y="142" font-size="13" font-weight="700" fill="#111827">Gemini</text>
+      <rect x="255" y="124" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="124" width="523" height="21" rx="10" fill="#2563eb"/>
+      <text x="816" y="140" font-size="13" font-weight="800" text-anchor="end" fill="#111827">24</text>
+    </g>
+  </svg></div>
+  </section>
+
+  <h2>What AI Is Missing</h2>
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="860" height="346" viewBox="0 0 860 346" role="img" aria-label="Language gaps AI answers reward">
+    <rect width="860" height="346" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Language gaps AI answers reward</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="700" fill="#111827">Rugged durability</text>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="72" font-size="13" font-weight="800" text-anchor="end" fill="#111827">85</text>
+    </g><g>
+      <text x="22" y="108" font-size="13" font-weight="700" fill="#111827">Install clarity</text>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="90" width="526" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="106" font-size="13" font-weight="800" text-anchor="end" fill="#111827">82</text>
+    </g><g>
+      <text x="22" y="142" font-size="13" font-weight="700" fill="#111827">Stability and grip</text>
+      <rect x="255" y="124" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="124" width="513" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="140" font-size="13" font-weight="800" text-anchor="end" fill="#111827">80</text>
+    </g><g>
+      <text x="22" y="176" font-size="13" font-weight="700" fill="#111827">Compatibility</text>
+      <rect x="255" y="158" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="158" width="391" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="174" font-size="13" font-weight="800" text-anchor="end" fill="#111827">61</text>
+    </g><g>
+      <text x="22" y="210" font-size="13" font-weight="700" fill="#111827">Adjustability</text>
+      <rect x="255" y="192" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="192" width="372" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="208" font-size="13" font-weight="800" text-anchor="end" fill="#111827">58</text>
+    </g><g>
+      <text x="22" y="244" font-size="13" font-weight="700" fill="#111827">Commercial/pro use</text>
+      <rect x="255" y="226" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="226" width="256" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="242" font-size="13" font-weight="800" text-anchor="end" fill="#111827">40</text>
+    </g><g>
+      <text x="22" y="278" font-size="13" font-weight="700" fill="#111827">Value without budget positioning</text>
+      <rect x="255" y="260" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="260" width="154" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="276" font-size="13" font-weight="800" text-anchor="end" fill="#111827">24</text>
+    </g><g>
+      <text x="22" y="312" font-size="13" font-weight="700" fill="#111827">Security and locking</text>
+      <rect x="255" y="294" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="294" width="19" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="310" font-size="13" font-weight="800" text-anchor="end" fill="#111827">3</text>
+    </g>
+  </svg></div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="860" height="414" viewBox="0 0 860 414" role="img" aria-label="Page categories queued for retest">
+    <rect width="860" height="414" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Page categories queued for retest</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="700" fill="#111827">amps/modular</text>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="72" font-size="13" font-weight="800" text-anchor="end" fill="#111827">246</text>
+    </g><g>
+      <text x="22" y="108" font-size="13" font-weight="700" fill="#111827">fleet</text>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="90" width="525" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="106" font-size="13" font-weight="800" text-anchor="end" fill="#111827">237</text>
+    </g><g>
+      <text x="22" y="142" font-size="13" font-weight="700" fill="#111827">restaurant</text>
+      <rect x="255" y="124" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="124" width="399" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="140" font-size="13" font-weight="800" text-anchor="end" fill="#111827">180</text>
+    </g><g>
+      <text x="22" y="176" font-size="13" font-weight="700" fill="#111827">fishing</text>
+      <rect x="255" y="158" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="158" width="379" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="174" font-size="13" font-weight="800" text-anchor="end" fill="#111827">171</text>
+    </g><g>
+      <text x="22" y="210" font-size="13" font-weight="700" fill="#111827">warehouse</text>
+      <rect x="255" y="192" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="192" width="379" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="208" font-size="13" font-weight="800" text-anchor="end" fill="#111827">171</text>
+    </g><g>
+      <text x="22" y="244" font-size="13" font-weight="700" fill="#111827">streaming</text>
+      <rect x="255" y="226" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="226" width="326" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="242" font-size="13" font-weight="800" text-anchor="end" fill="#111827">147</text>
+    </g><g>
+      <text x="22" y="278" font-size="13" font-weight="700" fill="#111827">delivery</text>
+      <rect x="255" y="260" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="260" width="279" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="276" font-size="13" font-weight="800" text-anchor="end" fill="#111827">126</text>
+    </g><g>
+      <text x="22" y="312" font-size="13" font-weight="700" fill="#111827">education</text>
+      <rect x="255" y="294" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="294" width="86" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="310" font-size="13" font-weight="800" text-anchor="end" fill="#111827">39</text>
+    </g><g>
+      <text x="22" y="346" font-size="13" font-weight="700" fill="#111827">offroad</text>
+      <rect x="255" y="328" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="328" width="86" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="344" font-size="13" font-weight="800" text-anchor="end" fill="#111827">39</text>
+    </g><g>
+      <text x="22" y="380" font-size="13" font-weight="700" fill="#111827">agriculture</text>
+      <rect x="255" y="362" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="362" width="47" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="378" font-size="13" font-weight="800" text-anchor="end" fill="#111827">21</text>
+    </g>
+  </svg></div>
+  </section>
+
+  <h2>Next Benchmark Retest</h2>
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="860" height="244" viewBox="0 0 860 244" role="img" aria-label="Priority retest waves">
+    <rect width="860" height="244" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Priority retest waves</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="700" fill="#111827">Sprint 1 edit validation</text>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="56" width="223" height="21" rx="10" fill="#f97316"/>
+      <text x="816" y="72" font-size="13" font-weight="800" text-anchor="end" fill="#111827">27</text>
+    </g><g>
+      <text x="22" y="108" font-size="13" font-weight="700" fill="#111827">top-page mention recovery</text>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#f97316"/>
+      <text x="816" y="106" font-size="13" font-weight="800" text-anchor="end" fill="#111827">66</text>
+    </g><g>
+      <text x="22" y="142" font-size="13" font-weight="700" fill="#111827">citation probe</text>
+      <rect x="255" y="124" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="124" width="198" height="21" rx="10" fill="#f97316"/>
+      <text x="816" y="140" font-size="13" font-weight="800" text-anchor="end" fill="#111827">24</text>
+    </g><g>
+      <text x="22" y="176" font-size="13" font-weight="700" fill="#111827">product entity recognition</text>
+      <rect x="255" y="158" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="158" width="273" height="21" rx="10" fill="#f97316"/>
+      <text x="816" y="174" font-size="13" font-weight="800" text-anchor="end" fill="#111827">33</text>
+    </g><g>
+      <text x="22" y="210" font-size="13" font-weight="700" fill="#111827">non-branded buyer coverage</text>
+      <rect x="255" y="192" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="192" width="446" height="21" rx="10" fill="#f97316"/>
+      <text x="816" y="208" font-size="13" font-weight="800" text-anchor="end" fill="#111827">54</text>
+    </g>
+  </svg></div>
+    <div>
+      <h3>Priority packet</h3>
+      <table><thead><tr><th>Wave</th><th>Requests</th><th>Prompts</th><th>Success metric</th></tr></thead><tbody><tr><td>W1 Sprint 1 edit validation</td><td>27</td><td>9</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>W2 top-page mention recovery</td><td>66</td><td>29</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>W3 citation probe</td><td>24</td><td>10</td><td>Target-domain citation or source-url row appears.</td></tr><tr><td>W4 product entity recognition</td><td>33</td><td>11</td><td>Exact iBOLT product/entity is named without hallucinated aliases.</td></tr><tr><td>W5 non-branded buyer coverage</td><td>54</td><td>19</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr></tbody></table>
+      <p>Closure audit verdict: <strong>not_complete</strong>. Remaining gate: OPENROUTER_API_KEY is not set in the local shell..</p>
+    </div>
+  </section>
+
+  <h2>Recommended Plan For Katie</h2>
+  <table><thead><tr><th>Owner</th><th>Action</th><th>Why</th></tr></thead><tbody><tr><td>Jacob/app</td><td>Refresh priority pages with answer-first comparison blocks, exact product names, and schema.</td><td>Moves iBOLT from competitor-only answers into inclusion and top-3 recommendation.</td></tr><tr><td>Jacob/app</td><td>Use the all-blog action control sheet as the single edit queue before retesting.</td><td>It joins page commands, citation stage, product-name risk, competitor pressure, and retest prompts across all 142 pages.</td></tr><tr><td>Jacob/app</td><td>Fix source-ready page structure before broad citation pushes.</td><td>99 pages miss FAQ schema, 113 miss quick answers, and citation rate is 0%.</td></tr><tr><td>Jacob/app + SEO contractor</td><td>Use the citation priority model to sequence mention recovery, source cleanup, product-name cleanup, and outreach.</td><td>Citation rate matters, but the model keeps citation work behind inclusion and source-readiness gates.</td></tr><tr><td>Jacob/app</td><td>Prioritize product cards and CTA cleanup on high-intent pages before adding more cart buttons.</td><td>The product conversion bridge ties AI losses to product modules, CTA density, and checkout-ready page work.</td></tr><tr><td>Jacob/app</td><td>Normalize AI-visible product names to verified Shopify titles before product-entity retests.</td><td>The product-name truth table separates valid aliases from hallucination or wrong-alias risks.</td></tr><tr><td>SEO contractor</td><td>Build third-party mentions around RAM, Arkon, iOttie, ProClip, restaurant, fleet, AMPS, warehouse, and fishing topics.</td><td>AI systems need external corroboration before citing iboltmounts.com consistently.</td></tr><tr><td>Jacob/app</td><td>Run the 204-request priority retest after edits are live, then run the 1,449-request all-blog manifest when ready.</td><td>The priority run proves near-term movement. The full all-blog run proves coverage across every live blog page.</td></tr></tbody></table>
+
+  <h2>Evidence Links</h2>
+  <ul>
+    <li><a href="../visibility-working-packet/REPORT.html">AI visibility working packet</a></li>
+    <li><a href="../evidence-hub/REPORT.html">AI visibility evidence hub</a></li>
+    <li><a href="../citation-visibility-executive-brief/REPORT.html">Citation and visibility executive brief</a></li>
+    <li><a href="../citation-visibility-boss-memo/REPORT.html">Citation and visibility boss memo</a></li>
+    <li><a href="../next-benchmark-runbook/REPORT.html">Next benchmark runbook</a></li>
+    <li><a href="../retest-execution-gate/REPORT.html">Retest execution gate</a></li>
+    <li><a href="../micro-run-cleanup-packet/REPORT.html">Micro-run cleanup packet</a></li>
+    <li><a href="../micro-run-source-snippets/REPORT.html">Micro-run source snippets</a></li>
+    <li><a href="../post-run-comparison/REPORT.html">Post-run comparison analyzer</a></li>
+    <li><a href="../visibility-completion-control-report/REPORT.html">Visibility completion control report</a></li>
+    <li><a href="../answer-examples-report/REPORT.html">AI answer examples</a></li>
+    <li><a href="../answer-review-packet/REPORT.html">AI answer review packet</a></li>
+    <li><a href="../entity-adjacency-report/REPORT.html">Entity adjacency report</a></li>
+    <li><a href="../mention-environment-dossier/REPORT.html">Mention environment dossier</a></li>
+    <li><a href="../mention-language-command-deck/REPORT.html">Mention language command deck</a></li>
+    <li><a href="../mention-narrative-drilldown/REPORT.html">Mention narrative drilldown</a></li>
+    <li><a href="../product-name-truth-table/REPORT.html">Product name truth table</a></li>
+    <li><a href="../competitive-share-of-answer/REPORT.html">Competitive share of answer</a></li>
+    <li><a href="../competitor-action-deck/REPORT.html">Competitor and citation action deck</a></li>
+    <li><a href="../competitor-page-counterplan/REPORT.html">Competitor page counterplan</a></li>
+    <li><a href="../competitor-comparison-dossier/REPORT.html">Competitor comparison dossier</a></li>
+    <li><a href="../category-provider-priority-report/REPORT.html">Category/provider priority report</a></li>
+    <li><a href="../prompt-intent-loss-report/REPORT.html">Prompt intent loss report</a></li>
+    <li><a href="../prompt-loss-decision-board/REPORT.html">Prompt loss decision board</a></li>
+    <li><a href="../blog-page-opportunity-heatmap/REPORT.html">Blog page opportunity heatmap</a></li>
+    <li><a href="../product-conversion-visibility-bridge/REPORT.html">Product conversion visibility bridge</a></li>
+    <li><a href="../shopify-blog-content-state-bridge/REPORT.html">Shopify blog content state bridge</a></li>
+    <li><a href="../portfolio-product-spread-analysis/REPORT.html">Portfolio product spread analysis</a></li>
+    <li><a href="../product-family-visibility-board/REPORT.html">Product family AI visibility board</a></li>
+    <li><a href="../blog-body-inspection/REPORT.html">Blog body inspection</a></li>
+    <li><a href="../all-blog-answer-gap-drilldown/REPORT.html">All blog answer gap drilldown</a></li>
+    <li><a href="../survivor-url-decision-workbook/REPORT.html">Survivor URL decision workbook</a></li>
+    <li><a href="../page-edit-command-matrix/REPORT.html">Page edit command matrix</a></li>
+    <li><a href="../all-blog-action-control-sheet/REPORT.html">All-blog action control sheet</a></li>
+    <li><a href="../query-loss-recovery-matrix/REPORT.html">Query loss recovery matrix</a></li>
+    <li><a href="../all-blog-edit-retest-planner/REPORT.html">All-blog edit and retest planner</a></li>
+    <li><a href="../all-page-ai-drilldown/REPORT.html">All blog page AI drilldown</a></li>
+    <li><a href="../all-blog-test-coverage-report/REPORT.html">All blog test coverage report</a></li>
+    <li><a href="../all-blog-prompt-gap-addendum/REPORT.html">All blog prompt gap addendum</a></li>
+    <li><a href="../low-coverage-prompt-expansion-pack/REPORT.html">Low coverage prompt expansion pack</a></li>
+    <li><a href="../test-area-expansion-map/REPORT.html">Test area expansion map</a></li>
+    <li><a href="../benchmark-manifest-qa/REPORT.html">Benchmark manifest QA</a></li>
+    <li><a href="../benchmark-history/REPORT.html">Benchmark history</a></li>
+    <li><a href="../visibility-citation-bridge/REPORT.html">Visibility to citation bridge</a></li>
+    <li><a href="../citation-priority-model/REPORT.html">Citation priority model</a></li>
+    <li><a href="../source-citation-closure-board/REPORT.html">Source and citation closure board</a></li>
+    <li><a href="../source-authority-roadmap/REPORT.html">Source authority roadmap</a></li>
+    <li><a href="../citation-uplift-plan/REPORT.html">Citation uplift plan</a></li>
+    <li><a href="../visibility-kpi-retest-ladder/REPORT.html">KPI retest ladder</a></li>
+    <li><a href="../goal-audit/REPORT.html">Goal audit</a></li>
+    <li><a href="../goal-closure-audit/REPORT.html">Goal closure audit</a></li>
+    <li><a href="../citation-rate-visibility-dashboard/REPORT.html">Citation-rate dashboard</a></li>
+    <li><a href="../competitor-battlecard-control-report/REPORT.html">Competitor battlecards</a></li>
+    <li><a href="../page-execution-control-board/REPORT.html">Page execution board</a></li>
+    <li><a href="../sprint1-edit-command-sheet/REPORT.html">Sprint 1 edit command sheet</a></li>
+    <li><a href="../priority-retest-packet/REPORT.html">Priority retest packet</a></li>
+  </ul>
+</main>
+</body>
+</html>

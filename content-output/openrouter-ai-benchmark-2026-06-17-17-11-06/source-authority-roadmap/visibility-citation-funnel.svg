@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="330" viewBox="0 0 980 330">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="38" fill="#0f172a" font-size="22" font-weight="800">Visibility To Citation Funnel</text>
+<text x="24" y="89" fill="#0f172a" font-size="14" font-weight="700">Tested answers</text>
+<rect x="260" y="70" width="540" height="26" rx="6" fill="#e2e8f0"/>
+<rect x="260" y="70" width="540" height="26" rx="6" fill="#0f172a"/>
+<text x="814" y="89" fill="#0f172a" font-size="14" font-weight="800">93 (100%)</text>
+<text x="24" y="137" fill="#0f172a" font-size="14" font-weight="700">iBOLT mentioned</text>
+<rect x="260" y="118" width="540" height="26" rx="6" fill="#e2e8f0"/>
+<rect x="260" y="118" width="128" height="26" rx="6" fill="#16a34a"/>
+<text x="814" y="137" fill="#0f172a" font-size="14" font-weight="800">22 (24%)</text>
+<text x="24" y="185" fill="#0f172a" font-size="14" font-weight="700">Non-branded mentions</text>
+<rect x="260" y="166" width="540" height="26" rx="6" fill="#e2e8f0"/>
+<rect x="260" y="166" width="23" height="26" rx="6" fill="#0891b2"/>
+<text x="814" y="185" fill="#0f172a" font-size="14" font-weight="800">4 (5%)</text>
+<text x="24" y="233" fill="#0f172a" font-size="14" font-weight="700">Top-3 recommendations</text>
+<rect x="260" y="214" width="540" height="26" rx="6" fill="#e2e8f0"/>
+<rect x="260" y="214" width="87" height="26" rx="6" fill="#ea580c"/>
+<text x="814" y="233" fill="#0f172a" font-size="14" font-weight="800">15 (16%)</text>
+<text x="24" y="281" fill="#0f172a" font-size="14" font-weight="700">Target-domain citations</text>
+<rect x="260" y="262" width="540" height="26" rx="6" fill="#e2e8f0"/>
+<rect x="260" y="262" width="2" height="26" rx="6" fill="#dc2626"/>
+<text x="814" y="281" fill="#0f172a" font-size="14" font-weight="800">0 (0%)</text>
+</svg>

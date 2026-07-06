@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT Blog Inventory and Product Spread Audit</title>
+  <style>
+    :root{--ink:#111827;--muted:#64748b;--border:#d7dee8;--bg:#f8fafc;--panel:#fff}
+    body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+    main{max-width:1260px;margin:0 auto;padding:34px 26px 64px}h1{font-size:34px;margin:0 0 10px}h2{font-size:22px;margin:34px 0 14px}p{font-size:16px;line-height:1.55;color:#334155;max-width:960px}
+    .grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:22px 0}.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px}.k{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:700}.v{font-size:30px;font-weight:800;margin-top:8px}.s,td span{font-size:13px;color:var(--muted)}
+    .takeaway{background:#fff;border:1px solid var(--border);border-left:6px solid #2563eb;border-radius:10px;padding:16px 18px}
+    figure{background:#fff;border:1px solid var(--border);border-radius:14px;margin:14px 0;padding:10px;overflow:auto}figure img{display:block;width:100%;height:auto}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:22px}th,td{text-align:left;vertical-align:top;padding:11px 12px;border-bottom:1px solid #edf2f7;font-size:14px}th{background:#f1f5f9;color:#475569;font-size:12px;letter-spacing:.04em;text-transform:uppercase}a{color:#0f3f91}
+    @media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media print{body{background:#fff}main{max-width:none;padding:18px}.grid{grid-template-columns:repeat(6,1fr)}figure,.card,table{break-inside:avoid}}
+  </style>
+</head><body><main>
+  <h1>iBOLT Blog Inventory and Product Spread Audit</h1>
+  <p class="takeaway"><strong>Readout:</strong> The blog system has a real content base, but product coverage and page matching are uneven. The top cleanup is to connect high-risk benchmark prompts to the right live pages, reduce overlapping pages, and spread product mentions beyond the same few marine and restaurant SKUs.</p>
+  <section class="grid">
+    <div class="card"><div class="k">Local posts</div><div class="v">106</div><div class="s">106 synced to Shopify</div></div>
+  
+    <div class="card"><div class="k">Sitemap pages</div><div class="v">142</div><div class="s">113 audited</div></div>
+  
+    <div class="card"><div class="k">Matched posts</div><div class="v">89/106</div><div class="s">17 not matched to audit</div></div>
+  
+    <div class="card"><div class="k">Products</div><div class="v">343</div><div class="s">156 linked in posts</div></div>
+  
+    <div class="card"><div class="k">Unlinked products</div><div class="v">187</div><div class="s">55% of catalog</div></div>
+  
+    <div class="card"><div class="k">Duplicate pairs</div><div class="v">18</div><div class="s">possible topic overlap</div></div>
+  </section>
+  <h2>Charts</h2>
+  <figure><img src="post-refresh-priorities.svg" alt="post-refresh-priorities.svg"/></figure>
+<figure><img src="topic-product-spread.svg" alt="topic-product-spread.svg"/></figure>
+<figure><img src="top-linked-products.svg" alt="top-linked-products.svg"/></figure>
+<figure><img src="inventory-match-status.svg" alt="inventory-match-status.svg"/></figure>
+  <h2>Highest Priority Post Refreshes</h2>
+  <table><thead><tr><th>Priority</th><th>Post</th><th>Overall</th><th>AI page score</th><th>Products</th><th>Prompts</th><th>Fixes</th></tr></thead><tbody>
+    <tr>
+      <td>75</td><td><b>Best Phone Mount for Construction Vehicles and Work Trucks</b><br><span>Trucking &amp; Fleet</span></td>
+      <td>87</td><td>76</td><td>3</td>
+      <td>best phone mount for construction vehicles and work trucks</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>75</td><td><b>Best Phone Mount for Instacart and Grocery Delivery Drivers</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>87</td><td>76</td><td>3</td>
+      <td>best phone mount for Instacart and grocery delivery drivers</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>73</td><td><b>Best Tablet Mount for Restaurant POS and Delivery Apps</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>87</td><td>76</td><td>3</td>
+      <td>best tablet mount for restaurant POS and delivery apps</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>72</td><td><b>Best Drill Base Phone Mount for Construction Vehicles and Work Trucks</b><br><span>Trucking &amp; Fleet</span></td>
+      <td>88</td><td>76</td><td>5</td>
+      <td>best phone mount for construction vehicles and work trucks</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>72</td><td><b>Choosing the Best Phone Mount for Delivery Drivers: Durable, Secure, and Easy to Use</b><br><span>unmapped</span></td>
+      <td>89</td><td>76</td><td>5</td>
+      <td>best phone mount for Instacart and grocery delivery drivers</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>70</td><td><b>How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>87</td><td>76</td><td>3</td>
+      <td>set up multiple tablets for DoorDash Uber Eats and Grubhub</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>69</td><td><b>Best Boat Phone Mount for Rough Water</b><br><span>Fishing &amp; Boating</span></td>
+      <td>84</td><td>84</td><td>3</td>
+      <td>best heavy duty vehicle phone mount</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>69</td><td><b>Best Phone Mount for Amazon Flex and Delivery Vans</b><br><span>Trucking &amp; Fleet</span></td>
+      <td>87</td><td>84</td><td>3</td>
+      <td>best phone mount for Amazon Flex and delivery vans</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>66</td><td><b>Best Tablet Mount for Utility Truck Crews</b><br><span>Trucking &amp; Fleet</span></td>
+      <td>84</td><td>76</td><td>3</td>
+      <td>best tablet mount for food truck</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>66</td><td><b>Best Fish Finder Mount for Pontoon Boat Rails</b><br><span>Fishing &amp; Boating</span></td>
+      <td>84</td><td>84</td><td>3</td>
+      <td>best fish finder mount for small boat</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>66</td><td><b>Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</b><br><span>Fishing &amp; Boating</span></td>
+      <td>89</td><td>84</td><td>8</td>
+      <td>best heavy duty vehicle phone mount</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>66</td><td><b>Best Boat Phone Mount for Rough Water: How to Keep Your Phone Secure on the Chop</b><br><span>Fishing &amp; Boating</span></td>
+      <td>89</td><td>84</td><td>9</td>
+      <td>best heavy duty vehicle phone mount</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>64</td><td><b>Magnetic vs Clamp Phone Mounts for Delivery Work</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>87</td><td>84</td><td>3</td>
+      <td>magnetic vs clamp phone mounts for delivery work</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>63</td><td><b>Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat</b><br><span>Fishing &amp; Boating</span></td>
+      <td>86</td><td>84</td><td>9</td>
+      <td>best fish finder mount for small boat</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>61</td><td><b>Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>87</td><td>84</td><td>3</td>
+      <td>best locking tablet stand for food trucks and quick service restaurants</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>61</td><td><b>Barcode Scanner Mounts</b><br><span>unmapped</span></td>
+      <td></td><td>84</td><td>4</td>
+      <td>best barcode scanner mount for forklift</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>61</td><td><b>Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)</b><br><span>unmapped</span></td>
+      <td></td><td>84</td><td>5</td>
+      <td>best barcode scanner mount for forklift</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>58</td><td><b>Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</b><br><span>unmapped</span></td>
+      <td></td><td>94</td><td>2</td>
+      <td>best ELD mount for trucks</td><td>FAQ schema, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>57</td><td><b>Best Drill-Base Phone Mount for Semi Trucks</b><br><span>Trucking &amp; Fleet</span></td>
+      <td>87</td><td>84</td><td>3</td>
+      <td>best drill base phone mount for semi trucks</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>57</td><td><b>Best Tablet Mounts for Delivery Apps: Complete Setup Guide for Restaurants</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>86</td><td>94</td><td>10</td>
+      <td>best tablet mount; best multi tablet mount; best restaurant tablet mount</td><td>FAQ schema, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>57</td><td><b>Restaurant Tablet Mount Setup: Complete Guide for Toast, Square &amp; Delivery Apps</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>86</td><td>94</td><td>14</td>
+      <td>best tablet mount; best multi tablet mount; best restaurant tablet mount</td><td>FAQ schema, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>56</td><td><b>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</b><br><span>Fishing &amp; Boating</span></td>
+      <td>87</td><td>84</td><td>8</td>
+      <td>best fish finder; best fish finder in water; best budget fish finder mount</td><td>quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>55</td><td><b>Best Locking Phone Mount for Shared Delivery Vehicles</b><br><span>Trucking &amp; Fleet</span></td>
+      <td>87</td><td>94</td><td>3</td>
+      <td>best locking phone mount for shared delivery vehicles</td><td>FAQ schema, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>54</td><td><b>Commercial-Grade Phone Mounts for Delivery Drivers</b><br><span>Road Trips &amp; Travel</span></td>
+      <td>91</td><td>83</td><td>3</td>
+      <td>commercial grade phone mount for delivery drivers</td><td>Article/BlogPosting schema</td>
+    </tr>
+  
+    <tr>
+      <td>53</td><td><b>Best Kayak Fish Finder Mounts for Secure Removable Setups</b><br><span>Fishing &amp; Boating</span></td>
+      <td>91</td><td>83</td><td>3</td>
+      <td>best kayak fish finder mount</td><td>Article/BlogPosting schema</td>
+    </tr>
+  
+    <tr>
+      <td>51</td><td><b>iBOLT Dock'n Lock for Restaurant Counters</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>87</td><td>76</td><td>3</td>
+      <td>iBolt Dock’n Lock for restaurant counters</td><td>FAQ schema, quick answer, comparison block, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>51</td><td><b>Best Phone Mount for Delivery Drivers</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>91</td><td>83</td><td>10</td>
+      <td>best phone mount for delivery drivers</td><td>Article/BlogPosting schema</td>
+    </tr>
+  
+    <tr>
+      <td>50</td><td><b>Kayak Fish Finder Mount Setup: A Complete Guide to Secure, Removable Electronics Mounting</b><br><span>Fishing &amp; Boating</span></td>
+      <td>80</td><td>83</td><td>11</td>
+      <td>best kayak fish finder mount</td><td>Article/BlogPosting schema</td>
+    </tr>
+  
+    <tr>
+      <td>45</td><td><b>iBOLT vs iOttie for Delivery Driving</b><br><span>Restaurants &amp; Food Delivery</span></td>
+      <td>87</td><td>84</td><td>3</td>
+      <td>iBolt vs iOttie for delivery driving</td><td>FAQ schema, quick answer, image alt text</td>
+    </tr>
+  
+    <tr>
+      <td>44</td><td><b>Forklift &amp; Warehouse Tablet Mounts</b><br><span>unmapped</span></td>
+      <td></td><td>94</td><td>4</td>
+      <td>best tablet mount for warehouse; best forklift tablet mount</td><td>FAQ schema, image alt text</td>
+    </tr>
+  </tbody></table>
+  <h2>Most Used Products In Blog Content</h2>
+  <table><thead><tr><th>Posts</th><th>Product</th><th>Verticals</th><th>Linked posts</th></tr></thead><tbody>
+    <tr>
+      <td>15</td><td><b>iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount</b><br><span>ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount</span></td>
+      <td>Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Best Tablet Mount for Restaurant POS and Delivery Apps; Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants; iBOLT vs Bouncepad vs Mount-It for Restaurant Tablet Security; iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026</td>
+    </tr>
+  
+    <tr>
+      <td>14</td><td><b>iBOLT Universal Marine &amp; Electronics Mounting Plate</b><br><span>ibolt-universal-marine-electronics-mounting-plate</span></td>
+      <td>Fishing &amp; Boating, Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Best Fish Finder Mount for Pontoon Boat Rails; Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop; Best Boat Phone Mount for Rough Water: How to Keep Your Phone Secure on the Chop; Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat</td>
+    </tr>
+  
+    <tr>
+      <td>12</td><td><b>iBOLT™ xProDock™ Bizmount™ Amps</b><br><span>xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931</span></td>
+      <td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Education &amp; Schools, Content Creation &amp; Streaming, Kitchen &amp; Home, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Drill Base Phone Mount for Construction Vehicles and Work Trucks; Best Phone Mount for Amazon Flex and Delivery Vans; Commercial-Grade Phone Mounts for Delivery Drivers; iBOLT vs iOttie for Delivery Driving</td>
+    </tr>
+  
+    <tr>
+      <td>11</td><td><b>iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones</b><br><span>ibolt-phone-dock-n-lock-incredibolt-amps-w-4-25-double-socket-arm-locking-drill-base-mount-for-smartphones-great-for-trucks-eld-s-wall-mounting-sprinter-vans-etc</span></td>
+      <td>Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Education &amp; Schools, Kitchen &amp; Home, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Drill Base Phone Mount for Construction Vehicles and Work Trucks; Best Drill-Base Phone Mount for Semi Trucks; Best Locking Phone Mount for Shared Delivery Vehicles; Commercial-Grade Phone Mounts for Delivery Drivers</td>
+    </tr>
+  
+    <tr>
+      <td>11</td><td><b>iBOLT Quad Tablet Tower TabDock™ Stand</b><br><span>ibolt-quad-tablet-tower-stand</span></td>
+      <td>Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Best Tablet Mount for Restaurant POS and Delivery Apps; iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026; iBOLT Mounts and Toast POS: Powering Modern Restaurant Technology; Restaurant &amp; POS Mounts</td>
+    </tr>
+  
+    <tr>
+      <td>11</td><td><b>iBOLT TabDock™ IncrediBOLT™ 360 Suction- Heavy Duty Metal 6 inch Multi-Angle Mount for All 7&quot; - 10&quot; Tablets for Commercial Vehicles, Trucks, and ELD Devices</b><br><span>ibolt-tabdocktm-incredibolttm-360-suction-heavy-duty-metal-6-inch-multi-angle-mount-for-all-7-10-tablets-for-commercial-vehicles-trucks-and-eld-devices</span></td>
+      <td>Trucking &amp; Fleet, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026); iBOLT Mounts Supports ELD Compliance for America's Commercial Fleets; iBOLT Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series; Best Rugged Tablet Mount for Field Service Vans</td>
+    </tr>
+  
+    <tr>
+      <td>11</td><td><b>iBOLT™ xProDock™ NFC BizMount™ Suction Cup</b><br><span>heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785</span></td>
+      <td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Education &amp; Schools, Kitchen &amp; Home, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Phone Mount for Instacart and Grocery Delivery Drivers; Best Phone Mount for Amazon Flex and Delivery Vans; Magnetic vs Clamp Phone Mounts for Delivery Work; Commercial-Grade Phone Mounts for Delivery Drivers</td>
+    </tr>
+  
+    <tr>
+      <td>10</td><td><b>iBOLT Garmin Striker 4 / Fish Finder IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount</b><br><span>ibolt-garmin-striker-4-fish-finder-incredibolt-360-clamp-handlebar-rail-mount</span></td>
+      <td>Fishing &amp; Boating, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>Best Boat Phone Mount for Rough Water: How to Keep Your Phone Secure on the Chop; Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat; Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak; Best Kayak Fish Finder Mounts for Secure Removable Setups</td>
+    </tr>
+  
+    <tr>
+      <td>10</td><td><b>iBOLT Moto-Vise™ IncrediBOLT™ 360 Heavy Duty Phone Clamp / Handlebar / Rail Mount</b><br><span>ibolt-moto-vise-incredibolt-360-heavy-duty-phone-clamp-handlebar-rail-mount</span></td>
+      <td>Fishing &amp; Boating, Off-Roading &amp; Jeep, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>Choosing the Best Phone Mount for Delivery Drivers: Durable, Secure, and Easy to Use; Best Boat Phone Mount for Rough Water; Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop; Best Boat Phone Mount for Rough Water: How to Keep Your Phone Secure on the Chop</td>
+    </tr>
+  
+    <tr>
+      <td>10</td><td><b>iBOLT Universal Marine Fish Finder IncrediBOLT™ Clamp / Handlebar/ Rail Mount</b><br><span>ibolt-universal-marine-fish-finder-incredibolt-clamp-handlebar-rail-mount</span></td>
+      <td>Fishing &amp; Boating, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>Best Fish Finder Mount for Pontoon Boat Rails; Best Boat Phone Mount for Rough Water: How to Keep Your Phone Secure on the Chop; Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat; Kayak Fish Finder Mount Setup: A Complete Guide to Secure, Removable Electronics Mounting</td>
+    </tr>
+  
+    <tr>
+      <td>9</td><td><b>iBOLT Dock’n Lock Bizmount™- Forklift Locking Tablet 38mm Mount</b><br><span>ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount</span></td>
+      <td>Forklifts &amp; Warehousing, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Barcode Scanner Mounts for Forklifts and Warehouses (2026); Forklift &amp; Warehouse Tablet Mounts; Best Forklift Tablet Mounts for Warehouses (2026 Comparison); iBOLT Launches Next-Generation Industrial Forklift Mounting System</td>
+    </tr>
+  
+    <tr>
+      <td>9</td><td><b>iBOLT XL Forklift Barcode Scanner Holder 38mm Mount</b><br><span>ibolt-xl-forklift-barcode-scanner-holder-38mm-mount</span></td>
+      <td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Barcode Scanner Mounts; Best Barcode Scanner Mounts for Forklifts and Warehouses (2026); Forklift &amp; Warehouse Tablet Mounts; Best Forklift Tablet Mounts for Warehouses (2026 Comparison)</td>
+    </tr>
+  
+    <tr>
+      <td>8</td><td><b>iBOLT Dock’n Lock POS Tablet Stand</b><br><span>ibolt-dock-n-lock-pos-tablet-stand</span></td>
+      <td>Restaurants &amp; Food Delivery, Kitchen &amp; Home, General Mounting Solutions</td><td>Best Tablet Mounts for Delivery Apps: Complete Setup Guide for Restaurants; Restaurant Tablet Mount Setup: Complete Guide for Toast, Square &amp; Delivery Apps; Best Phone Mount for Delivery Drivers; AMPS VESA Ball Mount Sizes: Complete Guide to Device Mounting Standards</td>
+    </tr>
+  
+    <tr>
+      <td>8</td><td><b>iBOLT Phone Dock’n Lock Dual POS Stand – Secure Dual-Device Mount for Point of Sale Systems</b><br><span>ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems</span></td>
+      <td>Forklifts &amp; Warehousing, Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Restaurant Tablet Mount Setup: Complete Guide for Toast, Square &amp; Delivery Apps; iBOLT Mounts and Toast POS: Powering Modern Restaurant Technology; Complete Guide to Forklift Tablet Scanner Mounts: Boost Warehouse Productivity with Industrial Mounting Solutions; Restaurant &amp; POS Mounts</td>
+    </tr>
+  
+    <tr>
+      <td>8</td><td><b>iBOLT Tablet Tower- TabDock™ POS Wall Mount - with 3 Tablet Holders</b><br><span>ibolt-tablet-tower-tabdock-point-of-purchase-pos-wall-mount-with-3-tablet-holders</span></td>
+      <td>Restaurants &amp; Food Delivery, Kitchen &amp; Home, General Mounting Solutions</td><td>How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub; Best Tablet Mounts for Delivery Apps: Complete Setup Guide for Restaurants; Restaurant Tablet Mount Setup: Complete Guide for Toast, Square &amp; Delivery Apps; iBOLT Tablet Tower System Featured at National Restaurant Association Show 2026</td>
+    </tr>
+  
+    <tr>
+      <td>7</td><td><b>iBOLT Garmin Striker 4 / Fish Finder Handlebar, Rail Mount</b><br><span>ibolt-garmin-striker-4-fish-finder-handlebar-rail-mount</span></td>
+      <td>Fishing &amp; Boating, Forklifts &amp; Warehousing, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat; Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak; Best Kayak Fish Finder Mounts for Secure Removable Setups; Kayak Fish Finder Mount Setup: A Complete Guide to Secure, Removable Electronics Mounting</td>
+    </tr>
+  
+    <tr>
+      <td>7</td><td><b>iBOLT LockPro FlexPro Heavy Duty Locking Tablet Seat Rail Mount</b><br><span>ibolt-lockpro-flexpro-heavy-duty-locking-tablet-seat-rail-mount</span></td>
+      <td>Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Road Trips &amp; Travel, General Mounting Solutions</td><td>Forklift &amp; Warehouse Tablet Mounts; Best Forklift Tablet Mounts for Warehouses (2026 Comparison); What Makes Forklift Mounting Different; iBOLT LockPro Series: Industrial-Grade Security for Unattended Tablets in Warehouses and Retail</td>
+    </tr>
+  
+    <tr>
+      <td>7</td><td><b>iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount</b><br><span>ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones</span></td>
+      <td>Forklifts &amp; Warehousing, Restaurants &amp; Food Delivery, Education &amp; Schools, Kitchen &amp; Home, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Phone Mount for Construction Vehicles and Work Trucks; Magnetic vs Clamp Phone Mounts for Delivery Work; Best Drill-Base Phone Mount for Semi Trucks; Best Locking Phone Mount for Shared Delivery Vehicles</td>
+    </tr>
+  
+    <tr>
+      <td>7</td><td><b>iBOLT TabDock MagDock 360 Magnetic Tablet Mount – Heavy-Duty Forklift &amp; Warehouse Holder</b><br><span>ibolt-tabdock-magdock-360-magnetic-tablet-mount-heavy-duty-forklift-warehouse-holder</span></td>
+      <td>Forklifts &amp; Warehousing, General Mounting Solutions</td><td>Forklift &amp; Warehouse Tablet Mounts; Best Forklift Tablet Mounts for Warehouses (2026 Comparison); iBOLT Confirms Universal Mounting Solutions for Samsung Galaxy Tab A9 and S9 Series; iBOLT Launches Next-Generation Industrial Forklift Mounting System</td>
+    </tr>
+  
+    <tr>
+      <td>7</td><td><b>iBOLT Universal Marine Fish Finder Handlebar/ Rail Mount</b><br><span>ibolt-universal-marine-fish-finder-handlebar-rail-mount</span></td>
+      <td>Fishing &amp; Boating, Forklifts &amp; Warehousing, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>Best Kayak Fish Finder Mounts for Secure Removable Setups; Best No-Drill Fish Finder Mounts for Aluminum Boats and Jon Boats; Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide; Best Fish Finder Mounts That Stay Put and Do Not Bounce Loose</td>
+    </tr>
+  
+    <tr>
+      <td>7</td><td><b>iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate</b><br><span>ibolt-25mm-1-inch-ball-composite-universal-marine-fish-finder-mounting-plate</span></td>
+      <td>Fishing &amp; Boating, Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat; Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak; Kayak Fish Finder Mount Setup: A Complete Guide to Secure, Removable Electronics Mounting; Best No-Drill Fish Finder Mounts for Aluminum Boats and Jon Boats</td>
+    </tr>
+  
+    <tr>
+      <td>7</td><td><b>iBOLT™ TabDock™ Bizmount™ AMPs</b><br><span>tabdock-bizmount-amps-heavy-duty-drill-base-tablet-mount-ibbz-33921</span></td>
+      <td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Off-Roading &amp; Jeep, Restaurants &amp; Food Delivery, Education &amp; Schools, Agriculture &amp; Farming, Kitchen &amp; Home, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Tablet Mount for Utility Truck Crews; Best Phone and Action Camera Mounts for UTV Trails, Jeeps, and Overlanding Rigs; Best Rugged Tablet Mount for Field Service Vans; Best Tablet Mount for School Bus and Transportation Fleets</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>Build Your Own Mount</b><br><span>build-your-own-mount</span></td>
+      <td>General Mounting Solutions</td><td>Build Your Own Mount / Modularity; iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution; AMPS VESA Ball Mount Sizes: Complete Guide to Device Mounting Standards; How the Modular System Works</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>iBOLT 1/4 20 Camera Screw IncrediBOLT Suction Cup Mount – Secure, Adjustable Mount for Cameras &amp; Accessories</b><br><span>ibolt-1-4-20-camera-screw-incredibolt-suction-cup-mount-secure-adjustable-mount-for-cameras-accessories</span></td>
+      <td>Trucking &amp; Fleet, Education &amp; Schools, Content Creation &amp; Streaming, Kitchen &amp; Home, Road Trips &amp; Travel, General Mounting Solutions</td><td>The Complete Guide to Overhead Livestream Setup: Best Phone and Camera Mounts for Content Creators; Best Overhead Camera Mount for Product Videos: The Complete Setup Guide for Sellers; Best Overhead Camera Rig for Product Photography; Overhead Camera Mount for Product Photography: Complete Setup Guide</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>iBOLT Dock’n Lock POS Phone Stand</b><br><span>ibolt-dock-n-lock-pos-phone-stand</span></td>
+      <td>Restaurants &amp; Food Delivery, Kitchen &amp; Home, General Mounting Solutions</td><td>Best Tablet Mounts for Delivery Apps: Complete Setup Guide for Restaurants; Restaurant Tablet Mount Setup: Complete Guide for Toast, Square &amp; Delivery Apps; Best Phone Mount for Delivery Drivers; AMPS VESA Ball Mount Sizes: Complete Guide to Device Mounting Standards</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>iBOLT Phone Dock'n Lock 2&quot; IncrediBOLT™ AMPS Drill Base Mount</b><br><span>ibolt-phone-dock-n-lock-incredibolt-amps-drill-base-mount-for-phones</span></td>
+      <td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Best Drill Base Phone Mount for Construction Vehicles and Work Trucks; Best Locking Phone Mount for Shared Delivery Vehicles; iBOLT Phone Mounts for DoorDash and Uber Eats Drivers; iBOLT vs ProClip vs RAM: Which Phone Mount Actually Survives Delivery Van Life?</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>iBOLT TabDock POS Tablet Stand</b><br><span>ibolt-tabdock-pos-tablet-stand</span></td>
+      <td>Restaurants &amp; Food Delivery, Kitchen &amp; Home, General Mounting Solutions</td><td>Best Tablet Mounts for Delivery Apps: Complete Setup Guide for Restaurants; Restaurant Tablet Mount Setup: Complete Guide for Toast, Square &amp; Delivery Apps; Best Phone Mount for Delivery Drivers; AMPS VESA Ball Mount Sizes: Complete Guide to Device Mounting Standards</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>iBOLT™ 25mm / 1 inch Composite Universal Marine Electronic Fish Finder Drill Base Mount</b><br><span>ibolt-25mm-1-inch-composite-universal-marine-electronic-fish-finder-to-composite-rectangular-amps-pattern-drill-base-dual-ball-mount</span></td>
+      <td>Fishing &amp; Boating, Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>Pontoon Fish Finder Rail Mount Compatibility: How to Match Your Mount to Your Boat; Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak; Kayak Fish Finder Mount Setup: A Complete Guide to Secure, Removable Electronics Mounting; Best Fish Finder Mounts That Stay Put and Do Not Bounce Loose</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount</b><br><span>xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount</span></td>
+      <td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Phone Mount for Construction Vehicles and Work Trucks; Best Phone Mount for Delivery Drivers; iBOLT vs RAM for Fleet Phone Mounting; iBOLT Phone Mounts for DoorDash and Uber Eats Drivers</td>
+    </tr>
+  
+    <tr>
+      <td>6</td><td><b>iBOLT™ xProDock™ Bizmount™ Wedge</b><br><span>xprodock-bizmount-wedge-smartphone-seat-wedge-mount-ibbz-33930</span></td>
+      <td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Road Trips &amp; Travel, General Mounting Solutions</td><td>Best Phone Mount for Amazon Flex and Delivery Vans; Best Phone Mount for Delivery Drivers; Fleet Phone Mount Standardization Checklist: How to Deploy the Right Mounts Across Every Vehicle; iBOLT vs iOttie for Delivery Drivers</td>
+    </tr>
+  </tbody></table>
+  <h2>Unlinked Product Opportunities</h2>
+  <table><thead><tr><th>Product</th><th>Handle</th><th>Verticals</th><th>Reason</th></tr></thead><tbody>
+    <tr><td>ChargeDock USB-C</td><td>chargedock-usb-c-android</td><td>Trucking &amp; Fleet, Education &amp; Schools, Kitchen &amp; Home, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): fleet</td></tr>
+  
+    <tr><td>iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount</td><td>ibolt-20-camera-screw-incredibolt-amps-w-2-single-socket-arm-drill-base-mount</td><td>Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount</td><td>ibolt-20-camera-screw-incredibolt-amps-w-4-25-double-socket-arm-drill-base-mount</td><td>Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories</td><td>ibolt-20-camera-screw-bizmount-suction-cup-mount-for-industry-standard-20-accessories-cameras-dash-cams-camera-flashes-etc</td><td>Forklifts &amp; Warehousing, Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse, fleet, restaurant</td></tr>
+  
+    <tr><td>iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20&quot; Camera Screw</td><td>ibolt-17mm-clamp-mount-for-handlebars-poles-posts-for-gopro-hero-action-cameras-20-camera-screw</td><td>Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 17mm Dual Ball Clamp Mount for Handlebars, Poles, Posts for Garmin GPS and iBOLT Phone Holders</td><td>ibolt-17mm-dual-ball-horizontal-clamp-mount-for-handlebars-poles-posts</td><td>Restaurants &amp; Food Delivery, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 17mm Dual Ball Clamping Mount for Handlebars, Poles, Posts for Garmin GPS Systems and iBOLT Phone Holders</td><td>ibolt-17mm-dual-ball-clamping-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems-and-ibolt-phone-holders</td><td>Restaurants &amp; Food Delivery, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders</td><td>ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders</td><td>Trucking &amp; Fleet, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): fleet</td></tr>
+  
+    <tr><td>iBOLT 17mm Dual Ball to AMPs Drill Base Mount compatible w/ Garmin GPS and iBOLT Phone Holders</td><td>ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders</td><td>Restaurants &amp; Food Delivery, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 17mm Dual Ball to Round Metal AMPs Drill Base Mount for Garmin GPS and iBOLT Phone Holders</td><td>ibolt-17mm-dual-ball-to-round-metal-amps-drill-base-mount-compatible-w-garmin-gps-and-ibolt-phone-holders</td><td>Restaurants &amp; Food Delivery, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 17mm Dual Ball Vertical Clamp Mount for Handlebars, Poles, Posts for Garmin GPS Systems and iBOLT Phone Holders</td><td>ibolt-17mm-dual-ball-vertical-clamp-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems</td><td>Restaurants &amp; Food Delivery, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 17mm ExtendiBOLT Triple Suction Cup Mount</td><td>ibolt-17mm-extendibolt-triple-suction-cup-mount</td><td>Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): fleet, restaurant</td></tr>
+  
+    <tr><td>iBOLT 20mm Metal Ball to ¼ 20 Camera Screw Mount Adapter - for All Industry Standard 20mm mounts</td><td>ibolt-20mm-metal-ball-to-20-camera-screw-mount-adapter-for-all-industry-standard-20mm-mounts</td><td>Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, Agriculture &amp; Farming, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 20mm Metal Ball to Headrest Mounting Bracket</td><td>ibolt-20mm-metal-ball-to-headrest-mounting-bracket</td><td>Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): fleet, restaurant</td></tr>
+  
+    <tr><td>iBolt 20mm to 20mm Metal Extension Ball Adapter</td><td>ibolt-20mm-metal-ball-to-20-camera-screw-mount-adapter-for-all-industry-standard-20mm-mounts-1</td><td>Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 25mm / 1 inch Composite AMPS Adapter Plate</td><td>ibolt-25mm-1-inch-composite-amps-adapter-plate-dual-ball-socket-mounting-arms</td><td>Restaurants &amp; Food Delivery, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 25mm / 1 inch to Dual 17mm Metal Ball Adapter</td><td>ibolt-25mm-1-inch-to-dual-metal-17mm-composite-ball-adapter</td><td>Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 25mm / 1 inch to Dual 22mm Ball Adapter</td><td>ibolt-25mm-1-inch-to-dual-17mm-metal-ball-adapter-copy</td><td>Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT 25mm/ 1-inch dualMag Industrial Strength Magnetic Base</td><td>ibolt-25mm-1-inch-dualmag-industrial-strength-magnetic-base</td><td>Forklifts &amp; Warehousing, Content Creation &amp; Streaming, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse</td></tr>
+  
+    <tr><td>iBOLT 38mm / 1.5-inch DualMag Industrial Strength Magnetic Base</td><td>ibolt-38mm-1-5-inch-dualmag-industrial-strength-magnetic-base</td><td>Forklifts &amp; Warehousing, Content Creation &amp; Streaming, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse</td></tr>
+  
+    <tr><td>iBOLT 7.45 inch Composite Dual Ball Bizmount™ with Metal AMPS Drill Base</td><td>ibolt-7-45-inch-composite-dual-ball-arm-with-metal-amps-drill-base-mount</td><td>Forklifts &amp; Warehousing, Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse, restaurant</td></tr>
+  
+    <tr><td>iBOLT 88mm Diameter Magnetic Mount w/ 1 / 4 20 Camera Screw and GoPro Adapter</td><td>ibolt-88mm-diameter-magnetic-mount-base-w-1-4-20-camera-screw-gopro-adapter</td><td>Forklifts &amp; Warehousing, Off-Roading &amp; Jeep, Content Creation &amp; Streaming, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse</td></tr>
+  
+    <tr><td>iBOLT AccessiBOLT ArmTrack- for Wheelchairs, Rehab Chairs, and Mobility Devices with a Track System</td><td>ibolt-armtrack-for-wheelchairs-rehab-chairs-and-mobility-devices-with-a-track-system</td><td>Restaurants &amp; Food Delivery, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT AccessiBOLT Dock’n Lock Wheelchair Mobility Tablet Mount</td><td>ibolt-accessibolt-dock-n-lock-wheelchair-mobility-tablet-mount</td><td>Forklifts &amp; Warehousing, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse</td></tr>
+  
+    <tr><td>iBOLT Action Camera IncrediBOLT 360 Heavy Duty Dual/Double Suction Cup Mount</td><td>ibolt-action-camera-incredibolt-360-heavy-duty-dual-double-suction-cup-mount</td><td>Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): fleet, restaurant</td></tr>
+  
+    <tr><td>iBOLT Action Camera IncrediBOLT 360 Heavy Duty Triple Suction Cup Mount</td><td>ibolt-action-camera-incredibolt-360-heavy-duty-triple-suction-cup-mount</td><td>Trucking &amp; Fleet, Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): fleet, restaurant</td></tr>
+  
+    <tr><td>iBOLT Action Camera IncrediBOLT Heavy Duty Handlebar/Post/Pole/Rail Mount</td><td>ibolt-action-camera-incredibolt-heavy-duty-handlebar-post-pole-rail-mount</td><td>Restaurants &amp; Food Delivery, Content Creation &amp; Streaming, Mountain Biking &amp; Cycling, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  
+    <tr><td>iBOLT AMPS Forklift Pillar Mount with 57mm (2.25-inch) Ball Joint and 5.25&quot; Metal Arm</td><td>ibolt-amps-monitor-pillar-mount-with-57mm-2-25-inch-ball-joint</td><td>Forklifts &amp; Warehousing, Road Trips &amp; Travel, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse</td></tr>
+  
+    <tr><td>iBOLT Barcode Scanner Holder w/Industry Standard 1 inch / 25 mm Ball Connection</td><td>ibolt-barcode-scanner-holder-1-inch-25-mm-ball-amps-pattern-ibfl-34502</td><td>Forklifts &amp; Warehousing, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): warehouse</td></tr>
+  
+    <tr><td>iBOLT Composite 2.5&quot; Open Socket AMPS Drill Base Mount for 1-inch/ 25mm Ball Joints</td><td>ibolt-composite-2-5-open-socket-amps-drill-base-mount-for-1-inch-25mm-ball-joints</td><td>Restaurants &amp; Food Delivery, General Mounting Solutions</td><td>No detected blog links; maps to high-risk topic(s): restaurant</td></tr>
+  </tbody></table>
+  <h2>Possible Duplicate Or Cannibalized Pages</h2>
+  <table><thead><tr><th>Similarity</th><th>Page A</th><th>Page B</th></tr></thead><tbody>
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/top-5-mounts-for-the-samsung-galaxy-a7-lite-tablet">TOP 5 MOUNTS FOR THE SAMSUNG GALAXY A7 LITE TABLET</a></td><td><a href="https://iboltmounts.com/blogs/news/top-5-mounts-for-the-samsung-galaxy-a7-lite-tablet-1">Top 5 Mounts for the Samsung Galaxy A7 Lite Tablet</a></td></tr>
+  
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts">HOW TO MOUNT A FISH FINDER TO YOUR BOAT USING IBOLT MOUNTS</a></td><td><a href="https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts-1">How to mount a Fish Finder to your boat using iBOLT Mounts</a></td></tr>
+  
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mounts-for-delivery-apps-and-pos-2026-guide">Best Restaurant Tablet Mounts for Delivery Apps and POS (2026 Guide)</a></td><td><a href="https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps">Best Tablet Mount for Restaurant POS and Delivery Apps</a></td></tr>
+  
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles">Best Locking Phone Mount for Shared Delivery Vehicles</a></td><td><a href="https://iboltmounts.com/blogs/news/locking-phone-mounts-shared-delivery-vehicles-aeo-refresh">Locking Phone Mounts for Shared Delivery Vehicles</a></td></tr>
+  
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans">Best Phone Mount for Amazon Flex and Delivery Vans</a></td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-amazon-flex-delivery-vans-aeo-refresh">Best Phone Mount for Amazon Flex and Delivery Vans</a></td></tr>
+  
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-instacart-grocery-delivery-aeo-refresh">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td></tr>
+  
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work">Magnetic vs Clamp Phone Mounts for Delivery Work</a></td><td><a href="https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mount-delivery-work-aeo-refresh">Magnetic vs Clamp Phone Mounts for Delivery Work</a></td></tr>
+  
+    <tr><td>100</td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-vs-mount-it-for-restaurant-tablet-security">iBOLT vs Bouncepad vs Mount-It for Restaurant Tablet Security</a></td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-restaurant-tablet-security-aeo-refresh">iBOLT vs Bouncepad for Restaurant Tablet Security</a></td></tr>
+  
+    <tr><td>91</td><td><a href="https://iboltmounts.com/blogs/news/why-delivery-drivers-need-a-commercial-grade-phone-mount">Why Delivery Drivers Need a Commercial-Grade Phone Mount</a></td><td><a href="https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh">Commercial-Grade Phone Mounts for Delivery Drivers</a></td></tr>
+  
+    <tr><td>89</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks">Best Phone Mount for Construction Vehicles and Work Trucks</a></td><td><a href="https://iboltmounts.com/blogs/news/construction-work-truck-phone-mounts-aeo-refresh">Construction and Work Truck Phone Mounts</a></td></tr>
+  
+    <tr><td>85</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td><td><a href="https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh">Commercial-Grade Phone Mounts for Delivery Drivers</a></td></tr>
+  
+    <tr><td>82</td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-ram-for-fleet-phone-mounting">iBOLT vs RAM for Fleet Phone Mounting</a></td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-ram-fleet-mounts-aeo-refresh">iBOLT vs RAM for Fleet Mounts</a></td></tr>
+  
+    <tr><td>80</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-iottie-delivery-drivers-aeo-refresh">iBOLT vs iOttie for Delivery Drivers</a></td></tr>
+  
+    <tr><td>77</td><td><a href="https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts">HOW TO MOUNT A FISH FINDER TO YOUR BOAT USING IBOLT MOUNTS</a></td><td><a href="https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails">Best Fish Finder Mount for Pontoon Boat Rails</a></td></tr>
+  
+    <tr><td>77</td><td><a href="https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts-1">How to mount a Fish Finder to your boat using iBOLT Mounts</a></td><td><a href="https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails">Best Fish Finder Mount for Pontoon Boat Rails</a></td></tr>
+  
+    <tr><td>77</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td></tr>
+  
+    <tr><td>77</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-instacart-grocery-delivery-aeo-refresh">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td></tr>
+  
+    <tr><td>72</td><td><a href="https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants">Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</a></td><td><a href="https://iboltmounts.com/blogs/news/best-tablet-mount-food-trucks-quick-service-aeo-refresh">Best Tablet Mount for Food Trucks and Quick-Service Counters</a></td></tr>
+  </tbody></table>
+</main></body></html>

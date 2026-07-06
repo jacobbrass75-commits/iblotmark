@@ -1,0 +1,8 @@
+"topic","risk_score","prompt_count","zero_mention_prompts","avg_ai_score","avg_mention_rate","competitor_only_answers","audited_pages","avg_page_score","top_competitors"
+"fishing","85","5","5","1","0","15","17","78","Humminbird; RAM Mounts; Garmin; Scotty; Lowrance; YakAttack"
+"tablet","72","1","1","0","0","3","0","","RAM Mounts; Arkon; Lamicall; Tackform; iOttie"
+"restaurant","72","8","5","19","29","13","17","78","RAM Mounts; Mount-It; Arkon; Square; Bouncepad"
+"delivery","72","7","5","16","29","14","11","82","RAM Mounts; iOttie; Scosche; Arkon; ProClip; Belkin"
+"fleet","71","6","4","12","22","14","25","80","RAM Mounts; Arkon; ProClip; iOttie; Scosche; Tackform"
+"warehouse","58","3","1","17","22","7","17","78","RAM Mounts; ProClip; Arkon; Square"
+"comparison","27","1","0","45","100","0","0","",""

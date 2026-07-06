@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT AI Visibility Working Packet</title>
+  <style>
+    body{margin:0;background:#f6f8fb;color:#111827;font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1220px;margin:0 auto;padding:34px 24px 66px}
+    h1{font-size:38px;line-height:1.1;margin:0 0 8px;letter-spacing:0}
+    h2{font-size:23px;margin:36px 0 12px}
+    h3{font-size:17px;margin:18px 0 8px}
+    p,li{line-height:1.56;color:#334155;font-size:15px}
+    a{color:#0f766e;overflow-wrap:anywhere}
+    code{background:#e2e8f0;border-radius:5px;padding:2px 5px}
+    .note{background:#fff;border:1px solid #dbe3ef;border-left:6px solid #0f766e;border-radius:12px;padding:16px 18px;margin:20px 0}
+    .warn{border-left-color:#f97316}
+    .danger{border-left-color:#ef4444}
+    .cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0}
+    .card{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:15px}
+    .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:900}
+    .value{font-size:29px;font-weight:900;margin:8px 0;color:#0f172a}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .chart{background:#fff;border:1px solid #dbe3ef;border-radius:18px;padding:10px;overflow:auto}
+    .chart svg{width:100%;height:auto;display:block}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ef;border-radius:12px;overflow:hidden;margin:12px 0 22px}
+    th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #edf2f7;font-size:13px}
+    th{background:#eef2f7;color:#475569;text-transform:uppercase;font-size:11px;letter-spacing:.04em}
+    .links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .linkcard{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:14px}
+    @media(max-width:980px){.cards,.grid,.links{grid-template-columns:1fr}h1{font-size:31px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>iBOLT AI Visibility Working Packet</h1>
+  <p>This packet consolidates the benchmark, competitor adjacency, blog coverage, and citation strategy into one operating view. It is analysis and test planning, not a claim that post-edit lift has already happened.</p>
+
+  <div class="note">
+    <strong>Current read:</strong> iBOLT is known to the models, but broad buyer prompts still default to competitors too often. We should raise citation rate, but the immediate bottleneck is inclusion and top-3 recommendation on non-branded prompts.
+  </div>
+
+  <section class="cards">
+    <div class="card"><div class="label">Mention rate</div><div class="value">24%</div><p>22/93 saved OpenRouter answers mention iBOLT.</p></div>
+    <div class="card"><div class="label">Top-3 rate</div><div class="value">16%</div><p>15/93 answers place iBOLT in the recommendation set.</p></div>
+    <div class="card"><div class="label">Citation rate</div><div class="value">0%</div><p>0/93 API-style answers cite iboltmounts.com.</p></div>
+    <div class="card"><div class="label">Competitor-only</div><div class="value">73%</div><p>68/93 broad detector rows; 64 strict answer-role replacements.</p></div>
+    <div class="card"><div class="label">Full retest</div><div class="value">1449</div><p>483 prompts across ChatGPT, Claude, and Gemini.</p></div>
+  </section>
+
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="256" viewBox="0 0 900 256" role="img" aria-label="Answer role breakdown">
+    <rect width="900" height="256" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Answer role breakdown</text>
+    <g>
+      <text x="22" y="76" font-size="13" font-weight="800" fill="#111827">Clean iBOLT answer</text>
+      <rect x="272" y="58" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="58" width="24" height="22" rx="11" fill="#0f766e"/>
+      <text x="870" y="74" font-size="13" font-weight="900" text-anchor="end" fill="#111827">4</text>
+    </g><g>
+      <text x="22" y="112" font-size="13" font-weight="800" fill="#111827">iBOLT leads or co-mentioned</text>
+      <rect x="272" y="94" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="94" width="108" height="22" rx="11" fill="#0f766e"/>
+      <text x="870" y="110" font-size="13" font-weight="900" text-anchor="end" fill="#111827">18</text>
+    </g><g>
+      <text x="22" y="148" font-size="13" font-weight="800" fill="#111827">iBOLT trails competitors</text>
+      <rect x="272" y="130" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="130" width="0" height="22" rx="11" fill="#0f766e"/>
+      <text x="870" y="146" font-size="13" font-weight="900" text-anchor="end" fill="#111827">0</text>
+    </g><g>
+      <text x="22" y="184" font-size="13" font-weight="800" fill="#111827">Competitor replacement</text>
+      <rect x="272" y="166" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="166" width="385" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="182" font-size="13" font-weight="900" text-anchor="end" fill="#111827">64</text>
+    </g><g>
+      <text x="22" y="220" font-size="13" font-weight="800" fill="#111827">No useful signal</text>
+      <rect x="272" y="202" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="202" width="42" height="22" rx="11" fill="#64748b"/>
+      <text x="870" y="218" font-size="13" font-weight="900" text-anchor="end" fill="#111827">7</text>
+    </g>
+  </svg></div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="436" viewBox="0 0 900 436" role="img" aria-label="Competitor replacements">
+    <rect width="900" height="436" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Competitor replacements</text>
+    <g>
+      <text x="22" y="76" font-size="13" font-weight="800" fill="#111827">RAM Mounts</text>
+      <rect x="272" y="58" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="58" width="560" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="74" font-size="13" font-weight="900" text-anchor="end" fill="#111827">58</text>
+    </g><g>
+      <text x="22" y="112" font-size="13" font-weight="800" fill="#111827">Arkon</text>
+      <rect x="272" y="94" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="94" width="241" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="110" font-size="13" font-weight="900" text-anchor="end" fill="#111827">25</text>
+    </g><g>
+      <text x="22" y="148" font-size="13" font-weight="800" fill="#111827">iOttie</text>
+      <rect x="272" y="130" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="130" width="145" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="146" font-size="13" font-weight="900" text-anchor="end" fill="#111827">15</text>
+    </g><g>
+      <text x="22" y="184" font-size="13" font-weight="800" fill="#111827">CTA Digital</text>
+      <rect x="272" y="166" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="166" width="135" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="182" font-size="13" font-weight="900" text-anchor="end" fill="#111827">14</text>
+    </g><g>
+      <text x="22" y="220" font-size="13" font-weight="800" fill="#111827">ProClip</text>
+      <rect x="272" y="202" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="202" width="116" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="218" font-size="13" font-weight="900" text-anchor="end" fill="#111827">12</text>
+    </g><g>
+      <text x="22" y="256" font-size="13" font-weight="800" fill="#111827">Mount-It</text>
+      <rect x="272" y="238" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="238" width="68" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="254" font-size="13" font-weight="900" text-anchor="end" fill="#111827">7</text>
+    </g><g>
+      <text x="22" y="292" font-size="13" font-weight="800" fill="#111827">Tackform</text>
+      <rect x="272" y="274" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="274" width="39" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="290" font-size="13" font-weight="900" text-anchor="end" fill="#111827">4</text>
+    </g><g>
+      <text x="22" y="328" font-size="13" font-weight="800" fill="#111827">Havis</text>
+      <rect x="272" y="310" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="310" width="48" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="326" font-size="13" font-weight="900" text-anchor="end" fill="#111827">5</text>
+    </g><g>
+      <text x="22" y="364" font-size="13" font-weight="800" fill="#111827">Bouncepad</text>
+      <rect x="272" y="346" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="346" width="10" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="362" font-size="13" font-weight="900" text-anchor="end" fill="#111827">1</text>
+    </g><g>
+      <text x="22" y="400" font-size="13" font-weight="800" fill="#111827">Zebra</text>
+      <rect x="272" y="382" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="382" width="29" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="398" font-size="13" font-weight="900" text-anchor="end" fill="#111827">3</text>
+    </g>
+  </svg></div>
+  </section>
+
+  <h2>How iBOLT Is Being Mentioned</h2>
+  <table><table><thead><tr><th>Answer role</th><th>Answers</th><th>Action</th></tr></thead><tbody><tr><td>Clean iBOLT answer</td><td>4</td><td>Preserve these entity patterns and add source/citation support after page cleanup.</td></tr><tr><td>iBOLT leads or co-mentioned</td><td>18</td><td>Turn co-mentions into top-3 recommendations with clearer product and use-case proof.</td></tr><tr><td>iBOLT trails competitors</td><td>0</td><td>Add comparison modules that explain when iBOLT is the specialist choice.</td></tr><tr><td>Competitor replacement</td><td>64</td><td>Highest priority: build query-exact answer blocks and retest.</td></tr><tr><td>No useful signal</td><td>7</td><td>Use only after competitor-heavy pages are handled.</td></tr></tbody></table></table>
+
+  <h2>Who iBOLT Is Mentioned Next To</h2>
+  <div class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="482" viewBox="0 0 900 482" role="img" aria-label="Provider/category answer roles">
+    <rect width="900" height="482" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Provider/category answer roles</text>
+    <g>
+      <text x="22" y="79" font-size="13" font-weight="800" fill="#111827">Claude restaurant</text>
+      <rect x="292" y="62" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="62" width="375" height="23" rx="10" fill="#ef4444"/><rect x="667" y="62" width="63" height="23" rx="10" fill="#2563eb"/><rect x="730" y="62" width="63" height="23" rx="10" fill="#0f766e"/><rect x="793" y="62" width="0" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="79" font-size="13" font-weight="900" text-anchor="end" fill="#111827">6/8</text>
+    </g><g>
+      <text x="22" y="119" font-size="13" font-weight="800" fill="#111827">Gemini restaurant</text>
+      <rect x="292" y="102" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="102" width="375" height="23" rx="10" fill="#ef4444"/><rect x="667" y="102" width="125" height="23" rx="10" fill="#2563eb"/><rect x="792" y="102" width="0" height="23" rx="10" fill="#0f766e"/><rect x="792" y="102" width="0" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="119" font-size="13" font-weight="900" text-anchor="end" fill="#111827">6/8</text>
+    </g><g>
+      <text x="22" y="159" font-size="13" font-weight="800" fill="#111827">ChatGPT delivery</text>
+      <rect x="292" y="142" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="142" width="357" height="23" rx="10" fill="#ef4444"/><rect x="649" y="142" width="71" height="23" rx="10" fill="#2563eb"/><rect x="720" y="142" width="71" height="23" rx="10" fill="#0f766e"/><rect x="791" y="142" width="0" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="159" font-size="13" font-weight="900" text-anchor="end" fill="#111827">5/7</text>
+    </g><g>
+      <text x="22" y="199" font-size="13" font-weight="800" fill="#111827">Claude delivery</text>
+      <rect x="292" y="182" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="182" width="357" height="23" rx="10" fill="#ef4444"/><rect x="649" y="182" width="71" height="23" rx="10" fill="#2563eb"/><rect x="720" y="182" width="71" height="23" rx="10" fill="#0f766e"/><rect x="791" y="182" width="0" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="199" font-size="13" font-weight="900" text-anchor="end" fill="#111827">5/7</text>
+    </g><g>
+      <text x="22" y="239" font-size="13" font-weight="800" fill="#111827">Claude fleet</text>
+      <rect x="292" y="222" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="222" width="417" height="23" rx="10" fill="#ef4444"/><rect x="709" y="222" width="83" height="23" rx="10" fill="#2563eb"/><rect x="792" y="222" width="0" height="23" rx="10" fill="#0f766e"/><rect x="792" y="222" width="0" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="239" font-size="13" font-weight="900" text-anchor="end" fill="#111827">5/6</text>
+    </g><g>
+      <text x="22" y="279" font-size="13" font-weight="800" fill="#111827">Gemini fleet</text>
+      <rect x="292" y="262" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="262" width="417" height="23" rx="10" fill="#ef4444"/><rect x="709" y="262" width="83" height="23" rx="10" fill="#2563eb"/><rect x="792" y="262" width="0" height="23" rx="10" fill="#0f766e"/><rect x="792" y="262" width="0" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="279" font-size="13" font-weight="900" text-anchor="end" fill="#111827">5/6</text>
+    </g><g>
+      <text x="22" y="319" font-size="13" font-weight="800" fill="#111827">ChatGPT fleet</text>
+      <rect x="292" y="302" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="302" width="333" height="23" rx="10" fill="#ef4444"/><rect x="625" y="302" width="167" height="23" rx="10" fill="#2563eb"/><rect x="792" y="302" width="0" height="23" rx="10" fill="#0f766e"/><rect x="792" y="302" width="0" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="319" font-size="13" font-weight="900" text-anchor="end" fill="#111827">4/6</text>
+    </g><g>
+      <text x="22" y="359" font-size="13" font-weight="800" fill="#111827">ChatGPT restaurant</text>
+      <rect x="292" y="342" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="342" width="250" height="23" rx="10" fill="#ef4444"/><rect x="542" y="342" width="188" height="23" rx="10" fill="#2563eb"/><rect x="730" y="342" width="0" height="23" rx="10" fill="#0f766e"/><rect x="730" y="342" width="63" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="359" font-size="13" font-weight="900" text-anchor="end" fill="#111827">4/8</text>
+    </g><g>
+      <text x="22" y="399" font-size="13" font-weight="800" fill="#111827">Gemini delivery</text>
+      <rect x="292" y="382" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="382" width="286" height="23" rx="10" fill="#ef4444"/><rect x="578" y="382" width="71" height="23" rx="10" fill="#2563eb"/><rect x="649" y="382" width="71" height="23" rx="10" fill="#0f766e"/><rect x="720" y="382" width="71" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="399" font-size="13" font-weight="900" text-anchor="end" fill="#111827">4/7</text>
+    </g><g>
+      <text x="22" y="439" font-size="13" font-weight="800" fill="#111827">Gemini fishing</text>
+      <rect x="292" y="422" width="500" height="23" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="422" width="400" height="23" rx="10" fill="#ef4444"/><rect x="692" y="422" width="0" height="23" rx="10" fill="#2563eb"/><rect x="692" y="422" width="0" height="23" rx="10" fill="#0f766e"/><rect x="692" y="422" width="100" height="23" rx="10" fill="#64748b"/>
+      <text x="850" y="439" font-size="13" font-weight="900" text-anchor="end" fill="#111827">4/5</text>
+    </g>
+    <g>
+    <rect x="22" y="464" width="10" height="10" rx="5" fill="#ef4444"/>
+    <text x="38" y="473" font-size="11" font-weight="700" fill="#475569">Competitor replacements</text>
+  </g><g>
+    <rect x="232" y="464" width="10" height="10" rx="5" fill="#2563eb"/>
+    <text x="248" y="473" font-size="11" font-weight="700" fill="#475569">iBOLT co-mentioned</text>
+  </g><g>
+    <rect x="442" y="464" width="10" height="10" rx="5" fill="#0f766e"/>
+    <text x="458" y="473" font-size="11" font-weight="700" fill="#475569">Clean iBOLT</text>
+  </g><g>
+    <rect x="652" y="464" width="10" height="10" rx="5" fill="#64748b"/>
+    <text x="668" y="473" font-size="11" font-weight="700" fill="#475569">No signal</text>
+  </g>
+  </svg></div>
+    <div>
+      <h3>Competitor adjacency shortlist</h3>
+      <table><table><thead><tr><th>Competitor</th><th>Replacements</th><th>Co-mentions</th><th>Categories</th><th>Providers</th><th>Counter angle</th></tr></thead><tbody><tr><td>RAM Mounts</td><td>58</td><td>13</td><td>delivery; fleet; warehouse; restaurant; fishing; comparison; tablet</td><td>Gemini; Claude; ChatGPT</td><td>RAM wins as the broad rugged default. Counter with iBOLT's application-specific kits, AMPS compatibility, and commercial workflows.</td></tr><tr><td>Arkon</td><td>25</td><td>5</td><td>delivery; fleet; warehouse; restaurant; tablet</td><td>Claude; ChatGPT; Gemini</td><td>Arkon wins in generic vehicle and phone-holder lists. Counter with iBOLT's commercial-duty bases, locking choices, and exact install methods.</td></tr><tr><td>iOttie</td><td>15</td><td>3</td><td>delivery; fleet; tablet</td><td>Claude; ChatGPT; Gemini</td><td>iOttie wins as a consumer car-phone default. Counter with delivery, fleet, charging, and shared-vehicle use cases.</td></tr><tr><td>CTA Digital</td><td>14</td><td>3</td><td>restaurant; warehouse; tablet</td><td>Gemini; Claude; ChatGPT</td><td>This brand appears in tablet/POS contexts. Counter with Tablet Tower, LockPro, Dock'n Lock, and multi-tablet restaurant workflows.</td></tr><tr><td>ProClip</td><td>12</td><td>1</td><td>delivery; fleet; warehouse</td><td>Gemini; Claude; ChatGPT</td><td>ProClip wins custom-fit vehicle language. Counter with iBOLT's modular AMPS path, drill-base options, and fleet transferability.</td></tr><tr><td>Mount-It</td><td>7</td><td>3</td><td>restaurant</td><td>Claude; ChatGPT; Gemini</td><td>This brand appears in tablet/POS contexts. Counter with Tablet Tower, LockPro, Dock'n Lock, and multi-tablet restaurant workflows.</td></tr><tr><td>Tackform</td><td>4</td><td>3</td><td>warehouse; delivery; fleet; tablet; restaurant</td><td>ChatGPT</td><td>Name this brand in fair comparison copy and give the exact iBOLT use case where iBOLT should be recommended.</td></tr><tr><td>Havis</td><td>5</td><td>0</td><td>warehouse</td><td>Claude; Gemini; ChatGPT</td><td>This brand appears in warehouse and rugged-enterprise contexts. Counter with forklift, scanner, tablet, and no-drill mounting specifics.</td></tr></tbody></table></table>
+    </div>
+  </div>
+
+  <h2>Where Competitors Are Winning</h2>
+  <div class="note danger">
+    <strong>Main competitor pattern:</strong> RAM Mounts is the rugged default across fleet, delivery, restaurant, fishing, and warehouse prompts. Arkon, iOttie, CTA Digital, ProClip, and Mount-It each win narrower default slots. The counter is not generic brand praise; it is exact workflow pages with product names, install logic, comparison tables, and source-ready schema.
+  </div>
+  <table><table><thead><tr><th>Provider</th><th>Default competitor</th><th>Missed answers</th><th>Categories</th><th>Example queries</th></tr></thead><tbody><tr><td>Gemini</td><td>RAM Mounts</td><td>23</td><td>restaurant 6; fleet 5; delivery 4; fishing 4; warehouse 3; tablet 1</td><td>best phone mount for Amazon Flex and delivery vans; best phone mount for delivery drivers; best ELD mount for trucks; best forklift tablet mount; c...</td></tr><tr><td>Claude</td><td>RAM Mounts</td><td>21</td><td>delivery 5; fleet 5; restaurant 4; fishing 3; warehouse 3; tablet 1</td><td>best phone mount for Amazon Flex and delivery vans; best phone mount for delivery drivers; best ELD mount for trucks; magnetic vs clamp phone mount...</td></tr><tr><td>Gemini</td><td>RAM Mounts</td><td>20</td><td>fleet 5; delivery 4; restaurant 4; fishing 3; warehouse 3; tablet 1</td><td>best phone mount for Amazon Flex and delivery vans; best phone mount for delivery drivers; best ELD mount for trucks; best forklift tablet mount; c...</td></tr><tr><td>Claude</td><td>RAM Mounts</td><td>19</td><td>delivery 5; fleet 5; fishing 3; warehouse 3; restaurant 2; tablet 1</td><td>best phone mount for Amazon Flex and delivery vans; best phone mount for delivery drivers; best ELD mount for trucks; magnetic vs clamp phone mount...</td></tr><tr><td>ChatGPT</td><td>RAM Mounts</td><td>14</td><td>delivery 5; fleet 4; fishing 3; tablet 1; warehouse 1</td><td>best phone mount for Amazon Flex and delivery vans; best phone mount for delivery drivers; best ELD mount for trucks; magnetic vs clamp phone mount...</td></tr><tr><td>ChatGPT</td><td>RAM Mounts</td><td>10</td><td>fishing 3; fleet 3; delivery 2; tablet 1; warehouse 1</td><td>best ELD mount for trucks; commercial grade phone mount for delivery drivers; best fish finder mount for small boat; best locking phone mount for s...</td></tr><tr><td>Claude</td><td>Arkon</td><td>10</td><td>fleet 4; delivery 3; restaurant 2; tablet 1</td><td>best phone mount for Amazon Flex and delivery vans; best ELD mount for trucks; commercial grade phone mount for delivery drivers; best locking phon...</td></tr><tr><td>ChatGPT</td><td>Arkon</td><td>8</td><td>restaurant 3; delivery 2; fleet 2; tablet 1</td><td>best ELD mount for trucks; commercial grade phone mount for delivery drivers; best restaurant tablet mount; best locking phone mount for shared del...</td></tr><tr><td>ChatGPT</td><td>iOttie</td><td>8</td><td>delivery 5; fleet 3</td><td>best phone mount for Amazon Flex and delivery vans; best phone mount for delivery drivers; magnetic vs clamp phone mounts for delivery work; commer...</td></tr><tr><td>Claude</td><td>ProClip</td><td>7</td><td>fleet 5; delivery 2</td><td>best phone mount for delivery drivers; best ELD mount for trucks; commercial grade phone mount for delivery drivers; best locking phone mount for s...</td></tr><tr><td>Gemini</td><td>Arkon</td><td>7</td><td>fleet 4; delivery 1; restaurant 1; warehouse 1</td><td>best ELD mount for trucks; best locking phone mount for shared delivery vehicles; best barcode scanner mount for forklift; best heavy duty vehicle ...</td></tr><tr><td>ChatGPT</td><td>CTA Digital</td><td>5</td><td>restaurant 4; tablet 1</td><td>best restaurant tablet mount; best tablet mount for restaurant POS and delivery apps; best multi tablet mount; best locking tablet stand for food t...</td></tr></tbody></table></table>
+
+  <h2>All Blog Coverage And Test Expansion</h2>
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220" role="img" aria-label="All-blog prompt coverage by state">
+    <rect width="900" height="220" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">All-blog prompt coverage by state</text>
+    <g>
+      <text x="22" y="76" font-size="13" font-weight="800" fill="#111827">expanded_light_ready</text>
+      <rect x="272" y="58" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="58" width="560" height="22" rx="11" fill="#0f766e"/>
+      <text x="870" y="74" font-size="13" font-weight="900" text-anchor="end" fill="#111827">939</text>
+    </g><g>
+      <text x="22" y="112" font-size="13" font-weight="800" fill="#111827">priority_retest_ready</text>
+      <rect x="272" y="94" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="94" width="311" height="22" rx="11" fill="#f97316"/>
+      <text x="870" y="110" font-size="13" font-weight="900" text-anchor="end" fill="#111827">522</text>
+    </g><g>
+      <text x="22" y="148" font-size="13" font-weight="800" fill="#111827">expanded_deep_ready</text>
+      <rect x="272" y="130" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="130" width="72" height="22" rx="11" fill="#0f766e"/>
+      <text x="870" y="146" font-size="13" font-weight="900" text-anchor="end" fill="#111827">120</text>
+    </g><g>
+      <text x="22" y="184" font-size="13" font-weight="800" fill="#111827">prompt_gap</text>
+      <rect x="272" y="166" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="166" width="0" height="22" rx="11" fill="#ef4444"/>
+      <text x="870" y="182" font-size="13" font-weight="900" text-anchor="end" fill="#111827">0</text>
+    </g>
+  </svg></div>
+    <div>
+      <h3>Coverage by category</h3>
+      <table><table><thead><tr><th>Category</th><th>Pages</th><th>Priority pages</th><th>Expanded pages</th><th>Requests</th><th>Competitor-only baseline</th><th>Top gap pages</th></tr></thead><tbody><tr><td>amps/modular</td><td>29</td><td>1</td><td>27</td><td>246</td><td>2</td><td>TOP 5 MOUNTS FOR THE SAMSUNG GALAXY A7 LITE TABLET; iBOLT vs ProClip vs RAM: Which Phone Mount Actually Survives Deli...</td></tr><tr><td>fleet</td><td>25</td><td>3</td><td>23</td><td>237</td><td>13</td><td>ELD Tablet Mounting Guide: How to Choose the Right Mount for Fleet Compliance; iBOLT vs Arkon for Commercial Vehicle ...</td></tr><tr><td>restaurant</td><td>17</td><td>3</td><td>16</td><td>180</td><td>15</td><td>Restaurant Tablet Mount Setup: Complete Guide for Toast, Square &amp; Delivery Apps</td></tr><tr><td>fishing</td><td>17</td><td>4</td><td>16</td><td>171</td><td>13</td><td>Best Value Fish Finder Mounts Without Cheap Hardware</td></tr><tr><td>warehouse</td><td>17</td><td>2</td><td>17</td><td>171</td><td>7</td><td></td></tr><tr><td>streaming</td><td>16</td><td>1</td><td>16</td><td>147</td><td>0</td><td></td></tr><tr><td>delivery</td><td>11</td><td>4</td><td>11</td><td>126</td><td>14</td><td></td></tr><tr><td>education</td><td>4</td><td>1</td><td>4</td><td>39</td><td>0</td><td></td></tr><tr><td>offroad</td><td>4</td><td>1</td><td>4</td><td>39</td><td>0</td><td></td></tr><tr><td>agriculture</td><td>2</td><td>1</td><td>2</td><td>21</td><td>0</td><td></td></tr></tbody></table></table>
+    </div>
+  </section>
+  <div class="note">
+    The all-blog analysis covers 142 live blog pages. The prompt-gap addendum closed the six uncovered pages and produced the current full manifest: 483 prompts, 1449 provider requests.
+  </div>
+
+  <h2>Citation Rate: Necessary, But Sequenced</h2>
+  <div class="note warn">
+    <strong>Answer:</strong> citation rate is necessary for Google AI Overviews, Perplexity, Gemini with search, and voice/shopping experiences. For standard non-search model answers, citations are less reliable, so we should judge those runs by mention, recommendation rank, and competitor displacement first.
+  </div>
+  <table><table><thead><tr><th>Category</th><th>Pages</th><th>Competitor-only</th><th>Zero-mention queries</th><th>Prompts ready</th><th>Sequence</th></tr></thead><tbody><tr><td>amps/modular</td><td>29</td><td>2</td><td>1</td><td>82</td><td>Resolve canonical survivor pages, edit, retest, then cite</td></tr><tr><td>fleet</td><td>25</td><td>13</td><td>3</td><td>79</td><td>Resolve canonical survivor pages, edit, retest, then cite</td></tr><tr><td>restaurant</td><td>17</td><td>15</td><td>5</td><td>60</td><td>Resolve canonical survivor pages, edit, retest, then cite</td></tr><tr><td>fishing</td><td>17</td><td>13</td><td>6</td><td>57</td><td>Resolve canonical survivor pages, edit, retest, then cite</td></tr><tr><td>warehouse</td><td>17</td><td>7</td><td>1</td><td>57</td><td>Resolve canonical survivor pages, edit, retest, then cite</td></tr><tr><td>streaming</td><td>16</td><td>0</td><td>0</td><td>49</td><td>Source-ready cleanup, then external citations</td></tr><tr><td>delivery</td><td>11</td><td>14</td><td>5</td><td>42</td><td>Resolve canonical survivor pages, edit, retest, then cite</td></tr><tr><td>education</td><td>4</td><td>0</td><td>0</td><td>13</td><td>Source-ready cleanup, then external citations</td></tr></tbody></table></table>
+
+  <h2>What To Offload Versus Keep In-App</h2>
+  <table><table><thead><tr><th>Owner</th><th>Work</th><th>Why</th></tr></thead><tbody><tr><td>Keep in app/content</td><td>Canonical survivor decisions, query-exact quick answers, comparison modules, product/entity blocks, schema cleanup, product links, and benchmark runs.</td><td>These change the pages and measure AI-answer behavior directly.</td></tr><tr><td>Offload to SEO/PR contractor</td><td>External mentions, backlinks, distributor/partner citations, roundup placements, review references, and industry directory cleanup.</td><td>These build source authority so search-connected AI has trusted third-party support.</td></tr><tr><td>Coordinate together</td><td>Competitor battlecards, target pages for outreach, exact phrases to reinforce, and monthly retest reporting.</td><td>The contractor should amplify the same pages the app is editing, not random SEO pages.</td></tr></tbody></table></table>
+
+  <h2>Retest Plan</h2>
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="256" viewBox="0 0 900 256" role="img" aria-label="Priority retest request volume">
+    <rect width="900" height="256" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Priority retest request volume</text>
+    <g>
+      <text x="22" y="76" font-size="13" font-weight="800" fill="#111827">W1 Sprint 1 edit validation</text>
+      <rect x="272" y="58" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="58" width="229" height="22" rx="11" fill="#2563eb"/>
+      <text x="870" y="74" font-size="13" font-weight="900" text-anchor="end" fill="#111827">27</text>
+    </g><g>
+      <text x="22" y="112" font-size="13" font-weight="800" fill="#111827">W2 top-page mention recovery</text>
+      <rect x="272" y="94" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="94" width="560" height="22" rx="11" fill="#2563eb"/>
+      <text x="870" y="110" font-size="13" font-weight="900" text-anchor="end" fill="#111827">66</text>
+    </g><g>
+      <text x="22" y="148" font-size="13" font-weight="800" fill="#111827">W3 citation probe</text>
+      <rect x="272" y="130" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="130" width="204" height="22" rx="11" fill="#f97316"/>
+      <text x="870" y="146" font-size="13" font-weight="900" text-anchor="end" fill="#111827">24</text>
+    </g><g>
+      <text x="22" y="184" font-size="13" font-weight="800" fill="#111827">W4 product entity recognition</text>
+      <rect x="272" y="166" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="166" width="280" height="22" rx="11" fill="#2563eb"/>
+      <text x="870" y="182" font-size="13" font-weight="900" text-anchor="end" fill="#111827">33</text>
+    </g><g>
+      <text x="22" y="220" font-size="13" font-weight="800" fill="#111827">W5 non-branded buyer coverage</text>
+      <rect x="272" y="202" width="560" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="272" y="202" width="458" height="22" rx="11" fill="#2563eb"/>
+      <text x="870" y="218" font-size="13" font-weight="900" text-anchor="end" fill="#111827">54</text>
+    </g>
+  </svg></div>
+    <div>
+      <h3>Run order</h3>
+      <table><table><thead><tr><th>Batch</th><th>Wave</th><th>Requests</th><th>Prompts</th><th>Prerequisite</th><th>Success metric</th></tr></thead><tbody><tr><td>R01</td><td>W1 Sprint 1 edit validation</td><td>27</td><td>9</td><td>Pick survivor URL and publish survivor edit before running.</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>W2 top-page mention recovery</td><td>66</td><td>29</td><td>Pick survivor URL and publish survivor edit before running.</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R03</td><td>W3 citation probe</td><td>24</td><td>10</td><td>Pick survivor URL and publish survivor edit before running.</td><td>Target-domain citation or source-url row appears.</td></tr><tr><td>R04</td><td>W4 product entity recognition</td><td>33</td><td>11</td><td>Pick survivor URL and publish survivor edit before running.</td><td>Exact iBOLT product/entity is named without hallucinated aliases.</td></tr><tr><td>R05</td><td>W5 non-branded buyer coverage</td><td>54</td><td>19</td><td>Pick survivor URL and publish survivor edit before running.</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr></tbody></table></table>
+      <p>Live execution is still gated by secure availability of <code>OPENROUTER_API_KEY</code>. This script only reports whether the key exists, not the key value. Key present now: <strong>no</strong>.</p>
+    </div>
+  </section>
+
+  <h2>Evidence Links</h2>
+  <section class="links">
+    <article class="linkcard"><h3><a href="../evidence-hub/REPORT.html">Evidence Hub</a></h3><p>Master index of visibility artifacts and completion gates.</p></article><article class="linkcard"><h3><a href="../boss-ai-visibility-dashboard/REPORT.html">Boss Dashboard</a></h3><p>Leadership KPI charts and plain-English next actions.</p></article><article class="linkcard"><h3><a href="../citation-visibility-executive-brief/REPORT.html">Citation And Visibility Executive Brief</a></h3><p>Clear boss-ready answer on citation rate, current visibility, work sequence, and what to hand to the SEO contractor.</p></article><article class="linkcard"><h3><a href="../citation-visibility-boss-memo/REPORT.html">Citation And Visibility Boss Memo</a></h3><p>Compact leadership memo answering whether citation rate is necessary, current visibility health, platform differences, owner split, and first actions.</p></article><article class="linkcard"><h3><a href="../evidence-integrity-audit/REPORT.html">Evidence Integrity Audit</a></h3><p>Checks that mention analysis, co-mention analysis, competitor comparison, all-blog inspection, expanded test areas, citation strategy, and boss-facing rollups are present and clean.</p></article><article class="linkcard"><h3><a href="../next-benchmark-runbook/REPORT.html">Next Benchmark Runbook</a></h3><p>Runnable W1-W5 provider manifests and commands for proving page edits, mention recovery, citation rows, product entity accuracy, and non-branded buyer coverage.</p></article><article class="linkcard"><h3><a href="../retest-execution-gate/REPORT.html">Retest Execution Gate</a></h3><p>Shows which priority provider requests are blocked by survivor URL work, which six are conditional micro-run rows, and what command should run after cleanup.</p></article><article class="linkcard"><h3><a href="../micro-run-cleanup-packet/REPORT.html">Micro-Run Cleanup Packet</a></h3><p>Editor-ready cleanup packet for the four pages that unlock the six-row W3 citation micro-run.</p></article><article class="linkcard"><h3><a href="../micro-run-source-snippets/REPORT.html">Micro-Run Source Snippets</a></h3><p>Review-ready Shopify HTML snippets and JSON-LD schema drafts for the four conditional micro-run pages.</p></article><article class="linkcard"><h3><a href="../post-run-comparison/REPORT.html">Post-Run Comparison Analyzer</a></h3><p>Automatically turns the next completed expanded provider run into baseline-vs-current deltas, provider/category results, and remaining gap rows.</p></article><article class="linkcard"><h3><a href="../visibility-completion-control-report/REPORT.html">Visibility Completion Control Report</a></h3><p>Compact control view showing what is proven, what still needs live provider proof, and the credential-safe commands for the remaining retest.</p></article><article class="linkcard"><h3><a href="../answer-review-packet/REPORT.html">AI Answer Review Packet</a></h3><p>Manager-ready answer snippets with outcome, competitors, target page, and exact page-language/schema/citation commands.</p></article><article class="linkcard"><h3><a href="../entity-adjacency-report/REPORT.html">Entity Adjacency Report</a></h3><p>How iBOLT appears, co-mentions, replacements, and answer roles.</p></article><article class="linkcard"><h3><a href="../mention-environment-dossier/REPORT.html">Mention Environment Dossier</a></h3><p>Answer-environment context for where iBOLT appears cleanly, appears beside competitors, or is replaced by competitors.</p></article><article class="linkcard"><h3><a href="../mention-language-command-deck/REPORT.html">Mention Language Command Deck</a></h3><p>How AI systems describe iBOLT and competitors, including exact product naming fixes and copy instructions.</p></article><article class="linkcard"><h3><a href="../answer-language-evidence/REPORT.html">Answer Language Evidence</a></h3><p>Boss-readable proof of how iBOLT is described, who it is mentioned beside, which competitors replace it, and which page copy/citation commands should fix that.</p></article><article class="linkcard"><h3><a href="../mention-narrative-drilldown/REPORT.html">Mention Narrative Drilldown</a></h3><p>Consolidated answer-language view showing iBOLT language patterns, adjacent competitors, competitor-owned wording, and provider/category narrative risk.</p></article><article class="linkcard"><h3><a href="../product-name-truth-table/REPORT.html">Product Name Truth Table</a></h3><p>Separates exact catalog product names, valid aliases, manual reviews, and hallucination-risk names, with page-level correction targets.</p></article><article class="linkcard"><h3><a href="../competitive-share-of-answer/REPORT.html">Competitive Share of Answer</a></h3><p>Ranks competitor/entity answer share by brand, provider/category pocket, and first page counterplan.</p></article><article class="linkcard"><h3><a href="../competitor-action-deck/REPORT.html">Competitor and Citation Action Deck</a></h3><p>Joined boss-ready deck for competitor displacement, page targets, prompt targets, and off-site citation asks.</p></article><article class="linkcard"><h3><a href="../competitor-page-counterplan/REPORT.html">Competitor Page Counterplan</a></h3><p>Maps RAM, Arkon, iOttie, CTA Digital, ProClip, and other replacement brands to exact pages, prompts, comparison modules, and citation asks.</p></article><article class="linkcard"><h3><a href="../competitor-comparison-dossier/REPORT.html">Competitor Comparison Dossier</a></h3><p>Battlecards for who replaces iBOLT, who appears beside iBOLT, provider/category pressure, and exact page targets for competitor displacement recovery.</p></article><article class="linkcard"><h3><a href="../category-provider-priority-report/REPORT.html">Category Provider Priority Report</a></h3><p>Ranks category lanes and provider-specific fixes so delivery, restaurant, fleet, fishing, and warehouse work can be retested one prompt at a time.</p></article><article class="linkcard"><h3><a href="../prompt-intent-loss-report/REPORT.html">Prompt Intent Loss Report</a></h3><p>Classifies best, comparison, product-recall, setup, shopping-advice, and citation prompts so retests can run one small buyer question at a time.</p></article><article class="linkcard"><h3><a href="../prompt-loss-decision-board/REPORT.html">Prompt Loss Decision Board</a></h3><p>Exact prompt-by-prompt decision board for provider misses, competitor displacement, page action, product modules, and citation timing.</p></article><article class="linkcard"><h3><a href="../blog-page-opportunity-heatmap/REPORT.html">Blog Page Opportunity Heatmap</a></h3><p>Ranks all 142 pages by combined AI risk, competitor pressure, checkout value, product coverage, and retest timing.</p></article><article class="linkcard"><h3><a href="../product-conversion-visibility-bridge/REPORT.html">Product Conversion Visibility Bridge</a></h3><p>Connects AI visibility losses to product modules, CTA cleanup, product-family coverage, and checkout-oriented page fixes.</p></article><article class="linkcard"><h3><a href="../shopify-blog-content-state-bridge/REPORT.html">Shopify Blog Content State Bridge</a></h3><p>Live Shopify article inventory, published-vs-draft state, analytics-access proof, and high-intent draft queue joined to AI visibility work.</p></article><article class="linkcard"><h3><a href="../product-family-visibility-board/REPORT.html">Product Family AI Visibility Board</a></h3><p>Shows which iBOLT product families need stronger entity reinforcement, exact product modules, product-name cleanup, and retest prompts.</p></article><article class="linkcard"><h3><a href="../portfolio-product-spread-analysis/REPORT.html">Portfolio Product Spread Analysis</a></h3><p>All-blog portfolio view tying product-family spread, category coverage, refresh-first decisions, and page queues together.</p></article><article class="linkcard"><h3><a href="../blog-body-inspection/REPORT.html">Blog Body Inspection</a></h3><p>Body-level inspection of answer placement, schema, FAQ, internal links, cart CTA density, and old AI-search section leftovers.</p></article><article class="linkcard"><h3><a href="../all-blog-answer-gap-drilldown/REPORT.html">All Blog Answer Gap Drilldown</a></h3><p>One-row-per-page view tying AI answer losses, page body issues, canonical gates, products, retest prompts, and edit sequencing together.</p></article><article class="linkcard"><h3><a href="../page-decision-map/REPORT.html">Page Decision Map</a></h3><p>Single decision map that says which pages to consolidate first, source-cleanup first, rewrite/refresh, protect/amplify, or edit first before retesting.</p></article><article class="linkcard"><h3><a href="../survivor-url-decision-workbook/REPORT.html">Survivor URL Decision Workbook</a></h3><p>Reviewable survivor URL workbook for consolidation-gated blog families, merge-from holds, preserved prompts/products, and retest gates.</p></article><article class="linkcard"><h3><a href="../page-decision-retest-map/REPORT.html">Page Decision Retest Map</a></h3><p>Bridge from page decisions to exact priority provider prompts, with lane gates before running the next benchmark.</p></article><article class="linkcard"><h3><a href="../page-edit-command-matrix/REPORT.html">Page Edit Command Matrix</a></h3><p>Mechanical 142-page edit queue with exact quick-answer, schema, comparison, product-path, CTA, image-alt, and retest commands.</p></article><article class="linkcard"><h3><a href="../all-blog-action-control-sheet/REPORT.html">All-Blog Action Control Sheet</a></h3><p>Single 142-page operating queue tying edit commands, citation stage, product-name risk, competitors, products, and retest gates together.</p></article><article class="linkcard"><h3><a href="../query-loss-recovery-matrix/REPORT.html">Query Loss Recovery Matrix</a></h3><p>Maps each losing query to the target page, competitors, missing fixes, retest wave, and next action.</p></article><article class="linkcard"><h3><a href="../all-blog-edit-retest-planner/REPORT.html">All-Blog Edit and Retest Planner</a></h3><p>142-page work queue that orders edits, checkout/product modules, citation timing, and retest waves.</p></article><article class="linkcard"><h3><a href="../provider-blindspots/REPORT.html">Provider Blindspots</a></h3><p>Queries missed by all providers and provider-specific competitor defaults.</p></article><article class="linkcard"><h3><a href="../all-blog-test-coverage-report/REPORT.html">All Blog Test Coverage</a></h3><p>142 live pages classified by benchmark coverage state.</p></article><article class="linkcard"><h3><a href="../all-blog-prompt-gap-addendum/REPORT.html">All Blog Prompt Addendum</a></h3><p>483-prompt, 1,449-request full retest manifest.</p></article><article class="linkcard"><h3><a href="../low-coverage-prompt-expansion-pack/REPORT.html">Low Coverage Prompt Expansion Pack</a></h3><p>Focused low/no coverage prompt pack with buyer, competitor, product-entity, and citation probes for ChatGPT, Gemini, and Claude.</p></article><article class="linkcard"><h3><a href="../test-area-expansion-map/REPORT.html">Test Area Expansion Map</a></h3><p>Explains the 1,449-request manifest by category, prompt type, provider balance, and business question.</p></article><article class="linkcard"><h3><a href="../benchmark-manifest-qa/REPORT.html">Benchmark Manifest QA</a></h3><p>Preflight validation for the 1,449-request manifest, including provider balance, prompt quality flags, and run order.</p></article><article class="linkcard"><h3><a href="../visibility-citation-bridge/REPORT.html">Visibility to Citation Bridge</a></h3><p>Separates mention-recovery pages from citation-ready pages and maps the sequence by category and competitor.</p></article><article class="linkcard"><h3><a href="../citation-priority-model/REPORT.html">Citation Priority Model</a></h3><p>Ranks the page, topic, competitor, and platform citation sequence so citation outreach waits for inclusion, product-name, and source-readiness gates.</p></article><article class="linkcard"><h3><a href="../source-citation-closure-board/REPORT.html">Source and Citation Closure Board</a></h3><p>Strict 142-page gate board showing canonical-first pages, source-cleanup blockers, source targets, and citation outreach readiness.</p></article><article class="linkcard"><h3><a href="../citation-vs-mention-control-report/REPORT.html">Citation Timing Control</a></h3><p>Why citation comes after mention recovery for competitor-heavy pages.</p></article><article class="linkcard"><h3><a href="../source-authority-roadmap/REPORT.html">Source Authority Roadmap</a></h3><p>Topic and competitor source-authority plan for external mentions, third-party guides, partner pages, and citation lift.</p></article><article class="linkcard"><h3><a href="../citation-uplift-plan/REPORT.html">Citation Uplift Plan</a></h3><p>Detailed on-site and contractor workstream plan to raise citations without skipping mention and recommendation recovery.</p></article><article class="linkcard"><h3><a href="../benchmark-history/REPORT.html">Benchmark History</a></h3><p>Completed benchmark surfaces and dry-run readiness over time.</p></article><article class="linkcard"><h3><a href="../priority-retest-packet/REPORT.html">Priority Retest Packet</a></h3><p>204-request priority validation plan.</p></article><article class="linkcard"><h3><a href="../visibility-kpi-retest-ladder/REPORT.html">KPI Retest Ladder</a></h3><p>Count-based pass/fail targets for mention, non-branded mention, top-3 recommendation, citation, and competitor-only reduction.</p></article><article class="linkcard"><h3><a href="../contractor-citation-packet/REPORT.html">Contractor Citation Packet</a></h3><p>Off-site citation and backlink tasks to hand to SEO support.</p></article>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="890" viewBox="0 0 1220 890" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1220" height="890"/>
+  
+    <rect class="panel" x="28" y="24" width="1164" height="842" rx="14"/>
+    <text class="title" x="54" y="64">Highest Impact Page Refreshes</text>
+    <text class="subtitle" x="54" y="88">Priority combines benchmark gaps, missing structure, competitors, and page mapping.</text>
+    
+      <text class="label" x="54" y="122">Best Phone Mount for Instacart and Grocery</text>
+<text class="small" x="54" y="137">Delivery Drivers</text>
+      <rect x="430" y="108" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="640" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="125">167</text>
+      <text class="small" x="430" y="150">delivery; score 76; prompts best phone mount for Instacart and grocery delivery drivers</text>
+    
+
+      <text class="label" x="54" y="174">Best Phone Mount for Construction Vehicles and</text>
+<text class="small" x="54" y="189">Work Trucks</text>
+      <rect x="430" y="160" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="160" width="632" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="177">165</text>
+      <text class="small" x="430" y="202">fleet; score 76; prompts best phone mount for construction vehicles and work trucks</text>
+    
+
+      <text class="label" x="54" y="226">Best Tablet Mount for Restaurant POS and</text>
+<text class="small" x="54" y="241">Delivery Apps</text>
+      <rect x="430" y="212" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="212" width="621" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="229">162</text>
+      <text class="small" x="430" y="254">restaurant; score 76; prompts best tablet mount for restaurant POS and delivery apps</text>
+    
+
+      <text class="label" x="54" y="278">Rough Water Phone Mount for Boat: Heavy-Duty</text>
+<text class="small" x="54" y="293">Solutions That Handle the Chop</text>
+      <rect x="430" y="264" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="264" width="606" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="281">158</text>
+      <text class="small" x="430" y="306">fleet; score 76; prompts best heavy duty vehicle phone mount</text>
+    
+
+      <text class="label" x="54" y="330">How to Set Up Multiple Tablets for DoorDash,</text>
+<text class="small" x="54" y="345">Uber Eats, and Grubhub</text>
+      <rect x="430" y="316" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="316" width="594" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="333">155</text>
+      <text class="small" x="430" y="358">restaurant; score 76; prompts set up multiple tablets for DoorDash Uber Eats and Grubhub</text>
+    
+
+      <text class="label" x="54" y="382">Best Phone Mount for Amazon Flex and Delivery</text>
+<text class="small" x="54" y="397">Vans</text>
+      <rect x="430" y="368" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="368" width="575" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="385">150</text>
+      <text class="small" x="430" y="410">delivery; score 84; prompts best phone mount for Amazon Flex and delivery vans</text>
+    
+
+      <text class="label" x="54" y="434">Best Restaurant Tablet Mount in 2026: POS</text>
+<text class="small" x="54" y="449">Stands, Delivery App Stations, and Multi-Tablet</text>
+<text class="small" x="54" y="464">Solutions Compared</text>
+      <rect x="430" y="420" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="420" width="567" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="437">148</text>
+      <text class="small" x="430" y="462">tablet; score 84; prompts best tablet mount; best multi tablet mount</text>
+    
+
+      <text class="label" x="54" y="486">Best Fish Finder Mount for Small Boats:</text>
+<text class="small" x="54" y="501">Comparison and Buyer's Guide</text>
+      <rect x="430" y="472" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="472" width="556" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="489">145</text>
+      <text class="small" x="430" y="514">fishing; score 84; prompts best fish finder mount for small boat</text>
+    
+
+      <text class="label" x="54" y="538">Best Tablet Mount for Utility Truck Crews</text>
+      <rect x="430" y="524" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="524" width="552" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="541">144</text>
+      <text class="small" x="430" y="566">restaurant; score 76; prompts best tablet mount for food truck</text>
+    
+
+      <text class="label" x="54" y="590">Barcode Scanner Mounts</text>
+      <rect x="430" y="576" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="576" width="537" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="593">140</text>
+      <text class="small" x="430" y="618">warehouse; score 84; prompts best barcode scanner mount for forklift</text>
+    
+
+      <text class="label" x="54" y="642">Magnetic vs Clamp Phone Mounts for Delivery Work</text>
+      <rect x="430" y="628" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="628" width="537" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="645">140</text>
+      <text class="small" x="430" y="670">delivery; score 84; prompts magnetic vs clamp phone mounts for delivery work</text>
+    
+
+      <text class="label" x="54" y="694">Best Garmin Fish Finder Mount: How to Choose the</text>
+<text class="small" x="54" y="709">Right Setup for Your Boat or Kayak</text>
+      <rect x="430" y="680" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="680" width="529" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="697">138</text>
+      <text class="small" x="430" y="722">fishing; score 84; prompts best fish finder; best fish finder in water</text>
+    
+
+      <text class="label" x="54" y="746">Best Locking Tablet Stand for Food Trucks and</text>
+<text class="small" x="54" y="761">Quick-Service Restaurants</text>
+      <rect x="430" y="732" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="732" width="510" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="749">133</text>
+      <text class="small" x="430" y="774">restaurant; score 84; prompts best locking tablet stand for food trucks and quick service restaurants</text>
+    
+
+      <text class="label" x="54" y="798">Best Locking Phone Mount for Shared Delivery</text>
+<text class="small" x="54" y="813">Vehicles</text>
+      <rect x="430" y="784" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="784" width="471" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1084" y="801">123</text>
+      <text class="small" x="430" y="826">delivery; score 94; prompts best locking phone mount for shared delivery vehicles</text>
+    
+  
+</svg>

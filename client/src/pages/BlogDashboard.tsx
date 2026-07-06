@@ -67,7 +67,7 @@ export default function BlogDashboard() {
         </div>
 
         {/* Quick actions */}
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-3">
           <Button className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/generate")}>
             <span className="text-sm font-medium">Generate Posts</span>
             <span className="text-xs opacity-70">Batch generate</span>
@@ -83,6 +83,10 @@ export default function BlogDashboard() {
           <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/products")}>
             <span className="text-sm font-medium">Products</span>
             <span className="text-xs opacity-70">{productStats?.count || 0} scraped</span>
+          </Button>
+          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/inventory")}>
+            <span className="text-sm font-medium">Inventory</span>
+            <span className="text-xs opacity-70">QR count flow</span>
           </Button>
           <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/catalog")}>
             <span className="text-sm font-medium">Catalog PDFs</span>

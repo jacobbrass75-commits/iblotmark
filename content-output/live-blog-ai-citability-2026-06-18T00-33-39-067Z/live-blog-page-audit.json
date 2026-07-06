@@ -1,0 +1,810 @@
+{
+  "summary": {
+    "total": 8,
+    "ok": 8,
+    "failed": 0,
+    "avgScore": 57,
+    "missingFaqSchema": 8,
+    "missingArticleSchema": 0,
+    "noProductLinks": 0,
+    "noQuickAnswer": 8,
+    "noComparisonSignals": 7,
+    "categories": [
+      {
+        "category": "amps/modular",
+        "count": 3,
+        "avgScore": 59
+      },
+      {
+        "category": "fishing",
+        "count": 2,
+        "avgScore": 55
+      },
+      {
+        "category": "streaming",
+        "count": 1,
+        "avgScore": 59
+      },
+      {
+        "category": "education",
+        "count": 1,
+        "avgScore": 51
+      },
+      {
+        "category": "warehouse",
+        "count": 1,
+        "avgScore": 59
+      }
+    ],
+    "lowest": [
+      {
+        "url": "https://iboltmounts.com/blogs/news/top-5-mounts-for-the-samsung-galaxy-a7-lite-tablet",
+        "title": "TOP 5 MOUNTS FOR THE SAMSUNG GALAXY A7 LITE TABLET",
+        "category": "amps/modular",
+        "status": "ok",
+        "wordCount": 1999,
+        "metaDescription": "The Samsung Galaxy Tab A7 Lite is the latest tablet developed by Samsung and is different from other tablets in many ways including its portability, ease of use, and durability. Let's face it, tablets are expensive and can be a target for theft in a vehicle. So why attach a $150-$300 tablet to the dash of your vehicle?",
+        "headings": 1,
+        "h2": [
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": false,
+        "hasTable": false,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 12,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 213,
+        "externalLinks": 16,
+        "images": 14,
+        "missingAlt": 10,
+        "iboltMentions": 8,
+        "competitorBrands": [
+          "Garmin"
+        ],
+        "aiCitabilityScore": 51,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add comparison/tradeoff language against alternatives.",
+          "Add more descriptive H2/H3 sections.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      },
+      {
+        "url": "https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+        "title": "HOW TO MOUNT A FISH FINDER TO YOUR BOAT USING IBOLT MOUNTS",
+        "category": "fishing",
+        "status": "ok",
+        "wordCount": 2354,
+        "metaDescription": "Having the best equipment is essential as we approach the warmer weather, and you want to take your boat out on the lake on those warm spring and summer days. One such piece of equipment is a fish finder, which will help you land the biggest fish. No matter what model of fish finder you have, GARMIN or Hummingbird, uni",
+        "headings": 1,
+        "h2": [
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": false,
+        "hasTable": true,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 12,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 212,
+        "externalLinks": 16,
+        "images": 12,
+        "missingAlt": 8,
+        "iboltMentions": 33,
+        "competitorBrands": [
+          "Garmin",
+          "Lowrance"
+        ],
+        "aiCitabilityScore": 51,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add comparison/tradeoff language against alternatives.",
+          "Add more descriptive H2/H3 sections.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      },
+      {
+        "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+        "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+        "category": "education",
+        "status": "ok",
+        "wordCount": 3467,
+        "metaDescription": "The integration of technology into the school system started taking place 20 years ago when Mac introduced that big ol’ egg-shaped computer to the world and then 10 years later tablets re-revolutionized the way students learn. Suddenly mobile charging carts were the new fad. Every classroom had to have one. What good i",
+        "headings": 1,
+        "h2": [
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": false,
+        "hasTable": false,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 12,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 218,
+        "externalLinks": 16,
+        "images": 16,
+        "missingAlt": 12,
+        "iboltMentions": 41,
+        "competitorBrands": [
+          "Garmin"
+        ],
+        "aiCitabilityScore": 51,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add comparison/tradeoff language against alternatives.",
+          "Add more descriptive H2/H3 sections.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      },
+      {
+        "url": "https://iboltmounts.com/blogs/news/embarking-on-a-fishing-adventure-choosing-the-right-mount-for-your-fish-finder",
+        "title": "EMBARKING ON A FISHING ADVENTURE: CHOOSING THE RIGHT MOUNT FOR YOUR FISH FINDER",
+        "category": "fishing",
+        "status": "ok",
+        "wordCount": 2710,
+        "metaDescription": "Embarking on a Fishing Adventure: Choosing the Right Mount for Your Fish Finder Embarking on a thrilling fishing adventure requires the perfect tools at your disposal. With more individuals and avid anglers investing in fish finders to boost their fishing expeditions, finding the ideal mount has never been more importa",
+        "headings": 9,
+        "h2": [
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": false,
+        "hasTable": false,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 12,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 215,
+        "externalLinks": 16,
+        "images": 11,
+        "missingAlt": 7,
+        "iboltMentions": 28,
+        "competitorBrands": [
+          "Garmin",
+          "Lowrance"
+        ],
+        "aiCitabilityScore": 59,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add comparison/tradeoff language against alternatives.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      },
+      {
+        "url": "https://iboltmounts.com/blogs/news/using-ibolt-s-stream-cast-creator-custom-mount-kit-for-multiple-angle-shots",
+        "title": "USING IBOLT’S STREAM-CAST CREATOR CUSTOM MOUNT KIT FOR MULTIPLE ANGLE SHOTS",
+        "category": "streaming",
+        "status": "ok",
+        "wordCount": 2106,
+        "metaDescription": "Using iBOLT’s Stream-Cast Creator Custom Mount Kit for Multiple Angle Shots DO YOU EVER WONDER HOW LIVE-STREAMING PROS ARE ABLE TO SWITCH THEIR CAMERA VIEW SEAMLESSLY FOR IMPRESSIVE, ANGLED SHOTS? Does your live-streams feature only static front-facing shots? Do you want to up your live-streaming game and present your ",
+        "headings": 4,
+        "h2": [
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": false,
+        "hasTable": false,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 14,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 210,
+        "externalLinks": 19,
+        "images": 7,
+        "missingAlt": 3,
+        "iboltMentions": 18,
+        "competitorBrands": [
+          "Garmin"
+        ],
+        "aiCitabilityScore": 59,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add comparison/tradeoff language against alternatives.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      },
+      {
+        "url": "https://iboltmounts.com/blogs/news/how-to-use-ibolt-s-modular-mounting-system",
+        "title": "HOW TO USE IBOLT’S MODULAR MOUNTING SYSTEM",
+        "category": "amps/modular",
+        "status": "ok",
+        "wordCount": 1974,
+        "metaDescription": "  iBOLT Offers a wide variety of mounting options in various materials and ball sizes including industry standard 17mm, 20mm, 25mm / 1 inch / B Size , 38mm / 1.5 inch / C size , 57mm / 2.25 inch / D size, GoPro, ¼ 20” Camera Screw, VESA 75/100, 4 Prong, Dual T or 2T, AMPS Pattern mounts / adapters and much more! All ou",
+        "headings": 4,
+        "h2": [
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": false,
+        "hasTable": true,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 12,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 212,
+        "externalLinks": 16,
+        "images": 18,
+        "missingAlt": 13,
+        "iboltMentions": 19,
+        "competitorBrands": [
+          "RAM Mounts",
+          "Arkon",
+          "ProClip",
+          "Tackform",
+          "Garmin"
+        ],
+        "aiCitabilityScore": 59,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add comparison/tradeoff language against alternatives.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      },
+      {
+        "url": "https://iboltmounts.com/blogs/news/how-to-mount-a-tablet-to-a-forklift-pillar-using-ibolt",
+        "title": "HOW TO MOUNT A TABLET TO A FORKLIFT PILLAR USING IBOLT",
+        "category": "warehouse",
+        "status": "ok",
+        "wordCount": 1649,
+        "metaDescription": "WHY DO I NEED A FORKLIFT PILLAR BRACKET TABLET MOUNT? Mounting your iPad or tablet to the pillar of a forklift is a simple and easy way to improve safety and efficiency at work. iBOLT's mounts are easy to install and user friendly. The mount can be installed in minutes without any drilling or cutting required. Equippin",
+        "headings": 5,
+        "h2": [
+          "WHY DO I NEED A FORKLIFT PILLAR BRACKET TABLET MOUNT?",
+          "WHAT TO CONSIDER: SHOPPING FOR FORKLIFT TABLET MOUNTS",
+          "FORKLIFT PILLAR BRACKET TABLET MOUNTING SOLUTIONS",
+          "DO I NEED A FORKLIFT BARCODE SCANNER HOLSTER TO GO WITH MY IBOLT FORKLIFT TABLET MOUNT?",
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": false,
+        "hasTable": true,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 12,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 213,
+        "externalLinks": 16,
+        "images": 14,
+        "missingAlt": 10,
+        "iboltMentions": 19,
+        "competitorBrands": [
+          "Garmin"
+        ],
+        "aiCitabilityScore": 59,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add comparison/tradeoff language against alternatives.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      },
+      {
+        "url": "https://iboltmounts.com/blogs/news/what-size-is-the-ball-mount-on-a-garmin-gps-and-how-do-i-find-a-compatible-mount",
+        "title": "WHAT SIZE IS THE BALL MOUNT ON A GARMIN GPS AND HOW DO I FIND A COMPATIBLE MOUNT?",
+        "category": "amps/modular",
+        "status": "ok",
+        "wordCount": 2410,
+        "metaDescription": "Most Garmin GPS systems that use ball mounts use an industry-standard 17mm ball size, however, there are a variety of Garmin GPS devices that are also compatible with the industry-standard 4- Hole AMPS pattern, 22mm ball mounts, and the 1 inch ball line. In this article, we will go over the different Garmin GPS devices",
+        "headings": 5,
+        "h2": [
+          "What Garmin GPS systems use an AMPS Pattern Screw mount?",
+          "Top 4 Mounts for the Garmin Striker 4:",
+          "Top 3 Mounts for the Garmin RV series: RV 1090, RV890, and Garmin dēzl™ OTR series: OTR800, OTR1000:",
+          "Reading next"
+        ],
+        "hasQuickAnswer": false,
+        "hasFaqSection": false,
+        "hasComparisonSignals": true,
+        "hasTable": false,
+        "hasArticleSchema": true,
+        "hasBlogPostingSchema": false,
+        "hasFaqSchema": false,
+        "hasProductSchema": false,
+        "hasOrganizationSchema": false,
+        "schemaTypes": [
+          "Article",
+          "BreadcrumbList",
+          "ListItem"
+        ],
+        "jsonLdErrors": [],
+        "productLinks": 16,
+        "collectionLinks": 167,
+        "internalBlogLinks": 6,
+        "internalLinks": 240,
+        "externalLinks": 18,
+        "images": 31,
+        "missingAlt": 27,
+        "iboltMentions": 24,
+        "competitorBrands": [
+          "Garmin"
+        ],
+        "aiCitabilityScore": 67,
+        "recommendedFixes": [
+          "Add FAQ section and FAQ schema for AI-readable Q&A.",
+          "Add a concise quick-answer block near the top.",
+          "Add descriptive alt text to all article images.",
+          "Tighten meta description to roughly 110-165 characters."
+        ]
+      }
+    ]
+  },
+  "rows": [
+    {
+      "url": "https://iboltmounts.com/blogs/news/embarking-on-a-fishing-adventure-choosing-the-right-mount-for-your-fish-finder",
+      "title": "EMBARKING ON A FISHING ADVENTURE: CHOOSING THE RIGHT MOUNT FOR YOUR FISH FINDER",
+      "category": "fishing",
+      "status": "ok",
+      "wordCount": 2710,
+      "metaDescription": "Embarking on a Fishing Adventure: Choosing the Right Mount for Your Fish Finder Embarking on a thrilling fishing adventure requires the perfect tools at your disposal. With more individuals and avid anglers investing in fish finders to boost their fishing expeditions, finding the ideal mount has never been more importa",
+      "headings": 9,
+      "h2": [
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": false,
+      "hasTable": false,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 12,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 215,
+      "externalLinks": 16,
+      "images": 11,
+      "missingAlt": 7,
+      "iboltMentions": 28,
+      "competitorBrands": [
+        "Garmin",
+        "Lowrance"
+      ],
+      "aiCitabilityScore": 59,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add comparison/tradeoff language against alternatives.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/using-ibolt-s-stream-cast-creator-custom-mount-kit-for-multiple-angle-shots",
+      "title": "USING IBOLT’S STREAM-CAST CREATOR CUSTOM MOUNT KIT FOR MULTIPLE ANGLE SHOTS",
+      "category": "streaming",
+      "status": "ok",
+      "wordCount": 2106,
+      "metaDescription": "Using iBOLT’s Stream-Cast Creator Custom Mount Kit for Multiple Angle Shots DO YOU EVER WONDER HOW LIVE-STREAMING PROS ARE ABLE TO SWITCH THEIR CAMERA VIEW SEAMLESSLY FOR IMPRESSIVE, ANGLED SHOTS? Does your live-streams feature only static front-facing shots? Do you want to up your live-streaming game and present your ",
+      "headings": 4,
+      "h2": [
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": false,
+      "hasTable": false,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 14,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 210,
+      "externalLinks": 19,
+      "images": 7,
+      "missingAlt": 3,
+      "iboltMentions": 18,
+      "competitorBrands": [
+        "Garmin"
+      ],
+      "aiCitabilityScore": 59,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add comparison/tradeoff language against alternatives.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/top-5-mounts-for-the-samsung-galaxy-a7-lite-tablet",
+      "title": "TOP 5 MOUNTS FOR THE SAMSUNG GALAXY A7 LITE TABLET",
+      "category": "amps/modular",
+      "status": "ok",
+      "wordCount": 1999,
+      "metaDescription": "The Samsung Galaxy Tab A7 Lite is the latest tablet developed by Samsung and is different from other tablets in many ways including its portability, ease of use, and durability. Let's face it, tablets are expensive and can be a target for theft in a vehicle. So why attach a $150-$300 tablet to the dash of your vehicle?",
+      "headings": 1,
+      "h2": [
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": false,
+      "hasTable": false,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 12,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 213,
+      "externalLinks": 16,
+      "images": 14,
+      "missingAlt": 10,
+      "iboltMentions": 8,
+      "competitorBrands": [
+        "Garmin"
+      ],
+      "aiCitabilityScore": 51,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add comparison/tradeoff language against alternatives.",
+        "Add more descriptive H2/H3 sections.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts",
+      "title": "HOW TO MOUNT A FISH FINDER TO YOUR BOAT USING IBOLT MOUNTS",
+      "category": "fishing",
+      "status": "ok",
+      "wordCount": 2354,
+      "metaDescription": "Having the best equipment is essential as we approach the warmer weather, and you want to take your boat out on the lake on those warm spring and summer days. One such piece of equipment is a fish finder, which will help you land the biggest fish. No matter what model of fish finder you have, GARMIN or Hummingbird, uni",
+      "headings": 1,
+      "h2": [
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": false,
+      "hasTable": true,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 12,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 212,
+      "externalLinks": 16,
+      "images": 12,
+      "missingAlt": 8,
+      "iboltMentions": 33,
+      "competitorBrands": [
+        "Garmin",
+        "Lowrance"
+      ],
+      "aiCitabilityScore": 51,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add comparison/tradeoff language against alternatives.",
+        "Add more descriptive H2/H3 sections.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/what-size-is-the-ball-mount-on-a-garmin-gps-and-how-do-i-find-a-compatible-mount",
+      "title": "WHAT SIZE IS THE BALL MOUNT ON A GARMIN GPS AND HOW DO I FIND A COMPATIBLE MOUNT?",
+      "category": "amps/modular",
+      "status": "ok",
+      "wordCount": 2410,
+      "metaDescription": "Most Garmin GPS systems that use ball mounts use an industry-standard 17mm ball size, however, there are a variety of Garmin GPS devices that are also compatible with the industry-standard 4- Hole AMPS pattern, 22mm ball mounts, and the 1 inch ball line. In this article, we will go over the different Garmin GPS devices",
+      "headings": 5,
+      "h2": [
+        "What Garmin GPS systems use an AMPS Pattern Screw mount?",
+        "Top 4 Mounts for the Garmin Striker 4:",
+        "Top 3 Mounts for the Garmin RV series: RV 1090, RV890, and Garmin dēzl™ OTR series: OTR800, OTR1000:",
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": true,
+      "hasTable": false,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 16,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 240,
+      "externalLinks": 18,
+      "images": 31,
+      "missingAlt": 27,
+      "iboltMentions": 24,
+      "competitorBrands": [
+        "Garmin"
+      ],
+      "aiCitabilityScore": 67,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-use-ibolt-s-modular-mounting-system",
+      "title": "HOW TO USE IBOLT’S MODULAR MOUNTING SYSTEM",
+      "category": "amps/modular",
+      "status": "ok",
+      "wordCount": 1974,
+      "metaDescription": "  iBOLT Offers a wide variety of mounting options in various materials and ball sizes including industry standard 17mm, 20mm, 25mm / 1 inch / B Size , 38mm / 1.5 inch / C size , 57mm / 2.25 inch / D size, GoPro, ¼ 20” Camera Screw, VESA 75/100, 4 Prong, Dual T or 2T, AMPS Pattern mounts / adapters and much more! All ou",
+      "headings": 4,
+      "h2": [
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": false,
+      "hasTable": true,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 12,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 212,
+      "externalLinks": 16,
+      "images": 18,
+      "missingAlt": 13,
+      "iboltMentions": 19,
+      "competitorBrands": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip",
+        "Tackform",
+        "Garmin"
+      ],
+      "aiCitabilityScore": 59,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add comparison/tradeoff language against alternatives.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "title": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "category": "education",
+      "status": "ok",
+      "wordCount": 3467,
+      "metaDescription": "The integration of technology into the school system started taking place 20 years ago when Mac introduced that big ol’ egg-shaped computer to the world and then 10 years later tablets re-revolutionized the way students learn. Suddenly mobile charging carts were the new fad. Every classroom had to have one. What good i",
+      "headings": 1,
+      "h2": [
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": false,
+      "hasTable": false,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 12,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 218,
+      "externalLinks": 16,
+      "images": 16,
+      "missingAlt": 12,
+      "iboltMentions": 41,
+      "competitorBrands": [
+        "Garmin"
+      ],
+      "aiCitabilityScore": 51,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add comparison/tradeoff language against alternatives.",
+        "Add more descriptive H2/H3 sections.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    },
+    {
+      "url": "https://iboltmounts.com/blogs/news/how-to-mount-a-tablet-to-a-forklift-pillar-using-ibolt",
+      "title": "HOW TO MOUNT A TABLET TO A FORKLIFT PILLAR USING IBOLT",
+      "category": "warehouse",
+      "status": "ok",
+      "wordCount": 1649,
+      "metaDescription": "WHY DO I NEED A FORKLIFT PILLAR BRACKET TABLET MOUNT? Mounting your iPad or tablet to the pillar of a forklift is a simple and easy way to improve safety and efficiency at work. iBOLT's mounts are easy to install and user friendly. The mount can be installed in minutes without any drilling or cutting required. Equippin",
+      "headings": 5,
+      "h2": [
+        "WHY DO I NEED A FORKLIFT PILLAR BRACKET TABLET MOUNT?",
+        "WHAT TO CONSIDER: SHOPPING FOR FORKLIFT TABLET MOUNTS",
+        "FORKLIFT PILLAR BRACKET TABLET MOUNTING SOLUTIONS",
+        "DO I NEED A FORKLIFT BARCODE SCANNER HOLSTER TO GO WITH MY IBOLT FORKLIFT TABLET MOUNT?",
+        "Reading next"
+      ],
+      "hasQuickAnswer": false,
+      "hasFaqSection": false,
+      "hasComparisonSignals": false,
+      "hasTable": true,
+      "hasArticleSchema": true,
+      "hasBlogPostingSchema": false,
+      "hasFaqSchema": false,
+      "hasProductSchema": false,
+      "hasOrganizationSchema": false,
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "jsonLdErrors": [],
+      "productLinks": 12,
+      "collectionLinks": 167,
+      "internalBlogLinks": 6,
+      "internalLinks": 213,
+      "externalLinks": 16,
+      "images": 14,
+      "missingAlt": 10,
+      "iboltMentions": 19,
+      "competitorBrands": [
+        "Garmin"
+      ],
+      "aiCitabilityScore": 59,
+      "recommendedFixes": [
+        "Add FAQ section and FAQ schema for AI-readable Q&A.",
+        "Add a concise quick-answer block near the top.",
+        "Add comparison/tradeoff language against alternatives.",
+        "Add descriptive alt text to all article images.",
+        "Tighten meta description to roughly 110-165 characters."
+      ]
+    }
+  ]
+}

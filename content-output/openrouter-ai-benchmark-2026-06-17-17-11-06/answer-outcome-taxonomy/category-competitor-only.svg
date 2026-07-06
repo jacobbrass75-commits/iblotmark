@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="352" viewBox="0 0 960 352">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="22" y="38" fill="#0f172a" font-size="22" font-weight="800">Competitor-Only Answers By Category</text>
+<text x="22" y="76" fill="#0f172a" font-size="13">restaurant</text>
+<rect x="340" y="60" width="420" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="340" y="60" width="420" height="22" rx="4" fill="#dc2626"/>
+<text x="772" y="76" fill="#0f172a" font-size="13" font-weight="700">16</text>
+<text x="22" y="114" fill="#0f172a" font-size="13">fishing</text>
+<rect x="340" y="98" width="420" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="340" y="98" width="394" height="22" rx="4" fill="#dc2626"/>
+<text x="772" y="114" fill="#0f172a" font-size="13" font-weight="700">15</text>
+<text x="22" y="152" fill="#0f172a" font-size="13">delivery</text>
+<rect x="340" y="136" width="420" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="340" y="136" width="368" height="22" rx="4" fill="#dc2626"/>
+<text x="772" y="152" fill="#0f172a" font-size="13" font-weight="700">14</text>
+<text x="22" y="190" fill="#0f172a" font-size="13">fleet</text>
+<rect x="340" y="174" width="420" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="340" y="174" width="368" height="22" rx="4" fill="#dc2626"/>
+<text x="772" y="190" fill="#0f172a" font-size="13" font-weight="700">14</text>
+<text x="22" y="228" fill="#0f172a" font-size="13">warehouse</text>
+<rect x="340" y="212" width="420" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="340" y="212" width="184" height="22" rx="4" fill="#dc2626"/>
+<text x="772" y="228" fill="#0f172a" font-size="13" font-weight="700">7</text>
+<text x="22" y="266" fill="#0f172a" font-size="13">tablet</text>
+<rect x="340" y="250" width="420" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="340" y="250" width="79" height="22" rx="4" fill="#dc2626"/>
+<text x="772" y="266" fill="#0f172a" font-size="13" font-weight="700">3</text>
+<text x="22" y="304" fill="#0f172a" font-size="13">comparison</text>
+<rect x="340" y="288" width="420" height="22" rx="4" fill="#e2e8f0"/>
+<rect x="340" y="288" width="2" height="22" rx="4" fill="#dc2626"/>
+<text x="772" y="304" fill="#0f172a" font-size="13" font-weight="700">0</text>
+</svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="490" viewBox="0 0 940 490" role="img" aria-label="Category Portfolio Priorities">
+    <rect width="940" height="490" rx="18" fill="#fff"/>
+    <text x="24" y="32" font-size="21" font-weight="900" fill="#111827">Category Portfolio Priorities</text>
+    <text x="24" y="53" font-size="13" fill="#64748b">Combines competitor pressure, no-mapped prompts, product-family gaps, and page priority.</text>
+    <g>
+      <text x="24" y="81" font-size="13" font-weight="800" fill="#111827">fleet</text>
+      <rect x="312" y="64" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="64" width="570" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="80" text-anchor="end" font-size="13" font-weight="900" fill="#111827">3195</text>
+    </g><g>
+      <text x="24" y="115" font-size="13" font-weight="800" fill="#111827">amps/modular</text>
+      <rect x="312" y="98" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="98" width="477" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="114" text-anchor="end" font-size="13" font-weight="900" fill="#111827">2676</text>
+    </g><g>
+      <text x="24" y="149" font-size="13" font-weight="800" fill="#111827">restaurant</text>
+      <rect x="312" y="132" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="132" width="450" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="148" text-anchor="end" font-size="13" font-weight="900" fill="#111827">2520</text>
+    </g><g>
+      <text x="24" y="183" font-size="13" font-weight="800" fill="#111827">fishing</text>
+      <rect x="312" y="166" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="166" width="410" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="182" text-anchor="end" font-size="13" font-weight="900" fill="#111827">2296</text>
+    </g><g>
+      <text x="24" y="217" font-size="13" font-weight="800" fill="#111827">delivery</text>
+      <rect x="312" y="200" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="200" width="403" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="216" text-anchor="end" font-size="13" font-weight="900" fill="#111827">2258</text>
+    </g><g>
+      <text x="24" y="251" font-size="13" font-weight="800" fill="#111827">warehouse</text>
+      <rect x="312" y="234" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="234" width="346" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="250" text-anchor="end" font-size="13" font-weight="900" fill="#111827">1941</text>
+    </g><g>
+      <text x="24" y="285" font-size="13" font-weight="800" fill="#111827">streaming</text>
+      <rect x="312" y="268" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="268" width="249" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="284" text-anchor="end" font-size="13" font-weight="900" fill="#111827">1396</text>
+    </g><g>
+      <text x="24" y="319" font-size="13" font-weight="800" fill="#111827">education</text>
+      <rect x="312" y="302" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="302" width="86" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="318" text-anchor="end" font-size="13" font-weight="900" fill="#111827">484</text>
+    </g><g>
+      <text x="24" y="353" font-size="13" font-weight="800" fill="#111827">offroad</text>
+      <rect x="312" y="336" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="336" width="78" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="352" text-anchor="end" font-size="13" font-weight="900" fill="#111827">440</text>
+    </g><g>
+      <text x="24" y="387" font-size="13" font-weight="800" fill="#111827">agriculture</text>
+      <rect x="312" y="370" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="370" width="53" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="386" text-anchor="end" font-size="13" font-weight="900" fill="#111827">299</text>
+    </g><g>
+      <text x="24" y="421" font-size="13" font-weight="800" fill="#111827">tablet</text>
+      <rect x="312" y="404" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="404" width="29" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="420" text-anchor="end" font-size="13" font-weight="900" fill="#111827">163</text>
+    </g><g>
+      <text x="24" y="455" font-size="13" font-weight="800" fill="#111827">travel</text>
+      <rect x="312" y="438" width="570" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="312" y="438" width="21" height="21" rx="10" fill="#2563eb"/>
+      <text x="908" y="454" text-anchor="end" font-size="13" font-weight="900" fill="#111827">116</text>
+    </g>
+  </svg>

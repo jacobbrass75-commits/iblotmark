@@ -1,0 +1,6 @@
+"metric","value","note"
+"answers_tested","93","Saved provider answers in the baseline run."
+"ibolt_mentions","22","24% of tested answers mention iBOLT."
+"co_mentions","18","Answers where iBOLT appears beside a competitor."
+"competitor_replacements","69","Answers where competitors occupy the recommendation space."
+"citations","0","Answers citing the target domain or source URLs."

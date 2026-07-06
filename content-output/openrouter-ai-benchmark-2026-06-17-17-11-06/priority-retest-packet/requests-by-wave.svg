@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="420" viewBox="0 0 1040 420">
+  <rect width="1040" height="420" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Priority Requests By Wave</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">Run in this order after page edits are live.</text>
+  
+      <text x="286" y="113.8" text-anchor="end" font-size="14" fill="#334155">W1 Sprint 1 edit validation</text>
+      <rect x="300" y="84" width="274" height="49.6" rx="6" fill="#0f766e"></rect>
+      <text x="584" y="113.8" font-size="14" font-weight="800" fill="#0f172a">27</text>
+    
+      <text x="286" y="175.4" text-anchor="end" font-size="14" fill="#334155">W2 top-page mention recovery</text>
+      <rect x="300" y="145.6" width="670" height="49.6" rx="6" fill="#0f766e"></rect>
+      <text x="980" y="175.4" font-size="14" font-weight="800" fill="#0f172a">66</text>
+    
+      <text x="286" y="237" text-anchor="end" font-size="14" fill="#334155">W3 citation probe</text>
+      <rect x="300" y="207.2" width="244" height="49.6" rx="6" fill="#0f766e"></rect>
+      <text x="554" y="237" font-size="14" font-weight="800" fill="#0f172a">24</text>
+    
+      <text x="286" y="298.6" text-anchor="end" font-size="14" fill="#334155">W4 product entity recognition</text>
+      <rect x="300" y="268.8" width="335" height="49.6" rx="6" fill="#0f766e"></rect>
+      <text x="645" y="298.6" font-size="14" font-weight="800" fill="#0f172a">33</text>
+    
+      <text x="286" y="360.2" text-anchor="end" font-size="14" fill="#334155">W5 non-branded buyer coverage</text>
+      <rect x="300" y="330.4" width="548" height="49.6" rx="6" fill="#0f766e"></rect>
+      <text x="858" y="360.2" font-size="14" font-weight="800" fill="#0f172a">54</text>
+    
+</svg>

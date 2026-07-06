@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="360" viewBox="0 0 980 360">
+  <rect width="980" height="360" fill="#f8fafc"/>
+  <text x="28" y="38" font-size="26" font-weight="900" fill="#0f172a">Mention To Citation Funnel</text>
+  <text x="28" y="64" font-size="14" fill="#64748b">Citation rate is downstream from awareness, recommendation, and source trust.</text>
+  
+      <rect x="42" y="92" width="169.6" height="190" rx="14" fill="#ffffff" stroke="#d7dee8"/>
+      <text x="58" y="124" font-size="12" font-weight="900" fill="#64748b">Any iBOLT mention</text>
+      <text x="58" y="170" font-size="36" font-weight="900" fill="#0f172a">24%</text>
+      <text x="59" y="199" font-size="14" fill="#475569">22/93</text>
+      <rect x="58" y="238" width="137.6" height="74" rx="9" fill="#f1f5f9"/>
+      <rect x="58" y="242" width="137.6" height="70" rx="9" fill="#2563eb"/>
+      <text x="58" y="348" font-size="11" fill="#64748b">awareness</text>
+    
+      <rect x="223.6" y="92" width="169.6" height="190" rx="14" fill="#ffffff" stroke="#d7dee8"/>
+      <text x="239.6" y="124" font-size="12" font-weight="900" fill="#64748b">Non-branded mention</text>
+      <text x="239.6" y="170" font-size="36" font-weight="900" fill="#0f172a">5%</text>
+      <text x="240.6" y="199" font-size="14" fill="#475569">4/75</text>
+      <rect x="239.6" y="238" width="137.6" height="74" rx="9" fill="#f1f5f9"/>
+      <rect x="239.6" y="299" width="137.6" height="13" rx="9" fill="#2563eb"/>
+      <text x="239.6" y="348" font-size="11" fill="#64748b">new buyer prompts</text>
+    
+      <rect x="405.2" y="92" width="169.6" height="190" rx="14" fill="#ffffff" stroke="#d7dee8"/>
+      <text x="421.2" y="124" font-size="12" font-weight="900" fill="#64748b">Top-3 recommendation</text>
+      <text x="421.2" y="170" font-size="36" font-weight="900" fill="#0f172a">16%</text>
+      <text x="422.2" y="199" font-size="14" fill="#475569">15/93</text>
+      <rect x="421.2" y="238" width="137.6" height="74" rx="9" fill="#f1f5f9"/>
+      <rect x="421.2" y="264" width="137.6" height="48" rx="9" fill="#2563eb"/>
+      <text x="421.2" y="348" font-size="11" fill="#64748b">recommendation</text>
+    
+      <rect x="586.8" y="92" width="169.6" height="190" rx="14" fill="#ffffff" stroke="#d7dee8"/>
+      <text x="602.8" y="124" font-size="12" font-weight="900" fill="#64748b">Clean mention</text>
+      <text x="602.8" y="170" font-size="36" font-weight="900" fill="#0f172a">4%</text>
+      <text x="603.8" y="199" font-size="14" fill="#475569">4/93</text>
+      <rect x="602.8" y="238" width="137.6" height="74" rx="9" fill="#f1f5f9"/>
+      <rect x="602.8" y="299" width="137.6" height="13" rx="9" fill="#f59e0b"/>
+      <text x="602.8" y="348" font-size="11" fill="#64748b">not dependent on competitors</text>
+    
+      <rect x="768.4" y="92" width="169.6" height="190" rx="14" fill="#ffffff" stroke="#d7dee8"/>
+      <text x="784.4" y="124" font-size="12" font-weight="900" fill="#64748b">Domain citation</text>
+      <text x="784.4" y="170" font-size="36" font-weight="900" fill="#0f172a">0%</text>
+      <text x="785.4" y="199" font-size="14" fill="#475569">0/93</text>
+      <rect x="784.4" y="238" width="137.6" height="74" rx="9" fill="#f1f5f9"/>
+      <rect x="784.4" y="304" width="137.6" height="8" rx="9" fill="#dc2626"/>
+      <text x="784.4" y="348" font-size="11" fill="#64748b">source trust</text>
+    
+</svg>

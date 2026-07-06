@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="808" viewBox="0 0 1160 808" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.grid{stroke:#e2e8f0;stroke-width:1}
+  </style>
+  <rect class="bg" width="1160" height="808"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="760" rx="14"/>
+    <text class="title" x="54" y="64">Competitors Appearing Without iBOLT</text>
+    <text class="subtitle" x="54" y="88">Answer count where the brand appeared and iBOLT did not.</text>
+    
+      <text class="label" x="54" y="122">RAM Mounts</text>
+      <rect x="430" y="108" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="584" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="125">53</text>
+      <text class="small" x="430" y="149">mount competitor; co-mention 16%</text>
+    
+
+      <text class="label" x="54" y="168">Arkon</text>
+      <rect x="430" y="154" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="154" width="275" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="171">25</text>
+      <text class="small" x="430" y="195">mount competitor; co-mention 17%</text>
+    
+
+      <text class="label" x="54" y="214">iOttie</text>
+      <rect x="430" y="200" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="200" width="165" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="217">15</text>
+      <text class="small" x="430" y="241">consumer mount competitor; co-mention 17%</text>
+    
+
+      <text class="label" x="54" y="260">ProClip</text>
+      <rect x="430" y="246" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="246" width="132" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="263">12</text>
+      <text class="small" x="430" y="287">mount competitor; co-mention 8%</text>
+    
+
+      <text class="label" x="54" y="306">Humminbird</text>
+      <rect x="430" y="292" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="292" width="132" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="309">12</text>
+      <text class="small" x="430" y="333">adjacent device brand; co-mention 0%</text>
+    
+
+      <text class="label" x="54" y="352">Scosche</text>
+      <rect x="430" y="338" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="338" width="99" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="355">9</text>
+      <text class="small" x="430" y="379">consumer mount competitor; co-mention 0%</text>
+    
+
+      <text class="label" x="54" y="398">Scotty</text>
+      <rect x="430" y="384" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="384" width="88" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="401">8</text>
+      <text class="small" x="430" y="425">marine competitor; co-mention 0%</text>
+    
+
+      <text class="label" x="54" y="444">Garmin</text>
+      <rect x="430" y="430" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="430" width="88" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="447">8</text>
+      <text class="small" x="430" y="471">adjacent device brand; co-mention 0%</text>
+    
+
+      <text class="label" x="54" y="490">Mount-It</text>
+      <rect x="430" y="476" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="476" width="77" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="493">7</text>
+      <text class="small" x="430" y="517">commercial stand competitor; co-mention 36%</text>
+    
+
+      <text class="label" x="54" y="536">YakAttack</text>
+      <rect x="430" y="522" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="522" width="77" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="539">7</text>
+      <text class="small" x="430" y="563">marine competitor; co-mention 0%</text>
+    
+
+      <text class="label" x="54" y="582">Lowrance</text>
+      <rect x="430" y="568" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="568" width="77" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="585">7</text>
+      <text class="small" x="430" y="609">adjacent device brand; co-mention 0%</text>
+    
+
+      <text class="label" x="54" y="628">Tackform</text>
+      <rect x="430" y="614" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="614" width="44" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="631">4</text>
+      <text class="small" x="430" y="655">mount competitor; co-mention 43%</text>
+    
+
+      <text class="label" x="54" y="674">Belkin</text>
+      <rect x="430" y="660" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="660" width="33" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="677">3</text>
+      <text class="small" x="430" y="701">stand competitor; co-mention 0%</text>
+    
+
+      <text class="label" x="54" y="720">Square</text>
+      <rect x="430" y="706" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="706" width="33" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1028" y="723">3</text>
+      <text class="small" x="430" y="747">pos ecosystem; co-mention 0%</text>
+    
+  
+</svg>

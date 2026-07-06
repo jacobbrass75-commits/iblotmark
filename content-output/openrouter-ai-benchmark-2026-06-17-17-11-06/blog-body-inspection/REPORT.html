@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT Blog Body Inspection</title>
+  <style>
+    body{margin:0;background:#f8fafc;color:#111827;font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1240px;margin:0 auto;padding:34px 24px 64px}
+    h1{font-size:36px;margin:0 0 8px;letter-spacing:0}
+    h2{font-size:23px;margin:34px 0 12px}
+    p,li{line-height:1.55;color:#334155;font-size:15px}
+    .note{background:#fff;border:1px solid #dbe3ef;border-left:6px solid #0f766e;border-radius:12px;padding:16px 18px;margin:20px 0}
+    .cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0}
+    .card{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:16px}
+    .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:900}
+    .value{font-size:28px;font-weight:900;margin:8px 0;color:#0f172a}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .chart{background:#fff;border:1px solid #dbe3ef;border-radius:18px;padding:10px;overflow:auto}
+    .chart svg{width:100%;height:auto;display:block}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ef;border-radius:12px;overflow:hidden;margin:12px 0 22px}
+    th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #edf2f7;font-size:13px}
+    th{background:#eef2f7;color:#475569;text-transform:uppercase;font-size:11px;letter-spacing:.04em}
+    a{color:#0f766e;overflow-wrap:anywhere}
+    @media(max-width:960px){.cards,.grid{grid-template-columns:1fr}h1{font-size:30px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>iBOLT Blog Body Inspection</h1>
+  <p>This checks the live Shopify article body, not just benchmark metadata. It flags whether each post has a clear answer near the top, visible product path, internal links, FAQ/schema, comparison language, and old AI-explainer leftovers.</p>
+  <div class="note"><strong>Execution read:</strong> use this after the heatmap. The heatmap tells which page to edit first; this body inspection tells what to fix inside the post.</div>
+  <section class="cards">
+    <div class="card"><div class="label">Pages inspected</div><div class="value">142</div><p>0 public, 65 local fallback, 77 audit fallback, 0 failed.</p></div>
+    <div class="card"><div class="label">Avg body score</div><div class="value">67</div><p>Body-level readiness score.</p></div>
+    <div class="card"><div class="label">Missing quick answer</div><div class="value">119</div><p>No early direct answer block.</p></div>
+    <div class="card"><div class="label">Weak shopping path</div><div class="value">0</div><p>No product or collection link in article body.</p></div>
+    <div class="card"><div class="label">Weak internal links</div><div class="value">51</div><p>Fewer than two in-body blog links.</p></div>
+  </section>
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="920" height="468" viewBox="0 0 920 468" role="img" aria-label="Most common body issues">
+    <rect width="920" height="468" rx="18" fill="#fff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Most common body issues</text>
+    <g>
+      <text x="22" y="71" font-size="13" font-weight="800" fill="#0f172a">missing early quick answer</text>
+      <rect x="340" y="54" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="54" width="470" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="70" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">119</text>
+    </g><g>
+      <text x="22" y="107" font-size="13" font-weight="800" fill="#0f172a">missing FAQPage schema</text>
+      <rect x="340" y="90" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="90" width="367" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="106" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">93</text>
+    </g><g>
+      <text x="22" y="143" font-size="13" font-weight="800" fill="#0f172a">missing image alt text</text>
+      <rect x="340" y="126" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="126" width="304" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="142" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">77</text>
+    </g><g>
+      <text x="22" y="179" font-size="13" font-weight="800" fill="#0f172a">missing Article/BlogPosting schema</text>
+      <rect x="340" y="162" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="162" width="257" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="178" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">65</text>
+    </g><g>
+      <text x="22" y="215" font-size="13" font-weight="800" fill="#0f172a">too many cart CTAs</text>
+      <rect x="340" y="198" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="198" width="249" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="214" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">63</text>
+    </g><g>
+      <text x="22" y="251" font-size="13" font-weight="800" fill="#0f172a">missing comparison/tradeoff language</text>
+      <rect x="340" y="234" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="234" width="245" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="250" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">62</text>
+    </g><g>
+      <text x="22" y="287" font-size="13" font-weight="800" fill="#0f172a">weak internal blog links</text>
+      <rect x="340" y="270" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="270" width="201" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="286" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">51</text>
+    </g><g>
+      <text x="22" y="323" font-size="13" font-weight="800" fill="#0f172a">missing visible FAQ</text>
+      <rect x="340" y="306" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="306" width="170" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="322" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">43</text>
+    </g><g>
+      <text x="22" y="359" font-size="13" font-weight="800" fill="#0f172a">possibly too long for buyer task</text>
+      <rect x="340" y="342" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="342" width="122" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="358" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">31</text>
+    </g><g>
+      <text x="22" y="395" font-size="13" font-weight="800" fill="#0f172a">old AI-search explainer section remains</text>
+      <rect x="340" y="378" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="378" width="55" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="394" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">14</text>
+    </g><g>
+      <text x="22" y="431" font-size="13" font-weight="800" fill="#0f172a">FAQ placement may be too high or unclear</text>
+      <rect x="340" y="414" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="414" width="4" height="22" rx="11" fill="#ef4444"/>
+      <text x="862" y="430" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">1</text>
+    </g>
+  </svg></div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="920" height="576" viewBox="0 0 920 576" role="img" aria-label="Lowest body scores">
+    <rect width="920" height="576" rx="18" fill="#fff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Lowest body scores</text>
+    <g>
+      <text x="22" y="71" font-size="13" font-weight="800" fill="#0f172a">iBOLT Introduces Mount Configurator 2...</text>
+      <rect x="340" y="54" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="54" width="470" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="70" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">50</text>
+    </g><g>
+      <text x="22" y="107" font-size="13" font-weight="800" fill="#0f172a">iBOLT Mounts and Toast POS: Powering...</text>
+      <rect x="340" y="90" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="90" width="470" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="106" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">50</text>
+    </g><g>
+      <text x="22" y="143" font-size="13" font-weight="800" fill="#0f172a">iBOLT Tablet Tower System Featured at...</text>
+      <rect x="340" y="126" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="126" width="470" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="142" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">50</text>
+    </g><g>
+      <text x="22" y="179" font-size="13" font-weight="800" fill="#0f172a">iBOLT Launches Next-Generation Indust...</text>
+      <rect x="340" y="162" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="162" width="470" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="178" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">50</text>
+    </g><g>
+      <text x="22" y="215" font-size="13" font-weight="800" fill="#0f172a">iBOLT Confirms Universal Mounting Sol...</text>
+      <rect x="340" y="198" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="198" width="470" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="214" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">50</text>
+    </g><g>
+      <text x="22" y="251" font-size="13" font-weight="800" fill="#0f172a">iBOLT Mounting Solutions for Delivery...</text>
+      <rect x="340" y="234" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="234" width="470" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="250" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">50</text>
+    </g><g>
+      <text x="22" y="287" font-size="13" font-weight="800" fill="#0f172a">Top 5 Mounts for the Samsung Galaxy A...</text>
+      <rect x="340" y="270" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="270" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="286" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g><g>
+      <text x="22" y="323" font-size="13" font-weight="800" fill="#0f172a">HOW TO MOUNT A FISH FINDER TO YOUR BO...</text>
+      <rect x="340" y="306" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="306" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="322" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g><g>
+      <text x="22" y="359" font-size="13" font-weight="800" fill="#0f172a">How to mount a Fish Finder to your bo...</text>
+      <rect x="340" y="342" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="342" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="358" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g><g>
+      <text x="22" y="395" font-size="13" font-weight="800" fill="#0f172a">TOP 5 MOUNTS FOR THE SAMSUNG GALAXY A...</text>
+      <rect x="340" y="378" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="378" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="394" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g><g>
+      <text x="22" y="431" font-size="13" font-weight="800" fill="#0f172a">Unmatched Adaptability: Explore iBOLT...</text>
+      <rect x="340" y="414" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="414" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="430" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g><g>
+      <text x="22" y="467" font-size="13" font-weight="800" fill="#0f172a">TOP TABLET STANDS FOR STUDENTS GOING...</text>
+      <rect x="340" y="450" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="450" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="466" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g><g>
+      <text x="22" y="503" font-size="13" font-weight="800" fill="#0f172a">Top 4 Locking Tablet Mounts to Keep Y...</text>
+      <rect x="340" y="486" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="486" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="502" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g><g>
+      <text x="22" y="539" font-size="13" font-weight="800" fill="#0f172a">iBOLT Mounts for Road Trips</text>
+      <rect x="340" y="522" width="470" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="340" y="522" width="461" height="22" rx="11" fill="#f97316"/>
+      <text x="862" y="538" font-size="13" font-weight="900" text-anchor="end" fill="#0f172a">49</text>
+    </g>
+  </svg></div>
+  </section>
+  <h2>Top Combined Body Problems</h2>
+  <table><thead><tr><th>Body score</th><th>Opportunity</th><th>Page</th><th>Category</th><th>Top fix</th><th>Issues</th></tr></thead><tbody><tr><td>56</td><td>80</td><td>Best Tablet Mount for Restaurant POS and Delivery Apps</td><td>restaurant</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>56</td><td>80</td><td>Best Phone Mount for Instacart and Grocery Delivery Drivers</td><td>delivery</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>56</td><td>79</td><td>Best Phone Mount for Construction Vehicles and Work Trucks</td><td>fleet</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>56</td><td>78</td><td>Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</td><td>restaurant</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>56</td><td>77</td><td>Best Fish Finder Mount for Pontoon Boat Rails</td><td>fishing</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>62</td><td>78</td><td>Best Phone Mount for Amazon Flex and Delivery Vans</td><td>delivery</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>62</td><td>76</td><td>Best Locking Phone Mount for Shared Delivery Vehicles</td><td>delivery</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>56</td><td>70</td><td>How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</td><td>delivery</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>68</td><td>79</td><td>Best Forklift Tablet Mounts for Warehouses (2026 Comparison)</td><td>warehouse</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing Article/BlogPosting schema</td></tr><tr><td>68</td><td>78</td><td>Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)</td><td>warehouse</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing Article/BlogPosting schema</td></tr><tr><td>84</td><td>93</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td><td>restaurant</td><td>missing early quick answer</td><td>missing early quick answer; missing image alt text; possibly too long for buyer task</td></tr><tr><td>68</td><td>77</td><td>Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</td><td>fleet</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing Article/BlogPosting schema</td></tr><tr><td>56</td><td>64</td><td>Best Tablet Mount for Utility Truck Crews</td><td>fleet</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>62</td><td>69</td><td>Magnetic vs Clamp Phone Mounts for Delivery Work</td><td>amps/modular</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>70</td><td>76</td><td>Commercial-Grade Phone Mounts for Delivery Drivers</td><td>fleet</td><td>too many cart CTAs</td><td>too many cart CTAs; missing Article/BlogPosting schema; old AI-search explainer section remains</td></tr><tr><td>70</td><td>76</td><td>Best Phone Mount for Delivery Drivers</td><td>delivery</td><td>too many cart CTAs</td><td>too many cart CTAs; missing Article/BlogPosting schema; old AI-search explainer section remains</td></tr><tr><td>56</td><td>62</td><td>Best Drill-Base Phone Mount for Semi Trucks</td><td>fleet</td><td>missing early quick answer</td><td>missing early quick answer; weak internal blog links; too many cart CTAs; missing comparison/tradeoff language; missing FAQPage schema; missing Article/BlogPosting schema</td></tr><tr><td>84</td><td>89</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>fishing</td><td>missing early quick answer</td><td>missing early quick answer; missing image alt text; possibly too long for buyer task</td></tr><tr><td>70</td><td>75</td><td>Best Kayak Fish Finder Mounts for Secure Removable Setups</td><td>fishing</td><td>too many cart CTAs</td><td>too many cart CTAs; missing Article/BlogPosting schema; old AI-search explainer section remains</td></tr><tr><td>76</td><td>77</td><td>Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</td><td>fishing</td><td>missing early quick answer</td><td>missing early quick answer; missing comparison/tradeoff language; missing image alt text; possibly too long for buyer task</td></tr></tbody></table>
+  <h2>Category Body Rollup</h2>
+  <table><thead><tr><th>Category</th><th>Pages</th><th>Avg body score</th><th>Urgent pages</th><th>Top issues</th><th>Top pages</th></tr></thead><tbody><tr><td>amps/modular</td><td>29</td><td>64</td><td>7</td><td>missing early quick answer 26; missing FAQPage schema 25; missing image alt text 20; missing comparison/tradeoff language 15; missing visible FAQ 15</td><td>Magnetic vs Clamp Phone Mounts for Delivery Work; Best Nintendo Switch Headrest Mount for Road Trips; Best Marine Electronics AMPS Mounting Plate; iBOLT Introduces Mount Configurator 2.0: Build Your Perfect Custom Mounting Solution; Where to Use Clamp Phone and Tablet Mounts</td></tr><tr><td>delivery</td><td>11</td><td>61</td><td>6</td><td>too many cart CTAs 11; missing Article/BlogPosting schema 11; missing early quick answer 8; weak internal blog links 8; missing FAQPage schema 8</td><td>Best Phone Mount for Instacart and Grocery Delivery Drivers; Best Phone Mount for Amazon Flex and Delivery Vans; Best Phone Mount for Delivery Drivers; Best Locking Phone Mount for Shared Delivery Vehicles; How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</td></tr><tr><td>fishing</td><td>17</td><td>73</td><td>6</td><td>missing early quick answer 15; missing image alt text 12; possibly too long for buyer task 9; missing comparison/tradeoff language 5; too many cart CTAs 5</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak; Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop; Best Fish Finder Mount for Pontoon Boat Rails; Best Kayak Fish Finder Mounts for Secure Removable Setups; HOW TO MOUNT A FISH FINDER TO YOUR BOAT USING IBOLT MOUNTS</td></tr><tr><td>restaurant</td><td>17</td><td>70</td><td>5</td><td>missing early quick answer 14; missing FAQPage schema 11; missing image alt text 9; too many cart CTAs 8; missing Article/BlogPosting schema 8</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared; Best Tablet Mount for Restaurant POS and Delivery Apps; Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants; iBOLT Dock'n Lock for Restaurant Counters; iBOLT vs Bouncepad vs Mount-It for Restaurant Tablet Security</td></tr><tr><td>warehouse</td><td>17</td><td>68</td><td>4</td><td>missing early quick answer 16; missing FAQPage schema 12; weak internal blog links 9; missing Article/BlogPosting schema 9; too many cart CTAs 8</td><td>Best Forklift Tablet Mounts for Warehouses (2026 Comparison); Best Barcode Scanner Mounts for Forklifts and Warehouses (2026); iBOLT Confirms Barcode Scanner Mounting Solutions Compatible with Honeywell, Zebra, and Symbol Scanners; How to Mount a Tablet to a Forklift: Complete Guide (2026); Best VESA Monitor Mount for Forklifts</td></tr><tr><td>education</td><td>4</td><td>52</td><td>3</td><td>missing early quick answer 4; missing comparison/tradeoff language 4; missing FAQPage schema 4; missing visible FAQ 3; missing image alt text 3</td><td>Best Locking Tablet Mount for Classrooms; TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL; IBOLT MOUNTS FOR BACK-TO-SCHOOL; THE BENEFITS OF GOING PAPERLESS IN SCHOOLS</td></tr><tr><td>fleet</td><td>25</td><td>69</td><td>3</td><td>missing Article/BlogPosting schema 16; too many cart CTAs 15; missing early quick answer 14; missing FAQPage schema 12; missing comparison/tradeoff language 10</td><td>Best Phone Mount for Construction Vehicles and Work Trucks; Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026); Commercial-Grade Phone Mounts for Delivery Drivers; Best Tablet Mount for Utility Truck Crews; Best Drill-Base Phone Mount for Semi Trucks</td></tr><tr><td>offroad</td><td>4</td><td>63</td><td>1</td><td>missing early quick answer 4; missing FAQPage schema 3; weak internal blog links 2; too many cart CTAs 2; missing comparison/tradeoff language 2</td><td>Best Tablet Mount for Overlanding Navigation; Best GoPro Mount for UTV Roll Bars; Best Phone and Action Camera Mounts for UTV Trails, Jeeps, and Overlanding Rigs; Mounts to take off-roading in your Jeep Wrangler</td></tr><tr><td>streaming</td><td>16</td><td>69</td><td>1</td><td>missing early quick answer 16; missing image alt text 13; missing FAQPage schema 11; missing comparison/tradeoff language 8; missing visible FAQ 6</td><td>The Complete Guide to Overhead Livestream Setup: Best Phone and Camera Mounts for Content Creators; Best Overhead Phone Mount for Cooking Videos; Best Multi-Camera Desk Mount for Live Streaming: How to Build a Pro Setup With Your Phone; Overhead Camera Mount for Product Photography: Complete Setup Guide; Phone vs Camera Overhead Rig for Product Photography: Which Setup Actually Works Better?</td></tr><tr><td>agriculture</td><td>2</td><td>58</td><td>0</td><td>missing early quick answer 2; missing comparison/tradeoff language 2; missing FAQPage schema 2; weak internal blog links 1; too many cart CTAs 1</td><td>Best Tablet Mount for Tractor Cab Precision Agriculture; DO FARMERS USE TABLET MOUNTS? - WHAT TECH IS USED ON A FARM?- THE NEWEST AND COOLEST FARM TOOL</td></tr></tbody></table>
+  <h2>Unavailable Public-Only Rows</h2>
+  <p>These URLs were not inspected in the local fallback run because they are not present in the local published-post table and public fetching was disabled or blocked.</p>
+  <table><thead><tr><th>Opportunity</th><th>Page</th><th>Category</th><th>URL</th></tr></thead><tbody></tbody></table>
+</main>
+</body>
+</html>

@@ -1,0 +1,49 @@
+"name","status","requests","manifest","gate","command","dry_run"
+"Smallest conditional retest","conditional_after_page_cleanup","6","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/retest-execution-gate/unblocked-provider-manifest.csv","Run after the six source cleanup or refresh gates are live. This does not validate consolidation-heavy pages.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/retest-execution-gate/unblocked-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/retest-execution-gate/unblocked-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"R01 W1 Sprint 1 edit validation","partially_blocked","27","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv","Use only after its rows are checked against the gate summary.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"R02 W2 top-page mention recovery","partially_blocked","66","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv","Use only after its rows are checked against the gate summary.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"R03 W3 citation probe","partially_blocked","24","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv","Use only after its rows are checked against the gate summary.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"R04 W4 product entity recognition","partially_blocked","33","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv","Use only after its rows are checked against the gate summary.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"R05 W5 non-branded buyer coverage","partially_blocked","54","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv","Use only after its rows are checked against the gate summary.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"All priority waves","blocked_until_survivor_merge","204","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/priority-retest-packet/priority-provider-request-manifest.csv","Wait until survivor URL decisions clear the 198 consolidation-blocked requests.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/priority-retest-packet/priority-provider-request-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/priority-retest-packet/priority-provider-request-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"Full all-blog manifest","partially_blocked","1449","content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-prompt-gap-addendum/all-blog-complete-provider-manifest.csv","Use only after its rows are checked against the gate summary.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-prompt-gap-addendum/all-blog-complete-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-prompt-gap-addendum/all-blog-complete-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"

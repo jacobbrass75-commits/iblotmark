@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Shopify Blog Analytics Access Report</title>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:1100px;margin:32px auto;padding:0 20px;line-height:1.5;color:#111827}
+    h1,h2{line-height:1.15}
+    .status{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:20px 0}
+    .card{border:1px solid #d1d5db;border-radius:8px;padding:14px;background:#f9fafb}
+    .card strong{display:block;font-size:13px;color:#4b5563;text-transform:uppercase;letter-spacing:.03em}
+    table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+    th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;vertical-align:top}
+    th{background:#f3f4f6}
+    code{background:#f3f4f6;padding:2px 5px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <h1>Shopify Blog Analytics Access Report</h1>
+  <div class="status">
+    <div class="card"><strong>Analytics API</strong>Blocked</div>
+    <div class="card"><strong>Installed Scopes</strong>read_content, write_content</div>
+    <div class="card"><strong>Content Inventory</strong>2 blogs, 211 articles</div>
+  </div>
+  <h2>Read</h2>
+  <p>The current Shopify token can read and update blog content, but it cannot read Shopify Analytics. The analytics endpoint returned: <code>Access denied for shopifyqlQuery field. Required access: `read_reports` access scope. Also: Level 2 access to Customer data including name, address, phone, and email fields. Please refer to protected customer data [requirements](https://shopify.dev/docs/apps/launch/protected-customer-data).</code>.</p>
+  <p>Use this packet as proof of the access issue and as the current content inventory until <code>read_reports</code> is granted or the Shopify Admin UI report is exported.</p>
+  <h2>Files</h2>
+  <ul>
+    <li><a href="analytics-access-status.csv">analytics-access-status.csv</a></li>
+    <li><a href="shopify-blog-article-inventory.csv">shopify-blog-article-inventory.csv</a></li>
+  </ul>
+  <h2>Latest Readable Articles</h2>
+  <table>
+    <thead><tr><th>Published</th><th>Blog</th><th>Article</th><th>Product Links</th><th>Add-To-Cart Links</th><th>Images</th></tr></thead>
+    <tbody>
+      <tr><td>2026-06-10T20:39:00-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/multiple-tablet-mount-solutions-improving-device-organization-in-modern-workspaces">Multiple Tablet Mount Solutions: Improving Device Organization in Modern Workspaces</a></td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>2026-06-09T20:23:00-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/table-camera-mount-a-practical-guide-for-content-creation-photography-and-live-streaming">Table Camera Mount: A Practical Guide for Content Creation, Photography, and Live Streaming</a></td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>2026-06-08T20:15:00-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/restaurant-tablet-mount-why-modern-restaurants-need-organized-tablet-workstations">Restaurant Tablet Mount: Why Modern Restaurants Need Organized Tablet Workstations</a></td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>2026-06-04T08:59:49-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/forklift-mount-solutions-supporting-efficiency-and-safety-in-modern-warehouse-operations">Forklift Mount Solutions: Supporting Efficiency and Safety in Modern Warehouse Operations</a></td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>2026-06-03T08:28:00-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/professional-grade-mounting-solutions-a-complete-guide-to-choosing-the-right-mount-for-every-environment">Professional-Grade Mounting Solutions: A Complete Guide to Choosing the Right Mount for Every Environment</a></td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>2026-05-31T11:30:27-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-bouncepad-restaurant-tablet-security-aeo-refresh">iBOLT vs Bouncepad for Restaurant Tablet Security</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:26-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-arkon-commercial-vehicle-mounts-aeo-refresh">iBOLT vs Arkon for Commercial Vehicle Mounts</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:26-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-iottie-delivery-drivers-aeo-refresh">iBOLT vs iOttie for Delivery Drivers</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:25-07:00</td><td>how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts</td><td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-value-fish-finder-mounts-without-cheap-hardware-aeo-refresh">Best Value Fish Finder Mounts Without Cheap Hardware</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:25-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/ibolt-vs-ram-fleet-mounts-aeo-refresh">iBOLT vs RAM for Fleet Mounts</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:24-07:00</td><td>how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts</td><td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh">Best Kayak Fish Finder Mounts for Secure Removable Setups</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:24-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/best-tablet-mount-food-trucks-quick-service-aeo-refresh">Best Tablet Mount for Food Trucks and Quick-Service Counters</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:24-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/construction-work-truck-phone-mounts-aeo-refresh">Construction and Work Truck Phone Mounts</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:23-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/locking-phone-mounts-shared-delivery-vehicles-aeo-refresh">Locking Phone Mounts for Shared Delivery Vehicles</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:23-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh">Commercial-Grade Phone Mounts for Delivery Drivers</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:22-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mount-delivery-work-aeo-refresh">Magnetic vs Clamp Phone Mounts for Delivery Work</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:21-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-instacart-grocery-delivery-aeo-refresh">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:20-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-31T11:30:19-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-amazon-flex-delivery-vans-aeo-refresh">Best Phone Mount for Amazon Flex and Delivery Vans</a></td><td>15</td><td>9</td><td>4</td></tr>
+<tr><td>2026-05-30T19:00:46-07:00</td><td>news</td><td><a href="https://iboltmounts.com/blogs/news/magnetic-vs-clamp-phone-mounts-for-delivery-work">Magnetic vs Clamp Phone Mounts for Delivery Work</a></td><td>10</td><td>8</td><td>3</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

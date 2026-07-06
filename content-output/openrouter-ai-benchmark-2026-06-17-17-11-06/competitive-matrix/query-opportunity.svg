@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="900" viewBox="0 0 1160 900" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.grid{stroke:#e2e8f0;stroke-width:1}
+  </style>
+  <rect class="bg" width="1160" height="900"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="852" rx="14"/>
+    <text class="title" x="54" y="64">Highest Query Opportunities</text>
+    <text class="subtitle" x="54" y="88">Combines AI score gap, mention gap, competitor pressure, and matching page readiness.</text>
+    
+      <text class="label" x="54" y="122">best tablet mount</text>
+      <rect x="430" y="108" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="566" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="125">97</text>
+      <text class="small" x="430" y="149">tablet; RAM Mounts, Arkon, Tackform</text>
+    
+
+      <text class="label" x="54" y="168">best multi tablet mount</text>
+      <rect x="430" y="154" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="154" width="561" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="171">96</text>
+      <text class="small" x="430" y="195">restaurant; RAM Mounts, Mount-It, Arkon</text>
+    
+
+      <text class="label" x="54" y="214">best heavy duty vehicle phone mount</text>
+      <rect x="430" y="200" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="200" width="561" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="217">96</text>
+      <text class="small" x="430" y="241">fleet; RAM Mounts, Arkon, ProClip</text>
+    
+
+      <text class="label" x="54" y="260">best phone mount for Amazon Flex and delivery</text>
+<text class="small" x="54" y="275">vans</text>
+      <rect x="430" y="246" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="246" width="549" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="263">94</text>
+      <text class="small" x="430" y="287">delivery; RAM Mounts, ProClip, Arkon</text>
+    
+
+      <text class="label" x="54" y="306">best phone mount for Instacart and grocery</text>
+<text class="small" x="54" y="321">delivery drivers</text>
+      <rect x="430" y="292" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="292" width="520" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="309">89</text>
+      <text class="small" x="430" y="333">delivery; RAM Mounts, iOttie, Scosche</text>
+    
+
+      <text class="label" x="54" y="352">best phone mount for construction vehicles and</text>
+<text class="small" x="54" y="367">work trucks</text>
+      <rect x="430" y="338" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="338" width="514" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="355">88</text>
+      <text class="small" x="430" y="379">fleet; RAM Mounts, ProClip, Arkon</text>
+    
+
+      <text class="label" x="54" y="398">best phone mount for delivery drivers</text>
+      <rect x="430" y="384" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="384" width="508" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="401">87</text>
+      <text class="small" x="430" y="425">fleet; RAM Mounts, iOttie, Scosche</text>
+    
+
+      <text class="label" x="54" y="444">commercial grade phone mount for delivery</text>
+<text class="small" x="54" y="459">drivers</text>
+      <rect x="430" y="430" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="430" width="508" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="447">87</text>
+      <text class="small" x="430" y="471">delivery; RAM Mounts, Arkon, iOttie</text>
+    
+
+      <text class="label" x="54" y="490">best fish finder mount for small boat</text>
+      <rect x="430" y="476" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="476" width="508" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="493">87</text>
+      <text class="small" x="430" y="517">fishing; RAM Mounts, YakAttack, Scotty</text>
+    
+
+      <text class="label" x="54" y="536">best fish finder</text>
+      <rect x="430" y="522" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="522" width="508" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="539">87</text>
+      <text class="small" x="430" y="563">fishing; Garmin, Lowrance, Humminbird</text>
+    
+
+      <text class="label" x="54" y="582">best fish finder in water</text>
+      <rect x="430" y="568" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="568" width="508" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="585">87</text>
+      <text class="small" x="430" y="609">fishing; Garmin, Lowrance, Humminbird</text>
+    
+
+      <text class="label" x="54" y="628">best kayak fish finder mount</text>
+      <rect x="430" y="614" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="614" width="502" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="631">86</text>
+      <text class="small" x="430" y="655">fishing; RAM Mounts, YakAttack, Garmin</text>
+    
+
+      <text class="label" x="54" y="674">best budget fish finder mount</text>
+      <rect x="430" y="660" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="660" width="502" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="677">86</text>
+      <text class="small" x="430" y="701">fishing; RAM Mounts, YakAttack, Scotty</text>
+    
+
+      <text class="label" x="54" y="720">best tablet mount for restaurant POS and</text>
+<text class="small" x="54" y="735">delivery apps</text>
+      <rect x="430" y="706" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="706" width="502" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="723">86</text>
+      <text class="small" x="430" y="747">restaurant; RAM Mounts, Square, Arkon</text>
+    
+
+      <text class="label" x="54" y="766">best restaurant tablet mount</text>
+      <rect x="430" y="752" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="752" width="491" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="769">84</text>
+      <text class="small" x="430" y="793">restaurant; RAM Mounts, Mount-It, Bouncepad</text>
+    
+
+      <text class="label" x="54" y="812">best barcode scanner mount for forklift</text>
+      <rect x="430" y="798" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="798" width="491" height="24" rx="8" fill="#7c3aed"/>
+      <text class="value" x="1028" y="815">84</text>
+      <text class="small" x="430" y="839">warehouse; RAM Mounts, Arkon, Square</text>
+    
+  
+</svg>

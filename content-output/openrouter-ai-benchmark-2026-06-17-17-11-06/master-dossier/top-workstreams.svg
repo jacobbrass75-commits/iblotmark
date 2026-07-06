@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="738" viewBox="0 0 1160 738" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1160" height="738"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="690" rx="14"/>
+    <text class="title" x="54" y="64">Top Workstreams</text>
+    <text class="subtitle" x="54" y="88">Highest leverage next moves from the consolidated action queue.</text>
+    
+      <text class="label" x="54" y="122">Raise non-branded recommendation rate</text>
+      <rect x="430" y="108" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="574" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="125">#1</text>
+      <text class="small" x="430" y="150">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="170">Make pages citable</text>
+      <rect x="430" y="156" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="156" width="568" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="173">#2</text>
+      <text class="small" x="430" y="198">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="218">Earn external citations and mentions</text>
+      <rect x="430" y="204" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="204" width="563" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="221">#3</text>
+      <text class="small" x="430" y="246">SEO contractor</text>
+    
+
+      <text class="label" x="54" y="266">Displace RAM, Arkon, iOttie, ProClip, and marine</text>
+<text class="small" x="54" y="281">defaults</text>
+      <rect x="430" y="252" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="252" width="557" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="269">#4</text>
+      <text class="small" x="430" y="294">Jacob/app + SEO contractor</text>
+    
+
+      <text class="label" x="54" y="314">Fix product entity signals</text>
+      <rect x="430" y="300" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="300" width="551" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="317">#5</text>
+      <text class="small" x="430" y="342">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="362">Refresh page: Best Phone Mount for Instacart and</text>
+<text class="small" x="54" y="377">Grocery Delivery Drivers</text>
+      <rect x="430" y="348" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="348" width="545" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="365">#6</text>
+      <text class="small" x="430" y="390">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="410">Refresh page: Best Phone Mount for Construction</text>
+<text class="small" x="54" y="425">Vehicles and Work Trucks</text>
+      <rect x="430" y="396" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="396" width="539" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="413">#7</text>
+      <text class="small" x="430" y="438">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="458">Refresh page: Best Tablet Mount for Restaurant</text>
+<text class="small" x="54" y="473">POS and Delivery Apps</text>
+      <rect x="430" y="444" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="444" width="534" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="461">#8</text>
+      <text class="small" x="430" y="486">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="506">Refresh page: Rough Water Phone Mount for Boat:</text>
+<text class="small" x="54" y="521">Heavy-Duty Solutions That Handle the Chop</text>
+      <rect x="430" y="492" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="492" width="528" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="509">#9</text>
+      <text class="small" x="430" y="534">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="554">Refresh page: How to Set Up Multiple Tablets for</text>
+<text class="small" x="54" y="569">DoorDash, Uber Eats, and Grubhub</text>
+      <rect x="430" y="540" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="540" width="522" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="557">#10</text>
+      <text class="small" x="430" y="582">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="602">Refresh page: Best Phone Mount for Amazon Flex</text>
+<text class="small" x="54" y="617">and Delivery Vans</text>
+      <rect x="430" y="588" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="588" width="516" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="605">#11</text>
+      <text class="small" x="430" y="630">Jacob/app</text>
+    
+
+      <text class="label" x="54" y="650">Refresh page: Best Restaurant Tablet Mount in</text>
+<text class="small" x="54" y="665">2026: POS Stands, Delivery App Stations, and</text>
+<text class="small" x="54" y="680">Multi-Tablet Solutions Compared</text>
+      <rect x="430" y="636" width="580" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="636" width="510" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1024" y="653">#12</text>
+      <text class="small" x="430" y="678">Jacob/app</text>
+    
+  
+</svg>

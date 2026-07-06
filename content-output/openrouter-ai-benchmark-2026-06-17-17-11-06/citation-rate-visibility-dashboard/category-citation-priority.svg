@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <rect width="980" height="430" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Citation Priority By Category</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">Priority combines page readiness, benchmark pressure, and competitor displacement.</text>
+  
+      <text x="266" y="102.75" text-anchor="end" font-size="14" fill="#334155">delivery</text>
+      <rect x="280" y="84" width="644" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="934" y="102.75" font-size="14" font-weight="800" fill="#0f172a">742</text>
+    
+      <text x="266" y="142.25" text-anchor="end" font-size="14" fill="#334155">fleet</text>
+      <rect x="280" y="123.5" width="635" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="925" y="142.25" font-size="14" font-weight="800" fill="#0f172a">732</text>
+    
+      <text x="266" y="181.75" text-anchor="end" font-size="14" fill="#334155">restaurant</text>
+      <rect x="280" y="163" width="575" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="865" y="181.75" font-size="14" font-weight="800" fill="#0f172a">662</text>
+    
+      <text x="266" y="221.25" text-anchor="end" font-size="14" fill="#334155">fishing</text>
+      <rect x="280" y="202.5" width="448" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="738" y="221.25" font-size="14" font-weight="800" fill="#0f172a">516</text>
+    
+      <text x="266" y="260.75" text-anchor="end" font-size="14" fill="#334155">warehouse</text>
+      <rect x="280" y="242" width="210" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="500" y="260.75" font-size="14" font-weight="800" fill="#0f172a">242</text>
+    
+      <text x="266" y="300.25" text-anchor="end" font-size="14" fill="#334155">amps/modular</text>
+      <rect x="280" y="281.5" width="102" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="392" y="300.25" font-size="14" font-weight="800" fill="#0f172a">118</text>
+    
+      <text x="266" y="339.75" text-anchor="end" font-size="14" fill="#334155">education</text>
+      <rect x="280" y="321" width="60" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="350" y="339.75" font-size="14" font-weight="800" fill="#0f172a">69</text>
+    
+      <text x="266" y="379.25" text-anchor="end" font-size="14" fill="#334155">agriculture</text>
+      <rect x="280" y="360.5" width="36" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="326" y="379.25" font-size="14" font-weight="800" fill="#0f172a">42</text>
+    
+</svg>

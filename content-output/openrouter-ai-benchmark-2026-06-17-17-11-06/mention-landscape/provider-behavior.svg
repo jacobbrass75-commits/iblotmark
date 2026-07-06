@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="390" viewBox="0 0 1120 390" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1120" height="390"/>
+  
+    <rect class="panel" x="28" y="24" width="1064" height="342" rx="14"/>
+    <text class="title" x="54" y="64">Provider Behavior</text>
+    <text class="subtitle" x="54" y="88">Shows whether each consumer model mentions iBOLT, ranks it, or recommends competitors without it.</text>
+    
+      
+        <rect x="135" y="180" width="38" height="70" rx="8" fill="#16a34a"/>
+        <text class="value" x="154" y="172" text-anchor="middle">10</text>
+        <text class="small" x="154" y="276" text-anchor="middle">Mentions</text>
+      
+
+        <rect x="209" y="201" width="38" height="49" rx="8" fill="#2563eb"/>
+        <text class="value" x="228" y="193" text-anchor="middle">7</text>
+        <text class="small" x="228" y="276" text-anchor="middle">Top 3</text>
+      
+
+        <rect x="283" y="125" width="38" height="125" rx="8" fill="#dc2626"/>
+        <text class="value" x="302" y="117" text-anchor="middle">18</text>
+        <text class="small" x="302" y="276" text-anchor="middle">Comp only</text>
+      
+      <text class="label" x="228" y="322" text-anchor="middle">ChatGPT</text>
+      <text class="small" x="228" y="342" text-anchor="middle">avg score 15; n=31</text>
+    
+
+      
+        <rect x="465" y="208" width="38" height="42" rx="8" fill="#16a34a"/>
+        <text class="value" x="484" y="200" text-anchor="middle">6</text>
+        <text class="small" x="484" y="276" text-anchor="middle">Mentions</text>
+      
+
+        <rect x="539" y="236" width="38" height="14" rx="8" fill="#2563eb"/>
+        <text class="value" x="558" y="228" text-anchor="middle">2</text>
+        <text class="small" x="558" y="276" text-anchor="middle">Top 3</text>
+      
+
+        <rect x="613" y="90" width="38" height="160" rx="8" fill="#dc2626"/>
+        <text class="value" x="632" y="82" text-anchor="middle">23</text>
+        <text class="small" x="632" y="276" text-anchor="middle">Comp only</text>
+      
+      <text class="label" x="558" y="322" text-anchor="middle">Gemini</text>
+      <text class="small" x="558" y="342" text-anchor="middle">avg score 13; n=31</text>
+    
+
+      
+        <rect x="795" y="208" width="38" height="42" rx="8" fill="#16a34a"/>
+        <text class="value" x="814" y="200" text-anchor="middle">6</text>
+        <text class="small" x="814" y="276" text-anchor="middle">Mentions</text>
+      
+
+        <rect x="869" y="208" width="38" height="42" rx="8" fill="#2563eb"/>
+        <text class="value" x="888" y="200" text-anchor="middle">6</text>
+        <text class="small" x="888" y="276" text-anchor="middle">Top 3</text>
+      
+
+        <rect x="943" y="90" width="38" height="160" rx="8" fill="#dc2626"/>
+        <text class="value" x="962" y="82" text-anchor="middle">23</text>
+        <text class="small" x="962" y="276" text-anchor="middle">Comp only</text>
+      
+      <text class="label" x="888" y="322" text-anchor="middle">Claude</text>
+      <text class="small" x="888" y="342" text-anchor="middle">avg score 15; n=31</text>
+    
+  
+</svg>

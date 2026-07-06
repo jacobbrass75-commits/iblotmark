@@ -1,0 +1,5 @@
+"platform","citation_priority","why","next_measure"
+"ChatGPT and Claude normal chat","Track, but do not over-weight","Many normal chat answers may not expose source links. Judge mention rate, recommendation rank, product accuracy, and competitor displacement first.","Mention, top-3, competitor-only reduction, exact product names"
+"ChatGPT Search, Perplexity, Gemini with search","High","Search-connected answers can surface source URLs, so iboltmounts.com citation rate becomes a direct trust KPI.","Reach at least 8 target-domain citations/source-url rows in the W3 citation probe"
+"Google AI Overviews","High","Citation-ready pages with concise answers, structured data, and third-party corroboration are more likely to become useful source candidates.","Source-ready solution pages, FAQ/Article/Product schema, external mentions"
+"Voice and AI shopping assistants","Medium-high","These surfaces may not display citations, but they need entity confidence, exact product names, fit/use-case clarity, and third-party corroboration.","Product entity accuracy, target brand mention, source authority"

@@ -1,0 +1,5 @@
+"kpi","current_percent","next_target_percent","reason"
+"Mention rate","24","35","Shows whether models include iBOLT at all."
+"Non-branded mention","5","15","This is where new customers ask for recommendations without naming iBOLT."
+"Top-3 recommendation","16","25","Moving from mentioned to recommended is the business goal."
+"Citation rate","0","8","Citations show AI systems trust iboltmounts.com as a source."

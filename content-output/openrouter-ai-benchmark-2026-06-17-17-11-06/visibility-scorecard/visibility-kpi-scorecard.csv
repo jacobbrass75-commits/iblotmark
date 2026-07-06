@@ -1,0 +1,7 @@
+"metric","baseline","unit","first_target","gap_points","evidence","owner","first_action"
+"All-prompt iBOLT mention rate","24","%","35","11","22/93","Jacob/app","Refresh high-opportunity pages with query-exact answer blocks and named product modules."
+"Non-branded iBOLT mention rate","5","%","15","10","4/75","Jacob/app plus SEO contractor","Add competitor-adjacent comparison language and earn third-party mentions."
+"Top-3 recommendation rate","16","%","25","9","15/93","Jacob/app","Make pages state when iBOLT is the specialist choice versus broad alternatives."
+"Target-domain citation rate","0","%","5","5","0/93","SEO contractor plus Jacob/app","Pair schema and source-ready answer blocks with external citations to iBOLT pages."
+"Average live page citability score","75","/100","82","7","142/142 pages audited","Jacob/app","Batch-add FAQ schema, quick answers, Article schema, comparison blocks, and image alt text."
+"Actual catalog product entity rows","9","%","22","13","8/93","Jacob/app","Use exact product titles, handles, image alt text, and compatibility notes in refreshed posts."

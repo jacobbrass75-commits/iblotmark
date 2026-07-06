@@ -1,0 +1,80 @@
+{
+  "title": "Restaurant Tablet Workflows: Separate Tablets, POS Integration, KDS, and Pickup Screens",
+  "metaTitle": "Restaurant Tablet Setup Guide: KDS, POS, Pickup Screens &",
+  "metaDescription": "Learn how restaurants use tablets across ordering, KDS, pickup, and delivery workflows, and where physical mounting still matters even when software",
+  "excerpt": "Whether you run a ghost kitchen, a quick-service counter, or a multi-location brand, your tablet setup shapes how fast orders move from screen to bag. This guide breaks down every workflow approach and shows where physical mounting still makes the difference.",
+  "wordCount": 1209,
+  "spec": {
+    "title": "Restaurant Tablet Workflows: Separate Tablets, POS Integration, KDS, and Pickup Screens",
+    "slug": "restaurant-tablet-workflows-separate-tablets-pos-kds",
+    "vertical": "restaurants-food-delivery",
+    "primaryKeyword": "restaurant tablet setup",
+    "audience": "restaurant owners, operators, ghost kitchens, quick-service teams, and multi-location managers",
+    "problem": "Restaurants use tablets in different ways: separate marketplace tablets, POS-integrated ordering, kitchen display screens, pickup screens, self-order kiosks, and customer-facing checkout.",
+    "angle": "Explain the workflow approaches first, then show where physical mounting still matters even when software integrations reduce tablet count.",
+    "comparisonFrame": "Mention that POS-native hardware can be best for a single checkout workflow. Aggregator software can reduce tablet count, but restaurants often still need physical screens for pickup, KDS, expo, delivery acceptance, and backup workflows. Locking kiosk-style enclosures are strong for public-facing tablets. iBOLT helps when operators need multi-tablet visibility, wall/counter positioning, and modular mounting across stations.",
+    "products": [
+      "ibolt-quad-tablet-tower-stand",
+      "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+      "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "ibolt-dock-n-lock-pos-tablet-stand"
+    ],
+    "sources": [
+      {
+        "label": "DoorDash Merchant Tablet Learning Center",
+        "url": "https://merchants.doordash.com/en-us/learning-center/topic/tablet",
+        "use": "Use for third-party delivery tablet workflow context."
+      },
+      {
+        "label": "Uber Eats Orders app",
+        "url": "https://merchants.ubereats.com/us/en/technology/manage-orders/uber-eats-orders-app/",
+        "use": "Use for order-management app workflow context."
+      },
+      {
+        "label": "Grubhub tablet setup",
+        "url": "https://get.grubhub.com/help-center/grubhub-tablet-setup/",
+        "use": "Use for third-party marketplace tablet setup context."
+      },
+      {
+        "label": "Toast Kitchen Display System",
+        "url": "https://pos.toasttab.com/hardware/kitchen-display-system",
+        "use": "Use for KDS and back-of-house tablet/screen workflow context."
+      }
+    ]
+  },
+  "products": [
+    {
+      "handle": "ibolt-quad-tablet-tower-stand",
+      "title": "iBOLT Quad Tablet Tower TabDock™ Stand",
+      "url": "https://iboltmounts.com/products/ibolt-quad-tablet-tower-stand",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-quad-tablet-tower-tabdock-stand-1050407691.jpg?v=1768921811",
+      "price": "149.95",
+      "description": "The iBOLT Quad Tablet Stand makes excellent use of your valuable floor space and is the perfect solution for delivery applications and order management. The TabDock™ stand can hold 4 tablets in one location, with heavy-duty construction, this point-of-purchase mount ensures your devices are safely in place for repeated use."
+    },
+    {
+      "handle": "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+      "title": "iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount",
+      "url": "https://iboltmounts.com/products/ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-lockpro-drill-base-locking-tablet-stand-point-of-purchase-pos-mount-1050409814.jpg?v=1768913232",
+      "price": "139.95",
+      "description": "The iBOLT™ LockPro™ Drill Base Tablet Stand offers a secured, organizational solution for businesses, enhancing order management and workspace efficiency. Crafted with durable aluminum, the stand locks tablets in a safe position, is compatible with all 7 to 10-inch tablets, and allows for 360-degree rotation for optimal viewing. It securely integrates with any flat surface with self-tapping screws, featuring adjustable pole height and security hardware designed for commercial environments."
+    },
+    {
+      "handle": "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "title": "iBOLT Tablet Tower- TabDock™ POS Wall Mount - with 4 Tablet Holders",
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-tablet-tower-tabdock-pos-wall-mount-with-4-tablet-holders-1050408318.jpg?v=1768885753",
+      "price": "134.95",
+      "description": "The TabDock™ Point of Purchase Heavy-Duty Multi-Tablet Wall Mount securely holds up to four tablets, ideal for restaurants and busy workspaces needing to clear counter space while managing multiple delivery and order apps. Perfect for kitchens, kiosks, retail displays, and more. With four points of contact per holder, tablets stay firmly in place during heavy use. Compatible with tablets from 7\" to 11\", this mount keeps devices organized and off counters, reducing clutter and improving workflow. The expandable drill base wall mount fits most flat surfaces, with a pole extending from 17.5\" to 28.5\" for flexible installation. Each holder rotates 360 degrees, allowing vertical or horizontal positioning, and tablets easily rotate to the desired angle. The kit includes four tablet holders, clamp mounts with adapters, drill bases, an extension pole, and screws - everything needed for a complet"
+    },
+    {
+      "handle": "ibolt-dock-n-lock-pos-tablet-stand",
+      "title": "iBOLT Dock'n Lock POS Tablet Stand",
+      "url": "https://iboltmounts.com/products/ibolt-dock-n-lock-pos-tablet-stand",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/files/ibolt-mounts-ibolt-dock-n-lock-pos-tablet-stand-1130354044.jpg?v=1768836072",
+      "price": "99.95",
+      "description": "The iBOLT Dock'n Lock Tablet Point of Sale Weighted Base Stand is a reliable and secure solution for mounting your 7-10 inch tablet at any checkout counter, kiosk, or point-of-sale system. Designed for businesses that require stability, security, and ease of use, this stand features a locking tablet holder, an adjustable dual ball joint, and a weighted L-bracket base for added balance. The L-bracket includes four holes, allowing it to be for the long term secured to a countertop for extra security. Whether you're processing payments, managing orders, or running a mobile POS system, this stand keeps your tablet firmly in place."
+    }
+  ],
+  "htmlPath": "/Users/yakub/Desktop/iblotmark/content-output/mount-fit-workflows-drafts-2026-06-30T20-02-14-117Z/restaurant-tablet-workflows-separate-tablets-pos-kds.html"
+}

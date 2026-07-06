@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="714" viewBox="0 0 1160 714" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="714"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="666" rx="14"/>
+    <text class="title" x="54" y="64">Blog Posts And Product Spread By Topic</text>
+    <text class="subtitle" x="54" y="88">Bar value is unique linked products; note shows post count.</text>
+    
+      <text class="label" x="54" y="122">other</text>
+      <rect x="430" y="108" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="400" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="125">26</text>
+      <text class="small" x="430" y="149">25 posts; avg page score 77</text>
+    
+
+      <text class="label" x="54" y="168">restaurant</text>
+      <rect x="430" y="154" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="154" width="584" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="171">38</text>
+      <text class="small" x="430" y="195">18 posts; avg page score 83</text>
+    
+
+      <text class="label" x="54" y="214">fishing</text>
+      <rect x="430" y="200" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="200" width="461" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="217">30</text>
+      <text class="small" x="430" y="241">18 posts; avg page score 78</text>
+    
+
+      <text class="label" x="54" y="260">fleet</text>
+      <rect x="430" y="246" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="246" width="523" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="263">34</text>
+      <text class="small" x="430" y="287">16 posts; avg page score 82</text>
+    
+
+      <text class="label" x="54" y="306">streaming</text>
+      <rect x="430" y="292" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="292" width="369" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="309">24</text>
+      <text class="small" x="430" y="333">8 posts; avg page score 75</text>
+    
+
+      <text class="label" x="54" y="352">travel</text>
+      <rect x="430" y="338" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="338" width="138" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="355">9</text>
+      <text class="small" x="430" y="379">5 posts; avg page score 78</text>
+    
+
+      <text class="label" x="54" y="398">amps/modular</text>
+      <rect x="430" y="384" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="384" width="430" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="401">28</text>
+      <text class="small" x="430" y="425">4 posts; avg page score 76</text>
+    
+
+      <text class="label" x="54" y="444">warehouse</text>
+      <rect x="430" y="430" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="430" width="246" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="447">16</text>
+      <text class="small" x="430" y="471">4 posts; avg page score 84</text>
+    
+
+      <text class="label" x="54" y="490">offroad</text>
+      <rect x="430" y="476" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="476" width="246" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="493">16</text>
+      <text class="small" x="430" y="517">4 posts; avg page score 78</text>
+    
+
+      <text class="label" x="54" y="536">education</text>
+      <rect x="430" y="522" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="522" width="92" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="539">6</text>
+      <text class="small" x="430" y="563">2 posts; avg page score 75</text>
+    
+
+      <text class="label" x="54" y="582">agriculture</text>
+      <rect x="430" y="568" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="568" width="46" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="585">3</text>
+      <text class="small" x="430" y="609">1 posts; avg page score 76</text>
+    
+
+      <text class="label" x="54" y="628">cycling</text>
+      <rect x="430" y="614" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="614" width="46" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1028" y="631">3</text>
+      <text class="small" x="430" y="655">1 posts; avg page score 84</text>
+    
+  
+</svg>

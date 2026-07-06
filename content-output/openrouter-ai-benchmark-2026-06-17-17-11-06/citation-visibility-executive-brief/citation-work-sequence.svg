@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="330" viewBox="0 0 980 330" role="img" aria-label="AI visibility work sequence">
+    <rect width="980" height="330" rx="18" fill="#f8fafc"/>
+    <text x="24" y="36" font-size="24" font-weight="900" fill="#111827">Recommended Work Sequence</text>
+    <text x="24" y="58" font-size="13" fill="#64748b">Do not start with backlinks alone. First make iBOLT easier for AI systems to include and cite.</text>
+    <g>
+      <rect x="24" y="82" width="170" height="196" rx="16" fill="#fff" stroke="#dbe3ef"/>
+      <circle cx="52" cy="110" r="16" fill="#0f766e"/>
+      <text x="52" y="116" text-anchor="middle" font-size="15" font-weight="900" fill="#fff">1</text>
+      <text x="40" y="148" font-size="15" font-weight="900" fill="#111827">Inclusion recovery</text>
+      <text x="40" y="173" font-size="12" font-weight="800" fill="#475569">Jacob/app</text>
+      <foreignObject x="40" y="186" width="138" height="72">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:12px Arial;color:#475569;line-height:1.35">Edit priority pages with query-exact quick answers, exact product modules, fair competitor tradeoff blocks, and FAQ/Article schema.</div>
+      </foreignObject>
+      <foreignObject x="40" y="244" width="138" height="28">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:bold 11px Arial;color:#111827;line-height:1.25">+11 mentions, +8 non-branded mentions, 16 fewer competitor-only rows.</div>
+      </foreignObject>
+    </g><g>
+      <rect x="212" y="82" width="170" height="196" rx="16" fill="#fff" stroke="#dbe3ef"/>
+      <circle cx="240" cy="110" r="16" fill="#2563eb"/>
+      <text x="240" y="116" text-anchor="middle" font-size="15" font-weight="900" fill="#fff">2</text>
+      <text x="228" y="148" font-size="15" font-weight="900" fill="#111827">Recommendation lift</text>
+      <text x="228" y="173" font-size="12" font-weight="800" fill="#475569">Jacob/app</text>
+      <foreignObject x="228" y="186" width="138" height="72">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:12px Arial;color:#475569;line-height:1.35">Make iBOLT the workflow specialist beside RAM, Arkon, iOttie, ProClip, CTA Digital, and Mount-It.</div>
+      </foreignObject>
+      <foreignObject x="228" y="244" width="138" height="28">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:bold 11px Arial;color:#111827;line-height:1.25">+9 top-3 recommendations.</div>
+      </foreignObject>
+    </g><g>
+      <rect x="400" y="82" width="170" height="196" rx="16" fill="#fff" stroke="#dbe3ef"/>
+      <circle cx="428" cy="110" r="16" fill="#7c3aed"/>
+      <text x="428" y="116" text-anchor="middle" font-size="15" font-weight="900" fill="#fff">3</text>
+      <text x="416" y="148" font-size="15" font-weight="900" fill="#111827">Source cleanup</text>
+      <text x="416" y="173" font-size="12" font-weight="800" fill="#475569">Jacob/app</text>
+      <foreignObject x="416" y="186" width="138" height="72">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:12px Arial;color:#475569;line-height:1.35">Fix quick answers, schema, product-name accuracy, image alt text, internal links, and CTA density before asking outside sites to cite the pages.</div>
+      </foreignObject>
+      <foreignObject x="416" y="244" width="138" height="28">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:bold 11px Arial;color:#111827;line-height:1.25">Priority pages become source-ready and stable enough for outreach.</div>
+      </foreignObject>
+    </g><g>
+      <rect x="588" y="82" width="170" height="196" rx="16" fill="#fff" stroke="#dbe3ef"/>
+      <circle cx="616" cy="110" r="16" fill="#f97316"/>
+      <text x="616" y="116" text-anchor="middle" font-size="15" font-weight="900" fill="#fff">4</text>
+      <text x="604" y="148" font-size="15" font-weight="900" fill="#111827">Citation outreach</text>
+      <text x="604" y="173" font-size="12" font-weight="800" fill="#475569">SEO contractor</text>
+      <foreignObject x="604" y="186" width="138" height="72">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:12px Arial;color:#475569;line-height:1.35">Earn neutral third-party mentions and links on category pages, industry resources, comparison pages, and partner/reseller pages.</div>
+      </foreignObject>
+      <foreignObject x="604" y="244" width="138" height="28">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:bold 11px Arial;color:#111827;line-height:1.25">+8 target-domain citations or source-url rows after cleanup.</div>
+      </foreignObject>
+    </g><g>
+      <rect x="776" y="82" width="170" height="196" rx="16" fill="#fff" stroke="#dbe3ef"/>
+      <circle cx="804" cy="110" r="16" fill="#334155"/>
+      <text x="804" y="116" text-anchor="middle" font-size="15" font-weight="900" fill="#fff">5</text>
+      <text x="792" y="148" font-size="15" font-weight="900" fill="#111827">Retest</text>
+      <text x="792" y="173" font-size="12" font-weight="800" fill="#475569">Jacob/app</text>
+      <foreignObject x="792" y="186" width="138" height="72">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:12px Arial;color:#475569;line-height:1.35">Run the priority packet first, then the full all-blog manifest after first-wave edits are live.</div>
+      </foreignObject>
+      <foreignObject x="792" y="244" width="138" height="28">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font:bold 11px Arial;color:#111827;line-height:1.25">Track mention, non-branded mention, top-3, citation, and competitor-only rates by provider.</div>
+      </foreignObject>
+    </g>
+  </svg>

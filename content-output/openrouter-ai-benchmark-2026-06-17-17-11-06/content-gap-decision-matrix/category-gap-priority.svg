@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <rect width="980" height="430" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Gap Priority By Category</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">Priority combines content briefs, no-mapped prompts, and existing portfolio pressure.</text>
+  
+      <text x="256" y="102.75" text-anchor="end" font-size="14" fill="#334155">streaming</text>
+      <rect x="270" y="84" width="656" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="936" y="102.75" font-size="14" font-weight="800" fill="#0f172a">196</text>
+    
+      <text x="256" y="142.25" text-anchor="end" font-size="14" fill="#334155">fishing</text>
+      <rect x="270" y="123.5" width="465" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="745" y="142.25" font-size="14" font-weight="800" fill="#0f172a">139</text>
+    
+      <text x="256" y="181.75" text-anchor="end" font-size="14" fill="#334155">fleet</text>
+      <rect x="270" y="163" width="405" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="685" y="181.75" font-size="14" font-weight="800" fill="#0f172a">121</text>
+    
+      <text x="256" y="221.25" text-anchor="end" font-size="14" fill="#334155">amps/modular</text>
+      <rect x="270" y="202.5" width="378" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="658" y="221.25" font-size="14" font-weight="800" fill="#0f172a">113</text>
+    
+      <text x="256" y="260.75" text-anchor="end" font-size="14" fill="#334155">delivery</text>
+      <rect x="270" y="242" width="361" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="641" y="260.75" font-size="14" font-weight="800" fill="#0f172a">108</text>
+    
+      <text x="256" y="300.25" text-anchor="end" font-size="14" fill="#334155">restaurant</text>
+      <rect x="270" y="281.5" width="361" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="641" y="300.25" font-size="14" font-weight="800" fill="#0f172a">108</text>
+    
+      <text x="256" y="339.75" text-anchor="end" font-size="14" fill="#334155">travel</text>
+      <rect x="270" y="321" width="355" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="635" y="339.75" font-size="14" font-weight="800" fill="#0f172a">106</text>
+    
+      <text x="256" y="379.25" text-anchor="end" font-size="14" fill="#334155">warehouse</text>
+      <rect x="270" y="360.5" width="348" height="27.5" rx="6" fill="#7c3aed"></rect>
+      <text x="628" y="379.25" font-size="14" font-weight="800" fill="#0f172a">104</text>
+    
+</svg>

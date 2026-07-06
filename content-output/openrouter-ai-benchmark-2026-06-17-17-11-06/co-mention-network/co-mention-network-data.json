@@ -1,0 +1,2526 @@
+{
+  "summary": {
+    "totalAnswers": 93,
+    "mentionRows": 22,
+    "mentionRate": 24,
+    "nonBrandedRows": 75,
+    "nonBrandedMentions": 4,
+    "nonBrandedMentionRate": 5,
+    "cleanMentionRows": 4,
+    "coMentionRows": 18,
+    "coMentionShareOfMentions": 82,
+    "competitorOnlyRows": 64,
+    "competitorOnlyRate": 69,
+    "rawDetectorCompetitorOnlyRows": 68,
+    "structuredCompetitorOnlyRows": 64,
+    "noSignalRows": 7,
+    "queryRows": 31,
+    "cleanWinQueries": 1,
+    "includedWithCompetitorsQueries": 5,
+    "mixedQueries": 4,
+    "replacementQueries": 20,
+    "competitorRows": 14,
+    "topCoMentionCompetitors": [
+      "RAM Mounts: 13",
+      "Arkon: 5",
+      "iOttie: 3",
+      "CTA Digital: 3",
+      "Mount-It: 3",
+      "Tackform: 3",
+      "Bouncepad: 3",
+      "ProClip: 1"
+    ],
+    "topReplacementCompetitors": [
+      "RAM Mounts: 58",
+      "Arkon: 25",
+      "iOttie: 15",
+      "CTA Digital: 14",
+      "ProClip: 12",
+      "Mount-It: 7",
+      "Havis: 5",
+      "Tackform: 4"
+    ],
+    "sourceMentionSummary": {
+      "totalAnswers": 93,
+      "mentions": 22,
+      "mentionRate": 24,
+      "nonBrandedAnswers": 75,
+      "nonBrandedMentions": 4,
+      "nonBrandedMentionRate": 5,
+      "citations": 0,
+      "citationRate": 0,
+      "topThree": 15,
+      "topThreeRate": 16,
+      "competitorOnlyAnswers": 68,
+      "competitorOnlyRate": 73,
+      "structuredCompetitorOnlyAnswers": 64,
+      "matrixCompetitorOnlyAnswers": 66,
+      "coMentionAnswers": 18,
+      "structuredCoMentionAnswers": 18,
+      "structuredProductMentionAnswers": 0,
+      "manualProductSignalAnswers": 30,
+      "catalogProductAliasAnswers": 8,
+      "avgScore": 14
+    }
+  },
+  "competitorRows": [
+    {
+      "brand": "RAM Mounts",
+      "totalAnswers": 71,
+      "withIbolt": 13,
+      "withoutIbolt": 58,
+      "coMentionRate": 18,
+      "replacementPressure": 58,
+      "topThreeWithIbolt": 7,
+      "avgCoMentionScore": 45,
+      "avgReplacementScore": 4,
+      "categories": [
+        "fleet 18",
+        "delivery 15",
+        "restaurant 13",
+        "fishing 10",
+        "warehouse 9",
+        "comparison 3",
+        "tablet 3"
+      ],
+      "providers": [
+        "Gemini 28",
+        "Claude 23",
+        "ChatGPT 20"
+      ],
+      "lostQueries": [
+        "best barcode scanner mount for forklift",
+        "best budget fish finder mount",
+        "best ELD mount for trucks",
+        "best fish finder mount for small boat",
+        "best heavy duty vehicle phone mount",
+        "best kayak fish finder mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best phone mount for Amazon Flex and delivery vans"
+      ],
+      "coMentionQueries": [
+        "iBolt vs RAM for fleet phone mounting",
+        "ibolt vs ram mount",
+        "best drill base phone mount for semi trucks",
+        "best forklift tablet mount",
+        "best tablet mount for food truck",
+        "best tablet mount for warehouse",
+        "iBolt Dock’n Lock for restaurant counters",
+        "iBolt vs Bouncepad vs Mount-It for restaurant tablet security"
+      ],
+      "counterPositioning": "Keep iBOLT in RAM consideration sets, but frame iBOLT as the exact-workflow specialist with AMPS/ball compatibility and 300+ modular parts."
+    },
+    {
+      "brand": "Arkon",
+      "totalAnswers": 30,
+      "withIbolt": 5,
+      "withoutIbolt": 25,
+      "coMentionRate": 17,
+      "replacementPressure": 25,
+      "topThreeWithIbolt": 2,
+      "avgCoMentionScore": 46,
+      "avgReplacementScore": 3,
+      "categories": [
+        "fleet 11",
+        "restaurant 8",
+        "delivery 6",
+        "warehouse 3",
+        "tablet 2"
+      ],
+      "providers": [
+        "ChatGPT 13",
+        "Claude 10",
+        "Gemini 7"
+      ],
+      "lostQueries": [
+        "best ELD mount for trucks",
+        "best heavy duty vehicle phone mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best drill base phone mount for semi trucks",
+        "best phone mount for construction vehicles and work trucks",
+        "best tablet mount",
+        "best tablet mount for food truck",
+        "commercial grade phone mount for delivery drivers"
+      ],
+      "coMentionQueries": [
+        "best drill base phone mount for semi trucks",
+        "best forklift tablet mount",
+        "best tablet mount for food truck",
+        "best tablet mount for warehouse",
+        "iBolt Dock’n Lock for restaurant counters"
+      ],
+      "counterPositioning": "Show where iBOLT is stronger for commercial durability, locked installs, restaurant stations, and fleet repeatability."
+    },
+    {
+      "brand": "iOttie",
+      "totalAnswers": 18,
+      "withIbolt": 3,
+      "withoutIbolt": 15,
+      "coMentionRate": 17,
+      "replacementPressure": 15,
+      "topThreeWithIbolt": 2,
+      "avgCoMentionScore": 44,
+      "avgReplacementScore": 1,
+      "categories": [
+        "delivery 12",
+        "fleet 5",
+        "tablet 1"
+      ],
+      "providers": [
+        "ChatGPT 9",
+        "Claude 5",
+        "Gemini 4"
+      ],
+      "lostQueries": [
+        "best phone mount for delivery drivers",
+        "best phone mount for Instacart and grocery delivery drivers",
+        "best phone mount for Amazon Flex and delivery vans",
+        "magnetic vs clamp phone mounts for delivery work",
+        "best heavy duty vehicle phone mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best phone mount for construction vehicles and work trucks",
+        "best tablet mount"
+      ],
+      "coMentionQueries": [
+        "iBolt vs iOttie for delivery driving"
+      ],
+      "counterPositioning": "Separate consumer car accessories from commercial delivery and shared-vehicle mounting."
+    },
+    {
+      "brand": "CTA Digital",
+      "totalAnswers": 17,
+      "withIbolt": 3,
+      "withoutIbolt": 14,
+      "coMentionRate": 18,
+      "replacementPressure": 14,
+      "topThreeWithIbolt": 1,
+      "avgCoMentionScore": 47,
+      "avgReplacementScore": 4,
+      "categories": [
+        "restaurant 14",
+        "tablet 2",
+        "warehouse 1"
+      ],
+      "providers": [
+        "ChatGPT 8",
+        "Claude 5",
+        "Gemini 4"
+      ],
+      "lostQueries": [
+        "best locking tablet stand for food trucks and quick service restaurants",
+        "best multi tablet mount",
+        "best restaurant tablet mount",
+        "best tablet mount",
+        "best tablet mount for restaurant POS and delivery apps",
+        "best tablet mount for food truck"
+      ],
+      "coMentionQueries": [
+        "best tablet mount for food truck",
+        "best tablet mount for warehouse",
+        "iBolt Dock’n Lock for restaurant counters"
+      ],
+      "counterPositioning": "Frame iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS setups."
+    },
+    {
+      "brand": "ProClip",
+      "totalAnswers": 13,
+      "withIbolt": 1,
+      "withoutIbolt": 12,
+      "coMentionRate": 8,
+      "replacementPressure": 12,
+      "topThreeWithIbolt": 0,
+      "avgCoMentionScore": 37,
+      "avgReplacementScore": 4,
+      "categories": [
+        "fleet 7",
+        "delivery 4",
+        "warehouse 2"
+      ],
+      "providers": [
+        "Claude 7",
+        "ChatGPT 3",
+        "Gemini 3"
+      ],
+      "lostQueries": [
+        "best ELD mount for trucks",
+        "commercial grade phone mount for delivery drivers",
+        "best barcode scanner mount for forklift",
+        "best drill base phone mount for semi trucks",
+        "best forklift tablet mount",
+        "best heavy duty vehicle phone mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best phone mount for Amazon Flex and delivery vans"
+      ],
+      "coMentionQueries": [
+        "best drill base phone mount for semi trucks"
+      ],
+      "counterPositioning": "Compare vehicle-specific brackets against iBOLT's modular cross-vehicle fleet deployment."
+    },
+    {
+      "brand": "Mount-It",
+      "totalAnswers": 10,
+      "withIbolt": 3,
+      "withoutIbolt": 7,
+      "coMentionRate": 30,
+      "replacementPressure": 7,
+      "topThreeWithIbolt": 2,
+      "avgCoMentionScore": 56,
+      "avgReplacementScore": 3,
+      "categories": [
+        "restaurant 10"
+      ],
+      "providers": [
+        "ChatGPT 5",
+        "Claude 3",
+        "Gemini 2"
+      ],
+      "lostQueries": [
+        "best multi tablet mount",
+        "best restaurant tablet mount",
+        "best locking tablet stand for food trucks and quick service restaurants",
+        "best tablet mount for restaurant POS and delivery apps"
+      ],
+      "coMentionQueries": [
+        "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+        "iBolt Dock’n Lock for restaurant counters"
+      ],
+      "counterPositioning": "Frame iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS setups."
+    },
+    {
+      "brand": "Havis",
+      "totalAnswers": 5,
+      "withIbolt": 0,
+      "withoutIbolt": 5,
+      "coMentionRate": 0,
+      "replacementPressure": 5,
+      "topThreeWithIbolt": 0,
+      "avgCoMentionScore": 0,
+      "avgReplacementScore": 8,
+      "categories": [
+        "warehouse 5"
+      ],
+      "providers": [
+        "Claude 2",
+        "Gemini 2",
+        "ChatGPT 1"
+      ],
+      "lostQueries": [
+        "best barcode scanner mount for forklift",
+        "best forklift tablet mount",
+        "best tablet mount for warehouse"
+      ],
+      "coMentionQueries": [],
+      "counterPositioning": "Tie iBOLT into warehouse/forklift device mounting rather than competing with scanning or rugged-device brands directly."
+    },
+    {
+      "brand": "Tackform",
+      "totalAnswers": 7,
+      "withIbolt": 3,
+      "withoutIbolt": 4,
+      "coMentionRate": 43,
+      "replacementPressure": 4,
+      "topThreeWithIbolt": 1,
+      "avgCoMentionScore": 45,
+      "avgReplacementScore": 0,
+      "categories": [
+        "fleet 2",
+        "warehouse 2",
+        "delivery 1",
+        "restaurant 1",
+        "tablet 1"
+      ],
+      "providers": [
+        "ChatGPT 7"
+      ],
+      "lostQueries": [
+        "best heavy duty vehicle phone mount",
+        "best locking phone mount for shared delivery vehicles",
+        "best phone mount for construction vehicles and work trucks",
+        "best tablet mount"
+      ],
+      "coMentionQueries": [
+        "best forklift tablet mount",
+        "best tablet mount for food truck",
+        "best tablet mount for warehouse"
+      ],
+      "counterPositioning": "Add a fair comparison block that names where iBOLT should be considered against this brand."
+    },
+    {
+      "brand": "Heckler",
+      "totalAnswers": 3,
+      "withIbolt": 0,
+      "withoutIbolt": 3,
+      "coMentionRate": 0,
+      "replacementPressure": 3,
+      "topThreeWithIbolt": 0,
+      "avgCoMentionScore": 0,
+      "avgReplacementScore": 3,
+      "categories": [
+        "restaurant 3"
+      ],
+      "providers": [
+        "ChatGPT 2",
+        "Gemini 1"
+      ],
+      "lostQueries": [
+        "best tablet mount for restaurant POS and delivery apps",
+        "best locking tablet stand for food trucks and quick service restaurants"
+      ],
+      "coMentionQueries": [],
+      "counterPositioning": "Add a fair comparison block that names where iBOLT should be considered against this brand."
+    },
+    {
+      "brand": "Square",
+      "totalAnswers": 3,
+      "withIbolt": 0,
+      "withoutIbolt": 3,
+      "coMentionRate": 0,
+      "replacementPressure": 3,
+      "topThreeWithIbolt": 0,
+      "avgCoMentionScore": 0,
+      "avgReplacementScore": 7,
+      "categories": [
+        "restaurant 2",
+        "warehouse 1"
+      ],
+      "providers": [
+        "Claude 2",
+        "Gemini 1"
+      ],
+      "lostQueries": [
+        "best barcode scanner mount for forklift",
+        "best tablet mount for food truck",
+        "best tablet mount for restaurant POS and delivery apps"
+      ],
+      "coMentionQueries": [],
+      "counterPositioning": "Add a fair comparison block that names where iBOLT should be considered against this brand."
+    },
+    {
+      "brand": "Zebra",
+      "totalAnswers": 3,
+      "withIbolt": 0,
+      "withoutIbolt": 3,
+      "coMentionRate": 0,
+      "replacementPressure": 3,
+      "topThreeWithIbolt": 0,
+      "avgCoMentionScore": 0,
+      "avgReplacementScore": 7,
+      "categories": [
+        "warehouse 3"
+      ],
+      "providers": [
+        "Claude 2",
+        "ChatGPT 1"
+      ],
+      "lostQueries": [
+        "best barcode scanner mount for forklift",
+        "best forklift tablet mount"
+      ],
+      "coMentionQueries": [],
+      "counterPositioning": "Tie iBOLT into warehouse/forklift device mounting rather than competing with scanning or rugged-device brands directly."
+    },
+    {
+      "brand": "Bouncepad",
+      "totalAnswers": 4,
+      "withIbolt": 3,
+      "withoutIbolt": 1,
+      "coMentionRate": 75,
+      "replacementPressure": 1,
+      "topThreeWithIbolt": 2,
+      "avgCoMentionScore": 51,
+      "avgReplacementScore": 10,
+      "categories": [
+        "restaurant 4"
+      ],
+      "providers": [
+        "Claude 2",
+        "ChatGPT 1",
+        "Gemini 1"
+      ],
+      "lostQueries": [
+        "best restaurant tablet mount"
+      ],
+      "coMentionQueries": [
+        "iBolt vs Bouncepad vs Mount-It for restaurant tablet security"
+      ],
+      "counterPositioning": "Frame iBOLT around multi-tablet restaurant operations, delivery app stations, locking holders, and modular POS setups."
+    },
+    {
+      "brand": "Kensington",
+      "totalAnswers": 2,
+      "withIbolt": 1,
+      "withoutIbolt": 1,
+      "coMentionRate": 50,
+      "replacementPressure": 1,
+      "topThreeWithIbolt": 1,
+      "avgCoMentionScore": 60,
+      "avgReplacementScore": 0,
+      "categories": [
+        "restaurant 2"
+      ],
+      "providers": [
+        "ChatGPT 1",
+        "Gemini 1"
+      ],
+      "lostQueries": [
+        "best locking tablet stand for food trucks and quick service restaurants"
+      ],
+      "coMentionQueries": [
+        "iBolt Dock’n Lock for restaurant counters"
+      ],
+      "counterPositioning": "Add a fair comparison block that names where iBOLT should be considered against this brand."
+    },
+    {
+      "brand": "Peak Design",
+      "totalAnswers": 1,
+      "withIbolt": 0,
+      "withoutIbolt": 1,
+      "coMentionRate": 0,
+      "replacementPressure": 1,
+      "topThreeWithIbolt": 0,
+      "avgCoMentionScore": 0,
+      "avgReplacementScore": 0,
+      "categories": [
+        "delivery 1"
+      ],
+      "providers": [
+        "Gemini 1"
+      ],
+      "lostQueries": [
+        "best phone mount for Instacart and grocery delivery drivers"
+      ],
+      "coMentionQueries": [],
+      "counterPositioning": "Add a fair comparison block that names where iBOLT should be considered against this brand."
+    }
+  ],
+  "providerCategoryRows": [
+    {
+      "provider": "ChatGPT",
+      "category": "tablet",
+      "answers": 1,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 1,
+      "competitorOnlyRate": 100,
+      "avgScore": 0,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "Arkon 1",
+        "CTA Digital 1",
+        "RAM Mounts 1",
+        "Tackform 1"
+      ],
+      "allCompetitors": [
+        "Arkon 1",
+        "CTA Digital 1",
+        "RAM Mounts 1",
+        "Tackform 1"
+      ]
+    },
+    {
+      "provider": "Claude",
+      "category": "tablet",
+      "answers": 1,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 1,
+      "competitorOnlyRate": 100,
+      "avgScore": 0,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "Arkon 1",
+        "RAM Mounts 1"
+      ],
+      "allCompetitors": [
+        "Arkon 1",
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "provider": "Claude",
+      "category": "warehouse",
+      "answers": 3,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 3,
+      "competitorOnlyRate": 100,
+      "avgScore": 10,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3",
+        "Havis 2",
+        "Zebra 2"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 3",
+        "Havis 2",
+        "Zebra 2"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "category": "tablet",
+      "answers": 1,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 1,
+      "competitorOnlyRate": 100,
+      "avgScore": 0,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "CTA Digital 1",
+        "iOttie 1",
+        "RAM Mounts 1"
+      ],
+      "allCompetitors": [
+        "CTA Digital 1",
+        "iOttie 1",
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "category": "warehouse",
+      "answers": 3,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 3,
+      "competitorOnlyRate": 100,
+      "avgScore": 10,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3",
+        "Havis 2",
+        "Arkon 1",
+        "ProClip 1",
+        "Square 1"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 3",
+        "Havis 2",
+        "Arkon 1",
+        "ProClip 1",
+        "Square 1"
+      ]
+    },
+    {
+      "provider": "Claude",
+      "category": "fleet",
+      "answers": 6,
+      "mentions": 1,
+      "mentionRate": 17,
+      "cleanMentions": 0,
+      "coMentions": 1,
+      "coMentionRate": 17,
+      "competitorOnly": 5,
+      "competitorOnlyRate": 83,
+      "avgScore": 13,
+      "coMentionBrands": [
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [
+        "ProClip 5",
+        "RAM Mounts 5",
+        "Arkon 4",
+        "iOttie 1"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 6",
+        "ProClip 5",
+        "Arkon 4",
+        "iOttie 1"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "category": "fleet",
+      "answers": 6,
+      "mentions": 1,
+      "mentionRate": 17,
+      "cleanMentions": 0,
+      "coMentions": 1,
+      "coMentionRate": 17,
+      "competitorOnly": 5,
+      "competitorOnlyRate": 83,
+      "avgScore": 11,
+      "coMentionBrands": [
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [
+        "RAM Mounts 5",
+        "Arkon 4",
+        "iOttie 1"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 6",
+        "Arkon 4",
+        "iOttie 1"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "category": "fishing",
+      "answers": 5,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 4,
+      "competitorOnlyRate": 80,
+      "avgScore": 2,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 4"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 4"
+      ]
+    },
+    {
+      "provider": "Claude",
+      "category": "restaurant",
+      "answers": 8,
+      "mentions": 2,
+      "mentionRate": 25,
+      "cleanMentions": 1,
+      "coMentions": 1,
+      "coMentionRate": 13,
+      "competitorOnly": 6,
+      "competitorOnlyRate": 75,
+      "avgScore": 20,
+      "coMentionBrands": [
+        "Bouncepad 1",
+        "Mount-It 1"
+      ],
+      "replacementBrands": [
+        "CTA Digital 5",
+        "RAM Mounts 4",
+        "Arkon 2",
+        "Mount-It 2",
+        "Square 2",
+        "Bouncepad 1"
+      ],
+      "allCompetitors": [
+        "CTA Digital 5",
+        "RAM Mounts 4",
+        "Mount-It 3",
+        "Arkon 2",
+        "Bouncepad 2",
+        "Square 2"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "category": "restaurant",
+      "answers": 8,
+      "mentions": 2,
+      "mentionRate": 25,
+      "cleanMentions": 0,
+      "coMentions": 2,
+      "coMentionRate": 25,
+      "competitorOnly": 6,
+      "competitorOnlyRate": 75,
+      "avgScore": 18,
+      "coMentionBrands": [
+        "RAM Mounts 2",
+        "Bouncepad 1",
+        "Kensington 1",
+        "Mount-It 1"
+      ],
+      "replacementBrands": [
+        "RAM Mounts 6",
+        "CTA Digital 3",
+        "Arkon 1",
+        "Heckler 1",
+        "Mount-It 1"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 8",
+        "CTA Digital 3",
+        "Mount-It 2",
+        "Arkon 1",
+        "Bouncepad 1",
+        "Heckler 1"
+      ]
+    },
+    {
+      "provider": "ChatGPT",
+      "category": "delivery",
+      "answers": 7,
+      "mentions": 2,
+      "mentionRate": 29,
+      "cleanMentions": 1,
+      "coMentions": 1,
+      "coMentionRate": 14,
+      "competitorOnly": 5,
+      "competitorOnlyRate": 71,
+      "avgScore": 15,
+      "coMentionBrands": [
+        "iOttie 1"
+      ],
+      "replacementBrands": [
+        "iOttie 5",
+        "RAM Mounts 5",
+        "Arkon 2",
+        "Tackform 1"
+      ],
+      "allCompetitors": [
+        "iOttie 6",
+        "RAM Mounts 5",
+        "Arkon 2",
+        "Tackform 1"
+      ]
+    },
+    {
+      "provider": "Claude",
+      "category": "delivery",
+      "answers": 7,
+      "mentions": 2,
+      "mentionRate": 29,
+      "cleanMentions": 1,
+      "coMentions": 1,
+      "coMentionRate": 14,
+      "competitorOnly": 5,
+      "competitorOnlyRate": 71,
+      "avgScore": 19,
+      "coMentionBrands": [
+        "iOttie 1"
+      ],
+      "replacementBrands": [
+        "RAM Mounts 5",
+        "Arkon 3",
+        "iOttie 3",
+        "ProClip 2"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 5",
+        "iOttie 4",
+        "Arkon 3",
+        "ProClip 2"
+      ]
+    },
+    {
+      "provider": "ChatGPT",
+      "category": "fleet",
+      "answers": 6,
+      "mentions": 2,
+      "mentionRate": 33,
+      "cleanMentions": 0,
+      "coMentions": 2,
+      "coMentionRate": 33,
+      "competitorOnly": 4,
+      "competitorOnlyRate": 67,
+      "avgScore": 14,
+      "coMentionBrands": [
+        "RAM Mounts 2",
+        "Arkon 1",
+        "ProClip 1"
+      ],
+      "replacementBrands": [
+        "RAM Mounts 4",
+        "iOttie 3",
+        "Arkon 2",
+        "Tackform 2",
+        "ProClip 1"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 6",
+        "Arkon 3",
+        "iOttie 3",
+        "ProClip 2",
+        "Tackform 2"
+      ]
+    },
+    {
+      "provider": "ChatGPT",
+      "category": "fishing",
+      "answers": 5,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 3,
+      "competitorOnlyRate": 60,
+      "avgScore": 0,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 3"
+      ]
+    },
+    {
+      "provider": "Claude",
+      "category": "fishing",
+      "answers": 5,
+      "mentions": 0,
+      "mentionRate": 0,
+      "cleanMentions": 0,
+      "coMentions": 0,
+      "coMentionRate": 0,
+      "competitorOnly": 3,
+      "competitorOnlyRate": 60,
+      "avgScore": 2,
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 3"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "category": "delivery",
+      "answers": 7,
+      "mentions": 2,
+      "mentionRate": 29,
+      "cleanMentions": 1,
+      "coMentions": 1,
+      "coMentionRate": 14,
+      "competitorOnly": 4,
+      "competitorOnlyRate": 57,
+      "avgScore": 14,
+      "coMentionBrands": [
+        "iOttie 1",
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [
+        "RAM Mounts 4",
+        "ProClip 2",
+        "Arkon 1",
+        "iOttie 1",
+        "Peak Design 1"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 5",
+        "iOttie 2",
+        "ProClip 2",
+        "Arkon 1",
+        "Peak Design 1"
+      ]
+    },
+    {
+      "provider": "ChatGPT",
+      "category": "restaurant",
+      "answers": 8,
+      "mentions": 3,
+      "mentionRate": 38,
+      "cleanMentions": 0,
+      "coMentions": 3,
+      "coMentionRate": 38,
+      "competitorOnly": 4,
+      "competitorOnlyRate": 50,
+      "avgScore": 19,
+      "coMentionBrands": [
+        "Arkon 2",
+        "CTA Digital 2",
+        "Bouncepad 1",
+        "Mount-It 1",
+        "RAM Mounts 1",
+        "Tackform 1"
+      ],
+      "replacementBrands": [
+        "CTA Digital 4",
+        "Mount-It 4",
+        "Arkon 3",
+        "Heckler 2",
+        "Kensington 1"
+      ],
+      "allCompetitors": [
+        "CTA Digital 6",
+        "Arkon 5",
+        "Mount-It 5",
+        "Heckler 2",
+        "Bouncepad 1",
+        "Kensington 1"
+      ]
+    },
+    {
+      "provider": "ChatGPT",
+      "category": "warehouse",
+      "answers": 3,
+      "mentions": 2,
+      "mentionRate": 67,
+      "cleanMentions": 0,
+      "coMentions": 2,
+      "coMentionRate": 67,
+      "competitorOnly": 1,
+      "competitorOnlyRate": 33,
+      "avgScore": 30,
+      "coMentionBrands": [
+        "Arkon 2",
+        "RAM Mounts 2",
+        "Tackform 2",
+        "CTA Digital 1"
+      ],
+      "replacementBrands": [
+        "Havis 1",
+        "ProClip 1",
+        "RAM Mounts 1",
+        "Zebra 1"
+      ],
+      "allCompetitors": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "Tackform 2",
+        "CTA Digital 1",
+        "Havis 1",
+        "ProClip 1"
+      ]
+    },
+    {
+      "provider": "ChatGPT",
+      "category": "comparison",
+      "answers": 1,
+      "mentions": 1,
+      "mentionRate": 100,
+      "cleanMentions": 0,
+      "coMentions": 1,
+      "coMentionRate": 100,
+      "competitorOnly": 0,
+      "competitorOnlyRate": 0,
+      "avgScore": 45,
+      "coMentionBrands": [
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [],
+      "allCompetitors": [
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "provider": "Claude",
+      "category": "comparison",
+      "answers": 1,
+      "mentions": 1,
+      "mentionRate": 100,
+      "cleanMentions": 0,
+      "coMentions": 1,
+      "coMentionRate": 100,
+      "competitorOnly": 0,
+      "competitorOnlyRate": 0,
+      "avgScore": 45,
+      "coMentionBrands": [
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [],
+      "allCompetitors": [
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "category": "comparison",
+      "answers": 1,
+      "mentions": 1,
+      "mentionRate": 100,
+      "cleanMentions": 0,
+      "coMentions": 1,
+      "coMentionRate": 100,
+      "competitorOnly": 0,
+      "competitorOnlyRate": 0,
+      "avgScore": 45,
+      "coMentionBrands": [
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [],
+      "allCompetitors": [
+        "RAM Mounts 1"
+      ]
+    }
+  ],
+  "queryRows": [
+    {
+      "query": "best barcode scanner mount for forklift",
+      "category": "warehouse",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 7,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "Havis 3",
+        "RAM Mounts 3",
+        "Zebra 2",
+        "Arkon 1",
+        "ProClip 1",
+        "Square 1"
+      ],
+      "competitors": [
+        "Havis 3",
+        "RAM Mounts 3",
+        "Zebra 2",
+        "Arkon 1",
+        "ProClip 1",
+        "Square 1"
+      ]
+    },
+    {
+      "query": "best budget fish finder mount",
+      "category": "fishing",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3"
+      ],
+      "competitors": [
+        "RAM Mounts 3"
+      ]
+    },
+    {
+      "query": "best ELD mount for trucks",
+      "category": "fleet",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "ProClip 2"
+      ],
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "ProClip 2"
+      ]
+    },
+    {
+      "query": "best fish finder mount for small boat",
+      "category": "fishing",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3"
+      ],
+      "competitors": [
+        "RAM Mounts 3"
+      ]
+    },
+    {
+      "query": "best heavy duty vehicle phone mount",
+      "category": "fleet",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 7,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "iOttie 1",
+        "ProClip 1",
+        "Tackform 1"
+      ],
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "iOttie 1",
+        "ProClip 1",
+        "Tackform 1"
+      ]
+    },
+    {
+      "query": "best kayak fish finder mount",
+      "category": "fishing",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3"
+      ],
+      "competitors": [
+        "RAM Mounts 3"
+      ]
+    },
+    {
+      "query": "best locking phone mount for shared delivery vehicles",
+      "category": "delivery",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "iOttie 1",
+        "ProClip 1",
+        "Tackform 1"
+      ],
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "iOttie 1",
+        "ProClip 1",
+        "Tackform 1"
+      ]
+    },
+    {
+      "query": "best locking tablet stand for food trucks and quick service restaurants",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "CTA Digital 3",
+        "Heckler 1",
+        "Kensington 1",
+        "Mount-It 1",
+        "RAM Mounts 1"
+      ],
+      "competitors": [
+        "CTA Digital 3",
+        "Heckler 1",
+        "Kensington 1",
+        "Mount-It 1",
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "query": "best multi tablet mount",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "CTA Digital 3",
+        "Mount-It 3",
+        "RAM Mounts 2",
+        "Arkon 1"
+      ],
+      "competitors": [
+        "CTA Digital 3",
+        "Mount-It 3",
+        "RAM Mounts 2",
+        "Arkon 1"
+      ]
+    },
+    {
+      "query": "best phone mount for Amazon Flex and delivery vans",
+      "category": "delivery",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 7,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3",
+        "iOttie 2",
+        "Arkon 1",
+        "ProClip 1"
+      ],
+      "competitors": [
+        "RAM Mounts 3",
+        "iOttie 2",
+        "Arkon 1",
+        "ProClip 1"
+      ]
+    },
+    {
+      "query": "best phone mount for construction vehicles and work trucks",
+      "category": "fleet",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "iOttie 1",
+        "ProClip 1",
+        "Tackform 1"
+      ],
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "iOttie 1",
+        "ProClip 1",
+        "Tackform 1"
+      ]
+    },
+    {
+      "query": "best phone mount for delivery drivers",
+      "category": "fleet",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "iOttie 3",
+        "RAM Mounts 3",
+        "ProClip 1"
+      ],
+      "competitors": [
+        "iOttie 3",
+        "RAM Mounts 3",
+        "ProClip 1"
+      ]
+    },
+    {
+      "query": "best phone mount for Instacart and grocery delivery drivers",
+      "category": "delivery",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "iOttie 3",
+        "RAM Mounts 3",
+        "Peak Design 1"
+      ],
+      "competitors": [
+        "iOttie 3",
+        "RAM Mounts 3",
+        "Peak Design 1"
+      ]
+    },
+    {
+      "query": "best restaurant tablet mount",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 7,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "CTA Digital 3",
+        "Mount-It 2",
+        "RAM Mounts 2",
+        "Arkon 1",
+        "Bouncepad 1"
+      ],
+      "competitors": [
+        "CTA Digital 3",
+        "Mount-It 2",
+        "RAM Mounts 2",
+        "Arkon 1",
+        "Bouncepad 1"
+      ]
+    },
+    {
+      "query": "best tablet mount",
+      "category": "tablet",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "CTA Digital 2",
+        "iOttie 1",
+        "Tackform 1"
+      ],
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "CTA Digital 2",
+        "iOttie 1",
+        "Tackform 1"
+      ]
+    },
+    {
+      "query": "best tablet mount for restaurant POS and delivery apps",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 7,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "CTA Digital 2",
+        "Heckler 2",
+        "Arkon 1",
+        "Mount-It 1",
+        "RAM Mounts 1",
+        "Square 1"
+      ],
+      "competitors": [
+        "CTA Digital 2",
+        "Heckler 2",
+        "Arkon 1",
+        "Mount-It 1",
+        "RAM Mounts 1",
+        "Square 1"
+      ]
+    },
+    {
+      "query": "commercial grade phone mount for delivery drivers",
+      "category": "delivery",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 3,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "ProClip 2",
+        "iOttie 1"
+      ],
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 2",
+        "ProClip 2",
+        "iOttie 1"
+      ]
+    },
+    {
+      "query": "magnetic vs clamp phone mounts for delivery work",
+      "category": "delivery",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 2,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 2",
+        "no brand signal 1"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "iOttie 2",
+        "RAM Mounts 2"
+      ],
+      "competitors": [
+        "iOttie 2",
+        "RAM Mounts 2"
+      ]
+    },
+    {
+      "query": "set up multiple tablets for DoorDash Uber Eats and Grubhub",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 2,
+      "avgScore": 3,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 2",
+        "no brand signal 1"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 2",
+        "Arkon 1"
+      ],
+      "competitors": [
+        "RAM Mounts 2",
+        "Arkon 1"
+      ]
+    },
+    {
+      "query": "best fish finder in water",
+      "category": "fishing",
+      "answers": 3,
+      "outcome": "Competitor replacement",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 1,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "no brand signal 2",
+        "competitor-only 1"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [
+        "RAM Mounts 1"
+      ],
+      "competitors": [
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "query": "best drill base phone mount for semi trucks",
+      "category": "fleet",
+      "answers": 3,
+      "outcome": "Mixed provider split",
+      "mentionRate": 33,
+      "coMentionRows": 1,
+      "competitorOnlyRows": 2,
+      "avgScore": 16,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 2",
+        "iBOLT co-mentioned 1"
+      ],
+      "coMentionBrands": [
+        "Arkon 1",
+        "ProClip 1",
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [
+        "Arkon 2",
+        "RAM Mounts 2",
+        "ProClip 1"
+      ],
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "ProClip 2"
+      ]
+    },
+    {
+      "query": "best forklift tablet mount",
+      "category": "warehouse",
+      "answers": 3,
+      "outcome": "Mixed provider split",
+      "mentionRate": 33,
+      "coMentionRows": 1,
+      "competitorOnlyRows": 2,
+      "avgScore": 24,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 2",
+        "iBOLT co-mentioned 1"
+      ],
+      "coMentionBrands": [
+        "Arkon 1",
+        "RAM Mounts 1",
+        "Tackform 1"
+      ],
+      "replacementBrands": [
+        "RAM Mounts 2",
+        "Havis 1",
+        "ProClip 1",
+        "Zebra 1"
+      ],
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 1",
+        "Havis 1",
+        "ProClip 1",
+        "Tackform 1",
+        "Zebra 1"
+      ]
+    },
+    {
+      "query": "best tablet mount for food truck",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "Mixed provider split",
+      "mentionRate": 33,
+      "coMentionRows": 1,
+      "competitorOnlyRows": 2,
+      "avgScore": 15,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 2",
+        "iBOLT co-mentioned 1"
+      ],
+      "coMentionBrands": [
+        "Arkon 1",
+        "CTA Digital 1",
+        "RAM Mounts 1",
+        "Tackform 1"
+      ],
+      "replacementBrands": [
+        "Arkon 2",
+        "RAM Mounts 2",
+        "CTA Digital 1",
+        "Square 1"
+      ],
+      "competitors": [
+        "Arkon 3",
+        "RAM Mounts 3",
+        "CTA Digital 2",
+        "Square 1",
+        "Tackform 1"
+      ]
+    },
+    {
+      "query": "best tablet mount for warehouse",
+      "category": "warehouse",
+      "answers": 3,
+      "outcome": "Mixed provider split",
+      "mentionRate": 33,
+      "coMentionRows": 1,
+      "competitorOnlyRows": 2,
+      "avgScore": 19,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "competitor-only 2",
+        "iBOLT co-mentioned 1"
+      ],
+      "coMentionBrands": [
+        "Arkon 1",
+        "CTA Digital 1",
+        "RAM Mounts 1",
+        "Tackform 1"
+      ],
+      "replacementBrands": [
+        "RAM Mounts 2",
+        "Havis 1"
+      ],
+      "competitors": [
+        "RAM Mounts 3",
+        "Arkon 1",
+        "CTA Digital 1",
+        "Havis 1",
+        "Tackform 1"
+      ]
+    },
+    {
+      "query": "best fish finder",
+      "category": "fishing",
+      "answers": 3,
+      "outcome": "No brand signal",
+      "mentionRate": 0,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 0,
+      "avgScore": 0,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "no brand signal 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [],
+      "competitors": []
+    },
+    {
+      "query": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "iBOLT included with competitors",
+      "mentionRate": 100,
+      "coMentionRows": 2,
+      "competitorOnlyRows": 0,
+      "avgScore": 63,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "iBOLT co-mentioned 2",
+        "iBOLT clean mention 1"
+      ],
+      "coMentionBrands": [
+        "Arkon 1",
+        "CTA Digital 1",
+        "Kensington 1",
+        "Mount-It 1",
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [],
+      "competitors": [
+        "Arkon 1",
+        "CTA Digital 1",
+        "Kensington 1",
+        "Mount-It 1",
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "query": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "answers": 3,
+      "outcome": "Clean iBOLT win",
+      "mentionRate": 100,
+      "coMentionRows": 0,
+      "competitorOnlyRows": 0,
+      "avgScore": 58,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "iBOLT clean mention 3"
+      ],
+      "coMentionBrands": [],
+      "replacementBrands": [],
+      "competitors": []
+    },
+    {
+      "query": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "answers": 3,
+      "outcome": "iBOLT included with competitors",
+      "mentionRate": 100,
+      "coMentionRows": 3,
+      "competitorOnlyRows": 0,
+      "avgScore": 51,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "iBOLT co-mentioned 3"
+      ],
+      "coMentionBrands": [
+        "Bouncepad 3",
+        "Mount-It 2",
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [],
+      "competitors": [
+        "Bouncepad 3",
+        "Mount-It 2",
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "query": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "answers": 3,
+      "outcome": "iBOLT included with competitors",
+      "mentionRate": 100,
+      "coMentionRows": 3,
+      "competitorOnlyRows": 0,
+      "avgScore": 44,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "iBOLT co-mentioned 3"
+      ],
+      "coMentionBrands": [
+        "iOttie 3",
+        "RAM Mounts 1"
+      ],
+      "replacementBrands": [],
+      "competitors": [
+        "iOttie 3",
+        "RAM Mounts 1"
+      ]
+    },
+    {
+      "query": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "answers": 3,
+      "outcome": "iBOLT included with competitors",
+      "mentionRate": 100,
+      "coMentionRows": 3,
+      "competitorOnlyRows": 0,
+      "avgScore": 45,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "iBOLT co-mentioned 3"
+      ],
+      "coMentionBrands": [
+        "RAM Mounts 3"
+      ],
+      "replacementBrands": [],
+      "competitors": [
+        "RAM Mounts 3"
+      ]
+    },
+    {
+      "query": "ibolt vs ram mount",
+      "category": "comparison",
+      "answers": 3,
+      "outcome": "iBOLT included with competitors",
+      "mentionRate": 100,
+      "coMentionRows": 3,
+      "competitorOnlyRows": 0,
+      "avgScore": 45,
+      "providers": [
+        "ChatGPT 1",
+        "Claude 1",
+        "Gemini 1"
+      ],
+      "states": [
+        "iBOLT co-mentioned 3"
+      ],
+      "coMentionBrands": [
+        "RAM Mounts 3"
+      ],
+      "replacementBrands": [],
+      "competitors": [
+        "RAM Mounts 3"
+      ]
+    }
+  ],
+  "mentionRows": [
+    {
+      "provider": "Claude",
+      "query": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "coverageScore": 70,
+      "mentionQualityScore": 96,
+      "topPickRank": "1",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability"
+      ],
+      "snippet": "ibolt phone mounts for DoorDash and Uber Eats drivers Provider: Claude Model: anthropic/claude-sonnet-4 Category: delivery Coverage score: 70 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Product signals: TabDock, BizMount Catalog product alia..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "coverageScore": 70,
+      "mentionQualityScore": 86,
+      "topPickRank": "1",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "Dock'n Lock / Dock’n Lock",
+        "xProDock",
+        "TabDock"
+      ],
+      "catalogProducts": [
+        "iBOLT™ Dock'n Lock - Composite Locking Tablet Holder- AMPS Pattern Connection"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "security"
+      ],
+      "snippet": "iBolt Dock’n Lock for restaurant counters Provider: Claude Model: anthropic/claude-sonnet-4 Category: restaurant Coverage score: 70 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Product signals: Dock'n Lock / Dock’n Lock, xProDock, TabDock Cat..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "coverageScore": 63,
+      "mentionQualityScore": 83,
+      "topPickRank": "3",
+      "coMentionedCompetitors": [
+        "Mount-It",
+        "Bouncepad"
+      ],
+      "productSignals": [
+        "VESA"
+      ],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security Provider: Claude Model: anthropic/claude-sonnet-4 Category: restaurant Coverage score: 63 Brand mentioned: true Target domain cited: false Top pick rank: 3 Competitors detected: Mount-It, Bouncepad Product signals: VESA Cat..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "coverageScore": 60,
+      "mentionQualityScore": 83,
+      "topPickRank": "1",
+      "coMentionedCompetitors": [
+        "Arkon",
+        "Mount-It",
+        "CTA Digital"
+      ],
+      "productSignals": [
+        "Dock'n Lock / Dock’n Lock"
+      ],
+      "catalogProducts": [
+        "iBOLT™ Dock'n Lock - Composite Locking Tablet Holder- AMPS Pattern Connection"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "snippet": "iBolt Dock’n Lock for restaurant counters Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 60 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Arkon, Mount-It, CTA Digital Product signals: Dock'n Lock / Dock’n Lock Cata..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best forklift tablet mount",
+      "category": "warehouse",
+      "coverageScore": 53,
+      "mentionQualityScore": 81,
+      "topPickRank": "3",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "snippet": "...rklift tablet mount Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 53 Brand mentioned: true Target domain cited: false Top pick rank: 3 Competitors detected: RAM Mounts, Arkon, Tackform Product signals: TabDock, BizMount, AMPS Catalog product aliases: iBOLT™ TabDock™ Bizmount™ AMPs Raw Answer When selecting a forklift tablet mount, it's important to consider factors such as durability, "
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt Dock’n Lock for restaurant counters",
+      "category": "restaurant",
+      "coverageScore": 60,
+      "mentionQualityScore": 79,
+      "topPickRank": "1",
+      "coMentionedCompetitors": [
+        "Kensington",
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "Dock'n Lock / Dock’n Lock",
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ Dock'n Lock - Composite Locking Tablet Holder- AMPS Pattern Connection",
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "snippet": "iBolt Dock’n Lock for restaurant counters Provider: Gemini Model: google/gemini-2.5-flash Category: restaurant Coverage score: 60 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Kensington Product signals: Dock'n Lock / Dock’n Lock, TabDock, Biz..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "coverageScore": 60,
+      "mentionQualityScore": 78,
+      "topPickRank": "1",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "xProDock",
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "snippet": "ibolt phone mounts for DoorDash and Uber Eats drivers Provider: ChatGPT Model: openai/gpt-4o Category: delivery Coverage score: 60 Brand mentioned: true Target domain cited: false Top pick rank: 1 Competitors detected: Product signals: xProDock, TabDock, BizMount, AMPS Catalog product..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "coverageScore": 53,
+      "mentionQualityScore": 77,
+      "topPickRank": "2",
+      "coMentionedCompetitors": [
+        "iOttie"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "iBolt vs iOttie for delivery driving Provider: Claude Model: anthropic/claude-sonnet-4 Category: delivery Coverage score: 53 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: iOttie Product signals: TabDock, BizMount Catalog product aliases: Raw A..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "ibolt vs ram mount",
+      "category": "comparison",
+      "coverageScore": 45,
+      "mentionQualityScore": 73,
+      "topPickRank": "2",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps",
+        "iBOLT Quad Tablet Tower TabDock™ Stand"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "ibolt vs ram mount Provider: ChatGPT Model: openai/gpt-4o Category: comparison Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: TabDock, BizMount Catalog product aliases: Raw Answer When comparing iB..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "coverageScore": 45,
+      "mentionQualityScore": 73,
+      "topPickRank": "2",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "snippet": "iBolt vs RAM for fleet phone mounting Provider: ChatGPT Model: openai/gpt-4o Category: fleet Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: BizMount Catalog product aliases: Raw Answer When compari..."
+    },
+    {
+      "provider": "Claude",
+      "query": "ibolt vs ram mount",
+      "category": "comparison",
+      "coverageScore": 45,
+      "mentionQualityScore": 68,
+      "topPickRank": "2",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "ibolt vs ram mount Provider: Claude Model: anthropic/claude-sonnet-4 Category: comparison Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: TabDock, BizMount Catalog product aliases: Raw Answer iBOLT..."
+    },
+    {
+      "provider": "Claude",
+      "query": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "coverageScore": 45,
+      "mentionQualityScore": 68,
+      "topPickRank": "2",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "TabDock"
+      ],
+      "catalogProducts": [
+        "iBOLT TabDock MagDock 360 Magnetic Tablet Mount – Heavy-Duty Forklift & Warehouse Holder"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "snippet": "iBolt vs RAM for fleet phone mounting Provider: Claude Model: anthropic/claude-sonnet-4 Category: fleet Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: TabDock Catalog product aliases: Raw Answer iB..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "coverageScore": 45,
+      "mentionQualityScore": 63,
+      "topPickRank": "2",
+      "coMentionedCompetitors": [
+        "iOttie"
+      ],
+      "productSignals": [
+        "xProDock",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "iBolt vs iOttie for delivery driving Provider: ChatGPT Model: openai/gpt-4o Category: delivery Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: iOttie Product signals: xProDock, AMPS Catalog product aliases: Raw Answer When com..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "coverageScore": 45,
+      "mentionQualityScore": 61,
+      "topPickRank": "3",
+      "coMentionedCompetitors": [
+        "Mount-It",
+        "Bouncepad"
+      ],
+      "productSignals": [],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "durability",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 3 Competitors detected: Mount-It, Bouncepad Product signals: Catalog product ali..."
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt vs RAM for fleet phone mounting",
+      "category": "fleet",
+      "coverageScore": 45,
+      "mentionQualityScore": 61,
+      "topPickRank": "2",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "snippet": "iBolt vs RAM for fleet phone mounting Provider: Gemini Model: google/gemini-2.5-flash Category: fleet Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 2 Competitors detected: RAM Mounts Product signals: Catalog product aliases: Raw Answer For fleet ph..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best tablet mount for food truck",
+      "category": "restaurant",
+      "coverageScore": 45,
+      "mentionQualityScore": 61,
+      "topPickRank": "5",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "CTA Digital"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "security"
+      ],
+      "snippet": "...truck Provider: ChatGPT Model: openai/gpt-4o Category: restaurant Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: 5 Competitors detected: RAM Mounts, Arkon, Tackform, CTA Digital Product signals: TabDock, BizMount, AMPS Catalog product aliases: iBOLT™ TabDock™ Bizmount™ AMPs Raw Answer When selecting a tablet mount for a food truck, it's important to consider factors such as dura"
+    },
+    {
+      "provider": "Gemini",
+      "query": "ibolt vs ram mount",
+      "category": "comparison",
+      "coverageScore": 45,
+      "mentionQualityScore": 57,
+      "topPickRank": "",
+      "coMentionedCompetitors": [
+        "RAM Mounts"
+      ],
+      "productSignals": [],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value"
+      ],
+      "snippet": "ibolt vs ram mount Provider: Gemini Model: google/gemini-2.5-flash Category: comparison Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: RAM Mounts Product signals: Catalog product aliases: Raw Answer You're looking to choose bet..."
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security",
+      "category": "restaurant",
+      "coverageScore": 45,
+      "mentionQualityScore": 57,
+      "topPickRank": "",
+      "coMentionedCompetitors": [
+        "Mount-It",
+        "Bouncepad",
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "VESA"
+      ],
+      "catalogProducts": [],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "iBolt vs Bouncepad vs Mount-It for restaurant tablet security Provider: Gemini Model: google/gemini-2.5-flash Category: restaurant Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: Mount-It, Bouncepad Product signals: VESA Catalog..."
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best tablet mount for warehouse",
+      "category": "warehouse",
+      "coverageScore": 37,
+      "mentionQualityScore": 53,
+      "topPickRank": "5",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "Tackform",
+        "CTA Digital"
+      ],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "...ehouse Provider: ChatGPT Model: openai/gpt-4o Category: warehouse Coverage score: 37 Brand mentioned: true Target domain cited: false Top pick rank: 5 Competitors detected: RAM Mounts, Arkon, Tackform, CTA Digital Product signals: TabDock, BizMount, AMPS Catalog product aliases: iBOLT™ TabDock™ Bizmount™ AMPs Raw Answer When selecting a tablet mount for a warehouse setting, it's crucial to consider factors such as"
+    },
+    {
+      "provider": "ChatGPT",
+      "query": "best drill base phone mount for semi trucks",
+      "category": "fleet",
+      "coverageScore": 37,
+      "mentionQualityScore": 53,
+      "topPickRank": "4",
+      "coMentionedCompetitors": [
+        "RAM Mounts",
+        "Arkon",
+        "ProClip"
+      ],
+      "productSignals": [
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps"
+      ],
+      "positioningSignals": [
+        "durability",
+        "modular",
+        "budget/value",
+        "security"
+      ],
+      "snippet": "...ty and can handle the demands of daily trucking. - Installation style : Drill base installation ensures a secure fit, and the mount is adjustable to accommodate different phone sizes. - Tradeoffs : While durable, it may not offer the same level of adjustability as RAM Mounts. 4. iBOLT BizMount AMPS - Why it's recommended : This mount is designed for commercial vehicles and offers a strong and secure hold for large"
+    },
+    {
+      "provider": "Gemini",
+      "query": "ibolt phone mounts for DoorDash and Uber Eats drivers",
+      "category": "delivery",
+      "coverageScore": 45,
+      "mentionQualityScore": 49,
+      "topPickRank": "",
+      "coMentionedCompetitors": [],
+      "productSignals": [
+        "TabDock",
+        "BizMount",
+        "AMPS"
+      ],
+      "catalogProducts": [
+        "iBOLT™ TabDock™ Bizmount™ AMPs"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "modular",
+        "security"
+      ],
+      "snippet": "ibolt phone mounts for DoorDash and Uber Eats drivers Provider: Gemini Model: google/gemini-2.5-flash Category: delivery Coverage score: 45 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: Product signals: TabDock, BizMount, AMPS Catalog product al..."
+    },
+    {
+      "provider": "Gemini",
+      "query": "iBolt vs iOttie for delivery driving",
+      "category": "delivery",
+      "coverageScore": 35,
+      "mentionQualityScore": 46,
+      "topPickRank": "",
+      "coMentionedCompetitors": [
+        "iOttie",
+        "RAM Mounts"
+      ],
+      "productSignals": [
+        "xProDock",
+        "TabDock"
+      ],
+      "catalogProducts": [
+        "iBOLT™ xProDock™ Bizmount™ Amps",
+        "iBOLT Quad Tablet Tower TabDock™ Stand"
+      ],
+      "positioningSignals": [
+        "specialist",
+        "durability",
+        "security"
+      ],
+      "snippet": "iBolt vs iOttie for delivery driving Provider: Gemini Model: google/gemini-2.5-flash Category: delivery Coverage score: 35 Brand mentioned: true Target domain cited: false Top pick rank: Competitors detected: iOttie Product signals: xProDock, TabDock Catalog product aliases: Raw Answe..."
+    }
+  ]
+}

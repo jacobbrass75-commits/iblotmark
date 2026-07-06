@@ -1,0 +1,4 @@
+"provider","requests","pages","decisions","waves"
+"claude","78","21","Consolidate first 74; Rewrite or refresh 3; Source cleanup first 1","W2 top-page mention recovery 29; W5 non-branded buyer coverage 19; W4 product entity recognition 11; W3 citation probe 10; W1 Sprint 1 edit validation 9"
+"chatgpt","65","19","Consolidate first 63; Rewrite or refresh 2","W2 top-page mention recovery 19; W5 non-branded buyer coverage 18; W4 product entity recognition 11; W1 Sprint 1 edit validation 9; W3 citation probe 8"
+"gemini_plain","61","17","Consolidate first 61","W2 top-page mention recovery 18; W5 non-branded buyer coverage 17; W4 product entity recognition 11; W1 Sprint 1 edit validation 9; W3 citation probe 6"

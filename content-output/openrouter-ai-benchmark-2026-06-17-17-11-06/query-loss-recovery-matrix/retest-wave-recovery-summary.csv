@@ -1,0 +1,6 @@
+"wave","requests","queries","mapped_loss_queries","pages","categories","success_metric"
+"W1 Sprint 1 edit validation","27","9","3","3","restaurant; fleet; delivery","Competitor-only answer becomes iBOLT-included or top-3 iBOLT.; Exact iBOLT product/entity is named without hallucinated aliases."
+"W2 top-page mention recovery","66","29","17","13","restaurant; fishing; warehouse; fleet; delivery","Competitor-only answer becomes iBOLT-included or top-3 iBOLT."
+"W3 citation probe","24","10","0","10","restaurant; fishing; fleet; delivery; warehouse; amps/modular; streaming; offroad; education; agriculture","Target-domain citation or source-url row appears."
+"W4 product entity recognition","33","11","0","11","restaurant; fishing; warehouse; fleet; delivery","Exact iBOLT product/entity is named without hallucinated aliases."
+"W5 non-branded buyer coverage","54","19","0","13","restaurant; fishing; fleet; delivery; warehouse","Competitor-only answer becomes iBOLT-included or top-3 iBOLT."

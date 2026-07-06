@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="390" viewBox="0 0 900 390" role="img" aria-label="Expanded prompts by readiness state">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31" font-size="20" font-weight="800" fill="#0f172a">Expanded prompts by readiness state</text>
+<text x="16" y="75" font-size="13" fill="#334155">mapped lower-priority retest</text>
+<rect x="190" y="58" width="662" height="24" fill="#0f766e" rx="4"/>
+<text x="860" y="75" font-size="13" fill="#111827" font-weight="700">85</text>
+<text x="16" y="108" font-size="13" fill="#334155">new content or solution page needed</text>
+<rect x="190" y="91" width="460" height="24" fill="#0f766e" rx="4"/>
+<text x="658" y="108" font-size="13" fill="#111827" font-weight="700">59</text>
+<text x="16" y="141" font-size="13" fill="#334155">refresh then retest</text>
+<rect x="190" y="124" width="288" height="24" fill="#0f766e" rx="4"/>
+<text x="486" y="141" font-size="13" fill="#111827" font-weight="700">37</text>
+<text x="16" y="174" font-size="13" fill="#334155">canonical review before retest</text>
+<rect x="190" y="157" width="202" height="24" fill="#0f766e" rx="4"/>
+<text x="400" y="174" font-size="13" fill="#111827" font-weight="700">26</text>
+</svg>

@@ -1,0 +1,344 @@
+{"kind":"deck","id":"pr/lx3yvv","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/2x4nap4r","slide":1,"title":"iBOLT AI Visibility","textShapes":20}
+{"kind":"textbox","id":"sh/nap4r65w","slide":1,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[64,56,640,64]}
+{"kind":"textbox","id":"sh/cvixczed","slide":1,"text":"Where we are now, where competitors get cited, and the next refresh/citation sprint.","textPreview":"Where we are now, where competitors get cited, and the next refresh/citation sprint.","textChars":84,"textLines":1,"bbox":[68,132,760,58]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":1,"bbox":[850,48,330,112]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":1,"text":"Boss-ready update","textPreview":"Boss-ready update","textChars":17,"textLines":1,"bbox":[878,72,274,30]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"Benchmark + citations + content baseline","textPreview":"Benchmark + citations + content baseline","textChars":40,"textLines":1,"bbox":[878,112,274,30]}
+{"kind":"shape","id":"sh/cj6tovah","slide":1,"bbox":[64,248,250,132]}
+{"kind":"shape","id":"sh/54zidony","slide":1,"bbox":[64,248,250,6]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":1,"text":"40%","textPreview":"40%","textChars":3,"textLines":1,"bbox":[86,274,206,44]}
+{"kind":"textbox","id":"sh/judg7ads","slide":1,"text":"AI mention rate","textPreview":"AI mention rate","textChars":15,"textLines":1,"bbox":[86,322,206,22]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"Expanded benchmark baseline","textPreview":"Expanded benchmark baseline","textChars":27,"textLines":1,"bbox":[86,346,206,30]}
+{"kind":"shape","id":"sh/udg7adsj","slide":1,"bbox":[344,248,250,132]}
+{"kind":"shape","id":"sh/54zidony","slide":1,"bbox":[344,248,250,6]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":1,"text":"29%","textPreview":"29%","textChars":3,"textLines":1,"bbox":[366,274,206,44]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":1,"text":"Top-3 recommendation","textPreview":"Top-3 recommendation","textChars":20,"textLines":1,"bbox":[366,322,206,22]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":1,"text":"Still room to win buyer prompts","textPreview":"Still room to win buyer prompts","textChars":31,"textLines":1,"bbox":[366,346,206,30]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":1,"bbox":[624,248,250,132]}
+{"kind":"shape","id":"sh/cvixczed","slide":1,"bbox":[624,248,250,6]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":1,"text":"0%","textPreview":"0%","textChars":2,"textLines":1,"bbox":[646,274,206,44]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":1,"text":"Citation rate","textPreview":"Citation rate","textChars":13,"textLines":1,"bbox":[646,322,206,22]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":1,"text":"This is the next unlock","textPreview":"This is the next unlock","textChars":23,"textLines":1,"bbox":[646,346,206,30]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":1,"bbox":[904,248,250,132]}
+{"kind":"shape","id":"sh/kb6xkf6d","slide":1,"bbox":[904,248,250,6]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":1,"text":"211","textPreview":"211","textChars":3,"textLines":1,"bbox":[926,274,206,44]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":1,"text":"Indexed content base","textPreview":"Indexed content base","textChars":20,"textLines":1,"bbox":[926,322,206,22]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":1,"text":"Shopify articles in inventory","textPreview":"Shopify articles in inventory","textChars":29,"textLines":1,"bbox":[926,346,206,30]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":1,"bbox":[64,452,1090,118]}
+{"kind":"textbox","id":"sh/9knih4by","slide":1,"text":"The takeaway","textPreview":"The takeaway","textChars":12,"textLines":1,"bbox":[92,478,180,28]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":1,"text":"The blog system has moved iBOLT from barely visible to regularly mentioned. The next level is not just more posts. It is source authority: third-party citations, stronger solution hubs, schema, and a recurring unanswered-question scanner.","textPreview":"The blog system has moved iBOLT from barely visible to regularly mentioned. The next level is not just more posts. It is source authority...","textChars":238,"textLines":1,"bbox":[260,472,850,72]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":1,"text":"Internal benchmark + Shopify inventory snapshot; analytics metrics pending Shopify report access.","textPreview":"Internal benchmark + Shopify inventory snapshot; analytics metrics pending Shopify report access.","textChars":97,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":1,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/2x4nap4r","slide":1,"text":""}
+{"kind":"slide","id":"sl/pg3ex0nu","slide":2,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":19}
+{"kind":"textbox","id":"sh/yxobm58z","slide":2,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":2,"text":"What changed over time","textPreview":"What changed over time","textChars":22,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":2,"bbox":[64,138,1152,2]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":2,"text":"Benchmark movement shows that the content engine is working. The weak point is citations, not basic visibility.","textPreview":"Benchmark movement shows that the content engine is working. The weak point is citations, not basic visibility.","textChars":111,"textLines":1,"bbox":[64,158,980,42]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":2,"text":"Mention rate","textPreview":"Mention rate","textChars":12,"textLines":1,"bbox":[92,238,240,24]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":2,"text":"24%","textPreview":"24%","textChars":3,"textLines":1,"bbox":[344,238,52,24]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":2,"bbox":[412,242,610,14]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":2,"bbox":[412,242,292.8,14]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":2,"text":"40%","textPreview":"40%","textChars":3,"textLines":1,"bbox":[344,268,52,24]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":2,"bbox":[412,272,610,14]}
+{"kind":"shape","id":"sh/lwval87e","slide":2,"bbox":[412,272,488,14]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":2,"text":"Top-3 recommendation","textPreview":"Top-3 recommendation","textChars":20,"textLines":1,"bbox":[92,322,240,24]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":2,"text":"16%","textPreview":"16%","textChars":3,"textLines":1,"bbox":[344,322,52,24]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":2,"bbox":[412,326,610,14]}
+{"kind":"shape","id":"sh/loj2t83i","slide":2,"bbox":[412,326,195.2,14]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":2,"text":"29%","textPreview":"29%","textChars":3,"textLines":1,"bbox":[344,352,52,24]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":2,"bbox":[412,356,610,14]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":2,"bbox":[412,356,353.8,14]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":2,"text":"Competitor-only answers","textPreview":"Competitor-only answers","textChars":23,"textLines":1,"bbox":[92,406,240,24]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":2,"text":"73%","textPreview":"73%","textChars":3,"textLines":1,"bbox":[344,406,52,24]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":2,"bbox":[412,410,610,14]}
+{"kind":"shape","id":"sh/36hcrmhk","slide":2,"bbox":[412,410,556.62,14]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":2,"text":"57%","textPreview":"57%","textChars":3,"textLines":1,"bbox":[344,436,52,24]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":2,"bbox":[412,440,610,14]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":2,"bbox":[412,440,434.62,14]}
+{"kind":"textbox","id":"sh/7u54zido","slide":2,"text":"Citation rate","textPreview":"Citation rate","textChars":13,"textLines":1,"bbox":[92,490,240,24]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":2,"text":"0%","textPreview":"0%","textChars":2,"textLines":1,"bbox":[344,490,52,24]}
+{"kind":"shape","id":"sh/psfil0rq","slide":2,"bbox":[412,494,610,14]}
+{"kind":"shape","id":"sh/w7mp0bi9","slide":2,"bbox":[412,494,2,14]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":2,"text":"0%","textPreview":"0%","textChars":2,"textLines":1,"bbox":[344,520,52,24]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":2,"bbox":[412,524,610,14]}
+{"kind":"shape","id":"sh/obm58z25","slide":2,"bbox":[412,524,2,14]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":2,"bbox":[850,236,330,260]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":2,"text":"Reading the chart","textPreview":"Reading the chart","textChars":17,"textLines":1,"bbox":[878,260,270,30]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":2,"text":"- More AI answers now know iBOLT.\n- More answers place iBOLT in the recommendation set.\n- Competitor-only answers are down, but still high.\n- Citation remains the measurable gap to attack next.","textPreview":"- More AI answers now know iBOLT. | - More answers place iBOLT in the recommendation set. | - Competitor-only answers are down, but still...","textChars":193,"textLines":4,"bbox":[878,308,270,138]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":2,"text":"Sources: internal OpenRouter benchmark history and expanded benchmark pack.","textPreview":"Sources: internal OpenRouter benchmark history and expanded benchmark pack.","textChars":75,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":2,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/pg3ex0nu","slide":2,"text":""}
+{"kind":"slide","id":"sl/s72x4nap","slide":3,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":22}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":3,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":3,"text":"Why citation rate matters now","textPreview":"Why citation rate matters now","textChars":29,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/dsji5sne","slide":3,"bbox":[64,138,1152,2]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":3,"text":"Google says normal SEO foundations still matter for AI features: indexed pages, helpful content, internal links, textual content, matching structured data, Merchant Center, and Search Console measurement.","textPreview":"Google says normal SEO foundations still matter for AI features: indexed pages, helpful content, internal links, textual content, matchin...","textChars":204,"textLines":1,"bbox":[64,160,1080,58]}
+{"kind":"shape","id":"sh/vy90je9c","slide":3,"bbox":[82,292,230,130]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[100,312,34,34]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":3,"text":"Indexed content","textPreview":"Indexed content","textChars":15,"textLines":1,"bbox":[140,314,145,28]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":3,"text":"Can be found and crawled","textPreview":"Can be found and crawled","textChars":24,"textLines":1,"bbox":[106,366,182,46]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":3,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[324,338,34,34]}
+{"kind":"shape","id":"sh/vy90je9c","slide":3,"bbox":[360,292,230,130]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[378,312,34,34]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":3,"text":"Structured product data","textPreview":"Structured product data","textChars":23,"textLines":1,"bbox":[418,314,145,28]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":3,"text":"Clarifies price, availability, reviews","textPreview":"Clarifies price, availability, reviews","textChars":38,"textLines":1,"bbox":[384,366,182,46]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":3,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[602,338,34,34]}
+{"kind":"shape","id":"sh/61032lsz","slide":3,"bbox":[638,292,230,130]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[656,312,34,34]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":3,"text":"Third-party mentions","textPreview":"Third-party mentions","textChars":20,"textLines":1,"bbox":[696,314,145,28]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":3,"text":"Gives external proof and co-citation","textPreview":"Gives external proof and co-citation","textChars":36,"textLines":1,"bbox":[662,366,182,46]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":3,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[880,338,34,34]}
+{"kind":"shape","id":"sh/epkzupwb","slide":3,"bbox":[916,292,230,130]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":3,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[934,312,34,34]}
+{"kind":"textbox","id":"sh/wval87ed","slide":3,"text":"AI benchmark retest","textPreview":"AI benchmark retest","textChars":19,"textLines":1,"bbox":[974,314,145,28]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":3,"text":"Measures mention, rank, citation, sales","textPreview":"Measures mention, rank, citation, sales","textChars":39,"textLines":1,"bbox":[940,366,182,46]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":3,"bbox":[108,500,1000,78]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":3,"text":"Practical meaning","textPreview":"Practical meaning","textChars":17,"textLines":1,"bbox":[134,522,190,26]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":3,"text":"We should still publish and improve pages, but the big AEO/GEO test is whether trusted third-party surfaces start citing iBOLT for the same category language our pages use.","textPreview":"We should still publish and improve pages, but the big AEO/GEO test is whether trusted third-party surfaces start citing iBOLT for the sa...","textChars":172,"textLines":1,"bbox":[325,515,740,42]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":3,"text":"Sources: Google Search Central AI features guidance, Product structured data docs, Ahrefs AIO citation study.","textPreview":"Sources: Google Search Central AI features guidance, Product structured data docs, Ahrefs AIO citation study.","textChars":109,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":3,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/s72x4nap","slide":3,"text":""}
+{"kind":"slide","id":"sl/val87ed8","slide":4,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":23}
+{"kind":"textbox","id":"sh/1gvy90je","slide":4,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":4,"text":"Where competitors currently get trusted/cited","textPreview":"Where competitors currently get trusted/cited","textChars":45,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/je9cvixc","slide":4,"bbox":[64,138,1152,2]}
+{"kind":"shape","id":"sh/87ed8bat","slide":4,"bbox":[64,168,1110,410]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":4,"text":"Brand","textPreview":"Brand","textChars":5,"textLines":1,"bbox":[92,194,150,24]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":4,"text":"Citation/source surfaces","textPreview":"Citation/source surfaces","textChars":24,"textLines":1,"bbox":[270,194,430,24]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":4,"text":"Why AI can trust it","textPreview":"Why AI can trust it","textChars":19,"textLines":1,"bbox":[745,194,330,24]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":4,"bbox":[92,224,1030,1]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":4,"text":"RAM","textPreview":"RAM","textChars":3,"textLines":1,"bbox":[92,234,150,44]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":4,"text":"Industry hubs, ELD, fishfinder, catalogs, case studies","textPreview":"Industry hubs, ELD, fishfinder, catalogs, case studies","textChars":54,"textLines":1,"bbox":[270,234,430,44]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":4,"text":"Official taxonomy + compatibility depth","textPreview":"Official taxonomy + compatibility depth","textChars":39,"textLines":1,"bbox":[745,234,345,44]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":4,"bbox":[92,290,1030,1]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":4,"text":"Arkon","textPreview":"Arkon","textChars":5,"textLines":1,"bbox":[92,300,150,44]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":4,"text":"AMPS explainer, POS, forklift, creator examples","textPreview":"AMPS explainer, POS, forklift, creator examples","textChars":47,"textLines":1,"bbox":[270,300,430,44]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":4,"text":"Owns educational AMPS language","textPreview":"Owns educational AMPS language","textChars":30,"textLines":1,"bbox":[745,300,345,44]}
+{"kind":"shape","id":"sh/j2t83itg","slide":4,"bbox":[92,356,1030,1]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":4,"text":"ProClip/Havis","textPreview":"ProClip/Havis","textChars":13,"textLines":1,"bbox":[92,366,150,44]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":4,"text":"Fitment, fleet, rugged tablet/docking pages","textPreview":"Fitment, fleet, rugged tablet/docking pages","textChars":43,"textLines":1,"bbox":[270,366,430,44]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":4,"text":"Commercial specificity and device fit","textPreview":"Commercial specificity and device fit","textChars":37,"textLines":1,"bbox":[745,366,345,44]}
+{"kind":"shape","id":"sh/sfil0rqd","slide":4,"bbox":[92,422,1030,1]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":4,"text":"iOttie","textPreview":"iOttie","textChars":6,"textLines":1,"bbox":[92,432,150,44]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":4,"text":"Publisher reviews and best-phone-mount roundups","textPreview":"Publisher reviews and best-phone-mount roundups","textChars":47,"textLines":1,"bbox":[270,432,430,44]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":4,"text":"Third-party consumer proof","textPreview":"Third-party consumer proof","textChars":26,"textLines":1,"bbox":[745,432,345,44]}
+{"kind":"shape","id":"sh/orytsvu9","slide":4,"bbox":[92,488,1030,1]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":4,"text":"YakAttack/Scotty/Garmin","textPreview":"YakAttack/Scotty/Garmin","textChars":23,"textLines":1,"bbox":[92,498,150,44]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":4,"text":"Marine compatibility, forums, YouTube","textPreview":"Marine compatibility, forums, YouTube","textChars":37,"textLines":1,"bbox":[270,498,430,44]}
+{"kind":"textbox","id":"sh/z61032ls","slide":4,"text":"Fish finder and kayak/pontoon vocabulary","textPreview":"Fish finder and kayak/pontoon vocabulary","textChars":40,"textLines":1,"bbox":[745,498,345,44]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":4,"text":"iBOLT play: match the official source coverage, then get external pages to repeat the same entity/category language.","textPreview":"iBOLT play: match the official source coverage, then get external pages to repeat the same entity/category language.","textChars":116,"textLines":1,"bbox":[108,604,920,30]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":4,"text":"Research packet: content-output/competitor-citation-research-2026-06-24/","textPreview":"Research packet: content-output/competitor-citation-research-2026-06-24/","textChars":72,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":4,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/val87ed8","slide":4,"text":""}
+{"kind":"slide","id":"sl/mlkjm1cf","slide":5,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":16}
+{"kind":"textbox","id":"sh/vahoza1g","slide":5,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":5,"text":"What competitors have that iBOLT should build next","textPreview":"What competitors have that iBOLT should build next","textChars":50,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/dg7adsji","slide":5,"bbox":[64,138,1152,2]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":5,"bbox":[64,174,330,154]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":5,"text":"Vertical solution hubs","textPreview":"Vertical solution hubs","textChars":22,"textLines":1,"bbox":[86,196,286,32]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":5,"text":"Restaurant tablets, forklift tablets, ELD/fleet, marine fish finder, live streaming","textPreview":"Restaurant tablets, forklift tablets, ELD/fleet, marine fish finder, live streaming","textChars":83,"textLines":1,"bbox":[86,244,286,62]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":5,"bbox":[454,174,330,154]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":5,"text":"Compatibility pages","textPreview":"Compatibility pages","textChars":19,"textLines":1,"bbox":[476,196,286,32]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":5,"text":"Garmin, Lowrance, Humminbird, Zebra, Samsung Tab Active, iPad, delivery vans","textPreview":"Garmin, Lowrance, Humminbird, Zebra, Samsung Tab Active, iPad, delivery vans","textChars":76,"textLines":1,"bbox":[476,244,286,62]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":5,"bbox":[844,174,330,154]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":5,"text":"Shared KPI: more mentions and citations, fewer competitor-only answers, more assisted checkouts.","textPreview":"Shared KPI: more mentions and citations, fewer competitor-only answers, more assisted checkouts.","textChars":96,"textLines":1,"bbox":[236,570,808,24]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":5,"text":"Product, Offer, FAQ, Article, HowTo, Organization, Breadcrumb where appropriate","textPreview":"Product, Offer, FAQ, Article, HowTo, Organization, Breadcrumb where appropriate","textChars":79,"textLines":1,"bbox":[866,244,286,62]}
+{"kind":"shape","id":"sh/gbq1oryt","slide":5,"bbox":[64,386,330,154]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":5,"text":"External proof","textPreview":"External proof","textChars":14,"textLines":1,"bbox":[86,408,286,32]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":5,"text":"Review roundups, trade publications, partner listings, reseller pages, marketplace content","textPreview":"Review roundups, trade publications, partner listings, reseller pages, marketplace content","textChars":90,"textLines":1,"bbox":[86,456,286,62]}
+{"kind":"shape","id":"sh/58z25kb6","slide":5,"bbox":[454,386,330,154]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":5,"text":"Video transcripts","textPreview":"Video transcripts","textChars":17,"textLines":1,"bbox":[476,408,286,32]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":5,"text":"Install demos, comparison demos, real use-case walkthroughs with searchable text","textPreview":"Install demos, comparison demos, real use-case walkthroughs with searchable text","textChars":80,"textLines":1,"bbox":[476,456,286,62]}
+{"kind":"shape","id":"sh/ytsvu9kn","slide":5,"bbox":[844,386,330,154]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":5,"text":"Benchmark feedback loop","textPreview":"Benchmark feedback loop","textChars":23,"textLines":1,"bbox":[866,408,286,32]}
+{"kind":"textbox","id":"sh/vixczed8","slide":5,"text":"Every miss becomes a page refresh, new guide, or citation outreach target","textPreview":"Every miss becomes a page refresh, new guide, or citation outreach target","textChars":73,"textLines":1,"bbox":[866,456,286,62]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":5,"text":"Source pattern inferred from competitor official pages, marketplaces, review sites, forums, and video surfaces.","textPreview":"Source pattern inferred from competitor official pages, marketplaces, review sites, forums, and video surfaces.","textChars":111,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":5,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/mlkjm1cf","slide":5,"text":""}
+{"kind":"slide","id":"sl/58z25kb6","slide":6,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":20}
+{"kind":"textbox","id":"sh/9cvixcze","slide":6,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":6,"text":"Current content baseline is now captured","textPreview":"Current content baseline is now captured","textChars":40,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/r65wjudg","slide":6,"bbox":[64,138,1152,2]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":6,"bbox":[64,178,230,132]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":6,"bbox":[64,178,230,6]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":6,"text":"211","textPreview":"211","textChars":3,"textLines":1,"bbox":[86,204,186,44]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":6,"text":"Shopify articles","textPreview":"Shopify articles","textChars":16,"textLines":1,"bbox":[86,252,186,22]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":6,"text":"Inventory snapshot","textPreview":"Inventory snapshot","textChars":18,"textLines":1,"bbox":[86,276,186,30]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":6,"bbox":[322,178,230,132]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":6,"bbox":[322,178,230,6]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":6,"text":"142","textPreview":"142","textChars":3,"textLines":1,"bbox":[344,204,186,44]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":6,"text":"Action rows","textPreview":"Action rows","textChars":11,"textLines":1,"bbox":[344,252,186,22]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":6,"text":"Pages in control sheet","textPreview":"Pages in control sheet","textChars":22,"textLines":1,"bbox":[344,276,186,30]}
+{"kind":"shape","id":"sh/dg7adsji","slide":6,"bbox":[580,178,230,132]}
+{"kind":"shape","id":"sh/ovahoza1","slide":6,"bbox":[580,178,230,6]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":6,"text":"517","textPreview":"517","textChars":3,"textLines":1,"bbox":[602,204,186,44]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":6,"text":"Weak questions","textPreview":"Weak questions","textChars":14,"textLines":1,"bbox":[602,252,186,22]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":6,"text":"Scanner candidates","textPreview":"Scanner candidates","textChars":18,"textLines":1,"bbox":[602,276,186,30]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":6,"bbox":[838,178,230,132]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":6,"bbox":[838,178,230,6]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":6,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[860,204,186,44]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":6,"text":"Vertical groups","textPreview":"Vertical groups","textChars":15,"textLines":1,"bbox":[860,252,186,22]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":6,"text":"Subject coverage rows","textPreview":"Subject coverage rows","textChars":21,"textLines":1,"bbox":[860,276,186,30]}
+{"kind":"shape","id":"sh/gvy90je9","slide":6,"bbox":[64,372,512,178]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":6,"text":"Baseline file saved","textPreview":"Baseline file saved","textChars":19,"textLines":1,"bbox":[92,396,280,30]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":6,"text":"- Article IDs and URLs\n- Product-link and add-to-cart counts\n- Image counts and body size\n- Known benchmark gaps and refresh priority","textPreview":"- Article IDs and URLs | - Product-link and add-to-cart counts | - Image counts and body size | - Known benchmark gaps and refresh priority","textChars":133,"textLines":4,"bbox":[92,442,420,86]}
+{"kind":"shape","id":"sh/ra5gbq1o","slide":6,"bbox":[632,372,512,178]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":6,"text":"Shopify analytics status","textPreview":"Shopify analytics status","textChars":24,"textLines":1,"bbox":[660,396,300,30]}
+{"kind":"textbox","id":"sh/9knih4by","slide":6,"text":"The in-app browser reached Shopify login, and the current API token does not expose read_reports. We can fill sessions, add-to-cart, checkout, and revenue once logged in or with a Shopify/GA4/GSC export.","textPreview":"The in-app browser reached Shopify login, and the current API token does not expose read_reports. We can fill sessions, add-to-cart, chec...","textChars":203,"textLines":1,"bbox":[660,442,430,76]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":6,"text":"Baseline: content-output/unanswered-question-scanner-2026-06-24/baseline-performance-snapshot.csv","textPreview":"Baseline: content-output/unanswered-question-scanner-2026-06-24/baseline-performance-snapshot.csv","textChars":97,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":6,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/58z25kb6","slide":6,"text":""}
+{"kind":"slide","id":"sl/0z61032l","slide":7,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":9}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":7,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":7,"text":"Top 10 pages to refresh first","textPreview":"Top 10 pages to refresh first","textChars":29,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":7,"bbox":[64,138,1152,2]}
+{"kind":"shape","id":"sh/fa9w3m94","slide":7,"bbox":[64,170,544,318]}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":7,"bbox":[672,170,544,318]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":7,"text":"Highest current priority","textPreview":"Highest current priority","textChars":24,"textLines":1,"bbox":[92,198,420,30]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":7,"text":"- 1. Restaurant Tablet Mount 2026\n- 2. Construction Vehicles and Work Trucks\n- 3. Garmin Fish Finder Mount\n- 4. Tablet Mount for Restaurant POS\n- 5. Locking Tablet Stand for Food Trucks","textPreview":"- 1. Restaurant Tablet Mount 2026 | - 2. Construction Vehicles and Work Trucks | - 3. Garmin Fish Finder Mount | - 4. Tablet Mount for Re...","textChars":185,"textLines":5,"bbox":[92,246,464,184]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":7,"text":"Next priority","textPreview":"Next priority","textChars":13,"textLines":1,"bbox":[700,198,420,30]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":7,"text":"- 6. Amazon Flex and Delivery Vans\n- 7. Commercial-Grade Delivery Mounts\n- 8. Locking Phone Mount for Shared Vehicles\n- 9. Instacart and Grocery Delivery Drivers\n- 10. Fish Finder Mount for Pontoon Rails","textPreview":"- 6. Amazon Flex and Delivery Vans | - 7. Commercial-Grade Delivery Mounts | - 8. Locking Phone Mount for Shared Vehicles | - 9. Instacar...","textChars":203,"textLines":5,"bbox":[700,246,464,184]}
+{"kind":"shape","id":"sh/svu9knih","slide":7,"bbox":[64,536,1152,70]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":7,"text":"Refresh recipe: quick-answer block near the top, comparison table, product fit table, FAQ schema, cleaner CTA density, internal links, and one citation/outreach target per page.","textPreview":"Refresh recipe: quick-answer block near the top, comparison table, product fit table, FAQ schema, cleaner CTA density, internal links, an...","textChars":177,"textLines":1,"bbox":[92,558,1080,28]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":7,"text":"Top 10 from unanswered-question scanner and blog action control sheet.","textPreview":"Top 10 from unanswered-question scanner and blog action control sheet.","textChars":70,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":7,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/0z61032l","slide":7,"text":""}
+{"kind":"slide","id":"sl/fu18jqh0","slide":8,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":22}
+{"kind":"textbox","id":"sh/1032lszq","slide":8,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":8,"text":"Unanswered-question scanner is now built","textPreview":"Unanswered-question scanner is now built","textChars":40,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/judg7ads","slide":8,"bbox":[64,138,1152,2]}
+{"kind":"shape","id":"sh/c7u54zid","slide":8,"bbox":[72,196,200,138]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":8,"text":"Benchmark misses","textPreview":"Benchmark misses","textChars":16,"textLines":1,"bbox":[90,216,164,34]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":8,"text":"Prompts where iBOLT is absent, weak, or uncited","textPreview":"Prompts where iBOLT is absent, weak, or uncited","textChars":47,"textLines":1,"bbox":[90,264,164,48]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":8,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[280,242,34,30]}
+{"kind":"shape","id":"sh/cvixczed","slide":8,"bbox":[302,196,200,138]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":8,"text":"Buyer language","textPreview":"Buyer language","textChars":14,"textLines":1,"bbox":[320,216,164,34]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":8,"text":"New enriched questions and product wording","textPreview":"New enriched questions and product wording","textChars":42,"textLines":1,"bbox":[320,264,164,48]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":8,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[510,242,34,30]}
+{"kind":"shape","id":"sh/j2t83itg","slide":8,"bbox":[532,196,200,138]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":8,"text":"Inventory state","textPreview":"Inventory state","textChars":15,"textLines":1,"bbox":[550,216,164,34]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":8,"text":"Published article IDs, URLs, link counts","textPreview":"Published article IDs, URLs, link counts","textChars":40,"textLines":1,"bbox":[550,264,164,48]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":8,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[740,242,34,30]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":8,"bbox":[762,196,200,138]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":8,"text":"Scored backlog","textPreview":"Scored backlog","textChars":14,"textLines":1,"bbox":[780,216,164,34]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":8,"text":"Refresh, create, compare, or outreach action","textPreview":"Refresh, create, compare, or outreach action","textChars":44,"textLines":1,"bbox":[780,264,164,48]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":8,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[970,242,34,30]}
+{"kind":"shape","id":"sh/orytsvu9","slide":8,"bbox":[992,196,200,138]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":8,"text":"Baseline file","textPreview":"Baseline file","textChars":13,"textLines":1,"bbox":[1010,216,164,34]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":8,"text":"A/B comparison before and after edits","textPreview":"A/B comparison before and after edits","textChars":37,"textLines":1,"bbox":[1010,264,164,48]}
+{"kind":"shape","id":"sh/z61032ls","slide":8,"bbox":[118,420,460,112]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":8,"text":"Repeatable command","textPreview":"Repeatable command","textChars":18,"textLines":1,"bbox":[148,446,300,24]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":8,"text":"npm run scan:unanswered-questions","textPreview":"npm run scan:unanswered-questions","textChars":33,"textLines":1,"bbox":[148,482,360,28]}
+{"kind":"shape","id":"sh/a9w3m94f","slide":8,"bbox":[644,420,460,112]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":8,"text":"Output folder","textPreview":"Output folder","textChars":13,"textLines":1,"bbox":[674,446,300,24]}
+{"kind":"textbox","id":"sh/obm58z25","slide":8,"text":"content-output/unanswered-question-scanner-2026-06-24","textPreview":"content-output/unanswered-question-scanner-2026-06-24","textChars":53,"textLines":1,"bbox":[674,482,390,28]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":8,"text":"Script added: scripts/build-unanswered-question-scanner.mjs","textPreview":"Script added: scripts/build-unanswered-question-scanner.mjs","textChars":59,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/7u54zido","slide":8,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/fu18jqh0","slide":8,"text":""}
+{"kind":"slide","id":"sl/qh0fepkz","slide":9,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":9}
+{"kind":"textbox","id":"sh/vahoza1g","slide":9,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":9,"text":"How we coordinate with the SEO contractor","textPreview":"How we coordinate with the SEO contractor","textChars":41,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/dg7adsji","slide":9,"bbox":[64,138,1152,2]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":9,"bbox":[64,176,532,330]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":9,"text":"iBOLT Mark / internal system","textPreview":"iBOLT Mark / internal system","textChars":28,"textLines":1,"bbox":[96,204,420,30]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":9,"text":"- Run benchmarks and scanner\n- Refresh pages and build new solution hubs\n- Add schema and product/entity links\n- Record baseline and retest results\n- Generate briefs for outreach targets","textPreview":"- Run benchmarks and scanner | - Refresh pages and build new solution hubs | - Add schema and product/entity links | - Record baseline an...","textChars":186,"textLines":5,"bbox":[96,260,430,170]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":9,"bbox":[684,176,532,330]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":9,"text":"SEO contractor / external proof","textPreview":"SEO contractor / external proof","textChars":31,"textLines":1,"bbox":[716,204,420,30]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":9,"text":"- Pitch review and roundup placements\n- Secure trade/industry mentions\n- Build partner and reseller citations\n- Support backlinks to refreshed hubs\n- Report links earned and anchor context","textPreview":"- Pitch review and roundup placements | - Secure trade/industry mentions | - Build partner and reseller citations | - Support backlinks t...","textChars":188,"textLines":5,"bbox":[716,260,430,170]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":9,"bbox":[206,552,868,54]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":9,"text":"Shared KPI: mentions + citations up, competitor-only answers down, assisted checkouts up.","textPreview":"Shared KPI: mentions + citations up, competitor-only answers down, assisted checkouts up.","textChars":89,"textLines":1,"bbox":[234,570,812,22]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":9,"text":"Operating model based on benchmark misses, citation research, and contractor handoff needs.","textPreview":"Operating model based on benchmark misses, citation research, and contractor handoff needs.","textChars":91,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":9,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/qh0fepkz","slide":9,"text":""}
+{"kind":"slide","id":"sl/29gr2p8n","slide":10,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":11}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":10,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":10,"text":"Recommended 30/60/90 day plan","textPreview":"Recommended 30/60/90 day plan","textChars":29,"textLines":1,"bbox":[64,68,980,70]}
+{"kind":"shape","id":"sh/gvy90je9","slide":10,"bbox":[64,138,1152,2]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":10,"bbox":[64,180,350,338]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":10,"bbox":[64,180,350,8]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":10,"text":"Next 30 days","textPreview":"Next 30 days","textChars":12,"textLines":1,"bbox":[90,212,280,34]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":10,"text":"- Refresh top 10 pages\n- Launch scanner cadence\n- Fix analytics access\n- Build citation outreach packet","textPreview":"- Refresh top 10 pages | - Launch scanner cadence | - Fix analytics access | - Build citation outreach packet","textChars":103,"textLines":4,"bbox":[90,278,286,154]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":10,"bbox":[462,180,350,338]}
+{"kind":"shape","id":"sh/25kb6xkf","slide":10,"bbox":[462,180,350,8]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":10,"text":"Next 60 days","textPreview":"Next 60 days","textChars":12,"textLines":1,"bbox":[488,212,280,34]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":10,"text":"- Publish missing solution hubs\n- Run paid/editorial citation test\n- Add compatibility pages\n- Retest benchmark every 2 weeks","textPreview":"- Publish missing solution hubs | - Run paid/editorial citation test | - Add compatibility pages | - Retest benchmark every 2 weeks","textChars":125,"textLines":4,"bbox":[488,278,286,154]}
+{"kind":"shape","id":"sh/m94fu18j","slide":10,"bbox":[860,180,350,338]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":10,"bbox":[860,180,350,8]}
+{"kind":"textbox","id":"sh/83itgfml","slide":10,"text":"Next 90 days","textPreview":"Next 90 days","textChars":12,"textLines":1,"bbox":[886,212,280,34]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":10,"text":"- Scale winning verticals\n- Compare traffic/add-to-cart lift\n- Expand videos/transcripts\n- Decide ongoing weekly publishing pace","textPreview":"- Scale winning verticals | - Compare traffic/add-to-cart lift | - Expand videos/transcripts | - Decide ongoing weekly publishing pace","textChars":128,"textLines":4,"bbox":[886,278,286,154]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":10,"bbox":[124,566,1032,54]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":10,"text":"Decision asks: approve analytics access, approve the 10-page refresh sprint, and approve one controlled citation placement test by vertical.","textPreview":"Decision asks: approve analytics access, approve the 10-page refresh sprint, and approve one controlled citation placement test by vertical.","textChars":140,"textLines":1,"bbox":[152,583,976,24]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":10,"text":"Plan ties content production, analytics, benchmark retesting, and external citation acquisition into one loop.","textPreview":"Plan ties content production, analytics, benchmark retesting, and external citation acquisition into one loop.","textChars":110,"textLines":1,"bbox":[64,686,930,22]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":10,"text":"Updated June 24, 2026","textPreview":"Updated June 24, 2026","textChars":21,"textLines":1,"bbox":[1048,686,168,22]}
+{"kind":"notes","id":"nt/29gr2p8n","slide":10,"text":""}
+{"kind":"slide","id":"sl/re1w7mp0","slide":11,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":17}
+{"kind":"textbox","id":"sh/dg7adsji","slide":11,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":11,"text":"How much did blogs contribute to ChatGPT sales?","textPreview":"How much did blogs contribute to ChatGPT sales?","textChars":47,"textLines":1,"bbox":[64,72,1040,68]}
+{"kind":"shape","id":"sh/vahoza1g","slide":11,"bbox":[64,150,1152,2]}
+{"kind":"shape","id":"sh/onyd0z61","slide":11,"bbox":[64,200,340,174]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":11,"text":"$1,107.97","textPreview":"$1,107.97","textChars":9,"textLines":1,"bbox":[88,226,292,50]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":11,"text":"ChatGPT sales since Apr 1","textPreview":"ChatGPT sales since Apr 1","textChars":25,"textLines":1,"bbox":[88,282,292,26]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":11,"text":"18 last-click orders attributed to chatgpt.com in Shopify.","textPreview":"18 last-click orders attributed to chatgpt.com in Shopify.","textChars":58,"textLines":1,"bbox":[88,314,292,42]}
+{"kind":"shape","id":"sh/oj2t83it","slide":11,"bbox":[470,200,340,174]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":11,"text":"$0 direct","textPreview":"$0 direct","textChars":9,"textLines":1,"bbox":[494,226,292,50]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":11,"text":"Direct blog landing sales","textPreview":"Direct blog landing sales","textChars":25,"textLines":1,"bbox":[494,282,292,26]}
+{"kind":"textbox","id":"sh/sji5snel","slide":11,"text":"27 ChatGPT sessions landed on blog pages; 0 cart adds, 0 checkouts, 0% conversion.","textPreview":"27 ChatGPT sessions landed on blog pages; 0 cart adds, 0 checkouts, 0% conversion.","textChars":82,"textLines":1,"bbox":[494,314,292,48]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":11,"bbox":[876,200,340,174]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":11,"text":"10-25%","textPreview":"10-25%","textChars":6,"textLines":1,"bbox":[900,226,292,50]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":11,"text":"Likely assisted influence","textPreview":"Likely assisted influence","textChars":25,"textLines":1,"bbox":[900,282,292,26]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":11,"text":"Directional estimate only: blogs help AI understand iBOLT, but Shopify does not prove them as direct closers yet.","textPreview":"Directional estimate only: blogs help AI understand iBOLT, but Shopify does not prove them as direct closers yet.","textChars":113,"textLines":1,"bbox":[900,314,292,52]}
+{"kind":"shape","id":"sh/3m94fu18","slide":11,"bbox":[64,420,720,148]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":11,"text":"What this means","textPreview":"What this means","textChars":15,"textLines":1,"bbox":[92,444,240,28]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":11,"text":"The current revenue is mostly product/category-page traffic from ChatGPT, not direct blog landings. The blog engine still matters because it builds the language, comparisons, FAQs, and internal links that help AI systems decide what iBOLT is relevant for.","textPreview":"The current revenue is mostly product/category-page traffic from ChatGPT, not direct blog landings. The blog engine still matters because...","textChars":255,"textLines":1,"bbox":[92,482,650,64]}
+{"kind":"shape","id":"sh/s36hcrmh","slide":11,"bbox":[824,420,392,148]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":11,"text":"Next measurement step","textPreview":"Next measurement step","textChars":21,"textLines":1,"bbox":[852,444,320,28]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":11,"text":"Track blog-assisted paths: blog -> product click -> cart/checkout, plus AI source sessions by hub/product page every week.","textPreview":"Track blog-assisted paths: blog -> product click -> cart/checkout, plus AI source sessions by hub/product page every week.","textChars":122,"textLines":1,"bbox":[852,482,320,62]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":11,"text":"Hard data source: ShopifyQL reports captured Apr 1-Jun 24, 2026. Blog direct attribution = ChatGPT source + /blogs/ landing page filter.","textPreview":"Hard data source: ShopifyQL reports captured Apr 1-Jun 24, 2026. Blog direct attribution = ChatGPT source + /blogs/ landing page filter.","textChars":136,"textLines":1,"bbox":[64,636,930,26]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":11,"text":"Updated June 25, 2026","textPreview":"Updated June 25, 2026","textChars":21,"textLines":1,"bbox":[1048,636,168,26]}
+{"kind":"notes","id":"nt/re1w7mp0","slide":11,"text":""}
+{"kind":"slide","id":"sl/1ljflm","slide":12,"title":"IBOLT AI VISIBILITY PROGRAM","textShapes":28}
+{"kind":"textbox","id":"sh/svu9knih","slide":12,"text":"IBOLT AI VISIBILITY PROGRAM","textPreview":"IBOLT AI VISIBILITY PROGRAM","textChars":27,"textLines":1,"bbox":[64,34,520,24]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":12,"text":"Did ChatGPT revenue go up after the blog push?","textPreview":"Did ChatGPT revenue go up after the blog push?","textChars":46,"textLines":1,"bbox":[64,72,1040,68]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":12,"bbox":[64,150,1152,2]}
+{"kind":"shape","id":"sh/hoza1gvy","slide":12,"bbox":[64,196,330,162]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":12,"text":"$547.90","textPreview":"$547.90","textChars":7,"textLines":1,"bbox":[88,222,282,48]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":12,"text":"Before blog push","textPreview":"Before blog push","textChars":16,"textLines":1,"bbox":[88,278,282,26]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":12,"text":"Apr 1-May 14: 9 ChatGPT last-click orders, about $12.45/day.","textPreview":"Apr 1-May 14: 9 ChatGPT last-click orders, about $12.45/day.","textChars":60,"textLines":1,"bbox":[88,310,282,38]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":12,"bbox":[474,196,330,162]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":12,"text":"$560.07","textPreview":"$560.07","textChars":7,"textLines":1,"bbox":[498,222,282,48]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":12,"text":"After blog push","textPreview":"After blog push","textChars":15,"textLines":1,"bbox":[498,278,282,26]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":12,"text":"May 15-Jun 24: 9 ChatGPT last-click orders, about $13.66/day.","textPreview":"May 15-Jun 24: 9 ChatGPT last-click orders, about $13.66/day.","textChars":61,"textLines":1,"bbox":[498,310,282,38]}
+{"kind":"shape","id":"sh/0je9cvix","slide":12,"bbox":[884,196,330,162]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":12,"text":"+10%","textPreview":"+10%","textChars":4,"textLines":1,"bbox":[908,222,282,48]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":12,"text":"Daily revenue lift","textPreview":"Daily revenue lift","textChars":18,"textLines":1,"bbox":[908,278,282,26]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":12,"text":"Early positive signal, but not enough to prove blog causation by itself.","textPreview":"Early positive signal, but not enough to prove blog causation by itself.","textChars":72,"textLines":1,"bbox":[908,310,282,42]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":12,"bbox":[64,406,650,166]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":12,"text":"Monthly ChatGPT sales trend","textPreview":"Monthly ChatGPT sales trend","textChars":27,"textLines":1,"bbox":[92,428,400,26]}
+{"kind":"shape","id":"sh/ixczed8v","slide":12,"bbox":[96,513.1,58,22.9]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":12,"text":"Jan","textPreview":"Jan","textChars":3,"textLines":1,"bbox":[88,544,74,18]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":12,"text":"$257","textPreview":"$257","textChars":4,"textLines":1,"bbox":[86,493.1,78,18]}
+{"kind":"shape","id":"sh/a1gvy90j","slide":12,"bbox":[190,506.51,58,29.49]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":12,"text":"Feb","textPreview":"Feb","textChars":3,"textLines":1,"bbox":[182,544,74,18]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":12,"text":"$331","textPreview":"$331","textChars":4,"textLines":1,"bbox":[180,486.51,78,18]}
+{"kind":"shape","id":"sh/za1gvy90","slide":12,"bbox":[284,494.2,58,41.8]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":12,"text":"Mar","textPreview":"Mar","textChars":3,"textLines":1,"bbox":[276,544,74,18]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":12,"text":"$470","textPreview":"$470","textChars":4,"textLines":1,"bbox":[274,474.2,78,18]}
+{"kind":"shape","id":"sh/svu9knih","slide":12,"bbox":[378,514.67,58,21.33]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":12,"text":"Apr","textPreview":"Apr","textChars":3,"textLines":1,"bbox":[370,544,74,18]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":12,"text":"$240","textPreview":"$240","textChars":4,"textLines":1,"bbox":[368,494.67,78,18]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":12,"bbox":[472,464,58,72]}
+{"kind":"textbox","id":"sh/d0z61032","slide":12,"text":"May","textPreview":"May","textChars":3,"textLines":1,"bbox":[464,544,74,18]}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":12,"text":"$809","textPreview":"$809","textChars":4,"textLines":1,"bbox":[462,444,78,18]}
+{"kind":"shape","id":"sh/vu9knih4","slide":12,"bbox":[566,530,58,6]}
+{"kind":"textbox","id":"sh/knih4byh","slide":12,"text":"Jun MTD","textPreview":"Jun MTD","textChars":7,"textLines":1,"bbox":[558,544,74,18]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":12,"text":"$59","textPreview":"$59","textChars":3,"textLines":1,"bbox":[556,510,78,18]}
+{"kind":"shape","id":"sh/2lszqtcj","slide":12,"bbox":[764,406,452,166]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":12,"text":"Answer for Katie","textPreview":"Answer for Katie","textChars":16,"textLines":1,"bbox":[792,430,340,26]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":12,"text":"Yes, ChatGPT revenue is up slightly after the blog push on a daily basis, and May was the standout month. But the evidence says this is correlation, not proof. To prove blog contribution, we need blog-to-product click tracking and assisted conversion reporting.","textPreview":"Yes, ChatGPT revenue is up slightly after the blog push on a daily basis, and May was the standout month. But the evidence says this is c...","textChars":261,"textLines":1,"bbox":[792,468,374,78]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":12,"text":"Hard data source: ShopifyQL last-click sales reports. Cutoff uses May 15, 2026 as the first visible new blog batch.","textPreview":"Hard data source: ShopifyQL last-click sales reports. Cutoff uses May 15, 2026 as the first visible new blog batch.","textChars":115,"textLines":1,"bbox":[64,636,930,26]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":12,"text":"Updated June 25, 2026","textPreview":"Updated June 25, 2026","textChars":21,"textLines":1,"bbox":[1048,636,168,26]}
+{"kind":"notes","id":"nt/1ljflm","slide":12,"text":""}

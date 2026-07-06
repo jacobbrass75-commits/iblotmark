@@ -31,11 +31,33 @@ async function api(method, path, body) {
   const res = await fetch(`${BACKEND}${path}`, opts);
   if (!res.ok) {
     const text = await res.text().catch(() => "");
-    throw new Error(`${method} ${path} → ${res.status}: ${text.slice(0, 300)}`);
+    const error = new Error(`${method} ${path} → ${res.status}: ${text.slice(0, 300)}`);
+    error.status = res.status;
+    error.body = text;
+    throw error;
   }
   const ct = res.headers.get("content-type") ?? "";
   if (ct.includes("application/json")) return res.json();
   return res.text();
+}
+
+function isMissingApiRouteError(error) {
+  return error?.status === 404
+    && typeof error?.body === "string"
+    && error.body.includes("API route not found");
+}
+
+async function apiWithRouteFallback(method, paths, body) {
+  let lastError;
+  for (const path of paths) {
+    try {
+      return await api(method, path, body);
+    } catch (error) {
+      lastError = error;
+      if (!isMissingApiRouteError(error)) throw error;
+    }
+  }
+  throw lastError;
 }
 
 async function apiSSE(method, path, body, timeoutMs = 300_000) {
@@ -121,6 +143,26 @@ function ok(data) {
 }
 function err(msg) {
   return { isError: true, content: [{ type: "text", text: msg }] };
+}
+
+function isPlainObject(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function bodyWithOptions(input) {
+  const { options, ...fields } = input ?? {};
+  if (options !== undefined && !isPlainObject(options)) {
+    throw new Error("options must be a JSON object when provided");
+  }
+  const body = options ? { ...options } : {};
+  for (const [key, value] of Object.entries(fields)) {
+    if (value !== undefined && value !== null && value !== "") body[key] = value;
+  }
+  return body;
+}
+
+function serviceOpsPath(path) {
+  return `/api/blog/service-ops${path}`;
 }
 
 // ── MCP Server ──
@@ -535,6 +577,106 @@ server.tool(
         generateNow: Boolean(generateNow),
         queueForGeneration: Boolean(queueForGeneration),
       });
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+// ═══════════════════════════════════════
+//  AI VISIBILITY MANAGED-SERVICE OPS
+// ═══════════════════════════════════════
+
+server.tool(
+  "get_service_packages",
+  "Get AI visibility managed-service packages from the backend service-ops catalog.",
+  {
+    status: z.string().optional().describe("Optional package status filter, e.g. active or archived"),
+    audience: z.string().optional().describe("Optional audience/client segment filter"),
+    includeInactive: z.boolean().optional().describe("Include inactive or archived packages when supported"),
+  },
+  async ({ status, audience, includeInactive }) => {
+    try {
+      const query = qs({ status, audience, includeInactive });
+      const data = await apiWithRouteFallback("GET", [
+        serviceOpsPath(`/packages${query}`),
+        serviceOpsPath(`/service-packages${query}`),
+      ]);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "get_service_checklists",
+  "Get AI visibility managed-service delivery checklists, optionally filtered by package or stage.",
+  {
+    packageId: z.string().optional().describe("Optional service package ID or slug"),
+    stage: z.string().optional().describe("Optional workflow stage filter"),
+    status: z.string().optional().describe("Optional checklist status filter"),
+    includeInactive: z.boolean().optional().describe("Include inactive or archived checklists when supported"),
+  },
+  async ({ packageId, stage, status, includeInactive }) => {
+    try {
+      const query = qs({ packageId, stage, status, includeInactive });
+      const data = await apiWithRouteFallback("GET", [
+        serviceOpsPath(`/checklists${query}`),
+        serviceOpsPath(`/service-checklists${query}`),
+      ]);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "generate_local_prompt_pack",
+  "Generate a local AI visibility prompt pack through the backend service-ops workflow.",
+  {
+    packageId: z.string().optional().describe("Optional service package ID or slug"),
+    runId: z.string().optional().describe("Optional benchmark run ID; omit for backend default/latest"),
+    verticalIds: z.array(z.string()).optional().describe("Optional industry vertical IDs to include"),
+    queryIds: z.array(z.string()).optional().describe("Optional benchmark query IDs to include"),
+    limit: z.number().optional().describe("Optional max prompts/items"),
+    outputDir: z.string().optional().describe("Optional backend-local output directory"),
+    dryRun: z.boolean().optional().describe("Preview the pack without writing files when supported"),
+    options: z.any().optional().describe("Optional backend-specific JSON object merged into the request body"),
+  },
+  async (input) => {
+    try {
+      const body = bodyWithOptions(input);
+      const data = await apiWithRouteFallback("POST", [
+        serviceOpsPath("/generate-local-prompt-pack"),
+        serviceOpsPath("/local-prompt-pack/generate"),
+        serviceOpsPath("/local-prompt-pack"),
+        serviceOpsPath("/prompt-pack/local"),
+      ], body);
+      return ok(data);
+    } catch (e) { return err(e.message); }
+  }
+);
+
+server.tool(
+  "build_outbound_snapshot",
+  "Build an outbound AI visibility managed-service snapshot through the backend service-ops workflow.",
+  {
+    packageId: z.string().optional().describe("Optional service package ID or slug"),
+    runId: z.string().optional().describe("Optional benchmark run ID; omit for backend default/latest"),
+    checklistId: z.string().optional().describe("Optional checklist ID or slug to focus the snapshot"),
+    verticalIds: z.array(z.string()).optional().describe("Optional industry vertical IDs to include"),
+    queryIds: z.array(z.string()).optional().describe("Optional benchmark query IDs to include"),
+    includeDrafts: z.boolean().optional().describe("Include draft artifacts when supported"),
+    outputDir: z.string().optional().describe("Optional backend-local output directory"),
+    dryRun: z.boolean().optional().describe("Preview the snapshot without writing files when supported"),
+    options: z.any().optional().describe("Optional backend-specific JSON object merged into the request body"),
+  },
+  async (input) => {
+    try {
+      const body = bodyWithOptions(input);
+      const data = await apiWithRouteFallback("POST", [
+        serviceOpsPath("/build-outbound-snapshot"),
+        serviceOpsPath("/outbound-snapshot/build"),
+        serviceOpsPath("/outbound-snapshot"),
+        serviceOpsPath("/snapshots/outbound"),
+      ], body);
       return ok(data);
     } catch (e) { return err(e.message); }
   }

@@ -1,0 +1,8 @@
+"gap","affected_products","affected_rate","action"
+"missing_sku","343","100","Add SKU/model fields to product exports and Product schema."
+"missing_availability","343","100","Add availability/stock state for Offer schema."
+"missing_specs","343","100","Add dimensions, material, ball size, device fit, and mounting method specs."
+"missing_compatibility","343","100","Add compatibility fields such as AMPS, 17mm, 20mm, 25mm, 38mm, VESA, device sizes."
+"missing_image","5","1","Fix missing image records before using product cards in articles."
+"without_vertical_mapping","2","1","Map products into verticals so the pipeline selects them reliably."
+"unknown_product_handles_in_posts","9","3","Resolve product handles already linked from posts but unknown to catalog."

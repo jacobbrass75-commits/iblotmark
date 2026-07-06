@@ -1,0 +1,6 @@
+"batch_id","wave","requests","prompts","planned_pages","prerequisite","success_metric"
+"R01","W1 Sprint 1 edit validation","27","9","3","Pick survivor URL and publish survivor edit before running.","Competitor-only answer becomes iBOLT-included or top-3 iBOLT."
+"R02","W2 top-page mention recovery","66","29","17","Pick survivor URL and publish survivor edit before running.","Competitor-only answer becomes iBOLT-included or top-3 iBOLT."
+"R03","W3 citation probe","24","10","102","Pick survivor URL and publish survivor edit before running.","Target-domain citation or source-url row appears."
+"R04","W4 product entity recognition","33","11","11","Pick survivor URL and publish survivor edit before running.","Exact iBOLT product/entity is named without hallucinated aliases."
+"R05","W5 non-branded buyer coverage","54","19","13","Pick survivor URL and publish survivor edit before running.","Competitor-only answer becomes iBOLT-included or top-3 iBOLT."

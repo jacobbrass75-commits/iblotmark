@@ -1,0 +1,4 @@
+"provider","requests","prompts","categories","prompt_types"
+"chatgpt","483","483","restaurant; fishing; warehouse; fleet; delivery; amps/modular; streaming; agriculture; education; offroad","comparison 141; buyer_problem 139; non_branded_best 130; mapped 31; product_entity 26; citation_probe 16"
+"claude","483","483","restaurant; fishing; warehouse; fleet; delivery; amps/modular; streaming; agriculture; education; offroad","comparison 141; buyer_problem 139; non_branded_best 130; mapped 31; product_entity 26; citation_probe 16"
+"gemini_plain","483","483","restaurant; fishing; warehouse; fleet; delivery; amps/modular; streaming; agriculture; education; offroad","comparison 141; buyer_problem 139; non_branded_best 130; mapped 31; product_entity 26; citation_probe 16"

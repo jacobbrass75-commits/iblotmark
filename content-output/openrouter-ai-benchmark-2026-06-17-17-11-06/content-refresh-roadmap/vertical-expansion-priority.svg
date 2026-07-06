@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="786" viewBox="0 0 1220 786" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1220" height="786"/>
+  
+    <rect class="panel" x="28" y="24" width="1164" height="738" rx="14"/>
+    <text class="title" x="54" y="64">Vertical Refresh and Expansion Priority</text>
+    <text class="subtitle" x="54" y="88">Combines benchmark risk, page score, unlinked product count, and undercoverage.</text>
+    
+      <text class="label" x="54" y="122">tablet</text>
+      <rect x="430" y="108" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="640" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="125">170</text>
+      <text class="small" x="430" y="150">risk 72; posts n/a; unlinked products 0</text>
+    
+
+      <text class="label" x="54" y="174">restaurant</text>
+      <rect x="430" y="160" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="160" width="410" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="177">109</text>
+      <text class="small" x="430" y="202">risk 72; posts 18; unlinked products 80</text>
+    
+
+      <text class="label" x="54" y="226">kitchen</text>
+      <rect x="430" y="212" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="212" width="384" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="229">102</text>
+      <text class="small" x="430" y="254">risk n/a; posts n/a; unlinked products 4</text>
+    
+
+      <text class="label" x="54" y="278">warehouse</text>
+      <rect x="430" y="264" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="264" width="358" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="281">95</text>
+      <text class="small" x="430" y="306">risk 58; posts 4; unlinked products 46</text>
+    
+
+      <text class="label" x="54" y="330">fleet</text>
+      <rect x="430" y="316" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="316" width="354" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="333">94</text>
+      <text class="small" x="430" y="358">risk 71; posts 16; unlinked products 23</text>
+    
+
+      <text class="label" x="54" y="382">delivery</text>
+      <rect x="430" y="368" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="368" width="339" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="385">90</text>
+      <text class="small" x="430" y="410">risk 72; posts n/a; unlinked products 0</text>
+    
+
+      <text class="label" x="54" y="434">fishing</text>
+      <rect x="430" y="420" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="420" width="335" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="437">89</text>
+      <text class="small" x="430" y="462">risk 85; posts 18; unlinked products 2</text>
+    
+
+      <text class="label" x="54" y="486">amps/modular</text>
+      <rect x="430" y="472" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="472" width="177" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="489">47</text>
+      <text class="small" x="430" y="514">risk n/a; posts 4; unlinked products 120</text>
+    
+
+      <text class="label" x="54" y="538">education</text>
+      <rect x="430" y="524" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="524" width="158" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="541">42</text>
+      <text class="small" x="430" y="566">risk n/a; posts 2; unlinked products 3</text>
+    
+
+      <text class="label" x="54" y="590">streaming</text>
+      <rect x="430" y="576" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="576" width="143" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="593">38</text>
+      <text class="small" x="430" y="618">risk n/a; posts 8; unlinked products 30</text>
+    
+
+      <text class="label" x="54" y="642">travel</text>
+      <rect x="430" y="628" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="628" width="139" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="645">37</text>
+      <text class="small" x="430" y="670">risk n/a; posts 5; unlinked products 42</text>
+    
+
+      <text class="label" x="54" y="694">agriculture</text>
+      <rect x="430" y="680" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="680" width="117" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1084" y="697">31</text>
+      <text class="small" x="430" y="722">risk n/a; posts 1; unlinked products 1</text>
+    
+  
+</svg>

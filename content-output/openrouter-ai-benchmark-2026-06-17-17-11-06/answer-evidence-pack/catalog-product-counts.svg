@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="258" viewBox="0 0 1160 258" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="258"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="210" rx="14"/>
+    <text class="title" x="54" y="64">Actual Catalog Product Matches in AI Answers</text>
+    <text class="subtitle" x="54" y="88">Derived from local product titles, handles, SKUs, and variant/source aliases.</text>
+    
+      <text class="label" x="54" y="122">iBOLT™ TabDock™ Bizmount™ AMPs</text>
+      <rect x="360" y="108" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="108" width="660" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="1034" y="125">6</text>
+      <text class="small" x="360" y="149"></text>
+    
+
+      <text class="label" x="54" y="170">iBOLT™ Dock'n Lock - Composite Locking</text>
+<text class="small" x="54" y="185">Tablet Holder- AMPS Pattern Connection</text>
+      <rect x="360" y="156" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="156" width="330" height="24" rx="8" fill="#0891b2"/>
+      <text class="value" x="1034" y="173">3</text>
+      <text class="small" x="360" y="197"></text>
+    
+  
+</svg>

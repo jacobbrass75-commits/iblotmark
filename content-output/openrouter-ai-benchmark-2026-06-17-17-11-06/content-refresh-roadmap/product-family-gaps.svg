@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="682" viewBox="0 0 1220 682" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1220" height="682"/>
+  
+    <rect class="panel" x="28" y="24" width="1164" height="634" rx="14"/>
+    <text class="title" x="54" y="64">Underlinked Product Families</text>
+    <text class="subtitle" x="54" y="88">Grouped from product gap rows where products are not detected in blog content.</text>
+    
+      <text class="label" x="54" y="122">AMPS, adapters, balls, and bases</text>
+      <rect x="430" y="108" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="640" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="125">39</text>
+      <text class="small" x="430" y="150">amps/modular 39; restaurant 29; warehouse 12; travel 9; fleet 3</text>
+    
+
+      <text class="label" x="54" y="174">Creator, camera, and streaming mounts</text>
+      <rect x="430" y="160" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="160" width="427" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="177">26</text>
+      <text class="small" x="430" y="202">streaming 26; amps/modular 26; restaurant 24; warehouse 11; fleet 3</text>
+    
+
+      <text class="label" x="54" y="226">Fleet, delivery, and vehicle phone mounts</text>
+      <rect x="430" y="212" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="212" width="181" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="229">11</text>
+      <text class="small" x="430" y="254">fleet 11; travel 11; amps/modular 11; restaurant 4; warehouse 1</text>
+    
+
+      <text class="label" x="54" y="278">Barcode scanner and warehouse scanning</text>
+      <rect x="430" y="264" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="264" width="131" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="281">8</text>
+      <text class="small" x="430" y="306">warehouse 8; amps/modular 8; travel 4; restaurant 1</text>
+    
+
+      <text class="label" x="54" y="330">Cycling, motorcycle, and powersports</text>
+      <rect x="430" y="316" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="316" width="131" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="333">8</text>
+      <text class="small" x="430" y="358">amps/modular 8; cycling 7; restaurant 5; warehouse 3; travel 2</text>
+    
+
+      <text class="label" x="54" y="382">Forklift and warehouse mounts</text>
+      <rect x="430" y="368" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="368" width="131" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="385">8</text>
+      <text class="small" x="430" y="410">amps/modular 8; warehouse 4; travel 3; restaurant 3; fishing 1</text>
+    
+
+      <text class="label" x="54" y="434">Marine electronics and fish finder mounts</text>
+      <rect x="430" y="420" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="420" width="115" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="437">7</text>
+      <text class="small" x="430" y="462">amps/modular 7; restaurant 6; cycling 4; travel 3; fleet 1</text>
+    
+
+      <text class="label" x="54" y="486">Restaurant POS and tablet security</text>
+      <rect x="430" y="472" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="472" width="115" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="489">7</text>
+      <text class="small" x="430" y="514">amps/modular 7; restaurant 6; warehouse 4; travel 4; fleet 2</text>
+    
+
+      <text class="label" x="54" y="538">Charging and magnetic phone docks</text>
+      <rect x="430" y="524" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="524" width="82" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="541">5</text>
+      <text class="small" x="430" y="566">amps/modular 5; warehouse 3; fleet 2; travel 2; streaming 2</text>
+    
+
+      <text class="label" x="54" y="590">Travel and headrest mounts</text>
+      <rect x="430" y="576" width="640" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="576" width="16" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1084" y="593">1</text>
+      <text class="small" x="430" y="618">fleet 1; restaurant 1; travel 1; amps/modular 1</text>
+    
+  
+</svg>

@@ -1,0 +1,13 @@
+slug,name,total_entries,enrichment_entries,buyer_questions,user_language_entries,install_constraints,pain_points,device_patterns,specifications
+agriculture-farming,Agriculture & Farming,15,11,4,2,1,2,1,1
+content-creation-streaming,Content Creation & Streaming,15,11,4,1,2,2,1,1
+education-schools,Education & Schools,15,11,4,2,1,2,1,0
+fishing-boating,Fishing & Boating,17,13,4,1,1,3,1,1
+forklifts-warehousing,Forklifts & Warehousing,17,13,5,2,2,2,1,1
+general-mounting,General Mounting Solutions,18,14,5,1,1,1,2,2
+kitchen-home,Kitchen & Home,15,11,4,1,2,2,1,0
+mountain-biking-cycling,Mountain Biking & Cycling,14,10,4,1,1,2,1,0
+offroading-jeep,Off-Roading & Jeep,17,13,3,2,1,3,1,1
+restaurants-food-delivery,Restaurants & Food Delivery,17,13,4,1,2,3,1,0
+road-trips-travel,Road Trips & Travel,15,11,4,2,2,2,1,0
+trucking-fleet,Trucking & Fleet,17,13,4,2,2,2,1,1

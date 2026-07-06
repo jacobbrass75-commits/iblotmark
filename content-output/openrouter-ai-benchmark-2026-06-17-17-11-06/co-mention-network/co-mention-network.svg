@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="620" viewBox="0 0 980 620" role="img" aria-label="iBOLT co-mention network">
+<rect width="980" height="620" fill="#f8fafc"/>
+<text x="40" y="36" font-size="22" font-weight="800" fill="#111827">iBOLT Co-Mention And Replacement Network</text>
+<text x="40" y="60" font-size="13" fill="#475569">Orange links are competitor-only replacement pressure. Green links are co-mentions with iBOLT.</text>
+<circle cx="190" cy="310" r="70" fill="#0f172a"/>
+<text x="190" y="306" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">iBOLT</text>
+<text x="190" y="328" text-anchor="middle" font-size="12" fill="#cbd5e1">target brand</text>
+<line x1="260" y1="310" x2="572.6604931143911" y2="75.89424594843979" stroke="#f97316" stroke-width="9" opacity=".33"/>
+<line x1="260" y1="320" x2="572.6604931143911" y2="83.89424594843979" stroke="#16a34a" stroke-width="9" opacity=".55"/>
+<circle cx="612.6604931143911" cy="75.89424594843979" r="40" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="612.6604931143911" y="73.89424594843979" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">RAM Mounts</text>
+<text x="612.6604931143911" y="88.89424594843979" text-anchor="middle" font-size="11" fill="#475569">miss 58, co 13</text>
+<line x1="260" y1="310" x2="643.6763273802045" y2="86.59941549187658" stroke="#f97316" stroke-width="4" opacity=".33"/>
+<line x1="260" y1="320" x2="643.6763273802045" y2="94.59941549187658" stroke="#16a34a" stroke-width="4" opacity=".55"/>
+<circle cx="670.6763273802045" cy="86.59941549187658" r="27" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="670.6763273802045" y="84.59941549187658" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Arkon</text>
+<text x="670.6763273802045" y="99.59941549187658" text-anchor="middle" font-size="11" fill="#475569">miss 25, co 5</text>
+<line x1="260" y1="310" x2="700.5078316861908" y2="108.89140100915984" stroke="#f97316" stroke-width="3" opacity=".33"/>
+<line x1="260" y1="320" x2="700.5078316861908" y2="116.89140100915984" stroke="#16a34a" stroke-width="3" opacity=".55"/>
+<circle cx="724.5078316861908" cy="108.89140100915984" r="24" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="724.5078316861908" y="106.89140100915984" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">iOttie</text>
+<text x="724.5078316861908" y="121.89140100915984" text-anchor="middle" font-size="11" fill="#475569">miss 15, co 3</text>
+<line x1="260" y1="310" x2="748.3630002040657" y2="141.61401423673104" stroke="#f97316" stroke-width="3" opacity=".33"/>
+<line x1="260" y1="320" x2="748.3630002040657" y2="149.61401423673104" stroke="#16a34a" stroke-width="3" opacity=".55"/>
+<circle cx="771.3630002040657" cy="141.61401423673104" r="23" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="771.3630002040657" y="139.61401423673104" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">CTA Digital</text>
+<text x="771.3630002040657" y="154.61401423673104" text-anchor="middle" font-size="11" fill="#475569">miss 14, co 3</text>
+<line x1="260" y1="310" x2="785.8116592785744" y2="183.0700756507048" stroke="#f97316" stroke-width="3" opacity=".33"/>
+<line x1="260" y1="320" x2="785.8116592785744" y2="191.0700756507048" stroke="#16a34a" stroke-width="2" opacity=".55"/>
+<circle cx="808.8116592785744" cy="183.0700756507048" r="23" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="808.8116592785744" y="181.0700756507048" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">ProClip</text>
+<text x="808.8116592785744" y="196.0700756507048" text-anchor="middle" font-size="11" fill="#475569">miss 12, co 1</text>
+<line x1="260" y1="310" x2="813.9115099577289" y2="231.10943978184787" stroke="#f97316" stroke-width="2" opacity=".33"/>
+<line x1="260" y1="320" x2="813.9115099577289" y2="239.10943978184787" stroke="#16a34a" stroke-width="3" opacity=".55"/>
+<circle cx="834.9115099577289" cy="231.10943978184787" r="21" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="834.9115099577289" y="229.10943978184787" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Mount-It</text>
+<text x="834.9115099577289" y="244.10943978184787" text-anchor="middle" font-size="11" fill="#475569">miss 7, co 3</text>
+<line x1="260" y1="310" x2="828.3088665856474" y2="283.2405139026223" stroke="#f97316" stroke-width="2" opacity=".33"/>
+<line x1="260" y1="320" x2="828.3088665856474" y2="291.2405139026223" stroke="#16a34a" stroke-width="1" opacity=".55"/>
+<circle cx="848.3088665856474" cy="283.2405139026223" r="20" fill="#fff" stroke="#f97316" stroke-width="4"/>
+<text x="848.3088665856474" y="281.2405139026223" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Havis</text>
+<text x="848.3088665856474" y="296.2405139026223" text-anchor="middle" font-size="11" fill="#475569">miss 5, co 0</text>
+<line x1="260" y1="310" x2="828.3088665856474" y2="336.75948609737765" stroke="#f97316" stroke-width="2" opacity=".33"/>
+<line x1="260" y1="320" x2="828.3088665856474" y2="344.75948609737765" stroke="#16a34a" stroke-width="3" opacity=".55"/>
+<circle cx="848.3088665856474" cy="336.75948609737765" r="20" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="848.3088665856474" y="334.75948609737765" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Tackform</text>
+<text x="848.3088665856474" y="349.75948609737765" text-anchor="middle" font-size="11" fill="#475569">miss 4, co 3</text>
+<line x1="260" y1="310" x2="815.9115099577289" y2="388.89056021815213" stroke="#f97316" stroke-width="1" opacity=".33"/>
+<line x1="260" y1="320" x2="815.9115099577289" y2="396.89056021815213" stroke="#16a34a" stroke-width="1" opacity=".55"/>
+<circle cx="834.9115099577289" cy="388.89056021815213" r="19" fill="#fff" stroke="#f97316" stroke-width="4"/>
+<text x="834.9115099577289" y="386.89056021815213" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Heckler</text>
+<text x="834.9115099577289" y="401.89056021815213" text-anchor="middle" font-size="11" fill="#475569">miss 3, co 0</text>
+<line x1="260" y1="310" x2="789.8116592785744" y2="436.9299243492952" stroke="#f97316" stroke-width="1" opacity=".33"/>
+<line x1="260" y1="320" x2="789.8116592785744" y2="444.9299243492952" stroke="#16a34a" stroke-width="1" opacity=".55"/>
+<circle cx="808.8116592785744" cy="436.9299243492952" r="19" fill="#fff" stroke="#f97316" stroke-width="4"/>
+<text x="808.8116592785744" y="434.9299243492952" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Square</text>
+<text x="808.8116592785744" y="449.9299243492952" text-anchor="middle" font-size="11" fill="#475569">miss 3, co 0</text>
+<line x1="260" y1="310" x2="752.3630002040657" y2="478.385985763269" stroke="#f97316" stroke-width="1" opacity=".33"/>
+<line x1="260" y1="320" x2="752.3630002040657" y2="486.385985763269" stroke="#16a34a" stroke-width="1" opacity=".55"/>
+<circle cx="771.3630002040657" cy="478.385985763269" r="19" fill="#fff" stroke="#f97316" stroke-width="4"/>
+<text x="771.3630002040657" y="476.385985763269" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Zebra</text>
+<text x="771.3630002040657" y="491.385985763269" text-anchor="middle" font-size="11" fill="#475569">miss 3, co 0</text>
+<line x1="260" y1="310" x2="706.5078316861908" y2="511.10859899084016" stroke="#f97316" stroke-width="1" opacity=".33"/>
+<line x1="260" y1="320" x2="706.5078316861908" y2="519.1085989908402" stroke="#16a34a" stroke-width="3" opacity=".55"/>
+<circle cx="724.5078316861908" cy="511.10859899084016" r="18" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="724.5078316861908" y="509.10859899084016" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Bouncepad</text>
+<text x="724.5078316861908" y="524.1085989908402" text-anchor="middle" font-size="11" fill="#475569">miss 1, co 3</text>
+<line x1="260" y1="310" x2="652.6763273802046" y2="533.4005845081234" stroke="#f97316" stroke-width="1" opacity=".33"/>
+<line x1="260" y1="320" x2="652.6763273802046" y2="541.4005845081234" stroke="#16a34a" stroke-width="2" opacity=".55"/>
+<circle cx="670.6763273802046" cy="533.4005845081234" r="18" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+<text x="670.6763273802046" y="531.4005845081234" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Kensington</text>
+<text x="670.6763273802046" y="546.4005845081234" text-anchor="middle" font-size="11" fill="#475569">miss 1, co 1</text>
+<line x1="260" y1="310" x2="594.6604931143911" y2="544.1057540515602" stroke="#f97316" stroke-width="1" opacity=".33"/>
+<line x1="260" y1="320" x2="594.6604931143911" y2="552.1057540515602" stroke="#16a34a" stroke-width="1" opacity=".55"/>
+<circle cx="612.6604931143911" cy="544.1057540515602" r="18" fill="#fff" stroke="#f97316" stroke-width="4"/>
+<text x="612.6604931143911" y="542.1057540515602" text-anchor="middle" font-size="12" font-weight="800" fill="#111827">Peak Design</text>
+<text x="612.6604931143911" y="557.1057540515602" text-anchor="middle" font-size="11" fill="#475569">miss 1, co 0</text>
+</svg>

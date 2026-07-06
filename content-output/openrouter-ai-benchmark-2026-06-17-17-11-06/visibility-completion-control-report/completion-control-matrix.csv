@@ -1,0 +1,8 @@
+"requirement","status","bucket","remaining_gate"
+"How iBOLT is getting mentioned","proven","proven","Keep tracking quality after edits; no blocker for baseline analysis."
+"Who iBOLT is mentioned next to","proven","proven","Retest after page edits to prove those competitors move from replacement to co-mention/top-3 iBOLT contexts."
+"How iBOLT compares to competitors","proven","proven","Live retest is needed to prove comparison edits improved model answers."
+"Test more areas","not_live_run","needs live proof","Set OPENROUTER_API_KEY securely in the shell, run the priority packet or full all-blog manifest, then rebuild reports."
+"Look at all blog posts and dig in","proven","proven","Edits still need to be applied to priority pages, then body inspection and live provider retests need to be rerun."
+"Current visibility baseline","proven_as_weak","proven weak","The baseline is proven. Improvement is not proven until post-edit live retest data exists."
+"Execution path after analysis","proven","proven","Apply the edits and run the priority retest packet."

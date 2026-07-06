@@ -1,0 +1,4 @@
+"decision","status","requests","pages","providers","waves","gate"
+"Consolidate first","blocked_by_survivor_merge","198","17","claude 74; chatgpt 63; gemini_plain 61","W2 top-page mention recovery 66; W5 non-branded buyer coverage 54; W4 product entity recognition 33; W1 Sprint 1 edit validation 27; W3 citation probe 18","Do not run yet. Confirm survivor URL, merge useful answer blocks and product modules, preserve benchmark prompts, then retest the survivor URL."
+"Rewrite or refresh","conditional_after_rewrite","5","3","claude 3; chatgpt 2","W3 citation probe 5","Run only after refreshed answer block, comparison language, product modules, FAQ/schema, and image alt proof are live."
+"Source cleanup first","conditional_after_source_cleanup","1","1","claude 1","W3 citation probe 1","Run only after schema, FAQ, quick answer, image alt text, product proof, and internal links are live."

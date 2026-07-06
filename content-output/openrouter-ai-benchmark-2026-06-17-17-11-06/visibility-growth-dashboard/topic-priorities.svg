@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="316" viewBox="0 0 980 316">
+<rect width="980" height="316" fill="#ffffff"></rect>
+<text x="24" y="30" font-size="22" font-weight="700" fill="#0f172a">Topic Priority Score</text>
+<text x="228" y="67" text-anchor="end" font-size="13" fill="#334155">fishing</text>
+<rect x="240" y="53" width="660.0" height="20" rx="4" fill="#1d4ed8"></rect>
+<text x="908" y="67" font-size="13" fill="#0f172a">79</text>
+<text x="228" y="101" text-anchor="end" font-size="13" fill="#334155">fleet</text>
+<rect x="240" y="87" width="568.1" height="20" rx="4" fill="#1d4ed8"></rect>
+<text x="816.1012658227849" y="101" font-size="13" fill="#0f172a">68</text>
+<text x="228" y="135" text-anchor="end" font-size="13" fill="#334155">delivery</text>
+<rect x="240" y="121" width="526.3" height="20" rx="4" fill="#1d4ed8"></rect>
+<text x="774.3291139240506" y="135" font-size="13" fill="#0f172a">63</text>
+<text x="228" y="169" text-anchor="end" font-size="13" fill="#334155">tablet</text>
+<rect x="240" y="155" width="518.0" height="20" rx="4" fill="#1d4ed8"></rect>
+<text x="765.9746835443037" y="169" font-size="13" fill="#0f172a">62</text>
+<text x="228" y="203" text-anchor="end" font-size="13" fill="#334155">restaurant</text>
+<rect x="240" y="189" width="492.9" height="20" rx="4" fill="#1d4ed8"></rect>
+<text x="740.9113924050632" y="203" font-size="13" fill="#0f172a">59</text>
+<text x="228" y="237" text-anchor="end" font-size="13" fill="#334155">warehouse</text>
+<rect x="240" y="223" width="426.1" height="20" rx="4" fill="#1d4ed8"></rect>
+<text x="674.0759493670886" y="237" font-size="13" fill="#0f172a">51</text>
+<text x="228" y="271" text-anchor="end" font-size="13" fill="#334155">comparison</text>
+<rect x="240" y="257" width="8.4" height="20" rx="4" fill="#1d4ed8"></rect>
+<text x="256.3544303797469" y="271" font-size="13" fill="#0f172a">1</text>
+</svg>

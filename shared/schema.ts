@@ -1130,6 +1130,64 @@ export const insertProductSchema = createInsertSchema(products).omit({
 export type InsertProduct = z.infer<typeof insertProductSchema>;
 export type Product = typeof products.$inferSelect;
 
+// Inventory bins for QR-assisted physical counts.
+export const inventoryBins = sqliteTable("inventory_bins", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  productId: text("product_id").references(() => products.id, { onDelete: "set null" }),
+  sku: text("sku"),
+  productTitle: text("product_title").notNull(),
+  binLabel: text("bin_label").notNull(),
+  qrCode: text("qr_code").notNull(),
+  unitWeightOz: real("unit_weight_oz").notNull(),
+  emptyBinWeightOz: real("empty_bin_weight_oz").notNull().default(56),
+  location: text("location"),
+  notes: text("notes"),
+  status: text("status").notNull().default("active"), // "active" | "archived"
+  lastQuantity: integer("last_quantity"),
+  lastCountAt: integer("last_count_at", { mode: "timestamp" }),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+}, (table) => [
+  uniqueIndex("idx_inventory_bins_company_qr_code").on(table.companyId, table.qrCode),
+  index("idx_inventory_bins_company_product").on(table.companyId, table.productId),
+]);
+
+export const insertInventoryBinSchema = createInsertSchema(inventoryBins).omit({
+  id: true, createdAt: true, updatedAt: true, lastQuantity: true, lastCountAt: true,
+});
+export type InsertInventoryBin = z.infer<typeof insertInventoryBinSchema>;
+export type InventoryBin = typeof inventoryBins.$inferSelect;
+
+// Saved count events from a scale reading.
+export const inventoryCounts = sqliteTable("inventory_counts", {
+  id: text("id").primaryKey().$defaultFn(genId),
+  companyId: text("company_id").notNull().references(() => companies.id, { onDelete: "cascade" }),
+  binId: text("bin_id").notNull().references(() => inventoryBins.id, { onDelete: "cascade" }),
+  productId: text("product_id").references(() => products.id, { onDelete: "set null" }),
+  sku: text("sku"),
+  productTitle: text("product_title").notNull(),
+  totalWeightOz: real("total_weight_oz").notNull(),
+  emptyBinWeightOz: real("empty_bin_weight_oz").notNull(),
+  unitWeightOz: real("unit_weight_oz").notNull(),
+  netWeightOz: real("net_weight_oz").notNull(),
+  rawQuantity: real("raw_quantity").notNull(),
+  quantity: integer("quantity").notNull(),
+  roundingMode: text("rounding_mode").notNull().default("nearest"), // "nearest" | "floor" | "ceil"
+  countedBy: text("counted_by"),
+  notes: text("notes"),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()).notNull(),
+}, (table) => [
+  index("idx_inventory_counts_company_bin").on(table.companyId, table.binId),
+  index("idx_inventory_counts_company_created").on(table.companyId, table.createdAt),
+]);
+
+export const insertInventoryCountSchema = createInsertSchema(inventoryCounts).omit({
+  id: true, createdAt: true,
+});
+export type InsertInventoryCount = z.infer<typeof insertInventoryCountSchema>;
+export type InventoryCount = typeof inventoryCounts.$inferSelect;
+
 // Product/feed audit runs for hero SKU readiness before content generation.
 export const productFeedAudits = sqliteTable("product_feed_audits", {
   id: text("id").primaryKey().$defaultFn(genId),
@@ -1398,6 +1456,27 @@ export const iboltProductsRelations = relations(products, ({ many }) => ({
   productVerticals: many(productVerticals),
   blogPostProducts: many(blogPostProducts),
   productFeedAudits: many(productFeedAudits),
+  inventoryBins: many(inventoryBins),
+  inventoryCounts: many(inventoryCounts),
+}));
+
+export const inventoryBinsRelations = relations(inventoryBins, ({ one, many }) => ({
+  product: one(products, {
+    fields: [inventoryBins.productId],
+    references: [products.id],
+  }),
+  counts: many(inventoryCounts),
+}));
+
+export const inventoryCountsRelations = relations(inventoryCounts, ({ one }) => ({
+  bin: one(inventoryBins, {
+    fields: [inventoryCounts.binId],
+    references: [inventoryBins.id],
+  }),
+  product: one(products, {
+    fields: [inventoryCounts.productId],
+    references: [products.id],
+  }),
 }));
 
 export const productFeedAuditsRelations = relations(productFeedAudits, ({ one }) => ({

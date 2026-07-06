@@ -1,0 +1,198 @@
+{
+  "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+  "generatedAt": "2026-06-21T01:46:13.401Z",
+  "summary": {
+    "totalAnswers": 93,
+    "mentionCount": 22,
+    "mentionRate": 24,
+    "nonBrandedAnswers": 75,
+    "nonBrandedMentionCount": 4,
+    "nonBrandedMentionRate": 5,
+    "topThreeCount": 15,
+    "topThreeRate": 16,
+    "citationCount": 0,
+    "citationRate": 0,
+    "competitorOnlyRows": 68,
+    "competitorOnlyRate": 73,
+    "expandedPrompts": 207,
+    "providerRequests": 621,
+    "livePages": 142,
+    "citationCleanupPages": 97,
+    "highGapCategories": 8,
+    "weakFamilyCoverage": 2,
+    "kpis": [
+      {
+        "label": "Mention rate",
+        "current": 24,
+        "target": 35,
+        "note": "Awareness",
+        "reason": "Shows whether models include iBOLT at all."
+      },
+      {
+        "label": "Non-branded mention",
+        "current": 5,
+        "target": 15,
+        "note": "Generic buyer prompts",
+        "reason": "This is where new customers ask for recommendations without naming iBOLT."
+      },
+      {
+        "label": "Top-3 recommendation",
+        "current": 16,
+        "target": 25,
+        "note": "Recommendation strength",
+        "reason": "Moving from mentioned to recommended is the business goal."
+      },
+      {
+        "label": "Citation rate",
+        "current": 0,
+        "target": 8,
+        "note": "Source trust",
+        "reason": "Citations show AI systems trust iboltmounts.com as a source."
+      }
+    ]
+  },
+  "topCompetitors": [
+    {
+      "name": "RAM Mounts",
+      "value": 58
+    },
+    {
+      "name": "Arkon",
+      "value": 25
+    },
+    {
+      "name": "iOttie",
+      "value": 15
+    },
+    {
+      "name": "CTA Digital",
+      "value": 14
+    },
+    {
+      "name": "ProClip",
+      "value": 12
+    },
+    {
+      "name": "Mount-It",
+      "value": 7
+    },
+    {
+      "name": "Havis",
+      "value": 5
+    },
+    {
+      "name": "Tackform",
+      "value": 4
+    }
+  ],
+  "topTopics": [
+    {
+      "name": "fleet",
+      "value": 1052
+    },
+    {
+      "name": "amps/modular",
+      "value": 990
+    },
+    {
+      "name": "restaurant",
+      "value": 884
+    },
+    {
+      "name": "warehouse",
+      "value": 713
+    },
+    {
+      "name": "delivery",
+      "value": 661
+    },
+    {
+      "name": "fishing",
+      "value": 656
+    }
+  ],
+  "topPages": [
+    "Best Tablet Mount for Restaurant POS and Delivery Apps 83",
+    "Best Phone Mount for Instacart and Grocery Delivery Drivers 83",
+    "Best Phone Mount for Construction Vehicles and Work Trucks 82",
+    "Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants 79",
+    "Best Barcode Scanner Mounts for Forklifts and Warehouses (2026) 78",
+    "Best Phone Mount for Amazon Flex and Delivery Vans 78",
+    "How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub 78",
+    "Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop 76",
+    "Best Fish Finder Mount for Pontoon Boat Rails 76",
+    "Magnetic vs Clamp Phone Mounts for Delivery Work 76"
+  ],
+  "weakFamilies": [
+    {
+      "name": "AMPS, adapters, balls, and bases",
+      "value": 100
+    },
+    {
+      "name": "Creator, camera, and streaming mounts",
+      "value": 75
+    },
+    {
+      "name": "Charging and magnetic phone docks",
+      "value": 31
+    },
+    {
+      "name": "Cycling, motorcycle, and powersports",
+      "value": 7
+    },
+    {
+      "name": "Travel and headrest mounts",
+      "value": 1
+    },
+    {
+      "name": "Fleet, delivery, and vehicle phone mounts",
+      "value": 0
+    },
+    {
+      "name": "Forklift and warehouse mounts",
+      "value": 0
+    },
+    {
+      "name": "Barcode scanner and warehouse scanning",
+      "value": 0
+    }
+  ],
+  "actions": [
+    {
+      "owner": "Jacob/app",
+      "workstream": "Add source-ready answer blocks and FAQ/schema to priority pages",
+      "why": "103 pages need citation cleanup before search-connected retesting.",
+      "metric": "Target-domain citation rate moves from 0% toward 5-8%."
+    },
+    {
+      "owner": "Jacob/app",
+      "workstream": "Strengthen product entity modules",
+      "why": "320 product/entity work rows and 187 unlinked products create weak product recognition.",
+      "metric": "Catalog product alias rows move from 8/93 to at least 20/93."
+    },
+    {
+      "owner": "Jacob/app",
+      "workstream": "Add fair comparison blocks against RAM, Arkon, iOttie, ProClip, CTA Digital, and Mount-It",
+      "why": "AI currently replaces or co-mentions iBOLT with these brands. Top answer gaps are Rugged durability: 85 pts, Install clarity: 82 pts, Stability and grip: 80 pts.",
+      "metric": "Competitor-only rows decrease and top-3 iBOLT recommendations increase."
+    },
+    {
+      "owner": "SEO contractor",
+      "workstream": "Earn third-party citations and industry references",
+      "why": "24 competitor-source rows show where AI already sees other brands as citeable.",
+      "metric": "New external pages mention iBOLT next to target categories and competitor sets."
+    },
+    {
+      "owner": "SEO contractor",
+      "workstream": "Support citation outreach for AMPS, fleet, restaurant, warehouse, fishing, and streaming topics",
+      "why": "Top citation topics are amps/modular 1149, fleet 1093, restaurant 913, warehouse 796, fishing 706.",
+      "metric": "More third-party category pages include iBOLT and link to relevant solution/product pages."
+    },
+    {
+      "owner": "Jacob/app",
+      "workstream": "Run expanded benchmark after page edits",
+      "why": "207 prompts and 621 provider requests are ready for the next measurement pass.",
+      "metric": "Track mention, non-branded mention, top-3, citation, and competitor-only rates by provider."
+    }
+  ]
+}

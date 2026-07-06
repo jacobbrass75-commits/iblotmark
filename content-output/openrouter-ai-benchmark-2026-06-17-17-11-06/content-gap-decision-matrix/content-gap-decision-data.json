@@ -1,0 +1,2130 @@
+{
+  "generatedAt": "2026-06-18T20:06:29.166Z",
+  "summary": {
+    "benchmarkDir": "/Users/yakub/Desktop/iblotmark/content-output/openrouter-ai-benchmark-2026-06-17-17-11-06",
+    "contentGapRows": 14,
+    "noMappedPrompts": 59,
+    "productGapRows": 40,
+    "refreshFirst": 6,
+    "canonicalHubs": 8,
+    "netNew": 0,
+    "categoryRows": 13,
+    "topCategories": [
+      "streaming 196",
+      "fishing 139",
+      "fleet 121",
+      "amps/modular 113",
+      "delivery 108",
+      "restaurant 108",
+      "travel 106",
+      "warehouse 104"
+    ]
+  },
+  "gapRows": [
+    {
+      "rank": 1,
+      "priority": 139,
+      "category": "fishing",
+      "title": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "slug": "fishing-mount-competitor-comparison-garmin-humminbird-lowrance-scotty-yakattack-vs-ibolt",
+      "primaryKeyword": "fishing mount comparison",
+      "pageType": "add comparison sections to existing hub",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing",
+      "promptCount": 10,
+      "providerRequestCount": 30,
+      "noMappedPromptCount": 10,
+      "existingPages": 17,
+      "benchmarkPressurePages": 4,
+      "canonicalReviewPages": 6,
+      "competitors": [
+        "Garmin, Humminbird, Lowrance, Scotty, YakAttack"
+      ],
+      "suggestedProducts": [
+        "iBOLT 17mm Dual Ball Clamp Mount for Handlebars, Poles, Posts for Garmin GPS and iBOLT Phone Holders",
+        "iBOLT 17mm Dual Ball Clamping Mount for Handlebars, Poles, Posts for Garmin GPS Systems and iBOLT Phone Holders",
+        "iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders",
+        "iBOLT 17mm Dual Ball to AMPs Drill Base Mount compatible w/ Garmin GPS and iBOLT Phone Holders",
+        "iBOLT 17mm Dual Ball to Round Metal AMPs Drill Base Mount for Garmin GPS and iBOLT Phone Holders",
+        "iBOLT 17mm Dual Ball to Strong VHB Adhesive Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders"
+      ],
+      "unlinkedProducts": 2,
+      "prompts": [
+        "best fishing mounts like Garmin",
+        "best fishing mounts like Humminbird",
+        "best fishing mounts like Lowrance",
+        "best fishing mounts like Scotty",
+        "best fishing mounts like YakAttack",
+        "Garmin vs iBOLT for fishing mounts",
+        "Humminbird vs iBOLT for fishing mounts",
+        "Lowrance vs iBOLT for fishing mounts",
+        "Scotty vs iBOLT for fishing mounts",
+        "YakAttack vs iBOLT for fishing mounts"
+      ],
+      "action": "Add comparison sections to existing fish finder/marine pages first to avoid more duplicate fishing posts.",
+      "existingRecommendation": "Consolidate and refresh existing fish finder pages, add Garmin/Lowrance/Humminbird comparison language, avoid net-new duplicate posts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for fishing mount comparison?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with Garmin, Humminbird, Lowrance, Scotty, YakAttack?"
+      ]
+    },
+    {
+      "rank": 2,
+      "priority": 121,
+      "category": "fleet",
+      "title": "Fleet Mount Competitor Comparison: Arkon, ProClip, RAM Mounts vs iBOLT",
+      "slug": "fleet-mount-competitor-comparison-arkon-proclip-ram-mounts-vs-ibolt",
+      "primaryKeyword": "fleet mount comparison",
+      "pageType": "comparison guide or existing-page section",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing",
+      "promptCount": 6,
+      "providerRequestCount": 18,
+      "noMappedPromptCount": 6,
+      "existingPages": 25,
+      "benchmarkPressurePages": 7,
+      "canonicalReviewPages": 11,
+      "competitors": [
+        "Arkon, ProClip, RAM Mounts"
+      ],
+      "suggestedProducts": [
+        "iBOLT 20mm Metal Ball to Headrest Mounting Bracket",
+        "iBOLT TabDock™ Bizmount™ Metal AMPs",
+        "iBOLT TabDock™ IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base",
+        "iBOLT TabDock™ IncrediBOLT™ AMPS w/ 4.25” Dual Socket Arm Drill Base",
+        "iBOLT™ TabDock™ Bizmount™ Clamp Heavy Duty Post/Pole Mount",
+        "17mm miniBall mount and Vent mount"
+      ],
+      "unlinkedProducts": 23,
+      "prompts": [
+        "best fleet mounts like Arkon",
+        "best fleet mounts like ProClip",
+        "best fleet mounts like RAM Mounts",
+        "Arkon vs iBOLT for fleet mounts",
+        "ProClip vs iBOLT for fleet mounts",
+        "RAM Mounts vs iBOLT for fleet mounts"
+      ],
+      "action": "Create or expand a comparison page that states when iBOLT is the commercial, locking, or modular fit.",
+      "existingRecommendation": "Add heavier comparison blocks versus RAM, Arkon, ProClip, and consumer phone mounts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for fleet mount comparison?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with Arkon, ProClip, RAM Mounts?"
+      ]
+    },
+    {
+      "rank": 3,
+      "priority": 113,
+      "category": "amps/modular",
+      "title": "AMPS Mounting System and Plate Compatibility Guide",
+      "slug": "amps-mounting-system-and-plate-compatibility-guide",
+      "primaryKeyword": "AMPS mounting system",
+      "pageType": "solution guide",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing",
+      "promptCount": 4,
+      "providerRequestCount": 12,
+      "noMappedPromptCount": 4,
+      "existingPages": 29,
+      "benchmarkPressurePages": 1,
+      "canonicalReviewPages": 4,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT 17mm Dual Ball Clamp Mount for Handlebars, Poles, Posts for Garmin GPS and iBOLT Phone Holders",
+        "iBOLT 17mm Dual Ball Clamping Mount for Handlebars, Poles, Posts for Garmin GPS Systems and iBOLT Phone Holders",
+        "iBOLT 17mm Dual Ball Vertical Clamp Mount for Handlebars, Poles, Posts for Garmin GPS Systems and iBOLT Phone Holders",
+        "iBOLT™ 17mm Clamp Mount for Handlebars, Poles, Posts",
+        "iBOLT™ 25mm / 1 inch Ball to Clamp Post / Pole / Handlebar Mount",
+        "iBOLT™ 25mm / 1 inch Composite AMPS Round Adapter Plate"
+      ],
+      "unlinkedProducts": 120,
+      "prompts": [
+        "AMPS mounting plate for Garmin fish finder",
+        "AMPS mounting system explained",
+        "ball and socket mount system for tablets",
+        "phone clamp clip screw ball and socket mount guide"
+      ],
+      "action": "Create one canonical AMPS hub and link it from product, fleet, restaurant, fish finder, and creator articles.",
+      "existingRecommendation": "Use existing pages as internal-link hubs for underlinked products before adding more broad posts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for AMPS mounting system?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 4,
+      "priority": 108,
+      "category": "delivery",
+      "title": "Delivery Mount Competitor Comparison: iOttie, Scosche vs iBOLT",
+      "slug": "delivery-mount-competitor-comparison-iottie-scosche-vs-ibolt",
+      "primaryKeyword": "delivery mount comparison",
+      "pageType": "comparison guide or existing-page section",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing",
+      "promptCount": 4,
+      "providerRequestCount": 12,
+      "noMappedPromptCount": 4,
+      "existingPages": 11,
+      "benchmarkPressurePages": 7,
+      "canonicalReviewPages": 10,
+      "competitors": [
+        "iOttie, Scosche"
+      ],
+      "suggestedProducts": [
+        "17mm miniBall mount and Vent mount",
+        "2 meter Charge'n Sync Lightning Cable (Apple Approved)",
+        "ChargeDock USB-C",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount",
+        "iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories"
+      ],
+      "unlinkedProducts": 0,
+      "prompts": [
+        "best delivery mounts like iOttie",
+        "best delivery mounts like Scosche",
+        "iOttie vs iBOLT for delivery mounts",
+        "Scosche vs iBOLT for delivery mounts"
+      ],
+      "action": "Create or expand a comparison page that states when iBOLT is the commercial, locking, or modular fit.",
+      "existingRecommendation": "Refresh delivery pages around commercial-grade retention, heat/vibration, charging, and exact app workflows.",
+      "faqSeeds": [
+        "What is the best iBOLT option for delivery mount comparison?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with iOttie, Scosche?"
+      ]
+    },
+    {
+      "rank": 5,
+      "priority": 108,
+      "category": "restaurant",
+      "title": "Restaurant Mount Competitor Comparison: Mount-It vs iBOLT",
+      "slug": "restaurant-mount-competitor-comparison-mount-it-vs-ibolt",
+      "primaryKeyword": "restaurant mount comparison",
+      "pageType": "comparison guide or existing-page section",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing",
+      "promptCount": 2,
+      "providerRequestCount": 6,
+      "noMappedPromptCount": 2,
+      "existingPages": 17,
+      "benchmarkPressurePages": 5,
+      "canonicalReviewPages": 7,
+      "competitors": [
+        "Mount-It"
+      ],
+      "suggestedProducts": [
+        "2 meter Charge'n Sync Lightning Cable (Apple Approved)",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount",
+        "iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories",
+        "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20\" Camera Screw",
+        "iBOLT 17mm ExtendiBOLT Triple Suction Cup Mount"
+      ],
+      "unlinkedProducts": 80,
+      "prompts": [
+        "best restaurant mounts like Mount-It",
+        "Mount-It vs iBOLT for restaurant mounts"
+      ],
+      "action": "Create or expand a comparison page that states when iBOLT is the commercial, locking, or modular fit.",
+      "existingRecommendation": "Merge restaurant POS duplicates and make Tablet Tower, LockPro, Dock'n Lock, and wall/clamp options explicit.",
+      "faqSeeds": [
+        "What is the best iBOLT option for restaurant mount comparison?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with Mount-It?"
+      ]
+    },
+    {
+      "rank": 6,
+      "priority": 106,
+      "category": "travel",
+      "title": "Road Trip Headrest Tablet and Phone Mount Guide",
+      "slug": "road-trip-headrest-tablet-and-phone-mount-guide",
+      "primaryKeyword": "best headrest tablet mount for road trips",
+      "pageType": "vertical guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 5,
+      "providerRequestCount": 15,
+      "noMappedPromptCount": 5,
+      "existingPages": 0,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories",
+        "iBOLT 17mm ExtendiBOLT Triple Suction Cup Mount",
+        "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate",
+        "iBOLT Action Camera IncrediBOLT 360 Heavy Duty Dual/Double Suction Cup Mount",
+        "iBOLT Action Camera IncrediBOLT 360 Heavy Duty Triple Suction Cup Mount",
+        "iBOLT Dock'n Lock IncrediBOLT™ 360 AMPS Locking Tablet Mount"
+      ],
+      "unlinkedProducts": 42,
+      "prompts": [
+        "best headrest tablet mount for road trips",
+        "best Nintendo Switch headrest mount for road trips",
+        "best phone mount for rental cars and road trips",
+        "best tablet mount for RV road trips",
+        "tablet holder for kids in back seat road trips"
+      ],
+      "action": "Create a road-trip/headrest guide that links travel products and charging accessories.",
+      "existingRecommendation": "Build road-trip/headrest/charging content that links underused travel products.",
+      "faqSeeds": [
+        "What is the best iBOLT option for best headrest tablet mount for road trips?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 7,
+      "priority": 104,
+      "category": "warehouse",
+      "title": "Warehouse Mount Competitor Comparison: Tackform vs iBOLT",
+      "slug": "warehouse-mount-competitor-comparison-tackform-vs-ibolt",
+      "primaryKeyword": "warehouse mount comparison",
+      "pageType": "comparison guide or existing-page section",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing",
+      "promptCount": 2,
+      "providerRequestCount": 6,
+      "noMappedPromptCount": 2,
+      "existingPages": 17,
+      "benchmarkPressurePages": 2,
+      "canonicalReviewPages": 2,
+      "competitors": [
+        "Tackform"
+      ],
+      "suggestedProducts": [
+        "17mm miniBall mount and Vent mount",
+        "2 meter Charge'n Sync Lightning Cable (Apple Approved)",
+        "ChargeDock USB-C",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount",
+        "iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories"
+      ],
+      "unlinkedProducts": 46,
+      "prompts": [
+        "best warehouse mounts like Tackform",
+        "Tackform vs iBOLT for warehouse mounts"
+      ],
+      "action": "Create or expand a comparison page that states when iBOLT is the commercial, locking, or modular fit.",
+      "existingRecommendation": "Expand barcode scanner and forklift tablet content with product-specific modules and Zebra/Honeywell/Symbol compatibility.",
+      "faqSeeds": [
+        "What is the best iBOLT option for warehouse mount comparison?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with Tackform?"
+      ]
+    },
+    {
+      "rank": 8,
+      "priority": 102,
+      "category": "cycling",
+      "title": "Bike and E-Bike Phone and Camera Mount Guide",
+      "slug": "bike-and-e-bike-phone-and-camera-mount-guide",
+      "primaryKeyword": "best phone mount for mountain biking",
+      "pageType": "vertical guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 5,
+      "providerRequestCount": 15,
+      "noMappedPromptCount": 5,
+      "existingPages": 0,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20\" Camera Screw",
+        "iBOLT Action Camera IncrediBOLT Heavy Duty Handlebar/Post/Pole/Rail Mount",
+        "iBOLT GoPro / Action Camera Dual Arm Handlebar / Rail Mount",
+        "iBOLT GoPro / Action Camera Handlebar / Rail Mount",
+        "iBOLT Action Camera / ¼ inch 20 to 25mm / 1 inch/B Size Ball Adapter",
+        "iBOLT GoPro / Action Camera IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount"
+      ],
+      "unlinkedProducts": 13,
+      "prompts": [
+        "best GoPro mount for mountain bike handlebars",
+        "best phone mount for mountain biking",
+        "clamp mount for bicycle handlebars",
+        "heavy duty bike phone holder for trail riding",
+        "phone mount for e-bike delivery riders"
+      ],
+      "action": "Create one cycling/powersports guide with phone and action-camera product cards.",
+      "existingRecommendation": "Add a small vertical hub and two product-led supporting posts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for best phone mount for mountain biking?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 9,
+      "priority": 101,
+      "category": "kitchen/home",
+      "title": "Kitchen Tablet and Overhead Phone Mount Guide",
+      "slug": "kitchen-tablet-and-overhead-phone-mount-guide",
+      "primaryKeyword": "best tablet mount for kitchen recipes",
+      "pageType": "vertical guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 5,
+      "providerRequestCount": 15,
+      "noMappedPromptCount": 5,
+      "existingPages": 0,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT Moto-Vise™ Bizmount™ 88mm Diameter Magnetic Mount Bizmount™ w/ 1 / 4 20 Camera Screw",
+        "iBOLT Stream-Cast TabDock™ Tablet Stand",
+        "iBOLT Stream-Cast Overhead Camera Rig Desk Mount for DSLR Cameras for Top Down and Front Facing Photography",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount",
+        "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20\" Camera Screw"
+      ],
+      "unlinkedProducts": 4,
+      "prompts": [
+        "best iPad stand for kitchen counter recipes",
+        "best overhead phone mount for cooking videos",
+        "best tablet mount for home workout equipment",
+        "best tablet mount for kitchen recipes",
+        "wall mount tablet holder for kitchen recipe apps"
+      ],
+      "action": "Create a kitchen/home hub that links tablet holders, magnetic docks, and camera screw mounts.",
+      "existingRecommendation": "Build a Kitchen & Home hub because products exist but blog coverage is thin.",
+      "faqSeeds": [
+        "What is the best iBOLT option for best tablet mount for kitchen recipes?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 10,
+      "priority": 100,
+      "category": "streaming",
+      "title": "Phone and Camera Mounts for Live Streaming and Product Videos",
+      "slug": "phone-and-camera-mounts-for-live-streaming-and-product-videos",
+      "primaryKeyword": "best phone stand for live streaming",
+      "pageType": "vertical guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 3,
+      "providerRequestCount": 9,
+      "noMappedPromptCount": 4,
+      "existingPages": 16,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount",
+        "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20\" Camera Screw",
+        "iBOLT 20mm Metal Ball to ¼ 20 Camera Screw Mount Adapter - for All Industry Standard 20mm mounts",
+        "iBOLT 20mm to 20mm Metal Extension Ball Adapter",
+        "iBOLT 88mm Diameter Magnetic Mount w/ 1 / 4 20 Camera Screw and GoPro Adapter"
+      ],
+      "unlinkedProducts": 30,
+      "prompts": [
+        "best phone stand for live streaming",
+        "best table camera mount for product videos",
+        "overhead camera mount for product photography"
+      ],
+      "action": "Create a creator-focused guide using exact camera screw and clamp product names.",
+      "existingRecommendation": "Use existing pages as internal-link hubs for underlinked products before adding more broad posts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for best phone stand for live streaming?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 11,
+      "priority": 96,
+      "category": "streaming",
+      "title": "Phone Stands for Streaming Cooking Videos",
+      "slug": "phone-stands-for-streaming-cooking-videos",
+      "primaryKeyword": "phone stand for streaming cooking videos",
+      "pageType": "supporting guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 1,
+      "providerRequestCount": 3,
+      "noMappedPromptCount": 4,
+      "existingPages": 16,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT Moto-Vise™ Bizmount™ 88mm Diameter Magnetic Mount Bizmount™ w/ 1 / 4 20 Camera Screw",
+        "iBOLT Stream-Cast TabDock™ Tablet Stand",
+        "iBOLT Stream-Cast Overhead Camera Rig Desk Mount for DSLR Cameras for Top Down and Front Facing Photography",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount",
+        "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20\" Camera Screw"
+      ],
+      "unlinkedProducts": 30,
+      "prompts": [
+        "phone stand for streaming cooking videos"
+      ],
+      "action": "Build as a supporting page or section under the creator/kitchen hubs.",
+      "existingRecommendation": "Use existing pages as internal-link hubs for underlinked products before adding more broad posts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for phone stand for streaming cooking videos?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 12,
+      "priority": 87,
+      "category": "offroad",
+      "title": "Jeep, UTV, and Overlanding Phone, Tablet, and Action Camera Mounts",
+      "slug": "jeep-utv-and-overlanding-phone-tablet-and-action-camera-mounts",
+      "primaryKeyword": "best phone mount for UTV roll cage",
+      "pageType": "vertical guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 4,
+      "providerRequestCount": 12,
+      "noMappedPromptCount": 4,
+      "existingPages": 4,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories",
+        "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20\" Camera Screw",
+        "iBOLT Action Camera IncrediBOLT Heavy Duty Handlebar/Post/Pole/Rail Mount",
+        "iBOLT GoPro / Action Camera Dual Arm Handlebar / Rail Mount",
+        "iBOLT GoPro / Action Camera Handlebar / Rail Mount",
+        "iBOLT 88mm Diameter Magnetic Mount w/ 1 / 4 20 Camera Screw and GoPro Adapter"
+      ],
+      "unlinkedProducts": 1,
+      "prompts": [
+        "best action camera mount for Jeep trails",
+        "best GoPro mount for overlanding rigs",
+        "best phone mount for UTV roll cage",
+        "best tablet mount for Jeep trail navigation"
+      ],
+      "action": "Create one offroad hub rather than separate Jeep/UTV/camera posts.",
+      "existingRecommendation": "Refresh structure and product modules; monitor benchmark movement.",
+      "faqSeeds": [
+        "What is the best iBOLT option for best phone mount for UTV roll cage?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 13,
+      "priority": 87,
+      "category": "agriculture",
+      "title": "Tablet and Phone Mounts for Tractors, Sprayers, and Farm UTVs",
+      "slug": "tablet-and-phone-mounts-for-tractors-sprayers-and-farm-utvs",
+      "primaryKeyword": "tablet mount for tractor cab",
+      "pageType": "vertical guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 4,
+      "providerRequestCount": 12,
+      "noMappedPromptCount": 4,
+      "existingPages": 2,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories",
+        "iBOLT Moto-Vise™ Bizmount™ Heavy Duty 9mm Bolt mount for Motorcycles mirror frames",
+        "iBOLT™ 25mm / 1 inch Heavy Duty Metal Ball Suction Cup Base",
+        "iBOLT Moto-Vise™ Bizmount™ Clamp- Heavy Duty Smartphone clamp/claw mount",
+        "iBOLT Moto-Vise™ Bizmount™ Metal Handlebar Phone mount",
+        "iBOLT Moto-Vise™ Heavy Duty Phone Dual Arm Handlebar / Rail Mount"
+      ],
+      "unlinkedProducts": 1,
+      "prompts": [
+        "best phone mount for farm equipment",
+        "best tablet mount for tractor cab precision agriculture",
+        "GPS tablet mount for tractors and sprayers",
+        "rugged tablet mount for UTV farm use"
+      ],
+      "action": "Create an agriculture guide with rugged mounting, clamp/drill-base choices, and power/charging notes.",
+      "existingRecommendation": "Add a small vertical hub and two product-led supporting posts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for tablet mount for tractor cab?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    },
+    {
+      "rank": 14,
+      "priority": 87,
+      "category": "education",
+      "title": "Tablet Mounts for School Buses, Classrooms, and Student Transportation",
+      "slug": "tablet-mounts-for-school-buses-classrooms-and-student-transportation",
+      "primaryKeyword": "tablet mount for school bus fleet",
+      "pageType": "vertical guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub",
+      "promptCount": 4,
+      "providerRequestCount": 12,
+      "noMappedPromptCount": 4,
+      "existingPages": 4,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "competitors": [],
+      "suggestedProducts": [
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 2” Single Socket Arm Drill Base Mount",
+        "iBOLT ¼ 20” Camera Screw IncrediBOLT™ AMPS w/ 4.25” Double Socket Arm- Drill Base Mount",
+        "iBOLT ¼” 20 Camera Screw Bizmount™ Suction Cup Mount - for Industry Standard ¼” 20 Accessories",
+        "iBOLT 17mm Clamp Mount for Handlebars, Poles, Posts- For GoPro Hero Action Cameras, ¼ 20\" Camera Screw",
+        "iBOLT 20mm Metal Ball to ¼ 20 Camera Screw Mount Adapter - for All Industry Standard 20mm mounts",
+        "iBOLT 20mm to 20mm Metal Extension Ball Adapter"
+      ],
+      "unlinkedProducts": 3,
+      "prompts": [
+        "best tablet mount for school bus fleet",
+        "locking tablet stand for classroom checkout",
+        "rugged tablet mount for student transportation",
+        "tablet mount for classroom video recording"
+      ],
+      "action": "Create a small education hub with locking/security language and fleet-style device management.",
+      "existingRecommendation": "Add a small vertical hub and two product-led supporting posts.",
+      "faqSeeds": [
+        "What is the best iBOLT option for tablet mount for school bus fleet?",
+        "Which mounting base should I use for this setup?",
+        "Are iBOLT mounts compatible with AMPS patterns and standard ball sizes?",
+        "How does iBOLT compare with common alternatives?"
+      ]
+    }
+  ],
+  "promptRows": [
+    {
+      "rank": 1,
+      "prompt": "AMPS mounting plate for Garmin fish finder",
+      "category": "amps/modular",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B04",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "AMPS Mounting System and Plate Compatibility Guide",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 2,
+      "prompt": "AMPS mounting system explained",
+      "category": "amps/modular",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B04",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "AMPS Mounting System and Plate Compatibility Guide",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 3,
+      "prompt": "ball and socket mount system for tablets",
+      "category": "amps/modular",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B04",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "AMPS Mounting System and Plate Compatibility Guide",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 4,
+      "prompt": "best GoPro mount for mountain bike handlebars",
+      "category": "cycling",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B04",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Bike and E-Bike Phone and Camera Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 5,
+      "prompt": "best headrest tablet mount for road trips",
+      "category": "travel",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Road Trip Headrest Tablet and Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 6,
+      "prompt": "best iPad stand for kitchen counter recipes",
+      "category": "kitchen/home",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B06",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Kitchen Tablet and Overhead Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 7,
+      "prompt": "best Nintendo Switch headrest mount for road trips",
+      "category": "travel",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Road Trip Headrest Tablet and Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 8,
+      "prompt": "best overhead phone mount for cooking videos",
+      "category": "kitchen/home",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B06",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Kitchen Tablet and Overhead Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 9,
+      "prompt": "best phone mount for mountain biking",
+      "category": "cycling",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B04",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Bike and E-Bike Phone and Camera Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 10,
+      "prompt": "best phone mount for rental cars and road trips",
+      "category": "travel",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Road Trip Headrest Tablet and Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 11,
+      "prompt": "best phone stand for live streaming",
+      "category": "streaming",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Phone and Camera Mounts for Live Streaming and Product Videos",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 12,
+      "prompt": "best table camera mount for product videos",
+      "category": "streaming",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Phone and Camera Mounts for Live Streaming and Product Videos",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 13,
+      "prompt": "best tablet mount for home workout equipment",
+      "category": "kitchen/home",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B06",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Kitchen Tablet and Overhead Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 14,
+      "prompt": "best tablet mount for kitchen recipes",
+      "category": "kitchen/home",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B06",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Kitchen Tablet and Overhead Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 15,
+      "prompt": "best tablet mount for RV road trips",
+      "category": "travel",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Road Trip Headrest Tablet and Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 16,
+      "prompt": "clamp mount for bicycle handlebars",
+      "category": "cycling",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B05",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Bike and E-Bike Phone and Camera Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 17,
+      "prompt": "heavy duty bike phone holder for trail riding",
+      "category": "cycling",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B05",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Bike and E-Bike Phone and Camera Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 18,
+      "prompt": "overhead camera mount for product photography",
+      "category": "streaming",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Phone and Camera Mounts for Live Streaming and Product Videos",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 19,
+      "prompt": "phone clamp clip screw ball and socket mount guide",
+      "category": "amps/modular",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B04",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "AMPS Mounting System and Plate Compatibility Guide",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 20,
+      "prompt": "phone mount for e-bike delivery riders",
+      "category": "cycling",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B05",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Bike and E-Bike Phone and Camera Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 21,
+      "prompt": "phone stand for streaming cooking videos",
+      "category": "streaming",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Phone and Camera Mounts for Live Streaming and Product Videos",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 22,
+      "prompt": "tablet holder for kids in back seat road trips",
+      "category": "travel",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Road Trip Headrest Tablet and Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 23,
+      "prompt": "wall mount tablet holder for kitchen recipe apps",
+      "category": "kitchen/home",
+      "source": "curated_vertical_gap",
+      "priority": 90,
+      "batchId": "B06",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Kitchen Tablet and Overhead Phone Mount Guide",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 24,
+      "prompt": "best delivery mounts like iOttie",
+      "category": "delivery",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Delivery Mount Competitor Comparison: iOttie, Scosche vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 25,
+      "prompt": "best delivery mounts like Scosche",
+      "category": "delivery",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Delivery Mount Competitor Comparison: iOttie, Scosche vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 26,
+      "prompt": "best fishing mounts like Garmin",
+      "category": "fishing",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B07",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 27,
+      "prompt": "best fishing mounts like Humminbird",
+      "category": "fishing",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 28,
+      "prompt": "best fishing mounts like Lowrance",
+      "category": "fishing",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 29,
+      "prompt": "best fishing mounts like Scotty",
+      "category": "fishing",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 30,
+      "prompt": "best fishing mounts like YakAttack",
+      "category": "fishing",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 31,
+      "prompt": "best fleet mounts like Arkon",
+      "category": "fleet",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fleet Mount Competitor Comparison: Arkon, ProClip, RAM Mounts vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 32,
+      "prompt": "best fleet mounts like ProClip",
+      "category": "fleet",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fleet Mount Competitor Comparison: Arkon, ProClip, RAM Mounts vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 33,
+      "prompt": "best fleet mounts like RAM Mounts",
+      "category": "fleet",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fleet Mount Competitor Comparison: Arkon, ProClip, RAM Mounts vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 34,
+      "prompt": "best restaurant mounts like Mount-It",
+      "category": "restaurant",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Restaurant Mount Competitor Comparison: Mount-It vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 35,
+      "prompt": "best warehouse mounts like Tackform",
+      "category": "warehouse",
+      "source": "competitor_displacement",
+      "priority": 88,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Warehouse Mount Competitor Comparison: Tackform vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 36,
+      "prompt": "Arkon vs iBOLT for fleet mounts",
+      "category": "fleet",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fleet Mount Competitor Comparison: Arkon, ProClip, RAM Mounts vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 37,
+      "prompt": "Garmin vs iBOLT for fishing mounts",
+      "category": "fishing",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 38,
+      "prompt": "Humminbird vs iBOLT for fishing mounts",
+      "category": "fishing",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 39,
+      "prompt": "iOttie vs iBOLT for delivery mounts",
+      "category": "delivery",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Delivery Mount Competitor Comparison: iOttie, Scosche vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 40,
+      "prompt": "Lowrance vs iBOLT for fishing mounts",
+      "category": "fishing",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 41,
+      "prompt": "Mount-It vs iBOLT for restaurant mounts",
+      "category": "restaurant",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B09",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Restaurant Mount Competitor Comparison: Mount-It vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 42,
+      "prompt": "ProClip vs iBOLT for fleet mounts",
+      "category": "fleet",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fleet Mount Competitor Comparison: Arkon, ProClip, RAM Mounts vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 43,
+      "prompt": "RAM Mounts vs iBOLT for fleet mounts",
+      "category": "fleet",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fleet Mount Competitor Comparison: Arkon, ProClip, RAM Mounts vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 44,
+      "prompt": "Scosche vs iBOLT for delivery mounts",
+      "category": "delivery",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Delivery Mount Competitor Comparison: iOttie, Scosche vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 45,
+      "prompt": "Scotty vs iBOLT for fishing mounts",
+      "category": "fishing",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 46,
+      "prompt": "Tackform vs iBOLT for warehouse mounts",
+      "category": "warehouse",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B09",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Warehouse Mount Competitor Comparison: Tackform vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 47,
+      "prompt": "YakAttack vs iBOLT for fishing mounts",
+      "category": "fishing",
+      "source": "head_to_head_comparison",
+      "priority": 86,
+      "batchId": "B08",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Fishing Mount Competitor Comparison: Garmin, Humminbird, Lowrance, Scotty, YakAttack vs iBOLT",
+      "decision": "Refresh or consolidate existing page first",
+      "stage": "Week 1: refresh/consolidate before publishing"
+    },
+    {
+      "rank": 48,
+      "prompt": "best action camera mount for Jeep trails",
+      "category": "offroad",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Jeep, UTV, and Overlanding Phone, Tablet, and Action Camera Mounts",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 49,
+      "prompt": "best GoPro mount for overlanding rigs",
+      "category": "offroad",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Jeep, UTV, and Overlanding Phone, Tablet, and Action Camera Mounts",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 50,
+      "prompt": "best phone mount for farm equipment",
+      "category": "agriculture",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet and Phone Mounts for Tractors, Sprayers, and Farm UTVs",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 51,
+      "prompt": "best phone mount for UTV roll cage",
+      "category": "offroad",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Jeep, UTV, and Overlanding Phone, Tablet, and Action Camera Mounts",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 52,
+      "prompt": "best tablet mount for Jeep trail navigation",
+      "category": "offroad",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B11",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Jeep, UTV, and Overlanding Phone, Tablet, and Action Camera Mounts",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 53,
+      "prompt": "best tablet mount for school bus fleet",
+      "category": "education",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet Mounts for School Buses, Classrooms, and Student Transportation",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 54,
+      "prompt": "best tablet mount for tractor cab precision agriculture",
+      "category": "agriculture",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet and Phone Mounts for Tractors, Sprayers, and Farm UTVs",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 55,
+      "prompt": "GPS tablet mount for tractors and sprayers",
+      "category": "agriculture",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet and Phone Mounts for Tractors, Sprayers, and Farm UTVs",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 56,
+      "prompt": "locking tablet stand for classroom checkout",
+      "category": "education",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet Mounts for School Buses, Classrooms, and Student Transportation",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 57,
+      "prompt": "rugged tablet mount for student transportation",
+      "category": "education",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet Mounts for School Buses, Classrooms, and Student Transportation",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 58,
+      "prompt": "rugged tablet mount for UTV farm use",
+      "category": "agriculture",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet and Phone Mounts for Tractors, Sprayers, and Farm UTVs",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    },
+    {
+      "rank": 59,
+      "prompt": "tablet mount for classroom video recording",
+      "category": "education",
+      "source": "curated_vertical_gap",
+      "priority": 78,
+      "batchId": "B10",
+      "providers": "chatgpt",
+      "requestCount": 3,
+      "recommendedContent": "Tablet Mounts for School Buses, Classrooms, and Student Transportation",
+      "decision": "Build canonical solution hub",
+      "stage": "Week 2: build canonical hub"
+    }
+  ],
+  "productRows": [
+    {
+      "title": "ChargeDock USB-C",
+      "handle": "chargedock-usb-c-android",
+      "price": "29.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel",
+        "education",
+        "kitchen"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 17mm ExtendiBOLT Triple Suction Cup Mount",
+      "handle": "ibolt-17mm-extendibolt-triple-suction-cup-mount",
+      "price": "84.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet, restaurant",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Metal 17mm ExtendiBOLT Triple Suction Cup Mount",
+      "handle": "ibolt-17mm-metal-extendibolt-triple-suction-cup-mount",
+      "price": "92.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet, restaurant",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT SafeMag Suction Cup Mount- Compatible with Qi, MagSafe and Wireless charging pucks",
+      "handle": "ibolt-safemag-suction-cup-mount-compatible-with-qi-magsafe-and-wireless-charging-pucks",
+      "price": "32.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT TabDock IncrediBOLT 360 Heavy Duty Dual Suction Cup Mount",
+      "handle": "ibolt-tabdock-incredibolt-360-heavy-duty-dual-suction-cup-mount",
+      "price": "79.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT TabDock™ FixedPro 360 Suction- Heavy Duty Metal 8\" Multi-Angle Suction Cup Mount for All 7\" - 10\" Tablets",
+      "handle": "ibolt-tabdock-fixedpro-360-suction-heavy-duty-metal-8-multi-angle-suction-cup-mount-for-all-7-10-tablets",
+      "price": "69.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Tabdock™ Slim Suction Cup Extender",
+      "handle": "ibolt-tabdock-slim-suction-cup-extender",
+      "price": "29.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT™ 80mm Suction Cup Adhesive Dash Discs",
+      "handle": "adhesive-dash-discs-suction-cup-phone-mounts-holder",
+      "price": "7.99",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT™ ROK 3 Suction Mount",
+      "handle": "17mm-rok-3-suction-mount-car-docks-phone-mounts-holder-22112",
+      "price": "14.99",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "fleet",
+      "topicPriority": 121,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to fleet product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 17mm Dual Ball Clamp Mount for Handlebars, Poles, Posts for Garmin GPS and iBOLT Phone Holders",
+      "handle": "ibolt-17mm-dual-ball-horizontal-clamp-mount-for-handlebars-poles-posts",
+      "price": "24.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "cycling"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 17mm Dual Ball Clamping Mount for Handlebars, Poles, Posts for Garmin GPS Systems and iBOLT Phone Holders",
+      "handle": "ibolt-17mm-dual-ball-clamping-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems-and-ibolt-phone-holders",
+      "price": "29.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "cycling"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders",
+      "handle": "ibolt-17mm-dual-ball-to-sticky-suction-cup-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders",
+      "price": "18.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 17mm Dual Ball to AMPs Drill Base Mount compatible w/ Garmin GPS and iBOLT Phone Holders",
+      "handle": "ibolt-17mm-dual-ball-to-amps-drill-base-mount-base-compatible-w-garmin-gps-and-ibolt-phone-holders",
+      "price": "19.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 17mm Dual Ball to Round Metal AMPs Drill Base Mount for Garmin GPS and iBOLT Phone Holders",
+      "handle": "ibolt-17mm-dual-ball-to-round-metal-amps-drill-base-mount-compatible-w-garmin-gps-and-ibolt-phone-holders",
+      "price": "22.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 17mm Dual Ball Vertical Clamp Mount for Handlebars, Poles, Posts for Garmin GPS Systems and iBOLT Phone Holders",
+      "handle": "ibolt-17mm-dual-ball-vertical-clamp-mount-for-handlebars-poles-posts-compatible-w-garmin-gps-systems",
+      "price": "24.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "cycling"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 20mm Metal Ball to Headrest Mounting Bracket",
+      "handle": "ibolt-20mm-metal-ball-to-headrest-mounting-bracket",
+      "price": "25.00",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet, restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 20mm to 20mm Metal Extension Ball Adapter",
+      "handle": "ibolt-20mm-metal-ball-to-20-camera-screw-mount-adapter-for-all-industry-standard-20mm-mounts-1",
+      "price": "16.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "streaming"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 25mm / 1 inch Composite AMPS Adapter Plate",
+      "handle": "ibolt-25mm-1-inch-composite-amps-adapter-plate-dual-ball-socket-mounting-arms",
+      "price": "7.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 25mm / 1 inch to Dual 17mm Metal Ball Adapter",
+      "handle": "ibolt-25mm-1-inch-to-dual-metal-17mm-composite-ball-adapter",
+      "price": "34.95",
+      "topics": [
+        "amps/modular",
+        "restaurant"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 25mm / 1 inch to Dual 22mm Ball Adapter",
+      "handle": "ibolt-25mm-1-inch-to-dual-17mm-metal-ball-adapter-copy",
+      "price": "29.95",
+      "topics": [
+        "amps/modular",
+        "restaurant"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 25mm/ 1-inch dualMag Industrial Strength Magnetic Base",
+      "handle": "ibolt-25mm-1-inch-dualmag-industrial-strength-magnetic-base",
+      "price": "76.95",
+      "topics": [
+        "amps/modular",
+        "warehouse",
+        "streaming"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 38mm / 1.5-inch DualMag Industrial Strength Magnetic Base",
+      "handle": "ibolt-38mm-1-5-inch-dualmag-industrial-strength-magnetic-base",
+      "price": "79.95",
+      "topics": [
+        "amps/modular",
+        "warehouse",
+        "streaming"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT 7.45 inch Composite Dual Ball Bizmount™ with Metal AMPS Drill Base",
+      "handle": "ibolt-7-45-inch-composite-dual-ball-arm-with-metal-amps-drill-base-mount",
+      "price": "48.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse, restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT AccessiBOLT ArmTrack- for Wheelchairs, Rehab Chairs, and Mobility Devices with a Track System",
+      "handle": "ibolt-armtrack-for-wheelchairs-rehab-chairs-and-mobility-devices-with-a-track-system",
+      "price": "94.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT AccessiBOLT Dock’n Lock Wheelchair Mobility Tablet Mount",
+      "handle": "ibolt-accessibolt-dock-n-lock-wheelchair-mobility-tablet-mount",
+      "price": "179.95",
+      "topics": [
+        "amps/modular",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT AMPS Forklift Pillar Mount with 57mm (2.25-inch) Ball Joint and 5.25\" Metal Arm",
+      "handle": "ibolt-amps-monitor-pillar-mount-with-57mm-2-25-inch-ball-joint",
+      "price": "179.95",
+      "topics": [
+        "amps/modular",
+        "travel",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Barcode Scanner Holder w/Industry Standard 1 inch / 25 mm Ball Connection",
+      "handle": "ibolt-barcode-scanner-holder-1-inch-25-mm-ball-amps-pattern-ibfl-34502",
+      "price": "27.00",
+      "topics": [
+        "amps/modular",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Composite 2.5\" Open Socket AMPS Drill Base Mount for 1-inch/ 25mm Ball Joints",
+      "handle": "ibolt-composite-2-5-open-socket-amps-drill-base-mount-for-1-inch-25mm-ball-joints",
+      "price": "13.95",
+      "topics": [
+        "amps/modular",
+        "restaurant"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Composite 2.5\" Open Socket AMPS Drill Base Mount for 1-inch/ 25mm Ball Joints",
+      "handle": "ibolt-composite-2-5-open-socket-round-amps-drill-base-mount-for-1-inch-25mm-ball-joints",
+      "price": "13.95",
+      "topics": [
+        "amps/modular",
+        "restaurant"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Dock'n Lock IncrediBOLT™ 360 AMPS Locking Tablet Mount",
+      "handle": "ibolt-dock-n-lock-incredibolt-360-amps-locking-tablet-mount",
+      "price": "72.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "restaurant",
+        "travel",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse, fleet, restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Dock’n Lock IncrediBOLT™ AMPS w/ 2” Single Socket Arm Locking Tablet Drill Base Mount",
+      "handle": "ibolt-dock-n-lock-incredibolt-amps-w-2-single-socket-arm-locking-drill-base-mount",
+      "price": "56.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "travel",
+        "education",
+        "kitchen"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Dual Suction Cup Base with Universal 4- Hole AMPS Pattern",
+      "handle": "ibolt-dual-suction-cup-base-with-universal-4-hole-amps-pattern",
+      "price": "24.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): fleet",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT miniProXL AccessiBOLT ArmTrack- for Wheelchairs, Rehab Chairs, and Mobility Devices with a Track System",
+      "handle": "ibolt-miniproxl-accessibolt-armtrack-for-wheelchairs-rehab-chairs-and-mobility-devices-with-a-track-system",
+      "price": "94.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT miniProXL AccessiBOLT Seat Track- for 2.2\"-3.7\" screen phones- Great for Wheelchairs, Rehab Chairs, and Mobility Devices with a Track System",
+      "handle": "ibolt-miniproxl-accessibolt-seat-track-for-2-2-3-7-screen-phones-great-for-wheelchairs-rehab-chairs-and-mobility-devices-with-a-track-system",
+      "price": "115.00",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "travel"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Moto-Vise™ Bizmount™ Heavy Duty 11mm Bolt mount",
+      "handle": "ibolt-moto-vise-bizmount-heavy-duty-11mm-bolt-mount",
+      "price": "39.95",
+      "topics": [
+        "amps/modular",
+        "warehouse",
+        "cycling"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Moto-Vise™ Bizmount™ Heavy Duty 9mm Bolt mount for Motorcycles mirror frames",
+      "handle": "ibolt-moto-vise-phone-mount-9mm-bolt-mount-for-motorcycles-mirror-frames-ibmc-34722",
+      "price": "39.95",
+      "topics": [
+        "amps/modular",
+        "warehouse",
+        "cycling"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT Moto-Vise™ Forklift BizMount™ Pillar Mount",
+      "handle": "ibolt-motovise-forklift-bizmount-pillar-mount",
+      "price": "79.95",
+      "topics": [
+        "amps/modular",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT TabDock BizMount dualMag Low-Profile Strong Magnetic Mount for 7 to 10 inch Tablets",
+      "handle": "ibolt-tabdock-bizmount-dualmag-low-profile-strong-magnetic-mount-for-7-to-10-inch-tablets",
+      "price": "58.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse, restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT TabDock™ Bizmount™ Flexpro - Heavy Duty Seat Rail Mount",
+      "handle": "tabdock-bizmount-flexpro-heavy-duty-tablet-metal-seat-rail-mount-1-inch-ball-ibbz-33957",
+      "price": "34.95",
+      "topics": [
+        "amps/modular",
+        "restaurant",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse, restaurant",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    },
+    {
+      "title": "iBOLT TabDock™ Bizmount™ Metal AMPs",
+      "handle": "ibolt-tabdock-bizmount-metal-amps",
+      "price": "39.95",
+      "topics": [
+        "fleet",
+        "amps/modular",
+        "travel",
+        "warehouse"
+      ],
+      "bestTopic": "amps/modular",
+      "topicPriority": 113,
+      "reason": "No detected blog links; maps to high-risk topic(s): warehouse, fleet",
+      "recommendedMove": "Add to amps/modular product module or internal-link block before generating more broad content."
+    }
+  ],
+  "categoryRows": [
+    {
+      "category": "streaming",
+      "gapCount": 2,
+      "totalPriority": 196,
+      "noMappedPrompts": 4,
+      "productGaps": 0,
+      "refreshFirst": 0,
+      "netNew": 0,
+      "canonicalHub": 2,
+      "existingPages": 16,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "topMove": "run citation-readiness schema pass"
+    },
+    {
+      "category": "fishing",
+      "gapCount": 1,
+      "totalPriority": 139,
+      "noMappedPrompts": 10,
+      "productGaps": 0,
+      "refreshFirst": 1,
+      "netNew": 0,
+      "canonicalHub": 0,
+      "existingPages": 17,
+      "benchmarkPressurePages": 4,
+      "canonicalReviewPages": 6,
+      "topMove": "consolidate overlapping pages before more publishing"
+    },
+    {
+      "category": "fleet",
+      "gapCount": 1,
+      "totalPriority": 121,
+      "noMappedPrompts": 6,
+      "productGaps": 9,
+      "refreshFirst": 1,
+      "netNew": 0,
+      "canonicalHub": 0,
+      "existingPages": 25,
+      "benchmarkPressurePages": 7,
+      "canonicalReviewPages": 11,
+      "topMove": "consolidate overlapping pages before more publishing"
+    },
+    {
+      "category": "amps/modular",
+      "gapCount": 1,
+      "totalPriority": 113,
+      "noMappedPrompts": 4,
+      "productGaps": 31,
+      "refreshFirst": 1,
+      "netNew": 0,
+      "canonicalHub": 0,
+      "existingPages": 29,
+      "benchmarkPressurePages": 1,
+      "canonicalReviewPages": 4,
+      "topMove": "consolidate overlapping pages before more publishing"
+    },
+    {
+      "category": "delivery",
+      "gapCount": 1,
+      "totalPriority": 108,
+      "noMappedPrompts": 4,
+      "productGaps": 0,
+      "refreshFirst": 1,
+      "netNew": 0,
+      "canonicalHub": 0,
+      "existingPages": 11,
+      "benchmarkPressurePages": 7,
+      "canonicalReviewPages": 10,
+      "topMove": "consolidate overlapping pages before more publishing"
+    },
+    {
+      "category": "restaurant",
+      "gapCount": 1,
+      "totalPriority": 108,
+      "noMappedPrompts": 2,
+      "productGaps": 0,
+      "refreshFirst": 1,
+      "netNew": 0,
+      "canonicalHub": 0,
+      "existingPages": 17,
+      "benchmarkPressurePages": 5,
+      "canonicalReviewPages": 7,
+      "topMove": "consolidate overlapping pages before more publishing"
+    },
+    {
+      "category": "travel",
+      "gapCount": 1,
+      "totalPriority": 106,
+      "noMappedPrompts": 5,
+      "productGaps": 0,
+      "refreshFirst": 0,
+      "netNew": 0,
+      "canonicalHub": 1,
+      "existingPages": 0,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "topMove": ""
+    },
+    {
+      "category": "warehouse",
+      "gapCount": 1,
+      "totalPriority": 104,
+      "noMappedPrompts": 2,
+      "productGaps": 0,
+      "refreshFirst": 1,
+      "netNew": 0,
+      "canonicalHub": 0,
+      "existingPages": 17,
+      "benchmarkPressurePages": 2,
+      "canonicalReviewPages": 2,
+      "topMove": "consolidate overlapping pages before more publishing"
+    },
+    {
+      "category": "cycling",
+      "gapCount": 1,
+      "totalPriority": 102,
+      "noMappedPrompts": 5,
+      "productGaps": 0,
+      "refreshFirst": 0,
+      "netNew": 0,
+      "canonicalHub": 1,
+      "existingPages": 0,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "topMove": ""
+    },
+    {
+      "category": "kitchen/home",
+      "gapCount": 1,
+      "totalPriority": 101,
+      "noMappedPrompts": 5,
+      "productGaps": 0,
+      "refreshFirst": 0,
+      "netNew": 0,
+      "canonicalHub": 1,
+      "existingPages": 0,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "topMove": ""
+    },
+    {
+      "category": "offroad",
+      "gapCount": 1,
+      "totalPriority": 87,
+      "noMappedPrompts": 4,
+      "productGaps": 0,
+      "refreshFirst": 0,
+      "netNew": 0,
+      "canonicalHub": 1,
+      "existingPages": 4,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "topMove": "run citation-readiness schema pass"
+    },
+    {
+      "category": "agriculture",
+      "gapCount": 1,
+      "totalPriority": 87,
+      "noMappedPrompts": 4,
+      "productGaps": 0,
+      "refreshFirst": 0,
+      "netNew": 0,
+      "canonicalHub": 1,
+      "existingPages": 2,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "topMove": "run citation-readiness schema pass"
+    },
+    {
+      "category": "education",
+      "gapCount": 1,
+      "totalPriority": 87,
+      "noMappedPrompts": 4,
+      "productGaps": 0,
+      "refreshFirst": 0,
+      "netNew": 0,
+      "canonicalHub": 1,
+      "existingPages": 4,
+      "benchmarkPressurePages": 0,
+      "canonicalReviewPages": 0,
+      "topMove": "run citation-readiness schema pass"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{"kind":"deck","id":"pr/1x4vwp","name":"Deck"}
+{"kind":"layout","layoutId":"e3bb5c3f-cf63-4940-8651-7348680fcb91","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"fb0e21f8-aa90-4688-b507-e1ccb4e6166b","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/qi6nud","slide":1,"title":"iBOLT AI Visibility","textShapes":14}
+{"kind":"shape","id":"sh/v6psfil0","slide":1,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/knih4byh","slide":1,"bbox":[760,0,520,720]}
+{"kind":"shape","id":"sh/d8bat47y","slide":1,"bbox":[806,70,360,360]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":1,"bbox":[900,168,210,210]}
+{"kind":"textbox","id":"sh/vu9knih4","slide":1,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[64,70,620,54]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":1,"text":"Progress, risks, and the path to the next level","textPreview":"Progress, risks, and the path to the next level","textChars":47,"textLines":1,"bbox":[64,135,610,154]}
+{"kind":"textbox","id":"sh/d0z61032","slide":1,"text":"A boss-ready readout of how iBOLT is showing up in AI-generated answers across ChatGPT, Claude, Gemini, and search-connected AI surfaces.","textPreview":"A boss-ready readout of how iBOLT is showing up in AI-generated answers across ChatGPT, Claude, Gemini, and search-connected AI surfaces.","textChars":137,"textLines":1,"bbox":[66,322,610,92]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":1,"bbox":[66,482,188,124]}
+{"kind":"shape","id":"sh/vixczed8","slide":1,"bbox":[66,482,7,124]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":1,"text":"Current mention","textPreview":"Current mention","textChars":15,"textLines":1,"bbox":[86,498,154,24]}
+{"kind":"textbox","id":"sh/61032lsz","slide":1,"text":"40%","textPreview":"40%","textChars":3,"textLines":1,"bbox":[86,526,154,46]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":1,"text":"82 of 204 priority answers","textPreview":"82 of 204 priority answers","textChars":26,"textLines":1,"bbox":[86,574,154,22]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":1,"bbox":[282,482,188,124]}
+{"kind":"shape","id":"sh/vy90je9c","slide":1,"bbox":[282,482,7,124]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":1,"text":"Top-3 rate","textPreview":"Top-3 rate","textChars":10,"textLines":1,"bbox":[302,498,154,24]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":1,"text":"29%","textPreview":"29%","textChars":3,"textLines":1,"bbox":[302,526,154,46]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":1,"text":"60 top recommendation rows","textPreview":"60 top recommendation rows","textChars":26,"textLines":1,"bbox":[302,574,154,22]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":1,"bbox":[498,482,188,124]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":1,"bbox":[498,482,7,124]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":1,"text":"Citation","textPreview":"Citation","textChars":8,"textLines":1,"bbox":[518,498,154,24]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":1,"text":"0%","textPreview":"0%","textChars":2,"textLines":1,"bbox":[518,526,154,46]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":1,"text":"Main next-level gap","textPreview":"Main next-level gap","textChars":19,"textLines":1,"bbox":[518,574,154,22]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":1,"text":"June 2026","textPreview":"June 2026","textChars":9,"textLines":1,"bbox":[900,520,270,42]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":1,"text":"Prepared from live benchmark outputs and Shopify article inventory","textPreview":"Prepared from live benchmark outputs and Shopify article inventory","textChars":66,"textLines":1,"bbox":[845,566,380,48]}
+{"kind":"notes","id":"nt/qi6nud","slide":1,"text":""}
+{"kind":"slide","id":"sl/fezc3v","slide":2,"title":"AI VISIBILITY BENCHMARK","textShapes":15}
+{"kind":"textbox","id":"sh/je9cvixc","slide":2,"text":"AI VISIBILITY BENCHMARK","textPreview":"AI VISIBILITY BENCHMARK","textChars":23,"textLines":1,"bbox":[58,40,540,24]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":2,"text":"What changed over time","textPreview":"What changed over time","textChars":22,"textLines":1,"bbox":[58,70,900,60]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":2,"text":"The comparable OpenRouter panel moved in the right direction after the content work: more answers include iBOLT, more rank it top-3, and fewer answers are competitor-only. Citation is still the unsolved layer.","textPreview":"The comparable OpenRouter panel moved in the right direction after the content work: more answers include iBOLT, more rank it top-3, and ...","textChars":209,"textLines":1,"bbox":[62,132,1120,54]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":2,"bbox":[842,214,300,104]}
+{"kind":"shape","id":"sh/87ed8bat","slide":2,"bbox":[842,214,7,104]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":2,"text":"OpenRouter mention","textPreview":"OpenRouter mention","textChars":18,"textLines":1,"bbox":[862,230,266,24]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":2,"text":"24% → 40%","textPreview":"24% → 40%","textChars":9,"textLines":1,"bbox":[862,258,266,46]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":2,"text":"+16 points on the priority retest.","textPreview":"+16 points on the priority retest.","textChars":34,"textLines":1,"bbox":[862,306,266,2]}
+{"kind":"shape","id":"sh/7mp0bi9s","slide":2,"bbox":[842,344,300,104]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":2,"bbox":[842,344,7,104]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":2,"text":"Top-3 recommendation","textPreview":"Top-3 recommendation","textChars":20,"textLines":1,"bbox":[862,360,266,24]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":2,"text":"16% → 29%","textPreview":"16% → 29%","textChars":9,"textLines":1,"bbox":[862,388,266,46]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":2,"text":"Now above the first target line.","textPreview":"Now above the first target line.","textChars":32,"textLines":1,"bbox":[862,436,266,2]}
+{"kind":"shape","id":"sh/epkzupwb","slide":2,"bbox":[842,474,300,104]}
+{"kind":"shape","id":"sh/pg3ex0nu","slide":2,"bbox":[842,474,7,104]}
+{"kind":"textbox","id":"sh/wval87ed","slide":2,"text":"Competitor-only","textPreview":"Competitor-only","textChars":15,"textLines":1,"bbox":[862,490,266,24]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":2,"text":"73% → 57%","textPreview":"73% → 57%","textChars":9,"textLines":1,"bbox":[862,518,266,46]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":2,"text":"Still high, but materially lower.","textPreview":"Still high, but materially lower.","textChars":33,"textLines":1,"bbox":[862,566,266,2]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":2,"text":"Note: May Google AI Mode had 59% mention and 63% citation, but it is search-connected. The OpenRouter panel is the clean apples-to-apples consumer model benchmark.","textPreview":"Note: May Google AI Mode had 59% mention and 63% citation, but it is search-connected. The OpenRouter panel is the clean apples-to-apples...","textChars":163,"textLines":1,"bbox":[70,606,1060,36]}
+{"kind":"shape","id":"sh/bat47y1k","slide":2,"bbox":[58,670,1164,1]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":2,"text":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textPreview":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textChars":72,"textLines":1,"bbox":[58,681,980,20]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":2,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[1040,681,180,20]}
+{"kind":"chart","id":"ch/adsji5sn","slide":2,"name":"","chartType":"bar","bbox":[68,220,720,340]}
+{"kind":"notes","id":"nt/fezc3v","slide":2,"text":""}
+{"kind":"slide","id":"sl/6ufgp7","slide":3,"title":"AI VISIBILITY BENCHMARK","textShapes":17}
+{"kind":"textbox","id":"sh/fepkzupw","slide":3,"text":"AI VISIBILITY BENCHMARK","textPreview":"AI VISIBILITY BENCHMARK","textChars":23,"textLines":1,"bbox":[58,40,540,24]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":3,"text":"Where the benchmark is strongest","textPreview":"Where the benchmark is strongest","textChars":32,"textLines":1,"bbox":[58,70,900,60]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":3,"text":"ChatGPT and Gemini now include iBOLT most often, but Claude remains the harshest judge. The plan should target Claude-style broad buyer answers because they expose the weakest entity signals.","textPreview":"ChatGPT and Gemini now include iBOLT most often, but Claude remains the harshest judge. The plan should target Claude-style broad buyer a...","textChars":191,"textLines":1,"bbox":[62,132,1080,52]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":3,"bbox":[840,220,302,96]}
+{"kind":"shape","id":"sh/4r65wjud","slide":3,"bbox":[840,220,7,96]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":3,"text":"ChatGPT","textPreview":"ChatGPT","textChars":7,"textLines":1,"bbox":[868,238,240,20]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":3,"text":"43%","textPreview":"43%","textChars":3,"textLines":1,"bbox":[868,262,92,34]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":3,"text":"mention","textPreview":"mention","textChars":7,"textLines":1,"bbox":[968,263,120,20]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":3,"text":"35% top-3","textPreview":"35% top-3","textChars":9,"textLines":1,"bbox":[968,283,130,20]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":3,"bbox":[840,342,302,96]}
+{"kind":"shape","id":"sh/9cvixcze","slide":3,"bbox":[840,342,7,96]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":3,"text":"Gemini","textPreview":"Gemini","textChars":6,"textLines":1,"bbox":[868,360,240,20]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":3,"text":"43%","textPreview":"43%","textChars":3,"textLines":1,"bbox":[868,384,92,34]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":3,"text":"mention","textPreview":"mention","textChars":7,"textLines":1,"bbox":[968,385,120,20]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":3,"text":"28% top-3","textPreview":"28% top-3","textChars":9,"textLines":1,"bbox":[968,405,130,20]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":3,"bbox":[840,464,302,96]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":3,"bbox":[840,464,7,96]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":3,"text":"Claude","textPreview":"Claude","textChars":6,"textLines":1,"bbox":[868,482,240,20]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":3,"text":"36%","textPreview":"36%","textChars":3,"textLines":1,"bbox":[868,506,92,34]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":3,"text":"mention","textPreview":"mention","textChars":7,"textLines":1,"bbox":[968,507,120,20]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":3,"text":"biggest gap","textPreview":"biggest gap","textChars":11,"textLines":1,"bbox":[968,527,130,20]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":3,"bbox":[58,670,1164,1]}
+{"kind":"textbox","id":"sh/61032lsz","slide":3,"text":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textPreview":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textChars":72,"textLines":1,"bbox":[58,681,980,20]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":3,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[1040,681,180,20]}
+{"kind":"chart","id":"ch/mp0bi9s3","slide":3,"name":"","chartType":"bar","bbox":[78,220,700,348]}
+{"kind":"notes","id":"nt/6ufgp7","slide":3,"text":""}
+{"kind":"slide","id":"sl/6kr8w9","slide":4,"title":"AI VISIBILITY BENCHMARK","textShapes":9}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":4,"text":"AI VISIBILITY BENCHMARK","textPreview":"AI VISIBILITY BENCHMARK","textChars":23,"textLines":1,"bbox":[58,40,540,24]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":4,"text":"The real split: branded prompts win, broad prompts lose","textPreview":"The real split: branded prompts win, broad prompts lose","textChars":55,"textLines":1,"bbox":[58,70,900,60]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":4,"text":"AI already understands iBOLT when the brand or exact product is named. The next level is winning generic buyer questions before the user knows which brand to ask for.","textPreview":"AI already understands iBOLT when the brand or exact product is named. The next level is winning generic buyer questions before the user ...","textChars":166,"textLines":1,"bbox":[62,132,1085,52]}
+{"kind":"shape","id":"sh/94fu18jq","slide":4,"bbox":[872,232,300,110]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":4,"text":"What is working","textPreview":"What is working","textChars":15,"textLines":1,"bbox":[900,254,240,28]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":4,"text":"Product and head-to-head prompts. These prove the product story is credible when iBOLT enters the answer set.","textPreview":"Product and head-to-head prompts. These prove the product story is credible when iBOLT enters the answer set.","textChars":109,"textLines":1,"bbox":[900,292,240,44]}
+{"kind":"shape","id":"sh/kb6xkf6d","slide":4,"bbox":[872,386,300,132]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":4,"text":"What must change","textPreview":"What must change","textChars":16,"textLines":1,"bbox":[900,410,240,28]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":4,"text":"Generic prompts like “best restaurant tablet mount” need answer-first pages, comparison blocks, and third-party proof.","textPreview":"Generic prompts like “best restaurant tablet mount” need answer-first pages, comparison blocks, and third-party proof.","textChars":118,"textLines":1,"bbox":[900,448,240,52]}
+{"kind":"shape","id":"sh/8v6psfil","slide":4,"bbox":[58,670,1164,1]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":4,"text":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textPreview":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textChars":72,"textLines":1,"bbox":[58,681,980,20]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":4,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[1040,681,180,20]}
+{"kind":"chart","id":"ch/sneloj2t","slide":4,"name":"","chartType":"bar","bbox":[70,212,760,350]}
+{"kind":"notes","id":"nt/6kr8w9","slide":4,"text":""}
+{"kind":"slide","id":"sl/qobkdo","slide":5,"title":"AI VISIBILITY BENCHMARK","textShapes":8}
+{"kind":"textbox","id":"sh/g7adsji5","slide":5,"text":"AI VISIBILITY BENCHMARK","textPreview":"AI VISIBILITY BENCHMARK","textChars":23,"textLines":1,"bbox":[58,40,540,24]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":5,"text":"Who AI mentions instead of iBOLT","textPreview":"Who AI mentions instead of iBOLT","textChars":32,"textLines":1,"bbox":[58,70,900,60]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":5,"text":"The main competitive problem is not one rival. RAM is the default across categories, while Arkon, iOttie, ProClip, CTA Digital, Havis, Square, Heckler, and Mount-It win specific use cases.","textPreview":"The main competitive problem is not one rival. RAM is the default across categories, while Arkon, iOttie, ProClip, CTA Digital, Havis, Sq...","textChars":188,"textLines":1,"bbox":[62,132,1100,52]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":5,"bbox":[858,230,304,282]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":5,"text":"Counter-positioning","textPreview":"Counter-positioning","textChars":19,"textLines":1,"bbox":[890,258,240,28]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":5,"text":"RAM wins by category memory. iBOLT should win by specialist context: restaurant multi-tablet, forklift scanner/tablet, AMPS modularity, fleet/ELD, rugged commercial mounting.","textPreview":"RAM wins by category memory. iBOLT should win by specialist context: restaurant multi-tablet, forklift scanner/tablet, AMPS modularity, f...","textChars":174,"textLines":1,"bbox":[890,306,236,130]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":5,"text":"Goal: become the specialist answer beside or ahead of RAM, not just another mount brand.","textPreview":"Goal: become the specialist answer beside or ahead of RAM, not just another mount brand.","textChars":88,"textLines":1,"bbox":[890,455,236,44]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":5,"bbox":[58,670,1164,1]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":5,"text":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textPreview":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textChars":72,"textLines":1,"bbox":[58,681,980,20]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":5,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[1040,681,180,20]}
+{"kind":"chart","id":"ch/1kre1w7m","slide":5,"name":"","chartType":"bar","bbox":[78,214,720,350]}
+{"kind":"notes","id":"nt/qobkdo","slide":5,"text":""}
+{"kind":"slide","id":"sl/7ey4qv","slide":6,"title":"AI VISIBILITY BENCHMARK","textShapes":20}
+{"kind":"textbox","id":"sh/4r65wjud","slide":6,"text":"AI VISIBILITY BENCHMARK","textPreview":"AI VISIBILITY BENCHMARK","textChars":23,"textLines":1,"bbox":[58,40,540,24]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":6,"text":"The content engine is now real","textPreview":"The content engine is now real","textChars":30,"textLines":1,"bbox":[58,70,900,60]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":6,"text":"The infrastructure is in place: a large published blog inventory, product links, cart links, images, and retest-ready article queues. Now the work shifts from volume to answer quality and source readiness.","textPreview":"The infrastructure is in place: a large published blog inventory, product links, cart links, images, and retest-ready article queues. Now...","textChars":205,"textLines":1,"bbox":[62,132,1088,54]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":6,"bbox":[70,226,320,118]}
+{"kind":"shape","id":"sh/4zidonyd","slide":6,"bbox":[70,226,7,118]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":6,"text":"Shopify articles","textPreview":"Shopify articles","textChars":16,"textLines":1,"bbox":[90,242,286,24]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":6,"text":"211","textPreview":"211","textChars":3,"textLines":1,"bbox":[90,270,286,46]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":6,"text":"142 published, 69 draft/unpublished","textPreview":"142 published, 69 draft/unpublished","textChars":35,"textLines":1,"bbox":[90,318,286,16]}
+{"kind":"shape","id":"sh/83itgfml","slide":6,"bbox":[442,226,320,118]}
+{"kind":"shape","id":"sh/y90je9cv","slide":6,"bbox":[442,226,7,118]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":6,"text":"Product links","textPreview":"Product links","textChars":13,"textLines":1,"bbox":[462,242,286,24]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":6,"text":"1,723","textPreview":"1,723","textChars":5,"textLines":1,"bbox":[462,270,286,46]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":6,"text":"Internal product pathing in articles","textPreview":"Internal product pathing in articles","textChars":36,"textLines":1,"bbox":[462,318,286,16]}
+{"kind":"shape","id":"sh/yhgn29gr","slide":6,"bbox":[70,382,320,118]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":6,"bbox":[70,382,7,118]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":6,"text":"Add-to-cart links","textPreview":"Add-to-cart links","textChars":17,"textLines":1,"bbox":[90,398,286,24]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":6,"text":"1,285","textPreview":"1,285","textChars":5,"textLines":1,"bbox":[90,426,286,46]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":6,"text":"Conversion path is embedded","textPreview":"Conversion path is embedded","textChars":27,"textLines":1,"bbox":[90,474,286,16]}
+{"kind":"shape","id":"sh/neloj2t8","slide":6,"bbox":[442,382,320,118]}
+{"kind":"shape","id":"sh/fepkzupw","slide":6,"bbox":[442,382,7,118]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":6,"text":"Images embedded","textPreview":"Images embedded","textChars":15,"textLines":1,"bbox":[462,398,286,24]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":6,"text":"783","textPreview":"783","textChars":3,"textLines":1,"bbox":[462,426,286,46]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":6,"text":"Article media footprint","textPreview":"Article media footprint","textChars":23,"textLines":1,"bbox":[462,474,286,16]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":6,"bbox":[870,226,292,274]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":6,"text":"Top live pages to sharpen","textPreview":"Top live pages to sharpen","textChars":25,"textLines":1,"bbox":[900,254,236,28]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":6,"text":"1. Best Restaurant Tablet Mount in 2026: POS Sta…\n2. Best Phone Mount for Construction Vehicles an…\n3. Best Garmin Fish Finder Mount: How to Choose …\n4. Best Tablet Mount for Restaurant POS and Deli…\n5. Best Phone Mount for Amazon Flex and Delivery…","textPreview":"1. Best Restaurant Tablet Mount in 2026: POS Sta… | 2. Best Phone Mount for Construction Vehicles an… | 3. Best Garmin Fish Finder Mount:...","textChars":249,"textLines":5,"bbox":[900,302,236,132]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":6,"text":"These pages already exist. The next step is answer-first edits, schema, and retesting.","textPreview":"These pages already exist. The next step is answer-first edits, schema, and retesting.","textChars":86,"textLines":1,"bbox":[900,458,236,48]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":6,"bbox":[58,670,1164,1]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":6,"text":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textPreview":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textChars":72,"textLines":1,"bbox":[58,681,980,20]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":6,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[1040,681,180,20]}
+{"kind":"notes","id":"nt/7ey4qv","slide":6,"text":""}
+{"kind":"slide","id":"sl/67us7g","slide":7,"title":"AI VISIBILITY BENCHMARK","textShapes":18}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":7,"text":"AI VISIBILITY BENCHMARK","textPreview":"AI VISIBILITY BENCHMARK","textChars":23,"textLines":1,"bbox":[58,40,540,24]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":7,"text":"How we get to the next level","textPreview":"How we get to the next level","textChars":28,"textLines":1,"bbox":[58,70,900,60]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":7,"text":"The work should move in sequence. First win inclusion in broad prompts. Then make pages citation-ready. Then add external proof so search-connected AI has sources to trust.","textPreview":"The work should move in sequence. First win inclusion in broad prompts. Then make pages citation-ready. Then add external proof so search...","textChars":172,"textLines":1,"bbox":[62,132,1088,54]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":7,"bbox":[78,248,248,260]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":7,"bbox":[98,270,50,50]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":7,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[98,279,50,34]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":7,"text":"Win inclusion","textPreview":"Win inclusion","textChars":13,"textLines":1,"bbox":[98,344,208,30]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":7,"text":"Rewrite priority pages around exact buyer questions, best-for recommendations, product modules, and competitor comparison blocks.","textPreview":"Rewrite priority pages around exact buyer questions, best-for recommendations, product modules, and competitor comparison blocks.","textChars":129,"textLines":1,"bbox":[98,392,208,92]}
+{"kind":"shape","id":"sh/1cfa9w3m","slide":7,"bbox":[370,248,248,260]}
+{"kind":"shape","id":"sh/1gvy90je","slide":7,"bbox":[390,270,50,50]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":7,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[390,279,50,34]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":7,"text":"Earn citations","textPreview":"Earn citations","textChars":14,"textLines":1,"bbox":[390,344,208,30]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":7,"text":"Add FAQ, Article, Organization, Product/Offer, and HowTo schema. Make pages concise enough for AI to cite.","textPreview":"Add FAQ, Article, Organization, Product/Offer, and HowTo schema. Make pages concise enough for AI to cite.","textChars":106,"textLines":1,"bbox":[390,392,208,92]}
+{"kind":"shape","id":"sh/xs72x4na","slide":7,"bbox":[662,248,248,260]}
+{"kind":"shape","id":"sh/87ed8bat","slide":7,"bbox":[682,270,50,50]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":7,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[682,279,50,34]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":7,"text":"Build authority","textPreview":"Build authority","textChars":15,"textLines":1,"bbox":[682,344,208,30]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":7,"text":"Have SEO contractor build third-party mentions around RAM, Arkon, iOttie, restaurant, fleet, warehouse, fishing, and AMPS.","textPreview":"Have SEO contractor build third-party mentions around RAM, Arkon, iOttie, restaurant, fleet, warehouse, fishing, and AMPS.","textChars":122,"textLines":1,"bbox":[682,392,208,92]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":7,"bbox":[954,248,248,260]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":7,"bbox":[974,270,50,50]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":7,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[974,279,50,34]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":7,"text":"Retest monthly","textPreview":"Retest monthly","textChars":14,"textLines":1,"bbox":[974,344,208,30]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":7,"text":"Track ChatGPT, Claude, Gemini, search-connected AI, and Shopify blog impact.","textPreview":"Track ChatGPT, Claude, Gemini, search-connected AI, and Shopify blog impact.","textChars":76,"textLines":1,"bbox":[974,392,208,92]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":7,"text":"Next target: nonbranded mention rate from 3% to 15%, citation from 0% to 8%, while keeping top-3 above 25%.","textPreview":"Next target: nonbranded mention rate from 3% to 15%, citation from 0% to 8%, while keeping top-3 above 25%.","textChars":107,"textLines":1,"bbox":[92,568,1070,38]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":7,"bbox":[58,670,1164,1]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":7,"text":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textPreview":"Source: iBOLT benchmark reports and Shopify article inventory, June 2026","textChars":72,"textLines":1,"bbox":[58,681,980,20]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":7,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[1040,681,180,20]}
+{"kind":"notes","id":"nt/67us7g","slide":7,"text":""}
+{"kind":"slide","id":"sl/86p7jp","slide":8,"title":"AI VISIBILITY BENCHMARK","textShapes":15}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":8,"text":"AI VISIBILITY BENCHMARK","textPreview":"AI VISIBILITY BENCHMARK","textChars":23,"textLines":1,"bbox":[58,40,540,24]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":8,"text":"Prompt-loss recovery spec","textPreview":"Prompt-loss recovery spec","textChars":25,"textLines":1,"bbox":[58,70,900,60]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":8,"text":"We can turn the benchmark misses into a workflow: every lost prompt becomes a tracked content task with a mapped page, a generated answer block, schema recommendations, and a retest result.","textPreview":"We can turn the benchmark misses into a workflow: every lost prompt becomes a tracked content task with a mapped page, a generated answer...","textChars":189,"textLines":1,"bbox":[62,132,1100,54]}
+{"kind":"shape","id":"sh/94fu18jq","slide":8,"bbox":[770,226,360,86]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":8,"bbox":[792,250,38,38]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":8,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[792,257,38,24]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":8,"text":"Prompt loss inbox","textPreview":"Prompt loss inbox","textChars":17,"textLines":1,"bbox":[850,244,250,24]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":8,"text":"Group misses by category, provider, mapped page, and competitor set.","textPreview":"Group misses by category, provider, mapped page, and competitor set.","textChars":68,"textLines":1,"bbox":[850,273,250,32]}
+{"kind":"shape","id":"sh/xczed8v6","slide":8,"bbox":[770,338,360,86]}
+{"kind":"shape","id":"sh/8v6psfil","slide":8,"bbox":[792,362,38,38]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":8,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[792,369,38,24]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":8,"text":"Answer-first patch","textPreview":"Answer-first patch","textChars":18,"textLines":1,"bbox":[850,356,250,24]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":8,"text":"Generate direct answer, best-for matrix, product module, and FAQ/schema.","textPreview":"Generate direct answer, best-for matrix, product module, and FAQ/schema.","textChars":72,"textLines":1,"bbox":[850,385,250,32]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":8,"bbox":[770,450,360,86]}
+{"kind":"shape","id":"sh/fyxobm58","slide":8,"bbox":[792,474,38,38]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":8,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[792,481,38,24]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":8,"text":"Retest loop","textPreview":"Retest loop","textChars":11,"textLines":1,"bbox":[850,468,250,24]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":8,"text":"Run the same prompts again and promote what lifts nonbranded mentions.","textPreview":"Run the same prompts again and promote what lifts nonbranded mentions.","textChars":70,"textLines":1,"bbox":[850,497,250,32]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":8,"text":"Spec output: 122 absent-iBOLT benchmark rows converted into a workqueue and category recovery plan.","textPreview":"Spec output: 122 absent-iBOLT benchmark rows converted into a workqueue and category recovery plan.","textChars":99,"textLines":1,"bbox":[92,590,1040,28]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":8,"bbox":[58,670,1164,1]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":8,"text":"Source: generated prompt-loss recovery spec from the 204-row OpenRouter retest","textPreview":"Source: generated prompt-loss recovery spec from the 204-row OpenRouter retest","textChars":78,"textLines":1,"bbox":[58,681,980,20]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":8,"text":"iBOLT AI Visibility","textPreview":"iBOLT AI Visibility","textChars":19,"textLines":1,"bbox":[1040,681,180,20]}
+{"kind":"chart","id":"ch/c7u54zid","slide":8,"name":"","chartType":"bar","bbox":[76,220,620,328]}
+{"kind":"notes","id":"nt/86p7jp","slide":8,"text":""}
+{"kind":"slide","id":"sl/bwhswp","slide":9,"title":"Decision: what we should do next","textShapes":9}
+{"kind":"textbox","id":"sh/1032lszq","slide":9,"text":"Decision: what we should do next","textPreview":"Decision: what we should do next","textChars":32,"textLines":1,"bbox":[70,64,940,62]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":9,"text":"Keep the blog engine focused on answer-market share, not generic content volume.","textPreview":"Keep the blog engine focused on answer-market share, not generic content volume.","textChars":80,"textLines":1,"bbox":[74,134,760,36]}
+{"kind":"shape","id":"sh/judg7ads","slide":9,"bbox":[86,222,1030,86]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":9,"text":"App/Jacob","textPreview":"App/Jacob","textChars":9,"textLines":1,"bbox":[118,244,210,30]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":9,"text":"Refresh the top priority pages, add schema, product modules, and comparison blocks, then rerun the same benchmark.","textPreview":"Refresh the top priority pages, add schema, product modules, and comparison blocks, then rerun the same benchmark.","textChars":114,"textLines":1,"bbox":[360,244,710,44]}
+{"kind":"shape","id":"sh/u18jqh0f","slide":9,"bbox":[86,338,1030,86]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":9,"text":"SEO contractor","textPreview":"SEO contractor","textChars":14,"textLines":1,"bbox":[118,360,210,30]}
+{"kind":"textbox","id":"sh/cvixczed","slide":9,"text":"Build external proof: citations, mentions, backlinks, and category references around the competitor sets AI already trusts.","textPreview":"Build external proof: citations, mentions, backlinks, and category references around the competitor sets AI already trusts.","textChars":123,"textLines":1,"bbox":[360,360,710,44]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":9,"bbox":[86,454,1030,86]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":9,"text":"Katie/team","textPreview":"Katie/team","textChars":10,"textLines":1,"bbox":[118,476,210,30]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":9,"text":"Review the priority page queue and approve the first 30-day sprint: restaurant, delivery, forklift/warehouse, fleet, fishing, AMPS.","textPreview":"Review the priority page queue and approve the first 30-day sprint: restaurant, delivery, forklift/warehouse, fleet, fishing, AMPS.","textChars":131,"textLines":1,"bbox":[360,476,710,44]}
+{"kind":"shape","id":"sh/j2t83itg","slide":9,"bbox":[86,598,1030,1]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":9,"text":"Bottom line: iBOLT is moving into the AI answer set. The next level is broad-prompt inclusion plus citation authority.","textPreview":"Bottom line: iBOLT is moving into the AI answer set. The next level is broad-prompt inclusion plus citation authority.","textChars":118,"textLines":1,"bbox":[90,624,1030,28]}
+{"kind":"notes","id":"nt/bwhswp","slide":9,"text":""}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="346" viewBox="0 0 1160 346" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="346"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="298" rx="14"/>
+    <text class="title" x="54" y="64">Inventory Match Status</text>
+    <text class="subtitle" x="54" y="88">Local blog posts matched against public sitemap/audit pages.</text>
+    
+      <text class="label" x="54" y="122">Matched to public/local audit</text>
+      <rect x="430" y="108" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="152" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="125">89</text>
+      <text class="small" x="430" y="149">84% of local posts</text>
+    
+
+      <text class="label" x="54" y="168">Not matched to audit</text>
+      <rect x="430" y="154" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="154" width="29" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="171">17</text>
+      <text class="small" x="430" y="195">Needs URL/sitemap/admin verification</text>
+    
+
+      <text class="label" x="54" y="214">Linked products</text>
+      <rect x="430" y="200" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="200" width="266" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="217">156</text>
+      <text class="small" x="430" y="241">45% of catalog</text>
+    
+
+      <text class="label" x="54" y="260">Unlinked products</text>
+      <rect x="430" y="246" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="246" width="318" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="263">187</text>
+      <text class="small" x="430" y="287">55% of catalog</text>
+    
+  
+</svg>

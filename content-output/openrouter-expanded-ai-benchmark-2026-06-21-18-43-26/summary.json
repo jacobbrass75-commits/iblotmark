@@ -1,0 +1,907 @@
+{
+  "summary": {
+    "run": {
+      "id": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+      "companyId": "ibolt-default-company",
+      "name": "OpenRouter Priority AI Visibility Retest 2026-06-21 claude",
+      "providers": [
+        "claude"
+      ],
+      "status": "completed",
+      "queryCount": 4,
+      "resultCount": 4,
+      "error": null,
+      "summary": {
+        "providerSummaries": [
+          {
+            "provider": "claude",
+            "queriesEvaluated": 4,
+            "completedCount": 4,
+            "skippedCount": 0,
+            "failedCount": 0,
+            "mentionRate": 0,
+            "citationRate": 0,
+            "topThreeRate": 0,
+            "avgScore": 10
+          }
+        ],
+        "biggestGaps": [
+          {
+            "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+            "query": "which brands are cited for live streaming phone and camera mount",
+            "provider": "claude",
+            "score": 10,
+            "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: Arkon. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+          },
+          {
+            "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+            "query": "which brands are cited for offroad phone and camera mount",
+            "provider": "claude",
+            "score": 10,
+            "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Peak Design. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+          },
+          {
+            "queryId": "bd4c31fd-59d8-4e43-9d33-07131a9a07d4",
+            "query": "which brands are cited for school tablet mount",
+            "provider": "claude",
+            "score": 10,
+            "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: CTA Digital. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+          },
+          {
+            "queryId": "aefe9a8e-9c90-4e83-bb6d-7f57da8d94d0",
+            "query": "which brands are cited for tractor and farm equipment tablet mount",
+            "provider": "claude",
+            "score": 10,
+            "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Havis. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+          }
+        ],
+        "topWins": []
+      },
+      "startedAt": "2026-06-22T01:43:27.000Z",
+      "completedAt": "2026-06-22T01:44:06.000Z",
+      "createdAt": "2026-06-22T01:43:27.000Z"
+    },
+    "providerSummaries": [
+      {
+        "provider": "claude",
+        "queriesEvaluated": 4,
+        "completedCount": 4,
+        "skippedCount": 0,
+        "failedCount": 0,
+        "mentionRate": 0,
+        "citationRate": 0,
+        "topThreeRate": 0,
+        "avgScore": 10
+      },
+      {
+        "provider": "chatgpt",
+        "queriesEvaluated": 2,
+        "completedCount": 2,
+        "skippedCount": 0,
+        "failedCount": 0,
+        "mentionRate": 0,
+        "citationRate": 0,
+        "topThreeRate": 0,
+        "avgScore": 0
+      }
+    ],
+    "querySummaries": [
+      {
+        "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+        "query": "which brands are cited for live streaming phone and camera mount",
+        "category": "streaming",
+        "label": "which brands are cited for live streaming phone and camera mount",
+        "verticalId": null,
+        "priority": 82,
+        "persona": null,
+        "painPoint": null,
+        "iboltAngle": null,
+        "targetProducts": [],
+        "benchmarkBaseline": {
+          "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+          "capturedAt": "2026-06-22T01:43:27.000Z",
+          "averageScore": 10,
+          "averageMentionRate": 0,
+          "providers": [
+            {
+              "provider": "claude",
+              "status": "completed",
+              "coverageScore": 10,
+              "targetBrandMentioned": false,
+              "brandMentioned": false,
+              "targetDomainCited": false,
+              "iboltCited": false,
+              "topPickRank": null,
+              "mentionedProducts": [],
+              "competitors": [
+                "Arkon"
+              ]
+            }
+          ]
+        },
+        "averageScore": 10,
+        "averageMentionRate": 0,
+        "weakestProviders": [
+          "claude"
+        ],
+        "results": [
+          {
+            "id": "d298bced-f330-4175-9429-298d1fdcf9f9",
+            "companyId": "ibolt-default-company",
+            "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+            "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+            "provider": "claude",
+            "model": "anthropic/claude-sonnet-4",
+            "prompt": "Answer this buyer-style product query using the best current information you can find.\nIf you recommend products, rank the strongest options in order and explain why each one is there.\nBe specific about commercial use cases, durability, installation style, and tradeoffs when relevant.\nQuery: \"which brands are cited for live streaming phone and camera mount\"",
+            "rawResponse": "Based on current market research, here are the top-cited brands for live streaming phone and camera mounts, ranked by reputation and user feedback:\n\n## Top Recommended Brands (Ranked)\n\n### 1. **Manfrotto**\n- **Why it's #1**: Industry gold standard for professional applications\n- **Commercial use**: Excellent for studios, professional streamers, content creators\n- **Durability**: Metal construction, typically 5+ year lifespan\n- **Installation**: Clamp, tripod, and desk mount options\n- **Tradeoffs**: Higher price point ($50-200+), but exceptional build quality\n\n### 2. **Joby (GripTight series)**\n- **Why it's here**: Best versatility and grip technology\n- **Commercial use**: Great for mobile streamers, outdoor content\n- **Durability**: Flexible legs withstand repeated positioning\n- **Installation**: Wraps around objects, clamps to surfaces\n- **Tradeoffs**: Less stable for heavy cameras, better for phones\n\n### 3. **Elgato**\n- **Why it's ranked**: Purpose-built for streaming/gaming community\n- **Commercial use**: Ideal for Twitch streamers, YouTubers, podcasters\n- **Durability**: Solid but primarily plastic construction\n- **Installation**: Multi-mount system, magnetic bases available\n- **Tradeoffs**: Limited to lighter devices, ecosystem lock-in\n\n### 4. **Neewer**\n- **Why it's included**: Best budget option with professional features\n- **Commercial use**: Small studios, beginner streamers\n- **Durability**: Good value but shorter lifespan than premium brands\n- **Installation**: Wide variety of mounting styles\n- **Tradeoffs**: Quality control inconsistency, limited warranty\n\n### 5. **Arkon**\n- **Why it's listed**: Specializes in device mounting solutions\n- **Commercial use**: Automotive streaming, mobile broadcasting\n- **Durability**: Heavy-duty options available\n- **Installation**: Suction cup and clamp specialists\n- **Tradeoffs**: Less aesthetic appeal, more utilitarian design\n\n## Key Considerations for Live Streaming:\n- **Stability** is crucial for viewer experience\n- **Quick adjustment** capabilities for dynamic content\n- **Cable management** features for clean setups\n- **Weight capacity** matching your device setup\n\nThe choice depends on your budget, device weight, and mounting environment needs.",
+            "status": "completed",
+            "error": null,
+            "targetBrandMentioned": false,
+            "brandMentioned": false,
+            "targetDomainCited": false,
+            "iboltCited": false,
+            "topPickRank": null,
+            "coverageScore": 10,
+            "sentiment": "absent",
+            "positioning": "iBolt Mounts was absent from the recommendation set.",
+            "positioningTags": [
+              "specialist",
+              "budget",
+              "premium",
+              "durable"
+            ],
+            "mentionedProducts": [],
+            "competitors": [
+              "Arkon"
+            ],
+            "sourceUrls": [],
+            "analysisNotes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: Arkon. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps.",
+            "createdAt": "2026-06-22T01:43:35.000Z"
+          }
+        ]
+      },
+      {
+        "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+        "query": "which brands are cited for offroad phone and camera mount",
+        "category": "offroad",
+        "label": "which brands are cited for offroad phone and camera mount",
+        "verticalId": null,
+        "priority": 82,
+        "persona": null,
+        "painPoint": null,
+        "iboltAngle": null,
+        "targetProducts": [],
+        "benchmarkBaseline": {
+          "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+          "capturedAt": "2026-06-22T01:43:27.000Z",
+          "averageScore": 10,
+          "averageMentionRate": 0,
+          "providers": [
+            {
+              "provider": "claude",
+              "status": "completed",
+              "coverageScore": 10,
+              "targetBrandMentioned": false,
+              "brandMentioned": false,
+              "targetDomainCited": false,
+              "iboltCited": false,
+              "topPickRank": null,
+              "mentionedProducts": [],
+              "competitors": [
+                "RAM Mounts",
+                "RAM",
+                "Peak Design"
+              ]
+            }
+          ]
+        },
+        "averageScore": 10,
+        "averageMentionRate": 0,
+        "weakestProviders": [
+          "claude"
+        ],
+        "results": [
+          {
+            "id": "dfe88b1e-1ee4-4fdc-bfc9-e6f6b86a42c5",
+            "companyId": "ibolt-default-company",
+            "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+            "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+            "provider": "claude",
+            "model": "anthropic/claude-sonnet-4",
+            "prompt": "Answer this buyer-style product query using the best current information you can find.\nIf you recommend products, rank the strongest options in order and explain why each one is there.\nBe specific about commercial use cases, durability, installation style, and tradeoffs when relevant.\nQuery: \"which brands are cited for offroad phone and camera mount\"",
+            "rawResponse": "Based on current market research, here are the top-cited brands for offroad phone and camera mounts, ranked by reputation and performance:\n\n## **Top Phone Mount Brands**\n\n**1. RAM Mounts**\n- **Why it leads**: Industry standard for heavy-duty applications, used by military/commercial fleets\n- **Commercial use**: Fleet vehicles, emergency services, construction equipment\n- **Durability**: Marine-grade aluminum, lifetime warranty on many products\n- **Installation**: Ball-and-socket system, requires drilling but extremely secure\n- **Tradeoffs**: Higher cost ($50-150+), more complex installation\n\n**2. Quad Lock**\n- **Why it ranks high**: Twist-lock mechanism, excellent vibration dampening\n- **Commercial use**: Motorcycle touring, delivery services, field work\n- **Durability**: Aircraft-grade aluminum, weatherproof\n- **Installation**: Case-based system, some models require permanent mounting\n- **Tradeoffs**: Requires specific phone case, moderate pricing ($40-80)\n\n**3. Peak Design**\n- **Why it's notable**: Quick-release system, premium build quality\n- **Commercial use**: Professional photography, content creation\n- **Durability**: Weather-resistant, robust locking mechanism\n- **Installation**: Magnetic/mechanical hybrid, tool-free\n- **Tradeoffs**: Premium pricing, newer to offroad market\n\n## **Top Camera Mount Brands**\n\n**1. RAM Mounts**\n- **Why it leads**: Same robust platform as phone mounts, universal compatibility\n- **Commercial use**: Documentary filming, industrial inspection, law enforcement\n- **Installation**: Modular system works with any camera thread\n\n**2. Manfrotto**\n- **Why it's respected**: Professional photography heritage, precision engineering\n- **Commercial use**: Professional video production, scientific documentation\n- **Tradeoffs**: More suited to stationary/controlled movement vs. extreme offroad\n\n**3. GoPro (OEM mounts)**\n- **Why it's cited**: Purpose-built for action cameras, extensive ecosystem\n- **Commercial use**: Adventure tourism, sports documentation, training videos\n- **Durability**: Designed for extreme conditions but plastic construction\n- **Tradeoffs**: Limited to GoPro ecosystem, less robust than metal alternatives\n\n## **Key Considerations for Offroad Use**\n\n- **Vibration dampening** is critical - look for rubber isolation or active dampening\n- **Waterproofing** ratings (IP67+ recommended)\n- **Temperature range** for extreme climates\n- **Theft deterrence** for commercial applications\n- **Quick release** vs. **permanent security** based on use case\n\nRAM Mounts consistently receives the strongest citations for serious offroad applications due to their proven durability and modular design flexibility.",
+            "status": "completed",
+            "error": null,
+            "targetBrandMentioned": false,
+            "brandMentioned": false,
+            "targetDomainCited": false,
+            "iboltCited": false,
+            "topPickRank": null,
+            "coverageScore": 10,
+            "sentiment": "absent",
+            "positioning": "iBolt Mounts was absent from the recommendation set.",
+            "positioningTags": [
+              "specialist",
+              "premium",
+              "durable"
+            ],
+            "mentionedProducts": [],
+            "competitors": [
+              "RAM Mounts",
+              "RAM",
+              "Peak Design"
+            ],
+            "sourceUrls": [],
+            "analysisNotes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Peak Design. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps.",
+            "createdAt": "2026-06-22T01:43:49.000Z"
+          }
+        ]
+      },
+      {
+        "queryId": "bd4c31fd-59d8-4e43-9d33-07131a9a07d4",
+        "query": "which brands are cited for school tablet mount",
+        "category": "education",
+        "label": "which brands are cited for school tablet mount",
+        "verticalId": null,
+        "priority": 82,
+        "persona": null,
+        "painPoint": null,
+        "iboltAngle": null,
+        "targetProducts": [],
+        "benchmarkBaseline": {
+          "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+          "capturedAt": "2026-06-22T01:43:27.000Z",
+          "averageScore": 10,
+          "averageMentionRate": 0,
+          "providers": [
+            {
+              "provider": "claude",
+              "status": "completed",
+              "coverageScore": 10,
+              "targetBrandMentioned": false,
+              "brandMentioned": false,
+              "targetDomainCited": false,
+              "iboltCited": false,
+              "topPickRank": null,
+              "mentionedProducts": [],
+              "competitors": [
+                "CTA Digital"
+              ]
+            }
+          ]
+        },
+        "averageScore": 10,
+        "averageMentionRate": 0,
+        "weakestProviders": [
+          "claude"
+        ],
+        "results": [
+          {
+            "id": "ef0a8967-062d-491d-abaf-6333841f8591",
+            "companyId": "ibolt-default-company",
+            "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+            "queryId": "bd4c31fd-59d8-4e43-9d33-07131a9a07d4",
+            "provider": "claude",
+            "model": "anthropic/claude-sonnet-4",
+            "prompt": "Answer this buyer-style product query using the best current information you can find.\nIf you recommend products, rank the strongest options in order and explain why each one is there.\nBe specific about commercial use cases, durability, installation style, and tradeoffs when relevant.\nQuery: \"which brands are cited for school tablet mount\"",
+            "rawResponse": "Based on current market research, here are the top tablet mount brands commonly cited for school environments, ranked by their educational market presence and suitability:\n\n## Top School Tablet Mount Brands\n\n### 1. **Maclocks (Compulocks)**\n- **Why it ranks #1**: Dominant in K-12 education with purpose-built school solutions\n- **Commercial use cases**: Classroom stations, library kiosks, administrative check-in points\n- **Durability**: Heavy-duty steel construction, tamper-resistant locks\n- **Installation**: Wall mounts, desk stands, and mobile carts available\n- **Tradeoffs**: Higher cost but superior theft protection and longevity\n\n### 2. **CTA Digital**\n- **Why it's strong**: Extensive education-focused product line with budget options\n- **Commercial use cases**: Individual student desks, presentation stations, testing environments\n- **Durability**: Reinforced plastic and metal hybrid construction\n- **Installation**: Clamp-on, wall-mount, and floor stand options\n- **Tradeoffs**: More affordable but may require more frequent replacement\n\n### 3. **ArmorActive**\n- **Why it's notable**: Rugged designs specifically for high-traffic school environments\n- **Commercial use cases**: Cafeterias, hallway information stations, outdoor campus areas\n- **Durability**: Military-grade materials, weather-resistant options\n- **Installation**: Permanent mounting systems with anti-vandalism features\n- **Tradeoffs**: Premium pricing but exceptional durability in harsh conditions\n\n### 4. **Pyle**\n- **Why it's included**: Cost-effective solutions for budget-conscious districts\n- **Commercial use cases**: Basic classroom setups, temporary installations\n- **Durability**: Standard commercial-grade materials\n- **Installation**: Simple mounting systems, good for quick deployment\n- **Tradeoffs**: Lower cost but may lack advanced security features\n\n### 5. **HoverTab**\n- **Why it's emerging**: Innovative magnetic mounting for flexible classroom use\n- **Commercial use cases**: Interactive whiteboards, mobile learning stations\n- **Durability**: Strong magnetic hold with protective cases\n- **Installation**: No permanent mounting required\n- **Tradeoffs**: Limited to magnetic-compatible surfaces\n\n## Key Considerations for Schools:\n- **Security**: Theft prevention is crucial in educational settings\n- **Accessibility**: ADA compliance for public institutions\n- **Maintenance**: Easy cleaning and sanitization capabilities\n- **Flexibility**: Ability to accommodate different tablet sizes as technology updates\n\nMaclocks consistently receives the highest citations in educational procurement documents due to their specialized focus on institutional security needs.",
+            "status": "completed",
+            "error": null,
+            "targetBrandMentioned": false,
+            "brandMentioned": false,
+            "targetDomainCited": false,
+            "iboltCited": false,
+            "topPickRank": null,
+            "coverageScore": 10,
+            "sentiment": "absent",
+            "positioning": "iBolt Mounts was absent from the recommendation set.",
+            "positioningTags": [
+              "specialist",
+              "budget",
+              "premium",
+              "durable"
+            ],
+            "mentionedProducts": [],
+            "competitors": [
+              "CTA Digital"
+            ],
+            "sourceUrls": [],
+            "analysisNotes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: CTA Digital. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps.",
+            "createdAt": "2026-06-22T01:43:57.000Z"
+          }
+        ]
+      },
+      {
+        "queryId": "aefe9a8e-9c90-4e83-bb6d-7f57da8d94d0",
+        "query": "which brands are cited for tractor and farm equipment tablet mount",
+        "category": "agriculture",
+        "label": "which brands are cited for tractor and farm equipment tablet mount",
+        "verticalId": null,
+        "priority": 82,
+        "persona": null,
+        "painPoint": null,
+        "iboltAngle": null,
+        "targetProducts": [],
+        "benchmarkBaseline": {
+          "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+          "capturedAt": "2026-06-22T01:43:27.000Z",
+          "averageScore": 10,
+          "averageMentionRate": 0,
+          "providers": [
+            {
+              "provider": "claude",
+              "status": "completed",
+              "coverageScore": 10,
+              "targetBrandMentioned": false,
+              "brandMentioned": false,
+              "targetDomainCited": false,
+              "iboltCited": false,
+              "topPickRank": null,
+              "mentionedProducts": [],
+              "competitors": [
+                "RAM Mounts",
+                "RAM",
+                "Havis"
+              ]
+            }
+          ]
+        },
+        "averageScore": 10,
+        "averageMentionRate": 0,
+        "weakestProviders": [
+          "claude"
+        ],
+        "results": [
+          {
+            "id": "4294f5a3-3dd6-4277-bec3-b0ec4eed7d4d",
+            "companyId": "ibolt-default-company",
+            "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+            "queryId": "aefe9a8e-9c90-4e83-bb6d-7f57da8d94d0",
+            "provider": "claude",
+            "model": "anthropic/claude-sonnet-4",
+            "prompt": "Answer this buyer-style product query using the best current information you can find.\nIf you recommend products, rank the strongest options in order and explain why each one is there.\nBe specific about commercial use cases, durability, installation style, and tradeoffs when relevant.\nQuery: \"which brands are cited for tractor and farm equipment tablet mount\"",
+            "rawResponse": "Based on current market research, here are the top tablet mount brands specifically cited for tractor and farm equipment applications:\n\n## Top Recommended Brands (Ranked)\n\n### 1. **RAM Mounts**\n- **Why it's #1**: Industry standard for heavy equipment mounts with proven agricultural track record\n- **Commercial use**: Precision agriculture, GPS guidance systems, field mapping applications\n- **Durability**: Marine-grade aluminum construction, vibration dampening, IP ratings up to IP68\n- **Installation**: Ball-and-socket system with various base options (suction cup, permanent bolt-down, clamp mounts)\n- **Tradeoffs**: Higher cost ($150-400+) but exceptional reliability\n\n### 2. **Gamber-Johnson**\n- **Why it's here**: Specialized in mobile mounting solutions for commercial vehicles and equipment\n- **Commercial use**: Fleet management tablets, diagnostic equipment, GPS systems in agricultural machinery\n- **Durability**: Steel construction, shock isolation, designed for 24/7 operation\n- **Installation**: Permanent mounting systems, often requires drilling/modification\n- **Tradeoffs**: Very robust but less flexible positioning than RAM systems\n\n### 3. **Havis**\n- **Why it's ranked**: Strong reputation in rugged vehicle mounting, expanding into agricultural sector\n- **Commercial use**: Precision ag tablets, livestock management systems, irrigation controls\n- **Durability**: Military-spec testing, vibration resistant, weatherproof options\n- **Installation**: Vehicle-specific and universal mounting plates available\n- **Tradeoffs**: Limited agricultural-specific designs compared to top two brands\n\n### 4. **National Products Inc. (NPI)**\n- **Why included**: Cost-effective option frequently cited for agricultural applications\n- **Commercial use**: Basic tablet mounting for farm management software, weather monitoring\n- **Durability**: Good for lighter-duty applications, plastic and aluminum options\n- **Installation**: Simple clamp and adhesive mount systems\n- **Tradeoffs**: Lower cost ($50-150) but may not withstand heavy vibration long-term\n\n## Key Considerations for Agricultural Use:\n- **Vibration resistance** is critical due to diesel engines and rough terrain\n- **Weather sealing** needed for dust, moisture, and temperature extremes\n- **Quick release mechanisms** for tablet security when equipment is parked\n- **Cable management** for power and data connections\n- **Screen visibility** in direct sunlight conditions\n\nRAM Mounts consistently receives the most citations in agricultural forums and equipment dealer recommendations due to their modular system and proven durability in harsh environments.",
+            "status": "completed",
+            "error": null,
+            "targetBrandMentioned": false,
+            "brandMentioned": false,
+            "targetDomainCited": false,
+            "iboltCited": false,
+            "topPickRank": null,
+            "coverageScore": 10,
+            "sentiment": "absent",
+            "positioning": "iBolt Mounts was absent from the recommendation set.",
+            "positioningTags": [
+              "specialist",
+              "durable"
+            ],
+            "mentionedProducts": [],
+            "competitors": [
+              "RAM Mounts",
+              "RAM",
+              "Havis"
+            ],
+            "sourceUrls": [],
+            "analysisNotes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Havis. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps.",
+            "createdAt": "2026-06-22T01:44:06.000Z"
+          }
+        ]
+      },
+      {
+        "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+        "query": "which brands are cited for live streaming phone and camera mount",
+        "category": "streaming",
+        "label": "which brands are cited for live streaming phone and camera mount",
+        "verticalId": null,
+        "priority": 82,
+        "persona": null,
+        "painPoint": null,
+        "iboltAngle": null,
+        "targetProducts": [],
+        "benchmarkBaseline": {
+          "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+          "capturedAt": "2026-06-22T01:44:06.186Z",
+          "averageScore": 10,
+          "averageMentionRate": 0,
+          "providers": [
+            {
+              "provider": "claude",
+              "status": "completed",
+              "coverageScore": 10,
+              "targetBrandMentioned": false,
+              "brandMentioned": false,
+              "targetDomainCited": false,
+              "iboltCited": false,
+              "topPickRank": null,
+              "mentionedProducts": [],
+              "competitors": [
+                "Arkon"
+              ]
+            }
+          ]
+        },
+        "averageScore": 0,
+        "averageMentionRate": 0,
+        "weakestProviders": [
+          "chatgpt"
+        ],
+        "results": [
+          {
+            "id": "462f3f6d-a219-464c-8b50-c9e5e63c0f11",
+            "companyId": "ibolt-default-company",
+            "runId": "3000ada2-8a4c-4256-8ab5-cd7909c91888",
+            "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+            "provider": "chatgpt",
+            "model": "openai/gpt-4o",
+            "prompt": "Answer this buyer-style product query using the best current information you can find.\nIf you recommend products, rank the strongest options in order and explain why each one is there.\nBe specific about commercial use cases, durability, installation style, and tradeoffs when relevant.\nQuery: \"which brands are cited for live streaming phone and camera mount\"",
+            "rawResponse": "When looking for phone and camera mounts specifically designed for live streaming, it's important to consider factors such as stability, versatility, ease of use, and compatibility with different devices. Here are some of the top brands and products that are highly regarded for live streaming purposes:\n\n1. **Joby GorillaPod Series**\n   - **Why It's Recommended**: Joby GorillaPods are known for their flexible, bendable legs that can wrap around various surfaces, providing stability in unconventional settings. They are versatile and can be used with both phones and cameras.\n   - **Commercial Use Cases**: Ideal for content creators who need to stream from different locations and require a mount that can adapt to various environments.\n   - **Durability**: Made from durable materials, GorillaPods are designed to withstand frequent use and rough handling.\n   - **Installation Style**: Easy to set up with a quick-release plate and adjustable legs.\n   - **Tradeoffs**: While versatile, they may not provide the same level of stability as more rigid mounts on flat surfaces.\n\n2. **Manfrotto PIXI Mini Tripod**\n   - **Why It's Recommended**: Manfrotto is a well-respected brand in the photography industry, known for its high-quality and durable products. The PIXI Mini Tripod is compact and portable, making it great for on-the-go streaming.\n   - **Commercial Use Cases**: Suitable for vloggers and streamers who need a reliable and portable solution for desk or tabletop streaming.\n   - **Durability**: Constructed with high-quality materials, ensuring longevity and reliability.\n   - **Installation Style**: Simple to set up with a universal screw thread that fits most cameras and phone mounts.\n   - **Tradeoffs**: Limited height adjustment compared to larger tripods.\n\n3. **Ulanzi U-Rig Pro Smartphone Video Rig**\n   - **Why It's Recommended**: This rig is specifically designed for smartphone videography and live streaming, offering multiple mounting points for accessories like microphones and lights.\n   - **Commercial Use Cases**: Perfect for professional streamers and mobile journalists who require additional equipment for enhanced production quality.\n   - **Durability**: Made from sturdy plastic, it offers a good balance between weight and durability.\n   - **Installation Style**: Easy to mount and dismount phones, with adjustable clamps to fit various phone sizes.\n   - **Tradeoffs**: Primarily designed for smartphones, so not suitable for larger cameras.\n\n4. **Neewer Camera Tripod**\n   - **Why It's Recommended**: Neewer offers a range of affordable yet reliable tripods that are suitable for both cameras and smartphones (with an adapter).\n   - **Commercial Use Cases**: Great for streamers who need a stable and adjustable height tripod for indoor or outdoor use.\n   - **Durability**: Made from aluminum alloy, providing a good balance of weight and strength.\n   - **Installation Style**: Features quick-release leg locks and a 3-way pan head for easy setup and adjustment.\n   - **Tradeoffs**: Bulkier than mini tripods, making it less portable.\n\n5. **DJI OM Series (Osmo Mobile)**\n   - **Why It's Recommended**: DJI's gimbals are renowned for their stabilization technology, making them ideal for smooth live streaming, especially when moving.\n   - **Commercial Use Cases**: Suitable for dynamic live streaming scenarios, such as events or travel vlogs.\n   - **Durability**: Built with high-quality materials and advanced stabilization technology.\n   - **Installation Style**: Easy to set up with a smartphone clamp and intuitive controls.\n   - **Tradeoffs**: More expensive than basic mounts and requires charging.\n\nEach of these options offers unique benefits depending on your specific live streaming needs, whether you prioritize portability, stability, or additional features like accessory mounts.",
+            "status": "completed",
+            "error": null,
+            "targetBrandMentioned": false,
+            "brandMentioned": false,
+            "targetDomainCited": false,
+            "iboltCited": false,
+            "topPickRank": null,
+            "coverageScore": 0,
+            "sentiment": "absent",
+            "positioning": "iBolt Mounts was absent from the recommendation set.",
+            "positioningTags": [
+              "budget",
+              "durable"
+            ],
+            "mentionedProducts": [],
+            "competitors": [],
+            "sourceUrls": [],
+            "analysisNotes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. No known competitors detected. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps.",
+            "createdAt": "2026-06-22T01:44:13.000Z"
+          }
+        ]
+      },
+      {
+        "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+        "query": "which brands are cited for offroad phone and camera mount",
+        "category": "offroad",
+        "label": "which brands are cited for offroad phone and camera mount",
+        "verticalId": null,
+        "priority": 82,
+        "persona": null,
+        "painPoint": null,
+        "iboltAngle": null,
+        "targetProducts": [],
+        "benchmarkBaseline": {
+          "runId": "6e088f48-a7e1-4380-b7f7-ff423265a843",
+          "capturedAt": "2026-06-22T01:44:06.186Z",
+          "averageScore": 10,
+          "averageMentionRate": 0,
+          "providers": [
+            {
+              "provider": "claude",
+              "status": "completed",
+              "coverageScore": 10,
+              "targetBrandMentioned": false,
+              "brandMentioned": false,
+              "targetDomainCited": false,
+              "iboltCited": false,
+              "topPickRank": null,
+              "mentionedProducts": [],
+              "competitors": [
+                "RAM Mounts",
+                "RAM",
+                "Peak Design"
+              ]
+            }
+          ]
+        },
+        "averageScore": 0,
+        "averageMentionRate": 0,
+        "weakestProviders": [
+          "chatgpt"
+        ],
+        "results": [
+          {
+            "id": "2bfc9433-91d7-4707-9f80-2aa5fc7a7902",
+            "companyId": "ibolt-default-company",
+            "runId": "3000ada2-8a4c-4256-8ab5-cd7909c91888",
+            "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+            "provider": "chatgpt",
+            "model": "openai/gpt-4o",
+            "prompt": "Answer this buyer-style product query using the best current information you can find.\nIf you recommend products, rank the strongest options in order and explain why each one is there.\nBe specific about commercial use cases, durability, installation style, and tradeoffs when relevant.\nQuery: \"which brands are cited for offroad phone and camera mount\"",
+            "rawResponse": "When it comes to off-road phone and camera mounts, durability, stability, and versatility are key factors to consider. Here are some of the top brands known for producing high-quality mounts suitable for off-road use:\n\n1. **RAM Mounts**\n   - **Why It's Ranked Here**: RAM Mounts is renowned for its rugged and versatile mounting solutions. Their products are highly durable, made from marine-grade aluminum and high-strength composite materials, making them ideal for off-road conditions.\n   - **Commercial Use Cases**: Suitable for off-road vehicles, motorcycles, ATVs, and even boats. They are often used by professionals who require reliable mounting solutions in challenging environments.\n   - **Installation Style**: RAM Mounts offer a modular ball-and-socket system that allows for easy adjustments and a wide range of mounting options.\n   - **Tradeoffs**: While highly durable, RAM Mounts can be more expensive than other brands. The modular system might require purchasing additional components for specific setups.\n\n2. **Quad Lock**\n   - **Why It's Ranked Here**: Quad Lock is known for its secure locking mechanism and ease of use. Their mounts are designed to keep devices firmly in place, even on rough terrain.\n   - **Commercial Use Cases**: Ideal for cyclists, motorcyclists, and off-road enthusiasts who need quick access to their devices.\n   - **Installation Style**: Features a simple twist-and-lock mechanism that ensures a secure fit. They offer handlebar mounts, car mounts, and more.\n   - **Tradeoffs**: The locking system is specific to Quad Lock cases or adapters, which means additional purchases may be necessary.\n\n3. **SP Connect**\n   - **Why It's Ranked Here**: SP Connect offers a robust mounting system with a unique 90-degree twist-to-lock mechanism. Their products are designed for both smartphones and cameras.\n   - **Commercial Use Cases**: Popular among motorcyclists, cyclists, and off-road vehicle users who need a reliable and quick-to-use mounting solution.\n   - **Installation Style**: Offers a wide range of mounts for different applications, including handlebar, car, and tripod mounts.\n   - **Tradeoffs**: Similar to Quad Lock, SP Connect requires specific cases or adapters for their mounting system.\n\n4. **Peak Design**\n   - **Why It's Ranked Here**: Known for their innovative design and high-quality materials, Peak Design offers mounts that are both functional and aesthetically pleasing.\n   - **Commercial Use Cases**: Suitable for photographers and videographers who need to secure their cameras in off-road conditions.\n   - **Installation Style**: Features a unique locking mechanism that is compatible with their ecosystem of products, including tripods and straps.\n   - **Tradeoffs**: Peak Design products are often on the higher end of the price spectrum, and their mounts are primarily designed for cameras rather than phones.\n\n5. **Rokform**\n   - **Why It's Ranked Here**: Rokform is known for its rugged phone cases and mounts that use a combination of magnets and mechanical locks for extra security.\n   - **Commercial Use Cases**: Ideal for off-road enthusiasts who need a strong and reliable mount for their smartphones.\n   - **Installation Style**: Offers a variety of mounts, including handlebar and dashboard mounts, with a focus on magnetic attachment.\n   - **Tradeoffs**: Requires Rokform-specific cases or adapters, and the magnetic system may not be suitable for all devices.\n\nEach of these brands offers unique features and benefits, making them suitable for different off-road applications. The choice ultimately depends on specific needs, such as the type of vehicle, device compatibility, and budget.",
+            "status": "completed",
+            "error": null,
+            "targetBrandMentioned": false,
+            "brandMentioned": false,
+            "targetDomainCited": false,
+            "iboltCited": false,
+            "topPickRank": null,
+            "coverageScore": 0,
+            "sentiment": "absent",
+            "positioning": "iBolt Mounts was absent from the recommendation set.",
+            "positioningTags": [
+              "budget",
+              "durable"
+            ],
+            "mentionedProducts": [],
+            "competitors": [
+              "RAM Mounts",
+              "RAM",
+              "ROKFORM",
+              "Peak Design"
+            ],
+            "sourceUrls": [],
+            "analysisNotes": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, ROKFORM, Peak Design. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps.",
+            "createdAt": "2026-06-22T01:44:20.000Z"
+          }
+        ]
+      }
+    ],
+    "biggestGaps": [
+      {
+        "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+        "query": "which brands are cited for live streaming phone and camera mount",
+        "provider": "claude",
+        "score": 10,
+        "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: Arkon. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+      },
+      {
+        "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+        "query": "which brands are cited for offroad phone and camera mount",
+        "provider": "claude",
+        "score": 10,
+        "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Peak Design. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+      },
+      {
+        "queryId": "bd4c31fd-59d8-4e43-9d33-07131a9a07d4",
+        "query": "which brands are cited for school tablet mount",
+        "provider": "claude",
+        "score": 10,
+        "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: CTA Digital. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+      },
+      {
+        "queryId": "aefe9a8e-9c90-4e83-bb6d-7f57da8d94d0",
+        "query": "which brands are cited for tractor and farm equipment tablet mount",
+        "provider": "claude",
+        "score": 10,
+        "reason": "iBolt Mounts did not surface in the answer. Provider did not cite the target domain. No explicit list ranking detected. Competitors named: RAM Mounts, RAM, Havis. Benchmark goal: Expanded AI visibility benchmark prompt generated from current blog inventory, competitor gaps, or low-visibility benchmark gaps."
+      }
+    ],
+    "topWins": []
+  },
+  "selectedPrompts": [
+    {
+      "prompt": "which brands are cited for live streaming phone and camera mount",
+      "category": "streaming",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Best Multi-Camera Phone Mount for Live Streaming",
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    },
+    {
+      "prompt": "which brands are cited for offroad phone and camera mount",
+      "category": "offroad",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Mounts to take off-roading in your Jeep Wrangler",
+      "pageUrl": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    },
+    {
+      "prompt": "which brands are cited for school tablet mount",
+      "category": "education",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "pageUrl": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    },
+    {
+      "prompt": "which brands are cited for tractor and farm equipment tablet mount",
+      "category": "agriculture",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    }
+  ],
+  "providers": [
+    "claude",
+    "chatgpt"
+  ],
+  "providerRequests": [
+    {
+      "prompt": "which brands are cited for live streaming phone and camera mount",
+      "category": "streaming",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Best Multi-Camera Phone Mount for Live Streaming",
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    },
+    {
+      "prompt": "which brands are cited for offroad phone and camera mount",
+      "category": "offroad",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Mounts to take off-roading in your Jeep Wrangler",
+      "pageUrl": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    },
+    {
+      "prompt": "which brands are cited for school tablet mount",
+      "category": "education",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "TOP TABLET STANDS FOR STUDENTS GOING BACK TO SCHOOL",
+      "pageUrl": "https://iboltmounts.com/blogs/news/the-best-tablet-stands-for-students-going-back-to-school",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    },
+    {
+      "prompt": "which brands are cited for tractor and farm equipment tablet mount",
+      "category": "agriculture",
+      "source": "citation_probe_prompt",
+      "priority": 82,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Best Tablet Mount for Tractor Cab Precision Agriculture",
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-tablet-mount-for-tractor-cab-precision-agriculture",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "claude"
+    },
+    {
+      "prompt": "which brands are cited for live streaming phone and camera mount",
+      "category": "streaming",
+      "source": "citation_probe_prompt",
+      "priority": 80,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Best Multi-Camera Phone Mount for Live Streaming",
+      "pageUrl": "https://iboltmounts.com/blogs/news/best-multi-camera-phone-mount-for-live-streaming",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "chatgpt"
+    },
+    {
+      "prompt": "which brands are cited for offroad phone and camera mount",
+      "category": "offroad",
+      "source": "citation_probe_prompt",
+      "priority": 80,
+      "reason": "Target-domain citation or source-url row appears.",
+      "closestPost": "Mounts to take off-roading in your Jeep Wrangler",
+      "pageUrl": "https://iboltmounts.com/blogs/news/mounts-to-take-off-roading-in-your-jeep-wrangler",
+      "promptType": "citation_probe",
+      "refreshState": "citation_cleanup_then_retest",
+      "expectedMetric": "Target-domain citation or source-url row appears.",
+      "batchId": "R03",
+      "provider": "chatgpt"
+    }
+  ],
+  "providerManifestMode": "exact_provider_rows",
+  "contentPlan": [
+    {
+      "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+      "query": "which brands are cited for live streaming phone and camera mount",
+      "verticalId": null,
+      "title": "Which Brands Are Cited For Live Streaming Phone And Camera Mount (2026 Buyer's Guide)",
+      "primaryKeyword": "which brands are cited for live streaming phone and camera mount",
+      "secondaryKeywords": [
+        "which brands are cited for live streaming phone and camera mount",
+        "which brands are cited for live streaming phone and camera mount comparison",
+        "which brands are cited for live streaming phone and camera mount buyer's guide"
+      ],
+      "format": "use_case",
+      "angle": "Create a direct answer page for \"which brands are cited for live streaming phone and camera mount\" with stronger product fit, proof, and operational detail.",
+      "whyNow": "Average benchmark score is 10/100 with weak coverage from Claude.",
+      "uniquenessReason": "No close overlap with the current post inventory was detected.",
+      "supportingProducts": [],
+      "researchNeeds": [
+        "real buyer phrasing from Reddit and forums",
+        "usage constraints, fit details, and product specifications",
+        "competitor comparisons with pricing, positioning, and evidence"
+      ],
+      "recommendedProviders": [
+        "claude"
+      ],
+      "persona": null,
+      "painPoint": null,
+      "iboltAngle": null,
+      "targetProducts": [],
+      "similarityScore": 0,
+      "gapScore": 90
+    },
+    {
+      "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+      "query": "which brands are cited for offroad phone and camera mount",
+      "verticalId": null,
+      "title": "Which Brands Are Cited For Offroad Phone And Camera Mount (2026 Buyer's Guide)",
+      "primaryKeyword": "which brands are cited for offroad phone and camera mount",
+      "secondaryKeywords": [
+        "which brands are cited for offroad phone and camera mount",
+        "which brands are cited for offroad phone and camera mount comparison",
+        "which brands are cited for offroad phone and camera mount buyer's guide"
+      ],
+      "format": "use_case",
+      "angle": "Create a direct answer page for \"which brands are cited for offroad phone and camera mount\" with stronger product fit, proof, and operational detail.",
+      "whyNow": "Average benchmark score is 10/100 with weak coverage from Claude.",
+      "uniquenessReason": "No close overlap with the current post inventory was detected.",
+      "supportingProducts": [],
+      "researchNeeds": [
+        "real buyer phrasing from Reddit and forums",
+        "usage constraints, fit details, and product specifications",
+        "competitor comparisons with pricing, positioning, and evidence"
+      ],
+      "recommendedProviders": [
+        "claude"
+      ],
+      "persona": null,
+      "painPoint": null,
+      "iboltAngle": null,
+      "targetProducts": [],
+      "similarityScore": 0,
+      "gapScore": 90
+    },
+    {
+      "queryId": "bd4c31fd-59d8-4e43-9d33-07131a9a07d4",
+      "query": "which brands are cited for school tablet mount",
+      "verticalId": null,
+      "title": "Which Brands Are Cited For School Tablet Mount (2026 Buyer's Guide)",
+      "primaryKeyword": "which brands are cited for school tablet mount",
+      "secondaryKeywords": [
+        "which brands are cited for school tablet mount",
+        "which brands are cited for school tablet mount comparison",
+        "which brands are cited for school tablet mount buyer's guide"
+      ],
+      "format": "use_case",
+      "angle": "Create a direct answer page for \"which brands are cited for school tablet mount\" with stronger product fit, proof, and operational detail.",
+      "whyNow": "Average benchmark score is 10/100 with weak coverage from Claude.",
+      "uniquenessReason": "No close overlap with the current post inventory was detected.",
+      "supportingProducts": [],
+      "researchNeeds": [
+        "real buyer phrasing from Reddit and forums",
+        "usage constraints, fit details, and product specifications",
+        "competitor comparisons with pricing, positioning, and evidence"
+      ],
+      "recommendedProviders": [
+        "claude"
+      ],
+      "persona": null,
+      "painPoint": null,
+      "iboltAngle": null,
+      "targetProducts": [],
+      "similarityScore": 0,
+      "gapScore": 90
+    },
+    {
+      "queryId": "aefe9a8e-9c90-4e83-bb6d-7f57da8d94d0",
+      "query": "which brands are cited for tractor and farm equipment tablet mount",
+      "verticalId": null,
+      "title": "Which Brands Are Cited For Tractor And Farm Equipment Tablet Mount (2026 Buyer's Guide)",
+      "primaryKeyword": "which brands are cited for tractor and farm equipment tablet mount",
+      "secondaryKeywords": [
+        "which brands are cited for tractor and farm equipment tablet mount",
+        "which brands are cited for tractor and farm equipment tablet mount comparison",
+        "which brands are cited for tractor and farm equipment tablet mount buyer's guide"
+      ],
+      "format": "use_case",
+      "angle": "Create a direct answer page for \"which brands are cited for tractor and farm equipment tablet mount\" with stronger product fit, proof, and operational detail.",
+      "whyNow": "Average benchmark score is 10/100 with weak coverage from Claude.",
+      "uniquenessReason": "No close overlap with the current post inventory was detected.",
+      "supportingProducts": [],
+      "researchNeeds": [
+        "real buyer phrasing from Reddit and forums",
+        "usage constraints, fit details, and product specifications",
+        "competitor comparisons with pricing, positioning, and evidence"
+      ],
+      "recommendedProviders": [
+        "claude"
+      ],
+      "persona": null,
+      "painPoint": null,
+      "iboltAngle": null,
+      "targetProducts": [],
+      "similarityScore": 0,
+      "gapScore": 90
+    },
+    {
+      "queryId": "16c656b0-a293-4348-8b99-4152d7d1e379",
+      "query": "which brands are cited for live streaming phone and camera mount",
+      "verticalId": null,
+      "title": "Which Brands Are Cited For Live Streaming Phone And Camera Mount (2026 Buyer's Guide)",
+      "primaryKeyword": "which brands are cited for live streaming phone and camera mount",
+      "secondaryKeywords": [
+        "which brands are cited for live streaming phone and camera mount",
+        "which brands are cited for live streaming phone and camera mount comparison",
+        "which brands are cited for live streaming phone and camera mount buyer's guide"
+      ],
+      "format": "use_case",
+      "angle": "Create a direct answer page for \"which brands are cited for live streaming phone and camera mount\" with stronger product fit, proof, and operational detail.",
+      "whyNow": "Average benchmark score is 0/100 with weak coverage from ChatGPT.",
+      "uniquenessReason": "No close overlap with the current post inventory was detected.",
+      "supportingProducts": [],
+      "researchNeeds": [
+        "real buyer phrasing from Reddit and forums",
+        "usage constraints, fit details, and product specifications",
+        "competitor comparisons with pricing, positioning, and evidence"
+      ],
+      "recommendedProviders": [
+        "chatgpt"
+      ],
+      "persona": null,
+      "painPoint": null,
+      "iboltAngle": null,
+      "targetProducts": [],
+      "similarityScore": 0,
+      "gapScore": 100
+    },
+    {
+      "queryId": "e2bbf001-7644-4431-a20e-a70b6fe2e226",
+      "query": "which brands are cited for offroad phone and camera mount",
+      "verticalId": null,
+      "title": "Which Brands Are Cited For Offroad Phone And Camera Mount (2026 Buyer's Guide)",
+      "primaryKeyword": "which brands are cited for offroad phone and camera mount",
+      "secondaryKeywords": [
+        "which brands are cited for offroad phone and camera mount",
+        "which brands are cited for offroad phone and camera mount comparison",
+        "which brands are cited for offroad phone and camera mount buyer's guide"
+      ],
+      "format": "use_case",
+      "angle": "Create a direct answer page for \"which brands are cited for offroad phone and camera mount\" with stronger product fit, proof, and operational detail.",
+      "whyNow": "Average benchmark score is 0/100 with weak coverage from ChatGPT.",
+      "uniquenessReason": "No close overlap with the current post inventory was detected.",
+      "supportingProducts": [],
+      "researchNeeds": [
+        "real buyer phrasing from Reddit and forums",
+        "usage constraints, fit details, and product specifications",
+        "competitor comparisons with pricing, positioning, and evidence"
+      ],
+      "recommendedProviders": [
+        "chatgpt"
+      ],
+      "persona": null,
+      "painPoint": null,
+      "iboltAngle": null,
+      "targetProducts": [],
+      "similarityScore": 0,
+      "gapScore": 100
+    }
+  ]
+}

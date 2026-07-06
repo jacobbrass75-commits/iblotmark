@@ -1,0 +1,95 @@
+{
+  "title": "Phone Mounts for Popular Work Trucks",
+  "metaTitle": "Work Truck Phone Mount Guide: F-Series, Silverado, Ram,",
+  "metaDescription": "Fleet managers and owner-operators: find the right phone mount for your F-Series, Silverado, Sierra, Ram, Transit, Sprinter, or ProMaster. Cup holder,",
+  "excerpt": "Every work truck cab is different. This guide maps F-Series, Silverado, Ram, Transit, Sprinter, and ProMaster layouts to the right phone mount approach, including cup holder, suction, and AMPS drill-base setups, so fleet managers and owner-operators can stop guessing and start mounting.",
+  "wordCount": 1396,
+  "spec": {
+    "title": "Phone Mounts for Popular Work Trucks",
+    "slug": "phone-mounts-popular-work-truck-models",
+    "vertical": "trucking-fleet",
+    "primaryKeyword": "work truck phone mount",
+    "audience": "fleet managers and owner-operators running F-Series, Silverado, Sierra, Ram, Transit, Sprinter, and ProMaster vehicles",
+    "problem": "The most common work trucks and vans have different cab layouts, console shapes, dash materials, cup-holder positions, and upfit rules.",
+    "angle": "Map popular work truck model families to mount approaches, including where no-drill, cup-holder, wedge, suction, and AMPS drill-base setups make sense.",
+    "comparisonFrame": "Mention that vehicle-specific mounts are strong when every truck is the same model year. Universal AMPS and cup-holder/wedge systems are better when the fleet includes pickups, vans, and service trucks from multiple brands. Avoid declaring one product type best for every model.",
+    "products": [
+      "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+      "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+      "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+      "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount"
+    ],
+    "sources": [
+      {
+        "label": "Ford Pro Chassis Cab",
+        "url": "https://www.fordpro.com/en-us/fleet-vehicles/chassis-cab/",
+        "use": "Use for upfit-ready Ford commercial truck context."
+      },
+      {
+        "label": "GM Fleet Silverado HD",
+        "url": "https://www.gmfleet.com/vehicles/trucks/chevrolet-silverado-hd",
+        "use": "Use for Silverado HD fleet and work-truck context."
+      },
+      {
+        "label": "Ram Chassis Cab versatility",
+        "url": "https://www.ramtrucks.com/ram-chassis-cab/versatility.html",
+        "use": "Use for Ram chassis cab, wheelbase, cab-to-axle, and upfit context."
+      },
+      {
+        "label": "Freightliner M2 106 Plus",
+        "url": "https://www.freightliner.com/trucks/m2-106-plus/",
+        "use": "Use for medium-duty cab and vocational truck context."
+      },
+      {
+        "label": "Chevrolet Express Cutaway",
+        "url": "https://www.chevrolet.com/commercial/express/cutaway",
+        "use": "Use for cutaway van and service/upfit body context."
+      },
+      {
+        "label": "FMCSA mobile phone restrictions fact sheet",
+        "url": "https://www.fmcsa.dot.gov/driver-safety/distracted-driving/mobile-phone-restrictions-fact-sheet",
+        "use": "FMCSA emphasizes safe, hands-free placement for commercial drivers."
+      },
+      {
+        "label": "NHTSA distracted driving overview",
+        "url": "https://www.nhtsa.gov/risky-driving/distracted-driving",
+        "use": "Use for general safety framing around reaching, visibility, and attention."
+      }
+    ]
+  },
+  "products": [
+    {
+      "handle": "xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+      "title": "iBOLT™ xProDock™ Bizmount™ Amps",
+      "url": "https://iboltmounts.com/products/xprodock-bizmount-amps-smartphone-drill-base-mount-ibbz-33931",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-xprodock-bizmount-amps-1050410162.jpg?v=1768868290",
+      "price": "39.95",
+      "description": "The xProDock Bizmount™ AMPS Heavy-Duty Smartphone Mount is engineered for durability in demanding trucking, fleet, and industrial applications. Its rugged, multi-angle drill base pedestal securely mounts your smartphone on any flat surface-desks, carts, vehicle dashboards, or workstations. Equipped with a vibration-resistant dual ball joint system and industry-standard AMPS drill base, the mount ensures your device remains securely positioned even under harsh conditions. Universal compatibility accommodates most smartphones, including those with protective cases, featuring adjustable feet and a precise 4-hole AMPS pattern for reliable attachment. Designed for professional use, it provides full 360 degree rotation and tilt via dual pivot points for optimal ergonomic viewing angles. One-handed insertion and removal simplify operation, complemented by a 2-meter microUSB charging cable for f"
+    },
+    {
+      "handle": "ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+      "title": "iBOLT Phone Dock'n Lock IncrediBOLT™ 360- Locking Phone Multi-Angle Drill Base Mount",
+      "url": "https://iboltmounts.com/products/ibolt-phone-dock-n-lock-incredibolt-360-heavy-duty-industrial-composite-locking-multi-angle-drill-base-mount-for-smartphones",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-phone-dock-n-lock-incredibolt-360-locking-phone-multi-angle-drill-base-mount-1050407666.jpg?v=1768919289",
+      "price": "69.95",
+      "description": "The iBOLT Phone Lock'n Dock IcrediBOLT™ 360 is a heavy-duty Composite locking phone holder with a multi-angle composite Drill base pedestal mounting solution with AMPS pattern base. It is designed to install directly on a wall, table, cart, desk, in a vehicle, or on any flat surface allowing you to use your device where you need it most."
+    },
+    {
+      "handle": "heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+      "title": "iBOLT™ xProDock™ NFC BizMount™ Suction Cup",
+      "url": "https://iboltmounts.com/products/heavy-duty-smartphone-suction-cup-mount-xprodock-bizmount-ibbz-33785",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-xprodock-nfc-bizmount-suction-cup-1050410208.jpg?v=1768914852",
+      "price": "39.95",
+      "description": "The xProDock Bizmount™ with an 80mm sticky suction cup is a heavy-duty smartphone mount built for rugged trucking, fleet, and industrial use. It securely attaches to smooth surfaces like dashboards, desks, and carts, offering multi-angle adjustability for optimal viewing. The reusable sticky suction cup provides strong grip without adhesives and restores suction by rinsing and air drying. Dual ball joints ensure vibration-resistant stability on rough roads. Compatible with most smartphones (2.59\" to 3.7\" wide) and cases, it features a spring-loaded top latch and a 3.75\" pedestal with standard 1-inch (25mm) AMPS ball joints. Easy one-handed operation, 360 degree rotation, and tilt offer ergonomic positioning. Includes a 2-meter microUSB charging cable and an 80mm dash disc for mounting on textured surfaces. The kit includes all mounting hardware for a reliable, versatile smartphone soluti"
+    },
+    {
+      "handle": "xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+      "title": "iBOLT™ xProDock™ Bizmount™ Console- Phone Cup Holder Mount",
+      "url": "https://iboltmounts.com/products/xprodock-bizmount-console-heavy-duty-phone-cup-holder-mount",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-xprodock-bizmount-console-phone-cup-holder-mount-1050410180.jpg?v=1768861991",
+      "price": "64.95",
+      "description": "The xProDock Bizmount™ Console with an expandable cup holder base is a heavy-duty smartphone mount designed for trucks, fleet vehicles, commercial drivers, and industrial use. Its adjustable base fits securely into cup holders from 2.5\" to 3.5\" diameter, providing a stable and vibration-resistant phone mounting solution. Featuring dual ball joints for 360-degree rotation and tilt, this truck phone mount allows for customizable, ergonomic viewing angles on the road. Compatible with most smartphones and protective cases, the spring-loaded top latch accommodates devices 2.59\" to 3.7\" wide. This rugged cup holder phone mount kit includes everything needed for quick, tool-free installation, making it ideal for Electronic Logging Device (ELD) compliance, fleet management, and hands-free smartphone use during long hauls."
+    }
+  ],
+  "htmlPath": "/Users/yakub/Desktop/iblotmark/content-output/mount-fit-workflows-drafts-2026-06-30T19-49-50-397Z/phone-mounts-popular-work-truck-models.html"
+}

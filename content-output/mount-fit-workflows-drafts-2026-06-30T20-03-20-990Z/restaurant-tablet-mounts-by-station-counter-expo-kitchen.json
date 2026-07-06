@@ -1,0 +1,80 @@
+{
+  "title": "Restaurant Tablet Mounts by Station: Counter, Expo, Kitchen, Pickup, and Food Truck",
+  "metaTitle": "Restaurant Tablet Mount by Station: Counter, Expo, Kitchen &",
+  "metaDescription": "Find the right restaurant tablet mount for every station. iBOLT covers counter, expo, kitchen, pickup, and food truck setups with multi-tablet towers, wall",
+  "excerpt": "A tablet setup that works at checkout often fails at expo, pickup, or a food truck window. This station-by-station guide helps restaurant operators choose the right mount for every position, from front counter to kitchen line.",
+  "wordCount": 1107,
+  "spec": {
+    "title": "Restaurant Tablet Mounts by Station: Counter, Expo, Kitchen, Pickup, and Food Truck",
+    "slug": "restaurant-tablet-mounts-by-station-counter-expo-kitchen",
+    "vertical": "restaurants-food-delivery",
+    "primaryKeyword": "restaurant tablet mount",
+    "audience": "restaurant operators choosing tablet placement for front counter, expo, kitchen, pickup, food truck, and delivery stations",
+    "problem": "A tablet setup that works at checkout may fail at expo, pickup, or a food truck window because the station has different splash, heat, cable, customer access, and staff visibility needs.",
+    "angle": "Build a station-by-station guide that compares freestanding, clamp, drill-base, wall, locking, and multi-tablet tower setups.",
+    "comparisonFrame": "Mention Square or Toast-style stands as strong for their own POS terminals, but less flexible for multiple third-party tablets. Bouncepad or Compulocks-style enclosures are strong for public security, but not always ideal for fast staff access across several tablets. iBOLT helps when the restaurant needs flexible station placement, multiple tablets, wall/counter choices, and industry-standard mounting parts.",
+    "products": [
+      "ibolt-quad-tablet-tower-stand",
+      "multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+      "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+    ],
+    "sources": [
+      {
+        "label": "DoorDash Merchant Tablet Learning Center",
+        "url": "https://merchants.doordash.com/en-us/learning-center/topic/tablet",
+        "use": "Use for third-party delivery tablet workflow context."
+      },
+      {
+        "label": "Uber Eats Orders app",
+        "url": "https://merchants.ubereats.com/us/en/technology/manage-orders/uber-eats-orders-app/",
+        "use": "Use for order-management app workflow context."
+      },
+      {
+        "label": "Grubhub tablet setup",
+        "url": "https://get.grubhub.com/help-center/grubhub-tablet-setup/",
+        "use": "Use for third-party marketplace tablet setup context."
+      },
+      {
+        "label": "Toast Kitchen Display System",
+        "url": "https://pos.toasttab.com/hardware/kitchen-display-system",
+        "use": "Use for KDS and back-of-house tablet/screen workflow context."
+      }
+    ]
+  },
+  "products": [
+    {
+      "handle": "ibolt-quad-tablet-tower-stand",
+      "title": "iBOLT Quad Tablet Tower TabDock™ Stand",
+      "url": "https://iboltmounts.com/products/ibolt-quad-tablet-tower-stand",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-quad-tablet-tower-tabdock-stand-1050407691.jpg?v=1768921811",
+      "price": "149.95",
+      "description": "The iBOLT Quad Tablet Stand makes excellent use of your valuable floor space and is the perfect solution for delivery applications and order management. The TabDock™ stand can hold 4 tablets in one location, with heavy-duty construction, this point-of-purchase mount ensures your devices are safely in place for repeated use."
+    },
+    {
+      "handle": "multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+      "title": "iBOLT Tablet Tower- TabDock™ POS Clamp Mount - with 4 Tablet Holders",
+      "url": "https://iboltmounts.com/products/multi-tablet-stand-four-ipad-holders-point-of-sale-purchase-restaurant-ibrt-34707",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-tablet-tower-tabdock-pos-clamp-mount-with-4-tablet-holders-1050408283.jpg?v=1768885931",
+      "price": "89.95",
+      "description": "The TabDock™ Point of Purchase Heavy-Duty Multi-Tablet Counter &amp; Clamp Mount securely holds up to four tablets, making it ideal for restaurants and busy workspaces looking to clear counter space while managing multiple delivery and order applications. Featuring dual mounting options, this versatile system includes a clamp mount that fits flat surfaces up to 2.5\" wide and a drill base mount for permanent countertop installation, adapting to a variety of workspace setups. Each tablet holder offers four points of contact to firmly secure devices during heavy use with popular delivery and order management apps. Compatible with tablets ranging from 7\" to 11\", the mount organizes multiple devices neatly, improving workflow and reducing clutter. Designed for point-of-sale efficiency, the adjustable holders rotate 360 degrees for flexible vertical or horizontal viewing. Tablets easily insert"
+    },
+    {
+      "handle": "ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "title": "iBOLT Tablet Tower- TabDock™ POS Wall Mount - with 4 Tablet Holders",
+      "url": "https://iboltmounts.com/products/ibolt-tabdock-point-of-purchase-pos-wall-mount-with-4-tablet-holders",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-tablet-tower-tabdock-pos-wall-mount-with-4-tablet-holders-1050408318.jpg?v=1768885753",
+      "price": "134.95",
+      "description": "The TabDock™ Point of Purchase Heavy-Duty Multi-Tablet Wall Mount securely holds up to four tablets, ideal for restaurants and busy workspaces needing to clear counter space while managing multiple delivery and order apps. Perfect for kitchens, kiosks, retail displays, and more. With four points of contact per holder, tablets stay firmly in place during heavy use. Compatible with tablets from 7\" to 11\", this mount keeps devices organized and off counters, reducing clutter and improving workflow. The expandable drill base wall mount fits most flat surfaces, with a pole extending from 17.5\" to 28.5\" for flexible installation. Each holder rotates 360 degrees, allowing vertical or horizontal positioning, and tablets easily rotate to the desired angle. The kit includes four tablet holders, clamp mounts with adapters, drill bases, an extension pole, and screws - everything needed for a complet"
+    },
+    {
+      "handle": "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+      "title": "iBOLT Phone Dock'n Lock Dual POS Stand - Secure Dual-Device Mount for Point of Sale Systems",
+      "url": "https://iboltmounts.com/products/ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/files/ibolt-mounts-ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems-1130795240.jpg?v=1768917851",
+      "price": "115.00",
+      "description": "Enhance your point-of-sale (POS) station with the iBOLT Phone Dock'n Lock Dual POS Stand, a drill-base mount for maximum security and convenience. With a 9-inch pole and dual locking phone holders, the system allows both cashier and customer to easily interact with their respective devices. Universal in design, the phone holders accommodate all phone and case configurations between 4.8 and 7.25 inches high and 2.25 and 3.75 inches wide. Built to last and easy to use, this drill-base mount is stable yet prevents unauthorized removal, and is ideal for retail, restaurants, self-checkout, kiosks, and any POS setup where security and efficiency are vital."
+    }
+  ],
+  "htmlPath": "/Users/yakub/Desktop/iblotmark/content-output/mount-fit-workflows-drafts-2026-06-30T20-03-20-990Z/restaurant-tablet-mounts-by-station-counter-expo-kitchen.html"
+}

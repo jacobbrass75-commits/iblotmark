@@ -43,6 +43,8 @@ import { registerCacheRoutes } from "./cacheRoutes";
 import { registerShopifyRoutes } from "./shopifyRoutes";
 import { registerCompanyRoutes } from "./companyRoutes";
 import { registerPublicPhotoRoutes } from "./publicPhotoRoutes";
+import { registerServiceOpsRoutes } from "./serviceOpsRoutes";
+import { registerInventoryRoutes } from "./inventoryRoutes";
 import type { AnnotationCategory, InsertAnnotation } from "@shared/schema";
 import {
   createZipFromImageUploads,
@@ -930,6 +932,8 @@ export async function registerRoutes(
   registerPhotoRoutes(app);
   registerCacheRoutes(app);
   registerShopifyRoutes(app);
+  registerServiceOpsRoutes(app);
+  registerInventoryRoutes(app);
 
   // Register A/B test routes
   // registerABTestRoutes(app); // TODO: Not implemented yet

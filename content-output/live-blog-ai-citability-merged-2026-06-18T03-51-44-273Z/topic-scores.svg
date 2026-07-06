@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="602" viewBox="0 0 1160 602">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="602"/>
+  <rect class="panel" x="28" y="24" width="1104" height="554" rx="14"/>
+  <text class="title" x="52" y="64">Audited Blog Topic Inventory</text>
+  <text class="subtitle" x="52" y="87">Bar length is page count; labels show average AI-citability score.</text>
+  
+      <text class="label" x="52" y="123">amps/modular</text>
+      <text class="small" x="52" y="141">27 audited pages</text>
+      <rect x="470" y="108" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="108" width="565" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="125">67</text>
+    
+
+      <text class="label" x="52" y="167">fleet</text>
+      <text class="small" x="52" y="185">21 audited pages</text>
+      <rect x="470" y="152" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="152" width="439" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="169">78</text>
+    
+
+      <text class="label" x="52" y="211">restaurant</text>
+      <text class="small" x="52" y="229">13 audited pages</text>
+      <rect x="470" y="196" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="196" width="272" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="213">76</text>
+    
+
+      <text class="label" x="52" y="255">warehouse</text>
+      <text class="small" x="52" y="273">13 audited pages</text>
+      <rect x="470" y="240" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="240" width="272" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="257">78</text>
+    
+
+      <text class="label" x="52" y="299">delivery</text>
+      <text class="small" x="52" y="317">11 audited pages</text>
+      <rect x="470" y="284" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="284" width="230" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="301">82</text>
+    
+
+      <text class="label" x="52" y="343">streaming</text>
+      <text class="small" x="52" y="361">10 audited pages</text>
+      <rect x="470" y="328" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="328" width="209" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="345">65</text>
+    
+
+      <text class="label" x="52" y="387">fishing</text>
+      <text class="small" x="52" y="405">9 audited pages</text>
+      <rect x="470" y="372" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="372" width="188" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="389">74</text>
+    
+
+      <text class="label" x="52" y="431">education</text>
+      <text class="small" x="52" y="449">4 audited pages</text>
+      <rect x="470" y="416" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="416" width="84" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="433">59</text>
+    
+
+      <text class="label" x="52" y="475">offroad</text>
+      <text class="small" x="52" y="493">3 audited pages</text>
+      <rect x="470" y="460" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="460" width="63" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="477">73</text>
+    
+
+      <text class="label" x="52" y="519">agriculture</text>
+      <text class="small" x="52" y="537">2 audited pages</text>
+      <rect x="470" y="504" width="565" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="470" y="504" width="42" height="24" rx="8" fill="#16a34a"/>
+      <text class="value" x="1049" y="521">68</text>
+    
+</svg>

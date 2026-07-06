@@ -655,6 +655,51 @@ CREATE TABLE IF NOT EXISTS ibolt_products (
 CREATE UNIQUE INDEX IF NOT EXISTS idx_products_company_shopify_id ON ibolt_products(company_id, shopify_id);
 CREATE VIEW IF NOT EXISTS products AS SELECT * FROM ibolt_products;
 
+CREATE TABLE IF NOT EXISTS inventory_bins (
+  id TEXT PRIMARY KEY,
+  company_id TEXT NOT NULL,
+  product_id TEXT,
+  sku TEXT,
+  product_title TEXT NOT NULL,
+  bin_label TEXT NOT NULL,
+  qr_code TEXT NOT NULL,
+  unit_weight_oz REAL NOT NULL,
+  empty_bin_weight_oz REAL NOT NULL DEFAULT 56,
+  location TEXT,
+  notes TEXT,
+  status TEXT NOT NULL DEFAULT 'active',
+  last_quantity INTEGER,
+  last_count_at INTEGER,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  updated_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (product_id) REFERENCES ibolt_products(id) ON DELETE SET NULL
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_inventory_bins_company_qr_code ON inventory_bins(company_id, qr_code);
+CREATE INDEX IF NOT EXISTS idx_inventory_bins_company_product ON inventory_bins(company_id, product_id);
+
+CREATE TABLE IF NOT EXISTS inventory_counts (
+  id TEXT PRIMARY KEY,
+  company_id TEXT NOT NULL,
+  bin_id TEXT NOT NULL,
+  product_id TEXT,
+  sku TEXT,
+  product_title TEXT NOT NULL,
+  total_weight_oz REAL NOT NULL,
+  empty_bin_weight_oz REAL NOT NULL,
+  unit_weight_oz REAL NOT NULL,
+  net_weight_oz REAL NOT NULL,
+  raw_quantity REAL NOT NULL,
+  quantity INTEGER NOT NULL,
+  rounding_mode TEXT NOT NULL DEFAULT 'nearest',
+  counted_by TEXT,
+  notes TEXT,
+  created_at INTEGER NOT NULL DEFAULT (CAST(strftime('%s','now') AS INTEGER) * 1000),
+  FOREIGN KEY (bin_id) REFERENCES inventory_bins(id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES ibolt_products(id) ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS idx_inventory_counts_company_bin ON inventory_counts(company_id, bin_id);
+CREATE INDEX IF NOT EXISTS idx_inventory_counts_company_created ON inventory_counts(company_id, created_at);
+
 CREATE TABLE IF NOT EXISTS product_feed_audits (
   id TEXT PRIMARY KEY,
   company_id TEXT NOT NULL,

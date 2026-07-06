@@ -1,0 +1,8 @@
+"name","requests","gate","command"
+"Dry run micro-run manifest","6","Run before the live provider call to confirm manifest wiring.","AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/retest-execution-gate/unblocked-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"
+"Live micro-run after cleanup","6","Run only after all four page tickets are live and OPENROUTER_API_KEY is set securely.","AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/retest-execution-gate/unblocked-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts"

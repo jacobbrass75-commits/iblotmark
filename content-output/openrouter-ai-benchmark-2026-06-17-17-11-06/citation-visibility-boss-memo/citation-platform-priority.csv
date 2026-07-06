@@ -1,0 +1,7 @@
+"ai_surface","what_matters_most","why"
+"Standard ChatGPT","Mention and top-3 recommendation first","Often answers without citations, so use it to measure inclusion, ranking, and competitor displacement."
+"Standard Claude","Mention and product-entity accuracy first","Claude was one of the harsher surfaces, so exact product names and answer-ready page language matter."
+"Standard Gemini","Mention and product-entity accuracy first","Plain Gemini may not cite, but it still exposes whether iBOLT is understood as a recommendation option."
+"Google AI Overviews and Gemini with search","Citation rate is critical","These experiences are more source-dependent, so FAQ schema, Article/Product schema, and source-ready solution pages matter."
+"Perplexity","Citation rate is critical","Perplexity-style answers visibly cite sources, so third-party corroboration and clean page structure should move this metric."
+"Voice and AI shopping assistants","Entity trust plus citations","These systems need clear brand, product, category, compatibility, and external authority signals."

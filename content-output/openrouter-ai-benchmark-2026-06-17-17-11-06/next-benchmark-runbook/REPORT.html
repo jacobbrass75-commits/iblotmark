@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT Next AI Benchmark Runbook</title>
+  <style>
+    body{margin:0;background:#f8fafc;color:#111827;font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1220px;margin:0 auto;padding:34px 24px 70px}
+    h1{font-size:36px;margin:0 0 8px}
+    h2{font-size:22px;margin:34px 0 12px}
+    p,li{line-height:1.55;color:#334155;font-size:15px}
+    code,pre{background:#eef2f7;border-radius:8px}
+    pre{padding:14px;overflow:auto;border:1px solid #dbe3ef}
+    .note{background:#fff;border:1px solid #dbe3ef;border-left:6px solid #2563eb;border-radius:12px;padding:16px 18px;margin:20px 0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:22px 0}
+    .card{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:15px}
+    .label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:900}
+    .value{font-size:27px;font-weight:900;margin:8px 0;color:#0f172a}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .chart{background:#fff;border:1px solid #dbe3ef;border-radius:18px;padding:10px;overflow:auto}
+    .chart img{width:100%;height:auto;display:block}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ef;border-radius:12px;overflow:hidden;margin:12px 0 24px}
+    th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #edf2f7;font-size:13px}
+    th{background:#eef2f7;color:#475569;text-transform:uppercase;font-size:11px;letter-spacing:.04em}
+    a{color:#2563eb;overflow-wrap:anywhere}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}h1{font-size:30px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>iBOLT Next AI Benchmark Runbook</h1>
+  <p>This is the operational runbook for the next provider test. It keeps the benchmark one small prompt at a time, grouped into waves so edits can be proved before the full all-blog run.</p>
+  <div class="note"><strong>Status:</strong> The API key is not available in this shell. Run W1 first after the Sprint 1 page edits are live. Do not run the full 1,449-request manifest until W1 and W2 prove movement.</div>
+  <section class="cards"><div class="card"><div class="label">Priority requests</div><div class="value">204</div><p>Run first after page edits.</p></div><div class="card"><div class="label">Priority prompts</div><div class="value">78</div><p>Unique small buyer questions.</p></div><div class="card"><div class="label">Priority pages</div><div class="value">21</div><p>Mapped live pages covered.</p></div><div class="card"><div class="label">Waves</div><div class="value">5</div><p>Independent retest batches.</p></div><div class="card"><div class="label">Full requests</div><div class="value">1449</div><p>All-blog full manifest.</p></div><div class="card"><div class="label">Key in shell</div><div class="value">No</div><p>OPENROUTER_API_KEY</p></div></section>
+  <section class="grid">
+    <div class="chart"><img src="requests-by-wave.svg" alt="Requests by wave"/></div>
+    <div class="chart"><img src="requests-by-category.svg" alt="Requests by category"/></div>
+  </section>
+  <h2>Run Order</h2>
+  <table><thead><tr><th>Batch</th><th>Wave</th><th>Requests</th><th>Prompts</th><th>Pages</th><th>Manifest</th><th>Success Metric</th></tr></thead><tbody><tr><td>R01</td><td>W1 Sprint 1 edit validation</td><td>27</td><td>9</td><td>3</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>W2 top-page mention recovery</td><td>66</td><td>29</td><td>13</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R03</td><td>W3 citation probe</td><td>24</td><td>10</td><td>10</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv</td><td>Target-domain citation or source-url row appears.</td></tr><tr><td>R04</td><td>W4 product entity recognition</td><td>33</td><td>11</td><td>11</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv</td><td>Exact iBOLT product/entity is named without hallucinated aliases.</td></tr><tr><td>R05</td><td>W5 non-branded buyer coverage</td><td>54</td><td>19</td><td>13</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr></tbody></table>
+  <h2>Commands</h2>
+  <table><thead><tr><th>Run</th><th>Requests</th><th>Command</th><th>Dry Run</th></tr></thead><tbody><tr><td>R01 W1 Sprint 1 edit validation</td><td>27</td><td>AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td><td>AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td></tr><tr><td>R02 W2 top-page mention recovery</td><td>66</td><td>AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td><td>AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td></tr><tr><td>R03 W3 citation probe</td><td>24</td><td>AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td><td>AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td></tr><tr><td>R04 W4 product entity recognition</td><td>33</td><td>AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td><td>AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td></tr><tr><td>R05 W5 non-branded buyer coverage</td><td>54</td><td>AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td><td>AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td></tr><tr><td>All priority waves</td><td>204</td><td>AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/priority-retest-packet/priority-provider-request-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td><td>AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/priority-retest-packet/priority-provider-request-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td></tr><tr><td>Full all-blog manifest</td><td>1449</td><td>AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-prompt-gap-addendum/all-blog-complete-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td><td>AI_BENCHMARK_DRY_RUN=1 \
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-prompt-gap-addendum/all-blog-complete-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</td></tr></tbody></table>
+  <h2>Dry-Run Proof</h2>
+  <table><thead><tr><th>Batch</th><th>Manifest</th><th>Prompts</th><th>Requests</th><th>Output</th><th>Status</th></tr></thead><tbody><tr><td>R01</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r01-provider-manifest.csv</td><td>9</td><td>27</td><td>content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-39-04</td><td>validated</td></tr><tr><td>R02</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r02-provider-manifest.csv</td><td>29</td><td>66</td><td>content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-22</td><td>validated</td></tr><tr><td>R03</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r03-provider-manifest.csv</td><td>10</td><td>24</td><td>content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-31</td><td>validated</td></tr><tr><td>R04</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r04-provider-manifest.csv</td><td>11</td><td>33</td><td>content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-37</td><td>validated</td></tr><tr><td>R05</td><td>content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/next-benchmark-runbook/r05-provider-manifest.csv</td><td>19</td><td>54</td><td>content-output/openrouter-expanded-ai-benchmark-2026-06-20-18-40-43</td><td>validated</td></tr></tbody></table>
+  <h2>Highest Priority Prompt Rows</h2>
+  <table><thead><tr><th>Batch</th><th>Provider</th><th>Prompt</th><th>Category</th><th>Page</th><th>Expected Metric</th></tr></thead><tbody><tr><td>R02</td><td>claude</td><td>best multi tablet mount</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>claude</td><td>best restaurant tablet mount</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>claude</td><td>best tablet mount</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>claude</td><td>RAM Mounts vs iBOLT for restaurant tablet mount in pos stands delivery app stations and m...</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>chatgpt</td><td>RAM Mounts vs iBOLT for restaurant tablet mount in pos stands delivery app stations and m...</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>gemini_plain</td><td>RAM Mounts vs iBOLT for restaurant tablet mount in pos stands delivery app stations and m...</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R04</td><td>claude</td><td>is iBOLT™ 20mm Metal Ball Suction Cup Base good for restaurant tablet mount in pos stands...</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Exact iBOLT product/entity is named without hallucinated aliases.</td></tr><tr><td>R04</td><td>chatgpt</td><td>is iBOLT™ 20mm Metal Ball Suction Cup Base good for restaurant tablet mount in pos stands...</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Exact iBOLT product/entity is named without hallucinated aliases.</td></tr><tr><td>R04</td><td>gemini_plain</td><td>is iBOLT™ 20mm Metal Ball Suction Cup Base good for restaurant tablet mount in pos stands...</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Exact iBOLT product/entity is named without hallucinated aliases.</td></tr><tr><td>R02</td><td>claude</td><td>best fish finder</td><td>fishing</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>claude</td><td>best fish finder in water</td><td>fishing</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R02</td><td>claude</td><td>best value fish finder mount</td><td>fishing</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R05</td><td>claude</td><td>best restaurant tablet mount in pos stands delivery app stations and multi-tablet solutions</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R05</td><td>chatgpt</td><td>best restaurant tablet mount in pos stands delivery app stations and multi-tablet solutions</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R05</td><td>gemini_plain</td><td>best restaurant tablet mount in pos stands delivery app stations and multi-tablet solutions</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R03</td><td>claude</td><td>which brands are cited for restaurant tablet and POS mount</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Target-domain citation or source-url row appears.</td></tr><tr><td>R02</td><td>claude</td><td>RAM Mounts vs iBOLT for garmin fish finder mount choose the right setup for your boat or ...</td><td>fishing</td><td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R05</td><td>claude</td><td>what restaurant tablet and POS mount should I use for restaurant tablet mount in pos stan...</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Competitor-only answer becomes iBOLT-included or top-3 iBOLT.</td></tr><tr><td>R03</td><td>chatgpt</td><td>which brands are cited for restaurant tablet and POS mount</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Target-domain citation or source-url row appears.</td></tr><tr><td>R03</td><td>gemini_plain</td><td>which brands are cited for restaurant tablet and POS mount</td><td>restaurant</td><td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tabl...</td><td>Target-domain citation or source-url row appears.</td></tr></tbody></table>
+  <h2>Provider And Category Balance</h2>
+  <div class="grid">
+    <table><thead><tr><th>Provider</th><th>Requests</th><th>Pages</th><th>Prompt Types</th></tr></thead><tbody><tr><td>claude</td><td>78</td><td>21</td><td>mapped 21; comparison 14; product_entity 14; citation_probe 10; non_branded_best 10; buyer_problem 9</td></tr><tr><td>chatgpt</td><td>65</td><td>19</td><td>mapped 14; comparison 11; product_entity 14; citation_probe 8; non_branded_best 10; buyer_problem 8</td></tr><tr><td>gemini_plain</td><td>61</td><td>17</td><td>mapped 13; comparison 11; product_entity 14; citation_probe 6; non_branded_best 9; buyer_problem 8</td></tr></tbody></table>
+    <table><thead><tr><th>Category</th><th>Requests</th><th>Pages</th><th>Waves</th></tr></thead><tbody><tr><td>fishing</td><td>53</td><td>4</td><td>W2 top-page mention recovery 20; W3 citation probe 3; W4 product entity recognition 12; W5 non-branded buyer coverage 18</td></tr><tr><td>restaurant</td><td>43</td><td>3</td><td>W1 Sprint 1 edit validation 9; W2 top-page mention recovery 12; W3 citation probe 3; W4 product entity recognition 6; W5 non-branded buyer coverage 13</td></tr><tr><td>delivery</td><td>34</td><td>4</td><td>W1 Sprint 1 edit validation 9; W2 top-page mention recovery 13; W3 citation probe 3; W4 product entity recognition 6; W5 non-branded buyer coverage 3</td></tr><tr><td>warehouse</td><td>33</td><td>2</td><td>W2 top-page mention recovery 12; W3 citation probe 3; W4 product entity recognition 6; W5 non-branded buyer coverage 12</td></tr><tr><td>fleet</td><td>32</td><td>3</td><td>W1 Sprint 1 edit validation 9; W2 top-page mention recovery 9; W3 citation probe 3; W4 product entity recognition 3; W5 non-branded buyer coverage 8</td></tr><tr><td>amps/modular</td><td>3</td><td>1</td><td>W3 citation probe 3</td></tr><tr><td>streaming</td><td>2</td><td>1</td><td>W3 citation probe 2</td></tr><tr><td>offroad</td><td>2</td><td>1</td><td>W3 citation probe 2</td></tr><tr><td>education</td><td>1</td><td>1</td><td>W3 citation probe 1</td></tr><tr><td>agriculture</td><td>1</td><td>1</td><td>W3 citation probe 1</td></tr></tbody></table>
+  </div>
+  <h2>Output Checks After Each Run</h2>
+  <ul>
+    <li>Open the newest <code>content-output/openrouter-expanded-ai-benchmark-*/REPORT.md</code>.</li>
+    <li>Check <code>results.csv</code> for <code>brand_mentioned</code>, <code>domain_cited</code>, <code>top_pick_rank</code>, <code>competitors</code>, and <code>mentioned_products</code>.</li>
+    <li>Compare against the baseline: mention 24%, non-branded mention 5%, top-3 16%, citation 0%, competitor-only 73%.</li>
+    <li>Rebuild the dashboard package after each live run.</li>
+  </ul>
+</main>
+</body>
+</html>

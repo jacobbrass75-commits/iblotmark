@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iBOLT Page-Derived Expanded Benchmark Pack</title>
+  <style>
+    body{margin:0;background:#f8fafc;color:#0f172a;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:1200px;margin:0 auto;padding:34px 24px 60px}
+    h1{font-size:36px;line-height:1.08;margin:0 0 12px;letter-spacing:0}h2{font-size:24px;margin:36px 0 14px}
+    p{color:#334155;line-height:1.65;max-width:980px}.hero,.panel{background:#fff;border:1px solid #d9e2ec;border-radius:8px;padding:24px;box-shadow:0 10px 28px rgba(15,23,42,.06)}
+    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}.kpi{border:1px solid #d9e2ec;border-radius:8px;padding:16px;background:#fff}
+    .kpi strong{display:block;font-size:28px}.kpi span{display:block;margin-top:6px;color:#64748b;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}.chart{width:100%;height:auto;display:block;border:1px solid #d9e2ec;border-radius:8px;background:#fff}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #d9e2ec;border-radius:8px;overflow:hidden}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #d9e2ec;padding:10px 11px;font-size:13px;line-height:1.45}
+    th{background:#eef4ff;color:#1e3a8a;text-transform:uppercase;font-size:12px;letter-spacing:.05em}a{color:#1d4ed8;font-weight:800}
+    @media(max-width:850px){.kpis,.grid{grid-template-columns:1fr}h1{font-size:30px}}
+  </style>
+</head>
+<body><main>
+  <section class="hero">
+    <h1>iBOLT Page-Derived Expanded Benchmark Pack</h1>
+    <p>This dry-run pack expands benchmark coverage from the live blog inventory. It creates one-at-a-time prompts for non-branded buyer discovery, competitor comparisons, product entity recall, voice-assistant style questions, and citation probes.</p>
+    <div class="kpis"><div class="kpi"><strong>459</strong><span>Prompt rows</span></div><div class="kpi"><strong>1377</strong><span>Provider requests</span></div><div class="kpi"><strong>136</strong><span>Pages covered</span></div><div class="kpi"><strong>10</strong><span>Categories</span></div><div class="kpi"><strong>135</strong><span>Comparison prompts</span></div><div class="kpi"><strong>26</strong><span>Product prompts</span></div></div>
+  </section>
+  <h2>Coverage</h2>
+  <section class="panel"><div class="grid"><img class="chart" src="prompt-coverage-by-category.svg" alt="Prompt count by category"><img class="chart" src="prompt-coverage-by-type.svg" alt="Prompt count by prompt type"></div></section>
+  <h2>Top Prompts To Run</h2>
+  <table><thead><tr><th>#</th><th>Prompt</th><th>Category</th><th>Type</th><th>Priority</th><th>Closest page</th><th>Metric</th></tr></thead><tbody><tr>
+    <td>1</td>
+    <td>best multi tablet mount</td>
+    <td>restaurant</td>
+    <td>mapped</td>
+    <td>100</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>2</td>
+    <td>best restaurant tablet mount</td>
+    <td>restaurant</td>
+    <td>mapped</td>
+    <td>100</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>3</td>
+    <td>best tablet mount</td>
+    <td>restaurant</td>
+    <td>mapped</td>
+    <td>100</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>4</td>
+    <td>is iBOLT™ 20mm Metal Ball Suction Cup Base good for restaurant tablet mount in pos stands delivery app stations and multi-tablet solutions</td>
+    <td>restaurant</td>
+    <td>product_entity</td>
+    <td>100</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>5</td>
+    <td>RAM Mounts vs iBOLT for restaurant tablet mount in pos stands delivery app stations and multi-tablet solutions</td>
+    <td>restaurant</td>
+    <td>comparison</td>
+    <td>100</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>6</td>
+    <td>best fish finder</td>
+    <td>fishing</td>
+    <td>mapped</td>
+    <td>98</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>7</td>
+    <td>best fish finder in water</td>
+    <td>fishing</td>
+    <td>mapped</td>
+    <td>98</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>8</td>
+    <td>best value fish finder mount</td>
+    <td>fishing</td>
+    <td>mapped</td>
+    <td>98</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>9</td>
+    <td>best restaurant tablet mount in pos stands delivery app stations and multi-tablet solutions</td>
+    <td>restaurant</td>
+    <td>non_branded_best</td>
+    <td>96</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>non-branded inclusion</td>
+  </tr><tr>
+    <td>10</td>
+    <td>RAM Mounts vs iBOLT for garmin fish finder mount choose the right setup for your boat or kayak</td>
+    <td>fishing</td>
+    <td>comparison</td>
+    <td>96</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>11</td>
+    <td>is iBOLT™ 25mm / 1 inch Ball Composite Universal Marine Fish Finder Mounting Plate good for garmin fish finder mount choose the right setup for your boat or kayak</td>
+    <td>fishing</td>
+    <td>product_entity</td>
+    <td>92</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>12</td>
+    <td>what restaurant tablet and POS mount should I use for restaurant tablet mount in pos stands delivery app stations and multi-tablet solutions</td>
+    <td>restaurant</td>
+    <td>buyer_problem</td>
+    <td>92</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>assistant recommendation inclusion</td>
+  </tr><tr>
+    <td>13</td>
+    <td>which brands are cited for restaurant tablet and POS mount</td>
+    <td>restaurant</td>
+    <td>citation_probe</td>
+    <td>88</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-restaurant-tablet-mount-in-2026-pos-stands-delivery-app-stations-and-multi-tablet-solutions-compared">Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</a></td>
+    <td>target-domain citation and source recall</td>
+  </tr><tr>
+    <td>14</td>
+    <td>best garmin fish finder mount choose the right setup for your boat or kayak</td>
+    <td>fishing</td>
+    <td>non_branded_best</td>
+    <td>86</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>non-branded inclusion</td>
+  </tr><tr>
+    <td>15</td>
+    <td>what fish finder and boat phone mount should I use for garmin fish finder mount choose the right setup for your boat or kayak</td>
+    <td>fishing</td>
+    <td>buyer_problem</td>
+    <td>82</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>assistant recommendation inclusion</td>
+  </tr><tr>
+    <td>16</td>
+    <td>which brands are cited for fish finder and boat phone mount</td>
+    <td>fishing</td>
+    <td>citation_probe</td>
+    <td>78</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-garmin-fish-finder-mount-how-to-choose-the-right-setup-for-your-boat-or-kayak">Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</a></td>
+    <td>target-domain citation and source recall</td>
+  </tr><tr>
+    <td>17</td>
+    <td>best forklift tablet mount</td>
+    <td>warehouse</td>
+    <td>mapped</td>
+    <td>69</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison">Best Forklift Tablet Mounts for Warehouses (2026 Comparison)</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>18</td>
+    <td>best tablet mount for restaurant POS and delivery apps</td>
+    <td>restaurant</td>
+    <td>mapped</td>
+    <td>69</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps">Best Tablet Mount for Restaurant POS and Delivery Apps</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>19</td>
+    <td>best tablet mount for warehouse</td>
+    <td>warehouse</td>
+    <td>mapped</td>
+    <td>69</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison">Best Forklift Tablet Mounts for Warehouses (2026 Comparison)</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>20</td>
+    <td>best phone mount for construction vehicles and work trucks</td>
+    <td>fleet</td>
+    <td>mapped</td>
+    <td>68</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks">Best Phone Mount for Construction Vehicles and Work Trucks</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>21</td>
+    <td>best phone mount for Instacart and grocery delivery drivers</td>
+    <td>delivery</td>
+    <td>mapped</td>
+    <td>68</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>22</td>
+    <td>best barcode scanner mount for forklift</td>
+    <td>warehouse</td>
+    <td>mapped</td>
+    <td>67</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026">Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>23</td>
+    <td>best heavy duty vehicle phone mount</td>
+    <td>fishing</td>
+    <td>mapped</td>
+    <td>67</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop">Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>24</td>
+    <td>best kayak fish finder mount</td>
+    <td>fishing</td>
+    <td>mapped</td>
+    <td>67</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh">Best Kayak Fish Finder Mounts for Secure Removable Setups</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>25</td>
+    <td>best phone mount for delivery drivers</td>
+    <td>delivery</td>
+    <td>mapped</td>
+    <td>67</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>26</td>
+    <td>commercial grade phone mount for delivery drivers</td>
+    <td>fleet</td>
+    <td>mapped</td>
+    <td>67</td>
+    <td><a href="https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh">Commercial-Grade Phone Mounts for Delivery Drivers</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>27</td>
+    <td>RAM Mounts vs iBOLT for forklift tablet mount for warehouses</td>
+    <td>warehouse</td>
+    <td>comparison</td>
+    <td>67</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison">Best Forklift Tablet Mounts for Warehouses (2026 Comparison)</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>28</td>
+    <td>RAM Mounts vs iBOLT for tablet mount for restaurant pos and delivery apps</td>
+    <td>restaurant</td>
+    <td>comparison</td>
+    <td>67</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps">Best Tablet Mount for Restaurant POS and Delivery Apps</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>29</td>
+    <td>best fish finder mount for small boat</td>
+    <td>fishing</td>
+    <td>mapped</td>
+    <td>66</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails">Best Fish Finder Mount for Pontoon Boat Rails</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>30</td>
+    <td>best locking tablet stand for food trucks and quick service restaurants</td>
+    <td>restaurant</td>
+    <td>mapped</td>
+    <td>66</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants">Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>31</td>
+    <td>best phone mount for Amazon Flex and delivery vans</td>
+    <td>delivery</td>
+    <td>mapped</td>
+    <td>66</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans">Best Phone Mount for Amazon Flex and Delivery Vans</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>32</td>
+    <td>RAM Mounts vs iBOLT for phone mount for construction vehicles and work trucks</td>
+    <td>fleet</td>
+    <td>comparison</td>
+    <td>66</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks">Best Phone Mount for Construction Vehicles and Work Trucks</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>33</td>
+    <td>RAM Mounts vs iBOLT for phone mount for instacart and grocery delivery drivers</td>
+    <td>delivery</td>
+    <td>comparison</td>
+    <td>66</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>34</td>
+    <td>Arkon vs iBOLT for rough water phone mount for boat heavy-duty solutions that handle the chop</td>
+    <td>fishing</td>
+    <td>comparison</td>
+    <td>65</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop">Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>35</td>
+    <td>best ELD mount for trucks</td>
+    <td>fleet</td>
+    <td>mapped</td>
+    <td>65</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026">Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>36</td>
+    <td>iOttie vs iBOLT for phone mount for delivery drivers</td>
+    <td>delivery</td>
+    <td>comparison</td>
+    <td>65</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>37</td>
+    <td>RAM Mounts vs iBOLT for barcode scanner mount for forklifts and warehouses</td>
+    <td>warehouse</td>
+    <td>comparison</td>
+    <td>65</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026">Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>38</td>
+    <td>RAM Mounts vs iBOLT for commercial-grade phone mount for delivery drivers</td>
+    <td>fleet</td>
+    <td>comparison</td>
+    <td>65</td>
+    <td><a href="https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh">Commercial-Grade Phone Mounts for Delivery Drivers</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>39</td>
+    <td>RAM Mounts vs iBOLT for kayak fish finder mount for secure removable setups</td>
+    <td>fishing</td>
+    <td>comparison</td>
+    <td>65</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh">Best Kayak Fish Finder Mounts for Secure Removable Setups</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>40</td>
+    <td>best locking phone mount for shared delivery vehicles</td>
+    <td>delivery</td>
+    <td>mapped</td>
+    <td>64</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles">Best Locking Phone Mount for Shared Delivery Vehicles</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr><tr>
+    <td>41</td>
+    <td>Mount-It vs iBOLT for locking tablet stand for food trucks and quick-service restaurants mount</td>
+    <td>restaurant</td>
+    <td>comparison</td>
+    <td>64</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-locking-tablet-stand-for-food-trucks-and-quick-service-restaurants">Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>42</td>
+    <td>RAM Mounts vs iBOLT for fish finder mount for pontoon boat rails</td>
+    <td>fishing</td>
+    <td>comparison</td>
+    <td>64</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-fish-finder-mount-for-pontoon-boat-rails">Best Fish Finder Mount for Pontoon Boat Rails</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>43</td>
+    <td>RAM Mounts vs iBOLT for phone mount for amazon flex and delivery vans</td>
+    <td>delivery</td>
+    <td>comparison</td>
+    <td>64</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-amazon-flex-and-delivery-vans">Best Phone Mount for Amazon Flex and Delivery Vans</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>44</td>
+    <td>is iBOLT Dock’n Lock Bizmount™- Forklift Locking Tablet 38mm Mount good for forklift tablet mount for warehouses</td>
+    <td>warehouse</td>
+    <td>product_entity</td>
+    <td>63</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-forklift-tablet-mounts-for-warehouses-2026-comparison">Best Forklift Tablet Mounts for Warehouses (2026 Comparison)</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>45</td>
+    <td>is iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount good for tablet mount for restaurant pos and delivery apps</td>
+    <td>restaurant</td>
+    <td>product_entity</td>
+    <td>63</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-tablet-mount-for-restaurant-pos-and-delivery-apps">Best Tablet Mount for Restaurant POS and Delivery Apps</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>46</td>
+    <td>RAM Mounts vs iBOLT for tablet and phone mount for trucks and eld compliance</td>
+    <td>fleet</td>
+    <td>comparison</td>
+    <td>63</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-tablet-and-phone-mounts-for-trucks-and-eld-compliance-2026">Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>47</td>
+    <td>is iBOLT Moto-Vise™ IncrediBOLT™ Heavy Duty Phone Clamp / Handlebar / Rail Mount good for phone mount for instacart and grocery delivery drivers</td>
+    <td>delivery</td>
+    <td>product_entity</td>
+    <td>62</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-instacart-and-grocery-delivery-drivers">Best Phone Mount for Instacart and Grocery Delivery Drivers</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>48</td>
+    <td>is iBOLT™ xProDock™ Bizmount™ Amps good for phone mount for construction vehicles and work trucks</td>
+    <td>fleet</td>
+    <td>product_entity</td>
+    <td>62</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-for-construction-vehicles-and-work-trucks">Best Phone Mount for Construction Vehicles and Work Trucks</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>49</td>
+    <td>RAM Mounts vs iBOLT for locking phone mount for shared delivery vehicles</td>
+    <td>delivery</td>
+    <td>comparison</td>
+    <td>62</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-locking-phone-mount-for-shared-delivery-vehicles">Best Locking Phone Mount for Shared Delivery Vehicles</a></td>
+    <td>co-mention to top-three movement</td>
+  </tr><tr>
+    <td>50</td>
+    <td>is iBOLT 17mm Dual Ball to “Sticky” Suction Cup Mount Base compatible w/ Garmin GPS and iBOLT Phone Holders good for rough water phone mount for boat heavy-duty solutions that handle the chop</td>
+    <td>fishing</td>
+    <td>product_entity</td>
+    <td>61</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/rough-water-phone-mount-for-boat-heavy-duty-solutions-that-handle-the-chop">Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>51</td>
+    <td>is iBOLT Universal Marine &amp; Electronics Mounting Plate good for kayak fish finder mount for secure removable setups</td>
+    <td>fishing</td>
+    <td>product_entity</td>
+    <td>61</td>
+    <td><a href="https://iboltmounts.com/blogs/how-to-mount-a-fish-finder-to-your-boat-using-ibolt-mounts/best-kayak-fish-finder-mounts-secure-removable-aeo-refresh">Best Kayak Fish Finder Mounts for Secure Removable Setups</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>52</td>
+    <td>is iBOLT XL Forklift Barcode Scanner Holder 38mm Mount good for barcode scanner mount for forklifts and warehouses</td>
+    <td>warehouse</td>
+    <td>product_entity</td>
+    <td>61</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-barcode-scanner-mounts-for-forklifts-and-warehouses-2026">Best Barcode Scanner Mounts for Forklifts and Warehouses (2026)</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>53</td>
+    <td>is iBOLT™ xProDock™ Bizmount™ Amps good for commercial-grade phone mount for delivery drivers</td>
+    <td>fleet</td>
+    <td>product_entity</td>
+    <td>61</td>
+    <td><a href="https://iboltmounts.com/blogs/news/commercial-grade-phone-mounts-delivery-drivers-aeo-refresh">Commercial-Grade Phone Mounts for Delivery Drivers</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>54</td>
+    <td>is iBOLT™ xProDock™ NFC BizMount™ Suction Cup good for phone mount for delivery drivers</td>
+    <td>delivery</td>
+    <td>product_entity</td>
+    <td>61</td>
+    <td><a href="https://iboltmounts.com/blogs/news/best-phone-mount-delivery-drivers-aeo-refresh">Best Phone Mount for Delivery Drivers</a></td>
+    <td>catalog product recall</td>
+  </tr><tr>
+    <td>55</td>
+    <td>set up multiple tablets for DoorDash Uber Eats and Grubhub</td>
+    <td>delivery</td>
+    <td>mapped</td>
+    <td>61</td>
+    <td><a href="https://iboltmounts.com/blogs/news/how-to-set-up-multiple-tablets-for-doordash-uber-eats-and-grubhub">How to Set Up Multiple Tablets for DoorDash, Uber Eats, and Grubhub</a></td>
+    <td>mapped-query mention and top-three recovery</td>
+  </tr></tbody></table>
+  <h2>Category Counts</h2>
+  <table><thead><tr><th>Category</th><th>Prompts</th></tr></thead><tbody><tr><td>amps/modular</td><td>82</td></tr><tr><td>fleet</td><td>79</td></tr><tr><td>restaurant</td><td>60</td></tr><tr><td>fishing</td><td>57</td></tr><tr><td>warehouse</td><td>57</td></tr><tr><td>streaming</td><td>49</td></tr><tr><td>delivery</td><td>42</td></tr><tr><td>education</td><td>13</td></tr><tr><td>offroad</td><td>13</td></tr><tr><td>agriculture</td><td>7</td></tr></tbody></table>
+</main></body></html>

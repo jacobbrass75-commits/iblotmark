@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="436" viewBox="0 0 900 436" role="img" aria-label="Competitors replacing iBOLT">
+    <rect width="900" height="436" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Competitors replacing iBOLT</text>
+    <g>
+      <text x="22" y="75" font-size="13" font-weight="900" fill="#111827">RAM Mounts</text>
+      <rect x="285" y="58" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="58" width="540" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="74" text-anchor="end" font-size="13" font-weight="900" fill="#111827">53</text>
+    </g><g>
+      <text x="22" y="111" font-size="13" font-weight="900" fill="#111827">Arkon</text>
+      <rect x="285" y="94" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="94" width="255" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="110" text-anchor="end" font-size="13" font-weight="900" fill="#111827">25</text>
+    </g><g>
+      <text x="22" y="147" font-size="13" font-weight="900" fill="#111827">iOttie</text>
+      <rect x="285" y="130" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="130" width="153" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="146" text-anchor="end" font-size="13" font-weight="900" fill="#111827">15</text>
+    </g><g>
+      <text x="22" y="183" font-size="13" font-weight="900" fill="#111827">CTA Digital</text>
+      <rect x="285" y="166" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="166" width="143" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="182" text-anchor="end" font-size="13" font-weight="900" fill="#111827">14</text>
+    </g><g>
+      <text x="22" y="219" font-size="13" font-weight="900" fill="#111827">Humminbird</text>
+      <rect x="285" y="202" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="202" width="122" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="218" text-anchor="end" font-size="13" font-weight="900" fill="#111827">12</text>
+    </g><g>
+      <text x="22" y="255" font-size="13" font-weight="900" fill="#111827">ProClip</text>
+      <rect x="285" y="238" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="238" width="122" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="254" text-anchor="end" font-size="13" font-weight="900" fill="#111827">12</text>
+    </g><g>
+      <text x="22" y="291" font-size="13" font-weight="900" fill="#111827">Scosche</text>
+      <rect x="285" y="274" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="274" width="92" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="290" text-anchor="end" font-size="13" font-weight="900" fill="#111827">9</text>
+    </g><g>
+      <text x="22" y="327" font-size="13" font-weight="900" fill="#111827">Garmin</text>
+      <rect x="285" y="310" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="310" width="82" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="326" text-anchor="end" font-size="13" font-weight="900" fill="#111827">8</text>
+    </g><g>
+      <text x="22" y="363" font-size="13" font-weight="900" fill="#111827">Scotty</text>
+      <rect x="285" y="346" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="346" width="82" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="362" text-anchor="end" font-size="13" font-weight="900" fill="#111827">8</text>
+    </g><g>
+      <text x="22" y="399" font-size="13" font-weight="900" fill="#111827">Lowrance</text>
+      <rect x="285" y="382" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="382" width="71" height="22" rx="11" fill="#b91c1c"/>
+      <text x="866" y="398" text-anchor="end" font-size="13" font-weight="900" fill="#111827">7</text>
+    </g>
+  </svg>

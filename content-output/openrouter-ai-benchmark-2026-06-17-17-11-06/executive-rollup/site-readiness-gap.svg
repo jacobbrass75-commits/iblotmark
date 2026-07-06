@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="392" viewBox="0 0 1160 392" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1160" height="392"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="344" rx="14"/>
+    <text class="title" x="54" y="64">Site Readiness Gaps</text>
+    <text class="subtitle" x="54" y="88">Structural and inventory issues blocking better AI citation readiness.</text>
+    
+      <text class="label" x="54" y="122">Missing FAQ schema</text>
+      <rect x="420" y="108" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="108" width="314" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="125">99</text>
+      <text class="small" x="420" y="149">70% of audited pages</text>
+    
+
+      <text class="label" x="54" y="168">Missing quick-answer block</text>
+      <rect x="420" y="154" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="154" width="359" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="171">113</text>
+      <text class="small" x="420" y="195">80% of audited pages</text>
+    
+
+      <text class="label" x="54" y="214">Missing comparison/tradeoff signals</text>
+      <rect x="420" y="200" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="200" width="175" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="217">55</text>
+      <text class="small" x="420" y="241">39% of audited pages</text>
+    
+
+      <text class="label" x="54" y="260">Unlinked catalog products</text>
+      <rect x="420" y="246" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="246" width="594" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="263">187</text>
+      <text class="small" x="420" y="287">55% of catalog products</text>
+    
+
+      <text class="label" x="54" y="306">Posts not matched to audit</text>
+      <rect x="420" y="292" width="594" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="420" y="292" width="54" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="309">17</text>
+      <text class="small" x="420" y="333">Needs URL/sitemap/admin verification</text>
+    
+  
+</svg>

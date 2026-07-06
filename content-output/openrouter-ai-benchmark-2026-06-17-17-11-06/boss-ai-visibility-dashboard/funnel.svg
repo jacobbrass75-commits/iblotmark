@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="244" viewBox="0 0 860 244" role="img" aria-label="Visibility funnel from tested AI answers">
+    <rect width="860" height="244" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="800" fill="#111827">Visibility funnel from tested AI answers</text>
+    <g>
+      <text x="22" y="74" font-size="13" font-weight="700" fill="#111827">All tested AI answers</text>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="56" width="545" height="21" rx="10" fill="#334155"/>
+      <text x="816" y="72" font-size="13" font-weight="800" text-anchor="end" fill="#111827">204</text>
+    </g><g>
+      <text x="22" y="108" font-size="13" font-weight="700" fill="#111827">iBOLT mentioned</text>
+      <rect x="255" y="90" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="90" width="219" height="21" rx="10" fill="#0f766e"/>
+      <text x="816" y="106" font-size="13" font-weight="800" text-anchor="end" fill="#111827">82</text>
+    </g><g>
+      <text x="22" y="142" font-size="13" font-weight="700" fill="#111827">iBOLT top-3 recommended</text>
+      <rect x="255" y="124" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="124" width="160" height="21" rx="10" fill="#2563eb"/>
+      <text x="816" y="140" font-size="13" font-weight="800" text-anchor="end" fill="#111827">60</text>
+    </g><g>
+      <text x="22" y="176" font-size="13" font-weight="700" fill="#111827">iboltmounts.com cited</text>
+      <rect x="255" y="158" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="158" width="0" height="21" rx="10" fill="#f97316"/>
+      <text x="816" y="174" font-size="13" font-weight="800" text-anchor="end" fill="#111827">0</text>
+    </g><g>
+      <text x="22" y="210" font-size="13" font-weight="700" fill="#111827">Non-branded answers mentioning iBOLT</text>
+      <rect x="255" y="192" width="545" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="255" y="192" width="11" height="21" rx="10" fill="#7c3aed"/>
+      <text x="816" y="208" font-size="13" font-weight="800" text-anchor="end" fill="#111827">4</text>
+    </g>
+  </svg>

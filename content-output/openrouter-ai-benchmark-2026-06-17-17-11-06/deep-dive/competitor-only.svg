@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="744" viewBox="0 0 1120 744" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1120" height="744"/>
+  
+    <rect class="panel" x="28" y="24" width="1064" height="696" rx="14"/>
+    <text class="title" x="52" y="64">Competitors Appearing Without iBOLT</text>
+    <text class="subtitle" x="52" y="87">These answers mention another brand or adjacent brand but omit iBOLT.</text>
+    
+      <text class="label" x="52" y="120">RAM Mounts</text>
+      <text class="small" x="52" y="138">fleet 18; delivery 14; warehouse 9; fishing 9; restaurant 7; comparison 3; tablet 3</text>
+      <rect x="390" y="104" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="104" width="600" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="121">53</text>
+    
+
+      <text class="label" x="52" y="162">Arkon</text>
+      <text class="small" x="52" y="180">fleet 11; restaurant 8; delivery 6; warehouse 3; tablet 2</text>
+      <rect x="390" y="146" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="146" width="283" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="163">25</text>
+    
+
+      <text class="label" x="52" y="204">iOttie</text>
+      <text class="small" x="52" y="222">delivery 12; fleet 5; tablet 1</text>
+      <rect x="390" y="188" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="188" width="170" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="205">15</text>
+    
+
+      <text class="label" x="52" y="246">ProClip</text>
+      <text class="small" x="52" y="264">fleet 7; delivery 4; warehouse 2</text>
+      <rect x="390" y="230" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="230" width="136" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="247">12</text>
+    
+
+      <text class="label" x="52" y="288">Humminbird</text>
+      <text class="small" x="52" y="306">fishing 12</text>
+      <rect x="390" y="272" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="272" width="136" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="289">12</text>
+    
+
+      <text class="label" x="52" y="330">Mount-It</text>
+      <text class="small" x="52" y="348">restaurant 11</text>
+      <rect x="390" y="314" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="314" width="79" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="331">7</text>
+    
+
+      <text class="label" x="52" y="372">Scosche</text>
+      <text class="small" x="52" y="390">delivery 5; fleet 4</text>
+      <rect x="390" y="356" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="356" width="102" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="373">9</text>
+    
+
+      <text class="label" x="52" y="414">Scotty</text>
+      <text class="small" x="52" y="432">fishing 8</text>
+      <rect x="390" y="398" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="398" width="91" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="415">8</text>
+    
+
+      <text class="label" x="52" y="456">Garmin</text>
+      <text class="small" x="52" y="474">fishing 8</text>
+      <rect x="390" y="440" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="440" width="91" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="457">8</text>
+    
+
+      <text class="label" x="52" y="498">YakAttack</text>
+      <text class="small" x="52" y="516">fishing 7</text>
+      <rect x="390" y="482" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="482" width="79" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="499">7</text>
+    
+
+      <text class="label" x="52" y="540">Lowrance</text>
+      <text class="small" x="52" y="558">fishing 7</text>
+      <rect x="390" y="524" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="524" width="79" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="541">7</text>
+    
+
+      <text class="label" x="52" y="582">Tackform</text>
+      <text class="small" x="52" y="600">warehouse 2; fleet 2; delivery 1; tablet 1; restaurant 1</text>
+      <rect x="390" y="566" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="566" width="45" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="583">4</text>
+    
+
+      <text class="label" x="52" y="624">Bouncepad</text>
+      <text class="small" x="52" y="642">restaurant 4</text>
+      <rect x="390" y="608" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="608" width="11" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="625">1</text>
+    
+
+      <text class="label" x="52" y="666">Belkin</text>
+      <text class="small" x="52" y="684">delivery 2; fleet 1</text>
+      <rect x="390" y="650" width="600" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="390" y="650" width="34" height="24" rx="8" fill="#dc2626"/>
+      <text class="value" x="1004" y="667">3</text>
+    
+  
+</svg>

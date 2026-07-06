@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="862" viewBox="0 0 1160 862" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.white{font:700 13px Arial,sans-serif;fill:#fff}
+  </style>
+  <rect class="bg" width="1160" height="862"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="814" rx="14"/>
+    <text class="title" x="54" y="64">Competitors Mentioned With iBOLT vs Instead of iBOLT</text>
+    <text class="subtitle" x="54" y="88">Green means co-mentioned with iBOLT. Red means competitor appeared and iBOLT did not.</text>
+    
+      <text class="label" x="54" y="123">RAM Mounts</text>
+      <rect x="300" y="108" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="108" width="112" height="26" rx="8" fill="#16a34a"/>
+      <rect x="412" y="108" width="596" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="126">10 with / 53 without</text>
+      <text class="small" x="300" y="151">fleet 18; delivery 14; warehouse 9; fishing 9; restaurant 7; comparison 3; tablet 3</text>
+    
+
+      <text class="label" x="54" y="173">Arkon</text>
+      <rect x="300" y="158" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="158" width="56" height="26" rx="8" fill="#16a34a"/>
+      <rect x="356" y="158" width="281" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="176">5 with / 25 without</text>
+      <text class="small" x="300" y="201">fleet 11; restaurant 8; delivery 6; warehouse 3; tablet 2</text>
+    
+
+      <text class="label" x="54" y="223">iOttie</text>
+      <rect x="300" y="208" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="208" width="34" height="26" rx="8" fill="#16a34a"/>
+      <rect x="334" y="208" width="169" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="226">3 with / 15 without</text>
+      <text class="small" x="300" y="251">delivery 12; fleet 5; tablet 1</text>
+    
+
+      <text class="label" x="54" y="273">ProClip</text>
+      <rect x="300" y="258" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="258" width="11" height="26" rx="8" fill="#16a34a"/>
+      <rect x="311" y="258" width="135" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="276">1 with / 12 without</text>
+      <text class="small" x="300" y="301">fleet 7; delivery 4; warehouse 2</text>
+    
+
+      <text class="label" x="54" y="323">Humminbird</text>
+      <rect x="300" y="308" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="308" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="308" width="135" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="326">0 with / 12 without</text>
+      <text class="small" x="300" y="351">fishing 12</text>
+    
+
+      <text class="label" x="54" y="373">Scosche</text>
+      <rect x="300" y="358" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="358" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="358" width="101" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="376">0 with / 9 without</text>
+      <text class="small" x="300" y="401">delivery 5; fleet 4</text>
+    
+
+      <text class="label" x="54" y="423">Garmin</text>
+      <rect x="300" y="408" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="408" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="408" width="90" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="426">0 with / 8 without</text>
+      <text class="small" x="300" y="451">fishing 8</text>
+    
+
+      <text class="label" x="54" y="473">Scotty</text>
+      <rect x="300" y="458" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="458" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="458" width="90" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="476">0 with / 8 without</text>
+      <text class="small" x="300" y="501">fishing 8</text>
+    
+
+      <text class="label" x="54" y="523">Mount-It</text>
+      <rect x="300" y="508" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="508" width="45" height="26" rx="8" fill="#16a34a"/>
+      <rect x="345" y="508" width="79" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="526">4 with / 7 without</text>
+      <text class="small" x="300" y="551">restaurant 11</text>
+    
+
+      <text class="label" x="54" y="573">Lowrance</text>
+      <rect x="300" y="558" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="558" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="558" width="79" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="576">0 with / 7 without</text>
+      <text class="small" x="300" y="601">fishing 7</text>
+    
+
+      <text class="label" x="54" y="623">YakAttack</text>
+      <rect x="300" y="608" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="608" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="608" width="79" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="626">0 with / 7 without</text>
+      <text class="small" x="300" y="651">fishing 7</text>
+    
+
+      <text class="label" x="54" y="673">Tackform</text>
+      <rect x="300" y="658" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="658" width="34" height="26" rx="8" fill="#16a34a"/>
+      <rect x="334" y="658" width="45" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="676">3 with / 4 without</text>
+      <text class="small" x="300" y="701">warehouse 2; fleet 2; delivery 1; tablet 1; restaurant 1</text>
+    
+
+      <text class="label" x="54" y="723">Belkin</text>
+      <rect x="300" y="708" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="708" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="708" width="34" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="726">0 with / 3 without</text>
+      <text class="small" x="300" y="751">delivery 2; fleet 1</text>
+    
+
+      <text class="label" x="54" y="773">Square</text>
+      <rect x="300" y="758" width="708" height="26" rx="8" fill="#e2e8f0"/>
+      <rect x="300" y="758" width="0" height="26" rx="8" fill="#16a34a"/>
+      <rect x="300" y="758" width="34" height="26" rx="8" fill="#dc2626"/>
+      <text class="value" x="1022" y="776">0 with / 3 without</text>
+      <text class="small" x="300" y="801">restaurant 2; warehouse 1</text>
+    
+  
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="360" viewBox="0 0 880 360" role="img" aria-label="Pages by lifecycle bucket">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="30" font-size="20" font-weight="800" fill="#0f172a">Pages by lifecycle bucket</text>
+<text x="16" y="73" font-size="13" fill="#334155">Citation/schema cleanup</text>
+<rect x="220" y="56" width="620" height="24" fill="#0f766e" rx="4"/>
+<text x="848" y="73" font-size="13" fill="#111827" font-weight="700">52</text>
+<text x="16" y="106" font-size="13" fill="#334155">Canonical decision</text>
+<rect x="220" y="89" width="477" height="24" fill="#0f766e" rx="4"/>
+<text x="705" y="106" font-size="13" fill="#111827" font-weight="700">40</text>
+<text x="16" y="139" font-size="13" fill="#334155">Legacy rewrite</text>
+<rect x="220" y="122" width="477" height="24" fill="#0f766e" rx="4"/>
+<text x="705" y="139" font-size="13" fill="#111827" font-weight="700">40</text>
+<text x="16" y="172" font-size="13" fill="#334155">Protect and amplify</text>
+<rect x="220" y="155" width="119" height="24" fill="#0f766e" rx="4"/>
+<text x="347" y="172" font-size="13" fill="#111827" font-weight="700">10</text>
+</svg>

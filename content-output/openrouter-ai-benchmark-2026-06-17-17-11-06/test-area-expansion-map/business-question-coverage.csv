@@ -1,0 +1,7 @@
+"business_question","prompt_types","prompts","provider_requests","categories","success_metric"
+"Do we show up beside or above competitors?","comparison","141","423","restaurant; fishing; warehouse; fleet; delivery; amps/modular; streaming; agriculture; education; offroad","iBOLT moves from absent or trailing to co-mentioned, specialist, or top-3."
+"Do use-case questions route to iBOLT pages?","buyer_problem","139","417","restaurant; fishing; warehouse; delivery; fleet; amps/modular; streaming; offroad; education; agriculture","Answer recommends a relevant iBOLT product or category page."
+"Do generic buyers discover iBOLT?","non_branded_best","130","390","restaurant; fishing; warehouse; fleet; delivery; amps/modular; streaming; agriculture; offroad; education","iBOLT appears in generic recommendation sets."
+"Do we show up for known target keywords?","mapped","31","93","restaurant; fishing; warehouse; fleet; delivery; amps/modular","iBOLT mentioned and preferably top-3."
+"Do models understand our actual products?","product_entity","26","78","restaurant; fishing; warehouse; delivery; fleet; amps/modular","Exact product is named with correct use case."
+"Can search-connected AI cite iBOLT as a source?","citation_probe","16","48","restaurant; fishing; warehouse; delivery; fleet; amps/modular; streaming; offroad; education; agriculture","Target domain/source URL appears on search-connected AI."

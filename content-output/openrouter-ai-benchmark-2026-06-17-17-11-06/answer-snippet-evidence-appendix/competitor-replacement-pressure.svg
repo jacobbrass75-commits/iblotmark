@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="420" viewBox="0 0 1040 420">
+  <rect width="1040" height="420" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Top Competitor Replacement Pressure</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">Rows where competitors appeared instead of a clean iBOLT recommendation</text>
+  
+      <text x="229" y="98.4" text-anchor="end" font-size="14" fill="#334155">RAM Mounts</text>
+      <rect x="245" y="84" width="725" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="980" y="98.4" font-size="14" font-weight="800" fill="#0f172a">53</text>
+    
+      <text x="229" y="129.2" text-anchor="end" font-size="14" fill="#334155">Arkon</text>
+      <rect x="245" y="114.8" width="342" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="597" y="129.2" font-size="14" font-weight="800" fill="#0f172a">25</text>
+    
+      <text x="229" y="160" text-anchor="end" font-size="14" fill="#334155">iOttie</text>
+      <rect x="245" y="145.6" width="205" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="460" y="160" font-size="14" font-weight="800" fill="#0f172a">15</text>
+    
+      <text x="229" y="190.8" text-anchor="end" font-size="14" fill="#334155">CTA Digital</text>
+      <rect x="245" y="176.4" width="192" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="447" y="190.8" font-size="14" font-weight="800" fill="#0f172a">14</text>
+    
+      <text x="229" y="221.6" text-anchor="end" font-size="14" fill="#334155">ProClip</text>
+      <rect x="245" y="207.2" width="164" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="419" y="221.6" font-size="14" font-weight="800" fill="#0f172a">12</text>
+    
+      <text x="229" y="252.4" text-anchor="end" font-size="14" fill="#334155">Humminbird</text>
+      <rect x="245" y="238" width="164" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="419" y="252.4" font-size="14" font-weight="800" fill="#0f172a">12</text>
+    
+      <text x="229" y="283.2" text-anchor="end" font-size="14" fill="#334155">Scosche</text>
+      <rect x="245" y="268.8" width="123" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="378" y="283.2" font-size="14" font-weight="800" fill="#0f172a">9</text>
+    
+      <text x="229" y="314" text-anchor="end" font-size="14" fill="#334155">Mount-It</text>
+      <rect x="245" y="299.6" width="96" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="351" y="314" font-size="14" font-weight="800" fill="#0f172a">7</text>
+    
+      <text x="229" y="344.79999999999995" text-anchor="end" font-size="14" fill="#334155">Garmin</text>
+      <rect x="245" y="330.4" width="109" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="364" y="344.79999999999995" font-size="14" font-weight="800" fill="#0f172a">8</text>
+    
+      <text x="229" y="375.59999999999997" text-anchor="end" font-size="14" fill="#334155">Scotty</text>
+      <rect x="245" y="361.2" width="109" height="18.8" rx="7" fill="#b91c1c"></rect>
+      <text x="364" y="375.59999999999997" font-size="14" font-weight="800" fill="#0f172a">8</text>
+    
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="264" viewBox="0 0 980 264" role="img" aria-label="Priority Requests By Wave">
+    <rect width="980" height="264" rx="18" fill="#fff"/>
+    <text x="24" y="32" font-size="22" font-weight="900" fill="#111827">Priority Requests By Wave</text>
+    <text x="24" y="53" font-size="13" fill="#64748b">Run W1 first, then W2, W3 citation probe, W4 product entity, W5 non-branded coverage.</text>
+    <g>
+      <text x="24" y="81" font-size="13" font-weight="900" fill="#111827">W1 Sprint 1 edit validation</text>
+      <rect x="330" y="64" width="590" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="330" y="64" width="241" height="22" rx="11" fill="#2563eb"/>
+      <text x="952" y="80" text-anchor="end" font-size="13" font-weight="900" fill="#111827">27</text>
+    </g><g>
+      <text x="24" y="117" font-size="13" font-weight="900" fill="#111827">W2 top-page mention recovery</text>
+      <rect x="330" y="100" width="590" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="330" y="100" width="590" height="22" rx="11" fill="#2563eb"/>
+      <text x="952" y="116" text-anchor="end" font-size="13" font-weight="900" fill="#111827">66</text>
+    </g><g>
+      <text x="24" y="153" font-size="13" font-weight="900" fill="#111827">W3 citation probe</text>
+      <rect x="330" y="136" width="590" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="330" y="136" width="215" height="22" rx="11" fill="#2563eb"/>
+      <text x="952" y="152" text-anchor="end" font-size="13" font-weight="900" fill="#111827">24</text>
+    </g><g>
+      <text x="24" y="189" font-size="13" font-weight="900" fill="#111827">W4 product entity recognition</text>
+      <rect x="330" y="172" width="590" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="330" y="172" width="295" height="22" rx="11" fill="#2563eb"/>
+      <text x="952" y="188" text-anchor="end" font-size="13" font-weight="900" fill="#111827">33</text>
+    </g><g>
+      <text x="24" y="225" font-size="13" font-weight="900" fill="#111827">W5 non-branded buyer coverage</text>
+      <rect x="330" y="208" width="590" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="330" y="208" width="483" height="22" rx="11" fill="#2563eb"/>
+      <text x="952" y="224" text-anchor="end" font-size="13" font-weight="900" fill="#111827">54</text>
+    </g>
+  </svg>

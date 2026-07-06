@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Test Area Coverage Audit</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; color: #111827; background: #f6f8fb; }
+    main { max-width: 1220px; margin: 0 auto; padding: 32px 20px 56px; }
+    h1 { margin: 0 0 8px; font-size: 34px; }
+    h2 { margin-top: 34px; font-size: 23px; }
+    p, li { line-height: 1.55; color: #344054; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 22px 0; }
+    .metric { background: #fff; border: 1px solid #d8e0eb; border-radius: 8px; padding: 16px; }
+    .metric strong { display: block; font-size: 27px; color: #111827; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #d8e0eb; }
+    th, td { border-bottom: 1px solid #e8eef6; padding: 10px 11px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #eaf1fb; color: #344054; }
+    img { max-width: 100%; background: #fff; border: 1px solid #d8e0eb; border-radius: 8px; margin: 10px 0 20px; }
+    pre { white-space: pre-wrap; background: #fff; border: 1px solid #d8e0eb; padding: 16px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>AI Test Area Coverage Audit</h1>
+    <p>This checks whether the expanded benchmark covers the same areas where the blog catalog, products, competitors, and citation gaps show demand.</p>
+    <div class="grid">
+      <div class="metric"><strong>207</strong><span>expanded prompts</span></div>
+      <div class="metric"><strong>621</strong><span>provider requests</span></div>
+      <div class="metric"><strong>8</strong><span>high-gap categories</span></div>
+      <div class="metric"><strong>2</strong><span>weak product-family coverage</span></div>
+    </div>
+    <h2>Charts</h2>
+    <img src="test-gap-by-category.svg" alt="Test gap by category">
+    <img src="prompt-supply-by-category.svg" alt="Prompt supply by category">
+    <h2>Category Coverage</h2>
+    <table>
+      <thead><tr><th>Gap</th><th>Category</th><th>Verdict</th><th>Prompts</th><th>Pages</th><th>Competitor Only</th><th>Action</th></tr></thead>
+      <tbody><tr>
+        <td>100</td>
+        <td>warehouse</td>
+        <td>Needs new solution pages before testing</td>
+        <td>15</td>
+        <td>17</td>
+        <td>7</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>100</td>
+        <td>amps/modular</td>
+        <td>Needs new solution pages before testing</td>
+        <td>13</td>
+        <td>29</td>
+        <td>2</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>90</td>
+        <td>fishing</td>
+        <td>Needs new solution pages before testing</td>
+        <td>36</td>
+        <td>17</td>
+        <td>13</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>90</td>
+        <td>travel</td>
+        <td>Needs new solution pages before testing</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>87</td>
+        <td>delivery</td>
+        <td>Needs new solution pages before testing</td>
+        <td>23</td>
+        <td>11</td>
+        <td>14</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>80</td>
+        <td>streaming</td>
+        <td>Needs new solution pages before testing</td>
+        <td>11</td>
+        <td>16</td>
+        <td>0</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>74</td>
+        <td>education</td>
+        <td>Needs new solution pages before testing</td>
+        <td>6</td>
+        <td>4</td>
+        <td>0</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>70</td>
+        <td>fleet</td>
+        <td>Needs new solution pages before testing</td>
+        <td>42</td>
+        <td>25</td>
+        <td>13</td>
+        <td>Create or strengthen mapped solution pages, then add focused prompts for the buyer language in this area.</td>
+      </tr>
+<tr>
+        <td>58</td>
+        <td>cycling</td>
+        <td>Add prompts after page cleanup</td>
+        <td>6</td>
+        <td>0</td>
+        <td>0</td>
+        <td>Fix page structure first, then add prompt variants for the same category and competitors.</td>
+      </tr>
+<tr>
+        <td>50</td>
+        <td>restaurant</td>
+        <td>Add prompts after page cleanup</td>
+        <td>31</td>
+        <td>17</td>
+        <td>15</td>
+        <td>Fix page structure first, then add prompt variants for the same category and competitors.</td>
+      </tr>
+<tr>
+        <td>44</td>
+        <td>agriculture</td>
+        <td>Adequate, monitor after expanded run</td>
+        <td>4</td>
+        <td>2</td>
+        <td>0</td>
+        <td>Monitor with the expanded run, then add prompts only if the category underperforms.</td>
+      </tr>
+<tr>
+        <td>24</td>
+        <td>offroad</td>
+        <td>Adequate, monitor after expanded run</td>
+        <td>8</td>
+        <td>4</td>
+        <td>0</td>
+        <td>Monitor with the expanded run, then add prompts only if the category underperforms.</td>
+      </tr>
+<tr>
+        <td>10</td>
+        <td>kitchen/home</td>
+        <td>Adequate, monitor after expanded run</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>Monitor with the expanded run, then add prompts only if the category underperforms.</td>
+      </tr>
+<tr>
+        <td>0</td>
+        <td>tablet</td>
+        <td>Adequate, monitor after expanded run</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>Monitor with the expanded run, then add prompts only if the category underperforms.</td>
+      </tr></tbody>
+    </table>
+    <h2>Product Family Coverage</h2>
+    <table>
+      <thead><tr><th>Gap</th><th>Family</th><th>Prompt Coverage</th><th>Unlinked Products</th><th>Topics</th><th>Action</th></tr></thead>
+      <tbody><tr>
+        <td>100</td>
+        <td>AMPS, adapters, balls, and bases</td>
+        <td>12</td>
+        <td>39</td>
+        <td>amps/modular 39; restaurant 29; warehouse 12; travel 9; fleet 3; education 1; kitchen 1; fishing 1; streaming 1</td>
+        <td>Add product-family prompts and map them to exact product modules before the next expanded run.</td>
+      </tr>
+<tr>
+        <td>75</td>
+        <td>Creator, camera, and streaming mounts</td>
+        <td>14</td>
+        <td>26</td>
+        <td>streaming 26; amps/modular 26; restaurant 24; warehouse 11; fleet 3; travel 3; cycling 2; agriculture 1; offroad 1; kitchen 1</td>
+        <td>Add product-family prompts and map them to exact product modules before the next expanded run.</td>
+      </tr>
+<tr>
+        <td>31</td>
+        <td>Charging and magnetic phone docks</td>
+        <td>4</td>
+        <td>5</td>
+        <td>amps/modular 5; warehouse 3; fleet 2; travel 2; streaming 2; education 1; kitchen 1; restaurant 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr>
+<tr>
+        <td>7</td>
+        <td>Cycling, motorcycle, and powersports</td>
+        <td>10</td>
+        <td>8</td>
+        <td>amps/modular 8; cycling 7; restaurant 5; warehouse 3; travel 2; streaming 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr>
+<tr>
+        <td>1</td>
+        <td>Travel and headrest mounts</td>
+        <td>5</td>
+        <td>1</td>
+        <td>fleet 1; restaurant 1; travel 1; amps/modular 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr>
+<tr>
+        <td>0</td>
+        <td>Fleet, delivery, and vehicle phone mounts</td>
+        <td>68</td>
+        <td>11</td>
+        <td>fleet 11; travel 11; amps/modular 11; restaurant 4; warehouse 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr>
+<tr>
+        <td>0</td>
+        <td>Forklift and warehouse mounts</td>
+        <td>21</td>
+        <td>8</td>
+        <td>amps/modular 8; warehouse 4; travel 3; restaurant 3; fishing 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr>
+<tr>
+        <td>0</td>
+        <td>Barcode scanner and warehouse scanning</td>
+        <td>21</td>
+        <td>8</td>
+        <td>warehouse 8; amps/modular 8; travel 4; restaurant 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr>
+<tr>
+        <td>0</td>
+        <td>Restaurant POS and tablet security</td>
+        <td>26</td>
+        <td>7</td>
+        <td>amps/modular 7; restaurant 6; warehouse 4; travel 4; fleet 2; education 1; kitchen 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr>
+<tr>
+        <td>0</td>
+        <td>Marine electronics and fish finder mounts</td>
+        <td>35</td>
+        <td>7</td>
+        <td>amps/modular 7; restaurant 6; cycling 4; travel 3; fleet 1</td>
+        <td>Keep existing category prompts, then retest after product modules are live.</td>
+      </tr></tbody>
+    </table>
+    <h2>Prompt Rows To Preserve</h2>
+    <table>
+      <thead><tr><th>Priority</th><th>Prompt</th><th>Category</th><th>State</th><th>Mapped Page</th><th>Action</th></tr></thead>
+      <tbody><tr>
+        <td>96</td>
+        <td>best barcode scanner mount for forklift</td>
+        <td>warehouse</td>
+        <td>refresh then retest</td>
+        <td>Barcode Scanner Mounts</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best budget fish finder mount</td>
+        <td>fishing</td>
+        <td>refresh then retest</td>
+        <td>Best Garmin Fish Finder Mount: How to Choose the Right Setup for Your Boat or Kayak</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best ELD mount for trucks</td>
+        <td>fleet</td>
+        <td>refresh then retest</td>
+        <td>Best Tablet and Phone Mounts for Trucks and ELD Compliance (2026)</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best fish finder mount for small boat</td>
+        <td>fishing</td>
+        <td>canonical review before retest</td>
+        <td>Best Fish Finder Mount for Small Boats: Comparison and Buyer's Guide</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best heavy duty vehicle phone mount</td>
+        <td>fleet</td>
+        <td>refresh then retest</td>
+        <td>Rough Water Phone Mount for Boat: Heavy-Duty Solutions That Handle the Chop</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best kayak fish finder mount</td>
+        <td>fishing</td>
+        <td>refresh then retest</td>
+        <td>Choosing the Best Kayak Fish Finder Mount for Secure and Convenient Fishing</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best locking phone mount for shared delivery vehicles</td>
+        <td>delivery</td>
+        <td>canonical review before retest</td>
+        <td>Best Locking Phone Mount for Shared Delivery Vehicles</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best locking tablet stand for food trucks and quick service restaurants</td>
+        <td>restaurant</td>
+        <td>canonical review before retest</td>
+        <td>Best Locking Tablet Stand for Food Trucks and Quick-Service Restaurants</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best multi tablet mount</td>
+        <td>restaurant</td>
+        <td>refresh then retest</td>
+        <td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best phone mount for Amazon Flex and delivery vans</td>
+        <td>delivery</td>
+        <td>canonical review before retest</td>
+        <td>Best Phone Mount for Amazon Flex and Delivery Vans</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best phone mount for construction vehicles and work trucks</td>
+        <td>fleet</td>
+        <td>canonical review before retest</td>
+        <td>Best Phone Mount for Construction Vehicles and Work Trucks</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best phone mount for delivery drivers</td>
+        <td>fleet</td>
+        <td>canonical review before retest</td>
+        <td>Best Phone Mount for Delivery Drivers</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best phone mount for Instacart and grocery delivery drivers</td>
+        <td>delivery</td>
+        <td>canonical review before retest</td>
+        <td>Best Phone Mount for Instacart and Grocery Delivery Drivers</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best restaurant tablet mount</td>
+        <td>restaurant</td>
+        <td>refresh then retest</td>
+        <td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best tablet mount</td>
+        <td>tablet</td>
+        <td>refresh then retest</td>
+        <td>Best Restaurant Tablet Mount in 2026: POS Stands, Delivery App Stations, and Multi-Tablet Solutions Compared</td>
+        <td>Add query-exact quick answer, named iBOLT product module, fair competitor tradeoff, FAQ schema, and image alt text.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>best tablet mount for restaurant POS and delivery apps</td>
+        <td>restaurant</td>
+        <td>canonical review before retest</td>
+        <td>Best Tablet Mount for Restaurant POS and Delivery Apps</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>commercial grade phone mount for delivery drivers</td>
+        <td>delivery</td>
+        <td>canonical review before retest</td>
+        <td>Commercial-Grade Phone Mounts for Delivery Drivers</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr>
+<tr>
+        <td>96</td>
+        <td>magnetic vs clamp phone mounts for delivery work</td>
+        <td>delivery</td>
+        <td>canonical review before retest</td>
+        <td>Magnetic vs Clamp Phone Mounts for Delivery Work</td>
+        <td>Resolve canonical/duplicate risk before rewriting.</td>
+      </tr></tbody>
+    </table>
+    <h2>Markdown Summary</h2>
+    <pre># AI Test Area Coverage Audit
+
+## Summary
+
+- Expanded prompts: 207
+- Provider requests: 621
+- Categories covered: 14
+- High-gap categories: 8
+- No-mapped prompt categories: 13
+- Product families audited: 10
+- Product families with weak prompt coverage: 2
+- Top under-tested categories: warehouse 100, amps/modular 100, fishing 90, travel 90, delivery 87, streaming 80, education 74, fleet 70
+- Top weak product families: AMPS, adapters, balls, and bases 100, Creator, camera, and streaming mounts 75, Charging and magnetic phone docks 31, Cycling, motorcycle, and powersports 7, Travel and headrest mounts 1, Fleet, delivery, and vehicle phone mounts 0, Forklift and warehouse mounts 0, Barcode scanner and warehouse scanning 0
+
+## Category Coverage
+
+1. warehouse: Needs new solution pages before testing, gap 100, prompts 15, pages 17.
+2. amps/modular: Needs new solution pages before testing, gap 100, prompts 13, pages 29.
+3. fishing: Needs new solution pages before testing, gap 90, prompts 36, pages 17.
+4. travel: Needs new solution pages before testing, gap 90, prompts 5, pages 0.
+5. delivery: Needs new solution pages before testing, gap 87, prompts 23, pages 11.
+6. streaming: Needs new solution pages before testing, gap 80, prompts 11, pages 16.
+7. education: Needs new solution pages before testing, gap 74, prompts 6, pages 4.
+8. fleet: Needs new solution pages before testing, gap 70, prompts 42, pages 25.
+9. cycling: Add prompts after page cleanup, gap 58, prompts 6, pages 0.
+10. restaurant: Add prompts after page cleanup, gap 50, prompts 31, pages 17.
+11. agriculture: Adequate, monitor after expanded run, gap 44, prompts 4, pages 2.
+12. offroad: Adequate, monitor after expanded run, gap 24, prompts 8, pages 4.
+
+## Product Family Coverage
+
+- AMPS, adapters, balls, and bases: test coverage 12, unlinked products 39, action: Add product-family prompts and map them to exact product modules before the next expanded run..
+- Creator, camera, and streaming mounts: test coverage 14, unlinked products 26, action: Add product-family prompts and map them to exact product modules before the next expanded run..
+- Charging and magnetic phone docks: test coverage 4, unlinked products 5, action: Keep existing category prompts, then retest after product modules are live..
+- Cycling, motorcycle, and powersports: test coverage 10, unlinked products 8, action: Keep existing category prompts, then retest after product modules are live..
+- Travel and headrest mounts: test coverage 5, unlinked products 1, action: Keep existing category prompts, then retest after product modules are live..
+- Fleet, delivery, and vehicle phone mounts: test coverage 68, unlinked products 11, action: Keep existing category prompts, then retest after product modules are live..
+- Forklift and warehouse mounts: test coverage 21, unlinked products 8, action: Keep existing category prompts, then retest after product modules are live..
+- Barcode scanner and warehouse scanning: test coverage 21, unlinked products 8, action: Keep existing category prompts, then retest after product modules are live..
+- Restaurant POS and tablet security: test coverage 26, unlinked products 7, action: Keep existing category prompts, then retest after product modules are live..
+- Marine electronics and fish finder mounts: test coverage 35, unlinked products 7, action: Keep existing category prompts, then retest after product modules are live..
+
+## First Prompt Rows To Protect In The Next Run
+
+1. best barcode scanner mount for forklift (warehouse), refresh then retest, priority 96.
+2. best budget fish finder mount (fishing), refresh then retest, priority 96.
+3. best ELD mount for trucks (fleet), refresh then retest, priority 96.
+4. best fish finder mount for small boat (fishing), canonical review before retest, priority 96.
+5. best heavy duty vehicle phone mount (fleet), refresh then retest, priority 96.
+6. best kayak fish finder mount (fishing), refresh then retest, priority 96.
+7. best locking phone mount for shared delivery vehicles (delivery), canonical review before retest, priority 96.
+8. best locking tablet stand for food trucks and quick service restaurants (restaurant), canonical review before retest, priority 96.
+9. best multi tablet mount (restaurant), refresh then retest, priority 96.
+10. best phone mount for Amazon Flex and delivery vans (delivery), canonical review before retest, priority 96.
+11. best phone mount for construction vehicles and work trucks (fleet), canonical review before retest, priority 96.
+12. best phone mount for delivery drivers (fleet), canonical review before retest, priority 96.
+13. best phone mount for Instacart and grocery delivery drivers (delivery), canonical review before retest, priority 96.
+14. best restaurant tablet mount (restaurant), refresh then retest, priority 96.
+15. best tablet mount (tablet), refresh then retest, priority 96.
+
+## Interpretation
+
+The expanded benchmark is broad enough to run, but it is not evenly balanced against the site. Fleet, fishing, restaurant, delivery, and warehouse are high-pressure categories and should stay in the benchmark. AMPS/modular and streaming have many pages and product-family gaps, so they need more prompts if the goal is full product spread instead of only current competitor displacement.
+</pre>
+  </main>
+</body>
+</html>

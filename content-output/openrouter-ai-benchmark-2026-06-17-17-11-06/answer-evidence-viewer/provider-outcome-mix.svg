@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="340" viewBox="0 0 920 340">
+  <rect width="920" height="340" fill="#fff"/>
+  <text x="28" y="34" font-size="24" font-weight="900" fill="#0f172a">Provider Outcome Mix</text>
+  <text x="28" y="58" font-size="14" fill="#64748b">How each model handles iBOLT across the current benchmark.</text>
+  
+      <text x="205" y="113" text-anchor="end" font-size="16" font-weight="800" fill="#0f172a">ChatGPT</text>
+      <rect x="230" y="92" width="20" height="30" rx="4" fill="#16a34a"><title>clean iBOLT mention: 1</title></rect><rect x="250" y="92" width="180" height="30" rx="4" fill="#84cc16"><title>co-mentioned: 9</title></rect><rect x="430" y="92" width="400" height="30" rx="4" fill="#dc2626"><title>competitor replacement: 20</title></rect><rect x="830" y="92" width="20" height="30" rx="4" fill="#94a3b8"><title>no usable brand signal: 1</title></rect>
+      <text x="870" y="113" font-size="14" fill="#475569">31 answers</text>
+    
+      <text x="205" y="185" text-anchor="end" font-size="16" font-weight="800" fill="#0f172a">Claude</text>
+      <rect x="230" y="164" width="40" height="30" rx="4" fill="#16a34a"><title>clean iBOLT mention: 2</title></rect><rect x="270" y="164" width="80" height="30" rx="4" fill="#84cc16"><title>co-mentioned: 4</title></rect><rect x="350" y="164" width="500" height="30" rx="4" fill="#dc2626"><title>competitor replacement: 25</title></rect><rect x="850" y="164" width="0" height="30" rx="4" fill="#94a3b8"><title>no usable brand signal: 0</title></rect>
+      <text x="870" y="185" font-size="14" fill="#475569">31 answers</text>
+    
+      <text x="205" y="257" text-anchor="end" font-size="16" font-weight="800" fill="#0f172a">Gemini</text>
+      <rect x="230" y="236" width="20" height="30" rx="4" fill="#16a34a"><title>clean iBOLT mention: 1</title></rect><rect x="250" y="236" width="100" height="30" rx="4" fill="#84cc16"><title>co-mentioned: 5</title></rect><rect x="350" y="236" width="480" height="30" rx="4" fill="#dc2626"><title>competitor replacement: 24</title></rect><rect x="830" y="236" width="20" height="30" rx="4" fill="#94a3b8"><title>no usable brand signal: 1</title></rect>
+      <text x="870" y="257" font-size="14" fill="#475569">31 answers</text>
+    
+  <rect x="28" y="292" width="14" height="14" rx="3" fill="#16a34a"/><text x="48" y="304" font-size="12" fill="#475569">clean iBOLT mention</text><rect x="233" y="292" width="14" height="14" rx="3" fill="#84cc16"/><text x="253" y="304" font-size="12" fill="#475569">co-mentioned</text><rect x="438" y="292" width="14" height="14" rx="3" fill="#dc2626"/><text x="458" y="304" font-size="12" fill="#475569">competitor replacement</text><rect x="643" y="292" width="14" height="14" rx="3" fill="#94a3b8"/><text x="663" y="304" font-size="12" fill="#475569">no usable brand signal</text>
+</svg>

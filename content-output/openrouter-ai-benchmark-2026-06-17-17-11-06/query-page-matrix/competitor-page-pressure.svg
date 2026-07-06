@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="420" viewBox="0 0 940 420">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="22" y="34" fill="#0f172a" font-size="22" font-weight="800">Competitor Pressure Across Mapped Pages</text>
+<text x="22" y="72" fill="#0f172a" font-size="13">RAM Mounts</text>
+<rect x="390" y="56" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="56" width="390" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="71" fill="#0f172a" font-size="13" font-weight="700">4531</text>
+<text x="22" y="106" fill="#0f172a" font-size="13">Arkon</text>
+<rect x="390" y="90" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="90" width="239" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="105" fill="#0f172a" font-size="13" font-weight="700">2777</text>
+<text x="22" y="140" fill="#0f172a" font-size="13">iOttie</text>
+<rect x="390" y="124" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="124" width="159" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="139" fill="#0f172a" font-size="13" font-weight="700">1852</text>
+<text x="22" y="174" fill="#0f172a" font-size="13">ProClip</text>
+<rect x="390" y="158" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="158" width="153" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="173" fill="#0f172a" font-size="13" font-weight="700">1772</text>
+<text x="22" y="208" fill="#0f172a" font-size="13">CTA Digital</text>
+<rect x="390" y="192" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="192" width="106" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="207" fill="#0f172a" font-size="13" font-weight="700">1236</text>
+<text x="22" y="242" fill="#0f172a" font-size="13">Tackform</text>
+<rect x="390" y="226" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="226" width="96" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="241" fill="#0f172a" font-size="13" font-weight="700">1120</text>
+<text x="22" y="276" fill="#0f172a" font-size="13">Mount-It</text>
+<rect x="390" y="260" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="260" width="76" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="275" fill="#0f172a" font-size="13" font-weight="700">880</text>
+<text x="22" y="310" fill="#0f172a" font-size="13">Square</text>
+<rect x="390" y="294" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="294" width="44" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="309" fill="#0f172a" font-size="13" font-weight="700">507</text>
+<text x="22" y="344" fill="#0f172a" font-size="13">Heckler</text>
+<rect x="390" y="328" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="328" width="34" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="343" fill="#0f172a" font-size="13" font-weight="700">400</text>
+<text x="22" y="378" fill="#0f172a" font-size="13">Havis</text>
+<rect x="390" y="362" width="390" height="20" rx="4" fill="#e2e8f0"/>
+<rect x="390" y="362" width="33" height="20" rx="4" fill="#7c3aed"/>
+<text x="792" y="377" fill="#0f172a" font-size="13" font-weight="700">381</text>
+</svg>

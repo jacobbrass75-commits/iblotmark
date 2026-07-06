@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="394" viewBox="0 0 1160 394" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}.grid{stroke:#e2e8f0;stroke-width:1}
+  </style>
+  <rect class="bg" width="1160" height="394"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="346" rx="14"/>
+    <text class="title" x="54" y="64">AI-Citation Remediation Backlog</text>
+    <text class="subtitle" x="54" y="88">Structural fixes detected across the live blog audit.</text>
+    
+      <text class="label" x="54" y="122">FAQ schema missing</text>
+      <rect x="430" y="108" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="108" width="407" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="125">99</text>
+      <text class="small" x="430" y="149">70% of audited pages</text>
+    
+
+      <text class="label" x="54" y="168">Quick answer missing</text>
+      <rect x="430" y="154" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="154" width="465" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="171">113</text>
+      <text class="small" x="430" y="195">80% of audited pages</text>
+    
+
+      <text class="label" x="54" y="214">Comparison/tradeoff missing</text>
+      <rect x="430" y="200" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="200" width="226" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="217">55</text>
+      <text class="small" x="430" y="241">39% of audited pages</text>
+    
+
+      <text class="label" x="54" y="260">Article/BlogPosting schema missing</text>
+      <rect x="430" y="246" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="246" width="78" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="263">19</text>
+      <text class="small" x="430" y="287">13% of audited pages</text>
+    
+
+      <text class="label" x="54" y="306">Direct product links missing</text>
+      <rect x="430" y="292" width="584" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="430" y="292" width="0" height="24" rx="8" fill="#f97316"/>
+      <text class="value" x="1028" y="309">0</text>
+      <text class="small" x="430" y="333">0% of audited pages</text>
+    
+  
+</svg>

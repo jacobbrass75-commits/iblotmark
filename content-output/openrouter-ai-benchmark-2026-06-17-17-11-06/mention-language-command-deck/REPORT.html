@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT Mention Language Command Deck</title>
+  <style>
+    body{margin:0;background:#f7f9fc;color:#111827;font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1240px;margin:0 auto;padding:34px 24px 66px}
+    h1{font-size:38px;line-height:1.1;margin:0 0 8px;letter-spacing:0}
+    h2{font-size:23px;margin:36px 0 12px}
+    h3{font-size:17px;margin:18px 0 8px}
+    p,li{line-height:1.55;color:#334155;font-size:15px}
+    a{color:#0f766e;overflow-wrap:anywhere}
+    .note{background:#fff;border:1px solid #dbe3ef;border-left:6px solid #0f766e;border-radius:12px;padding:16px 18px;margin:20px 0}
+    .warn{border-left-color:#f97316}
+    .cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0}
+    .card{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:15px}
+    .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:900}
+    .value{font-size:29px;font-weight:900;margin:8px 0;color:#0f172a}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .chart{background:#fff;border:1px solid #dbe3ef;border-radius:18px;padding:10px;overflow:auto}
+    .chart svg{width:100%;height:auto;display:block}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ef;border-radius:12px;overflow:hidden;margin:12px 0 22px}
+    th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #edf2f7;font-size:13px}
+    th{background:#eef2f7;color:#475569;text-transform:uppercase;font-size:11px;letter-spacing:.04em}
+    @media(max-width:980px){.cards,.grid{grid-template-columns:1fr}h1{font-size:31px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>iBOLT Mention Language Command Deck</h1>
+  <p>This turns saved AI-answer language into a practical copy and entity guidance sheet. It shows how models describe iBOLT now, where competitor language is winning, and which terms should be reinforced or corrected.</p>
+
+  <div class="note">
+    <strong>Language diagnosis:</strong> when iBOLT appears, models usually understand durability, specialist use, modularity, and security. The weaknesses are inconsistent exact product names, weak citation/source signals, and occasional budget/value framing that should be replaced with commercial-fit proof.
+  </div>
+
+  <section class="cards">
+    <div class="card"><div class="label">Mention rows</div><div class="value">22</div><p>Saved answer rows where iBOLT is mentioned.</p></div>
+    <div class="card"><div class="label">Avg quality</div><div class="value">68</div><p>Average mention-quality score across mentioned rows.</p></div>
+    <div class="card"><div class="label">Naming review</div><div class="value">10</div><p>Rows with unmatched or questionable product names.</p></div>
+    <div class="card"><div class="label">Budget risk</div><div class="value">12</div><p>Rows using budget/value framing around iBOLT or competitors.</p></div>
+    <div class="card"><div class="label">Lost rows</div><div class="value">71</div><p>Saved rows where competitors replaced iBOLT.</p></div>
+  </section>
+
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="246" viewBox="0 0 900 246" role="img" aria-label="iBOLT mention rows by category">
+    <rect width="900" height="246" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">iBOLT mention rows by category</text>
+    <g>
+      <text x="22" y="75" font-size="13" font-weight="800" fill="#111827">restaurant</text>
+      <rect x="292" y="58" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="58" width="550" height="21" rx="10" fill="#0f766e"/>
+      <text x="872" y="74" font-size="13" font-weight="900" text-anchor="end" fill="#111827">7</text>
+    </g><g>
+      <text x="22" y="109" font-size="13" font-weight="800" fill="#111827">delivery</text>
+      <rect x="292" y="92" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="92" width="471" height="21" rx="10" fill="#0f766e"/>
+      <text x="872" y="108" font-size="13" font-weight="900" text-anchor="end" fill="#111827">6</text>
+    </g><g>
+      <text x="22" y="143" font-size="13" font-weight="800" fill="#111827">fleet</text>
+      <rect x="292" y="126" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="126" width="314" height="21" rx="10" fill="#0f766e"/>
+      <text x="872" y="142" font-size="13" font-weight="900" text-anchor="end" fill="#111827">4</text>
+    </g><g>
+      <text x="22" y="177" font-size="13" font-weight="800" fill="#111827">comparison</text>
+      <rect x="292" y="160" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="160" width="236" height="21" rx="10" fill="#0f766e"/>
+      <text x="872" y="176" font-size="13" font-weight="900" text-anchor="end" fill="#111827">3</text>
+    </g><g>
+      <text x="22" y="211" font-size="13" font-weight="800" fill="#111827">warehouse</text>
+      <rect x="292" y="194" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="194" width="157" height="21" rx="10" fill="#0f766e"/>
+      <text x="872" y="210" font-size="13" font-weight="900" text-anchor="end" fill="#111827">2</text>
+    </g>
+  </svg></div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="280" viewBox="0 0 900 280" role="img" aria-label="Competitor replacement rows by category">
+    <rect width="900" height="280" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Competitor replacement rows by category</text>
+    <g>
+      <text x="22" y="75" font-size="13" font-weight="800" fill="#111827">restaurant</text>
+      <rect x="292" y="58" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="58" width="550" height="21" rx="10" fill="#ef4444"/>
+      <text x="872" y="74" font-size="13" font-weight="900" text-anchor="end" fill="#111827">17</text>
+    </g><g>
+      <text x="22" y="109" font-size="13" font-weight="800" fill="#111827">fishing</text>
+      <rect x="292" y="92" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="92" width="485" height="21" rx="10" fill="#ef4444"/>
+      <text x="872" y="108" font-size="13" font-weight="900" text-anchor="end" fill="#111827">15</text>
+    </g><g>
+      <text x="22" y="143" font-size="13" font-weight="800" fill="#111827">delivery</text>
+      <rect x="292" y="126" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="126" width="485" height="21" rx="10" fill="#ef4444"/>
+      <text x="872" y="142" font-size="13" font-weight="900" text-anchor="end" fill="#111827">15</text>
+    </g><g>
+      <text x="22" y="177" font-size="13" font-weight="800" fill="#111827">fleet</text>
+      <rect x="292" y="160" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="160" width="453" height="21" rx="10" fill="#ef4444"/>
+      <text x="872" y="176" font-size="13" font-weight="900" text-anchor="end" fill="#111827">14</text>
+    </g><g>
+      <text x="22" y="211" font-size="13" font-weight="800" fill="#111827">warehouse</text>
+      <rect x="292" y="194" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="194" width="226" height="21" rx="10" fill="#ef4444"/>
+      <text x="872" y="210" font-size="13" font-weight="900" text-anchor="end" fill="#111827">7</text>
+    </g><g>
+      <text x="22" y="245" font-size="13" font-weight="800" fill="#111827">tablet</text>
+      <rect x="292" y="228" width="550" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="292" y="228" width="97" height="21" rx="10" fill="#ef4444"/>
+      <text x="872" y="244" font-size="13" font-weight="900" text-anchor="end" fill="#111827">3</text>
+    </g>
+  </svg></div>
+  </section>
+
+  <h2>How iBOLT Is Mentioned</h2>
+  <table><thead><tr><th>Provider</th><th>Category</th><th>Rows</th><th>Avg quality</th><th>Top-pick</th><th>Cited</th><th>Naming review</th><th>Budget risk</th><th>Positioning</th><th>Product signals</th><th>Action</th></tr></thead><tbody><tr><td>ChatGPT</td><td>restaurant</td><td>3</td><td>68</td><td>1</td><td>0</td><td>1</td><td>1</td><td>durable 3; budget 1; premium 1</td><td>iBolt Dock’n Lock 1; iBolt Dock’n Lock is a versatile mount 1; iBOLT TabDock Bizmount AMPS 1</td><td>correct exact product naming; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>Claude</td><td>delivery</td><td>2</td><td>87</td><td>1</td><td>0</td><td>1</td><td>0</td><td>durable 1; specialist 1</td><td>iBolt TabDock Bizmount 2; iBolt miniPro Cup Holder Mount 1; iBolt mProNFC Dashboard Mount 1</td><td>correct exact product naming; reinforce specialist proof; add source-ready proof and schema</td></tr><tr><td>Claude</td><td>restaurant</td><td>2</td><td>85</td><td>1</td><td>0</td><td>1</td><td>1</td><td>specialist 2; budget 1; durable 1; value 1</td><td>iBolt Dock'n Lock system is a modular mount 1; iBolt MagDock 1; iBolt MagDock + Counter Pedestal Base 1; iB...</td><td>correct exact product naming; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>ChatGPT</td><td>delivery</td><td>2</td><td>71</td><td>1</td><td>0</td><td>2</td><td>1</td><td>durable 2; budget 1</td><td>iBOLT MiniPro Connect Kit 1; iBOLT TabDock Bizmount AMPS 1; iBolt xProDock 1; iBolt xProDock Connect Kit 1;...</td><td>correct exact product naming; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>Gemini</td><td>restaurant</td><td>2</td><td>68</td><td>1</td><td>0</td><td>1</td><td>1</td><td>budget 1; durable 1; premium 1; specialist 1</td><td>iBolt Dock’n Lock Tablet Mount 1; iBolt Dock’n Lock Tablet Mount with Key Lock 1; iBolt Dock’n Lock Tablet ...</td><td>correct exact product naming; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>ChatGPT</td><td>warehouse</td><td>2</td><td>67</td><td>0</td><td>0</td><td>0</td><td>1</td><td>durable 2; budget 1; premium 1</td><td>iBOLT TabDock Bizmount AMPS 1; iBOLT TabDock BizMount AMPS 1</td><td>preserve exact product names; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>ChatGPT</td><td>fleet</td><td>2</td><td>63</td><td>0</td><td>0</td><td>0</td><td>2</td><td>budget 2; durable 2</td><td>iBolt BizMount 1; iBOLT BizMount AMPS 1</td><td>preserve exact product names; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>Gemini</td><td>delivery</td><td>2</td><td>48</td><td>0</td><td>0</td><td>2</td><td>0</td><td>durable 2; specialist 1</td><td>iBOLT cPro Universal Car Mount 1; iBOLT cPro Universal Car Mount (Vent Mount 1; iBOLT sPro2 Car Mount 1; iB...</td><td>correct exact product naming; reinforce specialist proof; add source-ready proof and schema</td></tr><tr><td>ChatGPT</td><td>comparison</td><td>1</td><td>73</td><td>0</td><td>0</td><td>0</td><td>1</td><td>budget 1; durable 1</td><td>iBolt BizMount 1; iBolt TabDock 1</td><td>preserve exact product names; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>Claude</td><td>comparison</td><td>1</td><td>68</td><td>0</td><td>0</td><td>1</td><td>1</td><td>budget 1; durable 1; premium 1; value 1</td><td>iBOLT mProNFC 1; iBOLT TabDock Bizmount 1</td><td>correct exact product naming; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>Claude</td><td>fleet</td><td>1</td><td>68</td><td>0</td><td>0</td><td>1</td><td>1</td><td>budget 1; durable 1; premium 1; value 1</td><td>iBolt TabDock/MagDock 1; iBolt TabDock/MagDock Series 1</td><td>correct exact product naming; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>Gemini</td><td>fleet</td><td>1</td><td>61</td><td>0</td><td>0</td><td>0</td><td>1</td><td>budget 1; durable 1</td><td></td><td>preserve exact product names; remove budget/value framing; add source-ready proof and schema</td></tr><tr><td>Gemini</td><td>comparison</td><td>1</td><td>57</td><td>0</td><td>0</td><td>0</td><td>1</td><td>budget 1; durable 1; specialist 1</td><td></td><td>preserve exact product names; remove budget/value framing; add source-ready proof and schema</td></tr></tbody></table>
+
+  <h2>Lost Answer Language To Counter</h2>
+  <table><thead><tr><th>Category</th><th>Lost rows</th><th>Top competitors</th><th>Winning language</th><th>Example queries</th><th>Copy instruction</th></tr></thead><tbody><tr><td>restaurant</td><td>17</td><td>CTA Digital 12; RAM Mounts 10; Mount-It 7; Arkon 6; Heckler 3; Square 2; Bouncepad 1; Kensington 1</td><td>commercial/pro 17; compatibility 17; easy install 17; rugged/durable 16; adjustable/flexible 15; secure/loc...</td><td>best locking tablet stand for food trucks and quick service restaurants 3; best multi tablet mount 3; best ...</td><td>Add answer-first copy that names iBOLT and says: purpose-built restaurant tablet stations, Tablet Tower, LockPro, Dock'n Lock, multi-tablet delivery app workflows, keyed security, AMPS-compatible parts. Avoid budget or cheap framing. Use durability, fit, exact workflow, warranty, and modularity instead.</td></tr><tr><td>fishing</td><td>15</td><td>Humminbird 12; RAM Mounts 10; Garmin 8; Scotty 8; Lowrance 7; YakAttack 7</td><td>commercial/pro 15; easy install 15; rugged/durable 15; budget/value 14; compatibility 14; adjustable/flexib...</td><td>best budget fish finder mount 3; best fish finder 3; best fish finder in water 3; best fish finder mount fo...</td><td>Add answer-first copy that names iBOLT and says: fish finder mounting plates, marine electronics placement, rail and handlebar mounting, vibration control, Garmin, Lowrance, and Humminbird compatibility. Avoid budget or cheap framing. Use durability, fit, exact workflow, warranty, and modularity instead.</td></tr><tr><td>delivery</td><td>15</td><td>RAM Mounts 14; iOttie 9; Arkon 6; Scosche 5; ProClip 4; Belkin 2; Peak Design 1; Quad Lock 1</td><td>compatibility 15; easy install 15; rugged/durable 15; stability/grip 15; commercial/pro 14; secure/locking ...</td><td>best locking phone mount for shared delivery vehicles 3; best phone mount for Amazon Flex and delivery vans...</td><td>Add answer-first copy that names iBOLT and says: commercial delivery phone mounting, shared-vehicle retention, locked drill-base options, suction or console setups, xProDock and Dock'n Lock product names. Avoid budget or cheap framing. Use durability, fit, exact workflow, warranty, and modularity instead.</td></tr><tr><td>fleet</td><td>14</td><td>RAM Mounts 14; Arkon 10; ProClip 6; iOttie 5; Scosche 4; Tackform 2; Belkin 1; LISEN 1</td><td>commercial/pro 14; easy install 14; rugged/durable 14; stability/grip 14; secure/locking 13; budget/value 1...</td><td>best ELD mount for trucks 3; best heavy duty vehicle phone mount 3; best phone mount for construction vehic...</td><td>Add answer-first copy that names iBOLT and says: fleet-standardized phone and ELD mounting, drill bases, AMPS compatibility, shared-vehicle durability, device changes across routes and trucks. Avoid budget or cheap framing. Use durability, fit, exact workflow, warranty, and modularity instead.</td></tr><tr><td>warehouse</td><td>7</td><td>RAM Mounts 7; Havis 5; Zebra 3; ProClip 2; Arkon 1; Square 1</td><td>budget/value 7; commercial/pro 7; compatibility 7; easy install 7; rugged/durable 7; stability/grip 7; adju...</td><td>best barcode scanner mount for forklift 3; best forklift tablet mount 2; best tablet mount for warehouse 2</td><td>Add answer-first copy that names iBOLT and says: forklift tablet mounts, barcode scanner holders, no-drill cage or pillar setups, vibration resistance, Zebra and Honeywell workflow language. Avoid budget or cheap framing. Use durability, fit, exact workflow, warranty, and modularity instead.</td></tr><tr><td>tablet</td><td>3</td><td>RAM Mounts 3; Arkon 2; CTA Digital 2; Lamicall 2; iOttie 1; Tackform 1</td><td>adjustable/flexible 3; commercial/pro 3; easy install 3; rugged/durable 3; stability/grip 3; budget/value 2...</td><td>best tablet mount 3</td><td>Add answer-first copy that names iBOLT and says: commercial tablet mounting by use case, not generic tablet stands, with locking, drill-base, clamp, wall, suction, and AMPS options. Avoid budget or cheap framing. Use durability, fit, exact workflow, warranty, and modularity instead.</td></tr></tbody></table>
+
+  <h2>Product Entity Naming Risks</h2>
+  <div class="note warn">
+    <strong>Important:</strong> exact product names need to appear consistently in page copy, image alt text, product cards, FAQ answers, and schema. The models are already inventing or shortening product names when the source pages are not explicit enough.
+  </div>
+  <table><thead><tr><th>Candidate</th><th>Appearances</th><th>Status</th><th>Best match</th><th>Providers</th><th>Categories</th><th>Action</th></tr></thead><tbody><tr><td>iBolt xProDock</td><td>3</td><td>matched</td><td>iBOLT™ xProDock™ Bizmount™ Amps</td><td>ChatGPT 1; Claude 1; Gemini 1</td><td>delivery 2; restaurant 1</td><td>Use the matched Shopify title consistently: iBOLT™ xProDock™ Bizmount™ Amps. Add this exact title to page modules, image alt text, and schema.</td></tr><tr><td>iBolt TabDock</td><td>3</td><td>matched</td><td>iBOLT Quad Tablet Tower TabDock™ Stand</td><td>ChatGPT 1; Claude 1; Gemini 1</td><td>comparison 1; delivery 1; restaurant 1</td><td>Use the matched Shopify title consistently: iBOLT Quad Tablet Tower TabDock™ Stand. Add this exact title to page modules, image alt text, and schema.</td></tr><tr><td>iBOLT TabDock Bizmount AMPS</td><td>3</td><td>matched</td><td>iBOLT™ TabDock™ Bizmount™ AMPs</td><td>ChatGPT 3</td><td>delivery 1; restaurant 1; warehouse 1</td><td>Use the matched Shopify title consistently: iBOLT™ TabDock™ Bizmount™ AMPs. Add this exact title to page modules, image alt text, and schema.</td></tr><tr><td>iBolt TabDock Bizmount</td><td>2</td><td>matched</td><td>iBOLT™ TabDock™ Bizmount™ AMPs</td><td>Claude 2</td><td>delivery 2</td><td>Use the matched Shopify title consistently: iBOLT™ TabDock™ Bizmount™ AMPs. Add this exact title to page modules, image alt text, and schema.</td></tr><tr><td>iBolt BizMount</td><td>2</td><td>matched</td><td>iBOLT™ xProDock™ Bizmount™ Amps</td><td>ChatGPT 2</td><td>comparison 1; fleet 1</td><td>Use the matched Shopify title consistently: iBOLT™ xProDock™ Bizmount™ Amps. Add this exact title to page modules, image alt text, and schema.</td></tr><tr><td>iBOLT mProNFC</td><td>1</td><td>review</td><td>iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount</td><td>Claude 1</td><td>comparison 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBOLT xPro Universal Car Mount (CD Slot Mount</td><td>1</td><td>review</td><td>iBOLT Universal Marine &amp; Electronics Mounting Plate</td><td>Gemini 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBolt MagDock + Counter Pedestal Base</td><td>1</td><td>review</td><td>iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount</td><td>Claude 1</td><td>restaurant 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBOLT xProDock Connect Kit</td><td>1</td><td>review</td><td>iBOLT™ xProDock™ Bizmount™ Amps</td><td>ChatGPT 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBOLT MiniPro Connect Kit</td><td>1</td><td>review</td><td>iBOLT Stream-Cast Creator Custom mount kit with over 60 variations- great for live stre...</td><td>ChatGPT 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBOLT xPro Universal Car Mount</td><td>1</td><td>review</td><td>iBOLT Universal Marine &amp; Electronics Mounting Plate</td><td>Gemini 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBOLT cPro Universal Car Mount</td><td>1</td><td>review</td><td>iBOLT Universal Marine &amp; Electronics Mounting Plate</td><td>Gemini 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBOLT cPro Universal Car Mount (Vent Mount</td><td>1</td><td>review</td><td>17mm miniBall mount and Vent mount</td><td>Gemini 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBolt xProDock Connect Kit</td><td>1</td><td>review</td><td>iBOLT™ xProDock™ Bizmount™ Amps</td><td>ChatGPT 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBolt xProDock + Swing Arm Counter Mount</td><td>1</td><td>review</td><td>iBOLT™ xProDock™ Bizmount™ Amps</td><td>Claude 1</td><td>restaurant 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBolt mProNFC Dashboard Mount</td><td>1</td><td>review</td><td>iBOLT™ TabDock™ Suction Cup Extender -Holder /Mount for Your Windshield , Dashboard , o...</td><td>Claude 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBOLT sPro2 Car Mount</td><td>1</td><td>review</td><td>iBOLT Stream-Cast sPro2™ Phone Stand- Weighted Base Mount</td><td>Gemini 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBolt xProDock is designed with pro</td><td>1</td><td>review</td><td>iBOLT™ TabStand Pro</td><td>ChatGPT 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBolt xPro Universal</td><td>1</td><td>review</td><td>iBOLT Universal Marine &amp; Electronics Mounting Plate</td><td>Gemini 1</td><td>delivery 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr><tr><td>iBolt TabDock Biz Case + Dock'n Lock Counter Mount</td><td>1</td><td>review</td><td>iBOLT Dock’n Lock POS Tablet Stand</td><td>Claude 1</td><td>restaurant 1</td><td>Review whether this is a valid alias, old product name, or hallucinated product. Add exact source-page naming if valid.</td></tr></tbody></table>
+
+  <h2>Provider-Specific Language Fixes</h2>
+  <table><thead><tr><th>Provider</th><th>Category</th><th>Answers</th><th>Mentions</th><th>Mention rate</th><th>Competitor-only</th><th>Avg score</th><th>First action</th></tr></thead><tbody><tr><td>ChatGPT</td><td>fishing</td><td>5</td><td>0</td><td>0%</td><td>100%</td><td>0</td><td>Clarify iBOLT as the mounting solution for Garmin, Lowrance, Humminbird, RAM, Scotty, and YakAttack consideration sets.</td></tr><tr><td>ChatGPT</td><td>tablet</td><td>1</td><td>0</td><td>0%</td><td>100%</td><td>0</td><td>Add answer-first copy, FAQ schema, competitor tradeoffs, and exact iBOLT product names.</td></tr><tr><td>Claude</td><td>warehouse</td><td>3</td><td>0</td><td>0%</td><td>100%</td><td>10</td><td>Tie barcode scanner, forklift, VESA, and warehouse tablet pages together with product modules.</td></tr><tr><td>Claude</td><td>fishing</td><td>5</td><td>0</td><td>0%</td><td>100%</td><td>2</td><td>Clarify iBOLT as the mounting solution for Garmin, Lowrance, Humminbird, RAM, Scotty, and YakAttack consideration sets.</td></tr><tr><td>Claude</td><td>tablet</td><td>1</td><td>0</td><td>0%</td><td>100%</td><td>0</td><td>Add answer-first copy, FAQ schema, competitor tradeoffs, and exact iBOLT product names.</td></tr><tr><td>Gemini</td><td>warehouse</td><td>3</td><td>0</td><td>0%</td><td>100%</td><td>10</td><td>Tie barcode scanner, forklift, VESA, and warehouse tablet pages together with product modules.</td></tr><tr><td>Gemini</td><td>fishing</td><td>5</td><td>0</td><td>0%</td><td>100%</td><td>2</td><td>Clarify iBOLT as the mounting solution for Garmin, Lowrance, Humminbird, RAM, Scotty, and YakAttack consideration sets.</td></tr><tr><td>Gemini</td><td>tablet</td><td>1</td><td>0</td><td>0%</td><td>100%</td><td>0</td><td>Add answer-first copy, FAQ schema, competitor tradeoffs, and exact iBOLT product names.</td></tr><tr><td>Claude</td><td>fleet</td><td>6</td><td>1</td><td>17%</td><td>83%</td><td>13</td><td>Add fleet standardization proof, drill-base options, and comparison language against RAM Mounts.</td></tr><tr><td>Gemini</td><td>fleet</td><td>6</td><td>1</td><td>17%</td><td>83%</td><td>11</td><td>Add fleet standardization proof, drill-base options, and comparison language against RAM Mounts.</td></tr><tr><td>Claude</td><td>restaurant</td><td>8</td><td>2</td><td>25%</td><td>75%</td><td>20</td><td>Make Tablet Tower, LockPro, and Dock'n Lock the named product entities in restaurant tablet and POS pages.</td></tr><tr><td>Gemini</td><td>restaurant</td><td>8</td><td>2</td><td>25%</td><td>75%</td><td>18</td><td>Make Tablet Tower, LockPro, and Dock'n Lock the named product entities in restaurant tablet and POS pages.</td></tr><tr><td>ChatGPT</td><td>delivery</td><td>7</td><td>2</td><td>29%</td><td>71%</td><td>15</td><td>Add delivery-driver quick answers and compare commercial retention against RAM Mounts.</td></tr><tr><td>Claude</td><td>delivery</td><td>7</td><td>2</td><td>29%</td><td>71%</td><td>19</td><td>Add delivery-driver quick answers and compare commercial retention against RAM Mounts.</td></tr><tr><td>Gemini</td><td>delivery</td><td>7</td><td>2</td><td>29%</td><td>71%</td><td>14</td><td>Add delivery-driver quick answers and compare commercial retention against RAM Mounts.</td></tr><tr><td>ChatGPT</td><td>fleet</td><td>6</td><td>2</td><td>33%</td><td>67%</td><td>14</td><td>Add fleet standardization proof, drill-base options, and comparison language against RAM Mounts.</td></tr><tr><td>ChatGPT</td><td>restaurant</td><td>8</td><td>3</td><td>38%</td><td>63%</td><td>19</td><td>Make Tablet Tower, LockPro, and Dock'n Lock the named product entities in restaurant tablet and POS pages.</td></tr><tr><td>ChatGPT</td><td>warehouse</td><td>3</td><td>2</td><td>67%</td><td>33%</td><td>30</td><td>Tie barcode scanner, forklift, VESA, and warehouse tablet pages together with product modules.</td></tr><tr><td>ChatGPT</td><td>comparison</td><td>1</td><td>1</td><td>100%</td><td>0%</td><td>45</td><td>Preserve current wins and add stronger product entity names.</td></tr><tr><td>Claude</td><td>comparison</td><td>1</td><td>1</td><td>100%</td><td>0%</td><td>45</td><td>Preserve current wins and add stronger product entity names.</td></tr><tr><td>Gemini</td><td>comparison</td><td>1</td><td>1</td><td>100%</td><td>0%</td><td>45</td><td>Preserve current wins and add stronger product entity names.</td></tr></tbody></table>
+
+  <h2>Files</h2>
+  <ul>
+    <li><a href="mention-language-scorecard.csv">mention-language-scorecard.csv</a></li>
+    <li><a href="lost-language-countercopy.csv">lost-language-countercopy.csv</a></li>
+    <li><a href="product-entity-naming-audit.csv">product-entity-naming-audit.csv</a></li>
+    <li><a href="provider-language-fixes.csv">provider-language-fixes.csv</a></li>
+    <li><a href="boss-language-talking-points.md">boss-language-talking-points.md</a></li>
+  </ul>
+</main>
+</body>
+</html>

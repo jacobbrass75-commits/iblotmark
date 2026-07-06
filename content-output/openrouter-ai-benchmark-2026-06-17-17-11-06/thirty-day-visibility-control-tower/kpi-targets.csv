@@ -1,0 +1,5 @@
+"kpi","current","target","why"
+"Mention rate","24","35","Models include iBOLT at all."
+"Non-branded mention rate","5","15","New buyers ask generic recommendation prompts."
+"Top-3 recommendation rate","16","25","Recommendation strength is closer to buying influence."
+"Citation rate","0","8","AI search surfaces trust iboltmounts.com as a source."

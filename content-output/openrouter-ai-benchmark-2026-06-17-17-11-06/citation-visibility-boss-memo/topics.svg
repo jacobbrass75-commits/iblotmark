@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="364" viewBox="0 0 900 364" role="img" aria-label="Topic source authority priority">
+    <rect width="900" height="364" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Topic source authority priority</text>
+    <g>
+      <text x="22" y="75" font-size="13" font-weight="800" fill="#111827">delivery</text>
+      <rect x="285" y="58" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="58" width="540" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="74" text-anchor="end" font-size="13" font-weight="900" fill="#111827">742</text>
+    </g><g>
+      <text x="22" y="111" font-size="13" font-weight="800" fill="#111827">fleet</text>
+      <rect x="285" y="94" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="94" width="533" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="110" text-anchor="end" font-size="13" font-weight="900" fill="#111827">732</text>
+    </g><g>
+      <text x="22" y="147" font-size="13" font-weight="800" fill="#111827">restaurant</text>
+      <rect x="285" y="130" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="130" width="482" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="146" text-anchor="end" font-size="13" font-weight="900" fill="#111827">662</text>
+    </g><g>
+      <text x="22" y="183" font-size="13" font-weight="800" fill="#111827">fishing</text>
+      <rect x="285" y="166" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="166" width="376" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="182" text-anchor="end" font-size="13" font-weight="900" fill="#111827">516</text>
+    </g><g>
+      <text x="22" y="219" font-size="13" font-weight="800" fill="#111827">warehouse</text>
+      <rect x="285" y="202" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="202" width="176" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="218" text-anchor="end" font-size="13" font-weight="900" fill="#111827">242</text>
+    </g><g>
+      <text x="22" y="255" font-size="13" font-weight="800" fill="#111827">amps/modular</text>
+      <rect x="285" y="238" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="238" width="86" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="254" text-anchor="end" font-size="13" font-weight="900" fill="#111827">118</text>
+    </g><g>
+      <text x="22" y="291" font-size="13" font-weight="800" fill="#111827">education</text>
+      <rect x="285" y="274" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="274" width="50" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="290" text-anchor="end" font-size="13" font-weight="900" fill="#111827">69</text>
+    </g><g>
+      <text x="22" y="327" font-size="13" font-weight="800" fill="#111827">agriculture</text>
+      <rect x="285" y="310" width="540" height="22" rx="11" fill="#e5e7eb"/>
+      <rect x="285" y="310" width="31" height="22" rx="11" fill="#0f766e"/>
+      <text x="866" y="326" text-anchor="end" font-size="13" font-weight="900" fill="#111827">42</text>
+    </g>
+  </svg>

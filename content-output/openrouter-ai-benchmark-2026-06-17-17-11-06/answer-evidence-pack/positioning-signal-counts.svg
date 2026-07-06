@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="402" viewBox="0 0 1160 402" role="img">
+  <style>
+    .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#d7dee8;stroke-width:1}.title{font:700 24px Arial,sans-serif;fill:#111827}.subtitle{font:400 14px Arial,sans-serif;fill:#64748b}.label{font:700 13px Arial,sans-serif;fill:#111827}.small{font:400 12px Arial,sans-serif;fill:#475569}.value{font:700 13px Arial,sans-serif;fill:#0f172a}
+  </style>
+  <rect class="bg" width="1160" height="402"/>
+  
+    <rect class="panel" x="28" y="24" width="1104" height="354" rx="14"/>
+    <text class="title" x="54" y="64">How Answers Frame the Category</text>
+    <text class="subtitle" x="54" y="88">Signals found around durability, specialization, modularity, value, and security.</text>
+    
+      <text class="label" x="54" y="122">durability</text>
+      <rect x="360" y="108" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="108" width="660" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1034" y="125">93</text>
+      <text class="small" x="360" y="149"></text>
+    
+
+      <text class="label" x="54" y="170">security</text>
+      <rect x="360" y="156" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="156" width="504" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1034" y="173">71</text>
+      <text class="small" x="360" y="197"></text>
+    
+
+      <text class="label" x="54" y="218">modular</text>
+      <rect x="360" y="204" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="204" width="397" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1034" y="221">56</text>
+      <text class="small" x="360" y="245"></text>
+    
+
+      <text class="label" x="54" y="266">budget/value</text>
+      <rect x="360" y="252" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="252" width="312" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1034" y="269">44</text>
+      <text class="small" x="360" y="293"></text>
+    
+
+      <text class="label" x="54" y="314">specialist</text>
+      <rect x="360" y="300" width="660" height="24" rx="8" fill="#e2e8f0"/>
+      <rect x="360" y="300" width="284" height="24" rx="8" fill="#2563eb"/>
+      <text class="value" x="1034" y="317">40</text>
+      <text class="small" x="360" y="341"></text>
+    
+  
+</svg>

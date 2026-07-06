@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="453" viewBox="0 0 900 453" role="img" aria-label="Execution backlog by work lane">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31" font-size="20" font-weight="800" fill="#0f172a">Execution backlog by work lane</text>
+<text x="16" y="75" font-size="13" fill="#334155">Product entity module</text>
+<rect x="220" y="58" width="632" height="24" fill="#1d4ed8" rx="4"/>
+<text x="860" y="75" font-size="13" fill="#111827" font-weight="700">80</text>
+<text x="16" y="108" font-size="13" fill="#334155">Citation/schema cleanup</text>
+<rect x="220" y="91" width="411" height="24" fill="#1d4ed8" rx="4"/>
+<text x="639" y="108" font-size="13" fill="#111827" font-weight="700">52</text>
+<text x="16" y="141" font-size="13" fill="#334155">Legacy answer-first rewrite</text>
+<rect x="220" y="124" width="316" height="24" fill="#1d4ed8" rx="4"/>
+<text x="544" y="141" font-size="13" fill="#111827" font-weight="700">40</text>
+<text x="16" y="174" font-size="13" fill="#334155">Benchmark query refresh</text>
+<rect x="220" y="157" width="245" height="24" fill="#1d4ed8" rx="4"/>
+<text x="473" y="174" font-size="13" fill="#111827" font-weight="700">31</text>
+<text x="16" y="207" font-size="13" fill="#334155">Off-site citation authority</text>
+<rect x="220" y="190" width="198" height="24" fill="#1d4ed8" rx="4"/>
+<text x="426" y="207" font-size="13" fill="#111827" font-weight="700">25</text>
+<text x="16" y="240" font-size="13" fill="#334155">Benchmark page refresh</text>
+<rect x="220" y="223" width="142" height="24" fill="#1d4ed8" rx="4"/>
+<text x="370" y="240" font-size="13" fill="#111827" font-weight="700">18</text>
+<text x="16" y="273" font-size="13" fill="#334155">Retest checklist</text>
+<rect x="220" y="256" width="142" height="24" fill="#1d4ed8" rx="4"/>
+<text x="370" y="273" font-size="13" fill="#111827" font-weight="700">18</text>
+<text x="16" y="306" font-size="13" fill="#334155">New content/solution page</text>
+<rect x="220" y="289" width="111" height="24" fill="#1d4ed8" rx="4"/>
+<text x="339" y="306" font-size="13" fill="#111827" font-weight="700">14</text>
+<text x="16" y="339" font-size="13" fill="#334155">Canonical/page survivor decision</text>
+<rect x="220" y="322" width="79" height="24" fill="#1d4ed8" rx="4"/>
+<text x="307" y="339" font-size="13" fill="#111827" font-weight="700">10</text>
+<text x="16" y="372" font-size="13" fill="#334155">Protect and amplify</text>
+<rect x="220" y="355" width="79" height="24" fill="#1d4ed8" rx="4"/>
+<text x="307" y="372" font-size="13" fill="#111827" font-weight="700">10</text>
+<text x="16" y="405" font-size="13" fill="#334155">Strategic workstream</text>
+<rect x="220" y="388" width="55" height="24" fill="#1d4ed8" rx="4"/>
+<text x="283" y="405" font-size="13" fill="#111827" font-weight="700">7</text>
+</svg>

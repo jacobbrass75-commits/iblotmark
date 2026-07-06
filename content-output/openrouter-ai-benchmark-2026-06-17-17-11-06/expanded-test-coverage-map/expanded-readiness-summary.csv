@@ -1,0 +1,5 @@
+"test_state","prompts","requests","avg_priority","categories"
+"mapped lower-priority retest","85","255","87","fleet 22; restaurant 14; fishing 12; warehouse 10; amps/modular 8; streaming 7"
+"new content or solution page needed","59","177","86","fishing 10; fleet 6; cycling 5; kitchen/home 5; travel 5; agriculture 4"
+"refresh then retest","37","111","92","fishing 11; restaurant 9; fleet 7; delivery 4; warehouse 3; tablet 2"
+"canonical review before retest","26","78","93","delivery 10; fleet 7; restaurant 6; fishing 3"

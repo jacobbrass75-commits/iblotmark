@@ -1,0 +1,65 @@
+{
+  "title": "Restaurant Tablet Hell: How to Stop Missing DoorDash, Uber Eats, and Grubhub Orders",
+  "metaTitle": "Restaurant Tablet Mount Guide: Stop Missing Third-Party...",
+  "metaDescription": "Missed delivery orders often trace back to tablet placement. See how a vertical multi-tablet station keeps every screen visible and powered during rush.",
+  "excerpt": "Tablets get muted, buried, or dead during rush, and missed third-party orders follow. Here is how a proper multi-tablet station design fixes the visibility and power problem before the next order drops.",
+  "wordCount": 1430,
+  "spec": {
+    "title": "Restaurant Tablet Hell: How to Stop Missing DoorDash, Uber Eats, and Grubhub Orders",
+    "slug": "restaurant-tablet-hell-stop-missing-delivery-orders",
+    "vertical": "restaurants-food-delivery",
+    "primaryKeyword": "restaurant tablet mount",
+    "audience": "restaurant owners, managers, expo leads, and ghost kitchen operators",
+    "problem": "Tablets get muted, hidden, unplugged, asleep, dead, or ignored during rush, which creates missed third-party delivery orders.",
+    "angle": "Treat tablet hell as a visibility and station-design problem. Show how a vertical multi-tablet station keeps order tablets visible, powered, and assigned.",
+    "products": [
+      "ibolt-quad-tablet-tower-stand",
+      "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+      "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems"
+    ],
+    "sources": [
+      {
+        "label": "DoorDash Merchant Tablet Learning Center",
+        "url": "https://merchants.doordash.com/en-us/learning-center/topic/tablet",
+        "use": "DoorDash says the merchant tablet is used for order and store management tasks in real time."
+      },
+      {
+        "label": "Uber Eats Help: not accepting orders on tablet",
+        "url": "https://help.uber.com/merchants-and-restaurants/article/not-accepting-orders-on-tablet?nodeId=6700aacd-8999-4b8a-9c68-65c199796642",
+        "use": "Uber Eats notes that its Orders app needs to stay visible in the foreground and can pause after missed orders or offline time."
+      },
+      {
+        "label": "Grubhub tablet setup",
+        "url": "https://get.grubhub.com/help-center/grubhub-tablet-setup/",
+        "use": "Use as a general official setup reference for third-party restaurant tablets."
+      }
+    ]
+  },
+  "products": [
+    {
+      "handle": "ibolt-quad-tablet-tower-stand",
+      "title": "iBOLT Quad Tablet Tower TabDock™ Stand",
+      "url": "https://iboltmounts.com/products/ibolt-quad-tablet-tower-stand",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-tabdock-ibolt-quad-tablet-tower-tabdock-stand-1050407691.jpg?v=1768921811",
+      "price": "149.95",
+      "description": "The iBOLT Quad Tablet Stand makes excellent use of your valuable floor space and is the perfect solution for delivery applications and order management. The TabDock™ stand can hold 4 tablets in one location, with heavy-duty construction, this point-of-purchase mount ensures your devices are safely in place for repeated use."
+    },
+    {
+      "handle": "ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+      "title": "iBOLT™ LockPro™ Drill Base Locking Tablet Stand- Point of Purchase/POS Mount",
+      "url": "https://iboltmounts.com/products/ibolttm-lockprotm-drill-base-locking-tablet-stand-point-of-purchase-pos-mount",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/products/ibolt-mounts-ibolt-lockpro-drill-base-locking-tablet-stand-point-of-purchase-pos-mount-1050409814.jpg?v=1768913232",
+      "price": "139.95",
+      "description": "The iBOLT™ LockPro™ Drill Base Tablet Stand offers a secured, organizational solution for businesses, enhancing order management and workspace efficiency. Crafted with durable aluminum, the stand locks tablets in a safe position, is compatible with all 7 to 10-inch tablets, and allows for 360-degree rotation for optimal viewing. It securely integrates with any flat surface with self-tapping screws, featuring adjustable pole height and security hardware designed for commercial environments."
+    },
+    {
+      "handle": "ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+      "title": "iBOLT Phone Dock'n Lock Dual POS Stand - Secure Dual-Device Mount for Point of Sale Systems",
+      "url": "https://iboltmounts.com/products/ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems",
+      "image": "https://cdn.shopify.com/s/files/1/0818/5957/6100/files/ibolt-mounts-ibolt-phone-dock-n-lock-dual-pos-stand-secure-dual-device-mount-for-point-of-sale-systems-1130795240.jpg?v=1768917851",
+      "price": "115.00",
+      "description": "Enhance your point-of-sale (POS) station with the iBOLT Phone Dock'n Lock Dual POS Stand, a drill-base mount for maximum security and convenience. With a 9-inch pole and dual locking phone holders, the system allows both cashier and customer to easily interact with their respective devices. Universal in design, the phone holders accommodate all phone and case configurations between 4.8 and 7.25 inches high and 2.25 and 3.75 inches wide. Built to last and easy to use, this drill-base mount is stable yet prevents unauthorized removal, and is ideal for retail, restaurants, self-checkout, kiosks, and any POS setup where security and efficiency are vital."
+    }
+  ],
+  "htmlPath": "/Users/yakub/Desktop/iblotmark/content-output/operational-problem-drafts-2026-06-30T18-56-18-226Z/restaurant-tablet-hell-stop-missing-delivery-orders.html"
+}

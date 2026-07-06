@@ -19,9 +19,11 @@ const BlogPosts = lazy(() => import("@/pages/BlogPosts"));
 const PostReview = lazy(() => import("@/pages/PostReview"));
 const IndustryContext = lazy(() => import("@/pages/IndustryContext"));
 const ProductCatalog = lazy(() => import("@/pages/ProductCatalog"));
+const InventoryCount = lazy(() => import("@/pages/InventoryCount"));
 const CatalogImport = lazy(() => import("@/pages/CatalogImport"));
 const PhotoBank = lazy(() => import("@/pages/PhotoBank"));
 const AiBenchmark = lazy(() => import("@/pages/AiBenchmark"));
+const ServiceOps = lazy(() => import("@/pages/ServiceOps"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const enableLegacyScholarMark = import.meta.env.VITE_ENABLE_LEGACY_SCHOLARMARK === "true";
 const legacyPages = enableLegacyScholarMark
@@ -116,9 +118,11 @@ function Router() {
       <Route path="/blog/posts/:id">{() => blogRoute(<PostReview />)}</Route>
       <Route path="/blog/context">{() => blogRoute(<IndustryContext />)}</Route>
       <Route path="/blog/products">{() => blogRoute(<ProductCatalog />)}</Route>
+      <Route path="/blog/inventory">{() => blogRoute(<InventoryCount />)}</Route>
       <Route path="/blog/catalog">{() => blogRoute(<CatalogImport />)}</Route>
       <Route path="/blog/photos">{() => blogRoute(<PhotoBank />)}</Route>
       <Route path="/blog/benchmark">{() => blogRoute(<AiBenchmark />)}</Route>
+      <Route path="/blog/service-ops">{() => blogRoute(<ServiceOps />)}</Route>
       <Route component={NotFound} />
     </Switch>
   );

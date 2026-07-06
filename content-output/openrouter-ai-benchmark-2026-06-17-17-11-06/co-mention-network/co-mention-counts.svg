@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430" role="img" aria-label="Competitors Mentioned Alongside iBOLT">
+<rect width="980" height="430" fill="#f8fafc"/>
+<text x="56" y="32" font-size="22" font-weight="800" fill="#111827">Competitors Mentioned Alongside iBOLT</text>
+<line x1="56" y1="324" x2="952" y2="324" stroke="#cbd5e1"/>
+<rect x="64" y="54" width="83.55555555555556" height="270" rx="5" fill="#0f172a"/>
+<text x="105.77777777777777" y="46" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">13</text>
+<text x="105.77777777777777" y="342" text-anchor="end" transform="rotate(-38 105.77777777777777 342)" font-size="12" fill="#334155">RAM Mounts</text>
+<rect x="163.55555555555554" y="220" width="83.55555555555556" height="104" rx="5" fill="#0f172a"/>
+<text x="205.33333333333331" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">5</text>
+<text x="205.33333333333331" y="342" text-anchor="end" transform="rotate(-38 205.33333333333331 342)" font-size="12" fill="#334155">Arkon</text>
+<rect x="263.1111111111111" y="262" width="83.55555555555556" height="62" rx="5" fill="#0f172a"/>
+<text x="304.88888888888886" y="254" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">3</text>
+<text x="304.88888888888886" y="342" text-anchor="end" transform="rotate(-38 304.88888888888886 342)" font-size="12" fill="#334155">iOttie</text>
+<rect x="362.6666666666667" y="262" width="83.55555555555556" height="62" rx="5" fill="#0f172a"/>
+<text x="404.44444444444446" y="254" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">3</text>
+<text x="404.44444444444446" y="342" text-anchor="end" transform="rotate(-38 404.44444444444446 342)" font-size="12" fill="#334155">CTA Digital</text>
+<rect x="462.22222222222223" y="262" width="83.55555555555556" height="62" rx="5" fill="#0f172a"/>
+<text x="504" y="254" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">3</text>
+<text x="504" y="342" text-anchor="end" transform="rotate(-38 504 342)" font-size="12" fill="#334155">Mount-It</text>
+<rect x="561.7777777777778" y="262" width="83.55555555555556" height="62" rx="5" fill="#0f172a"/>
+<text x="603.5555555555557" y="254" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">3</text>
+<text x="603.5555555555557" y="342" text-anchor="end" transform="rotate(-38 603.5555555555557 342)" font-size="12" fill="#334155">Tackform</text>
+<rect x="661.3333333333334" y="262" width="83.55555555555556" height="62" rx="5" fill="#0f172a"/>
+<text x="703.1111111111112" y="254" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">3</text>
+<text x="703.1111111111112" y="342" text-anchor="end" transform="rotate(-38 703.1111111111112 342)" font-size="12" fill="#334155">Bouncepad</text>
+<rect x="760.8888888888889" y="303" width="83.55555555555556" height="21" rx="5" fill="#0f172a"/>
+<text x="802.6666666666667" y="295" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">1</text>
+<text x="802.6666666666667" y="342" text-anchor="end" transform="rotate(-38 802.6666666666667 342)" font-size="12" fill="#334155">ProClip</text>
+<rect x="860.4444444444445" y="303" width="83.55555555555556" height="21" rx="5" fill="#0f172a"/>
+<text x="902.2222222222223" y="295" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">1</text>
+<text x="902.2222222222223" y="342" text-anchor="end" transform="rotate(-38 902.2222222222223 342)" font-size="12" fill="#334155">Kensington</text>
+</svg>

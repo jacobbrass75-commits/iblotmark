@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+  <rect width="980" height="420" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Owner Workload</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">Page edits, contractor outreach, and prompt retests are separate queues.</text>
+  
+      <text x="246" y="121.25" text-anchor="end" font-size="14" fill="#334155">Jacob/app page edits</text>
+      <rect x="260" y="84" width="30" height="64.5" rx="6" fill="#0f766e"></rect>
+      <text x="300" y="121.25" font-size="14" font-weight="800" fill="#0f172a">14</text>
+    
+      <text x="246" y="197.75" text-anchor="end" font-size="14" fill="#334155">SEO contractor tasks</text>
+      <rect x="260" y="160.5" width="26" height="64.5" rx="6" fill="#0f766e"></rect>
+      <text x="296" y="197.75" font-size="14" font-weight="800" fill="#0f172a">12</text>
+    
+      <text x="246" y="274.25" text-anchor="end" font-size="14" fill="#334155">Retest prompts</text>
+      <rect x="260" y="237" width="35" height="64.5" rx="6" fill="#0f766e"></rect>
+      <text x="305" y="274.25" font-size="14" font-weight="800" fill="#0f172a">16</text>
+    
+      <text x="246" y="350.75" text-anchor="end" font-size="14" fill="#334155">Backlog items</text>
+      <rect x="260" y="313.5" width="660" height="64.5" rx="6" fill="#0f766e"></rect>
+      <text x="930" y="350.75" font-size="14" font-weight="800" fill="#0f172a">305</text>
+    
+</svg>

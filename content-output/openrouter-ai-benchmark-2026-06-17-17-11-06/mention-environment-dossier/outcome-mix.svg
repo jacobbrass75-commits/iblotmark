@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="218" viewBox="0 0 920 218" role="img" aria-label="Answer Outcome Mix">
+    <rect width="920" height="218" rx="18" fill="#fff"/>
+    <text x="24" y="32" font-size="21" font-weight="900" fill="#111827">Answer Outcome Mix</text>
+    <text x="24" y="53" font-size="13" fill="#64748b">Where iBOLT wins cleanly, appears beside competitors, or gets replaced.</text>
+    <g>
+      <text x="24" y="81" font-size="13" font-weight="800" fill="#111827">Competitor replacements</text>
+      <rect x="300" y="64" width="560" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="300" y="64" width="560" height="21" rx="10" fill="#ef4444"/>
+      <text x="888" y="80" text-anchor="end" font-size="13" font-weight="900" fill="#111827">69</text>
+    </g><g>
+      <text x="24" y="115" font-size="13" font-weight="800" fill="#111827">Crowded iBOLT mentions</text>
+      <rect x="300" y="98" width="560" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="300" y="98" width="146" height="21" rx="10" fill="#2563eb"/>
+      <text x="888" y="114" text-anchor="end" font-size="13" font-weight="900" fill="#111827">18</text>
+    </g><g>
+      <text x="24" y="149" font-size="13" font-weight="800" fill="#111827">Clean iBOLT mentions</text>
+      <rect x="300" y="132" width="560" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="300" y="132" width="32" height="21" rx="10" fill="#0f766e"/>
+      <text x="888" y="148" text-anchor="end" font-size="13" font-weight="900" fill="#111827">4</text>
+    </g><g>
+      <text x="24" y="183" font-size="13" font-weight="800" fill="#111827">No useful signal</text>
+      <rect x="300" y="166" width="560" height="21" rx="10" fill="#e5e7eb"/>
+      <rect x="300" y="166" width="16" height="21" rx="10" fill="#64748b"/>
+      <text x="888" y="182" text-anchor="end" font-size="13" font-weight="900" fill="#111827">2</text>
+    </g>
+  </svg>

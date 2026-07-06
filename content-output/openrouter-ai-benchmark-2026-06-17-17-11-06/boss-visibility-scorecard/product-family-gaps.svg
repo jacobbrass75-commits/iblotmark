@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420">
+  <rect width="920" height="420" fill="#ffffff"/>
+  <text x="28" y="34" font-size="24" font-weight="800" fill="#0f172a">Product-Family Coverage Gaps</text>
+  <text x="28" y="58" font-size="14" fill="#64748b">Where prompt coverage and product modules need the most strengthening</text>
+  
+      <text x="246" y="96.5" text-anchor="end" font-size="14" fill="#334155">AMPS, adapters, balls, and bases</text>
+      <rect x="260" y="78" width="624" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="894" y="96.5" font-size="14" font-weight="700" fill="#0f172a">100</text>
+    
+      <text x="246" y="135.5" text-anchor="end" font-size="14" fill="#334155">Creator, camera, and streaming mounts</text>
+      <rect x="260" y="117" width="468" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="738" y="135.5" font-size="14" font-weight="700" fill="#0f172a">75</text>
+    
+      <text x="246" y="174.5" text-anchor="end" font-size="14" fill="#334155">Charging and magnetic phone docks</text>
+      <rect x="260" y="156" width="193" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="463" y="174.5" font-size="14" font-weight="700" fill="#0f172a">31</text>
+    
+      <text x="246" y="213.5" text-anchor="end" font-size="14" fill="#334155">Cycling, motorcycle, and powersports</text>
+      <rect x="260" y="195" width="44" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="314" y="213.5" font-size="14" font-weight="700" fill="#0f172a">7</text>
+    
+      <text x="246" y="252.5" text-anchor="end" font-size="14" fill="#334155">Travel and headrest mounts</text>
+      <rect x="260" y="234" width="6" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="276" y="252.5" font-size="14" font-weight="700" fill="#0f172a">1</text>
+    
+      <text x="246" y="291.5" text-anchor="end" font-size="14" fill="#334155">Fleet, delivery, and vehicle phone mounts</text>
+      <rect x="260" y="273" width="0" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="270" y="291.5" font-size="14" font-weight="700" fill="#0f172a">0</text>
+    
+      <text x="246" y="330.5" text-anchor="end" font-size="14" fill="#334155">Forklift and warehouse mounts</text>
+      <rect x="260" y="312" width="0" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="270" y="330.5" font-size="14" font-weight="700" fill="#0f172a">0</text>
+    
+      <text x="246" y="369.5" text-anchor="end" font-size="14" fill="#334155">Barcode scanner and warehouse scanning</text>
+      <rect x="260" y="351" width="0" height="27" rx="5" fill="#7c3aed"></rect>
+      <text x="270" y="369.5" font-size="14" font-weight="700" fill="#0f172a">0</text>
+    
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="420" viewBox="0 0 1040 420">
+  <rect width="1040" height="420" fill="#ffffff"/>
+  <text x="28" y="36" font-size="25" font-weight="900" fill="#0f172a">Answer Outcome Mix</text>
+  <text x="28" y="62" font-size="14" fill="#64748b">93 saved answer rows across ChatGPT, Claude, and Gemini</text>
+  
+      <text x="229" y="121.5" text-anchor="end" font-size="14" fill="#334155">competitor replacement</text>
+      <rect x="245" y="84" width="725" height="65" rx="7" fill="#1d4ed8"></rect>
+      <text x="980" y="121.5" font-size="14" font-weight="800" fill="#0f172a">69</text>
+    
+      <text x="229" y="198.5" text-anchor="end" font-size="14" fill="#334155">co-mentioned</text>
+      <rect x="245" y="161" width="189" height="65" rx="7" fill="#1d4ed8"></rect>
+      <text x="444" y="198.5" font-size="14" font-weight="800" fill="#0f172a">18</text>
+    
+      <text x="229" y="275.5" text-anchor="end" font-size="14" fill="#334155">clean iBOLT mention</text>
+      <rect x="245" y="238" width="42" height="65" rx="7" fill="#1d4ed8"></rect>
+      <text x="297" y="275.5" font-size="14" font-weight="800" fill="#0f172a">4</text>
+    
+      <text x="229" y="352.5" text-anchor="end" font-size="14" fill="#334155">no usable brand signal</text>
+      <rect x="245" y="315" width="21" height="65" rx="7" fill="#1d4ed8"></rect>
+      <text x="276" y="352.5" font-size="14" font-weight="800" fill="#0f172a">2</text>
+    
+</svg>

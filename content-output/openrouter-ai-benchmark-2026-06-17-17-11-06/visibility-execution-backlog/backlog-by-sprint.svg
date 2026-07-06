@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="390" viewBox="0 0 900 390" role="img" aria-label="Execution backlog by sprint bucket">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31" font-size="20" font-weight="800" fill="#0f172a">Execution backlog by sprint bucket</text>
+<text x="16" y="75" font-size="13" fill="#334155">Sprint 1: canonical and highest-pressure pages</text>
+<rect x="220" y="58" width="35" height="24" fill="#7c3aed" rx="4"/>
+<text x="263" y="75" font-size="13" fill="#111827" font-weight="700">13</text>
+<text x="16" y="108" font-size="13" fill="#334155">Sprint 2: page refresh and product-entity lift</text>
+<rect x="220" y="91" width="632" height="24" fill="#7c3aed" rx="4"/>
+<text x="860" y="108" font-size="13" fill="#111827" font-weight="700">237</text>
+<text x="16" y="141" font-size="13" fill="#334155">Sprint 3: authority, net-new coverage, and retest</text>
+<rect x="220" y="124" width="147" height="24" fill="#7c3aed" rx="4"/>
+<text x="375" y="141" font-size="13" fill="#111827" font-weight="700">55</text>
+</svg>

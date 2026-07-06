@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="336" viewBox="0 0 980 336" role="img" aria-label="Post-Run KPI Delta">
+    <rect width="980" height="336" rx="18" fill="#fff"/>
+    <text x="24" y="32" font-size="22" font-weight="900" fill="#111827">Post-Run KPI Delta</text>
+    <text x="24" y="53" font-size="13" fill="#64748b">Baseline vs latest completed expanded provider run. Current is blank until results.csv exists.</text>
+    <g>
+      <text x="24" y="81" font-size="13" font-weight="900" fill="#111827">Mention rate</text>
+      <rect x="302" y="61" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="61" width="141" height="9" rx="5" fill="#94a3b8"/>
+      <rect x="302" y="74" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="74" width="236" height="9" rx="5" fill="#0f766e"/>
+      <rect x="302" y="87" width="206" height="5" rx="3" fill="#2563eb"/>
+      <text x="758" y="80" font-size="12" font-weight="900" fill="#111827">Base 24%</text>
+      <text x="838" y="80" font-size="12" font-weight="900" fill="#111827">Now 40%</text>
+      <text x="920" y="80" font-size="12" fill="#475569">Target 35%</text>
+    </g><g>
+      <text x="24" y="123" font-size="13" font-weight="900" fill="#111827">Non-branded mention rate</text>
+      <rect x="302" y="103" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="103" width="29" height="9" rx="5" fill="#94a3b8"/>
+      <rect x="302" y="116" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="116" width="18" height="9" rx="5" fill="#0f766e"/>
+      <rect x="302" y="129" width="88" height="5" rx="3" fill="#2563eb"/>
+      <text x="758" y="122" font-size="12" font-weight="900" fill="#111827">Base 5%</text>
+      <text x="838" y="122" font-size="12" font-weight="900" fill="#111827">Now 3%</text>
+      <text x="920" y="122" font-size="12" fill="#475569">Target 15%</text>
+    </g><g>
+      <text x="24" y="165" font-size="13" font-weight="900" fill="#111827">Top-3 recommendation rate</text>
+      <rect x="302" y="145" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="145" width="94" height="9" rx="5" fill="#94a3b8"/>
+      <rect x="302" y="158" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="158" width="171" height="9" rx="5" fill="#0f766e"/>
+      <rect x="302" y="171" width="147" height="5" rx="3" fill="#2563eb"/>
+      <text x="758" y="164" font-size="12" font-weight="900" fill="#111827">Base 16%</text>
+      <text x="838" y="164" font-size="12" font-weight="900" fill="#111827">Now 29%</text>
+      <text x="920" y="164" font-size="12" fill="#475569">Target 25%</text>
+    </g><g>
+      <text x="24" y="207" font-size="13" font-weight="900" fill="#111827">Citation rate</text>
+      <rect x="302" y="187" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="187" width="0" height="9" rx="5" fill="#94a3b8"/>
+      <rect x="302" y="200" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      
+      <rect x="302" y="213" width="47" height="5" rx="3" fill="#2563eb"/>
+      <text x="758" y="206" font-size="12" font-weight="900" fill="#111827">Base 0%</text>
+      <text x="838" y="206" font-size="12" font-weight="900" fill="#111827">Now 0%</text>
+      <text x="920" y="206" font-size="12" fill="#475569">Target 8%</text>
+    </g><g>
+      <text x="24" y="249" font-size="13" font-weight="900" fill="#111827">Competitor-only answer rate</text>
+      <rect x="302" y="229" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="229" width="430" height="9" rx="5" fill="#94a3b8"/>
+      <rect x="302" y="242" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="242" width="336" height="9" rx="5" fill="#0f766e"/>
+      <rect x="302" y="255" width="336" height="5" rx="3" fill="#2563eb"/>
+      <text x="758" y="248" font-size="12" font-weight="900" fill="#111827">Base 73%</text>
+      <text x="838" y="248" font-size="12" font-weight="900" fill="#111827">Now 57%</text>
+      <text x="920" y="248" font-size="12" fill="#475569">Target 57%</text>
+    </g><g>
+      <text x="24" y="291" font-size="13" font-weight="900" fill="#111827">Product entity rows</text>
+      <rect x="302" y="271" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      <rect x="302" y="271" width="188" height="9" rx="5" fill="#94a3b8"/>
+      <rect x="302" y="284" width="430" height="9" rx="5" fill="#e5e7eb"/>
+      
+      <rect x="302" y="297" width="265" height="5" rx="3" fill="#2563eb"/>
+      <text x="758" y="290" font-size="12" font-weight="900" fill="#111827">Base 32%</text>
+      <text x="838" y="290" font-size="12" font-weight="900" fill="#111827">Now 0%</text>
+      <text x="920" y="290" font-size="12" fill="#475569">Target 45%</text>
+    </g>
+  </svg>

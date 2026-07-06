@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT AI Visibility Boss Brief</title>
+  <style>
+    :root{color-scheme:light;--ink:#111827;--muted:#64748b;--border:#d7dee8;--panel:#fff;--bg:#f8fafc;--blue:#2563eb;--green:#16a34a;--orange:#f97316;--red:#dc2626}
+    body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+    main{max-width:1180px;margin:0 auto;padding:36px 28px 60px}
+    header{padding:18px 0 28px;border-bottom:1px solid var(--border);margin-bottom:26px}
+    h1{font-size:34px;line-height:1.08;margin:0 0 10px}
+    h2{font-size:22px;margin:34px 0 14px}
+    p{font-size:16px;line-height:1.55;color:#334155;max-width:900px}
+    .meta{color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:24px 0}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+    .kicker{text-transform:uppercase;letter-spacing:.06em;font-size:12px;color:var(--muted);font-weight:700}
+    .metric{font-size:34px;font-weight:800;margin-top:8px}
+    .sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+    .line{display:flex;justify-content:space-between;border-top:1px solid #eef2f7;padding-top:8px;margin-top:8px;font-size:14px}
+    .charts{display:grid;grid-template-columns:1fr;gap:18px}
+    figure{margin:0;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px;overflow:auto}
+    figure img{display:block;width:100%;height:auto}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    th,td{text-align:left;padding:12px 14px;border-bottom:1px solid #eef2f7;vertical-align:top;font-size:14px}
+    th{background:#f1f5f9;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#475569}
+    .takeaway{background:#fff;border-left:6px solid var(--blue);border-radius:10px;padding:16px 18px;border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+    @media print{body{background:#fff}main{max-width:none;padding:18px}.grid{grid-template-columns:repeat(4,1fr)}figure,.card,table{break-inside:avoid;box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="meta">Run ID: 3417c271-1943-4ce1-a7e3-846b1019f8cf | 31 prompts | 93 completed AI answers | separate one-at-a-time requests</div>
+      <h1>iBOLT AI Visibility Benchmark</h1>
+      <p class="takeaway"><strong>Bottom line:</strong> iBOLT is visible in some branded and near-branded prompts, but broad buyer-intent prompts still have low recommendation coverage. The biggest near-term opportunity is building AI-citable pages that earn domain citations, because this run produced 0/93 citations to iboltmounts.com.</p>
+    </header>
+
+    <section class="grid">
+      <div class="card"><div class="kicker">Answers tested</div><div class="metric">93</div><div class="sub">ChatGPT, Gemini, Claude</div></div>
+      <div class="card"><div class="kicker">Mention rate</div><div class="metric">24%</div><div class="sub">22/93 answers mentioned iBOLT</div></div>
+      <div class="card"><div class="kicker">Top-3 rate</div><div class="metric">16%</div><div class="sub">15/93 ranked iBOLT top 3</div></div>
+      <div class="card"><div class="kicker">Citation rate</div><div class="metric">0%</div><div class="sub">0/93 cited iboltmounts.com</div></div>
+    </section>
+
+    <section class="grid">
+      
+    <div class="card">
+      <div class="kicker">ChatGPT</div>
+      <div class="metric">15</div>
+      <div class="sub">avg score / 100</div>
+      <div class="line"><span>Mentions</span><b>32%</b></div>
+      <div class="line"><span>Top 3</span><b>23%</b></div>
+      <div class="line"><span>Citations</span><b>0%</b></div>
+    </div>
+  
+    <div class="card">
+      <div class="kicker">Gemini</div>
+      <div class="metric">13</div>
+      <div class="sub">avg score / 100</div>
+      <div class="line"><span>Mentions</span><b>19%</b></div>
+      <div class="line"><span>Top 3</span><b>6%</b></div>
+      <div class="line"><span>Citations</span><b>0%</b></div>
+    </div>
+  
+    <div class="card">
+      <div class="kicker">Claude</div>
+      <div class="metric">15</div>
+      <div class="sub">avg score / 100</div>
+      <div class="line"><span>Mentions</span><b>19%</b></div>
+      <div class="line"><span>Top 3</span><b>19%</b></div>
+      <div class="line"><span>Citations</span><b>0%</b></div>
+    </div>
+  
+    </section>
+
+    <h2>Charts</h2>
+    <section class="charts">
+      <figure><img src="provider-performance.svg" alt="AI visibility by provider"/></figure>
+      <figure><img src="ai-answer-funnel.svg" alt="AI answer funnel"/></figure>
+      <figure><img src="category-opportunity.svg" alt="Opportunity by category"/></figure>
+      <figure><img src="prompt-gaps.svg" alt="Biggest prompt gaps"/></figure>
+      <figure><img src="content-priorities.svg" alt="Content priorities"/></figure>
+    </section>
+
+    <h2>How To Read Citation Rate</h2>
+    <p>Yes, citation rate matters, but this benchmark used normal consumer-style chat answers, and those models often respond without citations. A 0% citation rate means iBOLT is not yet being used as a cited source in these answers. The fix is not just more blog volume. We need citable solution pages, concise FAQs, product and organization schema, comparison tables, and stronger external mentions so search-grounded AI systems can confidently reference iboltmounts.com.</p>
+
+    <h2>Recommended Content Push</h2>
+    <table>
+      <thead><tr><th>Target query</th><th>Recommended page/post</th><th>Products to support</th><th>Gap</th></tr></thead>
+      <tbody>
+    <tr>
+      <td>best phone mount for delivery drivers</td>
+      <td>Best Phone Mount For Delivery Drivers (2026 Buyer's Guide)</td>
+      <td>iBOLT 17mm ExtendiBOLT Triple Suction Cup Mount; iBOLT 22mm ExtendiBOLT Triple Suction Cup Mount; iBOLT Metal 17mm ExtendiBOLT Triple Suction Cup Mount</td>
+      <td>100</td>
+    </tr>
+  
+    <tr>
+      <td>magnetic vs clamp phone mounts for delivery work</td>
+      <td>Magnetic Vs Clamp Phone Mounts For Delivery Work: Which Option Fits Commercial Use?</td>
+      <td>iBOLT SafeMag Suction Cup Mount; iBOLT ChargeDock USB-C AMPS Ultimate Magnetic Vehicle Dock/Mount/Holder; iBOLT Phone Dock’n Lock 2&quot; IncrediBOLT™ AMPS Drill Base Mount</td>
+      <td>100</td>
+    </tr>
+  
+    <tr>
+      <td>commercial grade phone mount for delivery drivers</td>
+      <td>Commercial Grade Phone Mount For Delivery Drivers (2026 Buyer's Guide)</td>
+      <td>iBOLT™ xProDock™ NFC BizMount™ Suction Cup; iBOLT miniProXL AMPS Car Mount; iBOLT Phone Dock’n Lock IncrediBOLT™ AMPS w/ 4.25” Arm Locking Drill Base Mount for Smartphones</td>
+      <td>100</td>
+    </tr>
+  
+    <tr>
+      <td>best phone mount for Instacart and grocery delivery drivers</td>
+      <td>Best Phone Mount For Instacart And Grocery Delivery Drivers (2026 Buyer's Guide)</td>
+      <td>iBOLT SafeMag Suction Cup Mount; iBOLT™ xProDock™ NFC BizMount™ Suction Cup; sPro2™ Windshield Dash and Vent Combo Kit</td>
+      <td>100</td>
+    </tr>
+  
+    <tr>
+      <td>best fish finder mount for small boat</td>
+      <td>Best Fish Finder Mount For Small Boat (2026 Buyer's Guide)</td>
+      <td>iBOLT Garmin Striker 4 / Fish Finder Dual Arm Handlebar, Rail Mount; iBOLT Garmin Striker 4 / Fish Finder Handlebar, Rail Mount; iBOLT Garmin Striker 4 / Fish Finder IncrediBOLT™ 360 Clamp / Handlebar / Rail Mount</td>
+      <td>100</td>
+    </tr>
+  
+    <tr>
+      <td>best tablet mount</td>
+      <td>Best Tablet Mount (2026 Buyer's Guide)</td>
+      <td>Build Your Own Mount; iBOLT 25mm / 1 inch Ball Flexpro Seatrail Mount w/ 3 inch arm; iBOLT 25mm/ 1-inch dualMag Industrial Strength Magnetic Base</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+    </table>
+  </main>
+</body>
+</html>

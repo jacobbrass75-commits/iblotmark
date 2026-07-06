@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="628" viewBox="0 0 1100 628">
+  <rect width="100%" height="100%" fill="#f7f9fc"/>
+  <text x="290" y="38" font-size="24" font-weight="700" fill="#111827">Test Coverage Gap By Category</text>
+  <text x="290" y="62" font-size="14" fill="#4b5563">Coverage gap compares prompt supply against page, product, and competitor demand.</text>
+  
+      <text x="274" y="93" text-anchor="end" font-size="14" fill="#172033">warehouse</text>
+      <rect x="290" y="72" width="765" height="25" rx="6" fill="#0b5cab"/>
+      <text x="1064" y="90" font-size="14" fill="#172033">100</text>
+
+      <text x="274" y="135" text-anchor="end" font-size="14" fill="#172033">amps/modular</text>
+      <rect x="290" y="114" width="765" height="25" rx="6" fill="#0b5cab"/>
+      <text x="1064" y="132" font-size="14" fill="#172033">100</text>
+
+      <text x="274" y="177" text-anchor="end" font-size="14" fill="#172033">fishing</text>
+      <rect x="290" y="156" width="689" height="25" rx="6" fill="#0b5cab"/>
+      <text x="988" y="174" font-size="14" fill="#172033">90</text>
+
+      <text x="274" y="219" text-anchor="end" font-size="14" fill="#172033">travel</text>
+      <rect x="290" y="198" width="689" height="25" rx="6" fill="#0b5cab"/>
+      <text x="988" y="216" font-size="14" fill="#172033">90</text>
+
+      <text x="274" y="261" text-anchor="end" font-size="14" fill="#172033">delivery</text>
+      <rect x="290" y="240" width="666" height="25" rx="6" fill="#0b5cab"/>
+      <text x="965" y="258" font-size="14" fill="#172033">87</text>
+
+      <text x="274" y="303" text-anchor="end" font-size="14" fill="#172033">streaming</text>
+      <rect x="290" y="282" width="612" height="25" rx="6" fill="#0b5cab"/>
+      <text x="911" y="300" font-size="14" fill="#172033">80</text>
+
+      <text x="274" y="345" text-anchor="end" font-size="14" fill="#172033">education</text>
+      <rect x="290" y="324" width="566" height="25" rx="6" fill="#0b5cab"/>
+      <text x="865" y="342" font-size="14" fill="#172033">74</text>
+
+      <text x="274" y="387" text-anchor="end" font-size="14" fill="#172033">fleet</text>
+      <rect x="290" y="366" width="536" height="25" rx="6" fill="#0b5cab"/>
+      <text x="835" y="384" font-size="14" fill="#172033">70</text>
+
+      <text x="274" y="429" text-anchor="end" font-size="14" fill="#172033">cycling</text>
+      <rect x="290" y="408" width="444" height="25" rx="6" fill="#0b5cab"/>
+      <text x="743" y="426" font-size="14" fill="#172033">58</text>
+
+      <text x="274" y="471" text-anchor="end" font-size="14" fill="#172033">restaurant</text>
+      <rect x="290" y="450" width="383" height="25" rx="6" fill="#0b5cab"/>
+      <text x="682" y="468" font-size="14" fill="#172033">50</text>
+
+      <text x="274" y="513" text-anchor="end" font-size="14" fill="#172033">agriculture</text>
+      <rect x="290" y="492" width="337" height="25" rx="6" fill="#0b5cab"/>
+      <text x="636" y="510" font-size="14" fill="#172033">44</text>
+
+      <text x="274" y="555" text-anchor="end" font-size="14" fill="#172033">offroad</text>
+      <rect x="290" y="534" width="184" height="25" rx="6" fill="#0b5cab"/>
+      <text x="483" y="552" font-size="14" fill="#172033">24</text>
+</svg>

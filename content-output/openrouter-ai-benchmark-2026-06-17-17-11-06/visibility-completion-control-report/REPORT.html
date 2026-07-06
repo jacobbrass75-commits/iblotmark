@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iBOLT Visibility Completion Control Report</title>
+  <style>
+    body{margin:0;background:#f6f8fb;color:#111827;font-family:Arial,Helvetica,sans-serif}
+    main{max-width:1180px;margin:0 auto;padding:34px 24px 64px}
+    h1{font-size:36px;line-height:1.1;margin:0 0 8px}
+    h2{font-size:23px;margin:34px 0 12px}
+    p,li{line-height:1.55;color:#334155;font-size:15px}
+    a{color:#0f766e;overflow-wrap:anywhere}
+    code,pre{background:#e2e8f0;border-radius:5px}
+    pre{padding:12px;overflow:auto}
+    .note{background:#fff;border:1px solid #dbe3ef;border-left:6px solid #0f766e;border-radius:12px;padding:16px 18px;margin:20px 0}
+    .warn{border-left-color:#f97316}
+    .cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0}
+    .card{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:15px}
+    .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:900}
+    .value{font-size:28px;font-weight:900;margin:8px 0;color:#0f172a}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .chart{background:#fff;border:1px solid #dbe3ef;border-radius:18px;padding:10px;overflow:auto}
+    .chart svg{width:100%;height:auto;display:block}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ef;border-radius:12px;overflow:hidden;margin:12px 0 22px}
+    th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #edf2f7;font-size:13px}
+    th{background:#eef2f7;color:#475569;text-transform:uppercase;font-size:11px;letter-spacing:.04em}
+    @media(max-width:980px){.cards,.grid{grid-template-columns:1fr}h1{font-size:30px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>iBOLT Visibility Completion Control Report</h1>
+  <p>This is the compact control view for the active goal: what is already proven, what is still unproven, and what command unlocks the remaining provider evidence.</p>
+
+  <div class="note warn">
+    <strong>Current decision:</strong> do not claim post-edit visibility lift yet. Baseline analysis is proven, all-blog inspection is proven, and competitor mapping is proven. Expanded live testing is still not run because secure OpenRouter credentials are not available in this shell.
+  </div>
+
+  <section class="cards">
+    <div class="card"><div class="label">Completion verdict</div><div class="value">not_complete</div><p>OPENROUTER_API_KEY is not set in the local shell.</p></div>
+    <div class="card"><div class="label">Proven rows</div><div class="value">6</div><p>Requirement rows with current evidence.</p></div>
+    <div class="card"><div class="label">Needs live proof</div><div class="value">2</div><p>Requirement rows gated by provider execution.</p></div>
+    <div class="card"><div class="label">OpenRouter key</div><div class="value">missing</div><p>Only checked as env presence, no secret value read.</p></div>
+    <div class="card"><div class="label">Integrity audit</div><div class="value">evidence_packet_clean_pending_live_retest</div><p>26/26 areas, 0 broken markers.</p></div>
+  </section>
+
+  <section class="grid">
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="192" viewBox="0 0 900 192" role="img" aria-label="Requirement status">
+    <rect width="900" height="192" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Requirement status</text>
+    <g>
+      <text x="22" y="76" font-size="13" font-weight="900" fill="#111827">proven</text>
+      <rect x="300" y="58" width="530" height="23" rx="11" fill="#e5e7eb"/>
+      <rect x="300" y="58" width="530" height="23" rx="11" fill="#0f766e"/>
+      <text x="866" y="75" text-anchor="end" font-size="13" font-weight="900" fill="#111827">5</text>
+    </g><g>
+      <text x="22" y="114" font-size="13" font-weight="900" fill="#111827">needs live proof</text>
+      <rect x="300" y="96" width="530" height="23" rx="11" fill="#e5e7eb"/>
+      <rect x="300" y="96" width="106" height="23" rx="11" fill="#f97316"/>
+      <text x="866" y="113" text-anchor="end" font-size="13" font-weight="900" fill="#111827">1</text>
+    </g><g>
+      <text x="22" y="152" font-size="13" font-weight="900" fill="#111827">proven weak</text>
+      <rect x="300" y="134" width="530" height="23" rx="11" fill="#e5e7eb"/>
+      <rect x="300" y="134" width="106" height="23" rx="11" fill="#7c3aed"/>
+      <text x="866" y="151" text-anchor="end" font-size="13" font-weight="900" fill="#111827">1</text>
+    </g>
+  </svg></div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="154" viewBox="0 0 900 154" role="img" aria-label="Provider requests staged">
+    <rect width="900" height="154" rx="18" fill="#ffffff"/>
+    <text x="22" y="34" font-size="20" font-weight="900" fill="#111827">Provider requests staged</text>
+    <g>
+      <text x="22" y="76" font-size="13" font-weight="900" fill="#111827">Priority packet</text>
+      <rect x="300" y="58" width="530" height="23" rx="11" fill="#e5e7eb"/>
+      <rect x="300" y="58" width="75" height="23" rx="11" fill="#2563eb"/>
+      <text x="866" y="75" text-anchor="end" font-size="13" font-weight="900" fill="#111827">204</text>
+    </g><g>
+      <text x="22" y="114" font-size="13" font-weight="900" fill="#111827">Full all-blog manifest</text>
+      <rect x="300" y="96" width="530" height="23" rx="11" fill="#e5e7eb"/>
+      <rect x="300" y="96" width="530" height="23" rx="11" fill="#0f766e"/>
+      <text x="866" y="113" text-anchor="end" font-size="13" font-weight="900" fill="#111827">1449</text>
+    </g>
+  </svg></div>
+  </section>
+
+  <h2>Requirement Control Matrix</h2>
+  <table><thead><tr><th>Requirement</th><th>Status</th><th>Remaining gate</th></tr></thead><tbody><tr><td>How iBOLT is getting mentioned</td><td>proven</td><td>Keep tracking quality after edits; no blocker for baseline analysis.</td></tr><tr><td>Who iBOLT is mentioned next to</td><td>proven</td><td>Retest after page edits to prove those competitors move from replacement to co-mention/top-3 iBOLT contexts.</td></tr><tr><td>How iBOLT compares to competitors</td><td>proven</td><td>Live retest is needed to prove comparison edits improved model answers.</td></tr><tr><td>Test more areas</td><td>not_live_run</td><td>Set OPENROUTER_API_KEY securely in the shell, run the priority packet or full all-blog manifest, then rebuild reports.</td></tr><tr><td>Look at all blog posts and dig in</td><td>proven</td><td>Edits still need to be applied to priority pages, then body inspection and live provider retests need to be rerun.</td></tr><tr><td>Current visibility baseline</td><td>proven_as_weak</td><td>The baseline is proven. Improvement is not proven until post-edit live retest data exists.</td></tr><tr><td>Execution path after analysis</td><td>proven</td><td>Apply the edits and run the priority retest packet.</td></tr></tbody></table>
+
+  <h2>Remaining Proof Gates</h2>
+  <table><thead><tr><th>Requirement</th><th>Status</th><th>Remaining proof</th></tr></thead><tbody><tr><td>Test more areas</td><td>not_live_run</td><td>Set OPENROUTER_API_KEY securely in the shell, run the priority packet or full all-blog manifest, then rebuild reports.</td></tr><tr><td>Current visibility baseline</td><td>proven_as_weak</td><td>The baseline is proven. Improvement is not proven until post-edit live retest data exists.</td></tr></tbody></table>
+
+  <h2>Credential-Safe Run Commands</h2>
+  <p>Use a secure shell env var only. Do not commit or paste the key into a file.</p>
+  <pre>export OPENROUTER_API_KEY=&quot;...&quot;
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/priority-retest-packet/priority-provider-request-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</pre>
+  <pre>export OPENROUTER_API_KEY=&quot;...&quot;
+AI_BENCHMARK_EXPANDED_LIMIT=0 \
+AI_BENCHMARK_EXPANDED_MANIFEST=content-output/openrouter-ai-benchmark-2026-06-17-17-11-06/all-blog-prompt-gap-addendum/all-blog-complete-provider-manifest.csv \
+npx tsx scripts/run-expanded-openrouter-ai-benchmark.ts</pre>
+
+  <h2>Evidence Links</h2>
+  <ul>
+    <li><a href="../goal-closure-audit/REPORT.html">Goal closure audit</a></li>
+    <li><a href="../evidence-integrity-audit/REPORT.html">Evidence integrity audit</a></li>
+    <li><a href="../priority-retest-packet/REPORT.html">Priority retest packet</a></li>
+    <li><a href="../next-benchmark-runbook/REPORT.html">Next benchmark runbook</a></li>
+    <li><a href="../post-run-comparison/REPORT.html">Post-run comparison analyzer</a></li>
+  </ul>
+</main>
+</body>
+</html>
