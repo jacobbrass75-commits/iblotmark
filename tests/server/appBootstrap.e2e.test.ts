@@ -53,21 +53,27 @@ async function stopProcess(child: ChildProcess): Promise<void> {
     return;
   }
 
+  const waitForExit = () => new Promise<void>((resolve) => {
+    child.once("exit", () => resolve());
+  });
+
   child.kill("SIGTERM");
 
-  await Promise.race([
+  const stoppedGracefully = await Promise.race([
+    waitForExit().then(() => true),
     new Promise<void>((resolve) => {
-      child.once("exit", () => resolve());
-    }),
-    new Promise<void>((resolve) => {
-      setTimeout(() => {
-        if (child.exitCode === null && child.signalCode === null) {
-          child.kill("SIGKILL");
-        }
-        resolve();
-      }, 2_000);
-    }),
+      setTimeout(resolve, 2_000);
+    }).then(() => false),
   ]);
+
+  if (!stoppedGracefully && child.exitCode === null && child.signalCode === null) {
+    const forcedExit = waitForExit();
+    child.kill("SIGKILL");
+    await Promise.race([
+      forcedExit,
+      new Promise<void>((resolve) => setTimeout(resolve, 2_000)),
+    ]);
+  }
 }
 
 function buildTestPublishableKey(frontendApi: string): string {
@@ -89,7 +95,7 @@ describe("full app bootstrap smoke", () => {
     while (tempDirs.length > 0) {
       const dir = tempDirs.pop();
       if (dir) {
-        await rm(dir, { recursive: true, force: true });
+        await rm(dir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
       }
     }
   });

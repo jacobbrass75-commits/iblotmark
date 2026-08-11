@@ -1,160 +1,146 @@
-# iBolt Blog Generator — Current State (April 2, 2026)
+# iBolt Mark Current State
 
-For handoff context. Copy into Notion or share with collaborators.
+Updated August 11, 2026. This document reflects the checked-in code, the active
+`data/standalone-blog-writer.db` database, live local API checks, and the public
+iBOLT Shopify catalog.
 
----
+## Runtime status
 
-## What Is This?
+- Local app: healthy on `http://127.0.0.1:5001`.
+- Stack: Express, TypeScript, React, Vite, SQLite/Drizzle, Anthropic with OpenAI fallback.
+- TypeScript check: passing.
+- Production build: passing.
+- Test suite: 32 files and 104 tests passing sequentially.
+- Browser checks: dashboard, setup, generation, keywords, posts, products, assets,
+  context, and benchmark pages render without page errors or failed requests.
+- Setup checklist: 5 of 7 complete. Managed assets and Shopify OAuth publishing remain.
 
-An autonomous SEO blog post generator for **iBolt Mounts** (iboltmounts.com). Takes keyword data, industry context, and product catalog → generates Shopify-ready blog posts with a 4-phase AI pipeline.
+## Content inventory
 
-Built as a fork of ScholarMark (academic annotation platform). The ScholarMark features still work but aren't being developed further.
+- 21 published legacy posts plus one new four-phase pilot draft in the active database.
+- 46 imported keywords organized into 12 keyword clusters: 11 pending and one generated.
+- 21 active content verticals with 246 verified context entries.
+- 345 product records after the August 11 public-catalog refresh: 343 live Shopify
+  products plus two obsolete `cpb-order-*` configurator records retained for safety.
+- 342 healthy live product cover images. The only live product without a cover is the
+  intentional **Build Your Own Mount** configurator.
+- All 21 stored posts contain two or three healthy Shopify CDN images. There are 47
+  placements using 25 unique current product images.
 
-**Repo**: `git@github.com:jacobbrass75-commits/iblotmark.git`
-**Stack**: Express + TypeScript + React 18 + SQLite + Anthropic Claude API
-**Runs on**: Port 5001 locally, production at Hetzner (89.167.10.34)
+The 21 published posts were produced by an earlier Claude Sonnet 4.6 rewrite workflow,
+not by the current four-phase pipeline. Their stored score of 86 is therefore not a
+fresh independent verifier result.
 
----
+The August 11 forklift pilot exercised the current planner, seven section writers,
+stitcher, verifier, corrective pass, renderer, and three catalog-image insertions. It
+scored 91 but remained a draft because the deterministic gate found excessive length,
+title/keyword, punctuation, and product-link issues, while the verifier flagged five
+unsupported product-detail claims. Nothing was published. Follow-up fixes now provide
+more structured product facts, recognize exact Unicode Shopify handles, allow a final
+lint correction after verifier revision, require exact title keywords, and separate the
+conclusion from the final FAQ answer.
 
-## What's Built and Working
+## How new blog posts are written
 
-### Blog Generation Pipeline (Complete)
-- **4-phase AI pipeline**: Planner → Section Writer → Stitcher → Verifier
-- Uses Claude Sonnet for all generation phases
-- Brand voice baked directly into prompts (no separate humanizer)
-- Quality scoring: brand consistency, SEO optimization, natural language, factual accuracy
-- Auto-retries if quality score < 70
-- Real-time SSE streaming shows progress in the UI
+1. **Planner** reads a keyword cluster, company brand profile, a bounded Writing V3
+   evidence packet, and ranked product facts. The evidence packet is selected directly
+   from current verified context-bank records, carries source IDs, URLs, confidence,
+   and content hashes, and is treated as untrusted data rather than instructions. The
+   planner creates the title, metadata, slug, outline, keyword plan, product mentions,
+   and word targets.
+2. **Section Writer** retrieves a fresh, query-specific evidence packet for every
+   planned section instead of depending on the old prebuilt chunk cache. Exact and
+   rare terms influence ranking, Reddit/user-language and pain-point records receive
+   a controlled relevance boost, source/category diversity is capped, and an adaptive
+   6-12 KB UTF-8 budget never cuts a record in half. The iBOLT voice is present in every
+   prompt: conversational expertise, education before sales, real specifications,
+   multiple options, no hype phrases, and invitational CTAs.
+3. **Stitcher** adds the scenario-led introduction, transitions, FAQ, conclusion, links,
+   and product images. Only the 12 most relevant products are sent to the prompt.
+4. **Verifier** scores brand consistency, SEO, natural language, and factual accuracy.
+   The quality gate is 70. A below-gate post gets one feedback-based rewrite and is
+   rechecked. A deterministic linter separately blocks banned phrases, bad structure,
+   unsupported product details, and other mechanical quality failures. A final V3
+   grounding audit also rejects unsupported long quotations and high-risk prices,
+   measurements, percentages, or model claims unless one approved evidence or catalog
+   record supports the complete claim. Retrieval or audit failure keeps the post in
+   draft, and the evidence IDs, hashes, retrieval diagnostics, and final audit are saved
+   in `verificationNotes` for review.
+5. **Renderer and review** produce Shopify-ready HTML, FAQ and Article schema, signed
+   asset URLs, metadata, and preview output. Editing markdown or photo placement now
+   regenerates stored HTML. Publishing always renders the current markdown, preventing
+   stale review HTML from reaching Shopify. The server also refuses single or batch
+   publishing unless each post is approved, meets the active quality gate, and passes
+   the current deterministic lint checks.
 
-### Keyword System (Complete)
-- CSV import from Ubersuggest/SEMrush
-- Automatic opportunity scoring (volume + difficulty + position)
-- AI-powered keyword clustering into topic groups
-- Auto-mapping keywords to industry verticals
+## Benchmark standard
 
-### 12 Industry Verticals (Complete)
-Pre-seeded with industry-specific context:
-1. Fishing/Boating, 2. Forklifts/Warehousing, 3. Trucking/Fleet, 4. Offroading/Jeep, 5. Restaurants/Food Delivery, 6. Education/Schools, 7. Content Creation/Streaming, 8. Agriculture/Farming, 9. Kitchen/Home, 10. Road Trips/Travel, 11. Mountain Biking/Cycling, 12. General Mounting
+The canonical trend benchmark is `ibolt-ai-visibility-top10-v1`, stored at
+`benchmarks/ai-visibility-top10-v1.json` and documented in
+`docs/BENCHMARK_STANDARD.md`.
 
-### Research Agent System (Complete)
-- Parallel agents search Reddit, YouTube, and web for industry context
-- Up to 50 concurrent agents
-- Auto-extracts terminology, pain points, user language, trends
-- Findings stored for human review/verification
+It fixes ten unaided buyer queries, four provider lanes, prompt text, scorer version,
+model recording, and a complete 40-cell matrix. The comparator refuses headline
+deltas when queries, providers, prompts, models, scoring, or cell completion differ.
 
-### Product Management (Complete)
-- Scrapes iboltmounts.com/products.json (full Shopify catalog)
-- AI maps products to relevant verticals
-- PDF catalog import with AI product extraction
-- Photo bank with GPT-4V image analysis
-- Deterministic photo selection for blog posts
+Historical audit findings:
 
-### HTML Rendering (Complete)
-- Markdown to Shopify-ready HTML
-- Auto-links product mentions to Shopify URLs
-- FAQ schema (JSON-LD structured data)
-- SEO meta tags
-- Responsive Shopify-compatible formatting
+- 24 database runs and 1,267 stored provider-query results were reviewed across the
+  standalone and legacy databases.
+- The two complete August 5 Top-10 runs are the strongest provisional historical pair.
+- The latest preserved baseline contains 13/40 iBOLT mentions (32.5%), 0/40 target-domain
+  citations, 7/40 top-three placements (17.5%), and a 20.48/100 mean coverage score.
+- Those two runs occurred only about 98 minutes apart, so differences show model
+  variance, not demonstrated SEO lift.
+- July 28 is incomplete at 279/312 cells. June provider subsets, forced brand-comparison
+  prompts, browser captures, Google AI Mode captures, SEO workbooks, and dry runs are
+  useful diagnostics but are not part of the canonical trend line.
 
-### Full UI (Complete)
-7 blog-specific pages:
-- Dashboard with stats and quick actions
-- Keyword manager with CSV import and clustering
-- Batch generator with queue and competitor scraper
-- Post review with editor, scores, and HTML export
-- Industry context browser with research triggers
-- Product catalog with scrape and mapping
-- Photo bank with vision analysis
+Run the next canonical benchmark with:
 
-### MCP Server (Complete)
-- Live at https://mcp.scholarmark.ai
-- 10 tools for projects, sources, conversations
-- OAuth flow for external integrations
+```text
+node scripts/run-top-10-benchmark.mjs --output=content-output/ai-visibility-standard/YYYY-MM-DD
+```
 
----
+Use the same versioned panel at 7-day and 28-day intervals. A new paid-provider run was
+not started during setup, so existing API quota was not spent without approval.
 
-## Content Generated So Far
+## Asset status
 
-**24 blog posts** across 4 phases:
-- 5 collection pages (barcode scanner, forklift, restaurant, truck, modularity)
-- 6 comparison posts (best-of lists, iBolt vs RAM)
-- 3 updated pillar guides
-- 10 brand-specific posts (products, events, use cases)
+The product catalog and existing posts have the product covers needed for current
+rendering. The governed Asset Bank is separate and currently empty: no uploaded assets
+have been analyzed, rights-approved, or selected through `product_photos`.
 
-**84 product photos** from Shopify CDN embedded across all posts.
+Automatic selection and public serving now require both:
 
-**19 posts published as Shopify drafts** to the News blog (April 1, 2026).
+- asset status `approved`; and
+- rights status `owned` or `licensed`.
 
----
+There are 675 media files elsewhere in the repository, including 196 downloaded Shopify
+blog covers. They were not silently bulk-imported because ownership, licensing, and
+curation decisions have not been recorded.
 
-## Database
+## Required next inputs
 
-31 tables in SQLite via Drizzle ORM. Key blog tables:
-- `industry_verticals` — 12 verticals with terminology, pain points, use cases
-- `context_entries` — Knowledge bank entries from research
-- `keywords` / `keyword_clusters` — Imported and clustered keywords
-- `ibolt_products` — Scraped product catalog
-- `blog_posts` — Generated posts with verification scores
-- `product_photos` — Photos with AI analysis
-- `research_jobs` — Research agent job tracking
+1. Confirm which local/Shopify images iBOLT owns or licenses for reusable blog content.
+   Then import, approve, and tag that curated set in the Asset Bank.
+2. Add `OPENAI_API_KEY` if AI vision analysis is desired. Blog text generation can use
+   the configured Anthropic provider, but Asset Bank vision specifically uses OpenAI.
+3. Review or regenerate the forklift pilot, then run one more controlled cluster through
+   the updated prompts before enabling batch scheduling.
+4. Complete the company-level Shopify OAuth connection. Client credentials in `.env`
+   do not replace the tenant OAuth access token used by publishing.
+5. Before production deployment, set the live Clerk keys, public HTTPS origin,
+   `JWT_SECRET`, `INTEGRATION_ENCRYPTION_KEY`, `PUBLIC_ASSET_SIGNING_SECRET`, and Shopify
+   OAuth scopes described in `.env.example` and `docs/STANDALONE_PRODUCTION.md`.
 
----
+## Project tasks
 
-## Tech Dependencies
+Three persistent Codex tasks were created in the saved **Ibolt Project** workspace:
 
-- **AI**: Anthropic Claude (Sonnet for generation, Opus for precision tasks), OpenAI GPT-4V (photo analysis)
-- **UI**: React 18, shadcn/ui, Tailwind CSS, TanStack React Query, wouter routing
-- **Backend**: Express, Drizzle ORM, better-sqlite3
-- **Media**: sharp (image processing), pdf-parse, multer
-- **Research**: youtube-transcript, Reddit public JSON API
+- **iBolt Benchmark Standardization**
+- **iBolt Blog Generator Operations**
+- **iBolt System QA and Asset Library**
 
----
-
-## What's NOT Built Yet
-
-- **Shopify auto-upload** — Posts are generated but must be manually uploaded or exported as HTML. The Shopify API config exists (`shopify-api-config.md`) with client credentials grant flow ready to integrate.
-- **MCP blog tools** — Current MCP server only has ScholarMark tools. No blog generation or Shopify publishing tools exposed.
-- **Competitor product database** — `competitorScraper.ts` exists for blog URL analysis but no structured competitor product database.
-- **Inventory management** — No inventory tracking or stock level integration.
-- **Non-technical user workflow** — Currently requires running the app locally. No Claude skill for one-shot blog creation.
-
----
-
-## Known Issues
-
-1. MCP `onclose` stack overflow — session disconnect can crash the server
-2. Batch analysis 500 errors — Zod validation on null fields
-3. 28 documents in error state (ScholarMark side)
-4. No `.env.example` — users must know which env vars to set
-
----
-
-## Infrastructure
-
-| Service | Location |
-|---------|----------|
-| Main app | PM2 `sourceannotator`, port 5001 |
-| MCP server | PM2 `scholarmark-mcp`, port 5002 |
-| Production | Hetzner cx23, 89.167.10.34 |
-| Database | SQLite at `/opt/app/data/sourceannotator.db` (~780 MB) |
-| Main app URL | https://app.scholarmark.ai |
-| MCP URL | https://mcp.scholarmark.ai |
-| Shopify store | iboltmounts.myshopify.com |
-| Shopify app | `iboltblog` (client credentials grant, 24h token expiry) |
-
----
-
-## Key Numbers
-
-| Metric | Count |
-|--------|-------|
-| Server files | 55+ |
-| Server lines | 22,079 |
-| Client pages | 21 |
-| Client hooks | 18 |
-| UI components | 50 shadcn + 19 custom |
-| Database tables | 31 |
-| Industry verticals | 12 |
-| Generated posts | 24 |
-| Product photos | 84 |
-| Shopify drafts | 19 |
+They preserve the benchmark, content-operations, and QA/asset work as separate organized
+follow-up threads.

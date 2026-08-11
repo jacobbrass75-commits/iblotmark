@@ -123,7 +123,7 @@ async function discoverResearchSources(
   const client = getAnthropicClient();
   await anthropicLimiter.acquire();
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
     max_tokens: 2048,
     messages: [{
       role: "user",
@@ -511,7 +511,7 @@ async function extractContextFromContent(
 
   await anthropicLimiter.acquire();
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
     max_tokens: 4096,
     messages: [
       {

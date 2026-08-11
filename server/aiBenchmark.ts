@@ -86,6 +86,18 @@ export interface BenchmarkRunOptions {
   providers?: BenchmarkProvider[];
   concurrency?: number;
   companyId?: string;
+  benchmarkStandard?: BenchmarkStandardMetadata;
+}
+
+export interface BenchmarkStandardMetadata {
+  standardId: string;
+  protocolVersion: string;
+  manifestHash: string;
+  querySetHash: string;
+  providerSetHash: string;
+  promptSetHash: string;
+  promptVersion: string;
+  scorerVersion: string;
 }
 
 export interface BenchmarkRunSummary {
@@ -200,7 +212,7 @@ export interface MaterializeContentPlanOptions {
 }
 
 const OPENAI_DEFAULT_MODEL = process.env.AI_BENCHMARK_OPENAI_MODEL || "gpt-4.1";
-const ANTHROPIC_DEFAULT_MODEL = process.env.AI_BENCHMARK_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
+const ANTHROPIC_DEFAULT_MODEL = process.env.AI_BENCHMARK_ANTHROPIC_MODEL || "claude-sonnet-4-6";
 const GEMINI_DEFAULT_MODEL = process.env.AI_BENCHMARK_GEMINI_MODEL || "gemini-2.5-flash";
 const OPENROUTER_CHATGPT_MODEL = process.env.AI_BENCHMARK_OPENROUTER_CHATGPT_MODEL || "openai/gpt-4o";
 const OPENROUTER_CLAUDE_MODEL = process.env.AI_BENCHMARK_OPENROUTER_CLAUDE_MODEL || "anthropic/claude-sonnet-4";
@@ -1211,6 +1223,7 @@ export async function reanalyzeBenchmarkRun(runId: string, companyId = DEFAULT_C
     .set({
       resultCount: updatedResults.filter((result) => result.status === "completed").length,
       summary: {
+        ...(run.summary || {}),
         providerSummaries: fullSummary.providerSummaries,
         biggestGaps: fullSummary.biggestGaps,
         topWins: fullSummary.topWins,
@@ -1679,6 +1692,7 @@ export async function runAiBenchmark(
     providers: activeProviders,
     status: "running",
     queryCount: queries.length,
+    summary: options.benchmarkStandard ? { benchmarkStandard: options.benchmarkStandard } : null,
     startedAt: new Date(),
   }).returning();
 
@@ -1764,6 +1778,8 @@ export async function runAiBenchmark(
     status: results.some((result) => result.status === "completed") ? "completed" : "failed",
     resultCount: results.filter((result) => result.status === "completed").length,
     summary: {
+      ...(run.summary || {}),
+      ...(options.benchmarkStandard ? { benchmarkStandard: options.benchmarkStandard } : {}),
       providerSummaries: fullSummary.providerSummaries,
       biggestGaps: fullSummary.biggestGaps,
       topWins: fullSummary.topWins,

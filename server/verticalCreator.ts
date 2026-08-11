@@ -42,7 +42,7 @@ export async function createVerticalFromDescription(description: string, company
   const marketSummary = summarizeBrandMarket(positioning);
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
     max_tokens: 4096,
     messages: [{
       role: "user",
@@ -158,7 +158,7 @@ export async function suggestMissingVerticals(companyId = DEFAULT_COMPANY_ID): P
 
   const verticalList = verticals.map((vertical) => `${vertical.slug}: ${vertical.name}`).join("\n");
   const response = await getClient().messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
     max_tokens: 2048,
     messages: [{
       role: "user",
@@ -210,7 +210,7 @@ export async function autoMapKeywordsToVerticals(companyId = DEFAULT_COMPANY_ID)
   const fallbackSlug = defaultVerticalSlug(verticals);
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
     max_tokens: 2048,
     messages: [{
       role: "user",

@@ -91,7 +91,7 @@ async function analyzeCompetitorPost(
   const verticalContext = verticalNames.length > 0 ? verticalNames.join(", ") : "No verticals configured yet.";
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
     max_tokens: 2048,
     messages: [{
       role: "user",

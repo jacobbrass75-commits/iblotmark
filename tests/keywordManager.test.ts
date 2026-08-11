@@ -18,6 +18,7 @@ describe("keyword CSV parser", () => {
         keyword: "phone mount, heavy duty",
         volume: 1900,
         difficulty: 24,
+        cpc: 0,
         position: 7,
         url: "https://iboltmounts.com/products/phone-mount",
       },
@@ -42,6 +43,7 @@ describe("keyword CSV parser", () => {
 
     expect(rows[0]?.volume).toBe(12400);
     expect(rows[0]?.difficulty).toBe(31);
+    expect(rows[0]?.cpc).toBe(0);
     expect(rows[0]?.position).toBe(14);
   });
 
@@ -56,9 +58,19 @@ describe("keyword CSV parser", () => {
         keyword: "amps mounting plate",
         volume: 0,
         difficulty: 0,
+        cpc: 0,
         position: 0,
         url: "",
       },
     ]);
+  });
+
+  it("parses currency-formatted CPC columns", () => {
+    const rows = parseKeywordCSV([
+      "Keyword,Volume,Difficulty,CPC",
+      '"commercial tablet mount",880,24,"$3.45"',
+    ].join("\n"));
+
+    expect(rows[0]?.cpc).toBe(3.45);
   });
 });

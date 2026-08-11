@@ -189,7 +189,8 @@ describe("Shopify OAuth and publish integration", () => {
           title: "How to Choose a Mount",
           published: false,
         });
-        expect(body.article.body_html).toContain("<p>Mounting guidance</p>");
+        expect(body.article.body_html).toContain("Secure mounting keeps commercial devices stable");
+        expect(body.article.body_html).not.toContain("Stale HTML");
         return Promise.resolve(Response.json({
           article: { id: 222, title: body.article.title, published: false },
         }));
@@ -283,17 +284,23 @@ describe("Shopify OAuth and publish integration", () => {
       expect(encryptedAccessToken).toEqual(expect.stringMatching(/^v1:/));
       expect(decryptSecret(String(encryptedAccessToken))).toBe("shpat_mock_access_token");
 
+      const approvedMarkdown = `## Choosing a secure mounting point\n\n${Array.from(
+        { length: 80 },
+        () => "Secure mounting keeps commercial devices stable during routine daily work.",
+      ).join(" ")}\n\n## Checking device fit\n\nConfirm the holder matches the device before installation.\n\n## Planning maintenance\n\nInspect fasteners regularly and replace worn parts.`;
+
       await db.insert(blogPosts).values({
         id: "post-1",
         companyId: "company-1",
         title: "How to Choose a Mount",
         slug: "how-to-choose-a-mount",
-        markdown: "Mounting guidance",
-        html: "<p>Mounting guidance</p>",
+        markdown: approvedMarkdown,
+        html: "<p>Stale HTML that must not be published</p>",
         metaTitle: "Choose a Mount",
         metaDescription: "Practical mounting guidance.",
         status: "approved",
-        wordCount: 2,
+        wordCount: 746,
+        overallScore: 86,
         generatedAt: new Date("2026-05-02T00:00:00.000Z"),
         updatedAt: new Date("2026-05-02T00:00:00.000Z"),
       });

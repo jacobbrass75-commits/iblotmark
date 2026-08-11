@@ -55,12 +55,25 @@ function stripIgnoredBrandCasingAreas(markdown: string): string {
 
 function extractProductHandles(markdown: string): string[] {
   const handles: string[] = [];
-  const pattern = /https?:\/\/(?:www\.)?iboltmounts\.com\/products\/([a-z0-9][a-z0-9-]*)/gi;
+  const pattern = /https?:\/\/(?:www\.)?iboltmounts\.com\/products\/([^\s)"'<>?#]+)/gi;
   let match: RegExpExecArray | null;
   while ((match = pattern.exec(markdown)) !== null) {
-    handles.push(match[1]);
+    try {
+      handles.push(decodeURIComponent(match[1]));
+    } catch {
+      handles.push(match[1]);
+    }
   }
   return handles;
+}
+
+function stripProtectedDashAreas(markdown: string): string {
+  return markdown
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`[^`]*`/g, " ")
+    .replace(/<div\b[^>]*text-align\s*:\s*center[^>]*>[\s\S]*?<\/div>/gi, " ")
+    .replace(/\[[^\]]+\]\([^)]+\)/g, " ")
+    .replace(/https?:\/\/[^\s)]+/gi, " ");
 }
 
 function priceToCents(value: number): number {
@@ -150,7 +163,7 @@ export function lintContent(input: LintContentInput): LintReport {
     }
   }
 
-  const dashMatch = markdown.match(/[—–]/);
+  const dashMatch = stripProtectedDashAreas(markdown).match(/[—–]/);
   if (dashMatch) {
     add({
       rule: "dash",

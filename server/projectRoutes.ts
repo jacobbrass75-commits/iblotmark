@@ -1257,7 +1257,7 @@ export function registerProjectRoutes(app: Express): void {
       const validated = citationDataSchema.parse(citationData);
 
       const footnote = generateFootnote(validated, validStyle, pageNumber);
-      const footnoteWithQuote = generateFootnoteWithQuote(validated, quote, pageNumber);
+      const footnoteWithQuote = generateFootnoteWithQuote(validated, quote, pageNumber, validStyle);
       const inlineCitation = generateInTextCitation(validated, validStyle, pageNumber);
       const bibliography = generateBibliographyEntry(validated, validStyle);
 

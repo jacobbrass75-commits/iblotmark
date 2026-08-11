@@ -9,6 +9,7 @@ import { products } from "@shared/schema";
 import { buildProductUrl, type BrandVoiceInput } from "./brandVoice";
 import { getCompanyContext, type CompanyContext } from "./companyContext";
 import { signPublicPhotoToken } from "./publicPhotoTokens";
+import { listPostPhotoSelections } from "./photoSelector";
 
 const PUBLIC_BASE_URL = (process.env.PUBLIC_BASE_URL || process.env.APP_BASE_URL || process.env.PUBLIC_APP_URL || "http://localhost:5001").replace(/\/$/, "");
 if (/scholarmark\.ai/i.test(PUBLIC_BASE_URL)) {
@@ -18,6 +19,93 @@ if (/scholarmark\.ai/i.test(PUBLIC_BASE_URL)) {
 interface RendererOptions {
   companyId?: string | null;
   companyContext?: CompanyContext | null;
+}
+
+interface SelectedPostPhotoAsset {
+  selection: {
+    photoId?: string | null;
+    sectionIndex?: number | null;
+    placement?: string | null;
+    altText?: string | null;
+    caption?: string | null;
+  };
+  photo: {
+    id: string;
+    altText?: string | null;
+    caption?: string | null;
+    originalFilename?: string | null;
+  };
+}
+
+function escapeMarkdownAlt(value: string): string {
+  return value.replace(/[\[\]]/g, "").replace(/\s+/g, " ").trim();
+}
+
+function selectedPhotoBlock(asset: SelectedPostPhotoAsset, companyId: string): string {
+  const altText = escapeMarkdownAlt(
+    asset.selection.altText
+      || asset.photo.altText
+      || asset.photo.caption
+      || asset.photo.originalFilename
+      || "Product photo",
+  );
+  const caption = (asset.selection.caption || asset.photo.caption || "").replace(/\s+/g, " ").trim();
+  const query = `?companyId=${encodeURIComponent(companyId)}`;
+  const image = `![${altText}](/api/public/blog/photos/serve/${asset.photo.id}${query})`;
+  return caption ? `${image}\n\n_${caption}_` : image;
+}
+
+/**
+ * Ensure assets selected in the review UI are present in rendered output.
+ * Assets already placed by the stitcher are detected by photo ID and are not duplicated.
+ */
+export function injectSelectedPostPhotos(
+  markdown: string,
+  assets: SelectedPostPhotoAsset[],
+  companyId: string,
+): string {
+  const missing = assets.filter((asset) =>
+    asset.photo.id && !markdown.includes(`/photos/serve/${asset.photo.id}`),
+  );
+  if (missing.length === 0) return markdown;
+
+  let result = markdown.trim();
+  const inlineAssets = missing.filter((asset) => asset.selection.placement !== "hero");
+  const sectionHeadings = Array.from(result.matchAll(/^##\s+(.+)$/gm))
+    .filter((match) => !/frequently asked questions|product options/i.test(match[1]))
+    .map((match) => ({ index: match.index || 0, end: (match.index || 0) + match[0].length }));
+  const fallbackIndex = result.search(/^##\s+Frequently Asked Questions\s*$/im);
+
+  const insertions = inlineAssets.map((asset) => {
+    const sectionIndex = asset.selection.sectionIndex;
+    const heading = typeof sectionIndex === "number" && sectionIndex >= 0
+      ? sectionHeadings[sectionIndex]
+      : undefined;
+    const nextHeading = heading ? sectionHeadings[(sectionIndex as number) + 1] : undefined;
+    const index = nextHeading?.index
+      ?? (heading ? (fallbackIndex >= heading.end ? fallbackIndex : result.length) : (fallbackIndex >= 0 ? fallbackIndex : result.length));
+    return { index, block: selectedPhotoBlock(asset, companyId) };
+  }).sort((a, b) => b.index - a.index);
+
+  for (const insertion of insertions) {
+    result = `${result.slice(0, insertion.index).trimEnd()}\n\n${insertion.block}\n\n${result.slice(insertion.index).trimStart()}`.trim();
+  }
+
+  const heroBlocks = missing
+    .filter((asset) => asset.selection.placement === "hero")
+    .map((asset) => selectedPhotoBlock(asset, companyId));
+  if (heroBlocks.length > 0) {
+    result = `${heroBlocks.join("\n\n")}\n\n${result}`;
+  }
+
+  return result;
+}
+
+async function markdownWithSelectedPostPhotos(post: BlogPost): Promise<string> {
+  const markdown = post.markdown || "";
+  if (!post.companyId) return markdown;
+  const assets = await listPostPhotoSelections(post.id, post.companyId);
+  return injectSelectedPostPhotos(markdown, assets, post.companyId);
 }
 
 async function resolveRendererBrand(options?: RendererOptions): Promise<BrandVoiceInput | null> {
@@ -45,6 +133,13 @@ function publicPhotoUrl(kind: "serve" | "thumb", rawPhotoRef: string, fallbackCo
   params.set("companyId", companyId);
   params.set("token", signPublicPhotoToken(companyId, photoId, kind));
   return `${PUBLIC_BASE_URL}/api/public/blog/photos/${kind}/${encodeURIComponent(photoId)}?${params.toString()}`;
+}
+
+function resolvePublicPhotoSources(html: string, companyId: string | null): string {
+  return html.replace(
+    /src="\/api\/(?:blog|public\/blog)\/photos\/(serve|thumb)\/([^"]+)"/g,
+    (_match, kind: "serve" | "thumb", rawPhotoRef: string) => `src="${publicPhotoUrl(kind, rawPhotoRef, companyId)}"`,
+  );
 }
 
 /**
@@ -89,23 +184,231 @@ function escapeAndFormat(text: string): string {
   return result;
 }
 
+interface FaqPair {
+  question: string;
+  answer: string;
+}
+
+function stripInlineMarkup(value: string): string {
+  return plainText(value)
+    .replace(/^Q:\s*/i, "")
+    .replace(/^A:\s*/i, "")
+    .trim();
+}
+
+function normalizeFaqQuestion(value: string): string {
+  const question = stripInlineMarkup(value).replace(/\s*\?*$/, "");
+  return question ? `${question}?` : "";
+}
+
+function normalizeFaqAnswer(value: string): string {
+  return stripInlineMarkup(value)
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function addFaqPair(pairs: FaqPair[], seen: Set<string>, question: string, answer: string): void {
+  const normalizedQuestion = normalizeFaqQuestion(question);
+  const normalizedAnswer = normalizeFaqAnswer(answer);
+  if (!normalizedQuestion || !normalizedAnswer) return;
+
+  const key = normalizedQuestion.toLowerCase();
+  if (seen.has(key)) return;
+  seen.add(key);
+  pairs.push({ question: normalizedQuestion, answer: normalizedAnswer });
+}
+
+function extractFaqSection(markdown: string): string {
+  const headingMatch = markdown.match(/^##\s+(Frequently Asked Questions|FAQs?|Common Questions)\s*$/im);
+  if (headingMatch?.index !== undefined) {
+    const afterHeadingStart = headingMatch.index + headingMatch[0].length;
+    const afterHeading = markdown.slice(afterHeadingStart);
+    const nextH2 = afterHeading.search(/^##\s+/m);
+    return nextH2 >= 0 ? afterHeading.slice(0, nextH2) : afterHeading;
+  }
+
+  const htmlHeadingMatch = /<h2\b[^>]*>\s*(Frequently Asked Questions|FAQs?|Common Questions)\s*<\/h2>/i.exec(markdown);
+  if (!htmlHeadingMatch || htmlHeadingMatch.index === undefined) return "";
+
+  const afterHeadingStart = htmlHeadingMatch.index + htmlHeadingMatch[0].length;
+  const afterHeading = markdown.slice(afterHeadingStart);
+  const nextH2 = afterHeading.search(/<h2\b/i);
+  return nextH2 >= 0 ? afterHeading.slice(0, nextH2) : afterHeading;
+}
+
+function extractFaqPairsFromMarkdown(markdown: string): FaqPair[] {
+  const faqSection = extractFaqSection(markdown);
+  if (!faqSection) return [];
+
+  const pairs: FaqPair[] = [];
+  const seen = new Set<string>();
+
+  const qaLabelRegex = /\*\*Q:\s*(.+?)\*\*\s*\n+\s*A:\s*([\s\S]*?)(?=\n\s*\*\*Q:|$)/gi;
+  let match: RegExpExecArray | null;
+  while ((match = qaLabelRegex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const h3Regex = /^###\s+(.+\?)\s*\n+([\s\S]*?)(?=^###\s+.+\?\s*$|$)/gm;
+  while ((match = h3Regex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const boldQuestionRegex = /^\s*\*\*(?!Q:)(.+\?)\*\*\s*\n+([\s\S]*?)(?=^\s*\*\*(?!Q:).+\?\*\*\s*$|$)/gm;
+  while ((match = boldQuestionRegex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const htmlH3Regex = /<h3\b[^>]*>([\s\S]*?\?)<\/h3>\s*([\s\S]*?)(?=<h3\b|<h2\b|<\/article>|$)/gi;
+  while ((match = htmlH3Regex.exec(faqSection)) !== null) {
+    const paragraphMatches = Array.from(match[2].matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi));
+    const answer = paragraphMatches.length > 0
+      ? paragraphMatches.map((paragraph) => paragraph[1]).join(" ")
+      : match[2];
+    addFaqPair(pairs, seen, match[1], answer);
+  }
+
+  const htmlDlRegex = /<dt\b[^>]*>([\s\S]*?\?)<\/dt>\s*<dd\b[^>]*>([\s\S]*?)<\/dd>/gi;
+  while ((match = htmlDlRegex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const lines = faqSection
+    .split(/\n+/)
+    .map((line) => stripInlineMarkup(line))
+    .filter(Boolean);
+  for (let i = 0; i < lines.length; i++) {
+    const question = lines[i];
+    if (!/\?$/.test(question)) continue;
+
+    const answerLines: string[] = [];
+    for (let j = i + 1; j < lines.length; j++) {
+      if (/\?$/.test(lines[j])) break;
+      answerLines.push(lines[j]);
+    }
+    addFaqPair(pairs, seen, question, answerLines.join(" "));
+  }
+
+  return pairs;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderFaqAccordion(pairs: FaqPair[]): string {
+  if (pairs.length === 0) return "";
+
+  const rows = pairs.map((pair, index) => {
+    const open = index === 0 ? " open" : "";
+    return `<details class="ibolt-faq-row"${open}>
+  <summary>
+    <span>${escapeHtml(pair.question)}</span>
+    <span class="ibolt-faq-toggle" aria-hidden="true"><span class="ibolt-faq-plus">+</span><span class="ibolt-faq-minus">-</span></span>
+  </summary>
+  <div class="ibolt-faq-answer">
+    <p>${escapeHtml(pair.answer)}</p>
+  </div>
+</details>`;
+  }).join("\n");
+
+  return `<style>
+.ibolt-faq {
+  margin: 36px 0;
+  border-top: 1px solid #d9d9d9;
+}
+.ibolt-faq h2 {
+  margin: 0;
+  padding: 0 0 14px;
+  font-size: 28px;
+  line-height: 1.2;
+}
+.ibolt-faq-row {
+  border-bottom: 1px solid #d9d9d9;
+}
+.ibolt-faq-row summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.ibolt-faq-row summary::-webkit-details-marker {
+  display: none;
+}
+.ibolt-faq-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 400;
+}
+.ibolt-faq-row[open] .ibolt-faq-plus {
+  display: none;
+}
+.ibolt-faq-row:not([open]) .ibolt-faq-minus {
+  display: none;
+}
+.ibolt-faq-answer {
+  max-width: 760px;
+  padding: 0 72px 28px 0;
+}
+.ibolt-faq-answer p {
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .ibolt-faq-row summary {
+    font-size: 20px;
+    padding: 22px 0;
+  }
+  .ibolt-faq-answer {
+    padding-right: 0;
+  }
+}
+</style>
+<section class="ibolt-faq" aria-label="Frequently Asked Questions">
+  <h2>Frequently Asked Questions</h2>
+${rows}
+</section>`;
+}
+
+function applyFaqAccordion(bodyHtml: string, markdown: string): string {
+  const pairs = extractFaqPairsFromMarkdown(markdown);
+  if (pairs.length === 0) return bodyHtml;
+
+  const headingMatch = /<h2\b[^>]*>\s*(Frequently Asked Questions|FAQs?|Common Questions)\s*<\/h2>/i.exec(bodyHtml);
+  if (!headingMatch || headingMatch.index === undefined) return bodyHtml;
+
+  const start = headingMatch.index;
+  const bodyStart = start + headingMatch[0].length;
+  const afterHeading = bodyHtml.slice(bodyStart);
+  const nextH2 = afterHeading.search(/<h2\b/i);
+  const end = nextH2 >= 0 ? bodyStart + nextH2 : bodyHtml.length;
+
+  return `${bodyHtml.slice(0, start).trimEnd()}\n\n${renderFaqAccordion(pairs)}\n\n${bodyHtml.slice(end).trimStart()}`;
+}
+
 /**
  * Extract FAQ questions and answers from markdown and generate JSON-LD schema.
  */
 function extractFaqSchema(markdown: string): string {
-  const faqSection = markdown.match(/## Frequently Asked Questions[\s\S]*$/i);
-  if (!faqSection) return "";
-
-  const qaPairs: Array<{ question: string; answer: string }> = [];
-  const qaRegex = /\*\*Q:\s*(.+?)\?\*\*\s*\n+A:\s*(.+?)(?=\n\n\*\*Q:|\n##|$)/gi;
-  let match;
-
-  while ((match = qaRegex.exec(faqSection[0])) !== null) {
-    qaPairs.push({
-      question: match[1].trim() + "?",
-      answer: match[2].trim(),
-    });
-  }
+  const qaPairs = extractFaqPairsFromMarkdown(markdown);
 
   if (qaPairs.length === 0) return "";
 
@@ -157,6 +460,14 @@ function firstImageUrl(markdown: string): string | undefined {
 
   const htmlImage = markdown.match(/<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/i);
   return htmlImage?.[1];
+}
+
+function structuredImageUrl(markdown: string, companyId: string | null): string | undefined {
+  const imageUrl = firstImageUrl(markdown);
+  if (!imageUrl) return undefined;
+  const localPhoto = imageUrl.match(/^\/api\/(?:blog|public\/blog)\/photos\/(serve|thumb)\/(.+)$/);
+  if (!localPhoto) return imageUrl;
+  return publicPhotoUrl(localPhoto[1] as "serve" | "thumb", localPhoto[2], companyId);
 }
 
 interface LinkedItem {
@@ -221,7 +532,7 @@ export function buildStructuredDataScripts(post: BlogPost, companyContext?: Comp
   const url = articleUrl(post, companyContext);
   const brandName = companyContext?.brandProfile.displayName || companyContext?.company.name || "iBOLT Mounts";
   const brandUrl = (companyContext?.brandProfile.websiteUrl || "https://iboltmounts.com").replace(/\/$/, "");
-  const imageUrl = firstImageUrl(post.markdown || "");
+  const imageUrl = structuredImageUrl(post.markdown || "", post.companyId || null);
   const schemas: Array<Record<string, unknown> | null> = [
     {
       "@context": "https://schema.org",
@@ -336,21 +647,21 @@ export async function autoLinkProducts(html: string, options?: RendererOptions):
  * SEO meta tags and structured data.
  */
 export async function renderShopifyHtml(post: BlogPost, companyContext?: CompanyContext | null): Promise<string> {
-  let bodyHtml = markdownToHtml(post.markdown || "");
+  const renderMarkdown = await markdownWithSelectedPostPhotos(post);
+  const renderPost = renderMarkdown === (post.markdown || "") ? post : { ...post, markdown: renderMarkdown };
+  let bodyHtml = markdownToHtml(renderMarkdown);
+  bodyHtml = applyFaqAccordion(bodyHtml, renderMarkdown);
   bodyHtml = await autoLinkProducts(bodyHtml, { companyId: post.companyId, companyContext });
 
   // Convert local photo URLs to signed public URLs so images work on Shopify without exposing the full asset bank.
-  bodyHtml = bodyHtml.replace(
-    /src="\/api\/(?:blog|public\/blog)\/photos\/(serve|thumb)\/([^"]+)"/g,
-    (_match, kind: "serve" | "thumb", rawPhotoRef: string) => `src="${publicPhotoUrl(kind, rawPhotoRef, post.companyId || null)}"`,
-  );
+  bodyHtml = resolvePublicPhotoSources(bodyHtml, post.companyId || null);
 
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";
 
   // Extract FAQ schema from the HTML
-  const faqSchema = extractFaqSchema(post.markdown || "");
-  const structuredData = buildStructuredDataScripts(post, companyContext);
+  const faqSchema = extractFaqSchema(renderMarkdown);
+  const structuredData = buildStructuredDataScripts(renderPost, companyContext);
 
   // Shopify blog HTML — article body + structured data.
   // Meta tags are set separately in Shopify's blog post editor.
@@ -370,8 +681,11 @@ ${faqSchema}`;
  * Generate a complete standalone HTML page for preview.
  */
 export async function renderPreviewHtml(post: BlogPost, companyContext?: CompanyContext | null): Promise<string> {
-  let bodyHtml = markdownToHtml(post.markdown || "");
+  const renderMarkdown = await markdownWithSelectedPostPhotos(post);
+  let bodyHtml = markdownToHtml(renderMarkdown);
+  bodyHtml = applyFaqAccordion(bodyHtml, renderMarkdown);
   bodyHtml = await autoLinkProducts(bodyHtml, { companyId: post.companyId, companyContext });
+  bodyHtml = resolvePublicPhotoSources(bodyHtml, post.companyId || null);
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";
 

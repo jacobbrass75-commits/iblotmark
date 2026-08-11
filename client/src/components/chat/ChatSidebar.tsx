@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Search, Trash2, Pencil, MessageSquare } from "lucide-react";
+import { Plus, Search, Trash2, Pencil, MessageSquare, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { Conversation } from "@shared/schema";
+import { cn } from "@/lib/utils";
 
 interface ChatSidebarProps {
   conversations: Conversation[];
@@ -18,6 +19,8 @@ interface ChatSidebarProps {
   onNew: () => void;
   onDelete: (id: string) => void;
   onRename: (id: string, newTitle: string) => void;
+  className?: string;
+  onClose?: () => void;
 }
 
 function groupByDate(conversations: Conversation[]) {
@@ -56,6 +59,8 @@ export function ChatSidebar({
   onNew,
   onDelete,
   onRename,
+  className,
+  onClose,
 }: ChatSidebarProps) {
   const [search, setSearch] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -83,12 +88,19 @@ export function ChatSidebar({
   };
 
   return (
-    <div className="flex flex-col h-full w-[250px] border-r bg-muted/30">
-      <div className="p-3 space-y-2">
-        <Button onClick={onNew} className="w-full justify-start gap-2" variant="outline">
-          <Plus className="h-4 w-4" />
-          New Chat
-        </Button>
+    <div className={cn("flex h-full w-[250px] flex-col border-r bg-muted/30", className)}>
+      <div className="space-y-2 p-3">
+        <div className="flex gap-2">
+          <Button onClick={onNew} className="min-h-11 flex-1 justify-start gap-2" variant="outline">
+            <Plus className="h-4 w-4" />
+            New Chat
+          </Button>
+          {onClose && (
+            <Button type="button" variant="ghost" size="icon" className="h-11 w-11 shrink-0 lg:hidden" onClick={onClose} aria-label="Close conversation history">
+              <X className="h-5 w-5" />
+            </Button>
+          )}
+        </div>
         <div className="relative">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input

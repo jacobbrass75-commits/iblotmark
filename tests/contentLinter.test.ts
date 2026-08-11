@@ -122,4 +122,21 @@ describe("content linter", () => {
     });
     expect(longReport.errors.some((issue) => issue.rule === "word-count")).toBe(true);
   });
+
+  it("accepts exact Shopify handles containing Unicode trademark characters", () => {
+    const handle = "ibolt-dock-n-lock-bizmount™-forklift-locking-tablet-38mm-mount";
+    const report = lintContent({
+      markdown: cleanMarkdown().replace(
+        "https://iboltmounts.com/products/tablet-tower",
+        `https://iboltmounts.com/products/${handle}`,
+      ),
+      title: "Restaurant Tablet Mount Guide",
+      metaTitle: "Restaurant Tablet Mount Guide",
+      metaDescription: "Choose a restaurant tablet mount for delivery apps, POS counters, and daily restaurant workflows.",
+      primaryKeyword: "restaurant tablet mount",
+      products: [...products, { title: "Dock Lock", handle, price: null }],
+    });
+
+    expect(report.errors.some((issue) => issue.rule === "dead-product-link")).toBe(false);
+  });
 });

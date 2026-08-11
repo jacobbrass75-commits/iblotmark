@@ -9,6 +9,7 @@ import {
   type ProductPhoto,
 } from "@shared/schema";
 import type { BlogPlan, BlogPlanSection } from "./blogPipeline";
+import { isPhotoPublishable } from "./photoAssetPolicy";
 
 export interface PhotoSelection {
   photoId: string;
@@ -30,7 +31,7 @@ export interface PostPhotoSelectionInput {
 }
 
 function isUsablePhoto(photo: ProductPhoto): boolean {
-  return photo.assetStatus !== "archived" && photo.rightsStatus !== "restricted";
+  return isPhotoPublishable(photo);
 }
 
 function imageMarkdown(photoId: string, altText: string, companyId?: string): string {
@@ -221,7 +222,7 @@ export async function addPostPhotoSelection(
     .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, input.photoId)))
     .limit(1);
   if (!photo) throw new Error("Photo not found for this company");
-  if (!isUsablePhoto(photo)) throw new Error("Restricted or archived assets cannot be selected for posts");
+  if (!isUsablePhoto(photo)) throw new Error("Only approved assets with owned or licensed rights can be selected for posts");
 
   const [selection] = await db.insert(blogPostPhotos).values({
     companyId,

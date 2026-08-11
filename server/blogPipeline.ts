@@ -31,11 +31,19 @@ import {
 } from "./brandVoice";
 import { anthropicLimiter } from "./apiCache";
 import { formatContextForPrompt } from "./contextBanks";
-import { buildSectionContext, compactContext, TOKEN_BUDGETS } from "./contextChunker";
+import { compactContext, TOKEN_BUDGETS } from "./contextChunker";
 import { selectPhotosForPost, savePhotoSelections, formatPhotoPlacementsForPrompt, type PhotoSelection } from "./photoSelector";
 import { getCompanyContext } from "./companyContext";
 import { lintContent, type LintReport } from "./contentLinter";
 import { addInternalLinks } from "./internalLinker";
+import { resolveBlogQualityGate, shouldRetryBlogVerification } from "./blogQuality";
+import { rankRelevantProducts } from "./productRelevance";
+import {
+  auditBlogGroundingV3,
+  hashBlogEvidenceContent,
+  retrieveBlogEvidenceV3,
+  type BlogEvidencePacketV3,
+} from "./blogEvidenceV3";
 
 // --- Types ---
 
@@ -101,9 +109,9 @@ type GenerationRecorder = (metadata: GenerationMetadata) => void;
 
 // --- Helpers ---
 
-const ANTHROPIC_MODEL = process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
+const ANTHROPIC_MODEL = process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6";
 const OPENAI_MODEL = process.env.BLOG_OPENAI_MODEL || "gpt-4.1-mini";
-const QUALITY_GATE = Number(process.env.BLOG_QUALITY_GATE || 80);
+const QUALITY_GATE = resolveBlogQualityGate();
 
 let anthropicClient: Anthropic | null = null;
 let openaiClient: OpenAI | null = null;
@@ -285,8 +293,11 @@ export async function getClusterData(clusterId: string, companyId: string): Prom
     vertical = v || null;
   }
 
-  // Get products for this vertical
-  let relevantProducts: Product[] = [];
+  // Rank and cap products before they enter prompts. Product-to-vertical mappings
+  // can be intentionally broad, so a vertical match alone is not enough.
+  const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
+  let candidateProducts = allProducts;
+  const mappingScores = new Map<string, number>();
   if (cluster.verticalId) {
     const pvRows = await db
       .select()
@@ -294,57 +305,19 @@ export async function getClusterData(clusterId: string, companyId: string): Prom
       .where(and(eq(productVerticals.companyId, companyId), eq(productVerticals.verticalId, cluster.verticalId)));
     if (pvRows.length > 0) {
       const productIds = pvRows.map((pv) => pv.productId);
-      const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
-      relevantProducts = allProducts.filter((p) => productIds.includes(p.id));
+      candidateProducts = allProducts.filter((p) => productIds.includes(p.id));
+      for (const mapping of pvRows) {
+        mappingScores.set(mapping.productId, mapping.relevanceScore || 0);
+      }
     }
   }
 
-  // If no vertical-specific products, rank all products by keyword overlap
-  if (relevantProducts.length === 0) {
-    const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
-    const queryText = [
-      cluster.primaryKeyword,
-      cluster.name,
-      ...clusterKeywords.map((item) => item.keyword),
-    ]
-      .join(" ")
-      .toLowerCase();
-
-    const tokens = Array.from(new Set(
-      queryText
-        .split(/[^a-z0-9]+/i)
-        .map((token) => token.trim())
-        .filter((token) => token.length >= 4),
-    ));
-
-    const scoreProduct = (product: Product) => {
-      const haystack = [
-        product.title,
-        product.handle,
-        product.description,
-        product.productType,
-        product.vendor,
-        ...(Array.isArray(product.tags) ? product.tags : []),
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-
-      let score = 0;
-      for (const token of tokens) {
-        if (haystack.includes(token)) score += 2;
-      }
-      if (product.imageUrl) score += 1;
-      return score;
-    };
-
-    relevantProducts = allProducts
-      .map((product) => ({ product, score: scoreProduct(product) }))
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 20)
-      .map((item) => item.product);
-  }
+  const relevantProducts = rankRelevantProducts(
+    candidateProducts,
+    [cluster.primaryKeyword, cluster.name, ...clusterKeywords.map((item) => item.keyword)],
+    mappingScores,
+    12,
+  );
 
   return { cluster, clusterKeywords, vertical, relevantProducts };
 }
@@ -360,6 +333,16 @@ export function formatProductsForPrompt(prods: Product[], brandProfile?: BrandVo
     if (p.price) parts.push(`  Price: $${p.price}`);
     if (p.productType) parts.push(`  Type: ${p.productType}`);
     if (p.description) parts.push(`  ${p.description.slice(0, 200)}`);
+    const structuredFacts = [
+      ["Verified specs", p.specs],
+      ["Verified compatibility", p.compatibility],
+      ["Approved claims", p.claims],
+    ] as const;
+    for (const [label, value] of structuredFacts) {
+      if (value === null || value === undefined) continue;
+      const text = typeof value === "string" ? value : JSON.stringify(value);
+      if (text && text !== "{}" && text !== "[]") parts.push(`  ${label}: ${text.slice(0, 600)}`);
+    }
     if (p.url) parts.push(`  URL: ${p.url}`);
     if (p.imageUrl) parts.push(`  Image URL: ${p.imageUrl}`);
     return parts.join("\n");
@@ -396,11 +379,20 @@ export function buildProductFactsForVerifier(relevantProducts: Product[], brandP
     const price = product.price ? `$${product.price}` : "price unavailable";
     const productType = product.productType || "type unavailable";
     const url = product.url || buildProductUrl(product.handle, brandProfile);
-    return `${product.title} | ${product.handle} | ${price} | ${productType} | ${url}`;
+    const facts = [
+      ["specs", product.specs],
+      ["compatibility", product.compatibility],
+      ["claims", product.claims],
+    ].map(([label, value]) => {
+      if (value === null || value === undefined) return `${label}: none provided`;
+      const text = typeof value === "string" ? value : JSON.stringify(value);
+      return `${label}: ${text || "none provided"}`;
+    }).join(" | ");
+    return `${product.title} | ${product.handle} | ${price} | ${productType} | ${url} | ${facts}`;
   });
 
   const facts = lines.join("\n");
-  return facts.length > 4000 ? `${facts.slice(0, 3997)}...` : facts;
+  return facts.length > 8000 ? `${facts.slice(0, 7997)}...` : facts;
 }
 
 // --- Phase 1: PLANNER ---
@@ -421,7 +413,7 @@ async function runPlanner(
 
   const parsed = await generateJson<BlogPlan>(
     systemPrompt,
-    `Create a blog post outline targeting these keywords: ${kwList}\n\nPrimary keyword should be the highest-volume keyword. Distribute all keywords naturally across sections.`,
+    `Create a blog post outline targeting these keywords: ${kwList}\n\nPrimary keyword should be the highest-volume keyword. Include that exact primary keyword phrase, with no words inserted inside it, in both title and metaTitle. Distribute all keywords naturally across sections.`,
     4096,
     0.2,
     "planner",
@@ -564,20 +556,85 @@ export async function runBlogPipeline(
   const productContext = formatProductsForPrompt(relevantProducts, brandProfile);
   const productFacts = buildProductFactsForVerifier(relevantProducts, brandProfile);
   const lintProducts = productsForLint(await db.select().from(products).where(eq(products.companyId, companyContext.company.id)));
+  const canonicalEvidenceById = new Map<string, string>();
+  const evidenceDiagnostics: Array<{
+    phase: "planner" | "section";
+    sectionTitle?: string;
+    diagnostics: BlogEvidencePacketV3["diagnostics"];
+  }> = [];
+  let evidenceRetrievalDegraded = false;
+
+  const rememberEvidence = (
+    phase: "planner" | "section",
+    evidence: BlogEvidencePacketV3,
+    sectionTitle?: string,
+  ) => {
+    for (const entry of evidence.entries) {
+      canonicalEvidenceById.set(entry.id, entry.content);
+    }
+    evidenceDiagnostics.push({ phase, sectionTitle, diagnostics: evidence.diagnostics });
+  };
+
+  const canonicalEvidenceTexts = () => [
+    ...Array.from(canonicalEvidenceById.values()),
+    ...productContext.split(/\n{2,}/).filter(Boolean),
+    ...productFacts.split("\n").filter(Boolean),
+  ];
+
+  const addEvidenceAuditToLint = (report: LintReport): LintReport => {
+    let audit;
+    try {
+      audit = auditBlogGroundingV3(markdown, canonicalEvidenceTexts());
+    } catch (error: any) {
+      return {
+        errors: [...report.errors, {
+          rule: "grounding-audit-failed",
+          severity: "error",
+          message: `Final evidence audit could not complete: ${error.message}`,
+        }],
+        warnings: report.warnings,
+        passed: false,
+      };
+    }
+    if (audit.passed && !evidenceRetrievalDegraded) return report;
+    const quoteErrors = audit.unsupportedQuotes.map((issue) => ({
+      rule: "unsupported-quotation",
+      severity: "error" as const,
+      message: "Long direct quotation is not present in the verified research or product evidence. Paraphrase it or remove the quotation marks.",
+      excerpt: issue.excerpt,
+    }));
+    const claimErrors = audit.unsupportedHighRiskClaims.map((issue) => ({
+      rule: "unsupported-high-risk-claim",
+      severity: "error" as const,
+      message: `A price, measurement, percentage, or model claim is not supported by one verified evidence record: ${issue.unsupportedTokens.join(", ")}.`,
+      excerpt: issue.excerpt,
+    }));
+    const retrievalErrors = evidenceRetrievalDegraded ? [{
+      rule: "evidence-retrieval-degraded",
+      severity: "error" as const,
+      message: "Verified evidence retrieval was unavailable for one or more writing phases. Keep this post in draft until grounding can be rerun.",
+    }] : [];
+    return {
+      errors: [...report.errors, ...retrievalErrors, ...quoteErrors, ...claimErrors],
+      warnings: report.warnings,
+      passed: false,
+    };
+  };
+
   let plan: BlogPlan;
   let markdown = "";
   let lintReport: LintReport = { errors: [], warnings: [], passed: true };
-  let lintCorrectionUsed = false;
+  let lintCorrectionAttempts = 0;
   const runLintPass = async (allowCorrection: boolean): Promise<LintReport> => {
     onEvent({ type: "status", phase: "linter", message: "Running deterministic content linter..." });
-    let report = lintContent({
+    let report = addEvidenceAuditToLint(lintContent({
       markdown,
       title: plan.title,
       metaTitle: plan.metaTitle,
       metaDescription: plan.metaDescription,
       primaryKeyword: plan.primaryKeyword,
       products: lintProducts,
-    });
+    }));
 
     onEvent({
       type: "status",
@@ -589,7 +646,7 @@ export async function runBlogPipeline(
     });
 
     if (report.errors.length > 0 && allowCorrection) {
-      lintCorrectionUsed = true;
+      lintCorrectionAttempts++;
       onEvent({ type: "status", phase: "linter", message: "Applying one corrective pass for lint errors..." });
       try {
         const correctedMarkdown = await generateText(
@@ -601,14 +658,14 @@ export async function runBlogPipeline(
           recordGeneration,
         );
         markdown = injectProductImages(correctedMarkdown, relevantProducts, brandProfile);
-        report = lintContent({
+        report = addEvidenceAuditToLint(lintContent({
           markdown,
           title: plan.title,
           metaTitle: plan.metaTitle,
           metaDescription: plan.metaDescription,
           primaryKeyword: plan.primaryKeyword,
           products: lintProducts,
-        });
+        }));
         onEvent({
           type: "status",
           phase: "linter",
@@ -629,7 +686,33 @@ export async function runBlogPipeline(
   onEvent({ type: "status", phase: "planner", message: `Planning blog post for "${cluster.primaryKeyword}"...` });
 
   try {
-    plan = await runPlanner(clusterKeywords, industryContext, productContext, brandProfile, recordGeneration);
+    let plannerContext = industryContext;
+    try {
+      const plannerEvidence = await retrieveBlogEvidenceV3({
+        companyId: companyContext.company.id,
+        verticalId: vertical?.id || null,
+        queryParts: [cluster.primaryKeyword, ...clusterKeywords.map((keyword) => keyword.keyword)],
+        maxUtf8Bytes: 10_000,
+        maxEntries: 24,
+      });
+      rememberEvidence("planner", plannerEvidence);
+      if (plannerEvidence.packet) plannerContext = plannerEvidence.packet;
+      else evidenceRetrievalDegraded = true;
+      onEvent({
+        type: "status",
+        phase: "evidence",
+        message: `Planner evidence: ${plannerEvidence.diagnostics.selectedEntries} verified records selected from ${plannerEvidence.diagnostics.scannedEntries}.`,
+      });
+    } catch (error: any) {
+      evidenceRetrievalDegraded = true;
+      onEvent({
+        type: "status",
+        phase: "evidence",
+        message: `Planner evidence retrieval fell back to the verified context bank: ${error.message}`,
+      });
+    }
+
+    plan = await runPlanner(clusterKeywords, plannerContext, productContext, brandProfile, recordGeneration);
     onEvent({ type: "plan", phase: "planner", plan, message: `Plan created: "${plan.title}" with ${plan.sections.length} sections` });
   } catch (err: any) {
     onEvent({ type: "error", error: `Planner failed: ${err.message}` });
@@ -664,18 +747,38 @@ export async function runBlogPipeline(
     onEvent({ type: "status", phase: "writer", message: `Writing section ${i + 1}/${plan.sections.length}: "${section.title}"` });
 
     try {
-      // Build per-section context with token budget
-      let sectionContext: string;
+      // Writing V3: retrieve a fresh, query-specific evidence packet for every section.
+      let sectionContext = "";
       try {
-        sectionContext = await buildSectionContext(
-          companyContext.company.id,
-          section.keywords || [],
-          section.productMentions || [],
-          vertical?.id || null,
-          "sectionWriter",
-        );
-      } catch {
-        // Fallback to full context if chunker fails
+        const sectionEvidence = await retrieveBlogEvidenceV3({
+          companyId: companyContext.company.id,
+          verticalId: vertical?.id || null,
+          queryParts: [
+            plan.primaryKeyword,
+            section.title,
+            section.description,
+            ...(section.keywords || []),
+            ...(section.productMentions || []),
+          ],
+        });
+        rememberEvidence("section", sectionEvidence, section.title);
+        sectionContext = sectionEvidence.packet;
+        if (!sectionContext) evidenceRetrievalDegraded = true;
+        onEvent({
+          type: "status",
+          phase: "evidence",
+          message: `Section evidence for "${section.title}": ${sectionEvidence.diagnostics.selectedEntries} verified records selected.`,
+        });
+      } catch (error: any) {
+        evidenceRetrievalDegraded = true;
+        onEvent({
+          type: "status",
+          phase: "evidence",
+          message: `Section evidence retrieval fell back for "${section.title}": ${error.message}`,
+        });
+      }
+
+      if (!sectionContext) {
         sectionContext = compactContext(industryContext + "\n\n" + productContext, TOKEN_BUDGETS.sectionWriter);
       }
 
@@ -729,9 +832,8 @@ export async function runBlogPipeline(
     };
   }
 
-  // Always re-stitch with feedback if there are issues or suggestions to address
-  const hasFixableIssues = verification.overallScore > 0 && (verification.issues.length > 0 || verification.suggestions.length > 0);
-  if (hasFixableIssues) {
+  // One verifier-driven retry is allowed only when the draft misses the quality gate.
+  if (shouldRetryBlogVerification(verification.overallScore, QUALITY_GATE)) {
     onEvent({ type: "status", phase: "stitcher", message: `Score ${verification.overallScore}/100. Applying ${verification.issues.length} fixes and ${verification.suggestions.length} improvements...` });
 
     try {
@@ -749,7 +851,7 @@ export async function runBlogPipeline(
       );
       markdown = injectProductImages(revisedMarkdown, relevantProducts, brandProfile);
       onEvent({ type: "stitched", phase: "stitcher", markdown, message: "Re-stitched with improvements" });
-      lintReport = await runLintPass(!lintCorrectionUsed);
+      lintReport = await runLintPass(lintCorrectionAttempts < 2);
 
       // Re-verify
       const revisedVerification = await runVerifier(plan, markdown, productFacts, brandProfile, recordGeneration);
@@ -801,7 +903,20 @@ export async function runBlogPipeline(
     naturalLanguage: verification.naturalLanguage,
     factualAccuracy: verification.factualAccuracy,
     overallScore: verification.overallScore,
-    verificationNotes: JSON.stringify({ issues: verification.issues, suggestions: verification.suggestions, lint: lintReport }),
+    verificationNotes: JSON.stringify({
+      issues: verification.issues,
+      suggestions: verification.suggestions,
+      lint: lintReport,
+      evidenceV3: {
+        entryIds: Array.from(canonicalEvidenceById.keys()),
+        entryHashes: Object.fromEntries(Array.from(canonicalEvidenceById.entries()).map(([id, content]) => [
+          id,
+          hashBlogEvidenceContent(content),
+        ])),
+        retrievals: evidenceDiagnostics,
+        groundingAudit: auditBlogGroundingV3(markdown, canonicalEvidenceTexts()),
+      },
+    }),
     generationProvider,
     generationModel,
   }).returning();

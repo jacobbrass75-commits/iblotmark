@@ -115,7 +115,10 @@ const QUERY_SEEDS: BenchmarkSeed[] = [
 ];
 
 export async function seedBenchmarkQueries(): Promise<number> {
-  const existing = await db.select().from(aiBenchmarkQueries);
+  const existing = await db
+    .select()
+    .from(aiBenchmarkQueries)
+    .where(eq(aiBenchmarkQueries.companyId, DEFAULT_COMPANY_ID));
   const existingQueries = new Set(existing.map((row) => row.query.toLowerCase()));
   const verticals = await db.select().from(industryVerticals);
   const verticalBySlug = new Map(verticals.map((vertical) => [vertical.slug, vertical.id]));
@@ -158,7 +161,7 @@ export async function seedBenchmarkQueries(): Promise<number> {
       status: "active",
     })),
   ).onConflictDoNothing({
-    target: aiBenchmarkQueries.query,
+    target: [aiBenchmarkQueries.companyId, aiBenchmarkQueries.query],
   }).returning();
 
   return inserted.length;

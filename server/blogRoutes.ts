@@ -30,6 +30,11 @@ import {
   updatePostPhotoSelection,
 } from "./photoSelector";
 
+async function refreshStoredHtml(post: typeof blogPosts.$inferSelect, companyId: string) {
+  const html = await renderShopifyHtml(post, await getCompanyContext(companyId));
+  return (await updateBlogPost(post.id, { html }, companyId)) || { ...post, html };
+}
+
 export function registerBlogRoutes(app: { use: (path: string, router: Router) => void }) {
   const router = Router();
   router.use(requireBlogMutationRole("editor"));
@@ -240,6 +245,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       const post = await getBlogPost(req.params.id, companyId);
       if (!post) return res.status(404).json({ error: "Post not found" });
       const selection = await addPostPhotoSelection(req.params.id, req.body || {}, companyId);
+      await refreshStoredHtml(post, companyId);
       res.status(201).json(selection);
     } catch (error: any) {
       const status = /not found/i.test(error.message) ? 404 : 400;
@@ -255,6 +261,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       if (!post) return res.status(404).json({ error: "Post not found" });
       const selection = await updatePostPhotoSelection(req.params.selectionId, req.params.id, req.body || {}, companyId);
       if (!selection) return res.status(404).json({ error: "Photo selection not found" });
+      await refreshStoredHtml(post, companyId);
       res.json(selection);
     } catch (error: any) {
       res.status(400).json({ error: error.message });
@@ -268,6 +275,7 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
       const post = await getBlogPost(req.params.id, companyId);
       if (!post) return res.status(404).json({ error: "Post not found" });
       await deletePostPhotoSelection(req.params.selectionId, req.params.id, companyId);
+      await refreshStoredHtml(post, companyId);
       res.json({ ok: true });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
@@ -278,8 +286,12 @@ export function registerBlogRoutes(app: { use: (path: string, router: Router) =>
   router.patch("/posts/:id", async (req: Request, res: Response) => {
     try {
       const updates = req.body;
-      const post = await updateBlogPost(req.params.id, updates, getCompanyIdFromRequest(req));
+      const companyId = getCompanyIdFromRequest(req);
+      let post = await updateBlogPost(req.params.id, updates, companyId);
       if (!post) return res.status(404).json({ error: "Post not found" });
+      if (["title", "markdown", "metaTitle", "metaDescription"].some((key) => updates?.[key] !== undefined)) {
+        post = await refreshStoredHtml(post, companyId);
+      }
       res.json(post);
     } catch (error: any) {
       const status = /invalid|must be/i.test(error.message) ? 400 : 500;

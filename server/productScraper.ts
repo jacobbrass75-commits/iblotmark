@@ -376,7 +376,7 @@ export async function mapProductsToVerticals(companyId = DEFAULT_COMPANY_ID): Pr
 
     await anthropicLimiter.acquire();
     const response = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
       max_tokens: 4096,
       messages: [{
         role: "user",
@@ -469,7 +469,7 @@ export async function getProducts(verticalId?: string, companyId = DEFAULT_COMPA
 export async function getProductStats(companyId = DEFAULT_COMPANY_ID): Promise<{ count: number; lastScraped: Date | null }> {
   const allProducts = await db.select().from(products).where(eq(products.companyId, companyId));
   const lastScraped = allProducts.length > 0
-    ? new Date(Math.max(...allProducts.map((p) => new Date(p.scrapedAt).getTime())))
+    ? new Date(Math.max(...allProducts.map((p) => new Date(p.sourceSyncedAt || p.scrapedAt).getTime())))
     : null;
   return { count: allProducts.length, lastScraped };
 }

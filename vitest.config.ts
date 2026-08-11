@@ -13,6 +13,12 @@ export default defineConfig({
     environment: "node",
     globals: true,
     passWithNoTests: false,
+    exclude: [
+      "**/node_modules/**",
+      "**/.node_modules_corrupt_*/**",
+      "transfer/**",
+      "dist/**",
+    ],
     pool: "forks",
     fileParallelism: false,
     maxWorkers: 1,

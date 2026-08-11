@@ -9,7 +9,7 @@ vi.mock("../server/db", () => ({
   },
 }));
 
-import { buildStructuredDataScripts, markdownToHtml, renderShopifyHtml } from "../server/htmlRenderer";
+import { buildStructuredDataScripts, injectSelectedPostPhotos, markdownToHtml, renderShopifyHtml } from "../server/htmlRenderer";
 
 function makePost(markdown: string, title = "Best Restaurant Tablet Mounts"): BlogPost {
   const now = new Date("2026-06-11T12:00:00.000Z");
@@ -71,6 +71,38 @@ const fixtureMarkdown = [
 ].join("\n");
 
 describe("Shopify HTML renderer", () => {
+  it("places review-selected photos once, including a hero and an inline asset", () => {
+    const markdown = [
+      "Intro copy.",
+      "",
+      "## First Section",
+      "First section copy.",
+      "",
+      "## Second Section",
+      "Second section copy.",
+      "",
+      "## Frequently Asked Questions",
+      "**Q: One?**",
+      "A: One.",
+    ].join("\n");
+    const assets = [
+      {
+        selection: { placement: "hero", altText: "Mounted tablet hero" },
+        photo: { id: "photo-hero", originalFilename: "hero.jpg" },
+      },
+      {
+        selection: { placement: "inline", sectionIndex: 0, altText: "Tablet mount at work" },
+        photo: { id: "photo-inline", originalFilename: "inline.jpg" },
+      },
+    ];
+
+    const rendered = injectSelectedPostPhotos(markdown, assets, "company-1");
+    expect(rendered).toMatch(/^!\[Mounted tablet hero\]/);
+    expect(rendered.indexOf("photo-inline")).toBeGreaterThan(rendered.indexOf("First section copy."));
+    expect(rendered.indexOf("photo-inline")).toBeLessThan(rendered.indexOf("## Second Section"));
+    expect(injectSelectedPostPhotos(rendered, assets, "company-1")).toBe(rendered);
+  });
+
   it("renders GitHub-flavored markdown tables, nested lists, and raw HTML", () => {
     const html = markdownToHtml(fixtureMarkdown);
 
@@ -95,5 +127,14 @@ describe("Shopify HTML renderer", () => {
     const scripts = buildStructuredDataScripts(makePost(fixtureMarkdown, "Restaurant Tablet Mount Guide"));
     expect(scripts).toContain('"@type": "Article"');
     expect(scripts).not.toContain('"@type": "ItemList"');
+  });
+
+  it("uses a signed absolute URL for selected photos in Article schema", () => {
+    const post = {
+      ...makePost("![Mounted tablet](/api/public/blog/photos/serve/photo-1?companyId=company-1)"),
+      companyId: "company-1",
+    };
+    const scripts = buildStructuredDataScripts(post);
+    expect(scripts).toContain("http://localhost:5001/api/public/blog/photos/serve/photo-1?companyId=company-1&token=");
   });
 });

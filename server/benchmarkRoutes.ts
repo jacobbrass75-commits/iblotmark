@@ -13,6 +13,7 @@ import {
   runAiBenchmark,
   updateBenchmarkQuery,
   type BenchmarkProvider,
+  type BenchmarkStandardMetadata,
 } from "./aiBenchmark";
 import { getCompanyIdFromRequest, requireBlogMutationRole } from "./companyContext";
 import { getVerticalById } from "./contextBanks";
@@ -37,6 +38,25 @@ function parseProviders(input: unknown): BenchmarkProvider[] {
   ));
 
   return requested.length > 0 ? requested : [...BENCHMARK_PROVIDERS];
+}
+
+function parseBenchmarkStandard(input: unknown): BenchmarkStandardMetadata | undefined {
+  if (!input || typeof input !== "object") return undefined;
+  const source = input as Record<string, unknown>;
+  const required = [
+    "standardId",
+    "protocolVersion",
+    "manifestHash",
+    "querySetHash",
+    "providerSetHash",
+    "promptSetHash",
+    "promptVersion",
+    "scorerVersion",
+  ] as const;
+  if (!required.every((key) => typeof source[key] === "string" && String(source[key]).trim())) {
+    throw new Error("benchmarkStandard metadata is incomplete.");
+  }
+  return Object.fromEntries(required.map((key) => [key, String(source[key]).trim()])) as unknown as BenchmarkStandardMetadata;
 }
 
 function withGenericBenchmarkAliases<T>(value: T): T {
@@ -290,7 +310,7 @@ export function registerBenchmarkRoutes(app: { use: (path: string, router: Route
 
   router.post("/run", async (req: Request, res: Response) => {
     try {
-      const { name, queryIds, providers, concurrency } = req.body || {};
+      const { name, queryIds, providers, concurrency, benchmarkStandard } = req.body || {};
 
       res.writeHead(200, {
         "Content-Type": "text/event-stream",
@@ -309,6 +329,7 @@ export function registerBenchmarkRoutes(app: { use: (path: string, router: Route
           providers: parseProviders(providers),
           concurrency: typeof concurrency === "number" ? concurrency : undefined,
           companyId: getCompanyIdFromRequest(req),
+          benchmarkStandard: parseBenchmarkStandard(benchmarkStandard),
         },
         (event) => {
           sendEvent(event.type, event);

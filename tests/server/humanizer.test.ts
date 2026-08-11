@@ -18,6 +18,10 @@ describe("humanizer", () => {
     vi.unstubAllEnvs();
     vi.unstubAllGlobals();
     vi.clearAllMocks();
+    // Vite loads local .env files for tests. Never let a unit test make a
+    // paid provider request just because the developer has real keys set.
+    vi.stubEnv("GEMINI_API_KEY", "");
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
   });
 
   afterEach(() => {

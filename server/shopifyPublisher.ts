@@ -352,7 +352,11 @@ export async function syncBlogPostToShopify(
       error: "No Shopify blog target is configured for this company.",
     };
   }
-  const html = post.html || (await renderShopifyHtml(post, companyContext));
+  // Markdown is the editable source of truth. Always re-render it so saved edits,
+  // selected assets, product links, and structured data cannot be bypassed by stale HTML.
+  const html = post.markdown
+    ? await renderShopifyHtml(post, companyContext)
+    : post.html!;
   const syncedAt = new Date().toISOString();
 
   try {
