@@ -109,7 +109,7 @@ async function generateText(systemPrompt: string, userPrompt: string): Promise<s
   if (process.env.ANTHROPIC_API_KEY) {
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
     const response = await client.messages.create({
-      model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-20250514",
+      model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
       max_tokens: 8192,
       temperature: 0.1,
       system: systemPrompt,

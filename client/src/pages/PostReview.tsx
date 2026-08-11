@@ -422,8 +422,13 @@ export default function PostReview() {
 
         {tab === "preview" && (
           <Card>
-            <CardContent className="pt-6 prose prose-sm max-w-none dark:prose-invert">
-              <div dangerouslySetInnerHTML={{ __html: post.html || "<p>No HTML rendered yet.</p>" }} />
+            <CardContent className="pt-4">
+              <iframe
+                key={`${post.id}-${post.updatedAt}-${postPhotos.length}`}
+                title={`Preview of ${post.title}`}
+                src={companyScopedUrl(`/api/blog/posts/${post.id}/preview`)}
+                className="min-h-[760px] w-full rounded-lg border bg-white"
+              />
             </CardContent>
           </Card>
         )}

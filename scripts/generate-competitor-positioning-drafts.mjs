@@ -5,7 +5,7 @@ import { randomUUID } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
-const MODEL = process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
+const MODEL = process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6";
 const SHOPIFY_SHOP = process.env.SHOPIFY_SHOP || "iboltmounts";
 const SHOPIFY_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN || process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN;
 const SHOPIFY_API_VERSION = process.env.SHOPIFY_API_VERSION || "2026-04";

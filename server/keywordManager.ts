@@ -44,6 +44,17 @@ function parseInteger(value: string | undefined): number {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function parseDecimal(value: string | undefined): number {
+  if (!value) return 0;
+  const normalized = value.replace(/,/g, "").replace(/[^\d.-]/g, "").trim();
+  const parsed = Number.parseFloat(normalized);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function normalizeKeyword(value: string): string {
+  return value.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
 function parsePosition(value: string | undefined): number {
   const normalized = String(value || "").trim().toLowerCase();
   if (!normalized || normalized === "-" || normalized === "not ranked" || normalized === "not-ranking") {
@@ -68,6 +79,7 @@ export function parseKeywordCSV(csvText: string): Array<{
   keyword: string;
   volume: number;
   difficulty: number;
+  cpc: number;
   position: number;
   url: string;
 }> {
@@ -97,6 +109,7 @@ export function parseKeywordCSV(csvText: string): Array<{
         keyword,
         volume: parseInteger(getCSVValue(row, ["search volume", "volume"])),
         difficulty: parseInteger(getCSVValue(row, ["sd", "difficulty"])),
+        cpc: parseDecimal(getCSVValue(row, ["cpc", "cost per click"])),
         position: parsePosition(getCSVValue(row, ["position"])),
         url: getCSVValue(row, ["url"]),
       };
@@ -160,6 +173,7 @@ export async function importKeywordCSV(
         .set({
           volume: row.volume,
           difficulty: row.difficulty,
+          cpc: row.cpc,
           opportunityScore: calculateOpportunityScore(row.volume, row.difficulty, row.position),
         })
         .where(and(eq(keywords.companyId, companyId), eq(keywords.id, existing.id)));
@@ -172,7 +186,7 @@ export async function importKeywordCSV(
       keyword: row.keyword,
       volume: row.volume,
       difficulty: row.difficulty,
-      cpc: 0,
+      cpc: row.cpc,
       opportunityScore: score,
       status: "new",
       importId: importRecord.id,
@@ -224,7 +238,7 @@ export async function clusterKeywords(companyId = DEFAULT_COMPANY_ID): Promise<{
     const kwList = keywordChunk.map((k) => `- "${k.keyword}" (vol: ${k.volume}, diff: ${k.difficulty})`).join("\n");
 
     const response = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: process.env.BLOG_ANTHROPIC_MODEL || "claude-sonnet-4-6",
       max_tokens: 4096,
       messages: [
         {
@@ -277,8 +291,14 @@ Rules:
       const vertical = verticals.find((v) => v.slug === cluster.verticalSlug);
 
     // Calculate aggregate stats
-      const clusterKws = keywordChunk.filter((k) => cluster.keywords.includes(k.keyword) && !assignedKeywordIds.has(k.id));
+      const requestedKeywords = new Set(cluster.keywords.map(normalizeKeyword));
+      const clusterKws = keywordChunk.filter((keyword) =>
+        requestedKeywords.has(normalizeKeyword(keyword.keyword)) && !assignedKeywordIds.has(keyword.id)
+      );
       if (clusterKws.length === 0) continue;
+      const primaryKeyword = [...clusterKws]
+        .sort((left, right) => (right.volume || 0) - (left.volume || 0) || left.keyword.localeCompare(right.keyword))[0]
+        .keyword;
       const totalVol = clusterKws.reduce((sum, k) => sum + (k.volume || 0), 0);
       const avgDiff = clusterKws.length > 0
         ? clusterKws.reduce((sum, k) => sum + (k.difficulty || 0), 0) / clusterKws.length
@@ -289,7 +309,7 @@ Rules:
         .values({
           companyId,
           name: cluster.name,
-          primaryKeyword: cluster.primaryKeyword,
+          primaryKeyword,
           verticalId: vertical?.id || null,
           totalVolume: totalVol,
           avgDifficulty: Math.round(avgDiff * 10) / 10,
@@ -308,6 +328,30 @@ Rules:
         assignedKeywordIds.add(kw.id);
         totalAssigned++;
       }
+    }
+
+    // Preserve completeness if the model omits or reformats a keyword unexpectedly.
+    for (const keyword of keywordChunk.filter((item) => !assignedKeywordIds.has(item.id))) {
+      const [clusterRecord] = await db
+        .insert(keywordClusters)
+        .values({
+          companyId,
+          name: keyword.keyword,
+          primaryKeyword: keyword.keyword,
+          verticalId: null,
+          totalVolume: keyword.volume || 0,
+          avgDifficulty: keyword.difficulty || 0,
+          priority: (keyword.volume || 0) / (keyword.difficulty || 1),
+          status: "pending",
+        })
+        .returning();
+      await db
+        .update(keywords)
+        .set({ clusterId: clusterRecord.id, status: "clustered" })
+        .where(and(eq(keywords.companyId, companyId), eq(keywords.id, keyword.id)));
+      assignedKeywordIds.add(keyword.id);
+      clustersCreated++;
+      totalAssigned++;
     }
   }
 

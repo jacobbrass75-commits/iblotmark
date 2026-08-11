@@ -20,9 +20,18 @@ import {
 } from "./shopifyPublisher";
 import { db } from "./db";
 import { and, eq } from "drizzle-orm";
-import { blogPosts, companyIntegrations, companyMemberships, companyUsageEvents } from "@shared/schema";
-import { companyRoleAtLeast, getCompanyContext, getCompanyIdFromRequest, requireBlogRole } from "./companyContext";
+import { blogPosts, companyIntegrations, companyMemberships, companyUsageEvents, products } from "@shared/schema";
+import {
+  companyRoleAtLeast,
+  getCompanyContext,
+  getCompanyIdFromRequest,
+  requireBlogRole,
+  type CompanyContext,
+} from "./companyContext";
 import { encryptSecret } from "./integrationSecrets";
+import { lintContent } from "./contentLinter";
+import { resolveBlogQualityGate } from "./blogQuality";
+import { assessPublishReadiness } from "./publishReadiness";
 
 const SHOPIFY_CLIENT_ID = process.env.SHOPIFY_CLIENT_ID || "";
 const SHOPIFY_CLIENT_SECRET = process.env.SHOPIFY_CLIENT_SECRET || "";
@@ -44,6 +53,91 @@ function allowDirectCollectionMutation(): boolean {
 function parseNumericId(value: unknown): number | null {
   const id = Number(value);
   return Number.isFinite(id) && id > 0 ? id : null;
+}
+
+async function getPublishReadiness(post: typeof blogPosts.$inferSelect, companyId: string) {
+  const catalog = await db
+    .select({ title: products.title, handle: products.handle, price: products.price })
+    .from(products)
+    .where(eq(products.companyId, companyId));
+  const lintReport = lintContent({
+    markdown: post.markdown || "",
+    title: post.title,
+    metaTitle: post.metaTitle || undefined,
+    metaDescription: post.metaDescription || undefined,
+    products: catalog.map((product) => ({
+      title: product.title,
+      handle: product.handle,
+      price: product.price && Number.isFinite(Number(product.price)) ? Number(product.price) : null,
+    })),
+  });
+
+  return assessPublishReadiness(post, lintReport, resolveBlogQualityGate());
+}
+
+function decodeXml(value: string): string {
+  return value
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/&#(\d+);/g, (_match, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_match, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&quot;/g, "\"")
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&");
+}
+
+function atomTag(entry: string, tag: string): string {
+  const match = entry.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`, "i"));
+  return match ? decodeXml(match[1]).trim() : "";
+}
+
+async function listPublicBlogArticles(companyContext: CompanyContext) {
+  const integration = companyContext.integrations.shopify;
+  const defaultBlogId = integration?.defaultBlogId;
+  const blogHandle = integration?.blogTargets.find((target) => target.id === defaultBlogId)?.handle
+    || integration?.blogTargets[0]?.handle
+    || "news";
+  const configuredBlogUrl = companyContext.brandProfile.blogUrl?.trim();
+  const storeUrl = integration?.publicStoreUrl?.trim()
+    || companyContext.brandProfile.websiteUrl?.trim()
+    || companyContext.company.websiteUrl?.trim();
+  const blogUrl = configuredBlogUrl || (storeUrl ? `${storeUrl.replace(/\/$/, "")}/blogs/${blogHandle}` : "");
+  if (!blogUrl) throw new Error("No public blog URL is configured for this company.");
+
+  const parsedBlogUrl = new URL(blogUrl);
+  if (parsedBlogUrl.protocol !== "https:") {
+    throw new Error("The public blog URL must use HTTPS.");
+  }
+
+  const feedUrl = new URL(`${parsedBlogUrl.pathname.replace(/\/$/, "")}.atom`, parsedBlogUrl.origin);
+  const response = await fetch(feedUrl, {
+    headers: { Accept: "application/atom+xml, application/xml;q=0.9" },
+  });
+  if (!response.ok) {
+    throw new Error(`Public blog feed request failed with status ${response.status}.`);
+  }
+
+  const feed = await response.text();
+  const entries = feed.match(/<entry(?:\s[^>]*)?>[\s\S]*?<\/entry>/gi) || [];
+  const articles = entries.map((entry) => {
+    const alternateLink = entry.match(/<link\b[^>]*\brel=["']alternate["'][^>]*\bhref=["']([^"']+)["'][^>]*\/?>/i)
+      || entry.match(/<link\b[^>]*\bhref=["']([^"']+)["'][^>]*\/?>/i);
+    const link = alternateLink ? decodeXml(alternateLink[1]) : "";
+    const handle = link ? new URL(link, parsedBlogUrl.origin).pathname.split("/").filter(Boolean).at(-1) : undefined;
+    const publishedAt = atomTag(entry, "published") || null;
+    return {
+      id: link || atomTag(entry, "id"),
+      title: atomTag(entry, "title"),
+      handle,
+      public_url: link || undefined,
+      published: true,
+      published_at: publishedAt,
+      updated_at: atomTag(entry, "updated") || publishedAt,
+    };
+  });
+
+  return { articles, blogUrl: parsedBlogUrl.toString().replace(/\/$/, ""), source: "public-feed" as const };
 }
 
 async function getLinkedShopifyPost(companyId: string, articleId: number) {
@@ -336,6 +430,14 @@ export function registerShopifyRoutes(app: {
           });
         }
 
+        const readiness = await getPublishReadiness(post, companyId);
+        if (!readiness.ready) {
+          return res.status(409).json({
+            error: "Blog post is not ready for Shopify publishing",
+            issues: readiness.errors,
+          });
+        }
+
         const result = await syncBlogPostToShopify(id, blogId, companyId);
 
         if (result.success) {
@@ -377,22 +479,42 @@ export function registerShopifyRoutes(app: {
         }
 
         // Validate all post IDs exist inside the active company.
-        const posts = await Promise.all(
+        const postRows = await Promise.all(
           postIds.map((id) =>
             db
-              .select({ id: blogPosts.id, title: blogPosts.title })
+              .select()
               .from(blogPosts)
               .where(and(eq(blogPosts.companyId, companyId), eq(blogPosts.id, id)))
           )
         );
 
-        const validIds = posts
+        const foundPosts = postRows
           .filter((rows) => rows.length > 0)
-          .map((rows) => rows[0].id);
+          .map((rows) => rows[0]);
+        const validIds = foundPosts.map((post) => post.id);
 
         if (validIds.length === 0) {
           return res.status(404).json({
             error: "None of the specified post IDs were found",
+          });
+        }
+
+        const readinessResults = await Promise.all(
+          foundPosts.map(async (post) => ({
+            id: post.id,
+            title: post.title,
+            readiness: await getPublishReadiness(post, companyId),
+          })),
+        );
+        const blocked = readinessResults.filter((item) => !item.readiness.ready);
+        if (blocked.length > 0) {
+          return res.status(409).json({
+            error: "One or more blog posts are not ready for Shopify publishing",
+            blocked: blocked.map((item) => ({
+              id: item.id,
+              title: item.title,
+              issues: item.readiness.errors,
+            })),
           });
         }
 
@@ -570,8 +692,26 @@ export function registerShopifyRoutes(app: {
   // GET /api/blog/shopify/articles — List Shopify blog articles
   router.get("/articles", async (req: Request, res: Response) => {
     try {
-      const articles = await listShopifyArticles(undefined, 50, await getCompanyContext(getCompanyIdFromRequest(req)));
-      res.json({ articles });
+      const companyContext = await getCompanyContext(getCompanyIdFromRequest(req));
+      try {
+        const articles = await listShopifyArticles(undefined, 50, companyContext);
+        res.json({
+          articles,
+          blogUrl: companyContext.brandProfile.blogUrl || null,
+          source: "shopify-admin",
+        });
+      } catch (error: unknown) {
+        try {
+          res.json(await listPublicBlogArticles(companyContext));
+        } catch (fallbackError: unknown) {
+          const message = fallbackError instanceof Error
+            ? fallbackError.message
+            : error instanceof Error
+              ? error.message
+              : "Unknown error";
+          res.status(500).json({ error: message });
+        }
+      }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
       res.status(500).json({ error: message });

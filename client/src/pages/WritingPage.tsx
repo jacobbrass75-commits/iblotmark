@@ -11,7 +11,7 @@ export default function WritingPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <header className="border-b border-border bg-background/95 backdrop-blur-md sticky top-0 z-40">
+      <header className="sticky top-0 z-40 hidden border-b border-border bg-background/95 backdrop-blur-md md:block">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <PenTool className="h-5 w-5 text-primary" />
@@ -40,7 +40,7 @@ export default function WritingPage() {
         </div>
       </header>
 
-      <main className="flex-1 container mx-auto px-4 py-6 pb-8 w-full eva-grid-bg" style={{ height: "calc(100vh - 56px)" }}>
+      <main className="h-[100dvh] w-full flex-1 p-0 md:container md:mx-auto md:h-[calc(100vh-56px)] md:px-4 md:py-6 md:pb-8 md:eva-grid-bg">
         <WritingChat initialProjectId={initialProjectId} />
       </main>
     </div>

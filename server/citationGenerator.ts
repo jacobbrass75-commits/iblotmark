@@ -177,12 +177,9 @@ export function generateChicagoFootnote(
 export function generateFootnoteWithQuote(
   citation: CitationData,
   quote: string,
-  pageNumber?: string
+  pageNumber?: string,
+  style: CitationStyle = "chicago"
 ): string {
-  // Get the base footnote without the trailing period
-  const baseFootnote = generateChicagoFootnote(citation, pageNumber, false);
-  const footnoteWithoutPeriod = baseFootnote.slice(0, -1);
-
   // Clean up the quote - remove excessive whitespace, ensure proper formatting
   const cleanQuote = quote.trim().replace(/\s+/g, ' ');
 
@@ -190,9 +187,16 @@ export function generateFootnoteWithQuote(
   const displayQuote = cleanQuote.length > 150
     ? cleanQuote.substring(0, 147) + '...'
     : cleanQuote;
+  const quoteWithPunctuation = /[.!?…]$/.test(displayQuote) ? displayQuote : `${displayQuote}.`;
 
-  // Format: Footnote info, "quoted text."
-  return `${footnoteWithoutPeriod}: "${displayQuote}."`;
+  if (style !== "chicago") {
+    return `"${quoteWithPunctuation}" ${generateInTextCitation(citation, style, pageNumber)}`;
+  }
+
+  // Chicago uses a full note followed by the quoted passage.
+  const baseFootnote = generateChicagoFootnote(citation, pageNumber, false);
+  const footnoteWithoutPeriod = baseFootnote.replace(/\.$/, "");
+  return `${footnoteWithoutPeriod}: "${quoteWithPunctuation}"`;
 }
 
 /**

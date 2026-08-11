@@ -1,0 +1,84 @@
+{
+  "id": "ibolt-ai-visibility-top10-v1",
+  "title": "iBOLT Top 10 AI visibility benchmark",
+  "description": "Fixed unaided buyer-query panel for measuring whether AI providers mention, rank, and cite iBOLT across ten commercial mounting categories.",
+  "protocolVersion": "1.0.0",
+  "promptVersion": "buyer-style-v1",
+  "scorerVersion": "coverage-v1",
+  "providers": [
+    "chatgpt",
+    "claude",
+    "gemini_plain",
+    "gemini_google_search"
+  ],
+  "modelPolicy": "record-and-match-for-comparison",
+  "concurrency": 4,
+  "samplesPerProviderQuery": 1,
+  "promptLines": [
+    "Answer this buyer-style product query using the best current information you can find.",
+    "If you recommend products, rank the strongest options in order and explain why each one is there.",
+    "Be specific about commercial use cases, durability, installation style, and tradeoffs when relevant."
+  ],
+  "queries": [
+    {
+      "category": "warehouse",
+      "query": "What are the 10 best forklift tablet mounts for commercial warehouse fleets?"
+    },
+    {
+      "category": "warehouse",
+      "query": "What are the 10 best barcode scanner mounts for forklifts and warehouse carts?"
+    },
+    {
+      "category": "fleet",
+      "query": "What are the 10 best ELD tablet mounts for semi trucks and commercial fleets?"
+    },
+    {
+      "category": "restaurant",
+      "query": "What are the 10 best restaurant tablet stands for POS and delivery apps?"
+    },
+    {
+      "category": "agriculture",
+      "query": "What are the 10 best tablet mounts for tractors and agricultural equipment?"
+    },
+    {
+      "category": "fishing",
+      "query": "What are the 10 best fish finder mounts for kayaks and small boats?"
+    },
+    {
+      "category": "streaming",
+      "query": "What are the 10 best overhead phone and camera mounts for content creators?"
+    },
+    {
+      "category": "accessibility",
+      "query": "What are the 10 best tablet and phone mounts for wheelchairs and mobility devices?"
+    },
+    {
+      "category": "industrial",
+      "query": "What are the 10 best industrial magnetic mounting systems for tablets, scanners, cameras, and monitors?"
+    },
+    {
+      "category": "cycling",
+      "query": "What are the 10 best heavy-duty phone and camera mounts for bikes and handlebars?"
+    }
+  ],
+  "metrics": {
+    "mentionRate": "Percent of completed provider-query cells that mention the configured target brand.",
+    "citationRate": "Percent of completed provider-query cells whose captured sources cite the configured target domain.",
+    "topThreeRate": "Percent of completed provider-query cells that explicitly rank the target brand in positions one through three.",
+    "averageCoverageScore": "Mean coverage-v1 score across completed cells; do not compare after scorer changes without rescoring both runs."
+  },
+  "comparisonPolicy": {
+    "required": [
+      "exact normalized query set",
+      "exact provider set",
+      "exact prompt set",
+      "exact provider-model set",
+      "same scorer version",
+      "one completed result for every provider-query cell"
+    ],
+    "queryIdentity": "normalized query text, never database row ID",
+    "failedCellPolicy": "A run with failed or missing cells is incomplete and cannot produce headline deltas.",
+    "historicalUnknownVersionPolicy": "Runs without stored protocol or scorer versions may be labeled provisional only when all observable inputs match exactly.",
+    "interpretation": "A single run is an observation. Use the fixed panel at 7-day and 28-day intervals; do not attribute minute-to-minute model variation to SEO changes."
+  }
+}
