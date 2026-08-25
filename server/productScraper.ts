@@ -4,6 +4,7 @@
 import { db } from "./db";
 import { and, eq } from "drizzle-orm";
 import {
+  companyIntegrations,
   products,
   productVerticals,
   industryVerticals,
@@ -15,6 +16,7 @@ import { cachedApiCall, shopifyLimiter, anthropicLimiter, TTL } from "./apiCache
 import { getCompanyContext } from "./companyContext";
 import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 import { readResponseTextLimited, safeFetch } from "./safeFetch";
+import { decryptSecret } from "./integrationSecrets";
 
 const DEFAULT_SHOPIFY_BASE = "https://iboltmounts.com";
 const PRODUCTS_PER_PAGE = 250; // Shopify max
@@ -23,12 +25,30 @@ interface ShopifyProduct {
   id: number;
   title: string;
   handle: string;
-  body_html: string;
-  product_type: string;
-  vendor: string;
-  tags: string[];
-  images: Array<{ src: string }>;
-  variants: Array<{ price: string; sku?: string; available?: boolean; title?: string; id?: number }>;
+  body_html?: string;
+  product_type?: string;
+  vendor?: string;
+  tags?: string[] | string;
+  images?: Array<{ src?: string }>;
+  variants?: ShopifyVariant[];
+}
+
+interface ShopifyVariant {
+  id?: number;
+  title?: string;
+  sku?: string;
+  price?: string;
+  available?: boolean;
+  inventory_item_id?: number;
+  inventory_quantity?: number;
+  inventory_management?: string | null;
+}
+
+interface ShopifyInventoryLevel {
+  inventory_item_id: number;
+  location_id: number;
+  available: number | null;
+  updated_at?: string;
 }
 
 type ProductMapping = {
@@ -36,6 +56,17 @@ type ProductMapping = {
   verticalSlug: string;
   relevance: number;
 };
+
+export interface ProductSyncResult {
+  total: number;
+  new_: number;
+  updated: number;
+  source: "shopify_admin" | "shopify_public";
+  inventorySynced: boolean;
+  inventoryTrackedItems: number;
+  inventoryLevels: number;
+  inventoryError?: string;
+}
 
 function originFromUrl(value?: string | null): string | null {
   if (!value) return null;
@@ -63,6 +94,169 @@ function resolvePublicShopifyBase(companyContext: Awaited<ReturnType<typeof getC
   }
 
   throw new Error("Configure a Shopify public store URL or product URL pattern before syncing products.");
+}
+
+function normalizeShop(value?: string | null): string | null {
+  if (!value) return null;
+  const host = value.trim().replace(/^https?:\/\//i, "").replace(/\/.*$/, "").toLowerCase();
+  if (!host) return null;
+  const shop = host.replace(/\.myshopify\.com$/i, "");
+  return /^[a-z0-9][a-z0-9-]*$/.test(shop) ? shop : null;
+}
+
+function configuredShop(companyContext: Awaited<ReturnType<typeof getCompanyContext>>): string | null {
+  return normalizeShop(companyContext.integrations.shopify?.shop)
+    || normalizeShop(process.env.SHOPIFY_SHOP)
+    || (companyContext.company.id === DEFAULT_COMPANY_ID ? normalizeShop(DEFAULT_SHOPIFY_BASE) : null);
+}
+
+function asRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+}
+
+async function getStoredShopifyAccessToken(
+  companyContext: Awaited<ReturnType<typeof getCompanyContext>>,
+): Promise<string> {
+  const integrationId = companyContext.integrations.shopify?.id;
+  if (!integrationId) return "";
+
+  const [integration] = await db
+    .select({ config: companyIntegrations.config })
+    .from(companyIntegrations)
+    .where(and(
+      eq(companyIntegrations.companyId, companyContext.company.id),
+      eq(companyIntegrations.id, integrationId),
+      eq(companyIntegrations.type, "shopify"),
+    ))
+    .limit(1);
+
+  const encryptedAccessToken = asRecord(integration?.config).encryptedAccessToken;
+  if (typeof encryptedAccessToken !== "string" || !encryptedAccessToken) return "";
+  return decryptSecret(encryptedAccessToken);
+}
+
+async function getReadOnlyShopifyAdminAuth(
+  companyContext: Awaited<ReturnType<typeof getCompanyContext>>,
+): Promise<{ shop: string; token: string }> {
+  const shop = configuredShop(companyContext);
+  if (!shop) {
+    throw new Error("Shopify shop is not configured for this company.");
+  }
+
+  const storedToken = await getStoredShopifyAccessToken(companyContext);
+  if (storedToken) return { shop, token: storedToken };
+
+  const envToken = process.env.SHOPIFY_ACCESS_TOKEN?.trim();
+  const envShop = normalizeShop(process.env.SHOPIFY_SHOP);
+  if (envToken && (!envShop || envShop === shop)) {
+    return { shop, token: envToken };
+  }
+
+  throw new Error("Shopify Admin API access token is not configured. Add a read-only token with read_products and read_inventory scopes.");
+}
+
+function parseNextPageInfo(linkHeader: string | null): string | null {
+  if (!linkHeader) return null;
+  const next = linkHeader
+    .split(",")
+    .map((part) => part.trim())
+    .find((part) => /rel="?next"?/i.test(part));
+  const match = next?.match(/<([^>]+)>/);
+  if (!match?.[1]) return null;
+  try {
+    return new URL(match[1]).searchParams.get("page_info");
+  } catch {
+    return null;
+  }
+}
+
+async function shopifyAdminGet<T>(
+  shop: string,
+  token: string,
+  endpoint: string,
+): Promise<{ data: T; response: Response }> {
+  await shopifyLimiter.acquire();
+  const response = await safeFetch(`https://${shop}.myshopify.com/admin/api/${process.env.SHOPIFY_API_VERSION || "2026-04"}/${endpoint}`, {
+    headers: {
+      Accept: "application/json",
+      "X-Shopify-Access-Token": token,
+    },
+    signal: AbortSignal.timeout(20000),
+  });
+
+  if (!response.ok) {
+    const body = await readResponseTextLimited(response, 2000).catch(() => "");
+    if (response.status === 401 || response.status === 403) {
+      throw new Error(`Shopify Admin API denied ${endpoint}. Confirm the token has read_products and read_inventory access. (${response.status})`);
+    }
+    throw new Error(`Shopify Admin API ${endpoint} failed with status ${response.status}: ${body || response.statusText}`);
+  }
+
+  return {
+    data: JSON.parse(await readResponseTextLimited(response, 5_000_000)) as T,
+    response,
+  };
+}
+
+async function fetchAdminProducts(
+  shop: string,
+  token: string,
+): Promise<ShopifyProduct[]> {
+  const allProducts: ShopifyProduct[] = [];
+  let pageInfo: string | null = null;
+
+  do {
+    const params = new URLSearchParams({
+      limit: String(PRODUCTS_PER_PAGE),
+      fields: "id,title,handle,body_html,product_type,vendor,tags,images,variants",
+    });
+    if (pageInfo) params.set("page_info", pageInfo);
+
+    const { data, response } = await shopifyAdminGet<{ products: ShopifyProduct[] }>(
+      shop,
+      token,
+      `products.json?${params.toString()}`,
+    );
+    allProducts.push(...(data.products || []));
+    pageInfo = parseNextPageInfo(response.headers.get("link"));
+  } while (pageInfo);
+
+  return allProducts;
+}
+
+function chunk<T>(items: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size));
+  }
+  return chunks;
+}
+
+async function fetchInventoryLevels(
+  shop: string,
+  token: string,
+  inventoryItemIds: number[],
+): Promise<Map<number, ShopifyInventoryLevel[]>> {
+  const levelsByItemId = new Map<number, ShopifyInventoryLevel[]>();
+  const uniqueIds = Array.from(new Set(inventoryItemIds.filter((id) => Number.isFinite(id) && id > 0)));
+
+  for (const ids of chunk(uniqueIds, 50)) {
+    const params = new URLSearchParams({ inventory_item_ids: ids.join(",") });
+    const { data } = await shopifyAdminGet<{ inventory_levels: ShopifyInventoryLevel[] }>(
+      shop,
+      token,
+      `inventory_levels.json?${params.toString()}`,
+    );
+    for (const level of data.inventory_levels || []) {
+      const list = levelsByItemId.get(level.inventory_item_id) || [];
+      list.push(level);
+      levelsByItemId.set(level.inventory_item_id, list);
+    }
+  }
+
+  return levelsByItemId;
 }
 
 function termsFromVertical(vertical: IndustryVertical): string[] {
@@ -184,6 +378,193 @@ function stripHtml(html: string): string {
     .trim();
 }
 
+function normalizeTags(tags: ShopifyProduct["tags"]): string[] {
+  if (Array.isArray(tags)) return tags.map((tag) => String(tag).trim()).filter(Boolean);
+  if (typeof tags === "string") {
+    return tags.split(",").map((tag) => tag.trim()).filter(Boolean);
+  }
+  return [];
+}
+
+function variantInventoryAvailable(
+  variant: ShopifyVariant,
+  levels: ShopifyInventoryLevel[],
+): number | null {
+  if (levels.length > 0) {
+    const quantities = levels
+      .map((level) => level.available)
+      .filter((value): value is number => typeof value === "number" && Number.isFinite(value));
+    return quantities.length > 0 ? quantities.reduce((sum, value) => sum + value, 0) : null;
+  }
+
+  return typeof variant.inventory_quantity === "number" && Number.isFinite(variant.inventory_quantity)
+    ? variant.inventory_quantity
+    : null;
+}
+
+function enrichVariantsWithInventory(
+  variants: ShopifyVariant[],
+  levelsByItemId: Map<number, ShopifyInventoryLevel[]>,
+): Array<Record<string, unknown>> {
+  return variants.map((variant) => {
+    const inventoryItemId = variant.inventory_item_id;
+    const levels = inventoryItemId ? levelsByItemId.get(inventoryItemId) || [] : [];
+    return {
+      ...variant,
+      inventoryAvailable: variantInventoryAvailable(variant, levels),
+      inventoryLevels: levels.map((level) => ({
+        inventoryItemId: level.inventory_item_id,
+        locationId: level.location_id,
+        available: level.available,
+        updatedAt: level.updated_at || null,
+      })),
+    };
+  });
+}
+
+function summarizeShopifyInventory(
+  variants: ShopifyVariant[],
+  levelsByItemId: Map<number, ShopifyInventoryLevel[]>,
+  syncedAt: Date,
+): Record<string, unknown> {
+  let totalAvailable = 0;
+  let hasQuantity = false;
+  const byLocation = new Map<number, { locationId: number; available: number | null; updatedAt: string | null }>();
+  const inventoryItemIds = new Set<number>();
+
+  for (const variant of variants) {
+    const inventoryItemId = variant.inventory_item_id;
+    const levels = inventoryItemId ? levelsByItemId.get(inventoryItemId) || [] : [];
+    if (inventoryItemId) inventoryItemIds.add(inventoryItemId);
+
+    const variantAvailable = variantInventoryAvailable(variant, levels);
+    if (typeof variantAvailable === "number") {
+      totalAvailable += variantAvailable;
+      hasQuantity = true;
+    }
+
+    for (const level of levels) {
+      const existing = byLocation.get(level.location_id);
+      const nextAvailable = typeof level.available === "number"
+        ? (existing?.available || 0) + level.available
+        : existing?.available ?? null;
+      byLocation.set(level.location_id, {
+        locationId: level.location_id,
+        available: nextAvailable,
+        updatedAt: level.updated_at || existing?.updatedAt || null,
+      });
+    }
+  }
+
+  return {
+    totalAvailable: hasQuantity ? totalAvailable : null,
+    tracked: hasQuantity,
+    variantCount: variants.length,
+    inventoryItemCount: inventoryItemIds.size,
+    locationCount: byLocation.size,
+    syncedAt: syncedAt.toISOString(),
+    byLocation: Array.from(byLocation.values()).sort((left, right) => left.locationId - right.locationId),
+  };
+}
+
+async function storeShopifyProducts(
+  companyContext: Awaited<ReturnType<typeof getCompanyContext>>,
+  shopifyProducts: ShopifyProduct[],
+  options: {
+    source: "shopify_admin" | "shopify_public";
+    shopifyBase: string;
+    levelsByItemId?: Map<number, ShopifyInventoryLevel[]>;
+    inventoryError?: string;
+  },
+): Promise<ProductSyncResult> {
+  console.log(`[Scraper] Fetched ${shopifyProducts.length} products from Shopify (${options.source})`);
+
+  let newCount = 0;
+  let updatedCount = 0;
+  const now = new Date();
+  let inventoryLevels = 0;
+  const inventoryItemIds = new Set<number>();
+
+  for (const sp of shopifyProducts) {
+    const shopifyId = `${companyContext.company.id}:${sp.id}`;
+    const existing = await db
+      .select()
+      .from(products)
+      .where(and(eq(products.companyId, companyContext.company.id), eq(products.shopifyId, shopifyId)))
+      .limit(1);
+
+    const variants = sp.variants || [];
+    for (const variant of variants) {
+      if (variant.inventory_item_id) inventoryItemIds.add(variant.inventory_item_id);
+    }
+
+    const levelsByItemId = options.levelsByItemId || new Map<number, ShopifyInventoryLevel[]>();
+    const enrichedVariants = enrichVariantsWithInventory(variants, levelsByItemId);
+    const shopifyInventory = options.source === "shopify_admin"
+      ? summarizeShopifyInventory(variants, levelsByItemId, now)
+      : null;
+    inventoryLevels += enrichedVariants.reduce((sum, variant) => {
+      const levels = Array.isArray(variant.inventoryLevels) ? variant.inventoryLevels.length : 0;
+      return sum + levels;
+    }, 0);
+
+    const totalAvailable = typeof shopifyInventory?.totalAvailable === "number"
+      ? shopifyInventory.totalAvailable
+      : null;
+
+    const productData = {
+      companyId: companyContext.company.id,
+      shopifyId,
+      title: sp.title,
+      handle: sp.handle,
+      description: stripHtml(sp.body_html || ""),
+      productType: sp.product_type || null,
+      vendor: sp.vendor || null,
+      tags: normalizeTags(sp.tags),
+      imageUrl: sp.images?.find((image) => image.src)?.src || null,
+      price: variants.find((variant) => variant.price)?.price || null,
+      sku: variants.find((variant) => variant.sku)?.sku || null,
+      url: companyContext.brandProfile.productUrlPattern
+        ? companyContext.brandProfile.productUrlPattern.replace("{handle}", sp.handle)
+        : `${options.shopifyBase}/products/${sp.handle}`,
+      variants: enrichedVariants,
+      availability: totalAvailable === null
+        ? variants.some((variant) => variant.available) ? "available" : null
+        : totalAvailable > 0 ? "available" : "out_of_stock",
+      sourceType: options.source,
+      sourceUrl: `${options.shopifyBase}/products/${sp.handle}`,
+      sourceData: {
+        shopifyProduct: sp,
+        ...(shopifyInventory ? { shopifyInventory } : {}),
+        ...(options.inventoryError ? { shopifyInventoryError: options.inventoryError } : {}),
+      },
+      sourceSyncedAt: now,
+      scrapedAt: now,
+      updatedAt: now,
+    };
+
+    if (existing.length > 0) {
+      await db.update(products).set(productData).where(eq(products.id, existing[0].id));
+      updatedCount++;
+    } else {
+      await db.insert(products).values(productData);
+      newCount++;
+    }
+  }
+
+  console.log(`[Scraper] Stored ${newCount} new, ${updatedCount} updated products`);
+  return {
+    total: shopifyProducts.length,
+    new_: newCount,
+    updated: updatedCount,
+    source: options.source,
+    inventorySynced: options.source === "shopify_admin" && !options.inventoryError,
+    inventoryTrackedItems: inventoryItemIds.size,
+    inventoryLevels,
+    ...(options.inventoryError ? { inventoryError: options.inventoryError } : {}),
+  };
+}
+
 function productSearchText(product: Product): string {
   const tags = Array.isArray(product.tags) ? product.tags.join(" ") : "";
   return [
@@ -286,58 +667,50 @@ async function insertMappings(
  * Scrape products from the configured company Shopify store and store in database.
  * Returns count of new and updated products.
  */
-export async function scrapeProducts(companyId = DEFAULT_COMPANY_ID): Promise<{ total: number; new_: number; updated: number }> {
+export async function scrapeProducts(companyId = DEFAULT_COMPANY_ID): Promise<ProductSyncResult> {
   const companyContext = await getCompanyContext(companyId);
   const shopifyBase = resolvePublicShopifyBase(companyContext);
-  const shopifyProducts = await fetchAllProducts(shopifyBase);
-  console.log(`[Scraper] Fetched ${shopifyProducts.length} products from Shopify`);
 
-  let newCount = 0;
-  let updatedCount = 0;
+  try {
+    return await syncShopifyInventory(companyContext.company.id);
+  } catch (error) {
+    const inventoryError = error instanceof Error ? error.message : "Shopify Admin inventory sync failed.";
+    console.warn(`[Scraper] Shopify Admin sync unavailable; falling back to public catalog: ${inventoryError}`);
+    const shopifyProducts = await fetchAllProducts(shopifyBase);
+    return storeShopifyProducts(companyContext, shopifyProducts, {
+      source: "shopify_public",
+      shopifyBase,
+      inventoryError,
+    });
+  }
+}
 
-  for (const sp of shopifyProducts) {
-    const shopifyId = `${companyContext.company.id}:${sp.id}`;
-    const existing = await db
-      .select()
-      .from(products)
-      .where(and(eq(products.companyId, companyContext.company.id), eq(products.shopifyId, shopifyId)))
-      .limit(1);
+export async function syncShopifyInventory(companyId = DEFAULT_COMPANY_ID): Promise<ProductSyncResult> {
+  const companyContext = await getCompanyContext(companyId);
+  const shopifyBase = resolvePublicShopifyBase(companyContext);
+  const { shop, token } = await getReadOnlyShopifyAdminAuth(companyContext);
+  const shopifyProducts = await fetchAdminProducts(shop, token);
+  const inventoryItemIds = shopifyProducts.flatMap((product) =>
+    (product.variants || [])
+      .map((variant) => variant.inventory_item_id)
+      .filter((id): id is number => typeof id === "number" && Number.isFinite(id)),
+  );
 
-    const productData = {
-      companyId: companyContext.company.id,
-      shopifyId,
-      title: sp.title,
-      handle: sp.handle,
-      description: stripHtml(sp.body_html || ""),
-      productType: sp.product_type || null,
-      vendor: sp.vendor || null,
-      tags: sp.tags || [],
-      imageUrl: sp.images?.[0]?.src || null,
-      price: sp.variants?.[0]?.price || null,
-      sku: sp.variants?.find((variant) => variant.sku)?.sku || null,
-      url: companyContext.brandProfile.productUrlPattern
-        ? companyContext.brandProfile.productUrlPattern.replace("{handle}", sp.handle)
-        : `${shopifyBase}/products/${sp.handle}`,
-      variants: sp.variants || [],
-      availability: sp.variants?.some((variant) => variant.available) ? "available" : null,
-      sourceType: "shopify_public",
-      sourceUrl: `${shopifyBase}/products/${sp.handle}`,
-      sourceData: { shopifyProduct: sp },
-      sourceSyncedAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    if (existing.length > 0) {
-      await db.update(products).set(productData).where(eq(products.id, existing[0].id));
-      updatedCount++;
-    } else {
-      await db.insert(products).values(productData);
-      newCount++;
-    }
+  let levelsByItemId = new Map<number, ShopifyInventoryLevel[]>();
+  let inventoryError: string | undefined;
+  try {
+    levelsByItemId = await fetchInventoryLevels(shop, token, inventoryItemIds);
+  } catch (error) {
+    inventoryError = error instanceof Error ? error.message : "Shopify inventory levels could not be fetched.";
+    console.warn(`[Scraper] Shopify inventory levels unavailable: ${inventoryError}`);
   }
 
-  console.log(`[Scraper] Stored ${newCount} new, ${updatedCount} updated products`);
-  return { total: shopifyProducts.length, new_: newCount, updated: updatedCount };
+  return storeShopifyProducts(companyContext, shopifyProducts, {
+    source: "shopify_admin",
+    shopifyBase,
+    levelsByItemId,
+    inventoryError,
+  });
 }
 
 /**

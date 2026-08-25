@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "wouter";
+import { BrowserMultiFormatReader, type IScannerControls } from "@zxing/browser";
 import QRCode from "qrcode";
 import {
+  ArrowLeft,
   Calculator,
   Camera,
   Download,
   PackageCheck,
   QrCode,
+  RefreshCw,
   Search,
   Trash2,
 } from "lucide-react";
@@ -14,7 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { useProducts } from "@/hooks/useProducts";
+import { useProducts, useSyncShopifyInventory } from "@/hooks/useProducts";
 import {
   type InventoryBin,
   type InventoryCalculation,
@@ -25,10 +28,6 @@ import {
   useInventoryCounts,
   useLookupInventoryBin,
 } from "@/hooks/useInventory";
-
-type BarcodeDetectorConstructor = new (options?: { formats?: string[] }) => {
-  detect(source: HTMLVideoElement): Promise<Array<{ rawValue: string }>>;
-};
 
 const EMPTY_BIN_WEIGHT_OZ = 56;
 
@@ -45,6 +44,133 @@ function formatDate(value: string | null | undefined) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "Never";
   return date.toLocaleString();
+}
+
+type ShopifyInventorySummary = {
+  totalAvailable?: number | null;
+  tracked?: boolean;
+  syncedAt?: string | null;
+  inventoryItemCount?: number;
+  locationCount?: number;
+};
+
+function getShopifyInventorySummary(product: any): ShopifyInventorySummary | null {
+  const summary = product?.sourceData?.shopifyInventory;
+  return summary && typeof summary === "object" ? summary : null;
+}
+
+function formatShopifyQuantity(summary: ShopifyInventorySummary | null) {
+  if (!summary) return null;
+  if (typeof summary.totalAvailable === "number" && Number.isFinite(summary.totalAvailable)) {
+    return `${summary.totalAvailable.toLocaleString()} Shopify units`;
+  }
+  return summary.tracked === false ? "Not tracked in Shopify" : "Shopify quantity unavailable";
+}
+
+function numericValue(value: unknown): number | null {
+  const parsed = typeof value === "number" ? value : Number(String(value ?? "").trim());
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function getCatalogUnitWeightOz(product: any): number | null {
+  return numericValue(product?.sourceData?.unitWeightOz)
+    || numericValue(product?.sourceData?.partWeightOz)
+    || numericValue(product?.specs?.unitWeightOz)
+    || numericValue(product?.variants?.find((variant: any) => numericValue(variant?.unitWeightOz))?.unitWeightOz)
+    || null;
+}
+
+function readableMutationError(error: any): string {
+  const message = String(error?.message || "Request failed");
+  const jsonStart = message.indexOf("{");
+  if (jsonStart >= 0) {
+    try {
+      const parsed = JSON.parse(message.slice(jsonStart));
+      if (typeof parsed?.error === "string") return parsed.error;
+      if (typeof parsed?.message === "string") return parsed.message;
+    } catch {
+      // Fall through to the original message.
+    }
+  }
+  return message.replace(/^\d+:\s*/, "");
+}
+
+function normalizeCatalogScan(raw: string): string {
+  const scanned = raw.trim();
+  if (!scanned) return "";
+
+  try {
+    const url = new URL(scanned);
+    for (const key of ["sku", "barcode", "variant", "product", "q"]) {
+      const value = url.searchParams.get(key);
+      if (value?.trim()) return value.trim();
+    }
+    const segments = url.pathname.split("/").filter(Boolean);
+    const productIndex = segments.findIndex((segment) => segment === "products");
+    if (productIndex >= 0 && segments[productIndex + 1]) return segments[productIndex + 1];
+    return segments.at(-1) || scanned;
+  } catch {
+    return scanned;
+  }
+}
+
+function stringValue(value: unknown): string | null {
+  if (typeof value === "string" && value.trim()) return value.trim();
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  return null;
+}
+
+function variantValues(variant: any): Array<{ value: string; field: string }> {
+  if (!variant || typeof variant !== "object") return [];
+  return [
+    { value: stringValue(variant.sku) || "", field: "sku" },
+    { value: stringValue(variant.barcode) || "", field: "barcode" },
+    { value: stringValue(variant.id) || "", field: "variant" },
+    { value: stringValue(variant.inventory_item_id || variant.inventoryItemId) || "", field: "inventory" },
+    { value: stringValue(variant.title) || "", field: "title" },
+  ].filter((item) => item.value);
+}
+
+function findCatalogProductForScan(products: any[], raw: string): { product: any; matchedSku: string | null } | null {
+  const normalized = normalizeCatalogScan(raw);
+  const code = normalized.toLowerCase();
+  if (!code) return null;
+
+  let best: { product: any; matchedSku: string | null; score: number } | null = null;
+
+  for (const product of products) {
+    const variants = [
+      ...(Array.isArray(product.variants) ? product.variants : []),
+      ...(Array.isArray(product.sourceData?.shopifyProduct?.variants) ? product.sourceData.shopifyProduct.variants : []),
+    ];
+    const candidates: Array<{ value: string; field: string }> = [
+      { value: stringValue(product.sku) || "", field: "sku" },
+      { value: stringValue(product.handle) || "", field: "handle" },
+      { value: stringValue(product.title) || "", field: "title" },
+      { value: stringValue(product.shopifyId) || "", field: "shopify" },
+      ...variants.flatMap(variantValues),
+    ].filter((item) => item.value);
+
+    for (const candidate of candidates) {
+      const value = candidate.value.toLowerCase();
+      let score = 0;
+      if (value === code) {
+        score = candidate.field === "sku" || candidate.field === "barcode" ? 120 : 100;
+      } else if (code.length >= 4 && value.includes(code)) {
+        score = candidate.field === "sku" || candidate.field === "barcode" ? 80 : 45;
+      }
+
+      if (score > (best?.score || 0)) {
+        best = {
+          product,
+          matchedSku: candidate.field === "sku" || candidate.field === "barcode" ? candidate.value : product.sku || null,
+          score,
+        };
+      }
+    }
+  }
+
+  return best && best.score >= 45 ? { product: best.product, matchedSku: best.matchedSku } : null;
 }
 
 function buildQrPayload(bin: InventoryBin) {
@@ -132,6 +258,7 @@ export default function InventoryCount() {
   const [binSearch, setBinSearch] = useState("");
   const { data: bins = [], isLoading: binsLoading } = useInventoryBins(binSearch);
   const { data: counts = [] } = useInventoryCounts(25);
+  const syncShopifyInventory = useSyncShopifyInventory();
   const createBin = useCreateInventoryBin();
   const archiveBin = useArchiveInventoryBin();
   const lookupBin = useLookupInventoryBin();
@@ -159,8 +286,8 @@ export default function InventoryCount() {
   });
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-  const scanTimerRef = useRef<number | null>(null);
+  const scannerControlsRef = useRef<IScannerControls | null>(null);
+  const scanHandledRef = useRef(false);
   const initialScanHandled = useRef(false);
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState("");
@@ -170,6 +297,8 @@ export default function InventoryCount() {
   }, [products]);
 
   const selectedProduct = newBin.productId ? productsById.get(newBin.productId) : null;
+  const selectedProductInventory = getShopifyInventorySummary(selectedProduct);
+  const selectedBinInventory = getShopifyInventorySummary(selectedBin?.product);
 
   useEffect(() => {
     if (!selectedBin) return;
@@ -201,18 +330,47 @@ export default function InventoryCount() {
       setCalculationResult(null);
       toast({ title: "Bin loaded", description: `${bin.binLabel} | ${bin.productTitle}` });
     } catch (err: any) {
-      toast({ title: "Scan not found", description: err.message, variant: "destructive" });
+      const match = findCatalogProductForScan(products, trimmed);
+      if (match) {
+        const product = match.product;
+        const sku = match.matchedSku || product.sku || product.handle || "";
+        const unitWeightOz = getCatalogUnitWeightOz(product);
+        setNewBin((prev) => ({
+          ...prev,
+          productId: product.id,
+          productTitle: product.title || prev.productTitle,
+          sku,
+          binLabel: prev.binLabel || `${sku || product.title} - Main Bin`,
+          unitWeightOz: unitWeightOz ? String(unitWeightOz) : prev.unitWeightOz,
+        }));
+        setCalculationResult(null);
+        toast({
+          title: "Product found",
+          description: unitWeightOz
+            ? "No QR bin exists yet. Unit weight filled from the imported part sheet."
+            : "No QR bin exists yet. Add unit weight, then create the bin label.",
+        });
+        return;
+      }
+
+      toast({
+        title: "Scan not found",
+        description: `${readableMutationError(err)} Create a QR bin first, or sync Shopify with product/inventory read scopes.`,
+        variant: "destructive",
+      });
     }
   };
 
   const handleProductChange = (productId: string) => {
     const product = productsById.get(productId);
+    const unitWeightOz = getCatalogUnitWeightOz(product);
     setNewBin((prev) => ({
       ...prev,
       productId,
       productTitle: product?.title || prev.productTitle,
       sku: product?.sku || product?.handle || prev.sku,
       binLabel: prev.binLabel || `${product?.sku || product?.handle || product?.title || "Product"} - Main Bin`,
+      unitWeightOz: unitWeightOz ? String(unitWeightOz) : prev.unitWeightOz,
     }));
   };
 
@@ -246,6 +404,30 @@ export default function InventoryCount() {
     }
   };
 
+  const handleShopifyInventorySync = async () => {
+    try {
+      const result = await syncShopifyInventory.mutateAsync();
+      if (result.inventoryError) {
+        toast({
+          title: "Shopify products synced",
+          description: `Inventory blocked: ${result.inventoryError}`,
+          variant: "destructive",
+        });
+        return;
+      }
+      toast({
+        title: "Shopify inventory synced",
+        description: `${result.total} products, ${result.inventoryTrackedItems || 0} inventory items`,
+      });
+    } catch (err: any) {
+      toast({
+        title: "Shopify sync failed",
+        description: readableMutationError(err),
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleCalculate = async (save: boolean) => {
     if (!selectedBin) {
       toast({ title: "Select a bin first", description: "Scan a QR code or choose a bin from the list.", variant: "destructive" });
@@ -273,49 +455,69 @@ export default function InventoryCount() {
   };
 
   const stopCamera = () => {
-    if (scanTimerRef.current) {
-      window.clearInterval(scanTimerRef.current);
-      scanTimerRef.current = null;
+    scannerControlsRef.current?.stop();
+    scannerControlsRef.current = null;
+    const stream = videoRef.current?.srcObject;
+    if (stream instanceof MediaStream) {
+      stream.getTracks().forEach((track) => track.stop());
     }
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-    streamRef.current = null;
+    if (videoRef.current) videoRef.current.srcObject = null;
+    scanHandledRef.current = false;
     setCameraActive(false);
+  };
+
+  const waitForVideoElement = async () => {
+    for (let attempt = 0; attempt < 30; attempt += 1) {
+      if (videoRef.current) return videoRef.current;
+      await new Promise<void>((resolve) => window.requestAnimationFrame(() => resolve()));
+    }
+    throw new Error("Could not open the camera preview.");
   };
 
   const startCamera = async () => {
     setCameraError("");
-    const BarcodeDetectorClass = (window as unknown as { BarcodeDetector?: BarcodeDetectorConstructor }).BarcodeDetector;
-    if (!BarcodeDetectorClass) {
-      setCameraError("Camera QR detection is not available in this browser. Use a USB scanner, paste the QR URL, or scan the label with the phone camera to open this page.");
-      return;
-    }
+    setCameraActive(true);
+    scanHandledRef.current = false;
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-      streamRef.current = stream;
-      setCameraActive(true);
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
+      if (!navigator.mediaDevices?.getUserMedia) throw new Error("Camera access is not available in this browser.");
+      const video = await waitForVideoElement();
+      const reader = new BrowserMultiFormatReader(undefined, {
+        delayBetweenScanAttempts: 250,
+        delayBetweenScanSuccess: 500,
+      });
+      const controls = await reader.decodeFromConstraints(
+        {
+          audio: false,
+          video: {
+            facingMode: { ideal: "environment" },
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+          },
+        },
+        video,
+        (result, _error, activeControls) => {
+          if (!result || scanHandledRef.current) return;
+          scanHandledRef.current = true;
+          const value = result.getText();
+          activeControls.stop();
+          scannerControlsRef.current = null;
+          setCameraActive(false);
+          setScanInput(value);
+          void lookupCode(value);
+        },
+      );
+      if (scanHandledRef.current) {
+        controls.stop();
+      } else {
+        scannerControlsRef.current = controls;
       }
-      const detector = new BarcodeDetectorClass({ formats: ["qr_code"] });
-      scanTimerRef.current = window.setInterval(async () => {
-        if (!videoRef.current) return;
-        try {
-          const codes = await detector.detect(videoRef.current);
-          const value = codes[0]?.rawValue;
-          if (value) {
-            setScanInput(value);
-            stopCamera();
-            await lookupCode(value);
-          }
-        } catch {
-          setCameraError("Camera scan failed. Try better light or use the scanner input.");
-          stopCamera();
-        }
-      }, 500);
     } catch (err: any) {
-      setCameraError(err.message || "Could not start camera.");
       stopCamera();
+      if (err?.name === "NotAllowedError") {
+        setCameraError("Camera permission was denied. Allow camera access in the browser, then try again.");
+      } else {
+        setCameraError(err.message || "Could not start camera.");
+      }
     }
   };
 
@@ -328,17 +530,37 @@ export default function InventoryCount() {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
-        <div className="container mx-auto flex min-h-14 items-center justify-between gap-3 px-4">
-          <div className="flex min-w-0 items-center gap-3">
-            <Button variant="ghost" size="sm" onClick={() => setLocation("/blog")}>Back</Button>
+        <div className="container mx-auto flex min-h-14 flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:py-0">
+          <div className="flex min-w-0 items-start gap-3 sm:items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="shrink-0"
+              aria-label="Back to content dashboard"
+              onClick={() => setLocation("/blog")}
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
             <div className="min-w-0">
-              <h1 className="truncate text-lg font-bold">Inventory Count</h1>
-              <p className="text-xs text-muted-foreground">QR labels, scanner lookup, and scale-weight quantity math</p>
+              <h1 className="text-lg font-bold">Inventory Count</h1>
+              <p className="text-xs leading-5 text-muted-foreground">QR labels, scanner lookup, and scale-weight quantity math</p>
             </div>
           </div>
-          <Badge variant="outline" className="hidden sm:inline-flex">
-            Empty bin tare: {EMPTY_BIN_WEIGHT_OZ} oz
-          </Badge>
+          <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full sm:w-auto"
+              disabled={syncShopifyInventory.isPending}
+              onClick={handleShopifyInventorySync}
+            >
+              <RefreshCw className={`mr-2 h-4 w-4 ${syncShopifyInventory.isPending ? "animate-spin" : ""}`} />
+              {syncShopifyInventory.isPending ? "Syncing" : "Sync Shopify"}
+            </Button>
+            <Badge variant="outline" className="hidden sm:inline-flex">
+              Empty bin tare: {EMPTY_BIN_WEIGHT_OZ} oz
+            </Badge>
+          </div>
         </div>
       </header>
 
@@ -379,7 +601,7 @@ export default function InventoryCount() {
 
               {(cameraActive || cameraError) && (
                 <div className="space-y-2">
-                  <video ref={videoRef} className={cameraActive ? "aspect-video w-full rounded-md border bg-black object-cover" : "hidden"} muted playsInline />
+                  <video ref={videoRef} className={cameraActive ? "aspect-video w-full rounded-md border bg-black object-cover" : "hidden"} muted playsInline autoPlay />
                   {cameraError && <p className="text-sm text-destructive">{cameraError}</p>}
                 </div>
               )}
@@ -397,6 +619,9 @@ export default function InventoryCount() {
                         {selectedBin.sku && <Badge variant="outline">SKU {selectedBin.sku}</Badge>}
                         <Badge variant="outline">Unit {formatNumber(selectedBin.unitWeightOz, 4)} oz</Badge>
                         <Badge variant="outline">Tare {formatNumber(selectedBin.emptyBinWeightOz)} oz</Badge>
+                        {selectedBinInventory && (
+                          <Badge variant="secondary">{formatShopifyQuantity(selectedBinInventory)}</Badge>
+                        )}
                       </div>
                       <div className="text-sm text-muted-foreground">
                         Last count: {selectedBin.lastQuantity?.toLocaleString() || "None"} units
@@ -529,6 +754,17 @@ export default function InventoryCount() {
                 </div>
               </div>
 
+              {selectedProductInventory && (
+                <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm">
+                  <div className="font-medium">{formatShopifyQuantity(selectedProductInventory)}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {selectedProductInventory.inventoryItemCount || 0} inventory items
+                    {selectedProductInventory.locationCount ? ` across ${selectedProductInventory.locationCount} locations` : ""}
+                    {selectedProductInventory.syncedAt ? ` | synced ${formatDate(selectedProductInventory.syncedAt)}` : ""}
+                  </div>
+                </div>
+              )}
+
               <div className="grid gap-3 lg:grid-cols-4">
                 <div className="space-y-1 lg:col-span-2">
                   <label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Product Title</label>
@@ -624,7 +860,9 @@ export default function InventoryCount() {
                   <div className="py-8 text-center text-sm text-muted-foreground">Loading bins...</div>
                 ) : bins.length === 0 ? (
                   <div className="py-8 text-center text-sm text-muted-foreground">No inventory bins yet.</div>
-                ) : bins.map((bin) => (
+                ) : bins.map((bin) => {
+                  const binShopifyInventory = getShopifyInventorySummary(bin.product);
+                  return (
                   <div key={bin.id} className={`rounded-md border p-3 ${selectedBin?.id === bin.id ? "border-primary bg-primary/5" : "bg-background"}`}>
                     <div className="flex items-start gap-3">
                       {bin.product?.imageUrl && (
@@ -637,6 +875,9 @@ export default function InventoryCount() {
                           {bin.sku && <Badge variant="outline" className="text-[10px]">SKU {bin.sku}</Badge>}
                           <Badge variant="outline" className="text-[10px]">{formatNumber(bin.unitWeightOz, 4)} oz</Badge>
                           {bin.location && <Badge variant="outline" className="text-[10px]">{bin.location}</Badge>}
+                          {binShopifyInventory && (
+                            <Badge variant="secondary" className="text-[10px]">{formatShopifyQuantity(binShopifyInventory)}</Badge>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -667,7 +908,8 @@ export default function InventoryCount() {
                       </div>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </CardContent>
           </Card>

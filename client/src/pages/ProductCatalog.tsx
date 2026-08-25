@@ -8,6 +8,7 @@ import {
   useProducts,
   useProductStats,
   useScrapeProducts,
+  useSyncShopifyInventory,
   useMapVerticals,
   useImportProductsCsv,
   useImportProductUrl,
@@ -23,6 +24,7 @@ export default function ProductCatalog() {
   const { data: products = [], isLoading } = useProducts(selectedVertical || undefined);
   const { data: stats } = useProductStats();
   const scrapeMutation = useScrapeProducts();
+  const syncInventoryMutation = useSyncShopifyInventory();
   const mapMutation = useMapVerticals();
   const csvImportMutation = useImportProductsCsv();
   const urlImportMutation = useImportProductUrl();
@@ -39,6 +41,19 @@ export default function ProductCatalog() {
       toast({ title: "Scrape Complete", description: result.message });
     } catch (err: any) {
       toast({ title: "Scrape Failed", description: err.message, variant: "destructive" });
+    }
+  };
+
+  const handleSyncInventory = async () => {
+    try {
+      const result = await syncInventoryMutation.mutateAsync();
+      toast({
+        title: result.inventoryError ? "Products synced" : "Inventory synced",
+        description: result.inventoryError ? `Inventory blocked: ${result.inventoryError}` : result.message,
+        variant: result.inventoryError ? "destructive" : undefined,
+      });
+    } catch (err: any) {
+      toast({ title: "Inventory Sync Failed", description: err.message, variant: "destructive" });
     }
   };
 
@@ -93,6 +108,9 @@ export default function ProductCatalog() {
             </Button>
             <Button variant="outline" size="sm" onClick={handleScrape} disabled={scrapeMutation.isPending}>
               {scrapeMutation.isPending ? "Scraping..." : "Scrape Products"}
+            </Button>
+            <Button variant="outline" size="sm" onClick={handleSyncInventory} disabled={syncInventoryMutation.isPending}>
+              {syncInventoryMutation.isPending ? "Syncing..." : "Sync Inventory"}
             </Button>
             <Button variant="outline" size="sm" onClick={handleMap} disabled={mapMutation.isPending}>
               {mapMutation.isPending ? "Mapping..." : "Map to Verticals"}

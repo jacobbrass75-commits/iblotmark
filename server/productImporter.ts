@@ -5,7 +5,7 @@ import { DEFAULT_COMPANY_ID } from "./companyDefaults";
 import { getCompanyContext } from "./companyContext";
 import { readResponseTextLimited, safeFetch } from "./safeFetch";
 
-type ProductSourceType = "manual" | "csv" | "product_url" | "shopify_public" | "catalog_pdf";
+type ProductSourceType = "manual" | "csv" | "product_url" | "shopify_public" | "shopify_admin" | "catalog_pdf" | "inventory_weight_sheet";
 
 export interface ProductInput {
   title: string;

@@ -12,6 +12,7 @@ import {
   Home,
   Layers3,
   ListChecks,
+  PackageCheck,
   PackageSearch,
   PenLine,
   Search,
@@ -23,20 +24,53 @@ import { cn } from "@/lib/utils";
 import { companyScopedUrl, getActiveCompanyId, setActiveCompanyId, useActiveCompanyId } from "@/lib/company";
 import { queryClient } from "@/lib/queryClient";
 
-const navItems = [
+const contentNavItems = [
   { href: "/blog", label: "Dashboard", icon: Home },
-  { href: "/blog/setup", label: "Setup", icon: ListChecks },
   { href: "/blog/generate", label: "Generate", icon: PenLine },
   { href: "/blog/keywords", label: "Keywords", icon: Search },
   { href: "/blog/posts", label: "Posts", icon: FileText },
-  { href: "/blog/products", label: "Products", icon: Boxes },
-  { href: "/blog/inventory", label: "Inventory", icon: Calculator },
-  { href: "/blog/catalog", label: "Catalog", icon: BookOpenText },
   { href: "/blog/photos", label: "Assets", icon: Camera },
   { href: "/blog/context", label: "Context", icon: Layers3 },
   { href: "/blog/benchmark", label: "Visibility", icon: BarChart3 },
+];
+
+const inventoryNavItems = [
+  { href: "/blog/inventory", label: "Count Inventory", icon: Calculator },
+  { href: "/blog/products", label: "Products", icon: Boxes },
+  { href: "/blog/catalog", label: "Catalog Imports", icon: BookOpenText },
+];
+
+const workspaceNavItems = [
+  { href: "/blog/setup", label: "Setup", icon: ListChecks },
   { href: "/blog/service-ops", label: "Service Ops", icon: Briefcase },
 ];
+
+type WorkspaceArea = "content" | "inventory";
+
+const workspaceAreas = {
+  content: {
+    label: "Content Studio",
+    shortLabel: "Content",
+    description: "Blog generation",
+    href: "/blog",
+    icon: PenLine,
+    navLabel: "Content tools",
+    items: contentNavItems,
+  },
+  inventory: {
+    label: "Inventory Operations",
+    shortLabel: "Inventory",
+    description: "Products and counting",
+    href: "/blog/inventory",
+    icon: PackageCheck,
+    navLabel: "Inventory tools",
+    items: inventoryNavItems,
+  },
+} as const;
+
+function getWorkspaceArea(pathname: string): WorkspaceArea {
+  return inventoryNavItems.some((item) => isActive(pathname, item.href)) ? "inventory" : "content";
+}
 
 function isActive(pathname: string, href: string) {
   if (href === "/blog") return pathname === "/blog";
@@ -45,6 +79,9 @@ function isActive(pathname: string, href: string) {
 
 export function BlogShell({ children }: { children: ReactNode }) {
   const [location, setLocation] = useLocation();
+  const workspaceArea = getWorkspaceArea(location);
+  const activeWorkspace = workspaceAreas[workspaceArea];
+  const activeNavItems = activeWorkspace.items;
   const activeCompanyId = useActiveCompanyId();
   const { data: companies = [], isLoading: companiesLoading } = useQuery<any[]>({
     queryKey: ["/api/blog/company"],
@@ -94,15 +131,25 @@ export function BlogShell({ children }: { children: ReactNode }) {
   const waitingForWorkspaceSelection = companiesLoading || (!activeCompanyIsAccessible && companies.length > 0);
 
   return (
-    <div className="min-h-screen bg-muted/25 pb-14">
-      <div className="border-b bg-background/95 backdrop-blur">
+    <div
+      className={cn(
+        "min-h-screen pb-14",
+        workspaceArea === "inventory" ? "bg-[hsl(var(--success)/0.045)]" : "bg-muted/25",
+      )}
+    >
+      <div
+        className={cn(
+          "border-b-2 bg-background/95 backdrop-blur",
+          workspaceArea === "inventory" ? "border-b-[hsl(var(--success))]" : "border-b-secondary",
+        )}
+      >
         <div className="flex min-h-14 items-center gap-3 px-4 lg:px-6">
           <Button variant="ghost" size="icon" className="shrink-0" aria-label="Open blog dashboard" onClick={() => setLocation("/blog")}>
             <PackageSearch className="h-4 w-4" />
           </Button>
           <div className="min-w-0 flex-1">
             <div className="truncate text-sm font-semibold">{brandName}</div>
-            <div className="truncate text-xs text-muted-foreground">Content Intelligence</div>
+            <div className="truncate text-xs text-muted-foreground">{activeWorkspace.label}</div>
           </div>
           {companies.length > 1 ? (
             <select
@@ -119,43 +166,117 @@ export function BlogShell({ children }: { children: ReactNode }) {
               ))}
             </select>
           ) : (
-            <Badge variant="outline" className="hidden sm:inline-flex">
-              Workspace
+            <Badge
+              variant="outline"
+              className={cn(
+                "hidden gap-1.5 sm:inline-flex",
+                workspaceArea === "inventory" && "border-[hsl(var(--success)/0.55)]",
+              )}
+            >
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "h-1.5 w-1.5 rounded-full",
+                  workspaceArea === "inventory" ? "bg-[hsl(var(--success))]" : "bg-secondary",
+                )}
+              />
+              {activeWorkspace.shortLabel}
             </Badge>
           )}
           <Button variant="ghost" size="icon" aria-label="Open blog settings" onClick={() => setLocation("/blog/settings")}>
             <Settings className="h-4 w-4" />
           </Button>
         </div>
-        <nav className="flex gap-1 overflow-x-auto px-3 pb-3 md:hidden">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Button
-                key={item.href}
-                variant={isActive(location, item.href) ? "secondary" : "ghost"}
-                size="sm"
-                className="shrink-0 gap-2"
-                onClick={() => setLocation(item.href)}
-              >
-                <Icon className="h-4 w-4" />
-                {item.label}
-              </Button>
-            );
-          })}
-        </nav>
+        <div className="border-t px-3 py-2 md:hidden">
+          <div className="grid grid-cols-2 gap-1 rounded-md border bg-muted/40 p-1">
+            {(Object.entries(workspaceAreas) as [WorkspaceArea, typeof workspaceAreas[WorkspaceArea]][]).map(([area, workspace]) => {
+              const Icon = workspace.icon;
+              const selected = area === workspaceArea;
+              return (
+                <Button
+                  key={area}
+                  variant="ghost"
+                  size="sm"
+                  aria-pressed={selected}
+                  className={cn(
+                    "min-w-0 gap-2",
+                    selected && area === "content" && "bg-secondary text-secondary-foreground",
+                    selected && area === "inventory" && "bg-[hsl(var(--success))] text-white",
+                  )}
+                  onClick={() => setLocation(workspace.href)}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="truncate">{workspace.shortLabel}</span>
+                </Button>
+              );
+            })}
+          </div>
+          <nav className="mt-2 flex gap-1 overflow-x-auto">
+            {[...activeNavItems, ...workspaceNavItems].map((item) => {
+              const Icon = item.icon;
+              const selected = isActive(location, item.href);
+              return (
+                <Button
+                  key={item.href}
+                  variant={selected ? "secondary" : "ghost"}
+                  size="sm"
+                  aria-current={selected ? "page" : undefined}
+                  className={cn(
+                    "shrink-0 gap-2",
+                    selected && workspaceArea === "inventory" && "bg-[hsl(var(--success)/0.18)] text-foreground",
+                  )}
+                  onClick={() => setLocation(item.href)}
+                >
+                  <Icon className="h-4 w-4" />
+                  {item.label}
+                </Button>
+              );
+            })}
+          </nav>
+        </div>
       </div>
 
       <div className="flex">
         <aside className="sticky top-0 hidden h-[calc(100vh-3.5rem)] w-60 shrink-0 border-r bg-background/80 p-3 md:block">
+          <div className="grid grid-cols-2 gap-1 rounded-md border bg-muted/40 p-1">
+            {(Object.entries(workspaceAreas) as [WorkspaceArea, typeof workspaceAreas[WorkspaceArea]][]).map(([area, workspace]) => {
+              const Icon = workspace.icon;
+              const selected = area === workspaceArea;
+              return (
+                <Button
+                  key={area}
+                  variant="ghost"
+                  aria-pressed={selected}
+                  className={cn(
+                    "h-16 min-w-0 flex-col gap-1 px-2 text-[11px]",
+                    selected && area === "content" && "bg-secondary text-secondary-foreground",
+                    selected && area === "inventory" && "bg-[hsl(var(--success))] text-white",
+                  )}
+                  onClick={() => setLocation(workspace.href)}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="truncate">{workspace.shortLabel}</span>
+                </Button>
+              );
+            })}
+          </div>
+
+          <div className="px-2 pb-2 pt-5 text-[11px] font-semibold uppercase text-muted-foreground">
+            {activeWorkspace.navLabel}
+          </div>
           <div className="space-y-1">
-            {navItems.map((item) => {
+            {activeNavItems.map((item) => {
               const Icon = item.icon;
+              const selected = isActive(location, item.href);
               return (
                 <Button
                   key={item.href}
-                  variant={isActive(location, item.href) ? "secondary" : "ghost"}
-                  className={cn("w-full justify-start gap-2")}
+                  variant={selected ? "secondary" : "ghost"}
+                  aria-current={selected ? "page" : undefined}
+                  className={cn(
+                    "w-full justify-start gap-2",
+                    selected && workspaceArea === "inventory" && "bg-[hsl(var(--success)/0.18)] text-foreground",
+                  )}
                   onClick={() => setLocation(item.href)}
                 >
                   <Icon className="h-4 w-4" />
@@ -163,6 +284,30 @@ export function BlogShell({ children }: { children: ReactNode }) {
                 </Button>
               );
             })}
+          </div>
+
+          <div className="mt-5 border-t pt-4">
+            <div className="px-2 pb-2 text-[11px] font-semibold uppercase text-muted-foreground">
+              Workspace
+            </div>
+            <div className="space-y-1">
+              {workspaceNavItems.map((item) => {
+                const Icon = item.icon;
+                const selected = isActive(location, item.href);
+                return (
+                  <Button
+                    key={item.href}
+                    variant={selected ? "secondary" : "ghost"}
+                    aria-current={selected ? "page" : undefined}
+                    className="w-full justify-start gap-2"
+                    onClick={() => setLocation(item.href)}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span className="truncate">{item.label}</span>
+                  </Button>
+                );
+              })}
+            </div>
           </div>
         </aside>
         <div className="min-w-0 flex-1">

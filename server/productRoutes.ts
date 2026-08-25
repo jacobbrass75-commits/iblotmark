@@ -3,7 +3,7 @@
 
 import { Router, type Request, type Response } from "express";
 import multer from "multer";
-import { scrapeProducts, mapProductsToVerticals, getProducts, getProductStats } from "./productScraper";
+import { scrapeProducts, syncShopifyInventory, mapProductsToVerticals, getProducts, getProductStats } from "./productScraper";
 import { importProductFromUrl, importProductsFromCSV, upsertProduct } from "./productImporter";
 import {
   getLatestProductFeedAuditsByLane,
@@ -19,16 +19,51 @@ export function registerProductRoutes(app: { use: (path: string, router: Router)
   const router = Router();
   router.use(requireBlogMutationRole("editor"));
 
-  // POST /api/blog/products/scrape — Scrape the configured public Shopify product catalog
+  function productSyncMessage(result: {
+    total: number;
+    new_: number;
+    updated: number;
+    source?: string;
+    inventorySynced?: boolean;
+    inventoryTrackedItems?: number;
+    inventoryLevels?: number;
+    inventoryError?: string;
+  }): string {
+    const prefix = result.source === "shopify_admin"
+      ? "Synced Shopify Admin products"
+      : "Scraped public Shopify products";
+    const inventory = result.inventorySynced
+      ? ` Inventory: ${result.inventoryTrackedItems || 0} items across ${result.inventoryLevels || 0} levels.`
+      : result.inventoryError
+        ? ` Inventory not synced: ${result.inventoryError}`
+        : "";
+    return `${prefix}: ${result.total} products (${result.new_} new, ${result.updated} updated).${inventory}`;
+  }
+
+  // POST /api/blog/products/scrape — Sync Shopify products; Admin inventory when available, public catalog fallback otherwise.
   router.post("/scrape", async (req: Request, res: Response) => {
     try {
       const result = await scrapeProducts(getCompanyIdFromRequest(req));
       res.json({
-        message: `Scraped ${result.total} products (${result.new_} new, ${result.updated} updated)`,
+        message: productSyncMessage(result),
         ...result,
       });
     } catch (error: any) {
       const status = /private|local network|only http|credentials|too large|valid product url/i.test(error.message) ? 400 : 500;
+      res.status(status).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/products/sync-shopify-inventory — Read-only Admin API product/inventory sync.
+  router.post("/sync-shopify-inventory", async (req: Request, res: Response) => {
+    try {
+      const result = await syncShopifyInventory(getCompanyIdFromRequest(req));
+      res.json({
+        message: productSyncMessage(result),
+        ...result,
+      });
+    } catch (error: any) {
+      const status = /access token|scope|denied|Shopify shop|configured|private|local network|only http|credentials/i.test(error.message) ? 400 : 500;
       res.status(status).json({ error: error.message });
     }
   });

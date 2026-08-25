@@ -35,6 +35,21 @@ export function useScrapeProducts() {
   });
 }
 
+export function useSyncShopifyInventory() {
+  return useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", "/api/blog/products/sync-shopify-inventory");
+      return res.json();
+    },
+    onSuccess: () => {
+      invalidateProductQueries();
+      queryClient.invalidateQueries({
+        predicate: (query) => String(query.queryKey[0] || "").startsWith("/api/blog/inventory"),
+      });
+    },
+  });
+}
+
 export function useMapVerticals() {
   return useMutation({
     mutationFn: async () => {
