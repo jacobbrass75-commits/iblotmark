@@ -28,7 +28,7 @@ describe("Shopify OAuth and publish integration", () => {
       INTEGRATION_ENCRYPTION_KEY: "test-integration-secret-for-shopify-integration-tests",
       SHOPIFY_CLIENT_ID: "test-client-id",
       SHOPIFY_CLIENT_SECRET: "test-client-secret",
-      SHOPIFY_OAUTH_SCOPES: "read_products,read_content,write_content",
+      SHOPIFY_OAUTH_SCOPES: "read_products,read_inventory,read_content,write_content",
       SHOPIFY_API_VERSION: "2026-04",
       APP_BASE_URL: "",
       PUBLIC_BASE_URL: "",
@@ -173,7 +173,7 @@ describe("Shopify OAuth and publish integration", () => {
         expect(init?.method).toBe("POST");
         return Promise.resolve(Response.json({
           access_token: "shpat_mock_access_token",
-          scope: "read_products,read_content,write_content",
+          scope: "read_products,read_inventory,read_content,write_content",
         }));
       }
       if (url === "https://mock-shop.myshopify.com/admin/api/2026-04/blogs.json?limit=50") {
@@ -210,7 +210,7 @@ describe("Shopify OAuth and publish integration", () => {
       );
       expect(start.status).toBe(200);
       expect(start.body?.redirectUri).toBe(`${server.baseUrl}/api/blog/shopify/oauth/callback`);
-      expect(start.body?.scopes).toEqual(["read_products", "read_content", "write_content"]);
+      expect(start.body?.scopes).toEqual(["read_products", "read_inventory", "read_content", "write_content"]);
 
       const installUrl = new URL(start.body?.installUrl || "");
       expect(installUrl.origin).toBe("https://mock-shop.myshopify.com");
@@ -257,7 +257,7 @@ describe("Shopify OAuth and publish integration", () => {
         shop: "mock-shop",
         defaultBlogId: 111,
         productUrlPattern: "https://mock-shop.myshopify.com/products/{handle}",
-        scopes: ["read_products", "read_content", "write_content"],
+        scopes: ["read_products", "read_inventory", "read_content", "write_content"],
         blogTargets: [{ id: 111, name: "News", handle: "news" }],
       });
       expect(JSON.stringify(integration.config)).not.toContain("shpat_mock_access_token");

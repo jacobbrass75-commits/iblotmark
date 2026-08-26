@@ -81,7 +81,7 @@ The main product and inventory records are:
 
 Content data includes brand profiles, products, verticals, keyword clusters, assets, blog posts, generated sections, citations, visibility records, and Shopify publishing state. See `shared/schema.ts` for the authoritative schema.
 
-`server/db.ts` creates required local tables and indexes safely during startup. This is a compatibility measure for the active local database, not a replacement for reviewed production migrations.
+`server/db.ts` creates required local tables and indexes safely during startup. `npm run db:push` runs the same additive reconciliation and then verifies SQLite integrity, foreign keys, required tables, and the repaired OCR uniqueness index. This is a compatibility measure for the active local database, not a replacement for reviewed production migrations.
 
 ## Inventory Workflow
 
@@ -149,7 +149,7 @@ It reads Shopify products, variants, and available inventory into the local cata
 read_products, read_inventory
 ```
 
-As of 2026-08-25, the local Shopify token was denied `read_products`, so the read-only sync cannot complete until the app scopes are approved and the token is refreshed.
+As of 2026-08-25, the local Shopify custom app has approved `read_products` and `read_inventory`. A read-only sync completed with 473 products, 625 inventory items, and 639 inventory levels. The sync used only Shopify Admin API GET requests and local database upserts.
 
 The content publishing subsystem can create Shopify articles. That is a separate, already explicit publishing action. Inventory writeback must remain disabled. If Shopify quantity updates are added later, use a separate route and permission with preview, location mapping, idempotency keys, audit logs, variance thresholds, and a human confirmation step.
 
@@ -260,18 +260,18 @@ A basic recovery sequence is:
 
 ## Known Issues
 
-- `npm run db:push` currently encounters the pre-existing OCR index conflict `idx_ocr_page_results_job_page already exists`. Startup-safe creation keeps local inventory work running, but the migration history must be reconciled before production deployment.
+- Raw `drizzle-kit push` on the legacy SQLite schema emits duplicate unique-index statements while rebuilding tables. Use the safe `npm run db:push` reconciler locally. Keep `npm run db:push:drizzle` for disposable database analysis until the upstream SQLite push issue is resolved and a generated migration plan is reviewed.
 - The inspected workbook had no populated barcode column. Part-number fallback works for testing but may not match printed labels.
 - Test bins and imported spreadsheet rows live only in the local database unless included in a database backup.
 - Tailscale access depends on this machine remaining online and connected.
-- Shopify read-only sync is blocked until `read_products` and `read_inventory` are approved for the current token.
+- Shopify read access depends on the legacy custom app retaining `read_products` and `read_inventory`; verify granted scopes after app reinstall, token rotation, or scope changes.
 - Browser camera scanning requires a secure HTTPS origin outside localhost.
 
 ## Operational Rollout
 
 1. Reconcile the database migration/index mismatch and define a repeatable migration process.
 2. Choose an always-on host, encrypted backup destination, retention policy, and restore drill.
-3. Approve Shopify `read_products` and `read_inventory`, rotate the token, and verify read-only sync.
+3. Monitor Shopify token health and verify `read_products` and `read_inventory` after app reinstall, rotation, or scope changes.
 4. Define physical naming, location, tare measurement, label replacement, and damaged-bin procedures.
 5. Validate unit weights and barcode conflicts against physical samples.
 6. Pilot 10 to 20 bins, compare counts with Shopify, and record variance causes without writing back.

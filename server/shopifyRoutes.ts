@@ -27,7 +27,7 @@ import { encryptSecret } from "./integrationSecrets";
 const SHOPIFY_CLIENT_ID = process.env.SHOPIFY_CLIENT_ID || "";
 const SHOPIFY_CLIENT_SECRET = process.env.SHOPIFY_CLIENT_SECRET || "";
 const SHOPIFY_API_VERSION = process.env.SHOPIFY_API_VERSION || "2026-04";
-const SHOPIFY_OAUTH_SCOPES = process.env.SHOPIFY_OAUTH_SCOPES || "read_products,read_content,write_content";
+const SHOPIFY_OAUTH_SCOPES = process.env.SHOPIFY_OAUTH_SCOPES || "read_products,read_inventory,read_content,write_content";
 
 function normalizeShop(value: unknown): string | null {
   if (typeof value !== "string") return null;

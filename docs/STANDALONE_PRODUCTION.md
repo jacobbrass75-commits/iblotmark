@@ -15,7 +15,7 @@ Set these before `NODE_ENV=production`:
 - `ANTHROPIC_API_KEY` or `OPENAI_API_KEY`: required for blog generation.
 - `SHOPIFY_CLIENT_ID` and `SHOPIFY_CLIENT_SECRET`: Shopify app credentials for plug-and-play OAuth installs.
 - `SHOPIFY_API_VERSION=2026-04`: configurable Shopify Admin API version. Keep this on a currently supported stable Shopify version.
-- `SHOPIFY_OAUTH_SCOPES=read_products,read_content,write_content`
+- `SHOPIFY_OAUTH_SCOPES=read_products,read_inventory,read_content,write_content`
 - Do not configure global Shopify access-token environment variables for publishing. Publishing uses encrypted per-company OAuth tokens stored by the Shopify install flow.
 - `DEFAULT_COMPANY_ID`: optional fallback workspace id. Do not rely on the iBolt demo id in production.
 - `VITE_ENABLE_LEGACY_SCHOLARMARK=false`: standalone UI mode.

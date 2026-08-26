@@ -399,12 +399,26 @@ CREATE TABLE IF NOT EXISTS ocr_page_results (
   created_at INTEGER NOT NULL DEFAULT (unixepoch()),
   updated_at INTEGER NOT NULL DEFAULT (unixepoch()),
   FOREIGN KEY (job_id) REFERENCES ocr_jobs(id) ON DELETE CASCADE,
-  FOREIGN KEY (document_id) REFERENCES documents(id) ON DELETE CASCADE,
-  UNIQUE(job_id, page_number)
+  FOREIGN KEY (document_id) REFERENCES documents(id) ON DELETE CASCADE
 );
-CREATE INDEX IF NOT EXISTS idx_ocr_page_results_job_page
+CREATE UNIQUE INDEX IF NOT EXISTS idx_ocr_page_results_job_page
 ON ocr_page_results(job_id, page_number);
 `);
+
+const ocrPageIndex = sqlite
+  .prepare("PRAGMA index_list(ocr_page_results)")
+  .all()
+  .find((index) => (index as { name: string }).name === "idx_ocr_page_results_job_page") as
+    | { name: string; unique: number }
+    | undefined;
+
+if (ocrPageIndex && ocrPageIndex.unique !== 1) {
+  sqlite.exec(`
+    DROP INDEX ${quoteIdent(ocrPageIndex.name)};
+    CREATE UNIQUE INDEX ${quoteIdent(ocrPageIndex.name)}
+    ON ocr_page_results(job_id, page_number);
+  `);
+}
 
 ensureColumn("project_documents", "source_role", "source_role TEXT DEFAULT 'evidence'");
 ensureColumn("project_documents", "style_analysis", "style_analysis TEXT");

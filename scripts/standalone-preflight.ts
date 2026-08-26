@@ -95,7 +95,7 @@ async function main(): Promise<void> {
   });
 
   const shopifyScopes = configuredShopifyScopes();
-  const requiredScopes = ["read_products", "read_content", "write_content"];
+  const requiredScopes = ["read_products", "read_inventory", "read_content", "write_content"];
   const missingScopes = requiredScopes.filter((scope) => !shopifyScopes.includes(scope));
   results.push({
     name: "shopify oauth scopes",

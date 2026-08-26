@@ -4,7 +4,7 @@ application_url = "https://your-app.example.com"
 embedded = false
 
 [access_scopes]
-scopes = "read_content,write_content,read_products,write_products,read_online_store_pages,write_online_store_pages"
+scopes = "read_content,write_content,read_products,read_inventory,write_products,read_online_store_pages,write_online_store_pages"
 
 [access.admin]
 direct_api_mode = "offline"

@@ -158,7 +158,7 @@ export async function seedBenchmarkQueries(): Promise<number> {
       status: "active",
     })),
   ).onConflictDoNothing({
-    target: aiBenchmarkQueries.query,
+    target: [aiBenchmarkQueries.companyId, aiBenchmarkQueries.query],
   }).returning();
 
   return inserted.length;
