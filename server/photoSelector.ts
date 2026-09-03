@@ -9,6 +9,7 @@ import {
   type ProductPhoto,
 } from "@shared/schema";
 import type { BlogPlan, BlogPlanSection } from "./blogPipeline";
+import { parseBrollLabel, scoreBrollLabelForText } from "./brollLabelContract";
 
 export interface PhotoSelection {
   photoId: string;
@@ -29,8 +30,12 @@ export interface PostPhotoSelectionInput {
   selectionReason?: string | null;
 }
 
-function isUsablePhoto(photo: ProductPhoto): boolean {
+function isManuallyUsablePhoto(photo: ProductPhoto): boolean {
   return photo.assetStatus !== "archived" && photo.rightsStatus !== "restricted";
+}
+
+function isAutomaticallyUsablePhoto(photo: ProductPhoto): boolean {
+  return isManuallyUsablePhoto(photo) && photo.assetStatus === "approved";
 }
 
 function imageMarkdown(photoId: string, altText: string, companyId?: string): string {
@@ -80,6 +85,20 @@ function scorePhoto(
   // +0.5 for hero candidates
   if (photo.isHero) score += 0.5;
 
+  if (photo.aiAnalysis) {
+    try {
+      const label = parseBrollLabel(photo.aiAnalysis);
+      score += scoreBrollLabelForText(label, [
+        section.title,
+        ...(section.keywords || []),
+        ...(section.productMentions || []),
+      ]);
+      if (!label.cropSuitability.inline) score -= 2;
+    } catch {
+      // Legacy photo analysis remains valid; richer scoring is optional.
+    }
+  }
+
   // -2 diversity penalty if already selected for another section
   if (alreadySelected.has(photo.id)) score -= 2;
 
@@ -106,7 +125,7 @@ export async function selectPhotosForPost(
     const allPhotos = await db.select().from(productPhotos)
       .where(and(eq(productPhotos.companyId, companyId), isNotNull(productPhotos.analyzedAt)));
     candidatePhotos = allPhotos.filter((p) =>
-      isUsablePhoto(p) && p.productId && productIds.includes(p.productId)
+      isAutomaticallyUsablePhoto(p) && p.productId && productIds.includes(p.productId)
     );
   }
 
@@ -114,7 +133,7 @@ export async function selectPhotosForPost(
   if (candidatePhotos.length < plan.sections.length) {
     const allAnalyzedPhotos = await db.select().from(productPhotos)
       .where(and(eq(productPhotos.companyId, companyId), isNotNull(productPhotos.analyzedAt)));
-    candidatePhotos = allAnalyzedPhotos.filter(isUsablePhoto);
+    candidatePhotos = allAnalyzedPhotos.filter(isAutomaticallyUsablePhoto);
   }
 
   if (candidatePhotos.length === 0) return [];
@@ -129,6 +148,15 @@ export async function selectPhotosForPost(
       if (verticalSlug && p.verticalRelevance) {
         const relevance = p.verticalRelevance as string[];
         if (relevance.includes(verticalSlug)) score += 3;
+      }
+      if (p.aiAnalysis) {
+        try {
+          const label = parseBrollLabel(p.aiAnalysis);
+          if (!label.cropSuitability.hero) score -= 3;
+          if (label.needsReview || label.reviewFlags.length > 0) score -= 2;
+        } catch {
+          // Legacy analysis does not have crop metadata.
+        }
       }
       return { photo: p, score };
     })
@@ -221,7 +249,7 @@ export async function addPostPhotoSelection(
     .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, input.photoId)))
     .limit(1);
   if (!photo) throw new Error("Photo not found for this company");
-  if (!isUsablePhoto(photo)) throw new Error("Restricted or archived assets cannot be selected for posts");
+  if (!isManuallyUsablePhoto(photo)) throw new Error("Restricted or archived assets cannot be selected for posts");
 
   const [selection] = await db.insert(blogPostPhotos).values({
     companyId,

@@ -58,4 +58,13 @@ describe("citation generator", () => {
     expect(result.startsWith("John Doe, History of Things")).toBe(true);
     expect(result.length).toBeLessThan(260);
   });
+
+  it("formats quoted evidence using the requested citation style", () => {
+    expect(generateFootnoteWithQuote(bookCitation, "A concise finding", "42", "mla")).toBe(
+      '"A concise finding." (Doe 42)'
+    );
+    expect(generateFootnoteWithQuote(bookCitation, "A concise finding.", "42", "apa")).toBe(
+      '"A concise finding." (Doe, 2024, p. 42)'
+    );
+  });
 });

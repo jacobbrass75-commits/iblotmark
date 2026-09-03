@@ -89,23 +89,243 @@ function escapeAndFormat(text: string): string {
   return result;
 }
 
+interface FaqPair {
+  question: string;
+  answer: string;
+}
+
+function stripInlineMarkup(value: string): string {
+  return plainText(value)
+    .replace(/^Q:\s*/i, "")
+    .replace(/^A:\s*/i, "")
+    .trim();
+}
+
+function normalizeFaqQuestion(value: string): string {
+  const question = stripInlineMarkup(value).replace(/\s*\?*$/, "");
+  return question ? `${question}?` : "";
+}
+
+function normalizeFaqAnswer(value: string): string {
+  return stripInlineMarkup(value)
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function addFaqPair(pairs: FaqPair[], seen: Set<string>, question: string, answer: string): void {
+  const normalizedQuestion = normalizeFaqQuestion(question);
+  const normalizedAnswer = normalizeFaqAnswer(answer);
+  if (!normalizedQuestion || !normalizedAnswer) return;
+
+  const key = normalizedQuestion.toLowerCase();
+  if (seen.has(key)) return;
+  seen.add(key);
+  pairs.push({ question: normalizedQuestion, answer: normalizedAnswer });
+}
+
+function extractFaqSection(markdown: string): string {
+  const headingMatch = markdown.match(/^##\s+(Frequently Asked Questions|FAQs?|Common Questions)\s*$/im);
+  if (headingMatch?.index !== undefined) {
+    const afterHeadingStart = headingMatch.index + headingMatch[0].length;
+    const afterHeading = markdown.slice(afterHeadingStart);
+    const nextH2 = afterHeading.search(/^##\s+/m);
+    const faqEnd = afterHeading.search(/<!--\s*FAQ END\s*-->/i);
+    const boundaries = [nextH2, faqEnd].filter((index) => index >= 0);
+    const end = boundaries.length > 0 ? Math.min(...boundaries) : afterHeading.length;
+    return afterHeading.slice(0, end);
+  }
+
+  const htmlHeadingMatch = /<h2\b[^>]*>\s*(Frequently Asked Questions|FAQs?|Common Questions)\s*<\/h2>/i.exec(markdown);
+  if (!htmlHeadingMatch || htmlHeadingMatch.index === undefined) return "";
+
+  const afterHeadingStart = htmlHeadingMatch.index + htmlHeadingMatch[0].length;
+  const afterHeading = markdown.slice(afterHeadingStart);
+  const nextH2 = afterHeading.search(/<h2\b/i);
+  const faqEnd = afterHeading.search(/<!--\s*FAQ END\s*-->/i);
+  const boundaries = [nextH2, faqEnd].filter((index) => index >= 0);
+  const end = boundaries.length > 0 ? Math.min(...boundaries) : afterHeading.length;
+  return afterHeading.slice(0, end);
+}
+
+function extractFaqPairsFromMarkdown(markdown: string): FaqPair[] {
+  const faqSection = extractFaqSection(markdown);
+  if (!faqSection) return [];
+
+  const pairs: FaqPair[] = [];
+  const seen = new Set<string>();
+
+  const qaLabelRegex = /\*\*Q:\s*(.+?)\*\*\s*\n+\s*A:\s*([\s\S]*?)(?=\n\s*\*\*Q:|$)/gi;
+  let match: RegExpExecArray | null;
+  while ((match = qaLabelRegex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const h3Regex = /^###\s+(.+\?)\s*\n+([\s\S]*?)(?=^###\s+.+\?\s*$|$)/gm;
+  while ((match = h3Regex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const boldQuestionRegex = /^\s*\*\*(?!Q:)(.+\?)\*\*\s*\n+([\s\S]*?)(?=^\s*\*\*(?!Q:).+\?\*\*\s*$|$)/gm;
+  while ((match = boldQuestionRegex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const htmlH3Regex = /<h3\b[^>]*>([\s\S]*?\?)<\/h3>\s*([\s\S]*?)(?=<h3\b|<h2\b|<\/article>|$)/gi;
+  while ((match = htmlH3Regex.exec(faqSection)) !== null) {
+    const paragraphMatches = Array.from(match[2].matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi));
+    const answer = paragraphMatches.length > 0
+      ? paragraphMatches.map((paragraph) => paragraph[1]).join(" ")
+      : match[2];
+    addFaqPair(pairs, seen, match[1], answer);
+  }
+
+  const htmlDlRegex = /<dt\b[^>]*>([\s\S]*?\?)<\/dt>\s*<dd\b[^>]*>([\s\S]*?)<\/dd>/gi;
+  while ((match = htmlDlRegex.exec(faqSection)) !== null) {
+    addFaqPair(pairs, seen, match[1], match[2]);
+  }
+
+  const lines = faqSection
+    .split(/\n+/)
+    .map((line) => stripInlineMarkup(line))
+    .filter(Boolean);
+  for (let i = 0; i < lines.length; i++) {
+    const question = lines[i];
+    if (!/\?$/.test(question)) continue;
+
+    const answerLines: string[] = [];
+    for (let j = i + 1; j < lines.length; j++) {
+      if (/\?$/.test(lines[j])) break;
+      answerLines.push(lines[j]);
+    }
+    addFaqPair(pairs, seen, question, answerLines.join(" "));
+  }
+
+  return pairs;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderFaqAccordion(pairs: FaqPair[]): string {
+  if (pairs.length === 0) return "";
+
+  const rows = pairs.map((pair, index) => {
+    const open = index === 0 ? " open" : "";
+    return `<details class="ibolt-faq-row"${open}>
+  <summary>
+    <span>${escapeHtml(pair.question)}</span>
+    <span class="ibolt-faq-toggle" aria-hidden="true"><span class="ibolt-faq-plus">+</span><span class="ibolt-faq-minus">-</span></span>
+  </summary>
+  <div class="ibolt-faq-answer">
+    <p>${escapeHtml(pair.answer)}</p>
+  </div>
+</details>`;
+  }).join("\n");
+
+  return `<style>
+.ibolt-faq {
+  margin: 36px 0;
+  border-top: 1px solid #d9d9d9;
+}
+.ibolt-faq h2 {
+  margin: 0;
+  padding: 0 0 14px;
+  font-size: 28px;
+  line-height: 1.2;
+}
+.ibolt-faq-row {
+  border-bottom: 1px solid #d9d9d9;
+}
+.ibolt-faq-row summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.ibolt-faq-row summary::-webkit-details-marker {
+  display: none;
+}
+.ibolt-faq-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 400;
+}
+.ibolt-faq-row[open] .ibolt-faq-plus {
+  display: none;
+}
+.ibolt-faq-row:not([open]) .ibolt-faq-minus {
+  display: none;
+}
+.ibolt-faq-answer {
+  max-width: 760px;
+  padding: 0 72px 28px 0;
+}
+.ibolt-faq-answer p {
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .ibolt-faq-row summary {
+    font-size: 20px;
+    padding: 22px 0;
+  }
+  .ibolt-faq-answer {
+    padding-right: 0;
+  }
+}
+</style>
+<section class="ibolt-faq" aria-label="Frequently Asked Questions">
+  <h2>Frequently Asked Questions</h2>
+${rows}
+</section>`;
+}
+
+function applyFaqAccordion(bodyHtml: string, markdown: string): string {
+  const pairs = extractFaqPairsFromMarkdown(markdown);
+  if (pairs.length === 0) return bodyHtml;
+
+  const headingMatch = /<h2\b[^>]*>\s*(Frequently Asked Questions|FAQs?|Common Questions)\s*<\/h2>/i.exec(bodyHtml);
+  if (!headingMatch || headingMatch.index === undefined) return bodyHtml;
+
+  const start = headingMatch.index;
+  const bodyStart = start + headingMatch[0].length;
+  const afterHeading = bodyHtml.slice(bodyStart);
+  const nextH2 = afterHeading.search(/<h2\b/i);
+  const marker = /<!--\s*FAQ END\s*-->/i.exec(afterHeading);
+  const end = marker?.index !== undefined
+    ? bodyStart + marker.index
+    : nextH2 >= 0
+      ? bodyStart + nextH2
+      : bodyHtml.length;
+  const remainderStart = marker ? end + marker[0].length : end;
+
+  return `${bodyHtml.slice(0, start).trimEnd()}\n\n${renderFaqAccordion(pairs)}\n\n${bodyHtml.slice(remainderStart).trimStart()}`;
+}
+
 /**
  * Extract FAQ questions and answers from markdown and generate JSON-LD schema.
  */
 function extractFaqSchema(markdown: string): string {
-  const faqSection = markdown.match(/## Frequently Asked Questions[\s\S]*$/i);
-  if (!faqSection) return "";
-
-  const qaPairs: Array<{ question: string; answer: string }> = [];
-  const qaRegex = /\*\*Q:\s*(.+?)\?\*\*\s*\n+A:\s*(.+?)(?=\n\n\*\*Q:|\n##|$)/gi;
-  let match;
-
-  while ((match = qaRegex.exec(faqSection[0])) !== null) {
-    qaPairs.push({
-      question: match[1].trim() + "?",
-      answer: match[2].trim(),
-    });
-  }
+  const qaPairs = extractFaqPairsFromMarkdown(markdown);
 
   if (qaPairs.length === 0) return "";
 
@@ -337,6 +557,7 @@ export async function autoLinkProducts(html: string, options?: RendererOptions):
  */
 export async function renderShopifyHtml(post: BlogPost, companyContext?: CompanyContext | null): Promise<string> {
   let bodyHtml = markdownToHtml(post.markdown || "");
+  bodyHtml = applyFaqAccordion(bodyHtml, post.markdown || "");
   bodyHtml = await autoLinkProducts(bodyHtml, { companyId: post.companyId, companyContext });
 
   // Convert local photo URLs to signed public URLs so images work on Shopify without exposing the full asset bank.
@@ -371,6 +592,7 @@ ${faqSchema}`;
  */
 export async function renderPreviewHtml(post: BlogPost, companyContext?: CompanyContext | null): Promise<string> {
   let bodyHtml = markdownToHtml(post.markdown || "");
+  bodyHtml = applyFaqAccordion(bodyHtml, post.markdown || "");
   bodyHtml = await autoLinkProducts(bodyHtml, { companyId: post.companyId, companyContext });
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || "";

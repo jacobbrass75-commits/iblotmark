@@ -2,7 +2,7 @@
 // Uses sharp for thumbnails, gpt-4o for vision analysis.
 
 import { db } from "./db";
-import { and, eq, isNull } from "drizzle-orm";
+import { and, eq, isNull, or } from "drizzle-orm";
 import {
   industryVerticals,
   productPhotos,
@@ -12,12 +12,13 @@ import {
 import sharp from "sharp";
 import { existsSync, mkdirSync, readdirSync, realpathSync, statSync } from "fs";
 import { extname, join, relative, resolve, sep } from "path";
-import { randomUUID } from "crypto";
+import { createHash, randomUUID } from "crypto";
 import OpenAI from "openai";
 import { readFile } from "fs/promises";
 import { cachedApiCall, openaiLimiter, TTL } from "./apiCache";
 import { getCompanyContext } from "./companyContext";
 import { DEFAULT_COMPANY_ID } from "./companyDefaults";
+import { parseBrollLabel, type BrollLabel } from "./brollLabelContract";
 
 const PHOTO_DIR = "./uploads/product-photos";
 const THUMB_DIR = "./uploads/product-photos/thumbs";
@@ -101,7 +102,7 @@ export async function storePhoto(
   mimeType: string,
   productId?: string,
   companyId = DEFAULT_COMPANY_ID,
-  options: { sourceType?: string; sourceUrl?: string } = {},
+  options: { sourceType?: string; sourceUrl?: string; preserveOriginalBytes?: boolean } = {},
 ): Promise<PhotoUploadResult> {
   const normalizedProductId = productId?.trim() || null;
   if (normalizedProductId) {
@@ -126,12 +127,21 @@ export async function storePhoto(
     const img = sharp(fileBuffer);
     metadata = await img.metadata();
 
-    // Save original (normalized orientation)
-    imgBuffer = await img.rotate().toBuffer();
-    await sharp(imgBuffer).toFile(filePath);
+    if (options.preserveOriginalBytes) {
+      const fs = await import("fs/promises");
+      await fs.writeFile(filePath, fileBuffer);
+    } else {
+      // Save original with normalized orientation for ordinary uploads.
+      imgBuffer = await img.rotate().toBuffer();
+      await sharp(imgBuffer).toFile(filePath);
+    }
 
     // Create thumbnail (300px wide)
-    await sharp(imgBuffer).resize(300).jpeg({ quality: 80 }).toFile(thumbPath);
+    await sharp(options.preserveOriginalBytes ? fileBuffer : imgBuffer)
+      .rotate()
+      .resize(300)
+      .jpeg({ quality: 80 })
+      .toFile(thumbPath);
   } catch {
     // If sharp fails (e.g., HEIC without support), just copy raw
     const fs = await import("fs/promises");
@@ -212,9 +222,17 @@ export async function importFromDirectory(
         continue;
       }
 
-      // Check if already imported (by original filename)
+      // Use the root-relative source path as identity. Camera filenames repeat
+      // across shoots, so filename-only de-duplication loses distinct assets.
+      const sourceRef = `directory:${relative(rootReal, resolvedFullPath)}`;
       const existing = await db.select().from(productPhotos)
-        .where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.originalFilename, entry))).limit(1);
+        .where(and(
+          eq(productPhotos.companyId, companyId),
+          or(
+            eq(productPhotos.sourceUrl, sourceRef),
+            and(isNull(productPhotos.sourceUrl), eq(productPhotos.originalFilename, entry)),
+          ),
+        )).limit(1);
       if (existing.length > 0) {
         skipped++;
         continue;
@@ -224,8 +242,11 @@ export async function importFromDirectory(
         const fs = await import("fs/promises");
         const buffer = await fs.readFile(resolvedFullPath);
         const mime = ext === ".png" ? "image/png" : ext === ".webp" ? "image/webp" : "image/jpeg";
-        const sourceRef = `directory:${relative(rootReal, resolvedFullPath)}`;
-        await storePhoto(buffer, entry, mime, undefined, companyId, { sourceType: "directory", sourceUrl: sourceRef });
+        await storePhoto(buffer, entry, mime, undefined, companyId, {
+          sourceType: "directory",
+          sourceUrl: sourceRef,
+          preserveOriginalBytes: true,
+        });
         imported++;
         if (imported % 10 === 0) log(`Imported ${imported} photos...`);
       } catch (err: any) {
@@ -335,6 +356,46 @@ Vertical slugs to choose from: ${verticalChoices}`,
     }).where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, photoId)));
 
   return analysis;
+}
+
+/**
+ * Apply a reviewed label produced by an external Codex/Luna vision task.
+ * The file hash is verified before any metadata is written, so labels cannot
+ * drift onto a same-named or reordered asset.
+ */
+export async function applyExternalBrollLabel(
+  photoId: string,
+  input: unknown,
+  companyId = DEFAULT_COMPANY_ID,
+): Promise<ProductPhoto> {
+  const label: BrollLabel = parseBrollLabel(input);
+  const photo = await getPhoto(photoId, companyId);
+  if (!photo) throw new Error("Photo not found");
+
+  const imageBuffer = await readFile(photo.filePath);
+  const actualHash = createHash("sha256").update(imageBuffer).digest("hex");
+  if (actualHash !== label.sha256) {
+    throw new Error("B-roll label hash does not match the stored photo");
+  }
+
+  await db.update(productPhotos).set({
+    angleType: label.angleType,
+    contextType: label.contextType,
+    settingDescription: label.scene,
+    qualityScore: label.quality.score,
+    isHero: label.cropSuitability.hero,
+    verticalRelevance: label.verticals,
+    useCases: label.useCases,
+    altText: label.altText,
+    caption: label.caption,
+    notes: label.reviewFlags.length > 0 ? `AI review flags: ${label.reviewFlags.join("; ")}` : photo.notes,
+    aiAnalysis: label,
+    analyzedAt: new Date(),
+  }).where(and(eq(productPhotos.companyId, companyId), eq(productPhotos.id, photoId)));
+
+  const updated = await getPhoto(photoId, companyId);
+  if (!updated) throw new Error("Photo not found after label update");
+  return updated;
 }
 
 /**

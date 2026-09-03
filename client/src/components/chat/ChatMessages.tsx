@@ -76,9 +76,9 @@ function parseMessageContent(content: string): ParsedSegment[] {
 
 function UserBubble({ content }: { content: string }) {
   return (
-    <div className="flex justify-end mb-4">
-      <div className="max-w-[80%] rounded-2xl px-4 py-2.5 bg-primary text-primary-foreground">
-        <p className="text-sm whitespace-pre-wrap">{content}</p>
+    <div className="mb-5 flex justify-end">
+      <div className="max-w-[88%] rounded-3xl bg-primary px-4 py-2.5 text-primary-foreground sm:max-w-[80%]">
+        <p className="whitespace-pre-wrap text-[15px] leading-6">{content}</p>
       </div>
     </div>
   );
@@ -86,9 +86,9 @@ function UserBubble({ content }: { content: string }) {
 
 function AssistantMarkdownBubble({ content, isStreaming = false }: { content: string; isStreaming?: boolean }) {
   return (
-    <div className="flex justify-start mb-4">
-      <div className="max-w-[80%] rounded-2xl px-4 py-2.5 bg-card border shadow-sm">
-        <div className="prose prose-sm dark:prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+    <div className="mb-6 flex justify-start">
+      <div className="w-full max-w-full px-1 sm:max-w-[85%] sm:rounded-2xl sm:border sm:bg-card sm:px-4 sm:py-3 sm:shadow-sm">
+        <div className="prose prose-sm max-w-none text-[15px] leading-7 dark:prose-invert [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
           <ReactMarkdown remarkPlugins={remarkPlugins} components={markdownComponents}>
             {content}
           </ReactMarkdown>
@@ -158,20 +158,20 @@ export function ChatMessages({
 
   if (messages.length === 0 && !isStreaming) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-8">
-        <div className="max-w-md text-center space-y-6">
+      <div className="flex flex-1 flex-col items-center justify-center px-5 py-8">
+        <div className="max-w-md space-y-6 text-center">
           <div>
             <h2 className="text-2xl font-semibold mb-2">ScholarMark AI</h2>
             <p className="text-muted-foreground">
               Your academic writing assistant. Ask me about research, writing, citations, or anything related to academic work.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-2 min-[430px]:grid-cols-2 sm:gap-3">
             {SUGGESTED_PROMPTS.map((item) => (
               <button
                 key={item.label}
                 onClick={() => onSuggestedPrompt?.(item.prompt)}
-                className="flex flex-col items-start gap-2 p-3 rounded-lg border bg-card hover:bg-accent transition-colors text-left"
+                className="flex min-h-12 items-center gap-3 rounded-xl border bg-card p-3 text-left transition-colors hover:bg-accent min-[430px]:flex-col min-[430px]:items-start"
               >
                 <item.icon className="h-4 w-4 text-primary" />
                 <span className="text-sm">{item.label}</span>
@@ -185,7 +185,7 @@ export function ChatMessages({
 
   return (
     <ScrollArea className="flex-1">
-      <div className="max-w-3xl mx-auto p-4">
+      <div className="mx-auto max-w-3xl px-4 py-5 sm:p-6">
         {messages.map((msg) =>
           msg.role === "user" ? (
             <UserBubble key={msg.id} content={msg.content} />

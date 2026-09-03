@@ -18,6 +18,12 @@
     "db:push": "tsx scripts/repair-database.ts",
     "db:push:drizzle": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
+    "broll:prepare": "node scripts/prepare-broll-library.mjs prepare",
+    "broll:merge": "node scripts/prepare-broll-library.mjs merge",
+    "broll:import": "tsx scripts/import-broll-library.ts",
+    "broll:retrofit": "tsx scripts/plan-broll-retrofit.ts",
+    "broll:shopify-review": "node scripts/create-broll-retrofit-shopify-drafts.mjs",
+    "broll:shopify-publish": "node scripts/publish-broll-retrofit-shopify.mjs",
     "setup": "npm install && npm run db:push"
   },
   "dependencies": {

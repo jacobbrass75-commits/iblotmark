@@ -21,7 +21,7 @@ export function DataTicker() {
   const dateStr = time.toISOString().split("T")[0];
 
   return (
-    <div className="fixed bottom-0 inset-x-0 h-6 bg-background/95 border-t border-border flex items-center z-50 font-mono text-[10px] text-muted-foreground overflow-hidden">
+    <div className="fixed bottom-0 inset-x-0 z-50 hidden h-6 items-center overflow-hidden border-t border-border bg-background/95 font-mono text-[10px] text-muted-foreground md:flex">
       <div className="flex-shrink-0 px-3 border-r border-border text-chart-2">
         {dateStr}
       </div>

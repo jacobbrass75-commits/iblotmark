@@ -7,6 +7,7 @@ import {
   storePhoto,
   importFromDirectory,
   analyzePhoto,
+  applyExternalBrollLabel,
   batchAnalyzePhotos,
   autoAssociatePhotos,
   getPhotos,
@@ -94,6 +95,17 @@ export function registerPhotoRoutes(app: { use: (path: string, router: Router) =
       res.json(analysis);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // POST /api/blog/photos/:id/apply-broll-label — Apply a hash-bound Luna label
+  router.post("/:id/apply-broll-label", async (req: Request, res: Response) => {
+    try {
+      const photo = await applyExternalBrollLabel(req.params.id, req.body, getCompanyIdFromRequest(req));
+      res.json(photo);
+    } catch (error: any) {
+      const status = /not found/i.test(error.message) ? 404 : 400;
+      res.status(status).json({ error: error.message });
     }
   });
 

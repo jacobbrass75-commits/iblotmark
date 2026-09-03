@@ -138,7 +138,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         {!isBlogRoute && !booted && <BootSequence onComplete={() => setBooted(true)} />}
-        <div className="min-h-screen pb-6 eva-scanlines">
+        <div className="min-h-screen pb-0 md:pb-6 eva-scanlines">
           <Suspense fallback={<RouteFallback />}>
             <Router />
           </Suspense>

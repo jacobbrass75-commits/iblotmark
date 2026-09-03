@@ -1,22 +1,40 @@
 import { useLocation } from "wouter";
+import { ExternalLink } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
+import { useShopifyArticles } from "@/hooks/useShopifyPublish";
 import { useClusters } from "@/hooks/useKeywords";
 import { useVerticals } from "@/hooks/useVerticals";
-import { useProductStats } from "@/hooks/useProducts";
+import { companyScopedUrl } from "@/lib/company";
 
 export default function BlogDashboard() {
   const [, setLocation] = useLocation();
   const { data: posts = [] } = useBlogPosts();
+  const { data: shopifyArticlesData } = useShopifyArticles();
+  const { data: companyContext } = useQuery<any>({
+    queryKey: [companyScopedUrl("/api/blog/company/context")],
+  });
   const { data: clusters = [] } = useClusters();
   const { data: verticals = [] } = useVerticals();
-  const { data: productStats } = useProductStats();
 
-  const draftPosts = posts.filter((p: any) => p.status === "draft");
   const reviewPosts = posts.filter((p: any) => p.status === "review");
-  const approvedPosts = posts.filter((p: any) => p.status === "approved");
+  const liveShopifyPosts = (shopifyArticlesData?.articles || [])
+    .filter((article) => article.published_at || article.published)
+    .slice(0, 10);
+  const shopifyIntegration = companyContext?.integrations?.shopify;
+  const storeUrl = String(
+    shopifyIntegration?.publicStoreUrl
+      || companyContext?.brandProfile?.websiteUrl
+      || companyContext?.company?.websiteUrl
+      || (shopifyIntegration?.shop ? `https://${shopifyIntegration.shop}.myshopify.com` : ""),
+  ).replace(/\/$/, "");
+  const defaultBlogId = shopifyIntegration?.defaultBlogId;
+  const blogHandle = shopifyIntegration?.blogTargets?.find((target: any) => target.id === defaultBlogId)?.handle
+    || shopifyIntegration?.blogTargets?.[0]?.handle
+    || "news";
   const pendingClusters = clusters.filter((c: any) => c.status === "pending");
   const avgScore = posts.length > 0
     ? Math.round(posts.reduce((s: number, p: any) => s + (p.overallScore || 0), 0) / posts.length)
@@ -27,7 +45,7 @@ export default function BlogDashboard() {
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Blog Dashboard</h1>
-            <p className="text-sm text-muted-foreground">Posts, products, context, assets, and visibility</p>
+            <p className="text-sm text-muted-foreground">Generation, review, context, assets, and visibility</p>
           </div>
           <Badge variant="outline" className="w-fit text-xs">Pipeline v4</Badge>
         </div>
@@ -60,14 +78,14 @@ export default function BlogDashboard() {
           </Card>
           <Card>
             <CardContent className="pt-4 text-center">
-              <div className="text-3xl font-bold">{productStats?.count || 0}</div>
-              <div className="text-xs text-muted-foreground mt-1">Products</div>
+              <div className="text-3xl font-bold">{verticals.length}</div>
+              <div className="text-xs text-muted-foreground mt-1">Context Banks</div>
             </CardContent>
           </Card>
         </div>
 
         {/* Quick actions */}
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-3">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
           <Button className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/generate")}>
             <span className="text-sm font-medium">Generate Posts</span>
             <span className="text-xs opacity-70">Batch generate</span>
@@ -80,17 +98,9 @@ export default function BlogDashboard() {
             <span className="text-sm font-medium">Context Banks</span>
             <span className="text-xs opacity-70">{verticals.length} verticals</span>
           </Button>
-          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/products")}>
-            <span className="text-sm font-medium">Products</span>
-            <span className="text-xs opacity-70">{productStats?.count || 0} scraped</span>
-          </Button>
-          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/inventory")}>
-            <span className="text-sm font-medium">Inventory</span>
-            <span className="text-xs opacity-70">QR count flow</span>
-          </Button>
-          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/catalog")}>
-            <span className="text-sm font-medium">Catalog PDFs</span>
-            <span className="text-xs opacity-70">Import specs</span>
+          <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/posts")}>
+            <span className="text-sm font-medium">Posts</span>
+            <span className="text-xs opacity-70">Review and publish</span>
           </Button>
           <Button variant="outline" className="h-auto py-3 flex flex-col gap-1" onClick={() => setLocation("/blog/photos")}>
             <span className="text-sm font-medium">Assets</span>
@@ -101,6 +111,57 @@ export default function BlogDashboard() {
             <span className="text-xs opacity-70">Track answers</span>
           </Button>
         </div>
+
+        {liveShopifyPosts.length > 0 && (
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between">
+              <div>
+                <CardTitle className="text-base">Live on Shopify</CardTitle>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Latest posts confirmed by the connected store
+                </p>
+              </div>
+              {storeUrl && (
+                <Button variant="outline" size="sm" asChild>
+                  <a href={shopifyArticlesData?.blogUrl || `${storeUrl}/blogs/${blogHandle}`} target="_blank" rel="noreferrer">
+                    View blog
+                    <ExternalLink className="ml-2 h-3.5 w-3.5" />
+                  </a>
+                </Button>
+              )}
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {liveShopifyPosts.map((article) => {
+                  const publicUrl = article.public_url
+                    || (storeUrl && article.handle ? `${storeUrl}/blogs/${blogHandle}/${article.handle}` : "");
+                  return (
+                    <a
+                      key={article.id}
+                      href={publicUrl || undefined}
+                      target={publicUrl ? "_blank" : undefined}
+                      rel={publicUrl ? "noreferrer" : undefined}
+                      className={`flex items-center justify-between rounded-lg border p-3 transition-colors ${publicUrl ? "hover:bg-muted/50" : ""}`}
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="truncate text-sm font-medium">{article.title}</div>
+                        <div className="mt-0.5 text-xs text-muted-foreground">
+                          {article.published_at
+                            ? `Published ${new Date(article.published_at).toLocaleDateString()}`
+                            : "Published"}
+                        </div>
+                      </div>
+                      <div className="ml-3 flex items-center gap-2">
+                        <Badge variant="secondary">live</Badge>
+                        {publicUrl && <ExternalLink className="h-4 w-4 text-muted-foreground" />}
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Recent posts */}
         <Card>

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://iboltmounts.com/schemas/broll-label-v1.json",
+  "title": "iBOLT B-roll label",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "assetId",
+    "sha256",
+    "altText",
+    "caption",
+    "scene",
+    "contextType",
+    "angleType",
+    "orientation",
+    "verticals",
+    "useCases",
+    "devices",
+    "mountingSurfaces",
+    "blogTopics",
+    "keywords",
+    "productCandidates",
+    "cropSuitability",
+    "quality",
+    "reviewFlags",
+    "confidence",
+    "needsReview"
+  ],
+  "properties": {
+    "contractVersion": { "const": "broll.v1" },
+    "assetId": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "altText": { "type": "string", "minLength": 8, "maxLength": 180 },
+    "caption": { "type": "string", "minLength": 8, "maxLength": 240 },
+    "scene": { "type": "string", "minLength": 3, "maxLength": 300 },
+    "contextType": { "enum": ["studio", "in-use", "lifestyle", "packaging", "technical"] },
+    "angleType": { "enum": ["front", "back", "side", "top", "detail", "full", "in-use"] },
+    "orientation": { "enum": ["landscape", "portrait", "square"] },
+    "verticals": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "useCases": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "devices": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "mountingSurfaces": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "blogTopics": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "keywords": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "productCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "confidence", "evidence"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "evidence": { "type": "string", "minLength": 1, "maxLength": 240 }
+        }
+      }
+    },
+    "cropSuitability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hero", "inline", "social", "notes"],
+      "properties": {
+        "hero": { "type": "boolean" },
+        "inline": { "type": "boolean" },
+        "social": { "type": "boolean" },
+        "notes": { "type": "string", "maxLength": 240 }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "sharp", "wellLit", "usableComposition"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sharp": { "type": "boolean" },
+        "wellLit": { "type": "boolean" },
+        "usableComposition": { "type": "boolean" }
+      }
+    },
+    "reviewFlags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "needsReview": { "type": "boolean" }
+  }
+}

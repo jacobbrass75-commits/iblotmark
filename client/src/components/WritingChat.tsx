@@ -65,13 +65,17 @@ import {
   Eye,
   EyeOff,
   FileText,
+  Menu,
   Lightbulb,
   Loader2,
+  Plus,
   PenLine,
   PenTool,
+  SlidersHorizontal,
   ShieldCheck,
   Sparkles,
   StopCircle,
+  X,
   Zap,
 } from "lucide-react";
 
@@ -114,6 +118,8 @@ const WRITING_PROMPTS = [
 
 export default function WritingChat({ initialProjectId, lockProject }: WritingChatProps) {
   const { toast } = useToast();
+  const [mobileHistoryOpen, setMobileHistoryOpen] = useState(false);
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
 
   // Project selection
   const { data: projects = [] } = useProjects();
@@ -312,6 +318,7 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
         data: { citationStyle, tone, writingModel, humanize, noEnDashes },
       });
       setActiveConversationId(conv.id);
+      setMobileHistoryOpen(false);
       clearCompiled();
     } catch {
       toast({ title: "Error", description: "Failed to create conversation", variant: "destructive" });
@@ -320,6 +327,7 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
 
   const handleSelectConversation = useCallback((id: string) => {
     setActiveConversationId(id);
+    setMobileHistoryOpen(false);
     clearCompiled();
   }, [clearCompiled]);
 
@@ -563,6 +571,7 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
       setSelectedDocIndex(next.length - 1);
       return next;
     });
+    setMobileToolsOpen(true);
   }, []);
 
   const activeDocument = useMemo(() => {
@@ -630,7 +639,19 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
   }, [activeDocument, toast]);
 
   return (
-    <div className="h-full min-h-0 grid grid-cols-1 lg:grid-cols-[250px_1fr_380px] border border-border rounded-xl overflow-hidden bg-[#F5F0E8] dark:bg-background">
+    <div className="relative grid h-[100dvh] min-h-0 grid-cols-1 overflow-hidden bg-[#F5F0E8] dark:bg-background md:h-full md:rounded-xl md:border md:border-border lg:grid-cols-[250px_1fr_380px]">
+      {(mobileHistoryOpen || mobileToolsOpen) && (
+        <button
+          type="button"
+          aria-label="Close mobile panel"
+          className="fixed inset-0 z-40 bg-black/55 lg:hidden"
+          onClick={() => {
+            setMobileHistoryOpen(false);
+            setMobileToolsOpen(false);
+          }}
+        />
+      )}
+
       {/* Left Sidebar - Conversations */}
       <ChatSidebar
         conversations={conversations}
@@ -639,17 +660,31 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
         onNew={handleNewChat}
         onDelete={handleDeleteConversation}
         onRename={handleRenameConversation}
+        onClose={() => setMobileHistoryOpen(false)}
+        className={`fixed inset-y-0 left-0 z-50 w-[min(88vw,360px)] bg-background shadow-2xl transition-transform duration-200 lg:static lg:z-auto lg:w-[250px] lg:translate-x-0 lg:bg-muted/30 lg:shadow-none ${
+          mobileHistoryOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       />
 
       {/* Center - Chat */}
-      <section className="min-h-0 flex flex-col bg-[#FAF7F1] dark:bg-background border-l border-r border-border">
+      <section className="flex min-h-0 flex-col bg-[#FAF7F1] dark:bg-background lg:border-l lg:border-r lg:border-border">
         {/* Project header */}
-        <div className="border-b border-border px-5 py-3 bg-background/80 backdrop-blur-sm">
+        <div className="border-b border-border bg-background/90 px-3 py-2 backdrop-blur-md sm:px-5 sm:py-3">
           <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 text-sm">
-              <PenTool className="h-4 w-4 text-primary" />
+            <div className="flex min-w-0 items-center gap-1 text-sm sm:gap-2">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="h-10 w-10 shrink-0 lg:hidden"
+                aria-label="Open conversation history"
+                onClick={() => setMobileHistoryOpen(true)}
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+              <PenTool className="hidden h-4 w-4 text-primary sm:block" />
               {lockProject ? (
-                <span className="font-semibold">
+                <span className="truncate font-semibold">
                   {hasSelectedProject ? selectedProject?.name || "Project" : "General Writing"}
                 </span>
               ) : (
@@ -662,7 +697,7 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
                     clearCompiled();
                   }}
                 >
-                  <SelectTrigger className="w-auto border-0 shadow-none p-0 h-auto font-semibold">
+                  <SelectTrigger className="h-auto max-w-[150px] border-0 p-0 font-semibold shadow-none sm:max-w-[240px]">
                     <SelectValue placeholder="Select project" />
                   </SelectTrigger>
                   <SelectContent>
@@ -674,15 +709,43 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
                 </Select>
               )}
             </div>
-            {effectiveCompiledContent && (
-              <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-1">
+              {effectiveCompiledContent && (
+              <div className="hidden items-center gap-2 sm:flex">
                 <Badge variant="outline" className="font-mono text-[10px] uppercase">{wordCount} words</Badge>
                 <Badge variant="outline" className="font-mono text-[10px] uppercase">{pageEstimate} pg</Badge>
                 {humanizedCompiledContent && (
                   <Badge variant="secondary" className="font-mono text-[10px] uppercase">Humanized</Badge>
                 )}
               </div>
-            )}
+              )}
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="h-10 w-10 lg:hidden"
+                aria-label="Start a new chat"
+                onClick={handleNewChat}
+                disabled={createConversation.isPending}
+              >
+                {createConversation.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : <Plus className="h-5 w-5" />}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="relative h-10 w-10 lg:hidden"
+                aria-label="Open writing tools and sources"
+                onClick={() => setMobileToolsOpen(true)}
+              >
+                <SlidersHorizontal className="h-5 w-5" />
+                {localSelectedSourceIds.length > 0 && (
+                  <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-semibold text-primary-foreground">
+                    {localSelectedSourceIds.length}
+                  </span>
+                )}
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -709,8 +772,19 @@ export default function WritingChat({ initialProjectId, lockProject }: WritingCh
       </section>
 
       {/* Right Panel */}
-      <aside className="min-h-0 bg-[#F1ECE2] dark:bg-muted/10">
+      <aside className={`fixed inset-y-0 right-0 z-50 min-h-0 w-[min(94vw,430px)] bg-[#F1ECE2] shadow-2xl transition-transform duration-200 dark:bg-background lg:static lg:z-auto lg:w-auto lg:translate-x-0 lg:bg-[#F1ECE2] lg:shadow-none lg:dark:bg-muted/10 ${
+        mobileToolsOpen ? "translate-x-0" : "translate-x-full"
+      }`}>
         <div className="h-full min-h-0 flex flex-col p-4 gap-4">
+          <div className="flex shrink-0 items-center justify-between border-b border-border pb-3 lg:hidden">
+            <div>
+              <h2 className="font-semibold">Writing tools</h2>
+              <p className="text-xs text-muted-foreground">Sources, settings, drafts, and exports</p>
+            </div>
+            <Button type="button" variant="ghost" size="icon" className="h-10 w-10" aria-label="Close writing tools" onClick={() => setMobileToolsOpen(false)}>
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
           {activeDocument && (
             <div className="min-h-0 flex-[1_1_55%]">
               <DocumentPanel

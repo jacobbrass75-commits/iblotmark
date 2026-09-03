@@ -39,6 +39,22 @@ interface ShopifyBlogsResponse {
   note?: string;
 }
 
+export interface ShopifyArticle {
+  id: number | string;
+  title: string;
+  handle?: string;
+  public_url?: string;
+  published: boolean;
+  published_at?: string | null;
+  updated_at?: string;
+}
+
+interface ShopifyArticlesResponse {
+  articles: ShopifyArticle[];
+  blogUrl?: string | null;
+  source?: "shopify-admin" | "public-feed";
+}
+
 function invalidateShopifyQueries(postId?: string) {
   queryClient.invalidateQueries({
     predicate: (query) => {
@@ -165,5 +181,18 @@ export function useShopifyBlogs() {
     queryKey: [companyScopedUrl("/api/blog/shopify/blogs")],
     enabled: Boolean(activeCompanyId),
     staleTime: 5 * 60_000, // 5 minutes
+  });
+}
+
+/**
+ * Query the connected store directly so the dashboard reflects what is
+ * actually live even when an article was created outside the local post table.
+ */
+export function useShopifyArticles() {
+  const activeCompanyId = useActiveCompanyId();
+  return useQuery<ShopifyArticlesResponse>({
+    queryKey: [companyScopedUrl("/api/blog/shopify/articles")],
+    enabled: Boolean(activeCompanyId),
+    staleTime: 60_000,
   });
 }

@@ -11,6 +11,8 @@ coverage/
 .env
 .env.local
 .env.*.local
+.env.*
+!.env.example
 
 # IDE
 .idea/
@@ -40,6 +42,38 @@ server/python/__pycache__/
 
 # Database
 data/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
 ruflo/
 uploads/
+assets/broll/source/**
+!assets/broll/source/.gitkeep
+assets/broll/derivatives/**
+!assets/broll/derivatives/.gitkeep
 data/*.txt
+
+# Private local reports, exports, and working copies.
+# Previously tracked artifacts are unaffected; do not stage their updates blindly.
+/content-output/
+/output/
+/outputs/
+/research/
+/tmp/
+/transfer/
+/upwork/
+/scripts/build-upwork-blog-portfolio-pdf.py
+
+# Private media inventories and generated labels; keep the schema in Git.
+/assets/broll/drive-manifest.json
+/assets/broll/catalog.json
+/assets/broll/labels-index.json
+/assets/broll/apple-vision-labels.ndjson
+/assets/broll/labels/pending/*.json
+/assets/broll/labels/completed/*.json
